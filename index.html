@@ -11,9 +11,8 @@
     .menu { text-align: center; margin-bottom: 12px; margin-top: 8px; }
     .menu a { color: #16a34a; text-decoration: none; font-weight: bold; margin: 0 11px; font-size: 1.15rem; }
     .menu a:hover { text-decoration: underline; }
-    .logo-bar { text-align:center; font-size:1.8rem; margin-bottom: 16px; margin-top:10px;}
-    .logo-bar a { margin: 0 6px; text-decoration:none; color:#fff;}
-    .logo-bar a:hover { color: #16a34a;}
+    .logo-bar { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:18px; margin-bottom: 16px; margin-top:10px;}
+    .logo-bar a img {height:42px; width:auto; border-radius: 9px; background:#fff;}
     .subscribe { text-align: center; margin: 20px auto 26px auto; font-size: 1.08rem;}
     .section { margin: 34px 0 20px 0; text-align:left;}
     .section-title { color: #16a34a; font-size: 1.21rem; margin-bottom: 7px; font-weight: bold; text-align: left;}
@@ -47,6 +46,7 @@
       .instr-block iframe,
       .playlist-block iframe { width:98vw; height:200px; }
       .video-block, .instr-block, .playlist-block { padding:10px 3vw; }
+      .logo-bar a img {height:32px;}
     }
   </style>
 </head>
@@ -67,19 +67,25 @@
     <a href="#contact">CONTACT</a>
   </div>
   <div class="logo-bar">
-    <a href="https://x.com/djbilbox">𝕏</a>
-    <a href="https://www.facebook.com/Djbilboxbeats/">f</a>
-    <a href="https://www.youtube.com/@DJBILBOXBEATS">▶</a>
-    <a href="https://www.instagram.com/djbilboxbeats">📷</a>
-    <a href="https://www.linkedin.com/in/djbilbox-beats-9a4554338/">in</a>
-    <a href="https://music.apple.com/fr/artist/djbilbox-beats/">🎵</a>
-    <a href="https://djbilbox.beatstars.com/">🎹</a>
-    <a href="https://www.deezer.com/fr/artist/298585101">♪</a>
-    <a href="https://soundcloud.com/djbilboxbeats">☁</a>
-    <a href="https://discord.gg/djbilbox_31926">💬</a>
-    <a href="https://fr.pinterest.com/Djbilboxbeats">📌</a>
-    <a href="https://open.spotify.com/intl-fr/artist/2wP5nwScAUiXF6Esc4x0hG">🎧</a>
-    <a href="https://www.tiktok.com/@djbilboxbeats">♬</a>
+    <a href="https://open.spotify.com/intl-fr/artist/2wP5nwScAUiXF6Esc4x0hG" title="Spotify">
+      <img src="https://cdn.iconscout.com/icon/free/png-256/spotify-3521517-2945093.png" alt="Spotify">
+    </a>
+    <a href="https://www.youtube.com/@DJBILBOXBEATS" title="YouTube">
+      <img src="https://cdn.iconscout.com/icon/free/png-256/youtube-3521513-2945089.png" alt="YouTube">
+    </a>
+    <a href="https://www.instagram.com/djbilboxbeats" title="Instagram">
+      <img src="https://cdn.iconscout.com/icon/free/png-256/instagram-3521498-2945074.png" alt="Instagram">
+    </a>
+    <a href="https://x.com/djbilbox" title="X">
+      <img src="https://cdn.iconscout.com/icon/free/png-256/twitter-3521522-2945098.png" alt="X">
+    </a>
+    <a href="https://www.facebook.com/Djbilboxbeats/" title="Facebook">
+      <img src="https://cdn.iconscout.com/icon/free/png-256/facebook-3521506-2945082.png" alt="Facebook">
+    </a>
+    <a href="https://www.tiktok.com/@djbilboxbeats" title="TikTok">
+      <img src="https://cdn.iconscout.com/icon/free/png-256/tiktok-3521546-2945122.png" alt="TikTok">
+    </a>
+    <!-- Tu peux ajouter Soundcloud, Deezer, Discord, Pinterest avec d’autres logos ou garder les emojis -->
   </div>
   <div class="section" id="about">
     <div class="section-title">About</div>
