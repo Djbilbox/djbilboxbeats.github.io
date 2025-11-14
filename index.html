@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>DJBILBOX BEATS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       background: #18181b;
@@ -12,33 +13,101 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
     }
-    .presentation {
+    .main-content {
+      margin-top: 48px;
       text-align: center;
     }
+    .logo-video {
+      margin-bottom: 18px;
+    }
     h1 {
-      font-size: 2.8rem;
+      font-size: 2.7rem;
       font-weight: bold;
       letter-spacing: 2px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       margin-top: 0;
     }
     .desc {
-      font-size: 1.15rem;
-      margin-bottom: 0;
+      font-size: 1.20rem;
+      margin-bottom: 36px;
       line-height: 1.4;
+    }
+    .footer-links {
+      position: fixed;
+      bottom: 32px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+    }
+    .music-links, .social-links {
+      margin-bottom: 7px;
+      display: block;
+    }
+    a {
+      color: #e11d48;
+      font-weight: bold;
+      text-decoration: none;
+      margin: 0 8px;
+      font-size: 1.05rem;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #fff;
+    }
+    .footer {
+      color: #bbb;
+      font-size: .95rem;
+      margin-top: 5px;
+      text-align: center;
+    }
+    @media (max-width:560px) {
+      h1 { font-size: 2rem;}
+      .desc { font-size: 1rem;}
+      a { font-size: .93rem;}
+    }
+    video {
+      border-radius: 40px;
+      box-shadow: 0 8px 40px #0008;
+      max-width: 260px;
+      width: 80vw;
+      background: #fff2;
     }
   </style>
 </head>
 <body>
-  <div class="presentation">
+  <div class="main-content">
+    <div class="logo-video">
+      <video autoplay loop muted playsinline width="260" height="260">
+        <source src="generated_video-c1.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo.
+      </video>
+    </div>
     <h1>DJBILBOX BEATS</h1>
     <div class="desc">
       Producer / Beatmaker – Toulouse<br>
-      Un son unique, mélangeant oriental, afrotrap, balkan & West Coast.<br>
-      Créateur de vibes qui connectent les cultures et inspirent le mouvement.
+      Un son unique : oriental, afrotrap, balkan, West Coast.<br>
+      Créateur de vibes – connecte les cultures et inspire le mouvement.
+    </div>
+  </div>
+  <div class="footer-links">
+    <div class="music-links">
+      <a href="https://music.apple.com/fr/artist/djbilbox-beats/">Apple Music</a> |
+      <a href="https://open.spotify.com/intl-fr/artist/2wP5nwScAUiXF6Esc4x0hG">Spotify</a> |
+      <a href="https://www.youtube.com/@DJBILBOXBEATS">YouTube</a> |
+      <a href="https://soundcloud.com/djbilboxbeats">Soundcloud</a>
+    </div>
+    <div class="social-links">
+      <a href="https://www.instagram.com/djbilboxbeats">Instagram</a>
+      <a href="https://x.com/djbilbox">X</a>
+      <a href="https://www.facebook.com/Djbilboxbeats/">Facebook</a>
+      <a href="https://www.tiktok.com/@djbilboxbeats">TikTok</a>
+      <a href="mailto:djbilboxbeats@gmail.com">Mail</a>
+    </div>
+    <div class="footer">
+      © 2025 DJBILBOX BEATS – Site propulsé par GitHub Pages
     </div>
   </div>
 </body>
