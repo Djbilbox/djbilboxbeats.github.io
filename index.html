@@ -9,10 +9,32 @@
     .container { max-width: 900px; margin: 0 auto 24px auto; padding: 10px 2vw 0 2vw; }
     h1, h2, h3, h4 { text-align: center; margin-top:20px; }
     .menu { text-align: center; margin-bottom: 12px; margin-top: 8px; }
-    .menu a { color: #16a34a; text-decoration: none; font-weight: bold; margin: 0 11px; font-size: 1.15rem; }
-    .menu a:hover { text-decoration: underline; }
+    .menu a {
+      color: #16a34a;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 11px;
+      font-size: 1.15rem;
+      transition: background 0.18s, box-shadow 0.18s, color 0.18s;
+      padding: 3px 13px;
+      border-radius:6px;
+    }
+    .menu a:hover, .logo-bar a:hover img {
+      background: #183d1f;
+      box-shadow: 0 0 8px #16a34a88;
+    }
+    .menu a:active, .menu a.active {
+      background:#16a34a;
+      color:#fff;
+      box-shadow: 0 0 18px #16a34aac;
+    }
     .logo-bar { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:18px; margin-bottom: 18px; margin-top:14px;}
-    .logo-bar a img {height:44px;width:44px;object-fit:contain;border-radius:12px;background:#222; filter: drop-shadow(0 2px 8px #111);}
+    .logo-bar a img {height:44px;width:44px;object-fit:contain;border-radius:12px;background:#222; transition:box-shadow 0.19s, outline 0.19s;}
+    .logo-bar a:active img {
+      outline: 2px solid #16a34a;
+      box-shadow: 0 0 19px #16a34a;
+      background: #16a34a22;
+    }
     .subscribe { text-align: center; margin: 20px auto 26px auto; font-size: 1.08rem;}
     .section { margin: 34px 0 20px 0; text-align:left;}
     .section-title { color: #16a34a; font-size: 1.21rem; margin-bottom: 7px; font-weight: bold; text-align: left;}
@@ -35,6 +57,7 @@
       max-width: 95vw;
       border-radius: 9px;
     }
+    .services-list {font-size:1.06rem;color:#16a34a;line-height:1.7;margin-left:18px;margin-bottom:10px;}
     .contact-link { font-size:1.15rem; color:#16a34a; text-align:center; display:block; margin: 20px 0 30px 0;}
     .footer { text-align:center; color:#bbb; font-size:.93rem; margin-bottom: 14px;}
     input,button{border:none;}
@@ -47,6 +70,7 @@
       .playlist-block iframe { width:98vw; height:200px; }
       .video-block, .instr-block, .playlist-block { padding:10px 3vw; }
       .logo-bar a img {height:32px;width:32px;}
+      .services-list{margin-left:8px;}
     }
   </style>
 </head>
@@ -64,44 +88,44 @@
     <a href="#music">MUSIC</a>
     <a href="#instrumental">INSTRUMENTALS</a>
     <a href="#playlist">PLAYLISTS</a>
+    <a href="#services">SERVICES</a>
     <a href="#contact">CONTACT</a>
   </div>
   <div class="logo-bar">
-  <a href="https://music.apple.com/fr/artist/djbilbox-beats/" title="Apple Music">
-    <img src="https://img.icons8.com/fluency/48/apple-music.png" alt="Apple Music">
-  </a>
-  <a href="https://open.spotify.com/intl-fr/artist/2wP5nwScAUiXF6Esc4x0hG" title="Spotify">
-    <img src="https://img.icons8.com/color/48/spotify--v1.png" alt="Spotify">
-  </a>
-  <a href="https://www.youtube.com/@DJBILBOXBEATS" title="YouTube">
-    <img src="https://img.icons8.com/fluency/48/youtube-play.png" alt="YouTube">
-  </a>
-  <a href="https://soundcloud.com/djbilboxbeats" title="Soundcloud">
-    <img src="https://img.icons8.com/color/48/soundcloud.png" alt="SoundCloud">
-  </a>
-  <a href="https://www.instagram.com/djbilboxbeats" title="Instagram">
-    <img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Instagram">
-  </a>
-  <a href="https://x.com/djbilbox" title="X">
-    <img src="https://img.icons8.com/fluency/48/twitterx.png" alt="X">
-  </a>
-  <a href="https://www.facebook.com/Djbilboxbeats/" title="Facebook">
-    <img src="https://img.icons8.com/fluency/48/facebook-new.png" alt="Facebook">
-  </a>
-  <a href="https://www.tiktok.com/@djbilboxbeats" title="TikTok">
-    <img src="https://img.icons8.com/fluency/48/tiktok.png" alt="TikTok">
-  </a>
-  <a href="https://www.linkedin.com/in/djbilbox-beats-9a4554338/" title="LinkedIn">
-    <img src="https://img.icons8.com/fluency/48/linkedin.png" alt="LinkedIn">
-  </a>
-  <a href="https://fr.pinterest.com/Djbilboxbeats" title="Pinterest">
-    <img src="https://img.icons8.com/fluency/48/pinterest.png" alt="Pinterest">
-  </a>
-  <a href="mailto:djbilboxbeats@gmail.com" title="Mail">
-    <img src="https://img.icons8.com/fluency/48/gmail.png" alt="Mail">
-  </a>
-</div>
-
+    <a href="https://music.apple.com/fr/artist/djbilbox-beats/" title="Apple Music">
+      <img src="https://img.icons8.com/fluency/48/apple-music.png" alt="Apple Music">
+    </a>
+    <a href="https://open.spotify.com/intl-fr/artist/2wP5nwScAUiXF6Esc4x0hG" title="Spotify">
+      <img src="https://img.icons8.com/color/48/spotify--v1.png" alt="Spotify">
+    </a>
+    <a href="https://www.youtube.com/@DJBILBOXBEATS" title="YouTube">
+      <img src="https://img.icons8.com/fluency/48/youtube-play.png" alt="YouTube">
+    </a>
+    <a href="https://soundcloud.com/djbilboxbeats" title="Soundcloud">
+      <img src="https://img.icons8.com/color/48/soundcloud.png" alt="SoundCloud">
+    </a>
+    <a href="https://www.instagram.com/djbilboxbeats" title="Instagram">
+      <img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Instagram">
+    </a>
+    <a href="https://x.com/djbilbox" title="X">
+      <img src="https://img.icons8.com/fluency/48/twitterx.png" alt="X">
+    </a>
+    <a href="https://www.facebook.com/Djbilboxbeats/" title="Facebook">
+      <img src="https://img.icons8.com/fluency/48/facebook-new.png" alt="Facebook">
+    </a>
+    <a href="https://www.tiktok.com/@djbilboxbeats" title="TikTok">
+      <img src="https://img.icons8.com/fluency/48/tiktok.png" alt="TikTok">
+    </a>
+    <a href="https://www.linkedin.com/in/djbilbox-beats-9a4554338/" title="LinkedIn">
+      <img src="https://img.icons8.com/fluency/48/linkedin.png" alt="LinkedIn">
+    </a>
+    <a href="https://fr.pinterest.com/Djbilboxbeats" title="Pinterest">
+      <img src="https://img.icons8.com/fluency/48/pinterest.png" alt="Pinterest">
+    </a>
+    <a href="mailto:djbilboxbeats@gmail.com" title="Mail">
+      <img src="https://img.icons8.com/fluency/48/gmail.png" alt="Mail">
+    </a>
+  </div>
   <div class="section" id="about">
     <div class="section-title">About</div>
     <h3>DJBILBOX BEATS</h3>
@@ -189,6 +213,26 @@
       </div>
     </div>
   </div>
+  <div class="section" id="services">
+    <div class="section-title">SERVICES</div>
+    <div style="margin-bottom:18px; font-size:1.12rem;">
+      <b>DJBILBOX BEATS offers you premium digital services for your music and creative projects:</b>
+    </div>
+    <ul class="services-list">
+      <li>Custom Hip-Hop & Afrotrap Instrumental Production</li>
+      <li>Mixing & Mastering (Studio Quality)</li>
+      <li>AI Video & Image Generation for Artists</li>
+      <li>Music Branding & Identity Design (Logo, Social Covers)</li>
+      <li>Playlist Placement & Distribution</li>
+      <li>Artist Portfolio & EPK Creation</li>
+      <li>Professional DJ/Live Sets (Booking on-demand)</li>
+      <li>Content Creation (Shorts, Reels, Promo Clips)</li>
+      <li>Online Collaboration & Remote Production</li>
+    </ul>
+    <div style="margin-top:12px; font-size:1.08rem;">
+      <b>Contact me for custom rates, bundles and your next big project!</b>
+    </div>
+  </div>
   <div class="contact-link" id="contact">
     <b>Contact:</b> <a href="mailto:djbilboxbeats@gmail.com" style="color:#16a34a;">djbilboxbeats@gmail.com</a>
   </div>
@@ -197,5 +241,13 @@
   © 2025 DJBILBOX BEATS - All Rights Reserved<br>
   Site hosted on GitHub Pages
 </div>
+<script>
+document.querySelectorAll('.menu a').forEach(function(link){
+  link.addEventListener('click', function(e){
+    document.querySelectorAll('.menu a').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
 </body>
 </html>
