@@ -5,104 +5,28 @@
   <title>DJBILBOX BEATS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      background: #18181b;
-      color: #fff;
-      font-family: Arial,sans-serif;
-      margin:0;
-      padding:0;
-    }
-    .container {
-      max-width: 700px;
-      margin: 0 auto 24px auto;
-      padding: 10px 2vw 0 2vw;
-      background: #18181b;
-    }
-    h1, h2, h3, h4 {
-      text-align: center;
-      margin-top:20px;
-    }
-    .menu {
-      text-align: center;
-      margin-bottom: 12px;
-      margin-top: 8px;
-    }
-    .menu a {
-      color: #16a34a;
-      text-decoration: none;
-      font-weight: bold;
-      margin: 0 11px;
-      font-size: 1.15rem;
-    }
+    body { background: #18181b; color: #fff; font-family: Arial,sans-serif; margin:0; padding:0; }
+    .container { max-width: 700px; margin: 0 auto 24px auto; padding: 10px 2vw 0 2vw; background: #18181b; }
+    h1, h2, h3, h4 { text-align: center; margin-top:20px; }
+    .menu { text-align: center; margin-bottom: 12px; margin-top: 8px; }
+    .menu a { color: #16a34a; text-decoration: none; font-weight: bold; margin: 0 11px; font-size: 1.15rem;}
     .menu a:hover { text-decoration: underline; }
-    .logo-bar {
-      text-align:center;
-      font-size:1.8rem;
-      margin-bottom: 16px;
-      margin-top:10px;
-    }
-    .logo-bar a {
-      margin: 0 6px;
-      text-decoration:none;
-      color:#fff;
-    }
+    .logo-bar { text-align:center; font-size:1.8rem; margin-bottom: 16px; margin-top:10px;}
+    .logo-bar a { margin: 0 6px; text-decoration:none; color:#fff;}
     .logo-bar a:hover { color: #16a34a;}
-    .subscribe {
-      text-align: center;
-      margin: 20px auto 26px auto;
-      font-size: 1.08rem;
-    }
-    .section {
-      margin: 34px 0 20px 0;
-      text-align:left;
-    }
-    .section-title {
-      color: #16a34a;
-      font-size: 1.21rem;
-      margin-bottom: 7px;
-      font-weight: bold;
-      text-align: left;
-    }
-    .videos { 
-      display: flex;
-      flex-wrap: wrap;
-      gap: 26px;
-      justify-content: center;
-      margin-top:14px;
-    }
-    .video-block {
-      background:#222;
-      border-radius:16px;
-      padding:13px 9px 5px 9px;
-      box-shadow:0 2px 16px #0007;
-      max-width:360px;
-      width:100%;
-      text-align:center;
-    }
-    .video-block p {
-      font-size:.98rem;
-      margin:0 0 5px 0;
-      color: #16a34a;
-      font-weight: bold;
-    }
-    .contact-link {
-      font-size:1.15rem;
-      color:#16a34a;
-      text-align:center;
-      display:block;
-      margin: 20px 0 30px 0;
-    }
-    .footer {
-      text-align:center;
-      color:#bbb;
-      font-size:.93rem;
-      margin-bottom: 14px;
-    }
+    .subscribe { text-align: center; margin: 20px auto 26px auto; font-size: 1.08rem;}
+    .section { margin: 34px 0 20px 0; text-align:left;}
+    .section-title { color: #16a34a; font-size: 1.21rem; margin-bottom: 7px; font-weight: bold; text-align: left;}
+    .instrumentals, .videos { display: flex; flex-wrap: wrap; gap: 26px; justify-content: center; margin-top:14px;}
+    .video-block, .instr-block { background:#222; border-radius:16px; padding:13px 9px 5px 9px; box-shadow:0 2px 16px #0007; max-width:360px; width:100%; text-align:center;}
+    .video-block p, .instr-block p { font-size:.98rem; margin:0 0 5px 0; color: #16a34a; font-weight: bold;}
+    .contact-link { font-size:1.15rem; color:#16a34a; text-align:center; display:block; margin: 20px 0 30px 0;}
+    .footer { text-align:center; color:#bbb; font-size:.93rem; margin-bottom: 14px;}
     input,button{border:none;}
     button{background:#16a34a;color:#fff;padding:7px 18px;border-radius:5px;cursor:pointer;}
     button:hover{background:#fff;color:#16a34a;}
     @media(max-width:840px){
-      .videos{gap:16px;}
+      .videos, .instrumentals {gap:16px;}
       .container{max-width:100%;}
     }
     @media(max-width:600px){
@@ -110,7 +34,7 @@
       h1 { font-size:1.45rem;}
       .menu a {font-size:.97rem;}
       .logo-bar { font-size:1.1rem;}
-      .video-block{max-width:95vw;}
+      .video-block, .instr-block {max-width:95vw;}
     }
   </style>
 </head>
@@ -121,15 +45,13 @@
     SUBSCRIBE TO OUR MAILING LIST TO BE INFORMED OF OUR NEWS <br>
     <input required aria-label="Votre adresse courriel" placeholder="Votre adresse email" style="margin-top:7px; padding:6px; border-radius:5px; border:none;"> <button>S'INSCRIRE</button>
   </div>
-  
   <div class="menu">
     <a href="#accueil">ACCUEIL</a>
     <a href="#apropos">À PROPOS</a>
     <a href="#musique">MUSIQUE</a>
-    <a href="#videos">VIDÉOS</a>
+    <a href="#instrumental">INSTRUMENTAL</a>
     <a href="#contact">CONTACT</a>
   </div>
-  
   <div class="logo-bar">
     <a href="https://x.com/djbilbox">𝕏</a>
     <a href="https://www.facebook.com/Djbilboxbeats/">f</a>
@@ -145,7 +67,6 @@
     <a href="https://open.spotify.com/intl-fr/artist/2wP5nwScAUiXF6Esc4x0hG">🎧</a>
     <a href="https://www.tiktok.com/@djbilboxbeats">♬</a>
   </div>
-  
   <div class="section" id="apropos">
     <div class="section-title">À propos</div>
     <h3>DJBILBOX BEATS</h3>
@@ -154,9 +75,8 @@
     Blending oriental, afrotrap, balkan, Middle Eastern, and west coast influences, his sound is a journey that connects cultures and feelings. Each beat is crafted to move souls, inspire, and transport listeners into a new world.<br><br>
     With a growing global audience, Djbilbox Beats sees music as a boundless voyage, driven by creativity and authenticity. His mission is simple: to make people feel the music and leave a lasting mark with every production.
   </div>
-  
-  <div class="section" id="videos">
-    <div class="section-title">Vidéos</div>
+  <div class="section" id="musique">
+    <div class="section-title">MUSIQUE – REMIX</div>
     <div class="videos">
       <div class="video-block">
         <p>VATIMBORA (Afrotrap x Reggaeton Type beats Instrumental)</p>
@@ -176,7 +96,40 @@
       </div>
     </div>
   </div>
-  
+  <div class="section" id="instrumental">
+    <div class="section-title">INSTRUMENTAL – POPULAIRES</div>
+    <div class="instrumentals">
+      <!-- Tes instrumentales intégrées -->
+      <div class="instr-block">
+        <p>Balkan - Djbilbox Beats (Long Version)</p>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/7T8HbasjvM8" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+      </div>
+      <div class="instr-block">
+        <p>"GOTHAM" STVRBOY SAMPLE x TYPE TRAP Instrumental</p>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/YoNKHfzXzv0" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+      </div>
+      <div class="instr-block">
+        <p>"IDYLLIC" Hindus Oriental Drill Hip-hop Type beats Instrumental</p>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/UiSeg4aCtY8" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+      </div>
+      <div class="instr-block">
+        <p>Instrumental 4</p>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/3soNqnhbNVE" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+      </div>
+      <div class="instr-block">
+        <p>Instrumental 5</p>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/V-wYDpqbBG0" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+      </div>
+      <div class="instr-block">
+        <p>Instrumental 6</p>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/4VyncAFZ0HQ" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+      </div>
+      <div class="instr-block">
+        <p>Instrumental 7</p>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/DfLmqMmHBqU" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
   <div class="contact-link" id="contact">
     <b>Contact :</b> <a href="mailto:djbilboxbeats@gmail.com" style="color:#16a34a;">djbilboxbeats@gmail.com</a>
   </div>
