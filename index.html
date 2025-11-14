@@ -28,7 +28,7 @@
       margin-top: 8px;
     }
     .menu a {
-      color: #e11d48;
+      color: #16a34a;
       text-decoration: none;
       font-weight: bold;
       margin: 0 11px;
@@ -46,7 +46,7 @@
       text-decoration:none;
       color:#fff;
     }
-    .logo-bar a:hover { color: #e11d48;}
+    .logo-bar a:hover { color: #16a34a;}
     .subscribe {
       text-align: center;
       margin: 20px auto 26px auto;
@@ -57,24 +57,37 @@
       text-align:left;
     }
     .section-title {
-      color: #e11d48;
+      color: #16a34a;
       font-size: 1.21rem;
       margin-bottom: 7px;
       font-weight: bold;
       text-align: left;
     }
-    .videos a { 
-      color:#fff; 
-      text-decoration:underline; 
-      display:block; 
-      margin:3px 0;
+    .videos { 
+      display: flex;
+      flex-wrap: wrap;
+      gap: 26px;
+      justify-content: center;
+      margin-top:14px;
     }
-    .videos a:hover {
-      color:#e11d48;
+    .video-block {
+      background:#222;
+      border-radius:16px;
+      padding:13px 9px 5px 9px;
+      box-shadow:0 2px 16px #0007;
+      max-width:360px;
+      width:100%;
+      text-align:center;
+    }
+    .video-block p {
+      font-size:.98rem;
+      margin:0 0 5px 0;
+      color: #16a34a;
+      font-weight: bold;
     }
     .contact-link {
       font-size:1.15rem;
-      color:#e11d48;
+      color:#16a34a;
       text-align:center;
       display:block;
       margin: 20px 0 30px 0;
@@ -85,11 +98,19 @@
       font-size:.93rem;
       margin-bottom: 14px;
     }
+    input,button{border:none;}
+    button{background:#16a34a;color:#fff;padding:7px 18px;border-radius:5px;cursor:pointer;}
+    button:hover{background:#fff;color:#16a34a;}
+    @media(max-width:840px){
+      .videos{gap:16px;}
+      .container{max-width:100%;}
+    }
     @media(max-width:600px){
       .container {padding: 7px 1vw;}
       h1 { font-size:1.45rem;}
       .menu a {font-size:.97rem;}
       .logo-bar { font-size:1.1rem;}
+      .video-block{max-width:95vw;}
     }
   </style>
 </head>
@@ -98,7 +119,7 @@
   <h1>DJBILBOX BEATS</h1>
   <div class="subscribe">
     SUBSCRIBE TO OUR MAILING LIST TO BE INFORMED OF OUR NEWS <br>
-    <input required aria-label="Votre adresse courriel" placeholder="Votre adresse email" style="margin-top:7px; padding:6px; border-radius:5px; border:none;"> <button style="background:#e11d48;color:#fff;padding:7px 18px;border:none;border-radius:5px;cursor:pointer;">S'INSCRIRE</button>
+    <input required aria-label="Votre adresse courriel" placeholder="Votre adresse email" style="margin-top:7px; padding:6px; border-radius:5px; border:none;"> <button>S'INSCRIRE</button>
   </div>
   
   <div class="menu">
@@ -137,15 +158,27 @@
   <div class="section" id="videos">
     <div class="section-title">Vidéos</div>
     <div class="videos">
-      <a href="https://www.youtube.com/watch?v=B1IpmH-mbSI" target="_blank">VATIMBORA (Afrotrap x Reggaeton Type beats Instrumental)</a>
-      <a href="https://www.youtube.com/watch?v=CZoLkejsVlA" target="_blank">Just Keep Watching (Tate McRae RMX)</a>
-      <a href="https://www.youtube.com/watch?v=FI_f10grTTE" target="_blank">Rani out Abdou Gambetta (RMX GFUNK)</a>
-      <a href="https://www.youtube.com/watch?v=LpNefEDd2jw" target="_blank">Zion Lyon</a>
+      <div class="video-block">
+        <p>VATIMBORA (Afrotrap x Reggaeton Type beats Instrumental)</p>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/B1IpmH-mbSI" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+      </div>
+      <div class="video-block">
+        <p>Just Keep Watching (Tate McRae RMX)</p>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/CZoLkejsVlA" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+      </div>
+      <div class="video-block">
+        <p>Rani out Abdou Gambetta (RMX GFUNK)</p>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/FI_f10grTTE" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+      </div>
+      <div class="video-block">
+        <p>Zion Lyon</p>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/LpNefEDd2jw" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
   
   <div class="contact-link" id="contact">
-    <b>Contact :</b> <a href="mailto:djbilboxbeats@gmail.com" style="color:#e11d48;">djbilboxbeats@gmail.com</a>
+    <b>Contact :</b> <a href="mailto:djbilboxbeats@gmail.com" style="color:#16a34a;">djbilboxbeats@gmail.com</a>
   </div>
 </div>
 <div class="footer">
