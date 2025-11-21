@@ -1,50 +1,327 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>DJBILBOX BEATS</title>
+    <title>DJBILBOX BEATS - Music Producer & Beatmaker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DJBILBOX BEATS - Music Producer & Beatmaker spécialisé en Hip-Hop, Afrotrap, Oriental Beats">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%); color: #fff; font-family: 'Arial', sans-serif; overflow-x: hidden; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        h1 { font-family: 'Orbitron', sans-serif; font-size: 4.5rem; font-weight: 900; text-align: center; margin: 40px 0 20px 0; background: linear-gradient(135deg, #c0c0c0, #e8e8e8, #c0c0c0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 20px rgba(192, 192, 192, 0.3)); letter-spacing: 3px; }
-        .shine { animation: shine 3s infinite; }
-        @keyframes shine { 0%, 100% { filter: drop-shadow(0 0 10px rgba(192, 192, 192, 0.3)); } 50% { filter: drop-shadow(0 0 30px rgba(192, 192, 192, 0.8)); } }
-        .menu { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 20px 0; border-top: 1px solid #16a34a; padding-top: 15px; }
-        .menu a { color: #16a34a; text-decoration: none; font-weight: bold; font-size: 1.1rem; padding: 12px 25px; border: 2px solid #16a34a; border-radius: 30px; transition: all 0.3s; }
-        .menu a:hover { background: #16a34a; color: #000; box-shadow: 0 0 20px rgba(22, 163, 74, 0.8); transform: translateY(-2px); }
-        .about { text-align: center; margin: 40px 0; padding: 30px; border: 2px solid #16a34a; border-radius: 10px; background: rgba(22, 163, 74, 0.05); }
-        .about h2 { font-size: 2rem; margin-bottom: 15px; color: #16a34a; }
-        .about p { font-size: 1.1rem; line-height: 1.8; margin: 10px 0; }
-        .section { margin: 50px 0; padding: 30px; border: 2px solid #16a34a; border-radius: 10px; background: rgba(22, 163, 74, 0.05); }
-        .section h2 { font-size: 2.5rem; margin-bottom: 30px; color: #16a34a; text-align: center; font-family: 'Orbitron', sans-serif; }
-        .videos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .video-card { border-radius: 10px; overflow: hidden; border: 2px solid #16a34a; transition: all 0.3s; background: #000; }
-        .video-card:hover { box-shadow: 0 0 20px rgba(22, 163, 74, 0.8); transform: translateY(-5px); }
-        .video-card iframe { width: 100%; height: 200px; border: none; }
-        .video-card h3 { padding: 15px; text-align: center; color: #16a34a; font-size: 0.9rem; background: rgba(0, 0, 0, 0.7); line-height: 1.4; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .service-card { padding: 20px; border: 2px solid #16a34a; border-radius: 10px; background: rgba(22, 163, 74, 0.1); transition: all 0.3s; text-align: center; }
-        .service-card:hover { background: rgba(22, 163, 74, 0.2); box-shadow: 0 0 20px rgba(22, 163, 74, 0.6); transform: translateY(-5px); }
-        .service-card h3 { color: #16a34a; margin-bottom: 10px; font-size: 1.2rem; }
-        .service-card p { font-size: 0.95rem; line-height: 1.6; }
-        .social-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 30px 0; }
-        .social-links a { display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border: 2px solid #16a34a; border-radius: 50%; color: #16a34a; text-decoration: none; font-weight: bold; font-size: 1.2rem; transition: all 0.3s; }
-        .social-links a:hover { background: #16a34a; color: #000; box-shadow: 0 0 20px rgba(22, 163, 74, 0.8); }
-        .contact-section { text-align: center; margin: 50px 0; padding: 40px; border: 2px solid #16a34a; border-radius: 10px; background: rgba(22, 163, 74, 0.05); }
-        .contact-section h2 { color: #16a34a; margin-bottom: 20px; font-size: 2rem; font-family: 'Orbitron', sans-serif; }
-        .contact-section p { font-size: 1.1rem; margin: 15px 0; }
-        .contact-section a { color: #16a34a; text-decoration: none; font-weight: bold; }
-        .contact-section a:hover { border-bottom: 2px solid #16a34a; }
-        footer { text-align: center; padding: 20px; border-top: 1px solid #16a34a; margin-top: 50px; color: #16a34a; }
-        @media (max-width: 768px) { h1 { font-size: 2.5rem; } .menu a { padding: 10px 15px; font-size: 0.9rem; } .section h2 { font-size: 1.8rem; } .videos-grid { grid-template-columns: 1fr; } }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%); 
+            color: #fff; 
+            font-family: 'Arial', sans-serif; 
+            overflow-x: hidden; 
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+        
+        /* HEADER */
+        h1 { 
+            font-family: 'Orbitron', sans-serif; 
+            font-size: 4.5rem; 
+            font-weight: 900; 
+            text-align: center; 
+            margin: 40px 0 20px 0; 
+            background: linear-gradient(135deg, #c0c0c0, #e8e8e8, #c0c0c0); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text; 
+            filter: drop-shadow(0 0 20px rgba(192, 192, 192, 0.3)); 
+            letter-spacing: 3px; 
+            animation: shine 3s infinite; 
+        }
+        
+        @keyframes shine { 
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(192, 192, 192, 0.3)); } 
+            50% { filter: drop-shadow(0 0 30px rgba(192, 192, 192, 0.8)); } 
+        }
+        
+        /* MENU */
+        .menu { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            flex-wrap: wrap; 
+            margin: 20px 0; 
+            border-top: 1px solid #16a34a; 
+            padding-top: 15px; 
+        }
+        
+        .menu a { 
+            color: #16a34a; 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 1.1rem; 
+            padding: 12px 25px; 
+            border: 2px solid #16a34a; 
+            border-radius: 30px; 
+            transition: all 0.3s; 
+        }
+        
+        .menu a:hover { 
+            background: #16a34a; 
+            color: #000; 
+            box-shadow: 0 0 20px rgba(22, 163, 74, 0.8); 
+            transform: translateY(-2px); 
+        }
+        
+        /* ABOUT */
+        .about { 
+            text-align: center; 
+            margin: 40px 0; 
+            padding: 30px; 
+            border: 2px solid #16a34a; 
+            border-radius: 10px; 
+            background: rgba(22, 163, 74, 0.05); 
+        }
+        
+        .about h2 { 
+            font-size: 2rem; 
+            margin-bottom: 15px; 
+            color: #16a34a; 
+        }
+        
+        .about p { 
+            font-size: 1.1rem; 
+            line-height: 1.8; 
+            margin: 10px 0; 
+        }
+        
+        /* SECTIONS */
+        .section { 
+            margin: 50px 0; 
+            padding: 30px; 
+            border: 2px solid #16a34a; 
+            border-radius: 10px; 
+            background: rgba(22, 163, 74, 0.05); 
+        }
+        
+        .section h2 { 
+            font-size: 2.5rem; 
+            margin-bottom: 30px; 
+            color: #16a34a; 
+            text-align: center; 
+            font-family: 'Orbitron', sans-serif; 
+        }
+        
+        /* VIDEO GRID */
+        .videos-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 25px; 
+        }
+        
+        .video-card { 
+            border-radius: 10px; 
+            overflow: hidden; 
+            border: 2px solid #16a34a; 
+            transition: all 0.3s; 
+            background: #000; 
+            position: relative;
+        }
+        
+        .video-card:hover { 
+            box-shadow: 0 0 25px rgba(22, 163, 74, 0.8); 
+            transform: translateY(-5px); 
+            border-color: #22c55e;
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            background: #000;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+        
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(22, 163, 74, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            transition: all 0.3s;
+            z-index: 2;
+        }
+        
+        .video-card:hover .play-icon {
+            background: rgba(22, 163, 74, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .video-card h3 { 
+            padding: 15px; 
+            text-align: center; 
+            color: #16a34a; 
+            font-size: 0.95rem; 
+            background: rgba(0, 0, 0, 0.9); 
+            line-height: 1.5; 
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        /* SERVICES GRID */
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+        }
+        
+        .service-card { 
+            padding: 25px; 
+            border: 2px solid #16a34a; 
+            border-radius: 10px; 
+            background: rgba(22, 163, 74, 0.1); 
+            transition: all 0.3s; 
+            text-align: center; 
+        }
+        
+        .service-card:hover { 
+            background: rgba(22, 163, 74, 0.2); 
+            box-shadow: 0 0 20px rgba(22, 163, 74, 0.6); 
+            transform: translateY(-5px); 
+        }
+        
+        .service-card h3 { 
+            color: #16a34a; 
+            margin-bottom: 10px; 
+            font-size: 1.2rem; 
+        }
+        
+        .service-card p { 
+            font-size: 0.95rem; 
+            line-height: 1.6; 
+        }
+        
+        /* SOCIAL LINKS */
+        .social-links { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            flex-wrap: wrap; 
+            margin: 30px 0; 
+        }
+        
+        .social-links a { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 50px; 
+            height: 50px; 
+            border: 2px solid #16a34a; 
+            border-radius: 50%; 
+            color: #16a34a; 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 1.2rem; 
+            transition: all 0.3s; 
+        }
+        
+        .social-links a:hover { 
+            background: #16a34a; 
+            color: #000; 
+            box-shadow: 0 0 20px rgba(22, 163, 74, 0.8); 
+            transform: scale(1.1);
+        }
+        
+        /* CONTACT */
+        .contact-section { 
+            text-align: center; 
+            margin: 50px 0; 
+            padding: 40px; 
+            border: 2px solid #16a34a; 
+            border-radius: 10px; 
+            background: rgba(22, 163, 74, 0.05); 
+        }
+        
+        .contact-section h2 { 
+            color: #16a34a; 
+            margin-bottom: 20px; 
+            font-size: 2rem; 
+            font-family: 'Orbitron', sans-serif; 
+        }
+        
+        .contact-section p { 
+            font-size: 1.1rem; 
+            margin: 15px 0; 
+        }
+        
+        .contact-section a { 
+            color: #16a34a; 
+            text-decoration: none; 
+            font-weight: bold; 
+            transition: all 0.3s;
+        }
+        
+        .contact-section a:hover { 
+            border-bottom: 2px solid #16a34a; 
+        }
+        
+        /* FOOTER */
+        footer { 
+            text-align: center; 
+            padding: 20px; 
+            border-top: 1px solid #16a34a; 
+            margin-top: 50px; 
+            color: #16a34a; 
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) { 
+            h1 { font-size: 2.5rem; } 
+            .menu a { padding: 10px 15px; font-size: 0.9rem; } 
+            .section h2 { font-size: 1.8rem; } 
+            .videos-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="shine">DJBILBOX BEATS</h1>
+        <h1>DJBILBOX BEATS</h1>
+        
         <div class="menu">
             <a href="#music">MUSIC</a>
             <a href="#instrumentals">INSTRUMENTALS</a>
@@ -55,24 +332,39 @@
         
         <div class="about">
             <h2>About DJBILBOX BEATS</h2>
-            <p>Djbilbox Beats, born in Blida Algeria and now based in Toulouse, is a music producer and beatmaker with a passion for creating unique and emotional instrumentals.</p>
-            <p>Blending oriental, afrotrap, balkan, Middle Eastern, and west coast influences, I craft beats that tell a story and move the soul. My mission is to elevate the art of beatmaking and collaborate with artists who share a vision for innovative, boundary-pushing music.</p>
+            <p>Djbilbox Beats, né à Blida en Algérie et basé à Toulouse, est un producteur de musique et beatmaker passionné par la création d'instrumentaux uniques et émotionnels.</p>
+            <p>Mélangeant des influences orientales, afrotrap, balkan, du Moyen-Orient et de la west coast, je crée des beats qui racontent une histoire et touchent l'âme. Ma mission est d'élever l'art du beatmaking et de collaborer avec des artistes qui partagent une vision de musique innovante et audacieuse.</p>
         </div>
         
         <div id="music" class="section">
             <h2>🎵 MUSIC & REMIX</h2>
             <div class="videos-grid">
                 <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/B1IpmH-mbSI" allowfullscreen></iframe>
-                    <h3>VATIMBORA - Afrotrap x Reggaeton Type Beats Instrumental</h3>
+                    <a href="https://www.youtube.com/watch?v=B1IpmH-mbSI" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/B1IpmH-mbSI/maxresdefault.jpg" alt="VATIMBORA">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <h3>VATIMBORA - Afrotrap x Reggaeton Type Beats Instrumental</h3>
+                    </a>
                 </div>
                 <div class="video-card">
-                    <iframe src="https://youtu.be/CZoLkejsVlA?si=r0FMk6lTyO3S2zBY" allowfullscreen></iframe>
-                    <h3>Just Keep Watching - Tate McRae RMX</h3>
+                    <a href="https://youtu.be/CZoLkejsVlA" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/CZoLkejsVlA/maxresdefault.jpg" alt="Just Keep Watching">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <h3>Just Keep Watching - Tate McRae RMX</h3>
+                    </a>
                 </div>
                 <div class="video-card">
-                    <iframe src="https://www.youtube.com/watch?v=FI_f10grTTE&list=PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-&index=2" allowfullscreen></iframe>
-                    <h3>Rani out Abdou Gambetta - RMX GFUNK</h3>
+                    <a href="https://www.youtube.com/watch?v=FI_f10grTTE" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/FI_f10grTTE/maxresdefault.jpg" alt="Rani out Abdou Gambetta">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <h3>Rani out Abdou Gambetta - RMX GFUNK</h3>
+                    </a>
                 </div>
             </div>
         </div>
@@ -81,32 +373,67 @@
             <h2>🎹 INSTRUMENTALS</h2>
             <div class="videos-grid">
                 <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/7T8HbasjvM8" allowfullscreen></iframe>
-                    <h3>Balkan - Djbilbox Beats (Long Version)</h3>
+                    <a href="https://www.youtube.com/watch?v=7T8HbasjvM8" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/7T8HbasjvM8/maxresdefault.jpg" alt="Balkan">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <h3>Balkan - Djbilbox Beats (Long Version)</h3>
+                    </a>
                 </div>
                 <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/YoNKHfzXzv0" allowfullscreen></iframe>
-                    <h3>"GOTHAM" STVRBOY SAMPLE x TYPE TRAP Instrumental</h3>
+                    <a href="https://www.youtube.com/watch?v=YoNKHfzXzv0" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/YoNKHfzXzv0/maxresdefault.jpg" alt="GOTHAM">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <h3>"GOTHAM" STVRBOY SAMPLE x TYPE TRAP Instrumental</h3>
+                    </a>
                 </div>
                 <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/UiSeg4aCtY8" allowfullscreen></iframe>
-                    <h3>"IDYLLIC" Hindus Oriental Drill Hip-hop Type Beats Instrumental</h3>
+                    <a href="https://www.youtube.com/watch?v=UiSeg4aCtY8" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/UiSeg4aCtY8/maxresdefault.jpg" alt="IDYLLIC">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <h3>"IDYLLIC" Hindus Oriental Drill Hip-hop Type Beats Instrumental</h3>
+                    </a>
                 </div>
                 <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/3soNqnhbNVE" allowfullscreen></iframe>
-                    <h3>" Inaya " | Drill Trap Oriental Type beats Instrumental | Prod by Djbilbox BEATS</h3>
+                    <a href="https://www.youtube.com/watch?v=3soNqnhbNVE" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/3soNqnhbNVE/maxresdefault.jpg" alt="Inaya">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <h3>"Inaya" | Drill Trap Oriental Type beats Instrumental</h3>
+                    </a>
                 </div>
                 <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/V-wYDpqbBG0" allowfullscreen></iframe>
-                    <h3>" Lyah " | Oriental x Afrotrap Type beats Instrumental | Prod by Djbilbox BEATS</h3>
+                    <a href="https://www.youtube.com/watch?v=V-wYDpqbBG0" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/V-wYDpqbBG0/maxresdefault.jpg" alt="Lyah">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <h3>"Lyah" | Oriental x Afrotrap Type beats Instrumental</h3>
+                    </a>
                 </div>
                 <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/4VyncAFZ0HQ" allowfullscreen></iframe>
-                    <h3>" VIRAL" Drill UK x Rap Type beats Instrumental | Prod by Djbilbox BEATS</h3>
+                    <a href="https://www.youtube.com/watch?v=4VyncAFZ0HQ" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/4VyncAFZ0HQ/maxresdefault.jpg" alt="VIRAL">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <h3>"VIRAL" Drill UK x Rap Type beats Instrumental</h3>
+                    </a>
                 </div>
                 <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/DfLmqMmHBqU" allowfullscreen></iframe>
-                    <h3>" Oriental " | Arabic x Trap Hip-hop Guitar Type Beats Instrumental | Prod by Djbilbox BEATS'</h3>
+                    <a href="https://www.youtube.com/watch?v=DfLmqMmHBqU" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/DfLmqMmHBqU/maxresdefault.jpg" alt="Oriental">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <h3>"Oriental" | Arabic x Trap Hip-hop Guitar Type Beats Instrumental</h3>
+                    </a>
                 </div>
             </div>
         </div>
@@ -115,12 +442,22 @@
             <h2>📻 PLAYLISTS</h2>
             <div class="videos-grid">
                 <div class="video-card">
-                    <iframe src="https://www.youtube.com/playlist?list=PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th" allowfullscreen></iframe>
-                    <h3>Instrumental by Djbilbox Beats</h3>
+                    <a href="https://www.youtube.com/playlist?list=PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/7T8HbasjvM8/maxresdefault.jpg" alt="Instrumental Playlist">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <h3>Instrumental by Djbilbox Beats</h3>
+                    </a>
                 </div>
                 <div class="video-card">
-                    <iframe src="https://www.youtube.com/watch?v=LpNefEDd2jw&list=PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-" allowfullscreen></iframe>
-                    <h3>REMIX PLAYLIST</h3>
+                    <a href="https://www.youtube.com/watch?v=LpNefEDd2jw&list=PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-" target="_blank">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/LpNefEDd2jw/maxresdefault.jpg" alt="Remix Playlist">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <h3>REMIX PLAYLIST</h3>
+                    </a>
                 </div>
             </div>
         </div>
@@ -129,40 +466,40 @@
             <h2>⚙️ SERVICES</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <h3>Custom Hip-Hop & Afrotrap</h3>
-                    <p>Professional instrumental production tailored to your style and vision</p>
+                    <h3>🎵 Custom Hip-Hop & Afrotrap</h3>
+                    <p>Production d'instrumentaux professionnels adaptés à votre style et vision</p>
                 </div>
                 <div class="service-card">
-                    <h3>Mixing & Mastering</h3>
-                    <p>Studio quality audio engineering for your tracks</p>
+                    <h3>🎚️ Mixing & Mastering</h3>
+                    <p>Ingénierie audio de qualité studio pour vos morceaux</p>
                 </div>
                 <div class="service-card">
-                    <h3>AI Video & Image Generation</h3>
-                    <p>Create stunning visuals for your music content</p>
+                    <h3>🎨 AI Video & Image Generation</h3>
+                    <p>Créez des visuels époustouflants pour votre contenu musical</p>
                 </div>
                 <div class="service-card">
-                    <h3>Music Branding & Identity</h3>
-                    <p>Logo design, social covers, and visual branding</p>
+                    <h3>🎭 Music Branding & Identity</h3>
+                    <p>Design de logo, couvertures sociales et branding visuel</p>
                 </div>
                 <div class="service-card">
-                    <h3>Playlist Placement & Distribution</h3>
-                    <p>Get your music on major curated playlists</p>
+                    <h3>📻 Playlist Placement & Distribution</h3>
+                    <p>Diffusez votre musique sur les principales playlists curées</p>
                 </div>
                 <div class="service-card">
-                    <h3>Artist Portfolio & EPK</h3>
-                    <p>Professional EPK and portfolio creation</p>
+                    <h3>📁 Artist Portfolio & EPK</h3>
+                    <p>Création professionnelle d'EPK et de portfolio</p>
                 </div>
                 <div class="service-card">
-                    <h3>Professional DJ/Live Sets</h3>
-                    <p>Professional performances available for booking</p>
+                    <h3>🎧 Professional DJ/Live Sets</h3>
+                    <p>Performances professionnelles disponibles sur réservation</p>
                 </div>
                 <div class="service-card">
-                    <h3>Content Creation</h3>
-                    <p>Shorts, Reels, and promotional video production</p>
+                    <h3>📹 Content Creation</h3>
+                    <p>Production de Shorts, Reels et vidéos promotionnelles</p>
                 </div>
                 <div class="service-card">
-                    <h3>Remote Collaboration</h3>
-                    <p>Online production sessions and beat collaborations</p>
+                    <h3>🌐 Remote Collaboration</h3>
+                    <p>Sessions de production en ligne et collaborations beat</p>
                 </div>
             </div>
         </div>
@@ -174,7 +511,17 @@
             <h3 style="color: #16a34a; margin-top: 30px; margin-bottom: 20px;">Follow Me</h3>
             <div class="social-links">
                 <a href="https://www.youtube.com/@Djbilboxbeats" target="_blank" title="YouTube">▶</a>
-                <a href="https://www.spotify.com/djbilboxbeats" target="_blank" title="Spotify">S</a>
+                <a href="https://open.spotify.com/artist/djbilboxbeats" target="_blank" title="Spotify">♫</a>
                 <a href="https://www.instagram.com/djbilboxbeats" target="_blank" title="Instagram">📷</a>
-                <a href="
-
+                <a href="https://www.facebook.com/djbilboxbeats" target="_blank" title="Facebook">f</a>
+                <a href="https://www.tiktok.com/@djbilboxbeats" target="_blank" title="TikTok">♪</a>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 DJBILBOX BEATS - All Rights Reserved</p>
+            <p>Made with ❤️ in Toulouse, France</p>
+        </footer>
+    </div>
+</body>
+</html>
