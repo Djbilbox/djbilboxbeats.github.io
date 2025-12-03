@@ -26,7 +26,6 @@
         }
         .container { max-width: 1280px; margin: 0 auto; padding: 24px 18px; }
         
-        /* TITRE */
         h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: 4rem;
@@ -43,7 +42,7 @@
         }
         @keyframes shine { 0%,100%{filter: drop-shadow(0 0 12px #22c55e);} 45%{filter: drop-shadow(0 0 24px #e2e8f0);} }
 
-        /* VIDEO HEADER */
+        /* VIDEO PLAYER */
         .header-video-container {
             width: 100%;
             max-width: 800px;
@@ -62,15 +61,13 @@
             display: block;
         }
 
-        /* LANGUE */
+        /* LANG SELECTOR */
         .lang-selector { position: absolute; top: 28px; right: 36px; z-index: 100; }
         .lang-btn {
             background: var(--accent); color: #24243c; font-weight: 700;
             padding: 8px 22px; border-radius: 30px; border: none;
             font-size: 1.1rem; cursor: pointer; box-shadow: var(--shadow);
-            transition: background .2s;
         }
-        .lang-btn:hover { background: #fff; color: var(--accent); }
         .lang-dropdown {
             display: none; position: absolute; top: 50px; right: 0;
             background: rgba(42,82,152,0.98); border: 2px solid var(--accent);
@@ -80,11 +77,9 @@
         .lang-dropdown.active { display: block; }
         .lang-option {
             padding: 10px 15px; cursor: pointer; color: #fff;
-            border-radius: 10px; transition: all .2s; font-weight: 600;
-            display: flex; align-items: center; gap: 10px;
+            border-radius: 10px; font-weight: 600; display: flex; align-items: center; gap: 10px;
         }
         .lang-option:hover { background: var(--accent); color: #24243c; }
-        .lang-option.selected { background: var(--glass-bg); color: var(--accent); }
 
         /* MENU */
         .menu {
@@ -139,15 +134,11 @@
             width: 60px; height: 60px; background: var(--accent); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: 24px; color: #fff; box-shadow: var(--shadow); z-index: 2;
-            transition: background .3s, transform .2s;
         }
-        .video-card:hover .play-icon {background: #fff;color: var(--accent);transform: translate(-50%, -50%) scale(1.2);}
         .video-card h3 {
             padding: 14px; text-align: center; color: var(--accent);
             font-size: 1.07rem; background: rgba(0, 0, 0, 0.93); line-height: 1.5;
             display: flex;align-items: center;justify-content: center; min-height: 70px;
-            border-bottom-left-radius: var(--border-radius);
-            border-bottom-right-radius: var(--border-radius);
         }
 
         /* SERVICES GRID */
@@ -183,12 +174,6 @@
             h1 {font-size: 2.1rem;}
             .container {padding: 10px;}
             .menu a {padding: 10px 13px; font-size: 1rem;}
-            .section h2 {font-size: 1.18rem;}
-            .videos-grid, .services-grid {grid-template-columns: 1fr;}
-            .contact-section, .about, .section {padding: 21px;}
-            .social-links a {width: 46px;height: 46px;font-size: 1.15rem;}
-            .lang-selector {top: 15px; right: 15px;}
-            .lang-btn {padding: 6px 15px; font-size: 0.9rem;}
         }
     </style>
 </head>
@@ -210,11 +195,11 @@
 
     <h1>DJBILBOX BEATS</h1>
 
-    <!-- ZONE VIDEO PRESENTATION -->
+    <!-- ZONE VIDEO CORRIGEE -->
     <div class="header-video-container">
         <video autoplay loop muted playsinline>
-            <!-- 👇 C'EST ICI LE FICHIER VIDEO 👇 -->
-            <source src="video.mp4" type="video/mp4">
+            <!-- 👇 J'AI MIS LE NOM EXACT DE TON FICHIER 👇 -->
+            <source src="generated_video-c1.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la vidéo.
         </video>
     </div>
@@ -236,6 +221,7 @@
     <div id="music" class="section">
         <h2 data-tr="music-title">🎵 MUSIC & REMIX</h2>
         <div class="videos-grid">
+            <!-- VATIMBORA -->
             <a href="https://www.youtube.com/watch?v=B1IpmH-mbSI" target="_blank" class="video-card">
                 <div class="video-thumbnail">
                     <img src="https://img.youtube.com/vi/B1IpmH-mbSI/maxresdefault.jpg" alt="VATIMBORA">
@@ -243,6 +229,7 @@
                 </div>
                 <h3>VATIMBORA - Afrotrap x Reggaeton Type Beats Instrumental</h3>
             </a>
+            <!-- Just Keep Watching -->
             <a href="https://youtu.be/CZoLkejsVlA" target="_blank" class="video-card">
                 <div class="video-thumbnail">
                     <img src="https://img.youtube.com/vi/CZoLkejsVlA/maxresdefault.jpg" alt="Just Keep Watching">
@@ -250,6 +237,7 @@
                 </div>
                 <h3>Just Keep Watching - Tate McRae RMX</h3>
             </a>
+            <!-- Rani out Abdou Gambetta -->
             <a href="https://www.youtube.com/watch?v=FI_f10grTTE" target="_blank" class="video-card">
                 <div class="video-thumbnail">
                     <img src="https://img.youtube.com/vi/FI_f10grTTE/maxresdefault.jpg" alt="Rani out Abdou Gambetta">
@@ -297,13 +285,4 @@
                     <div class="play-icon">▶</div>
                 </div>
                 <h3>"Lyah" | Oriental x Afrotrap Type beats Instrumental</h3>
-            </a>
-            <a href="https://www.youtube.com/watch?v=4VyncAFZ0HQ" target="_blank" class="video-card">
-                <div class="video-thumbnail">
-                    <img src="https://img.youtube.com/vi/4VyncAFZ0HQ/maxresdefault.jpg" alt="VIRAL">
-                    <div class="play-icon">▶</div>
-                </div>
-                <h3>"VIRAL" Drill UK x Rap Type beats Instrumental</h3>
-            </a>
-            <a href="https://www.youtube.com/watch?v=DfLmqMmHB
 
