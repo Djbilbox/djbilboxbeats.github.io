@@ -43,7 +43,7 @@
         }
         @keyframes shine { 0%,100%{filter: drop-shadow(0 0 12px #22c55e);} 45%{filter: drop-shadow(0 0 24px #e2e8f0);} }
 
-        /* VIDEO HEADER - LE CARRÉ DE PRÉSENTATION */
+        /* VIDEO HEADER */
         .header-video-container {
             width: 100%;
             max-width: 800px;
@@ -124,5 +124,186 @@
             position: relative; transition: border 0.28s, box-shadow 0.24s;
             box-shadow: var(--shadow);
         }
-        .
+        .video-card:hover { box-shadow: 0 0 32px var(--accent); border-color: #fff; }
+        .video-thumbnail {
+            width: 100%; padding-bottom: 56.25%; background: #0a0a0a;
+            overflow: hidden; position: relative;
+        }
+        .video-thumbnail img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; filter: brightness(1.11) contrast(1.1) drop-shadow(0 0 18px #22c55e);
+            transition: transform 0.37s;
+        }
+        .play-icon {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 60px; height: 60px; background: var(--accent); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: #fff; box-shadow: var(--shadow); z-index: 2;
+            transition: background .3s, transform .2s;
+        }
+        .video-card:hover .play-icon {background: #fff;color: var(--accent);transform: translate(-50%, -50%) scale(1.2);}
+        .video-card h3 {
+            padding: 14px; text-align: center; color: var(--accent);
+            font-size: 1.07rem; background: rgba(0, 0, 0, 0.93); line-height: 1.5;
+            display: flex;align-items: center;justify-content: center; min-height: 70px;
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+        }
+
+        /* SERVICES GRID */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 24px; }
+        .service-card {
+            padding: 29px; border: 2px solid var(--accent); border-radius: var(--border-radius);
+            background: var(--glass-bg); box-shadow: var(--shadow); transition: all 0.26s;
+            text-align: center;
+        }
+        .service-card:hover {
+            background: var(--accent); color: #24243c; transform: scale(1.04);
+            box-shadow: 0 0 22px var(--accent);
+        }
+        .service-card h3 {color: var(--accent);margin-bottom: 13px;font-size: 1.23rem;}
+
+        /* SOCIAL LINKS */
+        .social-links { display: flex; justify-content: center; gap: 18px; margin: 32px 0; }
+        .social-links a {
+            display: inline-flex;align-items: center;justify-content: center;width: 56px;height: 56px;
+            border: 2px solid var(--accent); border-radius: 50%;color: var(--accent);text-decoration: none;
+            font-size: 1.6rem;transition:all .22s; background: var(--glass-bg);
+        }
+        .social-links a:hover {background: var(--accent);color:#24243c;transform:scale(1.09);box-shadow:0 0 26px var(--accent);}
+
+        /* FOOTER */
+        footer {
+            text-align: center; padding: 28px; border-top: 2px solid var(--accent);
+            margin-top: 56px; color: var(--accent); background: var(--glass-bg); font-size: 1.1rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            h1 {font-size: 2.1rem;}
+            .container {padding: 10px;}
+            .menu a {padding: 10px 13px; font-size: 1rem;}
+            .section h2 {font-size: 1.18rem;}
+            .videos-grid, .services-grid {grid-template-columns: 1fr;}
+            .contact-section, .about, .section {padding: 21px;}
+            .social-links a {width: 46px;height: 46px;font-size: 1.15rem;}
+            .lang-selector {top: 15px; right: 15px;}
+            .lang-btn {padding: 6px 15px; font-size: 0.9rem;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Lang Selector -->
+    <div class="lang-selector">
+        <button class="lang-btn">🇫🇷 FR</button>
+        <div class="lang-dropdown">
+            <div class="lang-option selected" data-lang="fr">🇫🇷 Français</div>
+            <div class="lang-option" data-lang="en">🇬🇧 English</div>
+            <div class="lang-option" data-lang="pt">🇵🇹 Português</div>
+            <div class="lang-option" data-lang="ar">🇸🇦 العربية</div>
+            <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+            <div class="lang-option" data-lang="th">🇹🇭 ไทย</div>
+        </div>
+    </div>
+
+    <h1>DJBILBOX BEATS</h1>
+
+    <!-- ZONE VIDEO PRESENTATION -->
+    <div class="header-video-container">
+        <video autoplay loop muted playsinline>
+            <!-- 👇 C'EST ICI LE FICHIER VIDEO 👇 -->
+            <source src="video.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+    </div>
+
+    <div class="menu">
+        <a href="#music" data-tr="music-title">🎵 MUSIC & REMIX</a>
+        <a href="#instrumentals" data-tr="instrumentals-title">🎹 INSTRUMENTALS</a>
+        <a href="#playlists" data-tr="playlists-title">📻 PLAYLISTS</a>
+        <a href="#services" data-tr="services-title">⚙️ SERVICES</a>
+        <a href="#contact" data-tr="contact-title">📞 CONTACT</a>
+    </div>
+
+    <div class="about">
+        <h2 data-tr="about-title">À propos de DJBILBOX BEATS</h2>
+        <p data-tr="about-txt-1">Djbilbox Beats, né à Blida en Algérie et basé à Toulouse, est un producteur de musique et beatmaker passionné par la création d'instrumentaux uniques et émotionnels.</p>
+        <p data-tr="about-txt-2">Mélangeant des influences orientales, afrotrap, balkan, du Moyen-Orient et de la west coast, je crée des beats qui racontent une histoire et touchent l'âme. Ma mission est d'élever l'art du beatmaking et de collaborer avec des artistes qui partagent une vision de musique innovante et audacieuse.</p>
+    </div>
+
+    <div id="music" class="section">
+        <h2 data-tr="music-title">🎵 MUSIC & REMIX</h2>
+        <div class="videos-grid">
+            <a href="https://www.youtube.com/watch?v=B1IpmH-mbSI" target="_blank" class="video-card">
+                <div class="video-thumbnail">
+                    <img src="https://img.youtube.com/vi/B1IpmH-mbSI/maxresdefault.jpg" alt="VATIMBORA">
+                    <div class="play-icon">▶</div>
+                </div>
+                <h3>VATIMBORA - Afrotrap x Reggaeton Type Beats Instrumental</h3>
+            </a>
+            <a href="https://youtu.be/CZoLkejsVlA" target="_blank" class="video-card">
+                <div class="video-thumbnail">
+                    <img src="https://img.youtube.com/vi/CZoLkejsVlA/maxresdefault.jpg" alt="Just Keep Watching">
+                    <div class="play-icon">▶</div>
+                </div>
+                <h3>Just Keep Watching - Tate McRae RMX</h3>
+            </a>
+            <a href="https://www.youtube.com/watch?v=FI_f10grTTE" target="_blank" class="video-card">
+                <div class="video-thumbnail">
+                    <img src="https://img.youtube.com/vi/FI_f10grTTE/maxresdefault.jpg" alt="Rani out Abdou Gambetta">
+                    <div class="play-icon">▶</div>
+                </div>
+                <h3>Rani out Abdou Gambetta - RMX GFUNK</h3>
+            </a>
+        </div>
+    </div>
+
+    <div id="instrumentals" class="section">
+        <h2 data-tr="instrumentals-title">🎹 INSTRUMENTALS</h2>
+        <div class="videos-grid">
+            <a href="https://www.youtube.com/watch?v=7T8HbasjvM8" target="_blank" class="video-card">
+                <div class="video-thumbnail">
+                    <img src="https://img.youtube.com/vi/7T8HbasjvM8/maxresdefault.jpg" alt="Balkan">
+                    <div class="play-icon">▶</div>
+                </div>
+                <h3>Balkan - Djbilbox Beats (Long Version)</h3>
+            </a>
+            <a href="https://www.youtube.com/watch?v=YoNKHfzXzv0" target="_blank" class="video-card">
+                <div class="video-thumbnail">
+                    <img src="https://img.youtube.com/vi/YoNKHfzXzv0/maxresdefault.jpg" alt="GOTHAM">
+                    <div class="play-icon">▶</div>
+                </div>
+                <h3>"GOTHAM" STVRBOY SAMPLE x TYPE TRAP Instrumental</h3>
+            </a>
+            <a href="https://www.youtube.com/watch?v=UiSeg4aCtY8" target="_blank" class="video-card">
+                <div class="video-thumbnail">
+                    <img src="https://img.youtube.com/vi/UiSeg4aCtY8/maxresdefault.jpg" alt="IDYLLIC">
+                    <div class="play-icon">▶</div>
+                </div>
+                <h3>"IDYLLIC" Hindus Oriental Drill Hip-hop Type Beats Instrumental</h3>
+            </a>
+            <a href="https://www.youtube.com/watch?v=3soNqnhbNVE" target="_blank" class="video-card">
+                <div class="video-thumbnail">
+                    <img src="https://img.youtube.com/vi/3soNqnhbNVE/maxresdefault.jpg" alt="Inaya">
+                    <div class="play-icon">▶</div>
+                </div>
+                <h3>"Inaya" | Drill Trap Oriental Type beats Instrumental</h3>
+            </a>
+            <a href="https://www.youtube.com/watch?v=V-wYDpqbBG0" target="_blank" class="video-card">
+                <div class="video-thumbnail">
+                    <img src="https://img.youtube.com/vi/V-wYDpqbBG0/maxresdefault.jpg" alt="Lyah">
+                    <div class="play-icon">▶</div>
+                </div>
+                <h3>"Lyah" | Oriental x Afrotrap Type beats Instrumental</h3>
+            </a>
+            <a href="https://www.youtube.com/watch?v=4VyncAFZ0HQ" target="_blank" class="video-card">
+                <div class="video-thumbnail">
+                    <img src="https://img.youtube.com/vi/4VyncAFZ0HQ/maxresdefault.jpg" alt="VIRAL">
+                    <div class="play-icon">▶</div>
+                </div>
+                <h3>"VIRAL" Drill UK x Rap Type beats Instrumental</h3>
+            </a>
+            <a href="https://www.youtube.com/watch?v=DfLmqMmHB
 
