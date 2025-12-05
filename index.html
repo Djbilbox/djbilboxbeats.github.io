@@ -189,6 +189,84 @@
             .lang-selector {top: 15px; right: 15px;}
             .lang-btn {padding: 6px 15px; font-size: 0.9rem;}
         }
+
+            /* SHOP SECTION */
+    .shop-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 28px;
+        margin-top: 20px;
+    }
+    .shop-card {
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        border: 2.5px solid var(--accent);
+        background: var(--glass-bg);
+        transition: all 0.3s;
+        box-shadow: var(--shadow);
+    }
+    .shop-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 32px var(--accent);
+        border-color: #fff;
+    }
+    .shop-image {
+        width: 100%;
+        padding-bottom: 100%;
+        background: #0a0a0a;
+        overflow: hidden;
+        position: relative;
+    }
+    .shop-image img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+    }
+    .shop-card:hover .shop-image img {
+        transform: scale(1.1);
+    }
+    .shop-info {
+        padding: 20px;
+        text-align: center;
+    }
+    .shop-info h3 {
+        color: var(--accent);
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+    .shop-info p {
+        color: #e2e8f0;
+        font-size: 1rem;
+        margin: 10px 0;
+    }
+    .shop-price {
+        font-size: 1.8rem;
+        color: var(--accent);
+        font-weight: 900;
+        margin: 15px 0;
+    }
+    .shop-btn {
+        background: var(--accent);
+        color: #24243c;
+        padding: 12px 40px;
+        border: none;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: var(--shadow);
+    }
+    .shop-btn:hover {
+        background: #fff;
+        transform: scale(1.05);
+        box-shadow: 0 0 26px var(--accent);
+    }
     </style>
 </head>
 <body>
@@ -209,10 +287,19 @@
 
     <h1>DJBILBOX BEATS</h1>
 
+        <!-- VIDEO PRESENTATION -->
+    <div class="header-video-container">
+        <video autoplay loop muted playsinline>
+            <source src="generated_video-c1.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+    </div>
+
     <div class="menu">
         <a href="#music" data-tr="music-title">🎵 MUSIC & REMIX</a>
         <a href="#instrumentals" data-tr="instrumentals-title">🎹 INSTRUMENTALS</a>
         <a href="#playlists" data-tr="playlists-title">📻 PLAYLISTS</a>
+                <a href="#shop" data-tr="shop-title">🛍️ BOUTIQUE</a>
         <a href="#services" data-tr="services-title">⚙️ SERVICES</a>
         <a href="#contact" data-tr="contact-title">📞 CONTACT</a>
     </div>
@@ -313,3 +400,35 @@
                     <img src="https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg" alt="Instrumental Playlist">
                     <div class="play-icon">▶</div>
                 </div>
+
+
+                    <!-- BOUTIQUE SECTION -->
+    <div id="shop" class="section">
+        <h2 data-tr="shop-title">🛍️ BOUTIQUE</h2>
+        <div class="shop-grid">
+            <!-- Produit 1: N3LYA TE PASSE LE MIC -->
+            <div class="shop-card">
+                <div class="shop-image">
+                    <img src="https://i.imgur.com/placeholder1.jpg" alt="N3LYA TE PASSE LE MIC">
+                </div>
+                <div class="shop-info">
+                    <h3>N3LYA TE PASSE LE MIC</h3>
+                    <p>T-shirt premium + Affiche collector</p>
+                    <div class="shop-price">20€</div>
+                    <button class="shop-btn">Commander</button>
+                </div>
+            </div>
+            <!-- Produit 2: Collection LA PUISSANCE MUSIQUE -->
+            <div class="shop-card">
+                <div class="shop-image">
+                    <img src="https://i.imgur.com/placeholder2.jpg" alt="LA PUISSANCE MUSIQUE">
+                </div>
+                <div class="shop-info">
+                    <h3>LA PUISSANCE MUSIQUE</h3>
+                    <p>Ensemble complet streetwear (Hoodie + Pantalon)</p>
+                    <div class="shop-price">À partir de 45€</div>
+                    <button class="shop-btn">Commander</button>
+                </div>
+            </div>
+        </div>
+    </div>
