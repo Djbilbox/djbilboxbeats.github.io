@@ -287,8 +287,27 @@
 
     <h1>DJBILBOX BEATS</h1>
 
+    <!-- MENU DE NAVIGATION -->
+    <nav class="menu">
+        <a href="#about" data-tr="menu-about">À PROPOS</a>
+        <a href="#instrumentals" data-tr="menu-instrumentals">INSTRUMENTALS</a>
+        <a href="#playlists" data-tr="menu-playlists">PLAYLISTS</a>
+        <a href="#shop" data-tr="menu-shop">BOUTIQUE</a>
+        <a href="#contact" data-tr="menu-contact">CONTACT</a>
+    </nav>
+
+    <!-- SECTION À PROPOS -->
+    <section id="about" class="about">
         <h2 data-tr="about-title">À propos de DJBILBOX BEATS</h2>
+        <p data-tr="about-text-1">Producteur de musique et beatmaker passionné, je crée des instrumentaux uniques dans les styles Trap, Afrotrap, Drill, et Oriental.</p>
+        <p data-tr="about-text-2">Mes productions fusionnent des sonorités modernes avec des influences du monde entier pour offrir des beats originaux et percutants.</p>
+        <p data-tr="about-text-3">Écoutez mes créations, explorez mes playlists et découvrez ma boutique exclusive.</p>
+    </section>
+
+    <!-- SECTION MUSIC & REMIX -->
+    <div class="section">
         <h2 data-tr="music-title">🎵 MUSIC & REMIX</h2>
+
         <div class="videos-grid">
             <a href="https://www.youtube.com/watch?v=B1IpmH-mbSI" target="_blank" class="video-card">
                 <div class="video-thumbnail">
@@ -427,4 +446,87 @@
         <p>Téléphone: 0670150676</p>
     </section>
         </div>
+
+<script>
+// Traductions multi-langues
+const translations = {
+    fr: {
+        'about-title': 'À propos de DJBILBOX BEATS',
+        'about-text-1': 'Producteur de musique et beatmaker passionné, je crée des instrumentaux uniques dans les styles Trap, Afrotrap, Drill, et Oriental.',
+        'about-text-2': 'Mes productions fusionnent des sonorités modernes avec des influences du monde entier pour offrir des beats originaux et percutants.',
+        'about-text-3': 'Écoutez mes créations, explorez mes playlists et découvrez ma boutique exclusive.',
+        'music-title': '🎵 MUSIC & REMIX',
+        'instrumentals-title': '🎹 INSTRUMENTALS',
+        'playlists-title': '📻 PLAYLISTS',
+        'menu-about': 'À PROPOS',
+        'menu-instrumentals': 'INSTRUMENTALS',
+        'menu-playlists': 'PLAYLISTS',
+        'menu-shop': 'BOUTIQUE',
+        'menu-contact': 'CONTACT'
+    },
+    en: {
+        'about-title': 'About DJBILBOX BEATS',
+        'about-text-1': 'Passionate music producer and beatmaker, I create unique instrumentals in Trap, Afrotrap, Drill, and Oriental styles.',
+        'about-text-2': 'My productions fuse modern sounds with influences from around the world to deliver original and impactful beats.',
+        'about-text-3': 'Listen to my creations, explore my playlists and discover my exclusive shop.',
+        'music-title': '🎵 MUSIC & REMIX',
+        'instrumentals-title': '🎹 INSTRUMENTALS',
+        'playlists-title': '📻 PLAYLISTS',
+        'menu-about': 'ABOUT',
+        'menu-instrumentals': 'INSTRUMENTALS',
+        'menu-playlists': 'PLAYLISTS',
+        'menu-shop': 'SHOP',
+        'menu-contact': 'CONTACT'
+    }
+};
+
+let currentLang = 'fr';
+
+// Fonction pour changer de langue
+function changeLanguage(lang) {
+    currentLang = lang;
+    document.querySelectorAll('[data-tr]').forEach(el => {
+        const key = el.getAttribute('data-tr');
+        if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
+    });
+    
+    // Mettre à jour le bouton
+    const flags = { fr: '🇫🇷', en: '🇬🇧', pt: '🇵🇹', ar: '🇸🇦', es: '🇪🇸', th: '🇹🇭' };
+    const names = { fr: 'FR', en: 'EN', pt: 'PT', ar: 'عر', es: 'ES', th: 'ไท' };
+    document.querySelector('.lang-btn').textContent = flags[lang] + ' ' + names[lang];
+    
+    // Marquer la langue sélectionnée
+    document.querySelectorAll('.lang-option').forEach(opt => {
+        opt.classList.remove('selected');
+        if (opt.getAttribute('data-lang') === lang) {
+            opt.classList.add('selected');
+        }
+    });
+}
+
+// Gestion du menu langue
+document.querySelector('.lang-btn').addEventListener('click', () => {
+    document.querySelector('.lang-dropdown').classList.toggle('active');
+});
+
+document.querySelectorAll('.lang-option').forEach(option => {
+    option.addEventListener('click', () => {
+        const lang = option.getAttribute('data-lang');
+        changeLanguage(lang);
+        document.querySelector('.lang-dropdown').classList.remove('active');
+    });
+});
+
+// Fermer le dropdown si clic ailleurs
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-selector')) {
+        document.querySelector('.lang-dropdown').classList.remove('active');
+    }
+});
+</script>
+
+</body>
+</html>
 
