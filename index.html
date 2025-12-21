@@ -1,156 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DJBILBOX BEATS | Luxury Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #000000;
-            --text: #ffffff;
-            --secondary: #888888;
-            --accent: #22c55e;
-            --border: rgba(255, 255, 255, 0.1);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DJBILBOX BEATS - Music Producer & Beatmaker</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Urbanist:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-        /* HEADER MINIMALISTE */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px 60px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-        }
-        .logo { font-weight: 900; font-size: 1.2rem; letter-spacing: -1px; }
-        nav { display: flex; gap: 40px; position: absolute; left: 50%; transform: translateX(-50%); }
-        nav a { text-decoration: none; color: var(--secondary); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
-        nav a:hover { color: var(--text); }
-        .cta-talk { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; border-bottom: 1px solid var(--text); padding-bottom: 2px; cursor: pointer; }
+<style>
+:root {
+    /* Palette inspirée Milkinside : noir + beige/cuivre chaud */
+    --bg-main: #050507;
+    --bg-section: #090910;
+    --bg-card: rgba(15, 15, 20, 0.96);
+    --accent: #f8d7a6;          /* beige chaud */
+    --accent-strong: #ffb25b;   /* cuivre / or léger */
+    --accent-soft: rgba(248, 215, 166, 0.12);
+    --text-main: #f5f5f7;
+    --text-muted: #b3b3c2;
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --border-soft: rgba(248, 215, 166, 0.25);
+    --border-radius-xl: 26px;
+    --border-radius-lg: 20px;
+    --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.85);
+    --shadow-glow: 0 0 45px rgba(248, 215, 166, 0.35);
+}
 
-        .container { max-width: 1400px; margin: 150px auto 0; padding: 0 60px; }
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* SECTION STYLE "AWARDS" */
-        .hero-row {
-            border-top: 1px solid var(--border);
-            padding: 60px 0;
-            display: grid;
-            grid-template-columns: 150px 1fr 50px;
-            align-items: start;
-            transition: background 0.4s;
-        }
-        .hero-row:hover { background: rgba(255,255,255,0.02); }
-        .number { color: var(--secondary); font-size: 2rem; font-weight: 300; }
-        .row-title { font-size: 5rem; font-weight: 400; line-height: 1; letter-spacing: -2px; margin-bottom: 30px; }
-        .arrow { font-size: 3rem; text-align: right; transform: rotate(-45deg); display: inline-block; color: var(--secondary); }
+body {
+    font-family: 'Urbanist', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(circle at top, #12121b 0%, #050507 55%, #000000 100%);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
-        /* GRILLE DE CONTENU INTERNE (AWARDS STYLE) */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 20px;
-        }
-        .grid-item { border-top: 1px solid var(--border); padding-top: 15px; }
-        .grid-item span { color: var(--secondary); font-size: 0.9rem; display: block; margin-bottom: 5px; }
-        .grid-item h4 { font-weight: 400; font-size: 1.1rem; }
-
-        /* SHOP SECTION LUXE */
-        .shop-section { margin: 100px 0; }
-        .shop-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .shop-card { background: #111; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; position: relative; overflow: hidden; }
-        .shop-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.5s; }
-        .shop-card:hover img { transform: scale(1.05); opacity: 0.4; }
-        .shop-info { position: relative; z-index: 2; }
-
-        @media (max-width: 900px) {
-            header { padding: 20px; }
-            nav { display: none; }
-            .hero-row { grid-template-columns: 1fr; gap: 20px; }
-            .row-title { font-size: 3rem; }
-            .content-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <div class="logo">DJBILBOX</div>
-    <nav>
-        <a href="#projects">Work</a>
-        <a href="#about">About</a>
-        <a href="#shop">Shop</a>
-    </nav>
-    <div class="cta-talk">Let's Talk</div>
-</header>
-
-<div class="container">
-    <!-- SECTION PROJECTS (100+) -->
-    <div class="hero-row" id="projects">
-        <div class="number">100 +</div>
-        <div>
-            <h2 class="row-title">Instrumentals</h2>
-            <div class="content-grid">
-                <div class="grid-item"><span>01</span><h4>Trap & Drill</h4></div>
-                <div class="grid-item"><span>02</span><h4>Afrotrap</h4></div>
-                <div class="grid-item"><span>03</span><h4>G-Funk / West Coast</h4></div>
-            </div>
-        </div>
-        <div class="arrow">→</div>
-    </div>
-
-    <!-- SECTION SERVICES (30) -->
-    <div class="hero-row">
-        <div class="number">30</div>
-        <div>
-            <h2 class="row-title">Services</h2>
-            <div class="content-grid">
-                <div class="grid-item"><h4>Custom Beats</h4></div>
-                <div class="grid-item"><h4>Mixing & Mastering</h4></div>
-                <div class="grid-item"><h4>AI Video Creation</h4></div>
-                <div class="grid-item"><h4>Graphic Design</h4></div>
-                <div class="grid-item"><h4>Logo Design</h4></div>
-                <div class="grid-item"><h4>+12 More</h4></div>
-            </div>
-        </div>
-        <div class="arrow">→</div>
-    </div>
-
-    <!-- SECTION SHOP -->
-    <div class="shop-section" id="shop">
-        <h2 class="row-title" style="margin-bottom: 50px;">Boutique</h2>
-        <div class="shop-grid">
-            <div class="shop-card">
-                <img src="votre-image-tshirt.jpg" alt="T-shirt">
-                <div class="shop-info">
-                    <h3>N3LYA TE PASSE LE MIC</h3>
-                    <p>Edition Limitée - 20€</p>
-                </div>
-            </div>
-            <div class="shop-card">
-                <img src="votre-image-drums.jpg" alt="Drums Pack">
-                <div class="shop-info">
-                    <h3>Drum Pack Vol. 1</h3>
-                    <p>Digital Pro - 15€</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-</body>
-</html>
+/* BACKGROUND ORNAMENTS */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(248,215,166,0.27), transparent 60%);
+    filter
