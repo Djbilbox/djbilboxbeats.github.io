@@ -1,315 +1,556 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DJBILBOX BEATS – Showreel & Portfolio</title>
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Urbanist:wght@300;400;600;700&display=swap"
-        rel="stylesheet">
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for Icons (Optional, using text/unicode mostly or SVG if needed, but keeping it light. I'll use simple text/unicode for now to avoid dependency, or minimal SVG icons) -->
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DJBILBOX BEATS - Music Producer & Beatmaker</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Urbanist:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+--main-gradient: linear-gradient(135deg, #000000 0%, #1a1a1a 60%, #000000 100%);
+--card-gradient: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(26,26,26,0.95) 70%);
+--accent: #22c55e;
+--glass-bg: rgba(255,255,255,0.08);
+--border-radius: 20px;
+--shadow: 0 6px 32px rgba(34,197,94,0.07);
+--lux-shadow: 0 4px 48px rgba(42,82,152,0.14);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+font-family: 'Urbanist', 'Arial', sans-serif;
+background: var(--main-gradient);
+color: #fff;
+min-height: 100vh;
+position: relative;
+overflow-x: hidden;
+}
+.container { max-width: 1280px; margin: 0 auto; padding: 24px 18px; }
 
+h1 {
+font-family: 'Orbitron', sans-serif;
+font-size: 4rem;
+font-weight: 900;
+text-align: center;
+margin: 48px 0 24px 0;
+background: linear-gradient(120deg,#e2e8f0,#22c55e,#2a5298);
+background-clip: text;
+-webkit-background-clip: text;
+color: transparent;
+filter: drop-shadow(0 0 12px #2a5298);
+letter-spacing: 4px;
+animation: shine 4s infinite;
+}
+@keyframes shine { 0%,100%{filter: drop-shadow(0 0 12px #22c55e);} 45%{filter: drop-shadow(0 0 24px #e2e8f0);} }
+
+/* VIDEO HEADER */
+.header-video-container {
+width: 100%;
+max-width: 800px;
+margin: 0 auto 30px auto;
+border-radius: var(--border-radius);
+overflow: hidden;
+border: 2px solid var(--accent);
+box-shadow: var(--lux-shadow);
+position: relative;
+aspect-ratio: 16/9;
+}
+.header-video-container video {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+
+/* LANG SELECTOR */
+.lang-selector { position: absolute; top: 28px; right: 36px; z-index: 100; }
+.lang-btn {
+background: var(--accent); color: #24243c; font-weight: 700;
+padding: 8px 22px; border-radius: 30px; border: none;
+font-size: 1.1rem; cursor: pointer; box-shadow: var(--shadow);
+transition: background .2s;
+}
+.lang-btn:hover { background: #fff; color: var(--accent); }
+.lang-dropdown {
+display: none; position: absolute; top: 50px; right: 0;
+background: rgba(42,82,152,0.98); border: 2px solid var(--accent);
+border-radius: 15px; padding: 10px; min-width: 180px;
+box-shadow: var(--lux-shadow);
+}
+.lang-dropdown.active { display: block; }
+.lang-option {
+padding: 10px 15px; cursor: pointer; color: #fff;
+border-radius: 10px; transition: all .2s; font-weight: 600;
+display: flex; align-items: center; gap: 10px;
+}
+.lang-option:hover { background: var(--accent); color: #24243c; }
+.lang-option.selected { background: var(--glass-bg); color: var(--accent); }
+
+/* MENU */
+.menu {
+display: flex; justify-content: center; gap: 18px; flex-wrap: wrap;
+margin: 20px 0; border-top: 2px solid var(--accent); padding-top: 20px;
+}
+.menu a {
+background: var(--glass-bg); color: var(--accent); text-decoration: none;
+font-weight: 700; font-size: 1.17rem; padding: 13px 37px;
+border: 2px solid var(--accent); border-radius: 30px;
+transition: all 0.25s; box-shadow: var(--shadow);
+}
+.menu a:hover {
+background: var(--accent); color: #2a5298;
+box-shadow: var(--lux-shadow); transform: translateY(-3px) scale(1.07);
+}
+
+/* SECTIONS */
+.section, .about, .contact-section {
+margin: 48px 0; padding: 40px; border-radius: var(--border-radius);
+background: var(--card-gradient); border: 2px solid var(--accent);
+box-shadow: var(--lux-shadow);
+}
+.about h2, .section h2, .contact-section h2 {
+font-family: 'Orbitron', sans-serif; font-size: 2.3rem;
+color: var(--accent); text-align: center; margin-bottom: 17px;
+}
+.about p, .service-card p, .contact-section p {
+font-size: 1.13rem; line-height: 1.78; color: #e2e8f0; margin: 14px 0;
+}
+
+/* VIDEO GRID */
+.videos-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap: 28px; }
+.video-card {
+border-radius: var(--border-radius); overflow: hidden;
+border: 2.5px solid var(--accent); background: var(--glass-bg);
+position: relative; transition: border 0.28s, box-shadow 0.24s;
+box-shadow: var(--shadow);
+}
+.video-card:hover { box-shadow: 0 0 32px var(--accent); border-color: #fff; }
+.video-thumbnail {
+width: 100%; padding-bottom: 56.25%; background: #0a0a0a;
+overflow: hidden; position: relative;
+}
+.video-thumbnail img {
+position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+object-fit: cover; filter: brightness(1.11) contrast(1.1) drop-shadow(0 0 18px #22c55e);
+transition: transform 0.37s;
+}
+.play-icon {
+position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+width: 60px; height: 60px; background: var(--accent); border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+font-size: 24px; color: #fff; box-shadow: var(--shadow); z-index: 2;
+transition: background .3s, transform .2s;
+}
+.video-card:hover .play-icon {background: #fff;color: var(--accent);transform: translate(-50%, -50%) scale(1.2);}
+.video-card h3 {
+padding: 14px; text-align: center; color: var(--accent);
+font-size: 1.07rem; background: rgba(0, 0, 0, 0.93); line-height: 1.5;
+display: flex;align-items: center;justify-content: center; min-height: 70px;
+border-bottom-left-radius: var(--border-radius);
+border-bottom-right-radius: var(--border-radius);
+}
+
+/* SERVICES GRID */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 24px; }
+.service-card {
+padding: 29px; border: 2px solid var(--accent); border-radius: var(--border-radius);
+background: var(--glass-bg); box-shadow: var(--shadow); transition: all 0.26s;
+text-align: center;
+}
+.service-card:hover {
+background: var(--accent); color: #24243c; transform: scale(1.04);
+box-shadow: 0 0 22px var(--accent);
+}
+.service-card h3 {color: var(--accent);margin-bottom: 13px;font-size: 1.23rem;}
+
+/* SOCIAL LINKS */
+.social-links { display: flex; justify-content: center; gap: 18px; margin: 32px 0; }
+.social-links a {
+display: inline-flex;align-items: center;justify-content: center;width: 56px;height: 56px;
+border: 2px solid var(--accent); border-radius: 50%;color: var(--accent);text-decoration: none;
+font-size: 1.6rem;transition:all .22s; background: var(--glass-bg);
+}
+.social-links a:hover {background: var(--accent);color:#24243c;transform:scale(1.09);box-shadow:0 0 26px var(--accent);}
+
+/* FOOTER */
+footer {
+text-align: center; padding: 28px; border-top: 2px solid var(--accent);
+margin-top: 56px; color: var(--accent); background: var(--glass-bg); font-size: 1.1rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+h1 {font-size: 2.1rem;}
+.container {padding: 10px;}
+.menu a {padding: 10px 13px; font-size: 1rem;}
+.section h2 {font-size: 1.18rem;}
+.videos-grid, .services-grid {grid-template-columns: 1fr;}
+.contact-section, .about, .section {padding: 21px;}
+.social-links a {width: 46px;height: 46px;font-size: 1.15rem;}
+.lang-selector {top: 15px; right: 15px;}
+.lang-btn {padding: 6px 15px; font-size: 0.9rem;}
+}
+
+/* SHOP SECTION */
+.shop-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 28px;
+margin-top: 20px;
+}
+.shop-card {
+border-radius: var(--border-radius);
+overflow: hidden;
+border: 2.5px solid var(--accent);
+background: var(--glass-bg);
+transition: all 0.3s;
+box-shadow: var(--shadow);
+}
+.shop-card:hover {
+transform: scale(1.03);
+box-shadow: 0 0 32px var(--accent);
+border-color: #fff;
+}
+.shop-image {
+width: 100%;
+padding-bottom: 100%;
+background: #0a0a0a;
+overflow: hidden;
+position: relative;
+}
+.shop-image img {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.3s;
+}
+.shop-card:hover .shop-image img {
+transform: scale(1.1);
+}
+.shop-info {
+padding: 20px;
+text-align: center;
+}
+.shop-info h3 {
+color: var(--accent);
+font-size: 1.3rem;
+margin-bottom: 10px;
+font-weight: 700;
+}
+.shop-info p {
+color: #e2e8f0;
+font-size: 1rem;
+margin: 10px 0;
+}
+.shop-price {
+font-size: 1.8rem;
+color: var(--accent);
+font-weight: 900;
+margin: 15px 0;
+}
+.shop-btn {
+background: var(--accent);
+color: #24243c;
+padding: 12px 40px;
+border: none;
+border-radius: 30px;
+font-size: 1.1rem;
+font-weight: 700;
+cursor: pointer;
+transition: all 0.3s;
+box-shadow: var(--shadow);
+}
+.shop-btn:hover {
+background: #fff;
+transform: scale(1.05);
+box-shadow: 0 0 26px var(--accent);
+}
+</style>
+</head>
 <body>
 
-    <!-- NAVIGATION -->
-    <nav class="navbar">
-        <div class="logo">DJBILBOX BEATS</div>
-        <div class="nav-links">
-            <a href="#hero">Work</a> <!-- Mapping 'Work' to Hero/Work flow -->
-            <a href="#work">Instrumentals</a>
-            <a href="#about" data-tr="menu-about">About</a>
-            <a href="#shop" data-tr="menu-shop">Shop</a>
-            <a href="#contact" data-tr="menu-contact">Contact</a>
-        </div>
+<div class="container">
+<!-- Lang Selector -->
+<div class="lang-selector">
+<button class="lang-btn">🇫🇷 FR</button>
+<div class="lang-dropdown">
+<div class="lang-option selected" data-lang="fr">🇫🇷 Français</div>
+<div class="lang-option" data-lang="en">🇬🇧 English</div>
+<div class="lang-option" data-lang="pt">🇵🇹 Português</div>
+<div class="lang-option" data-lang="ar">🇸🇦 العربية</div>
+<div class="lang-option" data-lang="es">🇪🇸 Español</div>
+<div class="lang-option" data-lang="th">🇹🇭 ไทย</div>
+</div>
+</div>
 
-        <!-- Minimal Lang Selector -->
-        <div class="lang-selector">
-            <button class="lang-btn" id="langBtn">
-                <span>🇫🇷</span> <span id="currentLangLabel">FR</span> ▾
-            </button>
-            <div class="lang-dropdown" id="langDropdown">
-                <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
-                <div class="lang-option" data-lang="en">🇬🇧 English</div>
-                <div class="lang-option" data-lang="pt">🇵🇹 Português</div>
-                <div class="lang-option" data-lang="es">🇪🇸 Español</div>
-            </div>
-        </div>
-    </nav>
+<h1>DJBILBOX BEATS</h1>
 
-    <!-- HERO SECTION (MONITOR) -->
-    <section id="hero" class="hero">
-        <div class="monitor-frame">
-            <div class="monitor-screen">
-                <!-- YouTube Iframe as Showreel -->
-                <!-- Muted, Autoplay, Loop if possible, but YouTube policy restricts autoplay with sound. 
-                     We will use an overlay button to start it properly. -->
-                <iframe id="heroVideo" width="100%" height="100%"
-                    src="https://www.youtube.com/embed/B1IpmH-mbSI?enablejsapi=1&rel=0&controls=0&showinfo=0"
-                    title="DJBILBOX Showreel"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+<!-- MENU DE NAVIGATION -->
+<nav class="menu">
+<a href="#about" data-tr="menu-about">À PROPOS</a>
+<a href="#instrumentals" data-tr="menu-instrumentals">INSTRUMENTALS</a>
+<a href="#kitsamples" data-tr="menu-kitsamples">KIT SAMPLES</a>
+<a href="#playlists" data-tr="menu-playlists">PLAYLISTS</a>
+<a href="#shop" data-tr="menu-shop">BOUTIQUE</a>
+<a href="#contact" data-tr="menu-contact">CONTACT</a>
+</nav>
 
-                <!-- Interaction Overlay -->
-                <!-- <div class="play-reel-btn" id="playReelBtn">
-                    <span>▶ Play Reel</span>
-                </div> -->
-                <!-- Actually, standard YouTube click to play is fine, but prompt asked for "Play Reel" button. 
-                     I'll put a button that plays the video via JS or just hides itself. -->
-                <div class="play-reel-btn" onclick="playHeroVideo()">
-                    <span>▶ Play Reel</span>
-                </div>
-            </div>
+<!-- SECTION À PROPOS -->
+<section id="about" class="about">
+<h2 data-tr="about-title">À propos de DJBILBOX BEATS</h2>
+<p data-tr="about-text-1">Producteur de musique et beatmaker passionné, je crée des instrumentaux uniques dans les styles Trap, Afrotrap, Drill, et Oriental.</p>
+<p data-tr="about-text-2">Mes productions fusionnent des sonorités modernes avec des influences du monde entier pour offrir des beats originaux et percutants.</p>
+<p data-tr="about-text-3">Écoutez mes créations, explorez mes playlists et découvrez ma boutique exclusive.</p>
+</section>
 
-            <!-- Monitor details -->
-            <div class="hero-overlay">
-                <h2>Showreel 2025 – DJBILBOX BEATS</h2>
-            </div>
-        </div>
+<!-- SECTION MUSIC & REMIX -->
+<div class="section">
+<h2 data-tr="music-title">🎵 MUSIC & REMIX</h2>
 
-        <a href="#work" class="scroll-indicator">
-            See all work <span>↓</span>
-        </a>
-    </section>
+<div class="videos-grid">
+<a href="https://www.youtube.com/watch?v=B1IpmH-mbSI" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://img.youtube.com/vi/B1IpmH-mbSI/maxresdefault.jpg" alt="VATIMBORA">
+<div class="play-icon">▶</div>
+</div>
+<h3>VATIMBORA - Afrotrap x Reggaeton Type Beats Instrumental</h3>
+</a>
+<a href="https://youtu.be/CZoLkejsVlA" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://img.youtube.com/vi/CZoLkejsVlA/maxresdefault.jpg" alt="Just Keep Watching">
+<div class="play-icon">▶</div>
+</div>
+<h3>Just Keep Watching - Tate McRae RMX</h3>
+</a>
+<a href="https://www.youtube.com/watch?v=FI_f10grTTE" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://img.youtube.com/vi/FI_f10grTTE/maxresdefault.jpg" alt="Rani out Abdou Gambetta">
+<div class="play-icon">▶</div>
+</div>
+<h3>Rani out Abdou Gambetta - RMX GFUNK</h3>
+</a>
+</div>
+</div>
 
-    <!-- WORK / INSTRUMENTALS SECTION -->
-    <section id="work" class="section">
-        <div class="section-header">
-            <h2 class="section-title">Selected Work</h2>
-            <p class="section-subtitle">Original Beats, Remixes & Visual Experiences.</p>
-        </div>
+<div id="instrumentals" class="section">
+<h2 data-tr="instrumentals-title">🎹 INSTRUMENTALS</h2>
+<div class="videos-grid">
+<a href="https://www.youtube.com/watch?v=7T8HbasjvM8" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://img.youtube.com/vi/7T8HbasjvM8/maxresdefault.jpg" alt="Balkan">
+<div class="play-icon">▶</div>
+</div>
+<h3>Balkan - Djbilbox Beats (Long Version)</h3>
+</a>
+<a href="https://www.youtube.com/watch?v=YoNKHfzXzv0" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://img.youtube.com/vi/YoNKHfzXzv0/maxresdefault.jpg" alt="GOTHAM">
+<div class="play-icon">▶</div>
+</div>
+<h3>"GOTHAM" STVRBOY SAMPLE x TYPE TRAP Instrumental</h3>
+</a>
+<a href="https://www.youtube.com/watch?v=UiSeg4aCtY8" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://img.youtube.com/vi/UiSeg4aCtY8/maxresdefault.jpg" alt="IDYLLIC">
+<div class="play-icon">▶</div>
+</div>
+<h3>"IDYLLIC" Hindus Oriental Drill Hip-hop Type Beats Instrumental</h3>
+</a>
+<a href="https://www.youtube.com/watch?v=3soNqnhbNVE" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://img.youtube.com/vi/3soNqnhbNVE/maxresdefault.jpg" alt="Inaya">
+<div class="play-icon">▶</div>
+</div>
+<h3>"Inaya" | Drill Trap Oriental Type beats Instrumental</h3>
+</a>
+<a href="https://www.youtube.com/watch?v=V-wYDpqbBG0" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://img.youtube.com/vi/V-wYDpqbBG0/maxresdefault.jpg" alt="Lyah">
+<div class="play-icon">▶</div>
+</div>
+<h3>"Lyah" | Oriental x Afrotrap Type beats Instrumental</h3>
+</a>
+<a href="https://www.youtube.com/watch?v=4VyncAFZ0HQ" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://img.youtube.com/vi/4VyncAFZ0HQ/maxresdefault.jpg" alt="VIRAL">
+<div class="play-icon">▶</div>
+</div>
+<h3>"VIRAL" Drill UK x Rap Type beats Instrumental</h3>
+</a>
+<a href="https://www.youtube.com/watch?v=DfLmqMmHBqU" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://img.youtube.com/vi/DfLmqMmHBqU/maxresdefault.jpg" alt="Oriental">
+<div class="play-icon">▶</div>
+</div>
+<h3>"Oriental" | Arabic x Trap Hip-hop Guitar Type Beats Instrumental</h3>
+</a>
+</div>
+</div>
 
-        <div class="work-grid">
-            <!-- Video 1 -->
-            <a href="https://www.youtube.com/watch?v=B1IpmH-mbSI" target="_blank" class="work-card">
-                <div class="card-thumb">
-                    <img src="https://img.youtube.com/vi/B1IpmH-mbSI/maxresdefault.jpg" alt="VATIMBORA">
-                </div>
-                <div class="card-info">
-                    <div class="card-title">VATIMBORA</div>
-                    <div class="card-meta">Afrotrap x Reggaeton</div>
-                </div>
-            </a>
+<!-- KIT SAMPLES SECTION -->
+<div id="kitsamples" class="section">
+<h2 data-tr="kitsamples-title">🎛️ KIT SAMPLES</h2>
+<div class="videos-grid">
+<a href="https://youtu.be/BW_HLS7payE" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://img.youtube.com/vi/BW_HLS7payE/maxresdefault.jpg" alt="DRUMS PACK">
+<div class="play-icon">▶</div>
+</div>
+<h3>🥁 DRUMS PACK - Professional Drum Kit Samples</h3>
+</a>
+<a href="https://youtu.be/hRvWg0iXb08" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://img.youtube.com/vi/hRvWg0iXb08/maxresdefault.jpg" alt="MELODY PACK">
+<div class="play-icon">▶</div>
+</div>
+<h3>🎹 MELODY PACK - Premium Melody & Loop Collection</h3>
+</a>
+</div>
+</div>
 
-            <!-- Video 2 -->
-            <a href="https://youtu.be/CZoLkejsVlA" target="_blank" class="work-card">
-                <div class="card-thumb">
-                    <img src="https://img.youtube.com/vi/CZoLkejsVlA/maxresdefault.jpg" alt="Just Keep Watching">
-                </div>
-                <div class="card-info">
-                    <div class="card-title">Just Keep Watching</div>
-                    <div class="card-meta">Tate McRae RMX</div>
-                </div>
-            </a>
 
-            <!-- Video 3 -->
-            <a href="https://www.youtube.com/watch?v=FI_f10grTTE" target="_blank" class="work-card">
-                <div class="card-thumb">
-                    <img src="https://img.youtube.com/vi/FI_f10grTTE/maxresdefault.jpg" alt="Rani out Abdou Gambetta">
-                </div>
-                <div class="card-info">
-                    <div class="card-title">Rani out Abdou Gambetta</div>
-                    <div class="card-meta">RMX GFUNK</div>
-                </div>
-            </a>
+<div id="playlists" class="section">
+<h2 data-tr="playlists-title">📻 PLAYLISTS</h2>
+<div class="videos-grid">
+<a href="https://www.youtube.com/playlist?list=PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th" target="_blank" class="video-card">
+<div class="video-thumbnail">
+<img src="https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg" alt="Instrumental Playlist">
+<div class="play-icon">▶</div>
+</div>
 
-            <!-- Video 4 -->
-            <a href="https://www.youtube.com/watch?v=7T8HbasjvM8" target="_blank" class="work-card">
-                <div class="card-thumb">
-                    <img src="https://img.youtube.com/vi/7T8HbasjvM8/maxresdefault.jpg" alt="Balkan">
-                </div>
-                <div class="card-info">
-                    <div class="card-title">Balkan (Long Version)</div>
-                    <div class="card-meta">Djbilbox Beats</div>
-                </div>
-            </a>
+</div>
 
-            <!-- Video 5 -->
-            <a href="https://www.youtube.com/watch?v=YoNKHfzXzv0" target="_blank" class="work-card">
-                <div class="card-thumb">
-                    <img src="https://img.youtube.com/vi/YoNKHfzXzv0/maxresdefault.jpg" alt="GOTHAM">
-                </div>
-                <div class="card-info">
-                    <div class="card-title">GOTHAM</div>
-                    <div class="card-meta">Trap Instrumental</div>
-                </div>
-            </a>
 
-            <!-- Video 6 -->
-            <a href="https://www.youtube.com/watch?v=4VyncAFZ0HQ" target="_blank" class="work-card">
-                <div class="card-thumb">
-                    <img src="https://img.youtube.com/vi/4VyncAFZ0HQ/maxresdefault.jpg" alt="VIRAL">
-                </div>
-                <div class="card-info">
-                    <div class="card-title">VIRAL</div>
-                    <div class="card-meta">Drill UK x Rap</div>
-                </div>
-            </a>
-        </div>
-    </section>
+<!-- BOUTIQUE SECTION -->
+<div id="shop" class="section">
+<h2 style="font-size: 2.5rem; margin-bottom: 10px;">🛍️ BOUTIQUE</h2>
 
-    <!-- ABOUT SECTION -->
-    <section id="about" class="section">
-        <div class="about-container">
-            <div class="about-image">
-                <!-- Placeholder if no personal photo is available in repo, or use one of the images? 
-                     I'll use a placeholder gradient or the shop image if relevant, but better a solid color/icon until user adds photo.
-                     Actually, I'll use a generated-like placeholder or a generic music icon. -->
-                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                    alt="Studio Setup">
-            </div>
-            <div class="about-content">
-                <h3>DJBILBOX BEATS</h3>
-                <div class="about-text" data-tr="about-text-1">
-                    Producteur de musique et beatmaker basé à Toulouse. Je compose des instrumentales Hip‑Hop, Trap,
-                    Afrotrap, Deep House, G‑Funk et plus encore.
-                </div>
-                <div class="about-text" data-tr="about-text-2">
-                    J’ai aussi tout un univers visuel autour de mes prods : images et vidéos générées avec l’IA, covers,
-                    teasers et contenus pour les réseaux.
-                </div>
+<div style="text-align: center; margin: 25px 0; padding: 20px; background: rgba(34,197,94,0.1); border-radius: 15px;">
+<p style="font-size: 1.15rem; line-height: 1.9; color: #e2e8f0; margin: 0;">
+<strong style="color: var(--accent); font-size: 1.3rem;">📱 Contacts</strong><br><br>
+<span style="display: inline-block; margin: 8px 15px;">
+📷 Instagram N3LYA: <a href="https://www.instagram.com/nelya_nya/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--accent); padding-bottom: 2px;">@nelya_nya</a>
+</span>
+<span style="display: inline-block; margin: 8px 15px;">
+📻 Radio Canal Sud: <a href="https://www.instagram.com/radiocanalsud/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--accent); padding-bottom: 2px;">@radiocanalsud</a>
+</span>
+<span style="display: inline-block; margin: 8px 15px;">
+▶️ YouTube: <a href="https://www.youtube.com/@Passemoilemic" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--accent); padding-bottom: 2px;">Passe-moi le mic</a>
+</span>
+</p>
+</div>
 
-                <ul class="feature-list">
-                    <li>Beats exclusifs et non‑exclusifs</li>
-                    <li>Production sur mesure</li>
-                    <li>Habillages sonores + visuels IA</li>
-                    <li>Branding & Image d'artiste</li>
-                </ul>
+<div class="shop-grid">
+<!-- Produit 1: N3LYA TE PASSE LE MIC -->
+<div class="shop-card">
+<div class="shop-image">
+<img src="WhatsApp%20Image%202025-12-02%20%C3%A0%2016.41.19_26102c9b.jpg" alt="N3LYA TE PASSE LE MIC">
+<img src="WhatsApp Image 2025-12-02 à 20.58.10_34a436dc.jpg" alt="N3LYA TE PASSE LE MIC T-shirt">
+</div>
+<div class="shop-info">
+<h3>N3LYA TE PASSE LE MIC</h3>
+<p style="font-size: 0.95rem; line-height: 1.6; margin: 15px 0;">
+<strong>T-shirt collector premium</strong> avec visuel exclusif "N3LYA TE PASSE LE MIC". Disponible pour <strong>homme et femme</strong>, toutes tailles (S à XXL).
+Coton de qualité supérieure, impression haute définition résistante aux lavages.
+</p>
+<div class="shop-price">20€</div>
+<button class="shop-btn">Commander</button>
+</div>
+</div>
 
-                <div class="social-bar">
-                    <a href="https://www.youtube.com/@Djbilboxbeats" target="_blank" class="social-icon">YT</a>
-                    <a href="https://www.instagram.com/djbilboxbeats" target="_blank" class="social-icon">IG</a>
-                    <a href="https://djbilbox.beatstars.com" target="_blank" class="social-icon">★</a>
-                    <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"
-                        class="social-icon">SP</a>
-                </div>
-            </div>
-        </div>
-    </section>
+</div>
 
-    <!-- SHOP SECTION -->
-    <section id="shop" class="section">
-        <div class="section-header">
-            <h2 class="section-title">Shop</h2>
-            <p class="section-subtitle">Limited Edition Merch & Beats.</p>
-        </div>
+<!-- CONTACT -->
+<section class="contact-section">
+<h2>CONTACT</h2>
+<p>Email: Djbilboxbeats@gmail.com</p>
+<p>Téléphone: 0670150676</p>
+</section>
+</div>
 
-        <div class="shop-item">
-            <div class="shop-img-container">
-                <img src="WhatsApp Image 2025-12-02 à 20.58.10_34a436dc.jpg" alt="T-Shirt N3LYA">
-            </div>
-            <div class="shop-details">
-                <h3>N3LYA TE PASSE LE MIC</h3>
-                <p>T-shirt collector premium. Impression HD.</p>
-                <div class="shop-price">20€</div>
-                <button class="shop-btn">Commander</button>
-            </div>
-        </div>
-    </section>
+<script>
+// Traductions multi-langues
+const translations = {
+fr: {
+'about-title': 'À propos de DJBILBOX BEATS',
+'about-text-1': 'Producteur de musique et beatmaker passionné, je crée des instrumentaux uniques dans les styles Trap, Afrotrap, Drill, et Oriental.',
+'about-text-2': 'Mes productions fusionnent des sonorités modernes avec des influences du monde entier pour offrir des beats originaux et percutants.',
+'about-text-3': 'Écoutez mes créations, explorez mes playlists et découvrez ma boutique exclusive.',
+'music-title': '🎵 MUSIC & REMIX',
+'instrumentals-title': '🎹 INSTRUMENTALS',
+'kitsamples-title': '🎛️ KIT SAMPLES',
+'playlists-title': '📻 PLAYLISTS',
+'menu-about': 'À PROPOS',
+'menu-instrumentals': 'INSTRUMENTALS',
+'menu-kitsamples': 'KIT SAMPLES',
+'menu-playlists': 'PLAYLISTS',
+'menu-shop': 'BOUTIQUE',
+'menu-contact': 'CONTACT'
+},
+en: {
+'about-title': 'About DJBILBOX BEATS',
+'about-text-1': 'Passionate music producer and beatmaker, I create unique instrumentals in Trap, Afrotrap, Drill, and Oriental styles.',
+'about-text-2': 'My productions fuse modern sounds with influences from around the world to deliver original and impactful beats.',
+'about-text-3': 'Listen to my creations, explore my playlists and discover my exclusive shop.',
+'music-title': '🎵 MUSIC & REMIX',
+'instrumentals-title': '🎹 INSTRUMENTALS',
+'playlists-title': '📻 PLAYLISTS',
+'menu-about': 'ABOUT',
+'menu-instrumentals': 'INSTRUMENTALS',
+'menu-playlists': 'PLAYLISTS',
+'menu-shop': 'SHOP',
+'menu-contact': 'CONTACT'
+}
+};
 
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="section">
-        <div class="contact-minimal">
-            <h2>Let's create something unique.</h2>
-            <p style="margin: 20px 0; color: #555;">Book a session, buy a beat, or just say hello.</p>
+let currentLang = 'fr';
 
-            <a href="mailto:djbilbox@gmail.com" class="contact-link">djbilbox@gmail.com</a>
-            <br>
-            <a href="tel:+33600000000" class="contact-link" style="font-size: 1.2rem; margin-top: 10px;">+33 7 00 00 00
-                00</a>
-            <!-- (Note: Phone number was not in original explicitly other than "Contact direct" implying maybe more? 
-                 Ah, looking back at original file I didn't see a phone number, only emails. I'll stick to emails.) -->
-        </div>
-    </section>
+// Fonction pour changer de langue
+function changeLanguage(lang) {
+currentLang = lang;
+document.querySelectorAll('[data-tr]').forEach(el => {
+const key = el.getAttribute('data-tr');
+if (translations[lang] && translations[lang][key]) {
+el.textContent = translations[lang][key];
+}
+});
 
-    <footer style="text-align: center; padding: 40px; color: #888; font-size: 0.9rem;">
-        &copy; 2025 DJBILBOX BEATS. All rights reserved.
-    </footer>
+// Mettre à jour le bouton
+const flags = { fr: '🇫🇷', en: '🇬🇧', pt: '🇵🇹', ar: '🇸🇦', es: '🇪🇸', th: '🇹🇭' };
+const names = { fr: 'FR', en: 'EN', pt: 'PT', ar: 'عر', es: 'ES', th: 'ไท' };
+document.querySelector('.lang-btn').textContent = flags[lang] + ' ' + names[lang];
 
-    <!-- LOGIC -->
-    <script>
-        // Hero Video Play
-        function playHeroVideo() {
-            const iframe = document.getElementById('heroVideo');
-            const btn = document.querySelector('.play-reel-btn');
+// Marquer la langue sélectionnée
+document.querySelectorAll('.lang-option').forEach(opt => {
+opt.classList.remove('selected');
+if (opt.getAttribute('data-lang') === lang) {
+opt.classList.add('selected');
+}
+});
+}
 
-            // Add autoplay to URL
-            let src = iframe.src;
-            if (src.indexOf('autoplay=1') === -1) {
-                src += "&autoplay=1";
-            }
-            iframe.src = src;
+// Gestion du menu langue
+document.querySelector('.lang-btn').addEventListener('click', () => {
+document.querySelector('.lang-dropdown').classList.toggle('active');
+});
 
-            // Hide button
-            btn.classList.add('hidden');
-        }
+document.querySelectorAll('.lang-option').forEach(option => {
+option.addEventListener('click', () => {
+const lang = option.getAttribute('data-lang');
+changeLanguage(lang);
+document.querySelector('.lang-dropdown').classList.remove('active');
+});
+});
 
-        // Language Logic (Simplified)
-        const translations = {
-            fr: {
-                'menu-about': 'À PROPOS',
-                'menu-shop': 'BOUTIQUE',
-                'menu-contact': 'CONTACT',
-                'about-text-1': 'Producteur de musique et beatmaker basé à Toulouse. Je compose des instrumentales Hip‑Hop, Trap, Afrotrap, Deep House, G‑Funk et plus encore.',
-                'about-text-2': 'J’ai aussi tout un univers visuel autour de mes prods : images et vidéos générées avec l’IA, covers, teasers et contenus pour les réseaux.'
-            },
-            en: {
-                'menu-about': 'ABOUT',
-                'menu-shop': 'SHOP',
-                'menu-contact': 'CONTACT',
-                'about-text-1': 'Music producer and beatmaker based in Toulouse. I compose Hip-Hop, Trap, Afrotrap, Deep House, G-Funk instrumentals and more.',
-                'about-text-2': 'I also create a whole visual universe around my productions: IA-generated images and videos, covers, teasers, and social media content.'
-            },
-            es: {
-                'menu-about': 'SOBRE MÍ',
-                'menu-shop': 'TIENDA',
-                'menu-contact': 'CONTACTO',
-                'about-text-1': 'Productor musical y beatmaker con sede en Toulouse. Compongo instrumentales de Hip-Hop, Trap, Afrotrap, Deep House, G-Funk y más.',
-                'about-text-2': 'También creo todo un universo visual alrededor de mis producciones: imágenes y videos generados por IA, portadas, teasers y contenido para redes sociales.'
-            }
-        };
+// Fermer le dropdown si clic ailleurs
+document.addEventListener('click', (e) => {
+if (!e.target.closest('.lang-selector')) {
+document.querySelector('.lang-dropdown').classList.remove('active');
+}
+});
+</script>
 
-        const langBtn = document.getElementById('langBtn');
-        const langDropdown = document.getElementById('langDropdown');
-        const langLabel = document.getElementById('currentLangLabel');
-
-        langBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            langDropdown.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.lang-option').forEach(opt => {
-            opt.addEventListener('click', () => {
-                const lang = opt.dataset.lang;
-                setLanguage(lang);
-                // Update label
-                const flag = opt.textContent.split(' ')[0];
-                const name = lang.toUpperCase();
-                langLabel.textContent = name;
-                langBtn.querySelector('span:first-child').textContent = flag;
-                langDropdown.classList.remove('active');
-            });
-        });
-
-        document.addEventListener('click', () => {
-            langDropdown.classList.remove('active');
-        });
-
-        function setLanguage(lang) {
-            if (!translations[lang]) return;
-            document.querySelectorAll('[data-tr]').forEach(el => {
-                const key = el.dataset.tr;
-                if (translations[lang][key]) {
-                    el.textContent = translations[lang][key];
-                }
-            });
-        }
-    </script>
 </body>
-
 </html>
