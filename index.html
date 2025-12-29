@@ -6,70 +6,151 @@
     <title>DJBILBOX BEATS - Music Producer & Beatmaker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body { 
             background: white !important; 
             color: black; 
             font-family: 'Arial', sans-serif; 
-            margin: 0; 
-            padding: 0; 
             line-height: 1.6;
         }
-        header {
-            background: #f8f8f8;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
+        
+        /* Video Hero Section */
+        .hero-video {
+            width: 100%;
+            height: 70vh;
+            position: relative;
+            overflow: hidden;
+            background: #000;
         }
+        
+        .hero-video iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-overlay h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
         nav {
             background: #333;
             color: white;
-            padding: 10px;
+            padding: 12px;
             text-align: center;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+        
         nav a {
             color: white;
             text-decoration: none;
             margin: 0 15px;
             font-weight: bold;
             font-size: 0.9em;
+            transition: color 0.3s;
         }
+        
+        nav a:hover { color: #1DB954; }
+        
         section {
-            padding: 40px 20px;
+            padding: 60px 20px;
             max-width: 1000px;
             margin: auto;
             border-bottom: 1px solid #eee;
         }
+        
         h2 {
             border-left: 5px solid #1877F2;
             padding-left: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-transform: uppercase;
+            font-size: 1.8rem;
         }
+        
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+        }
+        
         .social-icons {
             display: flex;
-            gap: 20px;
+            gap: 30px;
             justify-content: center;
-            font-size: 40px;
+            font-size: 50px;
+            margin-top: 30px;
         }
+        
+        .social-icons a {
+            transition: transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+        
         /* Instagram Official Gradient */
         .fa-instagram {
             background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        
         /* Facebook Official Color */
         .fa-facebook { color: #1877F2; }
+        
         /* YouTube Official Color */
         .fa-youtube { color: #FF0000; }
+        
         /* Spotify Official Color */
         .fa-spotify { color: #1DB954; }
 
         ul { list-style: none; padding: 0; }
-        ul li { margin: 10px 0; font-size: 1.1em; }
-        ul li a { color: #333; text-decoration: none; transition: color 0.3s; }
+        ul li { 
+            margin: 15px 0; 
+            font-size: 1.1em;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        ul li:before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #1877F2;
+        }
+        
+        ul li a { 
+            color: #333; 
+            text-decoration: none; 
+            transition: color 0.3s; 
+        }
+        
         ul li a:hover { color: #1877F2; }
 
         #google_translate_element {
@@ -79,19 +160,31 @@
             z-index: 2000;
             background: white;
             border: 1px solid #ddd;
-            padding: 5px;
+            padding: 8px;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         }
 
         .cta-button {
             display: inline-block;
             background: #1877F2;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 5px;
             text-decoration: none;
-            margin-top: 10px;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #0d5dbf;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f8f8;
+            color: #666;
         }
     </style>
 </head>
@@ -99,10 +192,18 @@
 
     <div id="google_translate_element"></div>
 
-    <header>
-        <h1>🇫🇷 DJBILBOX BEATS</h1>
-        <p>Music Producer & Beatmaker - Toulouse</p>
-    </header>
+    <!-- Hero Video Section -->
+    <div class="hero-video">
+        <iframe src="https://www.youtube.com/embed/SuvJIS8BlKk?autoplay=1&mute=1&loop=1&playlist=SuvJIS8BlKk&controls=0&showinfo=0&modestbranding=1&rel=0" 
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+        </iframe>
+        <div class="hero-overlay">
+            <h1>🇫🇷 DJBILBOX BEATS</h1>
+            <p>Music Producer & Beatmaker - Toulouse</p>
+        </div>
+    </div>
 
     <nav>
         <a href="#about">À PROPOS</a>
@@ -117,27 +218,37 @@
 
     <section id="about">
         <h2>À Propos</h2>
-        <p>Producteur de musique et beatmaker passionné basé à Toulouse. Je me spécialise dans la Trap, Afrotrap, Drill et les sonorités orientales. Mon objectif est de fournir des productions de haute qualité pour les artistes émergents et confirmés.</p>
+        <div class="about-content">
+            <p>Producteur de musique et beatmaker passionné basé à Toulouse, je transforme des idées sonores en productions uniques qui captivent et inspirent. Mon expertise s'étend à travers plusieurs genres musicaux contemporains incluant la Trap, l'Afrotrap, le Drill et les sonorités orientales, créant ainsi un univers musical riche et diversifié.</p>
+            
+            <p>Avec une approche à la fois technique et artistique, je me consacre à la création d'instrumentales percutantes qui servent de fondation solide pour les artistes émergents et confirmés. Chaque production est méticuleusement travaillée pour offrir une identité sonore distinctive, alliant modernité et authenticité.</p>
+            
+            <p>Mon studio est équipé des dernières technologies de production musicale, me permettant de fournir des beats de qualité professionnelle qui répondent aux standards de l'industrie musicale actuelle. De la composition initiale jusqu'au mastering final, je m'assure que chaque élément sonore contribue à créer une œuvre cohérente et impactante.</p>
+            
+            <p>Au-delà de la production musicale pure, je développe également des projets visuels innovants en intégrant l'intelligence artificielle et la création digitale. Cette approche multidisciplinaire me permet d'offrir des solutions complètes aux artistes cherchant à développer leur image de marque et leur présence sur les plateformes digitales.</p>
+            
+            <p>Mon objectif est de fournir des productions de haute qualité qui permettent aux artistes de se démarquer dans un paysage musical en constante évolution, tout en respectant leur vision artistique et en amplifiant leur message créatif.</p>
+        </div>
     </section>
 
     <section id="services">
         <h2>🛠️ Mes Services</h2>
         <ul>
-            <li>🎹 <strong>Beatmaking & Composition</strong> : Création de productions originales sur mesure.</li>
-            <li>🎨 <strong>Création Visuelle & IA</strong> : Design graphique et vidéos animées par IA.</li>
-            <li>🎵 <strong>Mixage & Mastering</strong> : Traitement sonore professionnel de vos titres.</li>
-            <li>🌐 <strong>Développement Web</strong> : Création de sites pour artistes et marques.</li>
-            <li>💿 <strong>Distribution Musicale</strong> : Accompagnement pour la sortie sur plateformes.</li>
+            <li><strong>🎹 Beatmaking & Composition</strong> : Création de productions originales sur mesure adaptées à votre style et votre vision artistique.</li>
+            <li><strong>🎨 Création Visuelle & IA</strong> : Design graphique professionnel et vidéos animées générées par intelligence artificielle pour vos projets musicaux.</li>
+            <li><strong>🎵 Mixage & Mastering</strong> : Traitement sonore professionnel de vos titres pour un rendu optimal sur toutes les plateformes de streaming.</li>
+            <li><strong>🌐 Développement Web</strong> : Création de sites web et EPK (Electronic Press Kit) pour artistes et labels musicaux.</li>
+            <li><strong>💿 Distribution Musicale</strong> : Accompagnement complet pour la sortie et la distribution de vos titres sur toutes les plateformes digitales.</li>
         </ul>
     </section>
 
     <section id="social">
         <h2>🌐 Suivez-moi</h2>
         <div class="social-icons">
-            <a href="https://www.instagram.com/djbilboxbeats" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/Djbilboxbeats" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fab fa-spotify"></i></a>
+            <a href="https://www.instagram.com/djbilboxbeats" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/Djbilboxbeats" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" title="Spotify"><i class="fab fa-spotify"></i></a>
         </div>
     </section>
 
@@ -169,7 +280,7 @@
 
     <section id="shop">
         <h2>🛍️ Boutique</h2>
-        <p>Découvrez mes produits exclusifs et merch.</p>
+        <p>Découvrez mes produits exclusifs et merchandising officiel.</p>
         <p><strong>N3LYA TE PASSE LE MIC T-shirt</strong> - Édition Limitée</p>
         <a href="#" class="cta-button">Commander (20€)</a>
     </section>
@@ -180,7 +291,7 @@
         <p>📧 Email : <a href="mailto:Djbilboxbeats@gmail.com">Djbilboxbeats@gmail.com</a></p>
     </section>
 
-    <footer style="text-align: center; padding: 20px; background: #eee;">
+    <footer>
         <p>&copy; 2025 DJBILBOX BEATS. Tous droits réservés.</p>
     </footer>
 
