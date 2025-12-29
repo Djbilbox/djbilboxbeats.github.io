@@ -174,13 +174,19 @@
 
     /* Video Thumbnails & Product Images */
     .video-grid, .product-grid {
-        display: grid;
+        dgrid !important;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 25px;
-        margin: 30px 0;
-    }
-
-    .video-item, .product-item {
+    grid-template-colrepeat(auto-fit, minmax(33.33%, 1fr));
+    gap: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100%;deo-item, .product-item {
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden;
+    line-height: 0;
         position: relative;
         border-radius: 10px;
         overflow: hidden;
@@ -191,15 +197,11 @@
 
     .video-item:hover, .product-item:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    }
-
-    .video-item img, .product-item img {
-        width: 100%;
-        height: auto;
-        display: block;
-        aspect-ratio: 16/9;
-        object-fit: cover;
+        box-shadow: 0 8px 25px rgba(0,0,0width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
+    object-fit: cover; cover;
     }
 
     .video-item .play-overlay {
@@ -262,7 +264,6 @@
     <!-- NOUVELLE GRILLE DE CLIPS (APRÈS LA PRÉSENTATION) -->
     <section id="portfolio-clips" style="padding: 40px 20px;">
         <h2 style="text-align: center; color: #7d2ae8; margin-bottom: 30px; border-left: none; text-transform: none;">
-            🎬 Mes Clips & Réalisations
         </h2>
         <div class="video-grid">
             <div class="video-item">
