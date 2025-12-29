@@ -267,9 +267,69 @@ background: #fff;
 transform: scale(1.05);
 box-shadow: 0 0 26px var(--accent);
 }
+
+/* VIDEO BACKGROUND HERO */
+.hero-video-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+.hero-overlay {
+  position: absolute;
+  z-index: 1;
+  background: rgba(0,0,0,0.3);
+  width: 100%;
+  height: 100%;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+}
+.hero-content h1 {
+  font-size: 5vw;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 4px;
+}
+.hero-content p {
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
 </style>
 </head>
 <body>
+
+<!-- VIDEO BACKGROUND HERO -->
+<div class="hero-video-section">
+  <video autoplay muted loop playsinline id="hero-video">
+    <source src="generated_video-c1.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>DJBILBOX BEATS</h1>
+    <p>PRODUCTION AUDIOVISUELLE & BEATMAKING</p>
+  </div>
+</div>
+
 
 <div class="container">
 <!-- Lang Selector -->
