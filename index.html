@@ -6,260 +6,251 @@
     <title>DJBILBOX BEATS - Music Producer & Beatmaker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            background: white !important; 
-            color: black; 
-            font-family: 'Arial', sans-serif; 
-            line-height: 1.6;
-        }
-        
-        /* Video Hero Section */
-        .hero-video {
-            width: 100%;
-            height: 70vh;
-            position: relative;
-            overflow: hidden;
-            background: #000;
-        }
-        
-        .hero-video iframe {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100vw;
-            height: 100vh;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 40px 20px;
-            text-align: center;
-            color: white;
-        }
-        
-        .hero-overlay h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
-        
-        nav {
-            background: #333;
-            color: white;
-            padding: 12px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            font-size: 0.9em;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover { color: #1DB954; }
-        
-        section {
-            padding: 60px 20px;
-            max-width: 1000px;
-            margin: auto;
-            border-bottom: 1px solid #eee;
-        }
-        
-        h2 {
-            border-left: 5px solid #1877F2;
-            padding-left: 15px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            font-size: 1.8rem;
-        }
-        
-        .about-content {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #333;
-        }
-        
-        .about-content p {
-            margin-bottom: 20px;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            font-size: 50px;
-            margin-top: 30px;
-        }
-        
-        .social-icons a {
-            transition: transform 0.3s;
-        }
-        
-        .social-icons a:hover {
-            transform: scale(1.2);
-        }
-        
-        /* Instagram Official Gradient */
-        .fa-instagram {
-            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        /* Facebook Official Color */
-        .fa-facebook { color: #1877F2; }
-        
-        /* YouTube Official Color */
-        .fa-youtube { color: #FF0000; }
-        
-        /* Spotify Official Color */
-        .fa-spotify { color: #1DB954; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        ul { list-style: none; padding: 0; }
-        ul li { 
-            margin: 15px 0; 
-            font-size: 1.1em;
-            padding-left: 30px;
-            position: relative;
-        }
-        
-        ul li:before {
-            content: "▶";
-            position: absolute;
-            left: 0;
-            color: #1877F2;
-        }
-        
-        ul li a { 
-            color: #333; 
-            text-decoration: none; 
-            transition: color 0.3s; 
-        }
-        
-        ul li a:hover { color: #1877F2; }
+    body {
+        background: white !important;
+        color: black;
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+    }
 
-        #google_translate_element {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 2000;
-            background: white;
-            border: 1px solid #ddd;
-            padding: 8px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-        }
+    /* Video Hero Section */
+    .hero-video {
+        width: 100%;
+        height: 70vh;
+        position: relative;
+        overflow: hidden;
+        background: #000;
+    }
 
-        .cta-button {
-            display: inline-block;
-            background: #1877F2;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 15px;
-            transition: background 0.3s;
-        }
-        
-        .cta-button:hover {
-            background: #0d5dbf;
-        }
+    .hero-video iframe {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100vw;
+        height: 100vh;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
 
+    .hero-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        padding: 40px 20px;
+        text-align: center;
+        color: white;
+    }
 
-                /* Video Thumbnails & Product Images */
-        .video-grid, .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-        
-        .video-item, .product-item {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            background: #f5f5f5;
-        }
-        
-        .video-item:hover, .product-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-        
-        .video-item img, .product-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-        }
-        
-        .video-item .play-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 0, 0, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-        }
-        
-        .video-item .play-overlay::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 20px solid white;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            margin-left: 5px;
-        }
-        
-        .video-title, .product-title {
-            padding: 15px;
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: #333;
-            background: white;
-        }
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #f8f8f8;
-            color: #666;
-        }
+    .hero-overlay h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
+
+    nav {
+        background: #333;
+        color: white;
+        padding: 12px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        font-size: 0.9em;
+        transition: color 0.3s;
+    }
+
+    nav a:hover { color: #1DB954; }
+
+    section {
+        padding: 60px 20px;
+        max-width: 1000px;
+        margin: auto;
+        border-bottom: 1px solid #eee;
+    }
+
+    h2 {
+        border-left: 5px solid #1877F2;
+        padding-left: 15px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        font-size: 1.8rem;
+    }
+
+    .about-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #333;
+    }
+
+    .about-content p { margin-bottom: 20px; }
+
+    .social-icons {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        font-size: 50px;
+        margin-top: 30px;
+    }
+
+    .social-icons a { transition: transform 0.3s; }
+
+    .social-icons a:hover { transform: scale(1.2); }
+
+    /* Instagram Official Gradient */
+    .fa-instagram {
+        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Facebook Official Color */
+    .fa-facebook { color: #1877F2; }
+
+    /* YouTube Official Color */
+    .fa-youtube { color: #FF0000; }
+
+    /* Spotify Official Color */
+    .fa-spotify { color: #1DB954; }
+
+    ul { list-style: none; padding: 0; }
+    ul li {
+        margin: 15px 0;
+        font-size: 1.1em;
+        padding-left: 30px;
+        position: relative;
+    }
+
+    ul li:before {
+        content: "▶";
+        position: absolute;
+        left: 0;
+        color: #1877F2;
+    }
+
+    ul li a {
+        color: #333;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    ul li a:hover { color: #1877F2; }
+
+    #google_translate_element {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 2000;
+        background: white;
+        border: 1px solid #ddd;
+        padding: 8px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: #1877F2;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-top: 15px;
+        transition: background 0.3s;
+    }
+
+    .cta-button:hover { background: #0d5dbf; }
+
+    /* Video Thumbnails & Product Images */
+    .video-grid, .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+
+    .video-item, .product-item {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        background: #f5f5f5;
+    }
+
+    .video-item:hover, .product-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    .video-item img, .product-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+    }
+
+    .video-item .play-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 0, 0, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+    }
+
+    .video-item .play-overlay::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 20px solid white;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        margin-left: 5px;
+    }
+
+    .video-title, .product-title {
+        padding: 15px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #333;
+        background: white;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px;
+        background: #f8f8f8;
+        color: #666;
+    }
     </style>
 </head>
 <body>
-
     <div id="google_translate_element"></div>
 
     <!-- Hero Video Section -->
     <div class="hero-video">
-        <iframe src="https://www.youtube.com/embed/SuvJIS8BlKk?autoplay=1&mute=1&loop=1&playlist=SuvJIS8BlKk&controls=0&showinfo=0&modestbranding=1&rel=0" 
-                frameborder="0" 
-                allow="autoplay; encrypted-media" 
+        <iframe src="https://www.youtube.com/embed/SuvJIS8BlKk?autoplay=1&mute=1&loop=1&playlist=SuvJIS8BlKk&controls=0&showinfo=0&modestbranding=1&rel=0"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
                 allowfullscreen>
         </iframe>
         <div class="hero-overlay">
@@ -267,6 +258,48 @@
             <p>Music Producer & Beatmaker - Toulouse</p>
         </div>
     </div>
+
+    <!-- NOUVELLE GRILLE DE CLIPS (APRÈS LA PRÉSENTATION) -->
+    <section id="portfolio-clips" style="padding: 40px 20px;">
+        <h2 style="text-align: center; color: #7d2ae8; margin-bottom: 30px; border-left: none; text-transform: none;">
+            🎬 Mes Clips & Réalisations
+        </h2>
+        <div class="video-grid">
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/BONAmRpQG8E" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/5AqXG5Bj8IQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/UIde6i5c9a8" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/5rl7p_BXTns" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/WHs93IgRTx4" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/ZSUc9O0g-JI" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/TiZ4mv-vKy0" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/00ackZS-t4k" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/Ye0aujwj3m0" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/uJDapW9kXu8" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/cQI-o29G8TE" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
 
     <nav>
         <a href="#about">À PROPOS</a>
@@ -283,13 +316,9 @@
         <h2>À Propos</h2>
         <div class="about-content">
             <p>Producteur de musique et beatmaker passionné basé à Toulouse, je transforme des idées sonores en productions uniques qui captivent et inspirent. Mon expertise s'étend à travers plusieurs genres musicaux contemporains incluant la Trap, l'Afrotrap, le Drill et les sonorités orientales, créant ainsi un univers musical riche et diversifié.</p>
-            
             <p>Avec une approche à la fois technique et artistique, je me consacre à la création d'instrumentales percutantes qui servent de fondation solide pour les artistes émergents et confirmés. Chaque production est méticuleusement travaillée pour offrir une identité sonore distinctive, alliant modernité et authenticité.</p>
-            
             <p>Mon studio est équipé des dernières technologies de production musicale, me permettant de fournir des beats de qualité professionnelle qui répondent aux standards de l'industrie musicale actuelle. De la composition initiale jusqu'au mastering final, je m'assure que chaque élément sonore contribue à créer une œuvre cohérente et impactante.</p>
-            
             <p>Au-delà de la production musicale pure, je développe également des projets visuels innovants en intégrant l'intelligence artificielle et la création digitale. Cette approche multidisciplinaire me permet d'offrir des solutions complètes aux artistes cherchant à développer leur image de marque et leur présence sur les plateformes digitales.</p>
-            
             <p>Mon objectif est de fournir des productions de haute qualité qui permettent aux artistes de se démarquer dans un paysage musical en constante évolution, tout en respectant leur vision artistique et en amplifiant leur message créatif.</p>
         </div>
     </section>
@@ -333,7 +362,7 @@
                 <div class="play-overlay"></div>
                 <div class="video-title">Rani out Abdou Gambetta - (DJBILBOX Remix)</div>
             </a>
-        </div>>
+        </div>
     </section>
 
     <section id="instrumentals">
@@ -354,7 +383,7 @@
                 <div class="play-overlay"></div>
                 <div class="video-title">IDYLLIC - Melodic Trap</div>
             </a>
-        </div>>
+        </div>
     </section>
 
     <section id="kitsamples">
@@ -370,14 +399,14 @@
                 <div class="play-overlay"></div>
                 <div class="video-title">MELODY PACK - Soulful & Trap Vibes</div>
             </a>
-        </div>>
+        </div>
     </section>
 
     <section id="shop">
         <h2>🛍️ Boutique</h2>
         <p>Découvrez mes produits exclusifs et merchandising officiel.</p>
         <p><strong>N3LYA TE PASSE LE MIC T-shirt</strong> - Édition Limitée</p>
-                <div class="product-grid">
+        <div class="product-grid">
             <div class="product-item">
                 <img src="WhatsApp Image 2025-12-02 à 16.41.19_26102c9b.jpg" alt="N3LYA TE PASSE LE MIC T-shirt">
                 <div class="product-title">N3LYA TE PASSE LE MIC T-shirt - Édition Limitée</div>
@@ -393,20 +422,19 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 DJBILBOX BEATS. Tous droits réservés.</p>
+        <p>© 2025 DJBILBOX BEATS. Tous droits réservés.</p>
     </footer>
 
     <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'fr',
-                includedLanguages: 'fr,en,es,ar',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'fr',
+            includedLanguages: 'fr,en,es,ar',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 </body>
 </html>
