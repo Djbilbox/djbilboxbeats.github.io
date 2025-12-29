@@ -179,7 +179,70 @@
         .cta-button:hover {
             background: #0d5dbf;
         }
+
+
+                /* Video Thumbnails & Product Images */
+        .video-grid, .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
         
+        .video-item, .product-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: #f5f5f5;
+        }
+        
+        .video-item:hover, .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .video-item img, .product-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        
+        .video-item .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 0, 0, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        
+        .video-item .play-overlay::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
+        
+        .video-title, .product-title {
+            padding: 15px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #333;
+            background: white;
+        }
         footer {
             text-align: center;
             padding: 30px;
@@ -254,34 +317,72 @@
 
     <section id="music">
         <h2>🎵 Music & Remix</h2>
-        <ul>
-            <li><a href="https://www.youtube.com/watch?v=B1IpmH-mbSI" target="_blank">VATIMBORA - Afrotrap x Reggaeton (DJBILBOX RMX)</a></li>
-            <li><a href="https://youtu.be/CZoLkejsVlA" target="_blank">Just Keep Watching - Tate McRae (DJBILBOX Remix)</a></li>
-            <li><a href="https://www.youtube.com/watch?v=FI_f10grTTE" target="_blank">Rani out Abdou Gambetta - (DJBILBOX Remix)</a></li>
-        </ul>
+        <div class="video-grid">
+            <a href="https://www.youtube.com/watch?v=B1IpmH-mbSI" target="_blank" class="video-item">
+                <img src="https://img.youtube.com/vi/B1IpmH-mbSI/maxresdefault.jpg" alt="VATIMBORA - Afrotrap x Reggaeton (DJBILBOX RMX)">
+                <div class="play-overlay"></div>
+                <div class="video-title">VATIMBORA - Afrotrap x Reggaeton (DJBILBOX RMX)</div>
+            </a>
+            <a href="https://youtu.be/CZoLkejsVlA" target="_blank" class="video-item">
+                <img src="https://img.youtube.com/vi/CZoLkejsVlA/maxresdefault.jpg" alt="Just Keep Watching - Tate McRae (DJBILBOX Remix)">
+                <div class="play-overlay"></div>
+                <div class="video-title">Just Keep Watching - Tate McRae (DJBILBOX Remix)</div>
+            </a>
+            <a href="https://www.youtube.com/watch?v=FI_f10grTTE" target="_blank" class="video-item">
+                <img src="https://img.youtube.com/vi/FI_f10grTTE/maxresdefault.jpg" alt="Rani out Abdou Gambetta - (DJBILBOX Remix)">
+                <div class="play-overlay"></div>
+                <div class="video-title">Rani out Abdou Gambetta - (DJBILBOX Remix)</div>
+            </a>
+        </div>>
     </section>
 
     <section id="instrumentals">
         <h2>🎹 Instrumentals</h2>
-        <ul>
-            <li><a href="https://www.youtube.com/watch?v=7T8HbasjvM8" target="_blank">Balkan - Type Beat</a></li>
-            <li><a href="https://www.youtube.com/watch?v=YoNKHfzXzv0" target="_blank">GOTHAM - Drill Type Beat</a></li>
-            <li><a href="https://www.youtube.com/watch?v=UiSeg4aCtY8" target="_blank">IDYLLIC - Melodic Trap</a></li>
-        </ul>
+        <div class="video-grid">
+            <a href="https://www.youtube.com/watch?v=7T8HbasjvM8" target="_blank" class="video-item">
+                <img src="https://img.youtube.com/vi/7T8HbasjvM8/maxresdefault.jpg" alt="Balkan - Type Beat">
+                <div class="play-overlay"></div>
+                <div class="video-title">Balkan - Type Beat</div>
+            </a>
+            <a href="https://www.youtube.com/watch?v=YoNKHfzXzv0" target="_blank" class="video-item">
+                <img src="https://img.youtube.com/vi/YoNKHfzXzv0/maxresdefault.jpg" alt="GOTHAM - Drill Type Beat">
+                <div class="play-overlay"></div>
+                <div class="video-title">GOTHAM - Drill Type Beat</div>
+            </a>
+            <a href="https://www.youtube.com/watch?v=UiSeg4aCtY8" target="_blank" class="video-item">
+                <img src="https://img.youtube.com/vi/UiSeg4aCtY8/maxresdefault.jpg" alt="IDYLLIC - Melodic Trap">
+                <div class="play-overlay"></div>
+                <div class="video-title">IDYLLIC - Melodic Trap</div>
+            </a>
+        </div>>
     </section>
 
     <section id="kitsamples">
         <h2>🎛️ Kit Samples</h2>
-        <ul>
-            <li><a href="https://youtu.be/BW_HLS7payE" target="_blank">DRUMS PACK Vol. 1 - Hard Hitting Drums</a></li>
-            <li><a href="https://youtu.be/hRvWg0iXb08" target="_blank">MELODY PACK - Soulful & Trap Vibes</a></li>
-        </ul>
+        <div class="video-grid">
+            <a href="https://youtu.be/BW_HLS7payE" target="_blank" class="video-item">
+                <img src="https://img.youtube.com/vi/BW_HLS7payE/maxresdefault.jpg" alt="DRUMS PACK Vol. 1 - Hard Hitting Drums">
+                <div class="play-overlay"></div>
+                <div class="video-title">DRUMS PACK Vol. 1 - Hard Hitting Drums</div>
+            </a>
+            <a href="https://youtu.be/hRvWg0iXb08" target="_blank" class="video-item">
+                <img src="https://img.youtube.com/vi/hRvWg0iXb08/maxresdefault.jpg" alt="MELODY PACK - Soulful & Trap Vibes">
+                <div class="play-overlay"></div>
+                <div class="video-title">MELODY PACK - Soulful & Trap Vibes</div>
+            </a>
+        </div>>
     </section>
 
     <section id="shop">
         <h2>🛍️ Boutique</h2>
         <p>Découvrez mes produits exclusifs et merchandising officiel.</p>
         <p><strong>N3LYA TE PASSE LE MIC T-shirt</strong> - Édition Limitée</p>
+                <div class="product-grid">
+            <div class="product-item">
+                <img src="WhatsApp Image 2025-12-02 à 16.41.19_26102c9b.jpg" alt="N3LYA TE PASSE LE MIC T-shirt">
+                <div class="product-title">N3LYA TE PASSE LE MIC T-shirt - Édition Limitée</div>
+            </div>
+        </div>
         <a href="#" class="cta-button">Commander (20€)</a>
     </section>
 
