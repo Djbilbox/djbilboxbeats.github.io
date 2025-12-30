@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DJBILBOX BEATS - Music Producer & Beatmaker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-        background: white !important;
-        color: black;
-        font-family: 'Arial', sans-serif;
-        line-height: 1.6;
-    }
+        body {
+            background: white !important;
+            color: black;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
 
-                /* Fixed Social Icons on Left Side */
+        /* === 1. Fixed Social Icons (Left Side) === */
         .fixed-social-icons {
             position: fixed;
             left: 20px;
@@ -39,14 +46,15 @@
             text-decoration: none;
             font-size: 24px;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .fixed-social-icons a:hover {
             transform: scale(1.1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
+        /* Social Colors */
         .fixed-social-icons a.instagram:hover {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
@@ -63,7 +71,7 @@
             background: #1db954;
         }
 
-                .fixed-social-icons a.pinterest:hover {
+        .fixed-social-icons a.pinterest:hover {
             background: #E60023;
         }
 
@@ -82,199 +90,157 @@
             }
         }
 
-    /* Video Hero Section */
-    .hero-video {
-        width: 100%;
-        height: 70vh;
-        position: relative;
-        overflow: hidden;
-        background: #000;
-    }
+        /* === 2. Video Hero Section === */
+        .hero-video {
+            width: 100%;
+            height: 70vh;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
 
-    .hero-video iframe {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100vw;
-        height: 100vh;
-        transform: translate(-50%, -50%);
-        pointer-events: none;
-    }
+        .hero-video iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            /* Force fullscreen cover */
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
 
-    .hero-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(transparent, rgba(0,0,0,0.8));
-        padding: 40px 20px;
-        text-align: center;
-        color: white;
-    }
+        /* Fallback for aspect ratio to minimize black bars if needed */
+        @media (min-aspect-ratio: 16/9) {
+            .hero-video iframe {
+                height: 56.25vw;
+            }
+        }
 
-    .hero-overlay h1 {
-        font-size: 3rem;
-        margin-bottom: 10px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    }
+        @media (max-aspect-ratio: 16/9) {
+            .hero-video iframe {
+                width: 177.78vh;
+            }
+        }
 
-    nav {
-        background: #333;
-        color: white;
-        padding: 12px;
-        text-align: center;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
 
-    nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        font-weight: bold;
-        font-size: 0.9em;
-        transition: color 0.3s;
-    }
+        .hero-overlay h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
 
-    nav a:hover { color: #1DB954; }
+        /* === 3. Navigation === */
+        nav {
+            background: #333;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-    section {
-        padding: 60px 20px;
-        max-width: 1000px;
-        margin: auto;
-        border-bottom: 1px solid #eee;
-    }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 0.9em;
+            padding: 10px 0;
+            display: inline-block;
+            transition: color 0.3s;
+        }
 
-    h2 {
-        border-left: 5px solid #1877F2;
-        padding-left: 15px;
-        margin-bottom: 30px;
-        text-transform: uppercase;
-        font-size: 1.8rem;
-    }
+        nav a:hover {
+            color: #1DB954;
+        }
 
-    .about-content {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: #333;
-    }
+        /* === 4. Sections & Layout === */
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            /* Increased for grid layout width */
+            margin: auto;
+            border-bottom: 1px solid #eee;
+        }
 
-    .about-content p { margin-bottom: 20px; }
+        h2 {
+            border-left: 5px solid #1877F2;
+            padding-left: 15px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-size: 1.8rem;
+        }
 
-    .social-icons {
-        display: flex;
-        gap: 30px;
-        justify-content: center;
-        font-size: 50px;
-        margin-top: 30px;
-    }
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            max-width: 1000px;
+            /* Keep text readable */
+            margin: 0 auto;
+        }
 
-    .social-icons a { transition: transform 0.3s; }
+        .about-content p {
+            margin-bottom: 20px;
+        }
 
-    .social-icons a:hover { transform: scale(1.2); }
-
-    /* Instagram Official Gradient */
-    .fa-instagram {
-        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    /* Facebook Official Color */
-    .fa-facebook { color: #1877F2; }
-
-    /* YouTube Official Color */
-    .fa-youtube { color: #FF0000; }
-
-    /* Spotify Official Color */
-    .fa-spotify { color: #1DB954; }
-
-    ul { list-style: none; padding: 0; }
-    ul li {
-        margin: 15px 0;
-        font-size: 1.1em;
-        padding-left: 30px;
-        position: relative;
-    }
-
-    ul li:before {
-        content: "▶";
-        position: absolute;
-        left: 0;
-        color: #1877F2;
-    }
-
-    ul li a {
-        color: #333;
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-
-    ul li a:hover { color: #1877F2; }
-
-    #google_translate_element {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 2000;
-        background: white;
-        border: 1px solid #ddd;
-        padding: 8px;
-        border-radius: 5px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-    }
-
-    .cta-button {
-        display: inline-block;
-        background: #1877F2;
-        color: white;
-        padding: 12px 25px;
-        border-radius: 5px;
-        text-decoration: none;
-        margin-top: 15px;
-        transition: background 0.3s;
-    }
-
-    .cta-button:hover { background: #0d5dbf; }
-
-    /* Video Thumbnails & Product Images */
+        /* === 5. Grids (NFCA Style) === */
         /* Video Grid Style NFCA - Grille 3 colonnes sans espace */
-        .video-grid, .product-grid {
+        .video-grid,
+        .product-grid {
             display: grid !important;
-    grid-template-columns: repeat(3, 1fr);
-            gap: 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            /* Small gap for visual separation if desired, or 0 */
             width: 100%;
             padding: 0;
             margin: 0;
-            line-height: 0;
+            background: #111;
+            /* Dark background to frame videos */
         }
 
-        .video-item, .product-item {
+        .video-item,
+        .product-item {
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
             overflow: hidden;
             display: block;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #000;
         }
 
-        .video-item:hover, .product-item:hover {
+        .video-item:hover,
+        .product-item:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             z-index: 10;
+            border: 2px solid white;
+            /* Highlight hover */
         }
 
-        .video-item img, .product-item img {
+        .video-item img,
+        .product-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            border: none;
         }
 
-        .video-item .play-overlay {
+        .play-overlay {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -290,11 +256,7 @@
             transition: opacity 0.3s ease;
         }
 
-        .video-item:hover .play-overlay {
-            opacity: 0.8;
-        }
-
-        .video-item .play-overlay::after {
+        .play-overlay::after {
             content: '';
             width: 0;
             height: 0;
@@ -304,31 +266,156 @@
             margin-left: 5px;
         }
 
-        /* Responsive - 2 colonnes sur tablette */
+        .video-item:hover .play-overlay {
+            opacity: 0.8;
+        }
+
+        /* Title overlay on hover (optional enhancement for UX) */
+        .video-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            font-size: 0.9rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .video-item:hover .video-title {
+            transform: translateY(0);
+        }
+
+
+        /* === 6. Services & Lists === */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 15px 0;
+            font-size: 1.1em;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        ul li:before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #1877F2;
+        }
+
+        /* === 7. Social Section (Bottom) === */
+        .social-icons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            font-size: 50px;
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Icon Colors */
+        .fa-instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .fa-facebook {
+            color: #1877F2;
+        }
+
+        .fa-youtube {
+            color: #FF0000;
+        }
+
+        .fa-spotify {
+            color: #1DB954;
+        }
+
+        /* === 8. Misc & Utilities === */
+        #google_translate_element {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2000;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #1877F2;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #0d5dbf;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f8f8;
+            color: #666;
+        }
+
+        /* === Responsive Rules === */
         @media (max-width: 768px) {
-            .video-grid, .product-grid {
+
+            .video-grid,
+            .product-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* Responsive - 1 colonne sur mobile */
         @media (max-width: 480px) {
-            .video-grid, .product-grid {
+
+            .video-grid,
+            .product-grid {
                 grid-template-columns: 1fr;
             }
-        }
 
-    footer {
-        text-align: center;
-        padding: 30px;
-        background: #f8f8f8;
-        color: #666;
-    }
+            .hero-overlay h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                padding: 10px 5px;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 0.8em;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-        <!-- Fixed Social Icons on Left Side -->
+    <!-- Fixed Social Icons on Left Side -->
     <div class="fixed-social-icons">
         <a href="https://www.instagram.com/djbilboxbeats" target="_blank" class="instagram" title="Instagram">
             <i class="fab fa-instagram"></i>
@@ -339,10 +426,11 @@
         <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" class="youtube" title="YouTube">
             <i class="fab fa-youtube"></i>
         </a>
-        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="spotify" title="Spotify">
+        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="spotify"
+            title="Spotify">
             <i class="fab fa-spotify"></i>
         </a>
-                <a href="https://www.pinterest.fr/djbilboxbeats/" target="_blank" class="pinterest" title="Pinterest">
+        <a href="https://www.pinterest.fr/djbilboxbeats/" target="_blank" class="pinterest" title="Pinterest">
             <i class="fab fa-pinterest"></i>
         </a>
         <a href="https://www.tiktok.com/@djbilboxbeats" target="_blank" class="tiktok" title="TikTok">
@@ -352,62 +440,88 @@
             <i class="fab fa-linkedin-in"></i>
         </a>
     </div>
+
     <div id="google_translate_element"></div>
 
-    <!-- Hero Video Section -->
+    <!-- Hero Video Section (Local File for smooth NFCA style) -->
     <div class="hero-video">
-        <iframe src="https://www.youtube.com/embed/SuvJIS8BlKk?autoplay=1&mute=1&loop=1&playlist=SuvJIS8BlKk&controls=0&showinfo=0&modestbranding=1&rel=0"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen>
-        </iframe>
+        <video autoplay muted loop playsinline class="hero-video-bg"
+            style="position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); object-fit: cover;">
+            <source src="header-video.mp4" type="video/mp4">
+        </video>
         <div class="hero-overlay">
             <h1>🇫🇷 DJBILBOX BEATS</h1>
             <p>Music Producer & Beatmaker - Toulouse</p>
         </div>
     </div>
 
-    <!-- NOUVELLE GRILLE DE CLIPS (APRÈS LA PRÉSENTATION) -->
-    <section id="portfolio-clips" style="padding: 0
-        <div <div class="video-grid">
-        <a href="https://www.youtube.com/watch?v=BONAmRpQG8E" target="_blank" class="video-item">
-            <img src="https://img.youtube.com/vi/BONAmRpQG8E/maxresdefault.jpg" alt="Life Is Short - AYAKA">
-            <div class="play-overlay"></div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=5AqXG5Bj8IQ" target="_blank" class="video-item">
-            <img src="https://img.youtube.com/vi/5AqXG5Bj8IQ/maxresdefault.jpg" alt="DJBILBOX HOLLIDAY">
-            <div class="play-overlay"></div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=UIde6i5c9a8" target="_blank" class="video-item">
-            <img src="https://img.youtube.com/vi/UIde6i5c9a8/maxresdefault.jpg" alt="AI Motion Design">
-            <div class="play-overlay"></div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=5rl7p_BXTns" target="_blank" class="video-item">
-            <img src="https://img.youtube.com/vi/5rl7p_BXTns/maxresdefault.jpg" alt="Manchild - Sabrina Carpenter">
-            <div class="play-overlay"></div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=WHs93IgRTx4" target="_blank" class="video-item">
-            <img src="https://img.youtube.com/vi/WHs93IgRTx4/maxresdefault.jpg" alt="Rani out Abdou Gambetta">
-            <div class="play-overlay"></div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=ZSUc9O0g-JI" target="_blank" class="video-item">
-            <img src="https://img.youtube.com/vi/ZSUc9O0g-JI/maxresdefault.jpg" alt="Professional Logo Intro">
-            <div class="play-overlay"></div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=TiZ4mv-vKy0" target="_blank" class="video-item">
-            <img src="https://img.youtube.com/vi/TiZ4mv-vKy0/maxresdefault.jpg" alt="Chants des Minarets">
-            <div class="play-overlay"></div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=00ackZS-t4k" target="_blank" class="video-item">
-            <img src="https://img.youtube.com/vi/00ackZS-t4k/maxresdefault.jpg" alt="Smasher">
-            <div class="play-overlay"></div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=Ye0aujwj3m0" target="_blank" class="video-item">
-            <img src="https://img.youtube.com/vi/Ye0aujwj3m0/maxresdefault.jpg" alt="Teaser Octobre 2025">
-            <div class="play-overlay"></div>
-        </a>
-        v>
-</section>
+    <!-- NOUVELLE GRILLE DE CLIPS (Style NFCA Pictures) -->
+    <section id="portfolio-clips" style="padding: 0; border: none;">
+        <div class="video-grid">
+            <!-- 1 -->
+            <div class="video-item">
+                <video autoplay muted loop playsinline width="100%" height="100%" style="object-fit: cover;">
+                    <source src="clip1.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- 2 -->
+            <div class="video-item">
+                <video autoplay muted loop playsinline width="100%" height="100%" style="object-fit: cover;">
+                    <source src="clip2.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- 3 -->
+            <div class="video-item">
+                <video autoplay muted loop playsinline width="100%" height="100%" style="object-fit: cover;">
+                    <source src="clip3.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- 4 -->
+            <div class="video-item">
+                <video autoplay muted loop playsinline width="100%" height="100%" style="object-fit: cover;">
+                    <source src="clip4.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- 5 -->
+            <div class="video-item">
+                <video autoplay muted loop playsinline width="100%" height="100%" style="object-fit: cover;">
+                    <source src="clip5.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- 6 -->
+            <div class="video-item">
+                <video autoplay muted loop playsinline width="100%" height="100%" style="object-fit: cover;">
+                    <source src="clip6.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- 7 -->
+            <div class="video-item">
+                <video autoplay muted loop playsinline width="100%" height="100%" style="object-fit: cover;">
+                    <source src="clip7.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- 8 -->
+            <div class="video-item">
+                <video autoplay muted loop playsinline width="100%" height="100%" style="object-fit: cover;">
+                    <source src="clip8.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- 9 -->
+            <div class="video-item">
+                <video autoplay muted loop playsinline width="100%" height="100%" style="object-fit: cover;">
+                    <source src="clip9.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
 
     <nav>
         <a href="#about">À PROPOS</a>
@@ -422,32 +536,55 @@
     <section id="about">
         <h2>À Propos</h2>
         <div class="about-content">
-            <p>Producteur de musique et beatmaker passionné basé à Toulouse, je transforme des idées sonores en productions uniques qui captivent et inspirent. Mon expertise s'étend à travers plusieurs genres musicaux contemporains incluant la Trap, l'Afrotrap, le Drill et les sonorités orientales, créant ainsi un univers musical riche et diversifié.</p>
-            <p>Avec une approche à la fois technique et artistique, je me consacre à la création d'instrumentales percutantes qui servent de fondation solide pour les artistes émergents et confirmés. Chaque production est méticuleusement travaillée pour offrir une identité sonore distinctive, alliant modernité et authenticité.</p>
-            <p>Mon studio est équipé des dernières technologies de production musicale, me permettant de fournir des beats de qualité professionnelle qui répondent aux standards de l'industrie musicale actuelle. De la composition initiale jusqu'au mastering final, je m'assure que chaque élément sonore contribue à créer une œuvre cohérente et impactante.</p>
-            <p>Au-delà de la production musicale pure, je développe également des projets visuels innovants en intégrant l'intelligence artificielle et la création digitale. Cette approche multidisciplinaire me permet d'offrir des solutions complètes aux artistes cherchant à développer leur image de marque et leur présence sur les plateformes digitales.</p>
-            <p>Mon objectif est de fournir des productions de haute qualité qui permettent aux artistes de se démarquer dans un paysage musical en constante évolution, tout en respectant leur vision artistique et en amplifiant leur message créatif.</p>
+            <p>Producteur de musique et beatmaker passionné basé à Toulouse, je transforme des idées sonores en
+                productions uniques qui captivent et inspirent. Mon expertise s'étend à travers plusieurs genres
+                musicaux contemporains incluant la Trap, l'Afrotrap, le Drill et les sonorités orientales, créant ainsi
+                un univers musical riche et diversifié.</p>
+            <p>Avec une approche à la fois technique et artistique, je me consacre à la création d'instrumentales
+                percutantes qui servent de fondation solide pour les artistes émergents et confirmés. Chaque production
+                est méticuleusement travaillée pour offrir une identité sonore distinctive, alliant modernité et
+                authenticité.</p>
+            <p>Mon studio est équipé des dernières technologies de production musicale, me permettant de fournir des
+                beats de qualité professionnelle qui répondent aux standards de l'industrie musicale actuelle. De la
+                composition initiale jusqu'au mastering final, je m'assure que chaque élément sonore contribue à créer
+                une œuvre cohérente et impactante.</p>
+            <p>Au-delà de la production musicale pure, je développe également des projets visuels innovants en intégrant
+                l'intelligence artificielle et la création digitale. Cette approche multidisciplinaire me permet
+                d'offrir des solutions complètes aux artistes cherchant à développer leur image de marque et leur
+                présence sur les plateformes digitales.</p>
+            <p>Mon objectif est de fournir des productions de haute qualité qui permettent aux artistes de se démarquer
+                dans un paysage musical en constante évolution, tout en respectant leur vision artistique et en
+                amplifiant leur message créatif.</p>
         </div>
     </section>
 
     <section id="services">
         <h2>🛠️ Mes Services</h2>
         <ul>
-            <li><strong>🎹 Beatmaking & Composition</strong> : Création de productions originales sur mesure adaptées à votre style et votre vision artistique.</li>
-            <li><strong>🎨 Création Visuelle & IA</strong> : Design graphique professionnel et vidéos animées générées par intelligence artificielle pour vos projets musicaux.</li>
-            <li><strong>🎵 Mixage & Mastering</strong> : Traitement sonore professionnel de vos titres pour un rendu optimal sur toutes les plateformes de streaming.</li>
-            <li><strong>🌐 Développement Web</strong> : Création de sites web et EPK (Electronic Press Kit) pour artistes et labels musicaux.</li>
-            <li><strong>💿 Distribution Musicale</strong> : Accompagnement complet pour la sortie et la distribution de vos titres sur toutes les plateformes digitales.</li>
+            <li><strong>🎹 Beatmaking & Composition</strong> : Création de productions originales sur mesure adaptées à
+                votre style et votre vision artistique.</li>
+            <li><strong>🎨 Création Visuelle & IA</strong> : Design graphique professionnel et vidéos animées générées
+                par intelligence artificielle pour vos projets musicaux.</li>
+            <li><strong>🎵 Mixage & Mastering</strong> : Traitement sonore professionnel de vos titres pour un rendu
+                optimal sur toutes les plateformes de streaming.</li>
+            <li><strong>🌐 Développement Web</strong> : Création de sites web et EPK (Electronic Press Kit) pour
+                artistes et labels musicaux.</li>
+            <li><strong>💿 Distribution Musicale</strong> : Accompagnement complet pour la sortie et la distribution de
+                vos titres sur toutes les plateformes digitales.</li>
         </ul>
     </section>
 
     <section id="social">
         <h2>🌐 Suivez-moi</h2>
         <div class="social-icons">
-            <a href="https://www.instagram.com/djbilboxbeats" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/Djbilboxbeats" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" title="Spotify"><i class="fab fa-spotify"></i></a>
+            <a href="https://www.instagram.com/djbilboxbeats" target="_blank" title="Instagram"><i
+                    class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/Djbilboxbeats" target="_blank" title="Facebook"><i
+                    class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" title="YouTube"><i
+                    class="fab fa-youtube"></i></a>
+            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" title="Spotify"><i
+                    class="fab fa-spotify"></i></a>
         </div>
     </section>
 
@@ -455,20 +592,26 @@
         <h2>🎵 Music & Remix</h2>
         <div class="video-grid">
             <a href="https://www.youtube.com/watch?v=B1IpmH-mbSI" target="_blank" class="video-item">
-                <img src="https://img.youtube.com/vi/B1IpmH-mbSI/maxresdefault.jpg" alt="VATIMBORA - Afrotrap x Reggaeton (DJBILBOX RMX)">
+                <img src="https://img.youtube.com/vi/B1IpmH-mbSI/maxresdefault.jpg"
+                    alt="VATIMBORA - Afrotrap x Reggaeton (DJBILBOX RMX)">
                 <div class="play-overlay"></div>
+                <div class="video-title">VATIMBORA - Afrotrap x Reggaeton</div>
             </a>
             <a href="https://youtu.be/CZoLkejsVlA" target="_blank" class="video-item">
-                <img src="https://img.youtube.com/vi/CZoLkejsVlA/maxresdefault.jpg" alt="Just Keep Watching - Tate McRae (DJBILBOX Remix)">
+                <img src="https://img.youtube.com/vi/CZoLkejsVlA/maxresdefault.jpg"
+                    alt="Just Keep Watching - Tate McRae (DJBILBOX Remix)">
                 <div class="play-overlay"></div>
+                <div class="video-title">Just Keep Watching - Tate McRae</div>
             </a>
             <a href="https://www.youtube.com/watch?v=FI_f10grTTE" target="_blank" class="video-item">
-                <img src="https://img.youtube.com/vi/FI_f10grTTE/maxresdefault.jpg" alt="Rani out Abdou Gambetta - (DJBILBOX Remix)">
+                <img src="https://img.youtube.com/vi/FI_f10grTTE/maxresdefault.jpg"
+                    alt="Rani out Abdou Gambetta - (DJBILBOX Remix)">
                 <div class="play-overlay"></div>
                 <div class="video-title">Rani out Abdou Gambetta - (DJBILBOX Remix)</div>
             </a>
         </div>
     </section>
+
     <section id="instrumentals">
         <h2>🎹 Instrumentals</h2>
         <div class="video-grid">
@@ -494,51 +637,61 @@
         <h2>🎛️ Kit Samples</h2>
         <div class="video-grid">
             <a href="https://youtu.be/BW_HLS7payE" target="_blank" class="video-item">
-                <img src="https://img.youtube.com/vi/BW_HLS7payE/maxresdefault.jpg" alt="DRUMS PACK Vol. 1 - Hard Hitting Drums">
+                <img src="https://img.youtube.com/vi/BW_HLS7payE/maxresdefault.jpg"
+                    alt="DRUMS PACK Vol. 1 - Hard Hitting Drums">
                 <div class="play-overlay"></div>
-                <div class="video-title">DRUMS PACK Vol. 1 - Hard Hitting Drums</div>
+                <div class="video-title">DRUMS PACK Vol. 1</div>
             </a>
             <a href="https://youtu.be/hRvWg0iXb08" target="_blank" class="video-item">
-                <img src="https://img.youtube.com/vi/hRvWg0iXb08/maxresdefault.jpg" alt="MELODY PACK - Soulful & Trap Vibes">
+                <img src="https://img.youtube.com/vi/hRvWg0iXb08/maxresdefault.jpg"
+                    alt="MELODY PACK - Soulful & Trap Vibes">
                 <div class="play-overlay"></div>
-                <div class="video-title">MELODY PACK - Soulful & Trap Vibes</div>
+                <div class="video-title">MELODY PACK - Soulful</div>
             </a>
         </div>
     </section>
 
     <section id="shop">
         <h2>🛍️ Boutique</h2>
-        <p>Découvrez mes produits exclusifs et merchandising officiel.</p>
-        <p><strong>N3LYA TE PASSE LE MIC T-shirt</strong> - Édition Limitée</p>
-        <div class="product-grid">
+        <p style="text-align:center; margin-bottom:20px;">Découvrez mes produits exclusifs et merchandising officiel.
+        </p>
+        <div class="product-grid" style="max-width:400px; margin:auto;">
+            <!-- Note: You should check if this image exists in your folder, otherwise it might break -->
             <div class="product-item">
-                <img src="WhatsApp Image 2025-12-02 à 16.41.19_26102c9b.jpg" alt="N3LYA TE PASSE LE MIC T-shirt">
-                <div class="product-title">N3LYA TE PASSE LE MIC T-shirt - Édition Limitée</div>
+                <img src="tshirt-n3lya.jpg" alt="N3LYA TE PASSE LE MIC T-shirt">
+                <div class="video-title" style="bottom: 0px; text-align: center;">N3LYA TE PASSE LE MIC T-shirt - 20€
+                </div>
             </div>
         </div>
-        <a href="#" class="cta-button">Commander (20€)</a>
+        <div style="text-align:center; margin-top:20px;">
+            <a href="#" class="cta-button">Commander maintenant</a>
+        </div>
     </section>
 
     <section id="contact">
         <h2>Contact</h2>
         <p>Pour toute demande de collaboration, service ou licence :</p>
-        <p>📧 Email : <a href="mailto:Djbilboxbeats@gmail.com">Djbilboxbeats@gmail.com</a></p>
+        <p style="font-size:1.2rem; margin-top:10px;">📧 Email : <a href="mailto:Djbilboxbeats@gmail.com"
+                style="color:#1877F2; text-decoration:none;">Djbilboxbeats@gmail.com</a></p>
     </section>
 
     <footer>
         <p>© 2025 DJBILBOX BEATS. Tous droits réservés.</p>
+        <p style="font-size:0.8rem; margin-top:10px; color:#aaa;">Designed by Antigravity</p>
     </footer>
 
     <script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'fr',
-            includedLanguages: 'fr,en,es,ar',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false
-        }, 'google_translate_element');
-    }
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'fr',
+                includedLanguages: 'fr,en,es,ar',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
+
 </html>
