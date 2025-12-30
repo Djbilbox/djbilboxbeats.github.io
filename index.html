@@ -15,6 +15,61 @@
         line-height: 1.6;
     }
 
+                /* Fixed Social Icons on Left Side */
+        .fixed-social-icons {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .fixed-social-icons a {
+            width: 50px;
+            height: 50px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .fixed-social-icons a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .fixed-social-icons a.instagram:hover {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .fixed-social-icons a.facebook:hover {
+            background: #1877f2;
+        }
+
+        .fixed-social-icons a.youtube:hover {
+            background: #ff0000;
+        }
+
+        .fixed-social-icons a.spotify:hover {
+            background: #1db954;
+        }
+
+        /* Hide on mobile */
+        @media (max-width: 768px) {
+            .fixed-social-icons {
+                display: none;
+            }
+        }
+
     /* Video Hero Section */
     .hero-video {
         width: 100%;
@@ -253,6 +308,22 @@ display: grid !important;
     </style>
 </head>
 <body>
+
+        <!-- Fixed Social Icons on Left Side -->
+    <div class="fixed-social-icons">
+        <a href="https://www.instagram.com/djbilboxbeats" target="_blank" class="instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/Djbilboxbeats" target="_blank" class="facebook" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" class="youtube" title="YouTube">
+            <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="spotify" title="Spotify">
+            <i class="fab fa-spotify"></i>
+        </a>
+    </div>
     <div id="google_translate_element"></div>
 
     <!-- Hero Video Section -->
