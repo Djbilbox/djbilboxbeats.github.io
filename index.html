@@ -240,68 +240,83 @@
     .cta-button:hover { background: #0d5dbf; }
 
     /* Video Thumbnails & Product Images */
-display: grid !important;
+        /* Video Grid Style NFCA - Grille 3 colonnes sans espace */
+        .video-grid, .product-grid {
+            display: grid !important;
     grid-template-columns: repeat(3, 1fr);
             gap: 0;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            line-height: 0;
+        }
 
+        .video-item, .product-item {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            display: block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
+        .video-item:hover, .product-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
 
+        .video-item img, .product-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border: none;
+        }
 
-    padding: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    overflow: hidden;
-    line-height: 0;
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s, box-shadow 0.3s;
-        
-    }
+        .video-item .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 0, 0, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
 
-    .video-item:hover, .product-item:hover {
-        transform: translateY(-5px);
-    aspect-ratio: 16 / 9;
-    border: none;
-    display: block;
-    object-fit: cover; cover;
-    }
+        .video-item:hover .play-overlay {
+            opacity: 0.8;
+        }
 
-    .video-item .play-overlay {
-        position: absolute;
-        top: 50%;
+        .video-item .play-overlay::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
 
-.video-item iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 60px;
-        height: 60px;
-        background: rgba(255, 0, 0, 0.9);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        pointer-events: none;
-    }
+        /* Responsive - 2 colonnes sur tablette */
+        @media (max-width: 768px) {
+            .video-grid, .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
-    .video-item .play-overlay::after {
-        content: '';
-        width: 0;
-        height: 0;
-        border-left: 20px solid white;
-        border-top: 12px solid transparent;
-        border-bottom: 12px solid transparent;
-        margin-left: 5px;
-    }
-
-    }
+        /* Responsive - 1 colonne sur mobile */
+        @media (max-width: 480px) {
+            .video-grid, .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
     footer {
         text-align: center;
