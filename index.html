@@ -9,6 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YLE7283QST"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-YLE7283QST');
+    </script>
     <style>
         /* Reset & Base Premium */
         * {
@@ -312,6 +321,98 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* === 7. YouTube Playlists Section === */
+        #playlists {
+            padding: 100px 20px;
+            background: #000;
+        }
+
+        .playlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .playlist-card {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.3s;
+        }
+
+        .playlist-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .playlist-thumb-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+
+        .playlist-thumb-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-count-badge {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .playlist-info {
+            padding: 0 4px;
+        }
+
+        .playlist-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            line-height: 1.3;
+            color: #fff;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .playlist-meta {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .playlist-link {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .playlist-link:hover {
+            color: #1DB954;
+        }
     </style>
 </head>
 
@@ -439,12 +540,12 @@
     <nav>
         <a href="#about">Bio</a>
         <a href="#services">Services</a>
-        <a href="#images">Image</a>
         <a href="#music">Music</a>
+        <a href="#playlists">Playlists</a>
         <a href="#videos">Video</a>
+        <a href="#kitsamples">Kits</a>
         <a href="#connect">Connect</a>
-        <a href="#kitsamples">Kit Samples</a>
-        <a href="#contact">Contact</a>
+        <a href="#images">Art</a>
     </nav>
 
     <!-- SECTION SERVICES -->
@@ -576,6 +677,175 @@
             </div>
         </div>
     </section>
+
+    <!-- SECTION YOUTUBE PLAYLISTS -->
+    <section id="playlists">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-black mb-16 text-center tracking-[10px] uppercase">PROJECTS & PLAYLISTS</h2>
+            <div class="playlist-grid">
+                <!-- Playlist 1 -->
+                <div class="playlist-card">
+                    <div class="playlist-thumb-wrapper">
+                        <img src="https://img.youtube.com/vi/GVxATwlh7Lo/maxresdefault.jpg" alt="Pack Loop SAMPLE">
+                        <div class="video-count-badge">
+                            <i class="fas fa-list"></i> 3 VIDÉOS
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3 class="playlist-title">Pack Loop SAMPLE by Djbilbox BEATS</h3>
+                        <p class="playlist-meta">Publique · Mise à jour il y a 2 jours</p>
+                        <a href="https://www.youtube.com/@djbilboxbeats/playlists" class="playlist-link">Afficher la
+                            playlist complète</a>
+                    </div>
+                </div>
+
+                <!-- Playlist 2 -->
+                <div class="playlist-card">
+                    <div class="playlist-thumb-wrapper">
+                        <img src="https://img.youtube.com/vi/ra7hZze2xes/maxresdefault.jpg" alt="AI Visuals">
+                        <div class="video-count-badge">
+                            <i class="fas fa-list"></i> 192 VIDÉOS
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3 class="playlist-title">AI Visuals & Motion Design by Djbilbox BEATS</h3>
+                        <p class="playlist-meta">Publique · Mise à jour aujourd'hui</p>
+                        <a href="https://www.youtube.com/@djbilboxbeats/playlists" class="playlist-link">Afficher la
+                            playlist complète</a>
+                    </div>
+                </div>
+
+                <!-- Playlist 3 -->
+                <div class="playlist-card">
+                    <div class="playlist-thumb-wrapper">
+                        <img src="https://img.youtube.com/vi/hRvWg0iXb08/maxresdefault.jpg" alt="PUMPKIN DRIVE">
+                        <div class="video-count-badge">
+                            <i class="fas fa-list"></i> 16 VIDÉOS
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3 class="playlist-title">PUMPKIN DRIVE (Funk)</h3>
+                        <p class="playlist-meta">Publique</p>
+                        <a href="https://www.youtube.com/@djbilboxbeats/playlists" class="playlist-link">Afficher la
+                            playlist complète</a>
+                    </div>
+                </div>
+
+                <!-- Playlist 4 -->
+                <div class="playlist-card">
+                    <div class="playlist-thumb-wrapper">
+                        <img src="https://img.youtube.com/vi/BW_HLS7payE/maxresdefault.jpg" alt="Oriental Instrumental">
+                        <div class="video-count-badge">
+                            <i class="fas fa-list"></i> 102 VIDÉOS
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3 class="playlist-title">Oriental Instrumental Type Beats By Djbilbox BEATS</h3>
+                        <p class="playlist-meta">Publique · Mise à jour il y a 2 jours</p>
+                        <a href="https://www.youtube.com/@djbilboxbeats/playlists" class="playlist-link">Afficher la
+                            playlist complète</a>
+                    </div>
+                </div>
+
+                <!-- Playlist 5 -->
+                <div class="playlist-card">
+                    <div class="playlist-thumb-wrapper">
+                        <img src="digital-oasis.png" alt="Hip-hop Trap Drill">
+                        <div class="video-count-badge">
+                            <i class="fas fa-list"></i> 150 VIDÉOS
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3 class="playlist-title">Hip-hop Trap Drill Instrumental Type Beats By Djbilbox BEATS</h3>
+                        <p class="playlist-meta">Publique</p>
+                        <a href="https://www.youtube.com/@djbilboxbeats/playlists" class="playlist-link">Afficher la
+                            playlist complète</a>
+                    </div>
+                </div>
+
+                <!-- Playlist 6 -->
+                <div class="playlist-card">
+                    <div class="playlist-thumb-wrapper">
+                        <img src="drums-loop-v1.png" alt="Afrotrap">
+                        <div class="video-count-badge">
+                            <i class="fas fa-list"></i> 23 VIDÉOS
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3 class="playlist-title">Afrotrap Instrumental Type Beats By Djbilbox BEATS</h3>
+                        <p class="playlist-meta">Publique</p>
+                        <a href="https://www.youtube.com/@djbilboxbeats/playlists" class="playlist-link">Afficher la
+                            playlist complète</a>
+                    </div>
+                </div>
+
+                <!-- Playlist 7 -->
+                <div class="playlist-card">
+                    <div class="playlist-thumb-wrapper">
+                        <img src="Capture%20d'écran%202025-12-30%20210739.png" alt="Deephouse DNB">
+                        <div class="video-count-badge">
+                            <i class="fas fa-list"></i> 53 VIDÉOS
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3 class="playlist-title">Deephouse DNB Instrumental Type Beats By Djbilbox BEATS</h3>
+                        <p class="playlist-meta">Publique</p>
+                        <a href="https://www.youtube.com/@djbilboxbeats/playlists" class="playlist-link">Afficher la
+                            playlist complète</a>
+                    </div>
+                </div>
+
+                <!-- Playlist 8 -->
+                <div class="playlist-card">
+                    <div class="playlist-thumb-wrapper">
+                        <img src="Capture%20d'écran%202025-12-30%20210813.png" alt="Funk">
+                        <div class="video-count-badge">
+                            <i class="fas fa-list"></i> 43 VIDÉOS
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3 class="playlist-title">Funk Instrumental Type Beats By Djbilbox BEATS</h3>
+                        <p class="playlist-meta">Publique</p>
+                        <a href="https://www.youtube.com/@djbilboxbeats/playlists" class="playlist-link">Afficher la
+                            playlist complète</a>
+                    </div>
+                </div>
+
+                <!-- Playlist 9 -->
+                <div class="playlist-card">
+                    <div class="playlist-thumb-wrapper">
+                        <img src="Capture%20d'écran%202025-12-30%20210921.png" alt="Music Mix">
+                        <div class="video-count-badge">
+                            <i class="fas fa-list"></i> 36 VIDÉOS
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3 class="playlist-title">Music Mix & RMX By Djbilbox BEATS</h3>
+                        <p class="playlist-meta">Publique · Mise à jour aujourd'hui</p>
+                        <a href="https://www.youtube.com/@djbilboxbeats/playlists" class="playlist-link">Afficher la
+                            playlist complète</a>
+                    </div>
+                </div>
+
+                <!-- Playlist 10 -->
+                <div class="playlist-card">
+                    <div class="playlist-thumb-wrapper">
+                        <img src="https://img.youtube.com/vi/hRvWg0iXb08/maxresdefault.jpg" alt="All Beats">
+                        <div class="video-count-badge">
+                            <i class="fas fa-list"></i> 376 ÉPISODES
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3 class="playlist-title">All Beats by Djbilbox BEATS</h3>
+                        <p class="playlist-meta">Publique · Mise à jour aujourd'hui</p>
+                        <a href="https://www.youtube.com/@djbilboxbeats/podcasts" class="playlist-link">Voir le podcast
+                            entier</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- SECTION CONNECT & SOCIAL HUB -->
     <section id="connect" class="py-24 px-6 bg-[#030303] border-t border-white/5">
