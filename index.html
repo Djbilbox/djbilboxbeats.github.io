@@ -439,7 +439,6 @@
     <nav>
         <a href="#about">Bio</a>
         <a href="#services">Services</a>
-        <a href="#shop">Boutique</a>
         <a href="#images">Image</a>
         <a href="#music">Music</a>
         <a href="#videos">Video</a>
@@ -525,66 +524,18 @@
         </div>
     </section>
 
-    <!-- SECTION BOUTIQUE -->
-    <section id="shop" class="py-24 px-6 bg-[#050505] border-b border-white/5">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-3xl font-black mb-16 tracking-[10px] uppercase">BOUTIQUE OFFICIELLE</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-
-                <!-- Produit 1: Figurine -->
-                <div
-                    class="bg-white/5 border border-white/10 rounded-[40px] p-8 backdrop-blur-xl group hover:border-[#1DB954]/50 transition-all duration-700 relative overflow-hidden">
-                    <div class="relative aspect-square mb-8 overflow-hidden rounded-[30px] bg-black/40 shadow-2xl">
-                        <img src="figurine-djbilbox.jpg" alt="Figurine Collector Djbilbox Beats"
-                            class="w-full h-full object-contain p-6 group-hover:scale-110 transition-transform duration-1000">
-                        <div
-                            class="absolute top-6 right-6 px-4 py-1.5 bg-red-600 text-white font-black text-[8px] uppercase tracking-widest rounded-full shadow-lg">
-                            ÉDITION LIMITÉE</div>
-                    </div>
-                    <h3 class="text-xl font-black mb-2 tracking-widest uppercase">FIGURINE COLLECTOR</h3>
-                    <p class="text-[10px] opacity-40 uppercase tracking-[3px] mb-6">Vinyl Toy Custom DJBILBOX BEATS</p>
-                    <a href="#contact" class="cta-button w-full">RÉSERVER MA FIGURINE</a>
-                </div>
-
-                <!-- Produit 2: Album -->
-                <div
-                    class="bg-white/5 border border-white/10 rounded-[40px] p-8 backdrop-blur-xl group hover:border-[#1DB954]/50 transition-all duration-700 relative overflow-hidden">
-                    <div class="relative aspect-square mb-8 overflow-hidden rounded-[30px] bg-black/40 shadow-2xl">
-                        <img src="album-djbilbox.jpg" alt="Nouvel Album Djbilbox Beats"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <div
-                            class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                            <i class="fas fa-compact-disc text-5xl text-[#1DB954] mb-4 animate-spin-slow"></i>
-                            <span
-                                class="px-6 py-2 bg-[#1DB954] text-black font-black text-[10px] uppercase tracking-widest rounded-full">BIENTÔT
-                                DISPONIBLE</span>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-black mb-2 tracking-widest uppercase">NOUVEL ALBUM</h3>
-                    <p class="text-[10px] opacity-40 uppercase tracking-[3px] mb-6">Pré-commande & Streaming</p>
-                    <div class="flex flex-wrap justify-center gap-4 py-2">
-                        <i class="fab fa-spotify text-lg opacity-30"></i>
-                        <i class="fab fa-apple text-lg opacity-30"></i>
-                        <i class="fab fa-amazon text-lg opacity-30"></i>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
     <!-- SECTION MUSIC -->
     <section id="music" class="py-24 px-6 bg-[#050505]">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl font-black mb-16 text-center tracking-[10px] uppercase">MUSIC HUB</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="max-w-3xl mx-auto">
                 <!-- Spotify (Existing) -->
                 <div
                     class="bg-white/5 border border-white/10 rounded-[40px] p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden group hover:border-[#1DB954]/30 transition-all duration-700">
                     <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
                         <i class="fab fa-spotify text-6xl text-[#1DB954]"></i>
                     </div>
-                    <div class="relative z-10">
+                    <div class="relative z-10 text-center md:text-left">
                         <h3 class="text-sm font-black mb-8 tracking-[4px] uppercase text-[#1DB954]">DISCOGRAPHIE
                             OFFICIELLE</h3>
                         <div class="rounded-[24px] overflow-hidden shadow-2xl bg-black/40">
@@ -596,29 +547,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- YouTube Playlists -->
-                <div
-                    class="bg-white/5 border border-white/10 rounded-[40px] p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden group hover:border-red-600/30 transition-all duration-700">
-                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <i class="fab fa-youtube text-6xl text-red-600"></i>
-                    </div>
-                    <div class="relative z-10">
-                        <h3 class="text-sm font-black mb-8 tracking-[4px] uppercase text-red-600">CATALOGUE DE
-                            PRODUCTIONS</h3>
-                        <div class="space-y-6">
-                            <div class="rounded-[20px] overflow-hidden shadow-2xl aspect-video bg-black/40">
-                                <iframe width="100%" height="100%"
-                                    src="https://www.youtube.com/embed/videoseries?list=PLbtcZhy947NWbPbX4VepMkY3lIzvm681V"
-                                    title="Catalogue de Productions" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <p class="mt-4 text-[10px] opacity-40 uppercase tracking-[4px] text-center">Répertoire exclusif
-                            Type Beats & Instrumentales</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -627,33 +555,14 @@
     <section id="videos" class="py-24 px-6">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl font-black mb-16 text-center tracking-[10px] uppercase">MOTION DESIGN & CLIPS</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <!-- AI Motion Playlist -->
-                <div
-                    class="bg-white/5 border border-white/10 rounded-[40px] p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden group hover:border-red-600/30 transition-all duration-700">
-                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <i class="fas fa-magic text-6xl text-white/20"></i>
-                    </div>
-                    <div class="relative z-10">
-                        <h3 class="text-sm font-black mb-8 tracking-[4px] uppercase text-white/80">DIRECTION ARTISTIQUE
-                            VISUELLE</h3>
-                        <div class="rounded-[24px] overflow-hidden shadow-2xl aspect-video bg-black/40">
-                            <iframe width="100%" height="100%"
-                                src="https://www.youtube.com/embed/videoseries?list=PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-"
-                                title="Direction Artistique Visuelle" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="max-w-3xl mx-auto">
                 <!-- Showreel Promo -->
                 <div
                     class="bg-white/5 border border-white/10 rounded-[40px] p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden group hover:border-red-600/30 transition-all duration-700">
                     <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
                         <i class="fas fa-play text-6xl text-white/20"></i>
                     </div>
-                    <div class="relative z-10">
+                    <div class="relative z-10 text-center md:text-left">
                         <h3 class="text-sm font-black mb-8 tracking-[4px] uppercase text-white/80">SHOWREEL OFFICIEL
                             2025</h3>
                         <div class="rounded-[24px] overflow-hidden shadow-2xl aspect-video bg-black/40">
