@@ -228,7 +228,7 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            z-index: 9999;
+            z-index: 8000;
             width: 55px;
             height: 55px;
             border-radius: 50%;
@@ -413,6 +413,169 @@
         .playlist-link:hover {
             color: #1DB954;
         }
+
+        /* === 8. Mobile Menu & Responsive Fixes === */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        .menu-overlay {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                background: #1DB954;
+                color: #000;
+                border-radius: 50%;
+                z-index: 5000;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                cursor: pointer;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+                border: 2px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .menu-overlay {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(8px);
+                z-index: 4000;
+                opacity: 0;
+                pointer-events: none;
+                transition: 0.4s;
+            }
+
+            .menu-overlay.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            nav {
+                position: fixed !important;
+                top: 0;
+                right: -100% !important;
+                width: 80% !important;
+                height: 100vh !important;
+                background: #000 !important;
+                z-index: 4500 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0) !important;
+                border-bottom: none !important;
+                border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+                padding: 50px 20px !important;
+                text-align: center !important;
+            }
+
+            nav.active {
+                right: 0 !important;
+            }
+
+            nav a {
+                margin: 15px 0 !important;
+                font-size: 1.1rem !important;
+                display: block !important;
+                width: 100% !important;
+                color: #fff !important;
+                letter-spacing: 3px !important;
+            }
+
+            /* Content Adjustments */
+            section {
+                padding: 60px 20px !important;
+            }
+
+            h2 {
+                font-size: 1.8rem !important;
+                letter-spacing: 5px !important;
+                margin-bottom: 40px !important;
+            }
+
+            .hero-video {
+                height: 80vh !important;
+            }
+
+            .hero-title-box {
+                top: 15px;
+                left: 15px;
+                padding: 8px 15px;
+            }
+
+            .hero-title-box h1 {
+                font-size: 0.9rem !important;
+            }
+
+            .hero-subtitle {
+                font-size: 0.6rem !important;
+                letter-spacing: 4px !important;
+                bottom: 20px;
+                padding: 0 10px;
+            }
+
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .playlist-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+
+            .translate-wrapper {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+
+            #about .text-4xl {
+                font-size: 2rem !important;
+                letter-spacing: 8px !important;
+            }
+
+            #about .bg-white\/5 {
+                padding: 30px 20px !important;
+                border-radius: 30px !important;
+            }
+
+            #about .text-xl {
+                font-size: 1.1rem !important;
+            }
+
+            #about .text-3xl {
+                font-size: 1.5rem !important;
+            }
+
+            /* Kit Samples Grid */
+            #kitsamples .grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+            }
+
+            footer {
+                padding: 60px 20px !important;
+            }
+
+            #contact .text-4xl {
+                font-size: 1.8rem !important;
+            }
+        }
     </style>
 </head>
 
@@ -433,6 +596,12 @@
         <a href="https://www.linkedin.com/in/djbilbox-beats-9a4554338/" target="_blank" class="linkedin"><i
                 class="fab fa-linkedin-in"></i></a>
     </div>
+
+    <!-- Mobile Menu Media -->
+    <div class="menu-toggle" id="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="menu-overlay" id="menu-overlay"></div>
 
     <!-- Translate Orb -->
     <div class="translate-wrapper">
@@ -718,7 +887,7 @@
                 <!-- Playlist 3 -->
                 <div class="playlist-card">
                     <div class="playlist-thumb-wrapper">
-                        <img src="pumpkin_drive_thumb_1767174439127.png" alt="PUMPKIN DRIVE">
+                        <img src="https://img.youtube.com/vi/k_j122gR1qg/maxresdefault.jpg" alt="PUMPKIN DRIVE">
                         <div class="video-count-badge">
                             <i class="fas fa-list"></i> 16 VIDÉOS
                         </div>
@@ -734,7 +903,7 @@
                 <!-- Playlist 4 -->
                 <div class="playlist-card">
                     <div class="playlist-thumb-wrapper">
-                        <img src="https://img.youtube.com/vi/BW_HLS7payE/maxresdefault.jpg" alt="Oriental Instrumental">
+                        <img src="https://img.youtube.com/vi/w-tU_9eQ4-A/maxresdefault.jpg" alt="Oriental Instrumental">
                         <div class="video-count-badge">
                             <i class="fas fa-list"></i> 102 VIDÉOS
                         </div>
@@ -750,7 +919,7 @@
                 <!-- Playlist 5 -->
                 <div class="playlist-card">
                     <div class="playlist-thumb-wrapper">
-                        <img src="Capture%20d'écran%202025-12-30%20210851.png" alt="Hip-hop Trap Drill">
+                        <img src="https://img.youtube.com/vi/OhyWvW8V5qY/maxresdefault.jpg" alt="Hip-hop Trap Drill">
                         <div class="video-count-badge">
                             <i class="fas fa-list"></i> 150 VIDÉOS
                         </div>
@@ -766,7 +935,7 @@
                 <!-- Playlist 6 -->
                 <div class="playlist-card">
                     <div class="playlist-thumb-wrapper">
-                        <img src="drums-loop-v1.png" alt="Afrotrap">
+                        <img src="https://img.youtube.com/vi/xHlx666A6WA/maxresdefault.jpg" alt="Afrotrap">
                         <div class="video-count-badge">
                             <i class="fas fa-list"></i> 23 VIDÉOS
                         </div>
@@ -782,7 +951,7 @@
                 <!-- Playlist 7 -->
                 <div class="playlist-card">
                     <div class="playlist-thumb-wrapper">
-                        <img src="digital-oasis.png" alt="Deephouse DNB">
+                        <img src="https://img.youtube.com/vi/G5_y3w6k_8I/maxresdefault.jpg" alt="Deephouse DNB">
                         <div class="video-count-badge">
                             <i class="fas fa-list"></i> 53 VIDÉOS
                         </div>
@@ -798,7 +967,7 @@
                 <!-- Playlist 8 -->
                 <div class="playlist-card">
                     <div class="playlist-thumb-wrapper">
-                        <img src="Capture%20d'écran%202025-12-30%20210813.png" alt="Funk">
+                        <img src="https://img.youtube.com/vi/0h9Vp5Z3Z5U/maxresdefault.jpg" alt="Funk">
                         <div class="video-count-badge">
                             <i class="fas fa-list"></i> 43 VIDÉOS
                         </div>
@@ -814,7 +983,7 @@
                 <!-- Playlist 9 -->
                 <div class="playlist-card">
                     <div class="playlist-thumb-wrapper">
-                        <img src="Capture%20d'écran%202025-12-30%20210739.png" alt="Music Mix">
+                        <img src="https://img.youtube.com/vi/hRvWg0iXb08/maxresdefault.jpg" alt="Music Mix">
                         <div class="video-count-badge">
                             <i class="fas fa-list"></i> 36 VIDÉOS
                         </div>
@@ -830,7 +999,7 @@
                 <!-- Playlist 10 -->
                 <div class="playlist-card">
                     <div class="playlist-thumb-wrapper">
-                        <img src="Capture%20d'écran%202025-12-30%20210921.png" alt="All Beats">
+                        <img src="https://img.youtube.com/vi/h6p6Slyh9RE/maxresdefault.jpg" alt="All Beats">
                         <div class="video-count-badge">
                             <i class="fas fa-list"></i> 376 ÉPISODES
                         </div>
@@ -914,7 +1083,7 @@
             </span>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-5 max-w-5xl mx-auto">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 max-w-7xl mx-auto">
             <!-- Pack 1: Digital Oasis Drums -->
             <div
                 class="bg-white/5 border border-white/10 rounded-[20px] overflow-hidden group hover:bg-white/10 transition-all duration-500 shadow-2xl">
@@ -1115,7 +1284,7 @@
     </section>
 
     <footer>
-        <div class="flex justify-center gap-8 mb-12 text-2xl opacity-40">
+        <div class="flex justify-center gap-4 sm:gap-8 mb-12 text-2xl opacity-40">
             <a href="https://www.instagram.com/djbilboxbeats" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com/Djbilboxbeats" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fab fa-youtube"></i></a>
@@ -1145,6 +1314,46 @@
     </script>
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script>
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('nav a');
+
+        function toggleMenu() {
+            nav.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            if (nav.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+                document.body.style.overflow = 'hidden'; // Prevent scroll
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+                document.body.style.overflow = '';
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (nav.classList.contains('active')) toggleMenu();
+            });
+        });
+
+        // Sticky Nav fix for mobile transition
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth <= 768) {
+                // On mobile we don't want sticky nav interfering with fixed mobile menu
+                nav.style.position = 'fixed';
+            } else {
+                nav.style.position = 'sticky';
+            }
+        });
+    </script>
 
 </body>
 
