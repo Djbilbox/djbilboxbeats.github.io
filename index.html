@@ -107,10 +107,17 @@
             color: #000;
         }
 
-        /* Hide on mobile */
+        /* Show on mobile but smaller */
         @media (max-width: 768px) {
             .fixed-social-icons {
-                display: none;
+                left: 10px;
+                gap: 8px;
+            }
+
+            .fixed-social-icons a {
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
             }
         }
 
@@ -540,8 +547,12 @@
             }
 
             .video-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 1px !important;
+                grid-template-columns: 1fr !important;
+                gap: 2px !important;
+            }
+
+            .video-item {
+                aspect-ratio: 16 / 9 !important;
             }
 
             .playlist-grid {
