@@ -27,7 +27,9 @@
             width: 100% !important;
             max-width: 100vw !important;
             -webkit-text-size-adjust: 100%;
-            background: #000;
+            background: #000 !important;
+            color: #fff !important;
+            font-family: 'Outfit', sans-serif;
         }
 
         * {
@@ -489,17 +491,16 @@
 
             /* --- VIDEO GRID FIX --- */
             .video-grid {
-                display: flex !important;
-                flex-direction: column !important;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
                 width: 100% !important;
+                gap: 2px !important;
                 background: #000;
             }
 
             .video-item {
                 width: 100% !important;
-                height: auto !important;
                 aspect-ratio: 16 / 9 !important;
-                margin-bottom: 2px !important;
                 background: #000;
             }
 
@@ -648,7 +649,7 @@
                             </p>
                         </div>
 
-                        <div class="space-y-4 text-sm opacity-60 leading-relaxed uppercase tracking-[1px]">
+                        <div class="space-y-4 text-sm text-white opacity-80 leading-relaxed uppercase tracking-[1px]">
                             <p>
                                 <strong>ATTALAH BILEL ABDELKADER</strong> est l'esprit créatif derrière l'entité
                                 <strong>DJBILBOX BEATS</strong>. Producteur et concepteur visuel basé à Toulouse, son
