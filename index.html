@@ -467,6 +467,8 @@
                 width: 100% !important;
                 position: relative;
                 overflow: hidden;
+                padding: 0 !important;
+                /* Force 0 padding to stretch to edges */
             }
 
             .hero-video video {
@@ -476,13 +478,29 @@
                 transform: none !important;
                 width: 100% !important;
                 height: 100% !important;
-                object-fit: contain !important;
-                /* Ensure no text is cut */
+                object-fit: cover !important;
+                /* Stretch to fill and remove black bars */
             }
 
             .hero-title-box {
-                display: none !important;
-                /* Remove the black box that clutters mobile */
+                display: block !important;
+                top: 15px !important;
+                left: 15px !important;
+                background: rgba(0, 0, 0, 0.8) !important;
+                padding: 6px 12px !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                border-radius: 2px !important;
+                z-index: 100 !important;
+                width: auto !important;
+                transform: none !important;
+            }
+
+            .hero-title-box h1 {
+                font-size: 0.65rem !important;
+                letter-spacing: 1px !important;
+                line-height: 1.2 !important;
+                margin: 0 !important;
+                white-space: nowrap !important;
             }
 
             .hero-subtitle {
@@ -492,9 +510,10 @@
             /* --- VIDEO GRID FIX --- */
             .video-grid {
                 display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                /* 3 columns to make them smaller */
                 width: 100% !important;
-                gap: 2px !important;
+                gap: 1px !important;
                 background: #000;
             }
 
