@@ -559,13 +559,64 @@
             .menu-toggle {
                 display: flex;
                 position: fixed;
-                top: 10px;
-                right: 10px;
-                width: 42px;
-                height: 42px;
-                background: rgba(29, 185, 84, 0.8) !important;
+                top: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+                background: #1DB954 !important;
+                color: #000 !important;
+                border-radius: 50% !important;
                 z-index: 9999;
-                font-size: 1rem;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            }
+
+            .menu-overlay {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(8px);
+                z-index: 4400;
+                opacity: 0;
+                pointer-events: none;
+                transition: 0.4s;
+            }
+
+            .menu-overlay.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            nav {
+                position: fixed !important;
+                top: 0;
+                right: -100% !important;
+                width: 80% !important;
+                height: 100vh !important;
+                background: #000 !important;
+                z-index: 4500 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                transition: 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0) !important;
+                border: none !important;
+                padding: 50px 20px !important;
+            }
+
+            nav.active {
+                right: 0 !important;
+            }
+
+            nav a {
+                margin: 15px 0 !important;
+                font-size: 1.2rem !important;
+                display: block !important;
+                letter-spacing: 2px !important;
+                color: #fff !important;
             }
         }
     </style>
