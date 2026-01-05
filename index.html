@@ -19,28 +19,28 @@
         gtag('config', 'G-YLE7283QST');
     </script>
     <style>
-        /* Reset & Base Premium */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         html,
         body {
+            margin: 0 !important;
+            padding: 0 !important;
             overflow-x: hidden !important;
             width: 100% !important;
-            max-width: 100% !important;
-            margin: 0;
-            padding: 0;
-            position: relative;
+            max-width: 100vw !important;
+            -webkit-text-size-adjust: 100%;
+            background: #000;
+        }
+
+        * {
+            box-sizing: border-box !important;
         }
 
         /* === Fix for Sections === */
         section {
             background: #000;
-            padding: 100px 20px;
+            padding: 80px 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            width: 100% !important;
+            overflow: hidden;
         }
 
         /* === 1. Fixed Social Icons (Left Side) === */
@@ -449,109 +449,103 @@
 
             html,
             body {
-                width: 100vw !important;
+                width: 100% !important;
                 max-width: 100vw !important;
                 overflow-x: hidden !important;
                 margin: 0 !important;
                 padding: 0 !important;
+                position: relative;
             }
 
-            .menu-toggle {
-                display: flex;
-                position: fixed;
-                top: 15px;
-                right: 15px;
-                width: 45px;
-                height: 45px;
-                background: #1DB954;
-                color: #000;
-                border-radius: 50%;
-                z-index: 9999;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.2rem;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            }
-
+            /* --- HERO FIX --- */
             .hero-video {
-                height: 55vh !important;
-                width: 100vw !important;
+                height: auto !important;
+                aspect-ratio: 16 / 9 !important;
+                min-height: auto !important;
+                width: 100% !important;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero-video video {
+                position: relative !important;
+                top: 0 !important;
+                left: 0 !important;
+                transform: none !important;
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                /* Ensure no text is cut */
             }
 
             .hero-title-box {
-                top: 15px !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                width: 80% !important;
-                /* Fixed width to prevent overflow */
-                max-width: 300px;
-                background: rgba(0, 0, 0, 0.8) !important;
-                padding: 10px !important;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                border-radius: 4px;
-                text-align: center;
-            }
-
-            .hero-title-box h1 {
-                font-size: 0.9rem !important;
-                letter-spacing: 1px !important;
+                display: none !important;
+                /* Remove the black box that clutters mobile */
             }
 
             .hero-subtitle {
-                font-size: 0.6rem !important;
-                letter-spacing: 1px !important;
-                bottom: 15px !important;
-                width: 100% !important;
-                padding: 0 10px !important;
+                display: none !important;
             }
 
+            /* --- VIDEO GRID FIX --- */
             .video-grid {
-                display: block !important;
-                width: 100vw !important;
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100% !important;
+                background: #000;
             }
 
             .video-item {
-                width: 100vw !important;
-                height: 56.25vw !important;
-                /* Perfect 16:9 vertical stack */
-                margin-bottom: 2px;
+                width: 100% !important;
+                height: auto !important;
+                aspect-ratio: 16 / 9 !important;
+                margin-bottom: 2px !important;
+                background: #000;
             }
 
+            .video-item video {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                /* No cropping on clips */
+            }
+
+            /* --- SOCIAL ICONS FIX --- */
             .fixed-social-icons {
-                left: 5px !important;
-                top: 50% !important;
+                left: 6px !important;
+                top: 45% !important;
                 gap: 5px !important;
                 transform: translateY(-50%) !important;
             }
 
             .fixed-social-icons a {
-                width: 28px !important;
-                height: 28px !important;
-                font-size: 12px !important;
+                width: 26px !important;
+                height: 26px !important;
+                font-size: 11px !important;
+                background: rgba(0, 0, 0, 0.5) !important;
             }
 
+            /* --- SECTION POLISH --- */
             section {
-                padding: 40px 10px !important;
-                width: 100vw !important;
+                padding: 40px 15px !important;
             }
 
             h2 {
-                font-size: 1.5rem !important;
+                font-size: 1.4rem !important;
                 letter-spacing: 2px !important;
+                margin-bottom: 25px !important;
             }
 
-            .playlist-grid {
-                grid-template-columns: 1fr !important;
-                gap: 20px;
-            }
-
-            #about .bg-white\/5 {
-                padding: 20px 15px !important;
-            }
-
-            #kitsamples .grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 8px !important;
+            .menu-toggle {
+                display: flex;
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                width: 42px;
+                height: 42px;
+                background: rgba(29, 185, 84, 0.8) !important;
+                z-index: 9999;
+                font-size: 1rem;
             }
         }
     </style>
