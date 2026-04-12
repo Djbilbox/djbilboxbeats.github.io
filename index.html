@@ -386,24 +386,23 @@
             content: '';
             position: absolute;
             top: -6px; left: 2%; right: 2%; bottom: 0;
-            background: rgba(255, 255, 255, 0.15);
+                            background: rgba(200, 200, 200, 0.6);
             border-radius: 12px;
             z-index: 1;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
+                        
         .playlist-stack::after {
             content: '';
             position: absolute;
             top: -12px; left: 6%; right: 6%; bottom: 0;
-            background: rgba(255, 255, 255, 0.05);
+                            background: rgba(180, 180, 180, 0.4);
             border-radius: 12px;
             z-index: 0;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
-        .playlist-card:hover .playlist-stack::before { top: -8px; background: rgba(255, 255, 255, 0.25); }
-        .playlist-card:hover .playlist-stack::after { top: -16px; background: rgba(255, 255, 255, 0.15); }
+                    .playlist-card:hover .playlist-stack::before { top: -8px; background: rgba(180, 180, 180, 0.8); }
+                    .playlist-card:hover .playlist-stack::after { top: -16px; background: rgba(160, 160, 160, 0.6); }
 
         .playlist-thumb-inner {
             position: absolute;
@@ -484,7 +483,7 @@
             font-weight: 700;
             margin-bottom: 6px;
             line-height: 1.4;
-            color: #fff;
+                        color: #1A1A1A;
             transition: color 0.2s;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -497,7 +496,7 @@
 
         .playlist-meta {
             font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.5);
+                        color: rgba(26, 26, 26, 0.55);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 8px;
@@ -505,7 +504,7 @@
 
         .playlist-link {
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
+                        color: #1A1A1A;
             font-weight: 600;
             text-decoration: none;
             display: inline-flex;
