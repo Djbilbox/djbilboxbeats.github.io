@@ -304,15 +304,15 @@
 
         @media (max-width: 768px) {
             .hero-video { height: 65vh !important; }
-            .hero-title-box { top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; background: rgba(255,255,255,0.9) !important; padding: 12px 24px !important; border-radius: 8px !important; text-align: center; width: 85% !important; }
-            .hero-title-box h1 { font-size: 1.4rem !important; letter-spacing: 2px !important; }
-            .hero-subtitle { bottom: 10% !important; font-size: 0.8rem !important; }
+            .hero-title-box, .hero-subtitle { display: none !important; }
             
-            /* Fix 3D Boxes for Mobile */
-            .pack-container { perspective: none !important; }
-            .pack-box { transform: none !important; width: 100% !important; }
-            .pack-left, .pack-shadow { display: none !important; }
-            .pack-front { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important; border-radius: 8px !important; }
+            /* Autonomous 3D Box Animation for Mobile */
+            @keyframes mobile3d {
+                0% { transform: rotateY(28deg) rotateX(8deg) scale(0.9); }
+                100% { transform: rotateY(5deg) rotateX(2deg) translateZ(10px) scale(0.95); }
+            }
+            .pack-container { perspective: 1200px !important; }
+            .pack-box { animation: mobile3d 4s infinite ease-in-out alternate; }
             
             .menu-toggle {
                 display: flex; position: fixed; top: 15px; right: 15px; width: 45px; height: 45px;
