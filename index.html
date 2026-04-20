@@ -86,8 +86,7 @@
         .fixed-social-icons a.linkedin:hover { color: #0A66C2; }
 
         @media (max-width: 768px) {
-            .fixed-social-icons { left: 10px; gap: 8px; }
-            .fixed-social-icons a { width: 30px; height: 30px; font-size: 14px; }
+            .fixed-social-icons { display: none !important; }
         }
 
         /* === 2. Hero Video === */
@@ -301,12 +300,17 @@
         .menu-overlay { display: none; }
 
         @media (max-width: 768px) {
-            .hero-video { height: auto !important; aspect-ratio: 16/9 !important; }
-            .hero-video video { position: relative !important; transform: none !important; }
-            .hero-title-box { top: 15px !important; left: 15px !important; background: rgba(255,255,255,0.9) !important; padding: 6px 12px !important; border-radius: 2px !important; }
-            .hero-title-box h1 { font-size: 0.8rem !important; letter-spacing: 1px !important; }
-            .hero-subtitle { display: none !important; }
-            .video-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 1px !important; }
+            .hero-video { height: 65vh !important; }
+            .hero-title-box { top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; background: rgba(255,255,255,0.9) !important; padding: 12px 24px !important; border-radius: 8px !important; text-align: center; }
+            .hero-title-box h1 { font-size: 1.4rem !important; letter-spacing: 2px !important; }
+            .hero-subtitle { bottom: 10% !important; font-size: 0.8rem !important; }
+            .video-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 2px !important; }
+            
+            /* Fix 3D Boxes for Mobile */
+            .pack-container { perspective: none !important; }
+            .pack-box { transform: none !important; width: 100% !important; }
+            .pack-left, .pack-shadow { display: none !important; }
+            .pack-front { position: relative !important; width: 100% !important; box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important; border-radius: 8px !important; }
             
             .menu-toggle {
                 display: flex; position: fixed; top: 15px; right: 15px; width: 45px; height: 45px;
@@ -779,42 +783,6 @@
                     </div>
                 </div>
                 <!-- 4 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NU6DvlQTlpvXQ5ONiHVN18i','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/2g4uDGLyKRQ/hqdefault.jpg" alt="Valentine"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Valentine's Day</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">11 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 5 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NX5nRKMD-MxMrhn7-0-ad8S','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/D_sMXDMJ7FA/hqdefault.jpg" alt="Klubnika"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">КЛУБНИКА 🍓</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">8 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 6 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NUusL5anQKH8dPaLtMqlALF','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg" alt="Double Album"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">DOUBLE ALBUM 2026</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">21 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 7 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NUdqF2pyRMV1wQ3uSjZn2ZC','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/RrkdYJFv5rg/hqdefault.jpg" alt="Piano"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">ECLIPSE (Album Piano)</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">26 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 8 -->
                  <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NWd96DYzVDRNHYX846jE9zr','_blank')">
                     <div class="playlist-stack">
                         <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/GVxATwlh7Lo/hqdefault.jpg" alt="Sample"></div>
@@ -823,7 +791,7 @@
                         <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Pack Loop SAMPLE</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">3 Vidéos</p>
                     </div>
                 </div>
-                <!-- 9 -->
+                <!-- 5 -->
                  <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NWbPbX4VepMkY3lIzvm681V','_blank')">
                     <div class="playlist-stack">
                         <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/rK4MsjbSNfU/hqdefault.jpg" alt="Visuals"></div>
@@ -832,16 +800,7 @@
                         <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">AI Visuals & Motion</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">191 Vidéos</p>
                     </div>
                 </div>
-                <!-- 10 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NV-jjiu6SzHXMft9U3ixGmx','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/3ODJg1yt_6w/hqdefault.jpg" alt="Pumpkin"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">PUMPKIN DRIVE</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">16 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 11 -->
+                <!-- 6 -->
                  <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NUC6PqUplrygUgHJSTvS61u','_blank')">
                     <div class="playlist-stack">
                         <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg" alt="Oriental"></div>
@@ -850,7 +809,7 @@
                         <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Oriental Instrumental</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">166 Vidéos</p>
                     </div>
                 </div>
-                <!-- 12 -->
+                <!-- 7 -->
                  <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg','_blank')">
                     <div class="playlist-stack">
                         <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/5IZbkC_Dq4s/hqdefault.jpg" alt="Trap"></div>
@@ -859,7 +818,7 @@
                         <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Hip-hop Trap Drill</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">305 Vidéos</p>
                     </div>
                 </div>
-                <!-- 13 -->
+                <!-- 8 -->
                  <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_','_blank')">
                     <div class="playlist-stack">
                         <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/84ZPS3pl--g/hqdefault.jpg" alt="Afrotrap"></div>
@@ -868,7 +827,7 @@
                         <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Afrotrap Instrumental</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">30 Vidéos</p>
                     </div>
                 </div>
-                <!-- 14 -->
+                <!-- 9 -->
                  <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NUF9V0rVWzY_-gl1Cy8vw5r','_blank')">
                     <div class="playlist-stack">
                         <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/hocfowc0oa8/hqdefault.jpg" alt="Deephouse"></div>
@@ -877,7 +836,7 @@
                         <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Deephouse DNB</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">104 Vidéos</p>
                     </div>
                 </div>
-                <!-- 15 -->
+                <!-- 10 -->
                  <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NW5vq7XI-R0nB5rnSMesR8B','_blank')">
                     <div class="playlist-stack">
                         <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/f4cgxKb5t5A/hqdefault.jpg" alt="Funk"></div>
@@ -886,7 +845,7 @@
                         <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Funk Instrumental</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">135 Vidéos</p>
                     </div>
                 </div>
-                <!-- 16 -->
+                <!-- 11 -->
                  <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-','_blank')">
                     <div class="playlist-stack">
                         <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg" alt="Mix"></div>
@@ -895,7 +854,7 @@
                         <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Music Mix & RMX</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">53 Vidéos</p>
                     </div>
                 </div>
-                <!-- 17 -->
+                <!-- 12 -->
                  <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th','_blank')">
                     <div class="playlist-stack">
                         <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/5IZbkC_Dq4s/hqdefault.jpg" alt="All Beats"></div>
