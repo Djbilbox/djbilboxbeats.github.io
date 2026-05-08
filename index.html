@@ -1,1070 +1,773 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DJBILBOX BEATS - Music Producer & Beatmaker</title>
-    <meta name="description" content="DJBILBOX BEATS - Producteur & Beatmaker à Toulouse. Instrumentales Hip-Hop, Afrotrap, Deephouse. Beats exclusifs, packs samples, IA & Motion Design.">
-    <meta name="keywords" content="beatmaker toulouse, instrumentales rap, afrotrap beats, hip hop producer, type beats, djbilbox">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LA PUISSANCE MUSIQUE | Luxe & 3D</title>
+  <meta name="description" content="Site officiel de La Puissance Musique. Label indépendant, Yacine Madmax, Cobra, Lexus Film, DJBilbox Beats." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      /* Palette Neumorphism (Blanc Luxueux) */
+      --bg: #f0f3f6; /* Off-white luxury background */
+      --text: #2d3142;
+      --text-soft: #7a829a;
+      
+      /* Or Métallique pour les reflets */
+      --gold-dark: #a67c00;
+      --gold: #bf953f;
+      --gold-light: #fcf6ba;
+      --gold-gradient: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      
+      /* Ombres 3D (Relief) */
+      --shadow-dark: #d1d9e6;
+      --shadow-light: #ffffff;
+      
+      --neu-out: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light);
+      --neu-out-sm: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+      --neu-in: inset 8px 8px 16px var(--shadow-dark), inset -8px -8px 16px var(--shadow-light);
+      
+      --container: 1300px;
+      --timing: 0.3s;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="DJBILBOX BEATS - Music Producer & Beatmaker">
-    <meta property="og:description" content="Producteur & Beatmaker à Toulouse — Beats Hip-Hop, Afrotrap, Deephouse, IA Visuals">
-    <meta property="og:url" content="https://djbilboxbeats.com">
-    <meta property="og:type" content="website">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+    body {
+      font-family: "Montserrat", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    <style>
-        /* === BASE "WHITE" THEME FIXES === */
-        html, body {
-            margin: 0 !important;
-            padding: 0 !important;
-            overflow-x: hidden !important;
-            width: 100% !important;
-            max-width: 100vw !important;
-            -webkit-text-size-adjust: 100%;
-            background: #FFFFFF;
-            color: #1A1A1A;
-            font-family: 'Outfit', sans-serif;
-            scroll-behavior: smooth;
-        }
+    h1, h2, h3, .brand-font {
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+    }
 
-        * {
-            box-sizing: border-box !important;
-        }
+    a { text-decoration: none; color: inherit; transition: all var(--timing); }
+    img { max-width: 100%; display: block; }
 
-        section {
-            padding: 80px 20px;
-            width: 100% !important;
-            overflow: hidden;
-            background: #FFFFFF; /* Default light section background */
-        }
-        
-        .bg-gray-section {
-            background: #F9F9F9;
-        }
+    .container { width: min(90%, var(--container)); margin: auto; }
+    .section { padding: 100px 0; }
 
-        /* === 1. Fixed Social Icons === */
-        .fixed-social-icons {
-            position: fixed;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .fixed-social-icons a {
-            width: 50px;
-            height: 50px;
-            background: #FFFFFF;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 1px solid #EEEEEE;
-            color: #333;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 22px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .fixed-social-icons a:hover {
-            transform: scale(1.15) translateX(5px);
-            background: #f0f0f0;
-        }
-        .fixed-social-icons a.instagram:hover { color: #E1306C; }
-        .fixed-social-icons a.facebook:hover { color: #1877F2; }
-        .fixed-social-icons a.youtube:hover { color: #FF0000; }
-        .fixed-social-icons a.spotify:hover { color: #1DB954; }
-        .fixed-social-icons a.tiktok:hover { color: #000; }
-        .fixed-social-icons a.linkedin:hover { color: #0A66C2; }
+    /* TEXT GRADIENT */
+    .text-gold {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
 
-        @media (max-width: 768px) {
-            .fixed-social-icons { display: none !important; }
-        }
+    /* NEUMORPHIC TOPBAR */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(240, 243, 246, 0.85);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 30px rgba(209, 217, 230, 0.5);
+    }
+    .nav {
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .nav-logo {
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: var(--text);
+    }
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      color: var(--text-soft);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .nav-links a {
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--gold); }
 
-        /* === 2. Hero Video === */
-        .hero-video {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-            padding: 0 !important;
-        }
-        .hero-title-box {
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            background: #FFFFFF;
-            padding: 12px 20px;
-            border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 50;
-        }
-        .hero-title-box h1 {
-            font-size: 1.5rem !important;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin: 0;
-            color: #000;
-        }
-        .hero-subtitle {
-            position: absolute;
-            bottom: 40px;
-            width: 100%;
-            text-align: center;
-            color: #FFFFFF;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.9);
-            font-weight: 800;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            font-size: 1rem;
-            pointer-events: none;
-            padding: 0 20px;
-        }
+    /* LANGUAGE SELECTOR */
+    .lang-selector {
+      position: relative;
+      display: inline-block;
+    }
+    .lang-btn {
+      background: var(--bg);
+      box-shadow: var(--neu-out-sm);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--timing);
+    }
+    .lang-btn:active { box-shadow: var(--neu-in); }
+    .lang-dropdown {
+      position: absolute;
+      top: 120%;
+      right: 0;
+      background: var(--bg);
+      box-shadow: var(--neu-out);
+      border-radius: 15px;
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 1000;
+      min-width: 150px;
+    }
+    .lang-dropdown.show { display: flex; }
+    .lang-option {
+      padding: 8px 15px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: var(--timing);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+    }
+    .lang-option:hover {
+      background: var(--shadow-light);
+      box-shadow: var(--neu-out-sm);
+      color: var(--gold-dark);
+    }
 
-        /* === 3. Navigation === */
-        nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            color: #1A1A1A;
-            padding: 18px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-        }
-        nav a {
-            color: #1A1A1A;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s;
-        }
-        nav a:hover { color: #1DB954; }
+    /* NEUMORPHIC BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      border: none;
+      transition: all var(--timing);
+    }
+    .btn-neu {
+      background: var(--bg);
+      box-shadow: var(--neu-out);
+      color: var(--text);
+    }
+    .btn-neu:hover {
+      color: var(--gold-dark);
+    }
+    .btn-neu:active {
+      box-shadow: var(--neu-in);
+    }
+    .btn-gold {
+      background: var(--gold-gradient);
+      box-shadow: var(--neu-out);
+      color: #fff;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    .btn-gold:active {
+      box-shadow: inset 4px 4px 10px rgba(0,0,0,0.2), inset -4px -4px 10px rgba(255,255,255,0.4);
+    }
 
-        /* === 4. Grid System === */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 2px;
-        }
-        @media (max-width: 768px) {
-            .video-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        .video-item {
-            position: relative;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .video-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .video-item:hover video { transform: scale(1.1); }
+    /* NEUMORPHIC CARDS */
+    .card-3d {
+      background: var(--bg);
+      border-radius: 24px;
+      box-shadow: var(--neu-out);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+    .card-3d::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gold-gradient);
+      opacity: 0.8;
+    }
 
-        /* === 5. Buttons === */
-        .cta-button {
-            display: inline-block;
-            background: #1DB954;
-            color: #fff;
-            padding: 14px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.75rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
-            border: none;
-            cursor: pointer;
-        }
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(29, 185, 84, 0.5);
-        }
+    /* HERO SECTION */
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 60px;
+    }
+    .hero-eyebrow {
+      font-size: 1rem;
+      letter-spacing: 6px;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .hero-title {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 1.1;
+      margin-bottom: 30px;
+      color: var(--text);
+      text-shadow: 2px 2px 4px rgba(209, 217, 230, 0.5), -2px -2px 4px #ffffff;
+    }
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 650px;
+      margin: 0 auto 40px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
 
-        /* === 6. 3D PACK EXCLUSIVE STYLES === */
-        .pack-container {
-            perspective: 1200px;
-        }
-        .pack-box {
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-            transform: rotateY(25deg) rotateX(5deg) rotateZ(-1deg);
-        }
-        .pack-container:hover .pack-box {
-            transform: rotateY(0deg) rotateX(0deg) translateZ(30px) scale(1.05);
-        }
-        .pack-front {
-            position: absolute;
-            inset: 0;
-            background: #fff;
-            backface-visibility: hidden;
-            z-index: 2;
-            border-radius: 2px;
-            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.8), 2px 2px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        .pack-left {
-            position: absolute;
-            width: 35px;
-            height: 100%;
-            left: 0;
-            top: 0;
-            transform-origin: left center;
-            transform: rotateY(-90deg);
-            background: #2a2a2a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-right: 1px solid rgba(0,0,0,0.3);
-        }
-        .pack-left-text {
-            transform: rotate(-90deg);
-            white-space: nowrap;
-            text-transform: uppercase;
-            font-size: 10px;
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: 2px;
-        }
-        .pack-shadow {
-            position: absolute;
-            bottom: -15px;
-            left: 5%;
-            width: 90%;
-            height: 20px;
-            background: rgba(0,0,0,0.3);
-            filter: blur(10px);
-            transform: rotateX(80deg);
-            z-index: 0;
-            transition: all 0.6s ease;
-        }
-        .pack-container:hover .pack-shadow {
-            transform: rotateX(80deg) translateZ(-20px);
-            opacity: 0.5;
-        }
+    /* INFO STRIP 3D */
+    .info-strip {
+      display: flex;
+      gap: 30px;
+      margin-top: 80px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .info-pill {
+      background: var(--bg);
+      box-shadow: var(--neu-in);
+      padding: 15px 30px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .info-pill h3 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 1rem;
+      color: var(--gold-dark);
+      margin: 0;
+    }
+    .info-pill p {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-soft);
+      margin: 0;
+    }
 
-        /* === 7. Playlist Stack (Fixed Syntax) === */
-        .playlist-stack { position: relative; margin-top: 12px; width: 100%; aspect-ratio: 16 / 9; }
-        
-        .playlist-stack::before {
-            content: '';
-            position: absolute;
-            top: -6px; left: 2%; right: 2%; bottom: 0;
-            background: #e0e0e0;
-            border-radius: 12px;
-            z-index: 1;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .playlist-stack::after {
-            content: '';
-            position: absolute;
-            top: -12px; left: 6%; right: 6%; bottom: 0;
-            background: #f0f0f0;
-            border-radius: 12px;
-            z-index: 0;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .playlist-card:hover .playlist-stack::before { top: -8px; background: #d4d4d4; }
-        .playlist-card:hover .playlist-stack::after { top: -16px; background: #e5e5e5; }
-        
-        .playlist-thumb-inner {
-            position: absolute;
-            inset: 0;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #fff;
-            z-index: 2;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .playlist-thumb-inner img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .playlist-card:hover .playlist-thumb-inner img { transform: scale(1.08); }
+    /* SECTION TITLES */
+    .sec-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .sec-eyebrow {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 15px;
+      display: block;
+    }
+    .sec-title {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .sec-desc {
+      color: var(--text-soft);
+      max-width: 700px;
+      margin: 0 auto;
+    }
 
-        /* Mobile Menu */
-        .menu-toggle { display: none; }
-        .menu-overlay { display: none; }
+    /* VIDEO GRIDS */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+    .video-card {
+      background: var(--bg);
+      border-radius: 20px;
+      box-shadow: var(--neu-out);
+      padding: 15px;
+      transition: all var(--timing);
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--neu-in);
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      border-radius: 12px;
+    }
+    .video-info {
+      padding: 25px 10px 10px;
+      text-align: center;
+    }
+    .video-info h4 {
+      font-size: 1.1rem;
+      font-family: "Montserrat", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text);
+    }
 
-        @media (max-width: 768px) {
-            .hero-video { height: 65vh !important; }
-            .hero-title-box, .hero-subtitle { display: none !important; }
-            
-            /* Autonomous 3D Box Animation for Mobile */
-            @keyframes mobile3d {
-                0% { transform: rotateY(28deg) rotateX(8deg) scale(0.9); }
-                100% { transform: rotateY(5deg) rotateX(2deg) translateZ(10px) scale(0.95); }
-            }
-            .pack-container { perspective: 1200px !important; }
-            .pack-box { animation: mobile3d 4s infinite ease-in-out alternate; }
-            
-            .menu-toggle {
-                display: flex; position: fixed; top: 15px; right: 15px; width: 45px; height: 45px;
-                background: #1DB954 !important; color: #fff !important; border-radius: 50% !important; z-index: 9999;
-                align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            }
-            .menu-overlay {
-                display: block; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px);
-                z-index: 4400; opacity: 0; pointer-events: none; transition: 0.4s;
-            }
-            .menu-overlay.active { opacity: 1; pointer-events: auto; }
-            nav {
-                position: fixed !important; top: 0; right: -100% !important; width: 80% !important; height: 100vh !important;
-                background: #FFF !important; z-index: 4500 !important; display: flex !important; flex-direction: column !important;
-                align-items: center !important; justify-content: center !important; transition: 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0) !important;
-            }
-            nav.active { right: 0 !important; }
-            nav a { margin: 15px 0 !important; font-size: 1.2rem !important; }
-        }
-        
-        /* Drop Google Translate Banner */
-        body { top: 0 !important; }
-        .skiptranslate { display: none !important; }
-    </style>
+    /* RESPONSIVE */
+    @media(max-width: 992px) {
+      .nav-links { display: none; }
+      .hero-cta { flex-direction: column; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- Fixed Social Icons -->
-    <div class="fixed-social-icons">
-        <a href="https://www.instagram.com/djbilboxbeats" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/Djbilboxbeats" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
-        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="spotify"><i class="fab fa-spotify"></i></a>
-        <a href="https://www.tiktok.com/@djbilboxbeats" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i></a>
-        <a href="https://www.linkedin.com/in/djbilbox-beats-9a4554338/" target="_blank" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="menu-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
-    <div class="menu-overlay" id="menu-overlay"></div>
-
-    <!-- Hero Video -->
-    <section class="p-0 border-none hero-video h-screen relative overflow-hidden bg-black" id="home">
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
-            <source src="header-video.mp4" type="video/mp4">
-        </video>
-        <!-- Hero Overlay Social Buttons -->
-        <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-4 z-50 w-full px-4">
-            <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" class="flex items-center justify-center gap-3 w-40 h-14 md:w-auto md:px-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white font-black text-lg hover:bg-white/20 hover:-translate-y-1 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)] group">
-                <i class="fab fa-youtube text-2xl text-red-500 shadow-xl rounded-full"></i> <span class="hidden md:inline">YouTube</span>
-            </a>
-            <a href="https://www.instagram.com/djbilboxbeats" target="_blank" class="flex items-center justify-center gap-3 w-40 h-14 md:w-auto md:px-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white font-black text-lg hover:bg-white/20 hover:-translate-y-1 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)] group">
-                <i class="fab fa-instagram text-2xl text-[#E1306C] shadow-xl rounded-full"></i> <span class="hidden md:inline">Instagram</span>
-            </a>
-            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="flex items-center justify-center gap-3 w-40 h-14 md:w-auto md:px-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white font-black text-lg hover:bg-white/20 hover:-translate-y-1 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)] group">
-                <i class="fab fa-spotify text-2xl text-[#1DB954] shadow-xl rounded-full"></i> <span class="hidden md:inline">Spotify</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- Clip Grid -->
-    <div class="video-grid bg-black">
-        <div class="video-item"><video autoplay muted loop playsinline class="w-full h-full object-cover"><source src="clip1.mp4" type="video/mp4"></video></div>
-        <div class="video-item"><video autoplay muted loop playsinline class="w-full h-full object-cover"><source src="clip2.mp4" type="video/mp4"></video></div>
-        <div class="video-item"><video autoplay muted loop playsinline class="w-full h-full object-cover"><source src="clip3.mp4" type="video/mp4"></video></div>
-        <div class="video-item"><video autoplay muted loop playsinline class="w-full h-full object-cover"><source src="clip4.mp4" type="video/mp4"></video></div>
-        <div class="video-item"><video autoplay muted loop playsinline class="w-full h-full object-cover"><source src="clip5.mp4" type="video/mp4"></video></div>
-        <div class="video-item"><video autoplay muted loop playsinline class="w-full h-full object-cover"><source src="clip6.mp4" type="video/mp4"></video></div>
-    </div>
-
-    <!-- MAIN NAVIGATION -->
-    <nav class="flex justify-center items-center flex-wrap gap-y-4">
-        <a href="#about">Bio</a>
-        <a href="#services">Services</a>
-        <a href="#kitsamples">Kits & Samples</a>
-        <a href="#playlists">Playlists</a>
-        <a href="#connect">Contact</a>
-        
-        <!-- Language Selector -->
-        <div class="lang-selector relative group ml-4 inline-block text-left">
-            <button class="flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-full hover:bg-gray-200 transition cursor-pointer border border-gray-200 shadow-sm">
-                <span id="current-lang-flag">🇫🇷</span> <span class="font-bold text-xs uppercase text-gray-800" id="current-lang-name">FR</span> <i class="fas fa-chevron-down text-[10px] text-gray-500"></i>
-            </button>
-            <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 overflow-hidden text-left pb-1">
-                <div class="max-h-64 overflow-y-auto py-1">
-                    <button onclick="changeLanguage('fr', '🇫🇷', 'Français')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇫🇷 Français</button>
-                    <button onclick="changeLanguage('en', '🇬🇧', 'Anglais')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇬🇧 Anglais</button>
-                    <button onclick="changeLanguage('ar', '🇸🇦', 'Arabe')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇸🇦 Arabe</button>
-                    <button onclick="changeLanguage('ru', '🇷🇺', 'Russe')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇷🇺 Russe</button>
-                    <button onclick="changeLanguage('es', '🇪🇸', 'Espagnol')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇪🇸 Espagnol</button>
-                    <button onclick="changeLanguage('it', '🇮🇹', 'Italien')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇮🇹 Italien</button>
-                    <button onclick="changeLanguage('th', '🇹🇭', 'Thaïlandais')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇹🇭 Thaïlandais</button>
-                    <button onclick="changeLanguage('de', '🇩🇪', 'Allemand')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇩🇪 Allemand</button>
-                    <button onclick="changeLanguage('pt', '🇵🇹', 'Portugais')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇵🇹 Portugais (BR)</button>
-                    <button onclick="changeLanguage('ja', '🇯🇵', 'Japonais')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇯🇵 Japonais</button>
-                    <button onclick="changeLanguage('zh-CN', '🇨🇳', 'Chinois')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇨🇳 Chinois</button>
-                    <button onclick="changeLanguage('ko', '🇰🇷', 'Coréen')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇰🇷 Coréen</button>
-                    <button onclick="changeLanguage('nl', '🇳🇱', 'Néerlandais')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇳🇱 Néerlandais</button>
-                    <button onclick="changeLanguage('pl', '🇵🇱', 'Polonais')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇵🇱 Polonais</button>
-                    <button onclick="changeLanguage('tr', '🇹🇷', 'Turc')" class="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-3 text-sm text-gray-700">🇹🇷 Turc</button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- BIO SECTION -->
-    <section id="about" class="py-24 px-6 bg-gray-section">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-black tracking-[10px] uppercase mb-4 text-gray-900">À PROPOS</h2>
-            <div class="w-24 h-1 bg-[#1DB954] mx-auto opacity-80 mb-12"></div>
+    <!-- NAVIGATION -->
+    <header class="topbar">
+        <div class="container nav">
+            <a href="#" class="nav-logo brand-font"><span class="text-gold">LA PUISSANCE</span><br><span style="font-size: 0.7rem; font-family: 'Montserrat'; letter-spacing: 6px; color: var(--text-soft);">MUSIQUE</span></a>
             
-            <div class="text-xl md:text-2xl font-medium leading-loose text-gray-800 bg-white p-8 md:p-14 rounded-[30px] shadow-lg border border-gray-100 relative space-y-8 text-left">
-                <p>
-                    <strong>DJBILBOX BEATS</strong> est un beatmaker, producteur musical et créateur digital basé entre Toulouse, Paris, Londres et la Méditerranée. Il fusionne hip‑hop, afrotrap, musiques orientales modernes (raï, chaabi, oriental trap / drill) et deep house pour créer des instrumentales originales destinées aux artistes, créateurs de contenu et marques. Son univers mélange 808 puissantes, percussions afro, mélodies orientales et textures électroniques, avec un travail constant de digging de nouveaux samples et de création assistée par l’IA.
-                </p>
-                <div class="mt-8 p-6 bg-gray-50 border-l-4 border-[#1DB954] rounded-r-2xl font-black text-xl text-gray-900 italic shadow-sm">
-                    "Bienvenue dans l’univers de DJBILBOX BEATS : un espace où la musique urbaine, les sonorités orientales et les outils d’IA se rencontrent pour donner vie à vos projets sonores, visuels et vidéo."
-                </div>
+            <div class="nav-links">
+                <a href="#label" data-i18n="nav_label">Le Label</a>
+                <a href="#madmax" data-i18n="nav_madmax">Yacine Madmax</a>
+                <a href="#cobra" data-i18n="nav_cobra">Cobra</a>
+                <a href="#magoobaala" data-i18n="nav_magoobaala">Magoobaala</a>
+                <a href="#lexus" data-i18n="nav_lexus">Lexus Film</a>
+                <a href="#djbilbox" data-i18n="nav_djbilbox">DJBilbox</a>
             </div>
-        </div>
-    </section>
-
-    <!-- RÉSEAUX SOCIAUX & MÉDIAS SECTION -->
-    <section id="socials" class="py-24 px-6 bg-gray-50 border-t border-gray-100">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-black tracking-[10px] uppercase mb-4 text-center text-gray-900">RÉSEAUX & MÉDIAS</h2>
-            <div class="w-24 h-1 bg-[#1DB954] mx-auto opacity-80 mb-16"></div>
             
-            <!-- Gros Boutons Réseaux Sociaux -->
-            <div class="flex flex-wrap justify-center gap-4 md:gap-6 mb-20">
-                <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" class="flex flex-col items-center justify-center w-32 h-32 md:w-40 md:h-40 bg-white rounded-3xl shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
-                    <i class="fab fa-youtube text-5xl text-red-600 mb-3 group-hover:scale-110 transition-transform"></i>
-                    <span class="font-black text-sm text-gray-900 uppercase">YouTube</span>
-                </a>
-                <a href="https://www.instagram.com/djbilboxbeats" target="_blank" class="flex flex-col items-center justify-center w-32 h-32 md:w-40 md:h-40 bg-white rounded-3xl shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
-                    <i class="fab fa-instagram text-5xl text-[#E1306C] mb-3 group-hover:scale-110 transition-transform"></i>
-                    <span class="font-black text-sm text-gray-900 uppercase">Instagram</span>
-                </a>
-                <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="flex flex-col items-center justify-center w-32 h-32 md:w-40 md:h-40 bg-white rounded-3xl shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
-                    <i class="fab fa-spotify text-5xl text-[#1DB954] mb-3 group-hover:scale-110 transition-transform"></i>
-                    <span class="font-black text-sm text-gray-900 uppercase">Spotify</span>
-                </a>
-                <a href="https://www.pinterest.fr/djbilboxbeats/" target="_blank" class="flex flex-col items-center justify-center w-32 h-32 md:w-40 md:h-40 bg-white rounded-3xl shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
-                    <i class="fab fa-pinterest text-5xl text-[#E60023] mb-3 group-hover:scale-110 transition-transform"></i>
-                    <span class="font-black text-sm text-gray-900 uppercase">Pinterest</span>
-                </a>
-                <a href="https://www.facebook.com/Djbilboxbeats" target="_blank" class="flex flex-col items-center justify-center w-32 h-32 md:w-40 md:h-40 bg-white rounded-3xl shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
-                    <i class="fab fa-facebook-f text-5xl text-[#1877F2] mb-3 group-hover:scale-110 transition-transform"></i>
-                    <span class="font-black text-sm text-gray-900 uppercase">Facebook</span>
-                </a>
-            </div>
-
-            <!-- Lecteurs Intégrés -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Spotify Player -->
-                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-gray-100">
-                    <h3 class="font-black text-xl mb-6 text-gray-900 flex items-center gap-3"><i class="fab fa-spotify text-[#1DB954] text-2xl"></i> ÉCOUTER SUR SPOTIFY</h3>
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <!-- Language Selector -->
+                <div class="lang-selector">
+                    <button class="lang-btn" onclick="toggleLangMenu()">
+                        <span id="current-flag">🇫🇷</span> <span id="current-lang">FR</span>
+                    </button>
+                    <div class="lang-dropdown" id="lang-dropdown">
+                        <div class="lang-option" onclick="changeLang('fr')">🇫🇷 Français</div>
+                        <div class="lang-option" onclick="changeLang('en')">🇬🇧 English</div>
+                        <div class="lang-option" onclick="changeLang('es')">🇪🇸 Español</div>
+                        <div class="lang-option" onclick="changeLang('pt')">🇵🇹 Português</div>
+                        <div class="lang-option" onclick="changeLang('ar')">🇸🇦 العربية</div>
+                        <div class="lang-option" onclick="changeLang('ru')">🇷🇺 Русский</div>
+                        <div class="lang-option" onclick="changeLang('zh')">🇨🇳 中文</div>
+                        <div class="lang-option" onclick="changeLang('ja')">🇯🇵 日本語</div>
+                        <div class="lang-option" onclick="changeLang('de')">🇩🇪 Deutsch</div>
+                        <div class="lang-option" onclick="changeLang('it')">🇮🇹 Italiano</div>
+                    </div>
                 </div>
                 
-                <!-- Pinterest Player / Œuvres -->
-                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-gray-100 flex flex-col overflow-hidden">
-                    <h3 class="font-black text-xl mb-6 text-gray-900 flex items-center gap-3"><i class="fab fa-pinterest text-[#E60023] text-2xl"></i> MES ŒUVRES VISUELLES</h3>
-                    <div class="w-full flex justify-center bg-gray-50 rounded-xl py-4 overflow-hidden">
-                        <a data-pin-do="embedUser" data-pin-board-width="400" data-pin-scale-height="240" data-pin-scale-width="80" href="https://www.pinterest.com/djbilboxbeats/"></a>
-                        <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
-                    </div>
-                </div>
+                <a href="https://wa.me/33670150676" class="btn btn-neu" data-i18n="btn_whatsapp">Contact (0670150676)</a>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- BIOGRAPHIE SECTION -->
-    <section id="biographie" class="py-24 px-6 bg-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-black tracking-[10px] uppercase mb-4 text-gray-900">BIOGRAPHIE</h2>
-            <div class="w-24 h-1 bg-blue-600 mx-auto opacity-80 mb-12"></div>
-            
-            <div class="text-lg font-light leading-relaxed text-gray-700 space-y-6 text-left">
-                <p>
-                    <strong>DJBILBOX BEATS</strong> est un beatmaker, producteur musical et créateur digital basé entre Toulouse, Paris, Londres et la Méditerranée, qui construit un univers sonore à la croisée du hip‑hop, de l’afrotrap, des musiques orientales modernes et de la deep house. Passionné par les rythmes urbains et les mélodies cinématiques, il développe une signature où se rencontrent 808 puissantes, percussions afro, couleurs orientales et ambiances électroniques atmosphériques.
-                </p>
-                <p>
-                    Nourri par les cultures hip‑hop, raï, chaabi et par les influences trap internationales, il commence à façonner ses premières instrumentales en autodidacte, avant de professionnaliser progressivement son approche de la production. Avoir vécu à Paris et à Londres enrichit sa vision artistique et ouvre son travail à des influences internationales. Au fil des années, il affine son oreille et son sens du détail en travaillant quotidiennement sur <strong>FL Studio et Sony ACID Pro</strong>, où il compose, arrange, édite et mixe ses beats avec une attention particulière portée au groove, à la dynamique et à l’espace sonore.
-                </p>
-                <p>
-                    Son esthétique se caractérise par des mélodies fortes inspirées des gammes orientales et des sonorités traditionnelles revisitées, fusionnées avec des batteries trap, des basses profondes et des textures électroniques modernes. Qu’il s’agisse de boom bap, d’afrotrap dansante, d’oriental trap / drill ou d’ambiances deep house, chaque production est pensée comme un terrain d’expression pour rappeurs, chanteurs et créateurs de contenu.
-                </p>
-                <p>
-                    Toujours en recherche de nouvelles couleurs sonores, DJBILBOX BEATS consacre une grande partie de son temps au <strong>digging de samples</strong>, de boucles et de textures. Ces matériaux bruts sont découpés, retravaillés et intégrés à ses productions afin de proposer des instrumentales uniques, adaptées aux projets d’artistes et aux plateformes de streaming.
-                </p>
-                <p>
-                    En parallèle, il exploite les possibilités de l’intelligence artificielle : <strong>IA audio</strong> pour générer des idées de samples et d’ambiances, outils comme <strong>Claude, Gemini et ChatGPT</strong> pour les scripts, descriptions et stratégies de contenu, <strong>VEO3, Flow et Kling</strong> pour l’expérimentation vidéo. L’IA intervient comme un partenaire de création, sans jamais remplacer la sensibilité humaine au cœur de son travail.
-                </p>
-                <p>
-                    Au‑delà du son, DJBILBOX BEATS développe une direction artistique complète : il conçoit pochettes, bannières et visuels réseaux sociaux sur <strong>Adobe Photoshop</strong>, et réalise des montages vidéo sur <strong>Filmora</strong> pour clips, shorts, reels, trailers et teasers. Son activité se situe ainsi entre beatmaking, sound design, graphisme et vidéo, au service des artistes, créateurs de contenu et marques qui recherchent une identité sonore et visuelle forte, ancrée dans l’urbain et l’oriental.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- DISCOGRAPHIE SECTION -->
-    <section id="discographie" class="py-24 px-6 bg-gray-section">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-black tracking-[10px] uppercase mb-4 text-center text-gray-900">DISCOGRAPHIE</h2>
-            <div class="w-24 h-1 bg-[#1DB954] mx-auto opacity-80 mb-6"></div>
-            <p class="text-center text-gray-600 font-bold mb-16 max-w-2xl mx-auto uppercase tracking-widest text-sm">
-                Sélection de titres de DJBILBOX BEATS générant le plus d'écoutes en streaming.
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-eyebrow" data-i18n="hero_eyebrow">Maison de Disque Indépendante</div>
+            <h1 class="hero-title brand-font">LA PUISSANCE <br><span class="text-gold">MUSIQUE</span></h1>
+            <p class="hero-desc" data-i18n="hero_desc">
+                L'identité artistique brute entre Paris et l'Algérie. Direction visuelle forte, présence urbaine affirmée et collection officielle intégrée. Le prestige de la rue.
             </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                <!-- Track 1 -->
-                <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/7dyKV6dcZ4kyC2xHno12fN?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <div class="hero-cta">
+                <a href="#label" class="btn btn-gold" data-i18n="btn_direction">Découvrir le Label</a>
+                <a href="#madmax" class="btn btn-neu" data-i18n="btn_son">Nos Artistes</a>
+            </div>
+
+            <div class="info-strip">
+                <div class="info-pill">
+                    <h3 data-i18n="pill_1_title">PARIS</h3>
+                    <p data-i18n="pill_1_desc">DZ FOUNDATION</p>
                 </div>
-                <!-- Track 2 -->
-                <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/3UyQ1zq8YpuSPfxojsk7VM?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <div class="info-pill">
+                    <h3 data-i18n="pill_2_title">CLIPS</h3>
+                    <p data-i18n="pill_2_desc">SIGNATURE VISUELLE</p>
                 </div>
-                <!-- Track 3 -->
-                <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6BcLzpB0ED6Ph3sx12pd9Q?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                </div>
-                <!-- Track 4 -->
-                <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/7wBgyX4N4VuEip9nEfq11C?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <div class="info-pill">
+                    <h3 data-i18n="pill_3_title">VIP</h3>
+                    <p data-i18n="pill_3_desc">CONTACT DIRECT</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SERVICES SECTION -->
-    <section id="services" class="py-24 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-black mb-16 text-center tracking-[8px] uppercase text-gray-900">MES SERVICES</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Service 1: Musik -->
-                <div class="bg-gray-50 border border-gray-100 rounded-[30px] p-8 shadow-sm hover:shadow-xl relative overflow-hidden group hover:-translate-y-2 transition-all duration-300">
-                    <div class="mb-6 w-14 h-14 bg-[#1DB954]/10 rounded-2xl flex items-center justify-center">
-                        <i class="fas fa-drum text-2xl text-[#1DB954]"></i>
-                    </div>
-                    <h3 class="text-xl font-black mb-6 tracking-widest uppercase text-gray-900">SERVICES MUSICAUX</h3>
-                    <ul class="text-base space-y-5 text-gray-700 font-semibold">
-                        <li class="flex items-start"><i class="fas fa-check text-[#1DB954] mt-1 mr-3 min-w-[16px]"></i> Instrumentales sur mesure (Hip‑Hop, Trap, Drill, Afrotrap, Deephouse, R&B, G‑Funk, Dancehall)</li>
-                        <li class="flex items-start"><i class="fas fa-check text-[#1DB954] mt-1 mr-3 min-w-[16px]"></i> Beats exclusifs ou en licence, adaptés à la voix et au style de l'artiste</li>
-                        <li class="flex items-start"><i class="fas fa-check text-[#1DB954] mt-1 mr-3 min-w-[16px]"></i> Arrangement, structure et conseils artistiques</li>
-                        <li class="flex items-start"><i class="fas fa-check text-[#1DB954] mt-1 mr-3 min-w-[16px]"></i> Mixage et mastering prêt à la distribution (Spotify, YouTube, TikTok)</li>
-                        <li class="flex items-start"><i class="fas fa-check text-[#1DB954] mt-1 mr-3 min-w-[16px]"></i> Bandes-son pour vidéos, jeux, pubs et contenus digitaux</li>
-                    </ul>
+    <!-- 1. LA PUISSANCE MUSIQUE (LABEL) -->
+    <section id="label" class="section">
+        <div class="container">
+            <div class="card-3d">
+                <div class="sec-header">
+                    <span class="sec-eyebrow" data-i18n="sec_label">Le Label Officiel</span>
+                    <h2 class="sec-title brand-font">LA PUISSANCE MUSIQUE</h2>
+                    <p class="sec-desc" data-i18n="desc_label">La Puissance Musique (aussi écrit La Puissance Music Godlike) est un label indépendant basé dans le 19ème arrondissement de Paris, fondé par le rappeur YACINE MADMAX en association avec COBRA DZ. Le label s'inscrit dans la mouvance du rap français indépendant avec des influences algériennes et africaines très marquées 🇩🇿🇨🇵.<br><br><strong style="color:var(--gold-dark);">FORCE ET HONNEUR — DZ POWER</strong><br><br>Artistes : YACINE MADMAX, COBRA DZ / BRACO, ZEO / Z2O, DJBILBOX BEATS, MAGOOBAALA, DADA GWADA, LEX LEXUS.<br><br>Réseaux : <a href="https://www.youtube.com/@YACINEMADMAXLAPUISSANCEMUSIQUE" target="_blank" style="color:var(--gold-dark);font-weight:600;">@YACINEMADMAXLAPUISSANCEMUSIQUE</a> | <a href="https://www.instagram.com/la_puissance_music/" target="_blank" style="color:var(--gold-dark);font-weight:600;">Instagram</a> | <a href="https://www.tiktok.com/@la.puissance.music75" target="_blank" style="color:var(--gold-dark);font-weight:600;">TikTok</a></p>
                 </div>
-
-                <!-- Service 2: Visuels & IA -->
-                <div class="bg-gray-50 border border-gray-100 rounded-[30px] p-8 shadow-sm hover:shadow-xl relative overflow-hidden group hover:-translate-y-2 transition-all duration-300">
-                    <div class="mb-6 w-14 h-14 bg-blue-600/10 rounded-2xl flex items-center justify-center">
-                        <i class="fas fa-magic text-2xl text-blue-600"></i>
-                    </div>
-                    <h3 class="text-xl font-black mb-6 tracking-widest uppercase text-gray-900">VISUELS & IA</h3>
-                    <ul class="text-base space-y-5 text-gray-700 font-semibold">
-                        <li class="flex items-start"><i class="fas fa-check text-blue-600 mt-1 mr-3 min-w-[16px]"></i> Pochettes single / EP / album générées par IA</li>
-                        <li class="flex items-start"><i class="fas fa-check text-blue-600 mt-1 mr-3 min-w-[16px]"></i> Visuels pour réseaux (bannières YouTube, covers playlists, miniatures)</li>
-                        <li class="flex items-start"><i class="fas fa-check text-blue-600 mt-1 mr-3 min-w-[16px]"></i> Clips animés, lyrics videos, Reels, Shorts, teasers</li>
-                        <li class="flex items-start"><i class="fas fa-check text-blue-600 mt-1 mr-3 min-w-[16px]"></i> Spotify Canvas et loops animées</li>
-                        <li class="flex items-start"><i class="fas fa-check text-blue-600 mt-1 mr-3 min-w-[16px]"></i> Direction artistique et branding complet (logo, palette, univers visuel)</li>
-                    </ul>
-                </div>
-
-                <!-- Service 3: Digitaux & pro -->
-                <div class="bg-gray-50 border border-gray-100 rounded-[30px] p-8 shadow-sm hover:shadow-xl relative overflow-hidden group hover:-translate-y-2 transition-all duration-300">
-                    <div class="mb-6 w-14 h-14 bg-purple-600/10 rounded-2xl flex items-center justify-center">
-                        <i class="fas fa-rocket text-2xl text-purple-600"></i>
-                    </div>
-                    <h3 class="text-xl font-black mb-6 tracking-widest uppercase text-gray-900">DIGITAUX & PRO</h3>
-                    <ul class="text-base space-y-5 text-gray-700 font-semibold">
-                        <li class="flex items-start"><i class="fas fa-check text-purple-600 mt-1 mr-3 min-w-[16px]"></i> Création de mini‑sites / portfolios / EPK pour labels, médias, programmateurs</li>
-                        <li class="flex items-start"><i class="fas fa-check text-purple-600 mt-1 mr-3 min-w-[16px]"></i> Stratégie de sortie (singles, covers, formats vidéo, teasing réseaux)</li>
-                        <li class="flex items-start"><i class="fas fa-check text-purple-600 mt-1 mr-3 min-w-[16px]"></i> Licences et placements pour créateurs de contenu, publicités, podcasts</li>
-                    </ul>
+                <div style="text-align: center;">
+                    <a href="https://wa.me/33670150676" class="btn btn-gold" data-i18n="btn_join">Rejoindre la fondation</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- KITS SECTION WITH 3D HOVER EFFECT & STATS SIDEBAR -->
-    <section id="kitsamples" class="py-24 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-black mb-6 text-center tracking-[8px] uppercase text-gray-900">Packs & Loops Kit</h2>
-            <div class="text-center mb-16">
-                <span class="inline-block px-8 py-3 bg-[#1DB954] text-white font-black rounded-full text-sm uppercase tracking-widest shadow-lg shadow-[#1DB954]/30">
-                    🔥 100% GRATUIT & LIBRE DE DROIT 🔥
-                </span>
-            </div>
-
-            <div class="flex flex-col lg:flex-row gap-12">
-                <!-- LEFT: Grid of 3D Packs (8 packs) -->
-                <div class="lg:w-3/4">
-                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8">
-                        
-                        <!-- Pack 1 -->
-                        <div>
-                            <div class="pack-container w-full flex justify-center cursor-pointer mb-5" onclick="window.open('https://drive.google.com/file/d/1RFDhIFY1Yt_YFmpMRRnbvXSkgOjdJwLO/view', '_blank')">
-                                <div class="pack-box w-[75%] aspect-[3/4]">
-                                    <div class="pack-front">
-                                        <img src="https://img.youtube.com/vi/hRvWg0iXb08/maxresdefault.jpg" alt="Drums Loop" class="w-full h-full object-cover">
-                                        <div class="absolute top-2 left-2 bg-yellow-400 text-black font-black text-[10px] px-2 py-0.5 rounded shadow">FREE</div>
-                                    </div>
-                                    <div class="pack-left">
-                                        <img src="https://img.youtube.com/vi/hRvWg0iXb08/maxresdefault.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 blur-[2px]">
-                                        <span class="pack-left-text relative z-10">DIGITAL OASIS</span>
-                                    </div>
-                                    <div class="pack-shadow"></div>
-                                </div>
-                            </div>
-                            <div class="text-center px-2">
-                                <h3 class="text-sm font-black uppercase text-gray-900 mb-1 leading-tight">DIGITAL OASIS</h3>
-                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-3">Drums Loop</p>
-                                <div class="flex flex-wrap justify-center gap-2">
-                                    <a href="https://drive.google.com/file/d/1RFDhIFY1Yt_YFmpMRRnbvXSkgOjdJwLO/view" class="text-[10px] font-bold text-white bg-gray-900 px-3 py-1.5 rounded-full hover:bg-[#1DB954] transition"><i class="fas fa-download mr-1"></i> Get</a>
-                                    <a href="https://www.youtube.com/watch?v=hRvWg0iXb08" class="text-[10px] font-bold text-gray-800 bg-gray-100 px-3 py-1.5 rounded-full hover:text-red-600 border border-gray-200 transition">Video</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pack 2 -->
-                        <div>
-                            <div class="pack-container w-full flex justify-center cursor-pointer mb-5" onclick="window.open('https://drive.google.com/file/d/1T1Ou1FATdHAMJFJF90I5moaVlUeJJxsw/view', '_blank')">
-                                <div class="pack-box w-[75%] aspect-[3/4]">
-                                    <div class="pack-front">
-                                        <img src="https://img.youtube.com/vi/BW_HLS7payE/maxresdefault.jpg" alt="Melodies" class="w-full h-full object-cover">
-                                        <div class="absolute top-2 left-2 bg-yellow-400 text-black font-black text-[10px] px-2 py-0.5 rounded shadow">FREE</div>
-                                    </div>
-                                    <div class="pack-left">
-                                        <img src="https://img.youtube.com/vi/BW_HLS7payE/maxresdefault.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 blur-[2px]">
-                                        <span class="pack-left-text relative z-10">MELODIES LOOP</span>
-                                    </div>
-                                    <div class="pack-shadow"></div>
-                                </div>
-                            </div>
-                            <div class="text-center px-2">
-                                <h3 class="text-sm font-black uppercase text-gray-900 mb-1 leading-tight">DIGITAL OASIS</h3>
-                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-3">Melody Sample</p>
-                                <div class="flex flex-wrap justify-center gap-2">
-                                    <a href="https://drive.google.com/file/d/1T1Ou1FATdHAMJFJF90I5moaVlUeJJxsw/view" class="text-[10px] font-bold text-white bg-gray-900 px-3 py-1.5 rounded-full hover:bg-[#1DB954] transition"><i class="fas fa-download mr-1"></i> Get</a>
-                                    <a href="https://www.youtube.com/watch?v=BW_HLS7payE" class="text-[10px] font-bold text-gray-800 bg-gray-100 px-3 py-1.5 rounded-full hover:text-red-600 border border-gray-200 transition">Video</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pack 3 -->
-                        <div>
-                            <div class="pack-container w-full flex justify-center cursor-pointer mb-5" onclick="window.open('https://www.beatstars.com/djbilbox/sound-kits/238679', '_blank')">
-                                <div class="pack-box w-[75%] aspect-[3/4]">
-                                    <div class="pack-front">
-                                        <img src="https://img.youtube.com/vi/GVxATwlh7Lo/maxresdefault.jpg" alt="Oriental" class="w-full h-full object-cover">
-                                        <div class="absolute top-2 left-2 bg-yellow-400 text-black font-black text-[10px] px-2 py-0.5 rounded shadow">FREE</div>
-                                    </div>
-                                    <div class="pack-left">
-                                        <img src="https://img.youtube.com/vi/GVxATwlh7Lo/maxresdefault.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 blur-[2px]">
-                                        <span class="pack-left-text relative z-10">ORIENTAL VOL.1</span>
-                                    </div>
-                                    <div class="pack-shadow"></div>
-                                </div>
-                            </div>
-                            <div class="text-center px-2">
-                                <h3 class="text-sm font-black uppercase text-gray-900 mb-1 leading-tight">ORIENTAL VOL.1</h3>
-                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-3">Melody Loop</p>
-                                <div class="flex flex-wrap justify-center gap-2">
-                                    <a href="https://www.beatstars.com/djbilbox/sound-kits/238679" class="text-[10px] font-bold text-white bg-gray-900 px-3 py-1.5 rounded-full hover:bg-blue-600 transition"><i class="fas fa-shopping-cart mr-1"></i> Store</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pack 4 -->
-                        <div>
-                            <div class="pack-container w-full flex justify-center cursor-pointer mb-5" onclick="window.open('https://www.beatstars.com/djbilbox/sound-kits/245443', '_blank')">
-                                <div class="pack-box w-[75%] aspect-[3/4]">
-                                    <div class="pack-front bg-gray-100 flex items-center justify-center">
-                                        <img src="Capture d'écran 2025-12-30 210739.png" onerror="this.style.display='none'" class="w-full h-full object-cover">
-                                        <span class="text-xs font-bold text-gray-400">Vol. 4</span>
-                                    </div>
-                                    <div class="pack-left bg-purple-900">
-                                        <span class="pack-left-text relative z-10">VICE CITY</span>
-                                    </div>
-                                    <div class="pack-shadow"></div>
-                                </div>
-                            </div>
-                            <div class="text-center px-2">
-                                <h3 class="text-sm font-black uppercase text-gray-900 mb-1 leading-tight">VICE CITY</h3>
-                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-3">Vol. 4 - Synth</p>
-                                <a href="https://www.beatstars.com/djbilbox/sound-kits/245443" class="text-[10px] font-bold text-white bg-gray-900 px-4 py-1.5 rounded-full hover:bg-blue-600 transition inline-block">View on Store</a>
-                            </div>
-                        </div>
-
-                        <!-- Pack 5 -->
-                        <div>
-                            <div class="pack-container w-full flex justify-center cursor-pointer mb-5" onclick="window.open('https://www.beatstars.com/djbilbox/sound-kits/237083', '_blank')">
-                                <div class="pack-box w-[75%] aspect-[3/4]">
-                                    <div class="pack-front bg-gray-100 flex items-center justify-center">
-                                        <img src="Capture d'écran 2025-12-30 210813.png" onerror="this.style.display='none'" class="w-full h-full object-cover">
-                                        <span class="text-xs font-bold text-gray-400">Vol. 3</span>
-                                    </div>
-                                    <div class="pack-left bg-blue-900">
-                                        <span class="pack-left-text relative z-10">ZIPLOC</span>
-                                    </div>
-                                    <div class="pack-shadow"></div>
-                                </div>
-                            </div>
-                            <div class="text-center px-2">
-                                <h3 class="text-sm font-black uppercase text-gray-900 mb-1 leading-tight">ZIPLOC</h3>
-                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-3">Vol. 3 - Afro</p>
-                                <a href="https://www.beatstars.com/djbilbox/sound-kits/237083" class="text-[10px] font-bold text-white bg-gray-900 px-4 py-1.5 rounded-full hover:bg-blue-600 transition inline-block">View on Store</a>
-                            </div>
-                        </div>
-
-                        <!-- Pack 6 -->
-                        <div>
-                            <div class="pack-container w-full flex justify-center cursor-pointer mb-5" onclick="window.open('https://www.beatstars.com/djbilbox/sound-kits/194959', '_blank')">
-                                <div class="pack-box w-[75%] aspect-[3/4]">
-                                    <div class="pack-front bg-gray-100 flex items-center justify-center">
-                                        <img src="Capture d'écran 2025-12-30 210851.png" onerror="this.style.display='none'" class="w-full h-full object-cover">
-                                        <span class="text-xs font-bold text-gray-400">Vol. 2</span>
-                                    </div>
-                                    <div class="pack-left bg-red-900">
-                                        <span class="pack-left-text relative z-10">BREAK YA NECK</span>
-                                    </div>
-                                    <div class="pack-shadow"></div>
-                                </div>
-                            </div>
-                            <div class="text-center px-2">
-                                <h3 class="text-sm font-black uppercase text-gray-900 mb-1 leading-tight">BREAK YA NECK</h3>
-                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-3">Vol. 2 - Boom Bap</p>
-                                <a href="https://www.beatstars.com/djbilbox/sound-kits/194959" class="text-[10px] font-bold text-white bg-gray-900 px-4 py-1.5 rounded-full hover:bg-blue-600 transition inline-block">View on Store</a>
-                            </div>
-                        </div>
-
-                        <!-- Pack 7 -->
-                        <div>
-                            <div class="pack-container w-full flex justify-center cursor-pointer mb-5" onclick="window.open('https://www.beatstars.com/djbilbox/sound-kits/143802', '_blank')">
-                                <div class="pack-box w-[75%] aspect-[3/4]">
-                                    <div class="pack-front bg-gray-100 flex items-center justify-center">
-                                        <img src="Capture d'écran 2025-12-30 210921.png" onerror="this.style.display='none'" class="w-full h-full object-cover">
-                                        <span class="text-xs font-bold text-gray-400">Futur</span>
-                                    </div>
-                                    <div class="pack-left bg-green-900">
-                                        <span class="pack-left-text relative z-10">NEW MELODY</span>
-                                    </div>
-                                    <div class="pack-shadow"></div>
-                                </div>
-                            </div>
-                            <div class="text-center px-2">
-                                <h3 class="text-sm font-black uppercase text-gray-900 mb-1 leading-tight">23 NEW MELODY</h3>
-                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-3">Futur Loops</p>
-                                <a href="https://www.beatstars.com/djbilbox/sound-kits/143802" class="text-[10px] font-bold text-white bg-gray-900 px-4 py-1.5 rounded-full hover:bg-blue-600 transition inline-block">View on Store</a>
-                            </div>
-                        </div>
-
-                        <!-- Pack 8 -->
-                        <div>
-                            <div class="pack-container w-full flex justify-center cursor-pointer mb-5" onclick="window.open('https://www.beatstars.com/djbilbox/sound-kits/143800', '_blank')">
-                                <div class="pack-box w-[75%] aspect-[3/4]">
-                                    <div class="pack-front bg-gray-100 flex items-center justify-center">
-                                        <img src="Capture d'écran 2025-12-30 224611.png" onerror="this.style.display='none'" class="w-full h-full object-cover">
-                                        <span class="text-xs font-bold text-gray-400">Vol. 1</span>
-                                    </div>
-                                    <div class="pack-left bg-black">
-                                        <span class="pack-left-text relative z-10">DRUMS LOOP</span>
-                                    </div>
-                                    <div class="pack-shadow"></div>
-                                </div>
-                            </div>
-                            <div class="text-center px-2">
-                                <h3 class="text-sm font-black uppercase text-gray-900 mb-1 leading-tight">VOL.1 - DRUMS LOOP</h3>
-                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-3">Classic Drums</p>
-                                <a href="https://www.beatstars.com/djbilbox/sound-kits/143800" class="text-[10px] font-bold text-white bg-gray-900 px-4 py-1.5 rounded-full hover:bg-blue-600 transition inline-block">View on Store</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- RIGHT: Social Stats Sidebar -->
-                <div class="lg:w-1/4 pt-4 lg:pt-0">
-                    <div class="sticky top-24 bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
-                        <h3 class="text-sm font-black mb-6 uppercase tracking-widest text-center text-gray-800 pb-4 border-b border-gray-100">Community Stats</h3>
-                        <div class="space-y-4">
-                            <!-- Youtube -->
-                            <div class="flex items-center justify-between group">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-red-50 group-hover:bg-red-100 rounded-xl flex items-center justify-center text-red-600 transition">
-                                        <i class="fab fa-youtube text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-bold text-gray-900 text-lg leading-none">607</div>
-                                        <div class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Abonnés</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Facebook -->
-                            <div class="flex items-center justify-between group">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-blue-50 group-hover:bg-blue-100 rounded-xl flex items-center justify-center text-[#1877F2] transition">
-                                        <i class="fab fa-facebook-f text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-bold text-gray-900 text-lg leading-none">753</div>
-                                        <div class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Abonnés</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Instagram -->
-                            <div class="flex items-center justify-between group">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-pink-50 group-hover:bg-pink-100 rounded-xl flex items-center justify-center text-[#E1306C] transition">
-                                        <i class="fab fa-instagram text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-bold text-gray-900 text-lg leading-none">1.4k</div>
-                                        <div class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Abonnés</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Twitter/X -->
-                            <div class="flex items-center justify-between group">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center text-gray-900 transition">
-                                        <i class="fab fa-x-twitter text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-bold text-gray-900 text-base leading-none">@djbilboxbeats</div>
-                                        <div class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Twitter / X</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Pinterest -->
-                            <div class="flex items-center justify-between group">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-red-50 group-hover:bg-red-100 rounded-xl flex items-center justify-center text-[#E60023] transition">
-                                        <i class="fab fa-pinterest text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-bold text-gray-900 text-lg leading-none">524.9k</div>
-                                        <div class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Vues / Mois</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <a href="#connect" class="block w-full text-center mt-6 py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-700 font-bold text-xs uppercase tracking-widest rounded-lg border border-gray-200 transition">Join Community</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PLAYLISTS -->
-    <section id="playlists" class="bg-gray-section">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-black mb-16 text-center tracking-[8px] uppercase text-gray-900">PROJECTS & PLAYLISTS</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 max-w-6xl mx-auto">
-                <!-- 1 -->
-                <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NX_wb3vnR4vml6uUdHIyI9Y','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg" alt="Rock Indie"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Rock Indie Alternative</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">8 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 2 -->
-                <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NUOk5HoAYNmLnpMGzLSsR8h','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/abGOHbOl41s/hqdefault.jpg" alt="SOUL"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">SOUL & JAZZ</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">2 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 3 -->
-                <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NV9GwLUVD_a0jvCg00rHQjy','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg" alt="Kompa"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">KOMPA Instrumental</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">35 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 4 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NWd96DYzVDRNHYX846jE9zr','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/GVxATwlh7Lo/hqdefault.jpg" alt="Sample"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Pack Loop SAMPLE</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">3 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 5 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NWbPbX4VepMkY3lIzvm681V','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/rK4MsjbSNfU/hqdefault.jpg" alt="Visuals"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">AI Visuals & Motion</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">191 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 6 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NUC6PqUplrygUgHJSTvS61u','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg" alt="Oriental"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Oriental Instrumental</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">166 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 7 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/5IZbkC_Dq4s/hqdefault.jpg" alt="Trap"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Hip-hop Trap Drill</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">305 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 8 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/84ZPS3pl--g/hqdefault.jpg" alt="Afrotrap"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Afrotrap Instrumental</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">30 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 9 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NUF9V0rVWzY_-gl1Cy8vw5r','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/hocfowc0oa8/hqdefault.jpg" alt="Deephouse"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Deephouse DNB</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">104 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 10 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NW5vq7XI-R0nB5rnSMesR8B','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/f4cgxKb5t5A/hqdefault.jpg" alt="Funk"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Funk Instrumental</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">135 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 11 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg" alt="Mix"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">Music Mix & RMX</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">53 Vidéos</p>
-                    </div>
-                </div>
-                <!-- 12 -->
-                 <div class="playlist-card group cursor-pointer hover:-translate-y-1 transition duration-300" onclick="window.open('https://www.youtube.com/playlist?list=PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th','_blank')">
-                    <div class="playlist-stack">
-                        <div class="playlist-thumb-inner"><img src="https://i.ytimg.com/vi/5IZbkC_Dq4s/hqdefault.jpg" alt="All Beats"></div>
-                    </div>
-                    <div class="mt-5 px-2 text-center">
-                        <h3 class="text-sm font-bold text-gray-900 mb-1 leading-tight group-hover:text-[#1DB954] transition">All Beats by DJBILBOX</h3><p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">760 Vidéos</p>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-16">
-               <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" class="px-8 py-3 bg-gray-900 text-white font-bold text-xs uppercase tracking-widest rounded-full hover:bg-[#1DB954] transition duration-300 shadow-xl inline-block">S'abonner à la chaîne »</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="connect" class="py-24 px-6 bg-white border-t border-gray-200">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-black mb-6 tracking-[8px] uppercase text-gray-900">CONTACT & BOOKING</h2>
-            <p class="text-lg text-gray-600 mb-12 font-medium">Prêt à construire ton univers sonore et visuel ? Écris‑moi sur WhatsApp ou par mail pour me parler de ton projet.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <a href="tel:+33670150676" class="flex flex-col items-center p-8 bg-gray-50 rounded-3xl border border-gray-100 hover:shadow-lg transition cursor-pointer">
-                    <i class="fab fa-whatsapp text-4xl text-[#1DB954] mb-4"></i>
-                    <h4 class="text-sm uppercase tracking-widest text-gray-500 mb-2 font-bold">Téléphone / WhatsApp</h4>
-                    <span class="text-2xl font-black text-gray-900">06 70 15 06 76</span>
-                </a>
-                <div class="flex flex-col items-center p-8 bg-gray-50 rounded-3xl border border-gray-100 hover:shadow-lg transition">
-                    <i class="fas fa-globe-europe text-4xl text-blue-500 mb-4"></i>
-                    <h4 class="text-sm uppercase tracking-widest text-gray-500 mb-2 font-bold">Localisation</h4>
-                    <span class="text-2xl font-black text-gray-900">Basé à Toulouse, France</span>
-                </div>
+    <!-- 2. YACINE MADMAX -->
+    <section id="madmax" class="section">
+        <div class="container">
+            <div class="sec-header">
+                <span class="sec-eyebrow" data-i18n="sec_artiste">Artiste Principal</span>
+                <h2 class="sec-title brand-font">YACINE MADMAX</h2>
+                <p class="sec-desc" data-i18n="desc_madmax">Rappeur indépendant français d'origine algérienne, basé entre Paris (75019) et Saint-Gratien. Connu sous la signature <strong>PAPI</strong>, il rappe en français et en arabe, mêlant les deux langues pour refléter sa double culture.<br><br><strong style="color:var(--gold-dark);">GODLIKE</strong><br><br>Au-delà de son rôle d'artiste, Yacine est un entrepreneur musical qui a fondé et structure le label La Puissance Musique. Ses collaborations incluent COBRA 213, AKON, et DJBILBOX BEATS.</p>
+                <a href="https://www.instagram.com/yacine_madmax/" target="_blank" class="text-gold" style="display:inline-block; margin-top:15px; font-weight:600; font-size:0.9rem; text-transform:uppercase; letter-spacing:2px;">Suivre sur Instagram</a>
             </div>
             
-            <div class="bg-gray-900 text-white p-8 rounded-3xl shadow-xl inline-block w-full border border-gray-800">
-                <p class="text-sm font-black uppercase tracking-widest text-[#1DB954] mb-3">Ouvert aux</p>
-                <p class="text-sm md:text-base font-medium tracking-wide">Artistes • Labels • Créateurs de contenu • Agences • Marques</p>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/mv2Yeb9xpmg?rel=0&modestbranding=1" title="Freestyle Yacine Madmax" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>FREESTYLE</h4>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/H9l_Yt54tsg?rel=0&modestbranding=1" title="Frapper Yacine Madmax" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>FRAPPER</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. COBRA -->
+    <section id="cobra" class="section">
+        <div class="container">
+            <div class="sec-header">
+                <span class="sec-eyebrow" data-i18n="sec_nouvelle">Nouvelle Signature</span>
+                <h2 class="sec-title brand-font">COBRA</h2>
+                <p class="sec-desc" data-i18n="desc_cobra">La voix brute d'Alger. Textes forts, flow percutant, identité 100% rue algérienne. Le nouveau phénomène DzRap.</p>
+            </div>
+            
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/uNZJtWh9b5Y?rel=0&modestbranding=1" title="Cobra - A LA RUE ALGERIENNE ?" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>A LA RUE ALGÉRIENNE ?</h4>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/BjhGb846H5A?rel=0&modestbranding=1" title="Cobra - EL CABRON ?" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>EL CABRON ?</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. MAGOOBAALA -->
+    <section id="magoobaala" class="section">
+        <div class="container">
+            <div class="sec-header">
+                <span class="sec-eyebrow" data-i18n="sec_magoobaala">Artiste Affilié</span>
+                <h2 class="sec-title brand-font">MAGOOBAALA</h2>
+                <p class="sec-desc" data-i18n="desc_magoobaala">Artiste affilié au label La Puissance Musique. Déterminé et singulier, il forge une musique Hip-Hop/Rap "Brasil Vibes" qui résonne comme un pont entre le béton européen et les favelas brésiliennes.</p>
+            </div>
+            
+            <div class="card-3d" style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap; margin-bottom: 40px;">
+                <div style="flex: 1; min-width: 250px;">
+                    <img src="magoobaala-web/images/magoobaala_bio.png" alt="Magoobaala" style="border-radius: 20px; box-shadow: var(--neu-in); width: 100%;">
+                </div>
+                <div style="flex: 2; min-width: 300px;">
+                    <h3 class="brand-font" style="font-size: 2rem; color: var(--gold-dark); margin-bottom: 10px;">NOUVEL EP : Trem Off Season</h3>
+                    <p style="color: var(--text-soft); margin-bottom: 25px; font-size: 0.9rem;"><strong>Date de sortie :</strong> Prochainement<br><strong>Style :</strong> Hip-Hop / Rap / Brasil Vibes</p>
+                    
+                    <h4 style="margin-bottom: 15px; font-weight: 600; font-size: 1rem; color: var(--text);">Tracklist (Extraits) :</h4>
+                    <ul style="list-style: none; margin-bottom: 30px; color: var(--text-soft); padding-left: 0;">
+                        <li style="margin-bottom: 10px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold-dark);">🎵</span> 1. Vim do Nada (Single)
+                        </li>
+                        <li style="margin-bottom: 10px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold-dark);">🎵</span> 2. Flash
+                        </li>
+                        <li style="margin-bottom: 10px; padding-left: 20px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold-dark);">🎵</span> 3. Trem Off Season
+                        </li>
+                    </ul>
+                    
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="https://open.spotify.com/intl-fr/artist/1xshj8t4OLZtnn4FiUwBBh" target="_blank" class="btn btn-gold">ÉCOUTER L'EP</a>
+                        <a href="https://www.youtube.com/channel/UC5yGdorZmA-PRVI6OSVjf0w" target="_blank" class="btn btn-neu">VOIR SUR YOUTUBE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ISLEM LEXUS FILM -->
+    <section id="lexus" class="section">
+        <div class="container">
+            <div class="sec-header">
+                <span class="sec-eyebrow" data-i18n="sec_real">Direction Artistique</span>
+                <h2 class="sec-title brand-font">ISLEM LEXUS FILM</h2>
+                <p class="sec-desc" data-i18n="desc_lexus">Le réalisateur attitré de La Puissance Musique. Chaque clip est un film, chaque plan raconte une histoire. La signature visuelle du label.</p>
+            </div>
+            
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/4GUFY6QB4rY?rel=0&modestbranding=1" title="Enzo Islem" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>ENZO ISLEM</h4>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/BdTCdU1IkYs?rel=0&modestbranding=1" title="Lex La Zone" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h4>LEX - LA ZONE</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. DJBILBOX BEATS -->
+    <section id="djbilbox" class="section">
+        <div class="container">
+            <div class="sec-header">
+                <span class="sec-eyebrow" data-i18n="sec_prod">Production Musicale</span>
+                <h2 class="sec-title brand-font">DJBILBOX BEATS</h2>
+                <p class="sec-desc" data-i18n="desc_bilbox">Le producteur derrière les plus gros titres. Créateur de sons Hip-Hop, Afrotrap et Oriental.</p>
+                <a href="https://www.instagram.com/djbilboxbeats/" target="_blank" class="text-gold" style="display:inline-block; margin-top:15px; font-weight:600; font-size:0.9rem; text-transform:uppercase; letter-spacing:2px;">Suivre sur Instagram</a>
+            </div>
+            
+            <div class="card-3d" style="max-width: 800px; margin: 0 auto 40px; padding: 20px;">
+                <!-- Spotify embed -->
+                <iframe src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius: 12px; box-shadow: var(--neu-in);"></iframe>
+            </div>
+            
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="#" class="btn btn-gold">BEATSTARS</a>
+                <a href="#" class="btn btn-neu">TUNECORE</a>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="text-center py-16 px-6 bg-white border-t border-gray-200">
-        <div class="flex justify-center gap-6 mb-8 text-2xl text-gray-400">
-            <a href="https://www.instagram.com/djbilboxbeats" target="_blank" class="hover:text-[#E1306C] transition"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/Djbilboxbeats" target="_blank" class="hover:text-[#1877F2] transition"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" class="hover:text-red-600 transition"><i class="fab fa-youtube"></i></a>
-            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="hover:text-[#1DB954] transition"><i class="fab fa-spotify"></i></a>
+    <footer style="padding: 60px 0; text-align: center; border-top: 1px solid rgba(209, 217, 230, 0.5); box-shadow: var(--neu-out-sm);">
+        <div class="container">
+            <h2 class="brand-font" style="color: var(--gold-dark); margin-bottom: 20px;">LA PUISSANCE MUSIQUE</h2>
+            <p style="color: var(--text-soft); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;">
+                &copy; 2026 Tous droits réservés.
+            </p>
         </div>
-        <p class="text-sm uppercase tracking-[4px] text-gray-500 font-bold mb-2">06 70 15 06 76 | DJBILBOXBEATS@GMAIL.COM</p>
-        <p class="text-xs text-gray-400 mt-6 tracking-widest">© 2026 DJBILBOX BEATS. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <div id="google_translate_element" style="display:none;"></div>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'fr',
-                includedLanguages: 'fr,en,ar,ru,es,it,th,de,pt,ja,zh-CN,ko,nl,pl,tr',
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-
-        function changeLanguage(langCode, flag, name) {
-            var selectField = document.querySelector(".goog-te-combo");
-            if (selectField) {
-                selectField.value = langCode;
-                selectField.dispatchEvent(new Event('change'));
-            }
-            document.getElementById('current-lang-flag').innerText = flag;
-            document.getElementById('current-lang-name').innerText = name.substring(0,2).toUpperCase();
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+    <!-- TRANSLATION SCRIPT -->
     <script>
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const menuOverlay = document.getElementById('menu-overlay');
-        const nav = document.querySelector('nav');
-        
-        function toggleMenu() {
-            nav.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            const icon = menuBtn.querySelector('i');
-            if(nav.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
+        const translations = {
+            "fr": {
+                "flag": "🇫🇷", "code": "FR",
+                "nav_label": "Le Label", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_magoobaala": "Magoobaala", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
+                "btn_whatsapp": "Contact (0670150676)", "hero_eyebrow": "Maison de Disque Indépendante",
+                "hero_desc": "L'identité artistique brute entre Paris et l'Algérie. Direction visuelle forte, présence urbaine affirmée et collection officielle intégrée. Le prestige de la rue.",
+                "btn_direction": "Découvrir le Label", "btn_son": "Nos Artistes",
+                "pill_1_title": "PARIS", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "CLIPS", "pill_2_desc": "SIGNATURE VISUELLE", "pill_3_title": "VIP", "pill_3_desc": "CONTACT DIRECT",
+                "sec_label": "Le Label Officiel", "desc_label": "La Puissance Musique (aussi écrit La Puissance Music Godlike) est un label indépendant basé dans le 19ème arrondissement de Paris, fondé par le rappeur YACINE MADMAX en association avec COBRA DZ. Le label s'inscrit dans la mouvance du rap français indépendant avec des influences algériennes et africaines très marquées 🇩🇿🇨🇵.<br><br><strong style='color:var(--gold-dark);'>FORCE ET HONNEUR — DZ POWER</strong><br><br>Artistes : YACINE MADMAX, COBRA DZ / BRACO, ZEO / Z2O, DJBILBOX BEATS, MAGOOBAALA, DADA GWADA, LEX LEXUS.<br><br>Réseaux : <a href='https://www.youtube.com/@YACINEMADMAXLAPUISSANCEMUSIQUE' target='_blank' style='color:var(--gold-dark);font-weight:600;'>@YACINEMADMAXLAPUISSANCEMUSIQUE</a> | <a href='https://www.instagram.com/la_puissance_music/' target='_blank' style='color:var(--gold-dark);font-weight:600;'>Instagram</a> | <a href='https://www.tiktok.com/@la.puissance.music75' target='_blank' style='color:var(--gold-dark);font-weight:600;'>TikTok</a>", "btn_join": "Rejoindre la fondation",
+                "sec_artiste": "Artiste Principal", "desc_madmax": "Rappeur indépendant français d'origine algérienne, basé entre Paris (75019) et Saint-Gratien. Connu sous la signature <strong>PAPI</strong>, il rappe en français et en arabe, mêlant les deux langues pour refléter sa double culture.<br><br><strong style='color:var(--gold-dark);'>GODLIKE</strong><br><br>Au-delà de son rôle d'artiste, Yacine est un entrepreneur musical qui a fondé et structure le label La Puissance Musique. Ses collaborations incluent COBRA 213, AKON, et DJBILBOX BEATS.",
+                "sec_nouvelle": "Nouvelle Signature", "desc_cobra": "La voix brute d'Alger. Textes forts, flow percutant, identité 100% rue algérienne. Le nouveau phénomène DzRap.",
+                "sec_magoobaala": "Artiste Affilié", "desc_magoobaala": "Artiste affilié au label La Puissance Musique. Déterminé et singulier, il forge une musique Hip-Hop/Rap \"Brasil Vibes\" qui résonne comme un pont entre le béton européen et les favelas brésiliennes.",
+                "sec_real": "Direction Artistique", "desc_lexus": "Le réalisateur attitré de La Puissance Musique. Chaque clip est un film, chaque plan raconte une histoire. La signature visuelle du label.",
+                "sec_prod": "Production Musicale", "desc_bilbox": "Le producteur derrière les plus gros titres. Créateur de sons Hip-Hop, Afrotrap et Oriental."
+            },
+            "en": {
+                "flag": "🇬🇧", "code": "EN",
+                "nav_label": "The Label", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
+                "btn_whatsapp": "Contact (0670150676)", "hero_eyebrow": "Independent Record Label",
+                "hero_desc": "The raw artistic identity between Paris and Algeria. Strong visual direction, bold urban presence and integrated official collection. The prestige of the streets.",
+                "btn_direction": "Discover the Label", "btn_son": "Our Artists",
+                "pill_1_title": "PARIS", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "VIDEOS", "pill_2_desc": "VISUAL SIGNATURE", "pill_3_title": "VIP", "pill_3_desc": "DIRECT CONTACT",
+                "sec_label": "The Official Label", "desc_label": "Founded on a vision of total independence. We produce, direct and develop raw talents with a cinematic aesthetic and uncompromising musical identity.", "btn_join": "Join the foundation",
+                "sec_artiste": "Main Artist", "desc_madmax": "Rapper and songwriter. A sharp flow that bridges the gap between French rap and the Algerian underground.",
+                "sec_nouvelle": "New Signature", "desc_cobra": "The raw voice of Algiers. Strong lyrics, hard-hitting flow, 100% Algerian street identity. The new DzRap phenomenon.",
+                "sec_real": "Art Direction", "desc_lexus": "The dedicated director of La Puissance Musique. Every clip is a movie, every shot tells a story. The label's visual signature.",
+                "sec_prod": "Music Production", "desc_bilbox": "The producer behind the biggest hits. Creator of Hip-Hop, Afrotrap and Oriental sounds."
+            },
+            "es": {
+                "flag": "🇪🇸", "code": "ES",
+                "nav_label": "El Sello", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
+                "btn_whatsapp": "Contacto (0670150676)", "hero_eyebrow": "Sello Discográfico Independiente",
+                "hero_desc": "La identidad artística cruda entre París y Argelia. Fuerte dirección visual, audaz presencia urbana. El prestigio de las calles.",
+                "btn_direction": "Descubrir el Sello", "btn_son": "Nuestros Artistas",
+                "pill_1_title": "PARÍS", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "VIDEOS", "pill_2_desc": "FIRMA VISUAL", "pill_3_title": "VIP", "pill_3_desc": "CONTACTO DIRECTO",
+                "sec_label": "El Sello Oficial", "desc_label": "Fundado en una visión de independencia total. Producimos talentos crudos con una estética cinematográfica.", "btn_join": "Únete a la fundación",
+                "sec_artiste": "Artista Principal", "desc_madmax": "Rapero y compositor. Un flujo afilado que une el rap francés y el underground argelino.",
+                "sec_nouvelle": "Nueva Firma", "desc_cobra": "La voz cruda de Argel. Letras fuertes, identidad callejera 100% argelina.",
+                "sec_real": "Dirección de Arte", "desc_lexus": "Cada video es una película, cada toma cuenta una historia. La firma visual del sello.",
+                "sec_prod": "Producción Musical", "desc_bilbox": "El productor detrás de los mayores éxitos. Creador de sonidos Hip-Hop y Afrotrap."
+            },
+            "pt": {
+                "flag": "🇵🇹", "code": "PT",
+                "nav_label": "A Gravadora", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
+                "btn_whatsapp": "Contato (0670150676)", "hero_eyebrow": "Gravadora Independente",
+                "hero_desc": "A identidade artística crua entre Paris e a Argélia. Forte direção visual, presença urbana ousada.",
+                "btn_direction": "Descobrir a Gravadora", "btn_son": "Nossos Artistas",
+                "pill_1_title": "PARIS", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "VIDEOS", "pill_2_desc": "ASSINATURA VISUAL", "pill_3_title": "VIP", "pill_3_desc": "CONTATO DIRETO",
+                "sec_label": "A Gravadora Oficial", "desc_label": "Produzimos talentos crus com uma estética cinematográfica.", "btn_join": "Junte-se à fundação",
+                "sec_artiste": "Artista Principal", "desc_madmax": "Rapper e compositor. Um flow afiado que une o rap francês e o underground argelino.",
+                "sec_nouvelle": "Nova Assinatura", "desc_cobra": "A voz crua de Argel. Letras fortes, identidade 100% argelina.",
+                "sec_real": "Direção de Arte", "desc_lexus": "Cada vídeo é um filme, cada cena conta uma história.",
+                "sec_prod": "Produção Musical", "desc_bilbox": "O produtor por trás dos maiores sucessos."
+            },
+            "ar": {
+                "flag": "🇸🇦", "code": "AR",
+                "nav_label": "الشركة", "nav_madmax": "ياسين مادماكس", "nav_cobra": "كوبرا", "nav_lexus": "لكزس فيلم", "nav_djbilbox": "دي جي بيلبوكس",
+                "btn_whatsapp": "اتصل (0670150676)", "hero_eyebrow": "شركة إنتاج مستقلة",
+                "hero_desc": "الهوية الفنية الخام بين باريس والجزائر. توجيه بصري قوي وحضور حضري جريء. هيبة الشوارع.",
+                "btn_direction": "اكتشف الشركة", "btn_son": "فنانينا",
+                "pill_1_title": "باريس", "pill_1_desc": "مؤسسة دي زي", "pill_2_title": "كليبات", "pill_2_desc": "بصمة بصرية", "pill_3_title": "VIP", "pill_3_desc": "اتصال مباشر",
+                "sec_label": "الشركة الرسمية", "desc_label": "ننتج مواهب خام بجمالية سينمائية وهوية موسيقية لا تضاهى.", "btn_join": "انضم للمؤسسة",
+                "sec_artiste": "الفنان الرئيسي", "desc_madmax": "مغني راب وملحن. يربط بين الراب الفرنسي والجزائري.",
+                "sec_nouvelle": "توقيع جديد", "desc_cobra": "الصوت الخام للجزائر العاصمة. كلمات قوية وهوية جزائرية 100%.",
+                "sec_real": "الإدارة الفنية", "desc_lexus": "كل فيديو هو فيلم، كل لقطة تروي قصة.",
+                "sec_prod": "الإنتاج الموسيقي", "desc_bilbox": "المنتج وراء أكبر النجاحات."
+            },
+            "ru": {
+                "flag": "🇷🇺", "code": "RU",
+                "nav_label": "Лейбл", "nav_madmax": "Ясин Мадмакс", "nav_cobra": "Кобра", "nav_lexus": "Лексус Фильм", "nav_djbilbox": "DJBilbox",
+                "btn_whatsapp": "Контакт (0670150676)", "hero_eyebrow": "Независимый лейбл",
+                "hero_desc": "Суровая художественная идентичность между Парижем и Алжиром. Сильное визуальное направление.",
+                "btn_direction": "Узнать о лейбле", "btn_son": "Наши артисты",
+                "pill_1_title": "ПАРИЖ", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "КЛИПЫ", "pill_2_desc": "ВИЗУАЛЬНЫЙ СТИЛЬ", "pill_3_title": "VIP", "pill_3_desc": "ПРЯМОЙ КОНТАКТ",
+                "sec_label": "Официальный лейбл", "desc_label": "Мы продюсируем таланты с кинематографической эстетикой.", "btn_join": "Присоединиться",
+                "sec_artiste": "Главный артист", "desc_madmax": "Рэпер и автор песен. Связующее звено между французским рэпом и алжирским андеграундом.",
+                "sec_nouvelle": "Новое имя", "desc_cobra": "Суровый голос Алжира. 100% уличная идентичность.",
+                "sec_real": "Арт-дирекшн", "desc_lexus": "Каждый клип — это фильм.",
+                "sec_prod": "Музыка", "desc_bilbox": "Продюсер крупнейших хитов."
+            },
+            "zh": {
+                "flag": "🇨🇳", "code": "ZH",
+                "nav_label": "唱片公司", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
+                "btn_whatsapp": "联系方式 (0670150676)", "hero_eyebrow": "独立唱片公司",
+                "hero_desc": "巴黎与阿尔及利亚之间的原始艺术身份。强大的视觉方向，大胆的都市影响力。街头的威望。",
+                "btn_direction": "探索唱片公司", "btn_son": "我们的艺术家",
+                "pill_1_title": "巴黎", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "视频", "pill_2_desc": "视觉签名", "pill_3_title": "VIP", "pill_3_desc": "直接联系",
+                "sec_label": "官方唱片公司", "desc_label": "以完全独立的愿景成立。我们以电影美学制作和培养原始人才。", "btn_join": "加入基金会",
+                "sec_artiste": "主要艺术家", "desc_madmax": "说唱歌手和词曲作者。连接法国说唱与阿尔及利亚地下的桥梁。",
+                "sec_nouvelle": "新签约", "desc_cobra": "阿尔及尔的原始声音。强大的歌词，100%的阿尔及利亚街头身份。",
+                "sec_real": "艺术指导", "desc_lexus": "每个视频都是一部电影，每个镜头都在讲故事。",
+                "sec_prod": "音乐制作", "desc_bilbox": "最大热门歌曲背后的制作人。"
+            },
+            "ja": {
+                "flag": "🇯🇵", "code": "JA",
+                "nav_label": "レーベル", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
+                "btn_whatsapp": "連絡先 (0670150676)", "hero_eyebrow": "インディペンデント・レーベル",
+                "hero_desc": "パリとアルジェリアの間の生々しい芸術的アイデンティティ。強力な視覚的方向性、大胆な都市の存在感。",
+                "btn_direction": "レーベルを発見する", "btn_son": "アーティスト",
+                "pill_1_title": "パリ", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "ビデオ", "pill_2_desc": "視覚的署名", "pill_3_title": "VIP", "pill_3_desc": "直接連絡",
+                "sec_label": "公式レーベル", "desc_label": "完全な独立のビジョンに基づいて設立されました。", "btn_join": "財団に参加する",
+                "sec_artiste": "メインアーティスト", "desc_madmax": "ラッパーでソングライター。フランスのラップとアルジェリアのアンダーグラウンドの架け橋。",
+                "sec_nouvelle": "新しい署名", "desc_cobra": "アルジェの生々しい声。100％アルジェリアのストリートアイデンティティ。",
+                "sec_real": "アートディレクション", "desc_lexus": "すべてのビデオが映画であり、すべてのショットが物語を語る。",
+                "sec_prod": "音楽制作", "desc_bilbox": "大ヒット曲の背後にいるプロデューサー。"
+            },
+            "de": {
+                "flag": "🇩🇪", "code": "DE",
+                "nav_label": "Das Label", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
+                "btn_whatsapp": "Kontakt (0670150676)", "hero_eyebrow": "Unabhängiges Plattenlabel",
+                "hero_desc": "Die rohe künstlerische Identität zwischen Paris und Algerien. Starke visuelle Ausrichtung, urbane Präsenz.",
+                "btn_direction": "Label entdecken", "btn_son": "Unsere Künstler",
+                "pill_1_title": "PARIS", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "VIDEOS", "pill_2_desc": "VISUELLE SIGNATUR", "pill_3_title": "VIP", "pill_3_desc": "DIREKTKONTAKT",
+                "sec_label": "Das offizielle Label", "desc_label": "Gegründet auf der Vision völliger Unabhängigkeit.", "btn_join": "Der Stiftung beitreten",
+                "sec_artiste": "Hauptkünstler", "desc_madmax": "Rapper und Songwriter. Eine Brücke zwischen französischem Rap und dem Underground.",
+                "sec_nouvelle": "Neue Unterschrift", "desc_cobra": "Die rohe Stimme von Algier. 100% algerische Straßenidentität.",
+                "sec_real": "Art Direktion", "desc_lexus": "Jedes Video ist ein Film, jede Einstellung erzählt eine Geschichte.",
+                "sec_prod": "Musikproduktion", "desc_bilbox": "Der Produzent hinter den größten Hits."
+            },
+            "it": {
+                "flag": "🇮🇹", "code": "IT",
+                "nav_label": "L'Etichetta", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
+                "btn_whatsapp": "Contatto (0670150676)", "hero_eyebrow": "Etichetta Discografica",
+                "hero_desc": "La cruda identità artistica tra Parigi e l'Algeria. Forte direzione visiva, presenza urbana.",
+                "btn_direction": "Scopri l'Etichetta", "btn_son": "I Nostri Artisti",
+                "pill_1_title": "PARIGI", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "VIDEO", "pill_2_desc": "FIRMA VISIVA", "pill_3_title": "VIP", "pill_3_desc": "CONTATTO DIRETTO",
+                "sec_label": "L'Etichetta Ufficiale", "desc_label": "Fondata su una visione di totale indipendenza.", "btn_join": "Unisciti alla fondazione",
+                "sec_artiste": "Artista Principale", "desc_madmax": "Rapper e cantautore. Un ponte tra il rap francese e l'underground algerino.",
+                "sec_nouvelle": "Nuova Firma", "desc_cobra": "La voce cruda di Algeri. Identità di strada 100% algerina.",
+                "sec_real": "Direzione Artistica", "desc_lexus": "Ogni video è un film, ogni inquadratura racconta una storia.",
+                "sec_prod": "Produzione Musicale", "desc_bilbox": "Il produttore dietro i più grandi successi."
+            }
+        };
+
+        function toggleLangMenu() {
+            document.getElementById('lang-dropdown').classList.toggle('show');
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.lang-btn') && !event.target.matches('.lang-btn *')) {
+                let dropdowns = document.getElementsByClassName("lang-dropdown");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    let openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
             }
         }
-        
-        menuBtn.addEventListener('click', toggleMenu);
-        menuOverlay.addEventListener('click', toggleMenu);
+
+        function changeLang(lang) {
+            let data = translations[lang];
+            
+            // Mettre à jour le bouton
+            document.getElementById('current-flag').innerText = data.flag;
+            document.getElementById('current-lang').innerText = data.code;
+            
+            // Mettre à jour tous les éléments avec data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                let key = el.getAttribute('data-i18n');
+                if(data[key]) {
+                    el.innerHTML = data[key];
+                }
+            });
+            
+            // Si c'est en Arabe, on passe le site en RTL
+            if(lang === 'ar') {
+                document.body.style.direction = "rtl";
+            } else {
+                document.body.style.direction = "ltr";
+            }
+        }
     </script>
 </body>
 </html>
