@@ -1,773 +1,1510 @@
+Viewed djbilbox_antigravity_prompt.md:4-50
+
+Voici le code complet du site web **DJBILBOX BEATS**. Vous pouvez copier et coller ce code directement dans votre fichier `index.html`.
+
+```html
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LA PUISSANCE MUSIQUE | Luxe & 3D</title>
-  <meta name="description" content="Site officiel de La Puissance Musique. Label indépendant, Yacine Madmax, Cobra, Lexus Film, DJBilbox Beats." />
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-  
-  <style>
-    :root {
-      /* Palette Neumorphism (Blanc Luxueux) */
-      --bg: #f0f3f6; /* Off-white luxury background */
-      --text: #2d3142;
-      --text-soft: #7a829a;
-      
-      /* Or Métallique pour les reflets */
-      --gold-dark: #a67c00;
-      --gold: #bf953f;
-      --gold-light: #fcf6ba;
-      --gold-gradient: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 50%, var(--gold) 100%);
-      
-      /* Ombres 3D (Relief) */
-      --shadow-dark: #d1d9e6;
-      --shadow-light: #ffffff;
-      
-      --neu-out: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light);
-      --neu-out-sm: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
-      --neu-in: inset 8px 8px 16px var(--shadow-dark), inset -8px -8px 16px var(--shadow-light);
-      
-      --container: 1300px;
-      --timing: 0.3s;
-    }
-
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJBILBOX BEATS | Beatmaker & Producteur Musical Toulouse</title>
+    <meta name="description" content="DJBILBOX BEATS - Professional Beats, Hip-Hop, Afrotrap, Oriental. Instant Downloads. Secure Payments.">
     
-    body {
-      font-family: "Montserrat", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    h1, h2, h3, .brand-font {
-      font-family: "Playfair Display", serif;
-      font-weight: 600;
-    }
+    <style>
+        :root {
+            --bg-main: #0a0a0a;
+            --bg-surface: #111111;
+            --bg-surface-light: #1a1a1a;
+            --accent-red: #e63946;
+            --accent-orange: #ff6b35;
+            --text-main: #f0f0f0;
+            --text-muted: #888888;
+            --border-color: rgba(255, 255, 255, 0.08);
+            
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-accent: 'Rajdhani', sans-serif;
+        }
 
-    a { text-decoration: none; color: inherit; transition: all var(--timing); }
-    img { max-width: 100%; display: block; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .container { width: min(90%, var(--container)); margin: auto; }
-    .section { padding: 100px 0; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    /* TEXT GRADIENT */
-    .text-gold {
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-    }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-    /* NEUMORPHIC TOPBAR */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(240, 243, 246, 0.85);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 10px 30px rgba(209, 217, 230, 0.5);
-    }
-    .nav {
-      min-height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .nav-logo {
-      font-size: 1.5rem;
-      letter-spacing: 2px;
-      color: var(--text);
-    }
-    .nav-links {
-      display: flex;
-      gap: 15px;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 600;
-      color: var(--text-soft);
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .nav-links a {
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--gold); }
+        /* Noise Texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
 
-    /* LANGUAGE SELECTOR */
-    .lang-selector {
-      position: relative;
-      display: inline-block;
-    }
-    .lang-btn {
-      background: var(--bg);
-      box-shadow: var(--neu-out-sm);
-      border: none;
-      padding: 10px 20px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 600;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: var(--timing);
-    }
-    .lang-btn:active { box-shadow: var(--neu-in); }
-    .lang-dropdown {
-      position: absolute;
-      top: 120%;
-      right: 0;
-      background: var(--bg);
-      box-shadow: var(--neu-out);
-      border-radius: 15px;
-      padding: 10px;
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      z-index: 1000;
-      min-width: 150px;
-    }
-    .lang-dropdown.show { display: flex; }
-    .lang-option {
-      padding: 8px 15px;
-      cursor: pointer;
-      border-radius: 10px;
-      transition: var(--timing);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 500;
-    }
-    .lang-option:hover {
-      background: var(--shadow-light);
-      box-shadow: var(--neu-out-sm);
-      color: var(--gold-dark);
-    }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
 
-    /* NEUMORPHIC BUTTONS */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 36px;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 600;
-      border-radius: 50px;
-      cursor: pointer;
-      border: none;
-      transition: all var(--timing);
-    }
-    .btn-neu {
-      background: var(--bg);
-      box-shadow: var(--neu-out);
-      color: var(--text);
-    }
-    .btn-neu:hover {
-      color: var(--gold-dark);
-    }
-    .btn-neu:active {
-      box-shadow: var(--neu-in);
-    }
-    .btn-gold {
-      background: var(--gold-gradient);
-      box-shadow: var(--neu-out);
-      color: #fff;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    }
-    .btn-gold:active {
-      box-shadow: inset 4px 4px 10px rgba(0,0,0,0.2), inset -4px -4px 10px rgba(255,255,255,0.4);
-    }
+        ul {
+            list-style: none;
+        }
 
-    /* NEUMORPHIC CARDS */
-    .card-3d {
-      background: var(--bg);
-      border-radius: 24px;
-      box-shadow: var(--neu-out);
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.5);
-    }
-    .card-3d::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--gold-gradient);
-      opacity: 0.8;
-    }
+        /* Typography */
+        h1, h2, h3, h4, .font-display {
+            font-family: var(--font-display);
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
 
-    /* HERO SECTION */
-    .hero {
-      min-height: 85vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding-top: 60px;
-    }
-    .hero-eyebrow {
-      font-size: 1rem;
-      letter-spacing: 6px;
-      color: var(--gold-dark);
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-    .hero-title {
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      line-height: 1.1;
-      margin-bottom: 30px;
-      color: var(--text);
-      text-shadow: 2px 2px 4px rgba(209, 217, 230, 0.5), -2px -2px 4px #ffffff;
-    }
-    .hero-desc {
-      font-size: 1.1rem;
-      color: var(--text-soft);
-      max-width: 650px;
-      margin: 0 auto 40px;
-    }
-    .hero-cta {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-    }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
 
-    /* INFO STRIP 3D */
-    .info-strip {
-      display: flex;
-      gap: 30px;
-      margin-top: 80px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .info-pill {
-      background: var(--bg);
-      box-shadow: var(--neu-in);
-      padding: 15px 30px;
-      border-radius: 50px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .info-pill h3 {
-      font-family: "Montserrat", sans-serif;
-      font-size: 1rem;
-      color: var(--gold-dark);
-      margin: 0;
-    }
-    .info-pill p {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--text-soft);
-      margin: 0;
-    }
+        .text-red { color: var(--accent-red); }
+        
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    /* SECTION TITLES */
-    .sec-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    .sec-eyebrow {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--gold-dark);
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      margin-bottom: 15px;
-      display: block;
-    }
-    .sec-title {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    .sec-desc {
-      color: var(--text-soft);
-      max-width: 700px;
-      margin: 0 auto;
-    }
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-    /* VIDEO GRIDS */
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 40px;
-    }
-    .video-card {
-      background: var(--bg);
-      border-radius: 20px;
-      box-shadow: var(--neu-out);
-      padding: 15px;
-      transition: all var(--timing);
-    }
-    .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: var(--neu-in);
-    }
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      border-radius: 12px;
-    }
-    .video-info {
-      padding: 25px 10px 10px;
-      text-align: center;
-    }
-    .video-info h4 {
-      font-size: 1.1rem;
-      font-family: "Montserrat", sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--text);
-    }
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            font-family: var(--font-accent);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            gap: 0.5rem;
+        }
 
-    /* RESPONSIVE */
-    @media(max-width: 992px) {
-      .nav-links { display: none; }
-      .hero-cta { flex-direction: column; }
-    }
-  </style>
+        .btn-primary {
+            background: var(--accent-red);
+            color: white;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #f02d3d;
+            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--accent-red);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background: rgba(230, 57, 70, 0.1);
+        }
+
+        /* 1. HEADER / NAV */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 80px;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Brush Script MT', cursive, sans-serif; /* Fallback for script */
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: underline;
+            text-decoration-color: var(--accent-red);
+            text-underline-offset: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-red);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .social-icons-nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons-nav a:hover {
+            color: var(--accent-red);
+        }
+
+        .cart-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-accent);
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--accent-red);
+        }
+
+        /* Hamburger (Mobile) */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* 2. HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-image: linear-gradient(to bottom, rgba(10,10,10,0.4), rgba(10,10,10,1)), url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding-top: 80px; /* Offset for header */
+        }
+
+        .hero-content {
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-size: clamp(4rem, 8vw, 7rem);
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-family: var(--font-accent);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .hero-badges div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* 3. BEAT STORE */
+        .beat-store {
+            background: var(--bg-main);
+        }
+
+        .store-interface {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .store-controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            background: var(--bg-surface-light);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .store-controls-left, .store-controls-right {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .store-search input {
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .player-header {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            background: #141414;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Waveform effect */
+        .player-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0; height: 30px;
+            background: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.05) 2px, rgba(255,255,255,0.05) 4px);
+            z-index: 0;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .play-btn {
+            background: var(--accent-red);
+            border: none;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .play-btn:hover { transform: scale(1.05); }
+
+        .progress-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: var(--font-accent);
+        }
+
+        .progress-bar-bg {
+            flex-grow: 1;
+            height: 6px;
+            background: var(--bg-main);
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-bar-fill {
+            position: absolute;
+            top: 0; left: 0; height: 100%;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
+            width: 30%;
+            border-radius: 3px;
+        }
+
+        .beat-list {
+            height: 400px;
+            overflow-y: auto;
+        }
+
+        .beat-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        .beat-list::-webkit-scrollbar-track {
+            background: var(--bg-surface);
+        }
+        .beat-list::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        .beat-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .beat-item:hover, .beat-item.active {
+            background: rgba(255,255,255,0.03);
+        }
+        .beat-item.active {
+            border-left: 4px solid var(--accent-red);
+        }
+
+        .beat-cover {
+            width: 60px; height: 60px;
+            background: #222;
+            border-radius: 4px;
+            margin-right: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .beat-info {
+            flex-grow: 1;
+        }
+
+        .beat-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .beat-tags {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .beat-meta {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            font-family: var(--font-accent);
+            font-size: 1.1rem;
+        }
+
+        .buy-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-accent);
+            font-weight: 700;
+        }
+
+        .buy-btn:hover {
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+        }
+
+        .payment-steps {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            font-family: var(--font-accent);
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+        
+        .payment-steps span { color: var(--text-main); }
+
+        /* 4. LICENSING & PRICING */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--bg-surface-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.leasing { border-top: 4px solid var(--accent-red); }
+        .pricing-card.unlimited {
+            background: linear-gradient(135deg, rgba(230,57,70,0.1), rgba(255,107,53,0.1)), var(--bg-surface-light);
+            border: 1px solid var(--accent-red);
+            position: relative;
+        }
+        .pricing-card.unlimited::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: -12px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-red);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .pricing-card.exclusive { border-top: 4px solid #ffd700; }
+
+        .pricing-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price {
+            font-family: var(--font-accent);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-target {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            flex-grow: 1;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .pricing-features li.yes i { color: #4ade80; }
+        .pricing-features li.no i { color: #f87171; opacity: 0.5; }
+        .pricing-features li.no { color: var(--text-muted); }
+
+        .pricing-mention {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* 5. ABOUT / BIO */
+        .about-layout {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text { flex: 0 0 60%; }
+        .about-image {
+            flex: 0 0 calc(40% - 4rem);
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            filter: grayscale(20%) contrast(1.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+        }
+
+        .about-subtitle {
+            font-family: var(--font-accent);
+            font-size: 1.2rem;
+            color: var(--accent-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .about-desc {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #ddd;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+        .stat-value {
+            font-family: var(--font-accent);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .about-tools {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .about-tools span { color: white; }
+
+        /* 6. DRUM KITS */
+        .kits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .kit-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .kit-card:hover {
+            border-color: var(--accent-red);
+        }
+
+        .kit-img {
+            height: 200px;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .badge-free {
+            position: absolute;
+            top: 10px; right: 10px;
+            background: var(--accent-red);
+            color: white;
+            font-family: var(--font-accent);
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .kit-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .kit-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin-bottom: 0.2rem;
+        }
+        .kit-type {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* 7. SERVICES */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-col {
+            background: var(--bg-surface-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .service-icon {
+            width: 50px; height: 50px;
+            background: rgba(230, 57, 70, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-red);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #ddd;
+        }
+        .service-list li::before {
+            content: '•';
+            color: var(--accent-red);
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+            top: -2px;
+        }
+
+        /* 8. PLAYLISTS */
+        .playlist-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .playlist-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .playlist-card:hover {
+            background: var(--bg-surface-light);
+            border-color: var(--accent-red);
+        }
+
+        .playlist-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .playlist-count {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* 9. CONTACT */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            background: var(--bg-surface-light);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: white;
+            font-family: var(--font-body);
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-red);
+        }
+
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact-info-block {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item i {
+            color: var(--accent-red);
+        }
+
+        .social-large {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-large a {
+            width: 50px; height: 50px;
+            background: var(--bg-surface-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .social-large a:hover {
+            background: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+
+        /* 10. FOOTER */
+        footer {
+            background: #050505;
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .footer-bottom {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+        }
+
+        /* MODALS & POPUPS */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-content {
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: none; border: none;
+            color: white; cursor: pointer;
+        }
+
+        .notification-popup {
+            position: fixed;
+            bottom: 20px; left: 20px;
+            background: var(--bg-surface-light);
+            border-left: 3px solid var(--accent-red);
+            padding: 1rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            z-index: 999;
+            transform: translateX(-150%);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .notification-popup.show {
+            transform: translateX(0);
+        }
+
+        .notif-img {
+            width: 40px; height: 40px;
+            background: #333; border-radius: 50%;
+        }
+
+        .notif-text {
+            font-size: 0.85rem;
+        }
+        .notif-text strong { color: white; }
+        .notif-time { color: var(--text-muted); font-size: 0.75rem; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .pricing-grid, .kits-grid, .playlist-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-layout {
+                flex-direction: column;
+            }
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .header-right { display: none; }
+            .hamburger { display: block; }
+            .pricing-grid, .kits-grid, .services-grid, .playlist-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 { font-size: 3rem; }
+            .about-stats { grid-template-columns: repeat(2, 1fr); }
+            .beat-meta { display: none; } /* Hide plays/bpm on mobile list */
+        }
+    </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
-    <header class="topbar">
-        <div class="container nav">
-            <a href="#" class="nav-logo brand-font"><span class="text-gold">LA PUISSANCE</span><br><span style="font-size: 0.7rem; font-family: 'Montserrat'; letter-spacing: 6px; color: var(--text-soft);">MUSIQUE</span></a>
+    <!-- 1. HEADER -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">DJBILBOX BEATS</a>
             
-            <div class="nav-links">
-                <a href="#label" data-i18n="nav_label">Le Label</a>
-                <a href="#madmax" data-i18n="nav_madmax">Yacine Madmax</a>
-                <a href="#cobra" data-i18n="nav_cobra">Cobra</a>
-                <a href="#magoobaala" data-i18n="nav_magoobaala">Magoobaala</a>
-                <a href="#lexus" data-i18n="nav_lexus">Lexus Film</a>
-                <a href="#djbilbox" data-i18n="nav_djbilbox">DJBilbox</a>
-            </div>
-            
-            <div style="display: flex; gap: 15px; align-items: center;">
-                <!-- Language Selector -->
-                <div class="lang-selector">
-                    <button class="lang-btn" onclick="toggleLangMenu()">
-                        <span id="current-flag">🇫🇷</span> <span id="current-lang">FR</span>
-                    </button>
-                    <div class="lang-dropdown" id="lang-dropdown">
-                        <div class="lang-option" onclick="changeLang('fr')">🇫🇷 Français</div>
-                        <div class="lang-option" onclick="changeLang('en')">🇬🇧 English</div>
-                        <div class="lang-option" onclick="changeLang('es')">🇪🇸 Español</div>
-                        <div class="lang-option" onclick="changeLang('pt')">🇵🇹 Português</div>
-                        <div class="lang-option" onclick="changeLang('ar')">🇸🇦 العربية</div>
-                        <div class="lang-option" onclick="changeLang('ru')">🇷🇺 Русский</div>
-                        <div class="lang-option" onclick="changeLang('zh')">🇨🇳 中文</div>
-                        <div class="lang-option" onclick="changeLang('ja')">🇯🇵 日本語</div>
-                        <div class="lang-option" onclick="changeLang('de')">🇩🇪 Deutsch</div>
-                        <div class="lang-option" onclick="changeLang('it')">🇮🇹 Italiano</div>
-                    </div>
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#beats">Beats</a>
+                <a href="#services">Services</a>
+                <a href="#kits">Kits & Samples</a>
+                <a href="#contact">Contact</a>
+                <a href="#licensing">Licensing</a>
+            </nav>
+
+            <div class="header-right">
+                <div class="social-icons-nav">
+                    <a href="https://www.instagram.com/djbilboxbeats"><i data-lucide="instagram"></i></a>
+                    <a href="https://www.youtube.com/@djbilboxbeats"><i data-lucide="youtube"></i></a>
                 </div>
-                
-                <a href="https://wa.me/33670150676" class="btn btn-neu" data-i18n="btn_whatsapp">Contact (0670150676)</a>
+                <div class="cart-info">
+                    <i data-lucide="shopping-cart"></i> 0 items — 0.00€
+                </div>
             </div>
+
+            <button class="hamburger"><i data-lucide="menu"></i></button>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- 2. HERO -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-eyebrow" data-i18n="hero_eyebrow">Maison de Disque Indépendante</div>
-            <h1 class="hero-title brand-font">LA PUISSANCE <br><span class="text-gold">MUSIQUE</span></h1>
-            <p class="hero-desc" data-i18n="hero_desc">
-                L'identité artistique brute entre Paris et l'Algérie. Direction visuelle forte, présence urbaine affirmée et collection officielle intégrée. Le prestige de la rue.
-            </p>
-            <div class="hero-cta">
-                <a href="#label" class="btn btn-gold" data-i18n="btn_direction">Découvrir le Label</a>
-                <a href="#madmax" class="btn btn-neu" data-i18n="btn_son">Nos Artistes</a>
+        <div class="hero-content container">
+            <h1>DJBILBOX BEATS</h1>
+            <p>Professional Beats. Instant Downloads. Secure Payments.</p>
+            <div class="hero-badges">
+                <div><i data-lucide="music"></i> Professional Beats</div>
+                <div><i data-lucide="download"></i> Instant Downloads</div>
+                <div><i data-lucide="lock"></i> Secure Payments</div>
             </div>
-
-            <div class="info-strip">
-                <div class="info-pill">
-                    <h3 data-i18n="pill_1_title">PARIS</h3>
-                    <p data-i18n="pill_1_desc">DZ FOUNDATION</p>
-                </div>
-                <div class="info-pill">
-                    <h3 data-i18n="pill_2_title">CLIPS</h3>
-                    <p data-i18n="pill_2_desc">SIGNATURE VISUELLE</p>
-                </div>
-                <div class="info-pill">
-                    <h3 data-i18n="pill_3_title">VIP</h3>
-                    <p data-i18n="pill_3_desc">CONTACT DIRECT</p>
-                </div>
+            <div style="margin-top: 3rem;">
+                <a href="#beats" class="btn btn-primary"><i data-lucide="play"></i> Browse Beat Store</a>
             </div>
         </div>
     </section>
 
-    <!-- 1. LA PUISSANCE MUSIQUE (LABEL) -->
-    <section id="label" class="section">
+    <!-- 3. BEAT STORE -->
+    <section id="beats" class="beat-store">
         <div class="container">
-            <div class="card-3d">
-                <div class="sec-header">
-                    <span class="sec-eyebrow" data-i18n="sec_label">Le Label Officiel</span>
-                    <h2 class="sec-title brand-font">LA PUISSANCE MUSIQUE</h2>
-                    <p class="sec-desc" data-i18n="desc_label">La Puissance Musique (aussi écrit La Puissance Music Godlike) est un label indépendant basé dans le 19ème arrondissement de Paris, fondé par le rappeur YACINE MADMAX en association avec COBRA DZ. Le label s'inscrit dans la mouvance du rap français indépendant avec des influences algériennes et africaines très marquées 🇩🇿🇨🇵.<br><br><strong style="color:var(--gold-dark);">FORCE ET HONNEUR — DZ POWER</strong><br><br>Artistes : YACINE MADMAX, COBRA DZ / BRACO, ZEO / Z2O, DJBILBOX BEATS, MAGOOBAALA, DADA GWADA, LEX LEXUS.<br><br>Réseaux : <a href="https://www.youtube.com/@YACINEMADMAXLAPUISSANCEMUSIQUE" target="_blank" style="color:var(--gold-dark);font-weight:600;">@YACINEMADMAXLAPUISSANCEMUSIQUE</a> | <a href="https://www.instagram.com/la_puissance_music/" target="_blank" style="color:var(--gold-dark);font-weight:600;">Instagram</a> | <a href="https://www.tiktok.com/@la.puissance.music75" target="_blank" style="color:var(--gold-dark);font-weight:600;">TikTok</a></p>
+            <h2 class="section-title">🎧 BEAT STORE</h2>
+            <div class="store-interface">
+                <div class="store-controls">
+                    <div class="store-controls-left">
+                        <button class="btn btn-outline" style="padding: 0.3rem 1rem; font-size: 0.9rem;">Sort <i data-lucide="chevron-down" style="width: 16px;"></i></button>
+                        <button class="btn btn-outline" style="padding: 0.3rem 1rem; font-size: 0.9rem;">Help</button>
+                    </div>
+                    <div class="store-controls-right">
+                        <div class="store-search">
+                            <input type="text" placeholder="Search beats...">
+                        </div>
+                        <button class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.9rem;">Checkout 0</button>
+                    </div>
                 </div>
-                <div style="text-align: center;">
-                    <a href="https://wa.me/33670150676" class="btn btn-gold" data-i18n="btn_join">Rejoindre la fondation</a>
+
+                <div class="player-header">
+                    <div class="player-controls">
+                        <i data-lucide="skip-back" style="cursor: pointer;"></i>
+                        <button class="play-btn"><i data-lucide="play" fill="white"></i></button>
+                        <i data-lucide="skip-forward" style="cursor: pointer;"></i>
+                        
+                        <div class="progress-container">
+                            <span style="font-size: 0.9rem;">00:00</span>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span style="font-size: 0.9rem;">03:18</span>
+                        </div>
+
+                        <i data-lucide="volume-2" style="cursor: pointer;"></i>
+                    </div>
                 </div>
+
+                <div class="beat-list">
+                    <!-- Beats will be injected here via JS -->
+                </div>
+            </div>
+
+            <div class="payment-steps">
+                <div>1️⃣ <span>Select Beats</span></div>
+                <div>→</div>
+                <div>2️⃣ <span>Checkout</span></div>
+                <div>→</div>
+                <div>3️⃣ <span>Instant Download ⬇️</span></div>
             </div>
         </div>
     </section>
 
-    <!-- 2. YACINE MADMAX -->
-    <section id="madmax" class="section">
+    <!-- 4. LICENSING -->
+    <section id="licensing">
         <div class="container">
-            <div class="sec-header">
-                <span class="sec-eyebrow" data-i18n="sec_artiste">Artiste Principal</span>
-                <h2 class="sec-title brand-font">YACINE MADMAX</h2>
-                <p class="sec-desc" data-i18n="desc_madmax">Rappeur indépendant français d'origine algérienne, basé entre Paris (75019) et Saint-Gratien. Connu sous la signature <strong>PAPI</strong>, il rappe en français et en arabe, mêlant les deux langues pour refléter sa double culture.<br><br><strong style="color:var(--gold-dark);">GODLIKE</strong><br><br>Au-delà de son rôle d'artiste, Yacine est un entrepreneur musical qui a fondé et structure le label La Puissance Musique. Ses collaborations incluent COBRA 213, AKON, et DJBILBOX BEATS.</p>
-                <a href="https://www.instagram.com/yacine_madmax/" target="_blank" class="text-gold" style="display:inline-block; margin-top:15px; font-weight:600; font-size:0.9rem; text-transform:uppercase; letter-spacing:2px;">Suivre sur Instagram</a>
-            </div>
-            
-            <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/mv2Yeb9xpmg?rel=0&modestbranding=1" title="Freestyle Yacine Madmax" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <h4>FREESTYLE</h4>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/H9l_Yt54tsg?rel=0&modestbranding=1" title="Frapper Yacine Madmax" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <h4>FRAPPER</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <h2 class="section-title">LICENSING & PRICING OPTIONS</h2>
+            <p class="section-subtitle">Choisissez la formule adaptée à votre projet.</p>
 
-    <!-- 3. COBRA -->
-    <section id="cobra" class="section">
-        <div class="container">
-            <div class="sec-header">
-                <span class="sec-eyebrow" data-i18n="sec_nouvelle">Nouvelle Signature</span>
-                <h2 class="sec-title brand-font">COBRA</h2>
-                <p class="sec-desc" data-i18n="desc_cobra">La voix brute d'Alger. Textes forts, flow percutant, identité 100% rue algérienne. Le nouveau phénomène DzRap.</p>
-            </div>
-            
-            <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/uNZJtWh9b5Y?rel=0&modestbranding=1" title="Cobra - A LA RUE ALGERIENNE ?" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <h4>A LA RUE ALGÉRIENNE ?</h4>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/BjhGb846H5A?rel=0&modestbranding=1" title="Cobra - EL CABRON ?" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <h4>EL CABRON ?</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. MAGOOBAALA -->
-    <section id="magoobaala" class="section">
-        <div class="container">
-            <div class="sec-header">
-                <span class="sec-eyebrow" data-i18n="sec_magoobaala">Artiste Affilié</span>
-                <h2 class="sec-title brand-font">MAGOOBAALA</h2>
-                <p class="sec-desc" data-i18n="desc_magoobaala">Artiste affilié au label La Puissance Musique. Déterminé et singulier, il forge une musique Hip-Hop/Rap "Brasil Vibes" qui résonne comme un pont entre le béton européen et les favelas brésiliennes.</p>
-            </div>
-            
-            <div class="card-3d" style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap; margin-bottom: 40px;">
-                <div style="flex: 1; min-width: 250px;">
-                    <img src="magoobaala-web/images/magoobaala_bio.png" alt="Magoobaala" style="border-radius: 20px; box-shadow: var(--neu-in); width: 100%;">
-                </div>
-                <div style="flex: 2; min-width: 300px;">
-                    <h3 class="brand-font" style="font-size: 2rem; color: var(--gold-dark); margin-bottom: 10px;">NOUVEL EP : Trem Off Season</h3>
-                    <p style="color: var(--text-soft); margin-bottom: 25px; font-size: 0.9rem;"><strong>Date de sortie :</strong> Prochainement<br><strong>Style :</strong> Hip-Hop / Rap / Brasil Vibes</p>
-                    
-                    <h4 style="margin-bottom: 15px; font-weight: 600; font-size: 1rem; color: var(--text);">Tracklist (Extraits) :</h4>
-                    <ul style="list-style: none; margin-bottom: 30px; color: var(--text-soft); padding-left: 0;">
-                        <li style="margin-bottom: 10px; padding-left: 20px; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--gold-dark);">🎵</span> 1. Vim do Nada (Single)
-                        </li>
-                        <li style="margin-bottom: 10px; padding-left: 20px; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--gold-dark);">🎵</span> 2. Flash
-                        </li>
-                        <li style="margin-bottom: 10px; padding-left: 20px; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--gold-dark);">🎵</span> 3. Trem Off Season
-                        </li>
+            <div class="pricing-grid">
+                <!-- Leasing -->
+                <div class="pricing-card leasing">
+                    <h3 class="pricing-title">LEASING</h3>
+                    <div class="pricing-price">29,99€</div>
+                    <div class="pricing-target">Pour artistes débutants</div>
+                    <ul class="pricing-features">
+                        <li class="yes"><i data-lucide="check"></i> MP3 TAGGÉ</li>
+                        <li class="yes"><i data-lucide="check"></i> 1 vidéo YouTube</li>
+                        <li class="yes"><i data-lucide="check"></i> Upload YouTube & SoundCloud</li>
+                        <li class="yes"><i data-lucide="check"></i> 5 000 ventes</li>
+                        <li class="yes"><i data-lucide="check"></i> Performances payantes</li>
+                        <li class="no"><i data-lucide="x"></i> Distribuer sur Spotify/Apple</li>
                     </ul>
+                    <button class="btn btn-outline" style="width: 100%;">BUY NOW →</button>
+                    <div class="pricing-mention">Non-exclusif | Crédit obligatoire : Prod. by DJBILBOX BEATS</div>
+                </div>
+
+                <!-- Unlimited -->
+                <div class="pricing-card unlimited">
+                    <h3 class="pricing-title">UNLIMITED</h3>
+                    <div class="pricing-price">99,99€</div>
+                    <div class="pricing-target">Pour artistes professionnels</div>
+                    <ul class="pricing-features">
+                        <li class="yes"><i data-lucide="check"></i> MP3 + WAV NON TAGGÉ</li>
+                        <li class="yes"><i data-lucide="check"></i> STEMS / Tracked Out Files</li>
+                        <li class="yes"><i data-lucide="check"></i> Vidéos illimitées</li>
+                        <li class="yes"><i data-lucide="check"></i> Distribution Spotify, Apple, etc.</li>
+                        <li class="yes"><i data-lucide="check"></i> Ventes illimitées</li>
+                        <li class="yes"><i data-lucide="check"></i> Streams illimités</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%;">BUY NOW →</button>
+                    <div class="pricing-mention">Non-exclusif | Crédit obligatoire</div>
+                </div>
+
+                <!-- Exclusive -->
+                <div class="pricing-card exclusive">
+                    <h3 class="pricing-title" style="color: #ffd700;">EXCLUSIVE</h3>
+                    <div class="pricing-price">499,99€</div>
+                    <div class="pricing-target">Pour artistes & labels pros</div>
+                    <ul class="pricing-features">
+                        <li class="yes"><i data-lucide="check"></i> MP3 + WAV NON TAGGÉ</li>
+                        <li class="yes"><i data-lucide="check"></i> STEMS / Tracked Out Files</li>
+                        <li class="yes"><i data-lucide="check"></i> Droits exclusifs complets</li>
+                        <li class="yes"><i data-lucide="check"></i> Utilisation commerciale illimitée</li>
+                        <li class="yes"><i data-lucide="check"></i> Distribution toutes plateformes</li>
+                        <li class="yes"><i data-lucide="check"></i> Pas de crédit obligatoire</li>
+                    </ul>
+                    <button class="btn btn-outline" style="width: 100%;">CONTACT →</button>
+                    <div class="pricing-mention">Droits exclusifs — Beat retiré à la vente</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ABOUT -->
+    <section id="about" style="background: var(--bg-surface);">
+        <div class="container">
+            <div class="about-layout">
+                <div class="about-text">
+                    <h2 class="section-title">DJBILBOX BEATS</h2>
+                    <div class="about-subtitle">Beatmaker • Producteur Musical • Créateur Digital</div>
+                    <div class="about-location"><i data-lucide="map-pin" style="width: 16px;"></i> Toulouse, France</div>
                     
-                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                        <a href="https://open.spotify.com/intl-fr/artist/1xshj8t4OLZtnn4FiUwBBh" target="_blank" class="btn btn-gold">ÉCOUTER L'EP</a>
-                        <a href="https://www.youtube.com/channel/UC5yGdorZmA-PRVI6OSVjf0w" target="_blank" class="btn btn-neu">VOIR SUR YOUTUBE</a>
+                    <p class="about-desc">
+                        DJBILBOX BEATS est un beatmaker et producteur musical basé à Toulouse, France, façonnant un univers sonore à la croisée du hip-hop, de l'afrotrap, des musiques orientales et de la deep house. Avec plus de 760 productions originales, il développe une signature où se rencontrent 808 puissantes, percussions afro, mélodies orientales et textures électroniques. Formé à FL Studio et Sony ACID Pro, il compose des instrumentales pour rappeurs, chanteurs, créateurs de contenu et marques. En parallèle, il intègre les outils IA (VEO3, Kling, Claude, MidJourney) dans sa création visuelle et vidéo pour offrir un service complet : son, image et identité.
+                    </p>
+
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">760+</div>
+                            <div class="stat-label">Beats produits</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">Ans d'expérience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">1.4K</div>
+                            <div class="stat-label">Abonnés YouTube</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">524K</div>
+                            <div class="stat-label">Vues/mois TikTok</div>
+                        </div>
+                    </div>
+
+                    <div class="about-tools">
+                        <strong>OUTILS :</strong> <span>FL Studio | Sony ACID Pro | Adobe Photoshop | Filmora | Claude AI | VEO3 | Kling</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="DJBILBOX Studio">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. KITS -->
+    <section id="kits">
+        <div class="container">
+            <h2 class="section-title">🥁 DRUM KITS & SAMPLE PACKS</h2>
+            <p class="section-subtitle">High quality packs — ready to use in your productions.</p>
+
+            <div class="kits-grid">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. SERVICES -->
+    <section id="services" style="background: var(--bg-surface);">
+        <div class="container">
+            <h2 class="section-title">MES SERVICES</h2>
+            
+            <div class="services-grid" style="margin-top: 3rem;">
+                <div class="service-col">
+                    <div class="service-icon"><i data-lucide="mic"></i></div>
+                    <h3 class="service-title">SERVICES MUSICAUX</h3>
+                    <ul class="service-list">
+                        <li>Instrumentales sur mesure (Hip-Hop, Trap, Drill, Afrotrap, Deephouse, R&B, G-Funk)</li>
+                        <li>Beats exclusifs ou en licence</li>
+                        <li>Arrangement et conseils artistiques</li>
+                        <li>Mixage et mastering (Spotify, YouTube, TikTok ready)</li>
+                        <li>Bandes-son pour vidéos, jeux et pubs</li>
+                    </ul>
+                </div>
+
+                <div class="service-col">
+                    <div class="service-icon"><i data-lucide="palette"></i></div>
+                    <h3 class="service-title">VISUELS & IA</h3>
+                    <ul class="service-list">
+                        <li>Pochettes single/EP/album générées par IA</li>
+                        <li>Visuels réseaux (bannières YouTube, covers, miniatures)</li>
+                        <li>Clips animés, Reels, Shorts, teasers</li>
+                        <li>Spotify Canvas et loops animées</li>
+                        <li>Direction artistique et branding complet</li>
+                    </ul>
+                </div>
+
+                <div class="service-col">
+                    <div class="service-icon"><i data-lucide="briefcase"></i></div>
+                    <h3 class="service-title">DIGITAL & PRO</h3>
+                    <ul class="service-list">
+                        <li>Mini-sites / portfolios / EPK</li>
+                        <li>Stratégie de sortie (singles, covers, formats vidéo)</li>
+                        <li>Licences et placements (créateurs, pubs, podcasts)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. PLAYLISTS -->
+    <section id="playlists">
+        <div class="container">
+            <h2 class="section-title">🎬 PLAYLISTS & PROJETS</h2>
+            
+            <div class="playlist-grid" style="margin-top: 3rem;">
+                <div class="playlist-card">
+                    <h3 class="playlist-title">Hip-hop Trap Drill</h3>
+                    <div class="playlist-count">305 vidéos</div>
+                </div>
+                <div class="playlist-card">
+                    <h3 class="playlist-title">Oriental Instrumental</h3>
+                    <div class="playlist-count">166 vidéos</div>
+                </div>
+                <div class="playlist-card">
+                    <h3 class="playlist-title">AI Visuals & Motion</h3>
+                    <div class="playlist-count">191 vidéos</div>
+                </div>
+                <div class="playlist-card">
+                    <h3 class="playlist-title">Deephouse DNB</h3>
+                    <div class="playlist-count">104 vidéos</div>
+                </div>
+                <div class="playlist-card">
+                    <h3 class="playlist-title">Afrotrap Instrumental</h3>
+                    <div class="playlist-count">30 vidéos</div>
+                </div>
+                <div class="playlist-card">
+                    <h3 class="playlist-title">Funk Instrumental</h3>
+                    <div class="playlist-count">135 vidéos</div>
+                </div>
+                <div class="playlist-card">
+                    <h3 class="playlist-title">Music Mix & RMX</h3>
+                    <div class="playlist-count">53 vidéos</div>
+                </div>
+                <div class="playlist-card" style="border-color: var(--accent-red);">
+                    <h3 class="playlist-title text-red">All Beats by DJBILBOX</h3>
+                    <div class="playlist-count">760 vidéos</div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" class="btn btn-primary">S'ABONNER À LA CHAÎNE »</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. CONTACT -->
+    <section id="contact" style="background: var(--bg-surface);">
+        <div class="container">
+            <h2 class="section-title">CONTACT & BOOKING</h2>
+            <p class="section-subtitle">Prêt à construire ton univers sonore et visuel ?</p>
+
+            <div class="contact-layout">
+                <div class="contact-form">
+                    <form onsubmit="event.preventDefault();">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nom">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" style="appearance: none;">
+                                <option value="">Type de projet...</option>
+                                <option value="beat">Beat custom</option>
+                                <option value="license">Licensing</option>
+                                <option value="visual">Visual/IA</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Message"></textarea>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;">ENVOYER LE MESSAGE →</button>
+                    </form>
+                </div>
+
+                <div>
+                    <div class="contact-info-block">
+                        <div class="contact-item"><i data-lucide="phone"></i> 06 70 15 06 76 (WhatsApp aussi)</div>
+                        <div class="contact-item"><i data-lucide="mail"></i> djbilboxbeats@gmail.com</div>
+                        <div class="contact-item"><i data-lucide="map-pin"></i> Toulouse, France</div>
+                    </div>
+                    
+                    <p style="color: var(--text-muted); font-size: 1.1rem;">
+                        Ouvert à : Artistes • Labels • Créateurs de contenu • Agences • Marques
+                    </p>
+
+                    <div class="social-large">
+                        <a href="https://www.instagram.com/djbilboxbeats"><i data-lucide="instagram"></i></a>
+                        <a href="https://www.facebook.com/Djbilboxbeats"><i data-lucide="facebook"></i></a>
+                        <a href="https://www.youtube.com/@djbilboxbeats"><i data-lucide="youtube"></i></a>
+                        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG">S</a>
+                        <a href="https://www.tiktok.com/@djbilboxbeats">T</a>
+                        <a href="https://www.pinterest.fr/djbilboxbeats/">P</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. ISLEM LEXUS FILM -->
-    <section id="lexus" class="section">
+    <!-- 10. FOOTER -->
+    <footer>
         <div class="container">
-            <div class="sec-header">
-                <span class="sec-eyebrow" data-i18n="sec_real">Direction Artistique</span>
-                <h2 class="sec-title brand-font">ISLEM LEXUS FILM</h2>
-                <p class="sec-desc" data-i18n="desc_lexus">Le réalisateur attitré de La Puissance Musique. Chaque clip est un film, chaque plan raconte une histoire. La signature visuelle du label.</p>
+            <div class="footer-logo">DJBILBOX BEATS</div>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#beats">Beats</a>
+                <a href="#licensing">Licensing</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
             </div>
-            
-            <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/4GUFY6QB4rY?rel=0&modestbranding=1" title="Enzo Islem" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <h4>ENZO ISLEM</h4>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/BdTCdU1IkYs?rel=0&modestbranding=1" title="Lex La Zone" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <h4>LEX - LA ZONE</h4>
-                    </div>
-                </div>
+            <div class="social-icons-nav" style="justify-content: center; margin-bottom: 2rem;">
+                <a href="https://www.instagram.com/djbilboxbeats"><i data-lucide="instagram"></i></a>
+                <a href="https://www.youtube.com/@djbilboxbeats"><i data-lucide="youtube"></i></a>
+                <a href="https://www.facebook.com/Djbilboxbeats"><i data-lucide="facebook"></i></a>
             </div>
-        </div>
-    </section>
-
-    <!-- 5. DJBILBOX BEATS -->
-    <section id="djbilbox" class="section">
-        <div class="container">
-            <div class="sec-header">
-                <span class="sec-eyebrow" data-i18n="sec_prod">Production Musicale</span>
-                <h2 class="sec-title brand-font">DJBILBOX BEATS</h2>
-                <p class="sec-desc" data-i18n="desc_bilbox">Le producteur derrière les plus gros titres. Créateur de sons Hip-Hop, Afrotrap et Oriental.</p>
-                <a href="https://www.instagram.com/djbilboxbeats/" target="_blank" class="text-gold" style="display:inline-block; margin-top:15px; font-weight:600; font-size:0.9rem; text-transform:uppercase; letter-spacing:2px;">Suivre sur Instagram</a>
+            <div class="footer-bottom">
+                © 2026 DJBILBOX BEATS. ALL RIGHTS RESERVED. | Produced in Toulouse 🇫🇷
             </div>
-            
-            <div class="card-3d" style="max-width: 800px; margin: 0 auto 40px; padding: 20px;">
-                <!-- Spotify embed -->
-                <iframe src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius: 12px; box-shadow: var(--neu-in);"></iframe>
-            </div>
-            
-            <div style="display: flex; gap: 20px; justify-content: center;">
-                <a href="#" class="btn btn-gold">BEATSTARS</a>
-                <a href="#" class="btn btn-neu">TUNECORE</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer style="padding: 60px 0; text-align: center; border-top: 1px solid rgba(209, 217, 230, 0.5); box-shadow: var(--neu-out-sm);">
-        <div class="container">
-            <h2 class="brand-font" style="color: var(--gold-dark); margin-bottom: 20px;">LA PUISSANCE MUSIQUE</h2>
-            <p style="color: var(--text-soft); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;">
-                &copy; 2026 Tous droits réservés.
-            </p>
         </div>
     </footer>
 
-    <!-- TRANSLATION SCRIPT -->
+    <!-- MODAL LICENSING -->
+    <div class="modal-overlay" id="licenseModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()"><i data-lucide="x"></i></button>
+            <h2 class="section-title" style="font-size: 2rem; margin-bottom: 1rem;" id="modalBeatTitle">CHOOSE LICENSE</h2>
+            
+            <div class="pricing-grid" style="gap: 1rem;">
+                <!-- Just cloning styles for brevity in JS logic -->
+                <div class="pricing-card leasing" style="padding: 1.5rem;">
+                    <h3 class="pricing-title" style="font-size: 1.5rem;">LEASING</h3>
+                    <div class="pricing-price" style="font-size: 1.8rem;">29,99€</div>
+                    <button class="btn btn-outline" style="width: 100%; margin-top: 1rem;" onclick="addToCart('Leasing')">Add to Cart</button>
+                </div>
+                <div class="pricing-card unlimited" style="padding: 1.5rem;">
+                    <h3 class="pricing-title" style="font-size: 1.5rem;">UNLIMITED</h3>
+                    <div class="pricing-price" style="font-size: 1.8rem;">99,99€</div>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="addToCart('Unlimited')">Add to Cart</button>
+                </div>
+                <div class="pricing-card exclusive" style="padding: 1.5rem;">
+                    <h3 class="pricing-title" style="font-size: 1.5rem; color: #ffd700;">EXCLUSIVE</h3>
+                    <div class="pricing-price" style="font-size: 1.8rem;">499,99€</div>
+                    <button class="btn btn-outline" style="width: 100%; margin-top: 1rem;" onclick="addToCart('Exclusive')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION POPUP -->
+    <div class="notification-popup" id="notifPopup">
+        <div class="notif-img"></div>
+        <div>
+            <div class="notif-text" id="notifText">Someone purchased a beat</div>
+            <div class="notif-time">Today by NotificationX</div>
+        </div>
+    </div>
+
     <script>
-        const translations = {
-            "fr": {
-                "flag": "🇫🇷", "code": "FR",
-                "nav_label": "Le Label", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_magoobaala": "Magoobaala", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
-                "btn_whatsapp": "Contact (0670150676)", "hero_eyebrow": "Maison de Disque Indépendante",
-                "hero_desc": "L'identité artistique brute entre Paris et l'Algérie. Direction visuelle forte, présence urbaine affirmée et collection officielle intégrée. Le prestige de la rue.",
-                "btn_direction": "Découvrir le Label", "btn_son": "Nos Artistes",
-                "pill_1_title": "PARIS", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "CLIPS", "pill_2_desc": "SIGNATURE VISUELLE", "pill_3_title": "VIP", "pill_3_desc": "CONTACT DIRECT",
-                "sec_label": "Le Label Officiel", "desc_label": "La Puissance Musique (aussi écrit La Puissance Music Godlike) est un label indépendant basé dans le 19ème arrondissement de Paris, fondé par le rappeur YACINE MADMAX en association avec COBRA DZ. Le label s'inscrit dans la mouvance du rap français indépendant avec des influences algériennes et africaines très marquées 🇩🇿🇨🇵.<br><br><strong style='color:var(--gold-dark);'>FORCE ET HONNEUR — DZ POWER</strong><br><br>Artistes : YACINE MADMAX, COBRA DZ / BRACO, ZEO / Z2O, DJBILBOX BEATS, MAGOOBAALA, DADA GWADA, LEX LEXUS.<br><br>Réseaux : <a href='https://www.youtube.com/@YACINEMADMAXLAPUISSANCEMUSIQUE' target='_blank' style='color:var(--gold-dark);font-weight:600;'>@YACINEMADMAXLAPUISSANCEMUSIQUE</a> | <a href='https://www.instagram.com/la_puissance_music/' target='_blank' style='color:var(--gold-dark);font-weight:600;'>Instagram</a> | <a href='https://www.tiktok.com/@la.puissance.music75' target='_blank' style='color:var(--gold-dark);font-weight:600;'>TikTok</a>", "btn_join": "Rejoindre la fondation",
-                "sec_artiste": "Artiste Principal", "desc_madmax": "Rappeur indépendant français d'origine algérienne, basé entre Paris (75019) et Saint-Gratien. Connu sous la signature <strong>PAPI</strong>, il rappe en français et en arabe, mêlant les deux langues pour refléter sa double culture.<br><br><strong style='color:var(--gold-dark);'>GODLIKE</strong><br><br>Au-delà de son rôle d'artiste, Yacine est un entrepreneur musical qui a fondé et structure le label La Puissance Musique. Ses collaborations incluent COBRA 213, AKON, et DJBILBOX BEATS.",
-                "sec_nouvelle": "Nouvelle Signature", "desc_cobra": "La voix brute d'Alger. Textes forts, flow percutant, identité 100% rue algérienne. Le nouveau phénomène DzRap.",
-                "sec_magoobaala": "Artiste Affilié", "desc_magoobaala": "Artiste affilié au label La Puissance Musique. Déterminé et singulier, il forge une musique Hip-Hop/Rap \"Brasil Vibes\" qui résonne comme un pont entre le béton européen et les favelas brésiliennes.",
-                "sec_real": "Direction Artistique", "desc_lexus": "Le réalisateur attitré de La Puissance Musique. Chaque clip est un film, chaque plan raconte une histoire. La signature visuelle du label.",
-                "sec_prod": "Production Musicale", "desc_bilbox": "Le producteur derrière les plus gros titres. Créateur de sons Hip-Hop, Afrotrap et Oriental."
-            },
-            "en": {
-                "flag": "🇬🇧", "code": "EN",
-                "nav_label": "The Label", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
-                "btn_whatsapp": "Contact (0670150676)", "hero_eyebrow": "Independent Record Label",
-                "hero_desc": "The raw artistic identity between Paris and Algeria. Strong visual direction, bold urban presence and integrated official collection. The prestige of the streets.",
-                "btn_direction": "Discover the Label", "btn_son": "Our Artists",
-                "pill_1_title": "PARIS", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "VIDEOS", "pill_2_desc": "VISUAL SIGNATURE", "pill_3_title": "VIP", "pill_3_desc": "DIRECT CONTACT",
-                "sec_label": "The Official Label", "desc_label": "Founded on a vision of total independence. We produce, direct and develop raw talents with a cinematic aesthetic and uncompromising musical identity.", "btn_join": "Join the foundation",
-                "sec_artiste": "Main Artist", "desc_madmax": "Rapper and songwriter. A sharp flow that bridges the gap between French rap and the Algerian underground.",
-                "sec_nouvelle": "New Signature", "desc_cobra": "The raw voice of Algiers. Strong lyrics, hard-hitting flow, 100% Algerian street identity. The new DzRap phenomenon.",
-                "sec_real": "Art Direction", "desc_lexus": "The dedicated director of La Puissance Musique. Every clip is a movie, every shot tells a story. The label's visual signature.",
-                "sec_prod": "Music Production", "desc_bilbox": "The producer behind the biggest hits. Creator of Hip-Hop, Afrotrap and Oriental sounds."
-            },
-            "es": {
-                "flag": "🇪🇸", "code": "ES",
-                "nav_label": "El Sello", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
-                "btn_whatsapp": "Contacto (0670150676)", "hero_eyebrow": "Sello Discográfico Independiente",
-                "hero_desc": "La identidad artística cruda entre París y Argelia. Fuerte dirección visual, audaz presencia urbana. El prestigio de las calles.",
-                "btn_direction": "Descubrir el Sello", "btn_son": "Nuestros Artistas",
-                "pill_1_title": "PARÍS", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "VIDEOS", "pill_2_desc": "FIRMA VISUAL", "pill_3_title": "VIP", "pill_3_desc": "CONTACTO DIRECTO",
-                "sec_label": "El Sello Oficial", "desc_label": "Fundado en una visión de independencia total. Producimos talentos crudos con una estética cinematográfica.", "btn_join": "Únete a la fundación",
-                "sec_artiste": "Artista Principal", "desc_madmax": "Rapero y compositor. Un flujo afilado que une el rap francés y el underground argelino.",
-                "sec_nouvelle": "Nueva Firma", "desc_cobra": "La voz cruda de Argel. Letras fuertes, identidad callejera 100% argelina.",
-                "sec_real": "Dirección de Arte", "desc_lexus": "Cada video es una película, cada toma cuenta una historia. La firma visual del sello.",
-                "sec_prod": "Producción Musical", "desc_bilbox": "El productor detrás de los mayores éxitos. Creador de sonidos Hip-Hop y Afrotrap."
-            },
-            "pt": {
-                "flag": "🇵🇹", "code": "PT",
-                "nav_label": "A Gravadora", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
-                "btn_whatsapp": "Contato (0670150676)", "hero_eyebrow": "Gravadora Independente",
-                "hero_desc": "A identidade artística crua entre Paris e a Argélia. Forte direção visual, presença urbana ousada.",
-                "btn_direction": "Descobrir a Gravadora", "btn_son": "Nossos Artistas",
-                "pill_1_title": "PARIS", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "VIDEOS", "pill_2_desc": "ASSINATURA VISUAL", "pill_3_title": "VIP", "pill_3_desc": "CONTATO DIRETO",
-                "sec_label": "A Gravadora Oficial", "desc_label": "Produzimos talentos crus com uma estética cinematográfica.", "btn_join": "Junte-se à fundação",
-                "sec_artiste": "Artista Principal", "desc_madmax": "Rapper e compositor. Um flow afiado que une o rap francês e o underground argelino.",
-                "sec_nouvelle": "Nova Assinatura", "desc_cobra": "A voz crua de Argel. Letras fortes, identidade 100% argelina.",
-                "sec_real": "Direção de Arte", "desc_lexus": "Cada vídeo é um filme, cada cena conta uma história.",
-                "sec_prod": "Produção Musical", "desc_bilbox": "O produtor por trás dos maiores sucessos."
-            },
-            "ar": {
-                "flag": "🇸🇦", "code": "AR",
-                "nav_label": "الشركة", "nav_madmax": "ياسين مادماكس", "nav_cobra": "كوبرا", "nav_lexus": "لكزس فيلم", "nav_djbilbox": "دي جي بيلبوكس",
-                "btn_whatsapp": "اتصل (0670150676)", "hero_eyebrow": "شركة إنتاج مستقلة",
-                "hero_desc": "الهوية الفنية الخام بين باريس والجزائر. توجيه بصري قوي وحضور حضري جريء. هيبة الشوارع.",
-                "btn_direction": "اكتشف الشركة", "btn_son": "فنانينا",
-                "pill_1_title": "باريس", "pill_1_desc": "مؤسسة دي زي", "pill_2_title": "كليبات", "pill_2_desc": "بصمة بصرية", "pill_3_title": "VIP", "pill_3_desc": "اتصال مباشر",
-                "sec_label": "الشركة الرسمية", "desc_label": "ننتج مواهب خام بجمالية سينمائية وهوية موسيقية لا تضاهى.", "btn_join": "انضم للمؤسسة",
-                "sec_artiste": "الفنان الرئيسي", "desc_madmax": "مغني راب وملحن. يربط بين الراب الفرنسي والجزائري.",
-                "sec_nouvelle": "توقيع جديد", "desc_cobra": "الصوت الخام للجزائر العاصمة. كلمات قوية وهوية جزائرية 100%.",
-                "sec_real": "الإدارة الفنية", "desc_lexus": "كل فيديو هو فيلم، كل لقطة تروي قصة.",
-                "sec_prod": "الإنتاج الموسيقي", "desc_bilbox": "المنتج وراء أكبر النجاحات."
-            },
-            "ru": {
-                "flag": "🇷🇺", "code": "RU",
-                "nav_label": "Лейбл", "nav_madmax": "Ясин Мадмакс", "nav_cobra": "Кобра", "nav_lexus": "Лексус Фильм", "nav_djbilbox": "DJBilbox",
-                "btn_whatsapp": "Контакт (0670150676)", "hero_eyebrow": "Независимый лейбл",
-                "hero_desc": "Суровая художественная идентичность между Парижем и Алжиром. Сильное визуальное направление.",
-                "btn_direction": "Узнать о лейбле", "btn_son": "Наши артисты",
-                "pill_1_title": "ПАРИЖ", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "КЛИПЫ", "pill_2_desc": "ВИЗУАЛЬНЫЙ СТИЛЬ", "pill_3_title": "VIP", "pill_3_desc": "ПРЯМОЙ КОНТАКТ",
-                "sec_label": "Официальный лейбл", "desc_label": "Мы продюсируем таланты с кинематографической эстетикой.", "btn_join": "Присоединиться",
-                "sec_artiste": "Главный артист", "desc_madmax": "Рэпер и автор песен. Связующее звено между французским рэпом и алжирским андеграундом.",
-                "sec_nouvelle": "Новое имя", "desc_cobra": "Суровый голос Алжира. 100% уличная идентичность.",
-                "sec_real": "Арт-дирекшн", "desc_lexus": "Каждый клип — это фильм.",
-                "sec_prod": "Музыка", "desc_bilbox": "Продюсер крупнейших хитов."
-            },
-            "zh": {
-                "flag": "🇨🇳", "code": "ZH",
-                "nav_label": "唱片公司", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
-                "btn_whatsapp": "联系方式 (0670150676)", "hero_eyebrow": "独立唱片公司",
-                "hero_desc": "巴黎与阿尔及利亚之间的原始艺术身份。强大的视觉方向，大胆的都市影响力。街头的威望。",
-                "btn_direction": "探索唱片公司", "btn_son": "我们的艺术家",
-                "pill_1_title": "巴黎", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "视频", "pill_2_desc": "视觉签名", "pill_3_title": "VIP", "pill_3_desc": "直接联系",
-                "sec_label": "官方唱片公司", "desc_label": "以完全独立的愿景成立。我们以电影美学制作和培养原始人才。", "btn_join": "加入基金会",
-                "sec_artiste": "主要艺术家", "desc_madmax": "说唱歌手和词曲作者。连接法国说唱与阿尔及利亚地下的桥梁。",
-                "sec_nouvelle": "新签约", "desc_cobra": "阿尔及尔的原始声音。强大的歌词，100%的阿尔及利亚街头身份。",
-                "sec_real": "艺术指导", "desc_lexus": "每个视频都是一部电影，每个镜头都在讲故事。",
-                "sec_prod": "音乐制作", "desc_bilbox": "最大热门歌曲背后的制作人。"
-            },
-            "ja": {
-                "flag": "🇯🇵", "code": "JA",
-                "nav_label": "レーベル", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
-                "btn_whatsapp": "連絡先 (0670150676)", "hero_eyebrow": "インディペンデント・レーベル",
-                "hero_desc": "パリとアルジェリアの間の生々しい芸術的アイデンティティ。強力な視覚的方向性、大胆な都市の存在感。",
-                "btn_direction": "レーベルを発見する", "btn_son": "アーティスト",
-                "pill_1_title": "パリ", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "ビデオ", "pill_2_desc": "視覚的署名", "pill_3_title": "VIP", "pill_3_desc": "直接連絡",
-                "sec_label": "公式レーベル", "desc_label": "完全な独立のビジョンに基づいて設立されました。", "btn_join": "財団に参加する",
-                "sec_artiste": "メインアーティスト", "desc_madmax": "ラッパーでソングライター。フランスのラップとアルジェリアのアンダーグラウンドの架け橋。",
-                "sec_nouvelle": "新しい署名", "desc_cobra": "アルジェの生々しい声。100％アルジェリアのストリートアイデンティティ。",
-                "sec_real": "アートディレクション", "desc_lexus": "すべてのビデオが映画であり、すべてのショットが物語を語る。",
-                "sec_prod": "音楽制作", "desc_bilbox": "大ヒット曲の背後にいるプロデューサー。"
-            },
-            "de": {
-                "flag": "🇩🇪", "code": "DE",
-                "nav_label": "Das Label", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
-                "btn_whatsapp": "Kontakt (0670150676)", "hero_eyebrow": "Unabhängiges Plattenlabel",
-                "hero_desc": "Die rohe künstlerische Identität zwischen Paris und Algerien. Starke visuelle Ausrichtung, urbane Präsenz.",
-                "btn_direction": "Label entdecken", "btn_son": "Unsere Künstler",
-                "pill_1_title": "PARIS", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "VIDEOS", "pill_2_desc": "VISUELLE SIGNATUR", "pill_3_title": "VIP", "pill_3_desc": "DIREKTKONTAKT",
-                "sec_label": "Das offizielle Label", "desc_label": "Gegründet auf der Vision völliger Unabhängigkeit.", "btn_join": "Der Stiftung beitreten",
-                "sec_artiste": "Hauptkünstler", "desc_madmax": "Rapper und Songwriter. Eine Brücke zwischen französischem Rap und dem Underground.",
-                "sec_nouvelle": "Neue Unterschrift", "desc_cobra": "Die rohe Stimme von Algier. 100% algerische Straßenidentität.",
-                "sec_real": "Art Direktion", "desc_lexus": "Jedes Video ist ein Film, jede Einstellung erzählt eine Geschichte.",
-                "sec_prod": "Musikproduktion", "desc_bilbox": "Der Produzent hinter den größten Hits."
-            },
-            "it": {
-                "flag": "🇮🇹", "code": "IT",
-                "nav_label": "L'Etichetta", "nav_madmax": "Yacine Madmax", "nav_cobra": "Cobra", "nav_lexus": "Lexus Film", "nav_djbilbox": "DJBilbox",
-                "btn_whatsapp": "Contatto (0670150676)", "hero_eyebrow": "Etichetta Discografica",
-                "hero_desc": "La cruda identità artistica tra Parigi e l'Algeria. Forte direzione visiva, presenza urbana.",
-                "btn_direction": "Scopri l'Etichetta", "btn_son": "I Nostri Artisti",
-                "pill_1_title": "PARIGI", "pill_1_desc": "DZ FOUNDATION", "pill_2_title": "VIDEO", "pill_2_desc": "FIRMA VISIVA", "pill_3_title": "VIP", "pill_3_desc": "CONTATTO DIRETTO",
-                "sec_label": "L'Etichetta Ufficiale", "desc_label": "Fondata su una visione di totale indipendenza.", "btn_join": "Unisciti alla fondazione",
-                "sec_artiste": "Artista Principale", "desc_madmax": "Rapper e cantautore. Un ponte tra il rap francese e l'underground algerino.",
-                "sec_nouvelle": "Nuova Firma", "desc_cobra": "La voce cruda di Algeri. Identità di strada 100% algerina.",
-                "sec_real": "Direzione Artistica", "desc_lexus": "Ogni video è un film, ogni inquadratura racconta una storia.",
-                "sec_prod": "Produzione Musicale", "desc_bilbox": "Il produttore dietro i più grandi successi."
-            }
-        };
+        // Initialize Icons
+        lucide.createIcons();
 
-        function toggleLangMenu() {
-            document.getElementById('lang-dropdown').classList.toggle('show');
-        }
+        // Data
+        const beats = [
+            { title: 'VATIMBORA', type: 'Afrotrap x Reggaeton', bpm: 140, plays: '1.2k', tag: 'PAID' },
+            { title: 'ARGELIA', type: 'Oriental Trap', bpm: 128, plays: '890', tag: 'PAID' },
+            { title: 'HABIBTI', type: 'Oriental Instrumental', bpm: 105, plays: '760', tag: 'PAID' },
+            { title: 'AUDI RS7', type: 'G-Funk / West Coast', bpm: 96, plays: '640', tag: 'PAID' },
+            { title: 'BILLIONAIRE', type: 'Hip-Hop Trap', bpm: 138, plays: '520', tag: 'PAID' },
+            { title: 'DIGITAL OASIS', type: 'Deep House', bpm: 124, plays: '480', tag: 'PAID' },
+            { title: 'ZIPLOC', type: 'Afro Drill', bpm: 145, plays: '410', tag: 'PAID' },
+            { title: 'BREAK YA NECK', type: 'Boom Bap', bpm: 90, plays: '390', tag: 'PAID' },
+            { title: 'VICE CITY', type: 'Synthwave Trap', bpm: 132, plays: '355', tag: 'PAID' },
+            { title: 'MANCHILD RMX', type: 'Pop Trap', bpm: 136, plays: '310', tag: 'PAID' }
+        ];
 
-        window.onclick = function(event) {
-            if (!event.target.matches('.lang-btn') && !event.target.matches('.lang-btn *')) {
-                let dropdowns = document.getElementsByClassName("lang-dropdown");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    let openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
+        const kits = [
+            { title: 'DIGITAL OASIS', type: 'DRUMS LOOP', price: 'FREE', isFree: true },
+            { title: 'DIGITAL OASIS', type: 'MELODY SAMPLE', price: 'FREE', isFree: true },
+            { title: 'ORIENTAL VOL.1', type: 'MELODY LOOP', price: 'Store' },
+            { title: 'VICE CITY Vol.4', type: 'SYNTH', price: 'Store' },
+            { title: 'ZIPLOC Vol.3', type: 'AFRO', price: 'Store' },
+            { title: 'BREAK YA NECK Vol.2', type: 'BOOM BAP', price: 'Store' },
+            { title: '23 NEW MELODY', type: 'FUTUR LOOPS', price: 'Store' },
+            { title: 'VOL.1 DRUMS LOOP', type: 'CLASSIC', price: 'Store' }
+        ];
 
-        function changeLang(lang) {
-            let data = translations[lang];
-            
-            // Mettre à jour le bouton
-            document.getElementById('current-flag').innerText = data.flag;
-            document.getElementById('current-lang').innerText = data.code;
-            
-            // Mettre à jour tous les éléments avec data-i18n
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                let key = el.getAttribute('data-i18n');
-                if(data[key]) {
-                    el.innerHTML = data[key];
-                }
+        // Populate Beats
+        const beatList = document.querySelector('.beat-list');
+        beats.forEach((beat, index) => {
+            const el = document.createElement('div');
+            el.className = 'beat-item' + (index === 0 ? ' active' : '');
+            el.innerHTML = `
+                <div class="beat-cover"><i data-lucide="music" style="opacity: 0.5;"></i></div>
+                <div class="beat-info">
+                    <div class="beat-title">${beat.title} <span style="font-size: 0.7rem; background: #333; padding: 2px 6px; border-radius: 4px;">${beat.tag}</span></div>
+                    <div class="beat-tags">DJBILBOX BEATS • ${beat.type}</div>
+                </div>
+                <div class="beat-meta">
+                    <span><i data-lucide="play" style="width: 14px;"></i> ${beat.plays}</span>
+                    <span>BPM ${beat.bpm}</span>
+                    <button class="buy-btn" onclick="openModal('${beat.title}', event)"><i data-lucide="shopping-cart" style="width: 16px;"></i> Buy</button>
+                </div>
+            `;
+            // Simple click to set active
+            el.addEventListener('click', () => {
+                document.querySelectorAll('.beat-item').forEach(i => i.classList.remove('active'));
+                el.classList.add('active');
             });
-            
-            // Si c'est en Arabe, on passe le site en RTL
-            if(lang === 'ar') {
-                document.body.style.direction = "rtl";
-            } else {
-                document.body.style.direction = "ltr";
-            }
+            beatList.appendChild(el);
+        });
+
+        // Populate Kits
+        const kitsGrid = document.querySelector('.kits-grid');
+        kits.forEach(kit => {
+            const el = document.createElement('div');
+            el.className = 'kit-card';
+            el.innerHTML = `
+                <div class="kit-img">
+                    <i data-lucide="box" style="width: 40px; height: 40px; opacity: 0.5;"></i>
+                    ${kit.isFree ? '<div class="badge-free">🆓 FREE</div>' : ''}
+                </div>
+                <div class="kit-info">
+                    <div class="kit-title">${kit.title}</div>
+                    <div class="kit-type">${kit.type}</div>
+                    <button class="btn ${kit.isFree ? 'btn-primary' : 'btn-outline'}" style="width: 100%; font-size: 0.9rem;">
+                        ${kit.isFree ? 'Download Free' : 'View on Store'}
+                    </button>
+                </div>
+            `;
+            kitsGrid.appendChild(el);
+        });
+        lucide.createIcons();
+
+        // Modal Logic
+        const modal = document.getElementById('licenseModal');
+        const modalTitle = document.getElementById('modalBeatTitle');
+        let currentBeatForModal = '';
+
+        window.openModal = function(beatName, event) {
+            event.stopPropagation();
+            currentBeatForModal = beatName;
+            modalTitle.innerText = beatName + " — LICENSES";
+            modal.classList.add('active');
         }
+
+        window.closeModal = function() {
+            modal.classList.remove('active');
+        }
+
+        window.addToCart = function(licenseType) {
+            closeModal();
+            // Trigger Notification
+            showNotification(`<strong>Guest</strong> purchased DJBILBOX BEATS – <strong>${currentBeatForModal}</strong> — ${licenseType}`);
+        }
+
+        // Notification Logic
+        function showNotification(htmlContent) {
+            const popup = document.getElementById('notifPopup');
+            document.getElementById('notifText').innerHTML = htmlContent;
+            popup.classList.add('show');
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 5000);
+        }
+
+        // Random Notification Demo
+        setTimeout(() => {
+            showNotification(`<strong>John Doe</strong> purchased DJBILBOX BEATS – <strong>VATIMBORA</strong> — Leasing`);
+        }, 3000);
+
     </script>
 </body>
 </html>
+```
