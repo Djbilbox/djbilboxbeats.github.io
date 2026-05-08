@@ -1,16 +1,3 @@
-Viewed index_complet.html:1-48
-
-Voici le code entièrement mis à jour selon toutes vos demandes :
-- Les cartes de licences (prix) reprennent le design exact avec l'en-tête sombre et les caractéristiques sur fond blanc. L'exclusive est sur commande à 99€.
-- Tous les Drum Kits sont gratuits avec un bouton rouge. Le logo de la boîte (cube) tourne en 3D quand vous passez la souris dessus.
-- Le panier d'achat fonctionne ! Quand vous ajoutez au panier depuis le modal, le nombre d'articles et le prix total en haut à droite se mettent à jour.
-- Les icônes des réseaux sociaux sont beaucoup plus belles et prennent leurs couleurs officielles au survol (YouTube en rouge, Spotify en vert, etc.).
-- Les statistiques ont été réajustées pour ressembler exactement à votre capture d'écran.
-- La section Playlists affiche maintenant de **vraies vidéos YouTube** que l'on peut lire directement sur le site.
-
-Voici le code complet à copier/coller dans votre fichier `index.html` :
-
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -23,7 +10,7 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome pour les beaux logos réseaux sociaux et icônes 3D -->
+    <!-- FontAwesome pour les beaux logos réseaux sociaux et icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -91,7 +78,7 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
         .btn-outline { background: transparent; border-color: var(--border-color); color: var(--text-main); }
         .btn-outline:hover { border-color: var(--accent-red); color: var(--accent-red); }
 
-        /* 1. HEADER & CART */
+        /* 1. HEADER & CART ICON */
         header {
             position: fixed; top: 0; left: 0; right: 0; height: 80px;
             background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px);
@@ -119,10 +106,33 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
             font-family: var(--font-accent); font-weight: 700; font-size: 1.2rem;
             color: var(--accent-red); background: rgba(230,57,70,0.1);
             padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid rgba(230,57,70,0.3);
-            transition: 0.3s;
+            transition: 0.3s; cursor: pointer;
         }
+        .cart-info:hover { background: rgba(230,57,70,0.2); }
         .cart-info.bounce { animation: cartBounce 0.4s ease; }
         @keyframes cartBounce { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        /* PANIER SIDEBAR */
+        .cart-sidebar {
+            position: fixed; top: 0; right: -400px; width: 400px; height: 100vh;
+            background: #111; border-left: 1px solid var(--border-color);
+            z-index: 1000; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
+            display: flex; flex-direction: column;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+        }
+        .cart-sidebar.open { right: 0; }
+        .cart-header { padding: 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+        .cart-header h3 { font-family: var(--font-display); font-size: 1.8rem; }
+        .cart-close-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        .cart-items { flex-grow: 1; overflow-y: auto; padding: 1.5rem; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #222; }
+        .cart-item-info h4 { font-family: var(--font-display); font-size: 1.2rem; }
+        .cart-item-info p { font-size: 0.8rem; color: var(--text-muted); }
+        .cart-item-price { font-family: var(--font-accent); font-weight: 700; font-size: 1.2rem; color: var(--accent-red); }
+        .cart-remove { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.9rem; margin-left: 10px; }
+        .cart-remove:hover { color: var(--accent-red); }
+        .cart-footer { padding: 1.5rem; border-top: 1px solid var(--border-color); background: #0a0a0a; }
+        .cart-total-box { display: flex; justify-content: space-between; font-family: var(--font-accent); font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
 
         /* 2. HERO */
         .hero {
@@ -155,7 +165,7 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
         .beat-cover { width: 50px; height: 50px; background: #222; border-radius: 4px; margin-right: 1.5rem; display: flex; align-items: center; justify-content: center; }
         .beat-info { flex-grow: 1; }
         .beat-title { font-weight: 600; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
-        .beat-meta { display: flex; align-items: center; gap: 2rem; font-family: var(--font-accent); font-size: 1.1rem; }
+        .beat-meta { display: flex; align-items: center; gap: 1.5rem; font-family: var(--font-accent); font-size: 1.1rem; }
         
         /* 4. PRICING CARDS (STYLE EXACT BUJAA BEATS) */
         .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
@@ -262,6 +272,25 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
 </head>
 <body>
 
+    <!-- PANIER SIDEBAR -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> TON PANIER</h3>
+            <button class="cart-close-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cartItemsList">
+            <!-- Items injectés ici par JS -->
+            <p style="color: #888; text-align: center; margin-top: 2rem;" id="emptyCartText">Ton panier est vide.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-box">
+                <span>TOTAL</span>
+                <span id="cartSidebarTotal">0.00€</span>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;">CHECKOUT</button>
+        </div>
+    </div>
+
     <!-- 1. HEADER -->
     <header>
         <div class="container header-content">
@@ -269,10 +298,10 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
             
             <nav class="nav-links">
                 <a href="#beats">Beats</a>
-                <a href="#licensing">Licensing</a>
-                <a href="#about">About</a>
                 <a href="#kits">Drum Kits</a>
                 <a href="#playlists">Playlists</a>
+                <a href="#licensing">Licensing</a>
+                <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </nav>
 
@@ -284,8 +313,8 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
                     <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" class="spotify"><i class="fa-brands fa-spotify"></i></a>
                     <a href="https://www.tiktok.com/@djbilboxbeats" class="tiktok"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
-                <!-- Panier Actif -->
-                <div class="cart-info" id="cartInfo">
+                <!-- Panier Cliquable -->
+                <div class="cart-info" id="cartInfo" onclick="toggleCart()">
                     <i class="fa-solid fa-cart-shopping"></i> <span id="cartCount">0</span> items — <span id="cartTotal">0.00</span>€
                 </div>
             </div>
@@ -298,8 +327,8 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
             <h1>DJBILBOX BEATS</h1>
             <p>Professional Beats. Instant Downloads. Secure Payments.</p>
             <div class="hero-badges">
-                <div><i class="fa-solid fa-music text-red"></i> Professional Beats</div>
-                <div><i class="fa-solid fa-download text-red"></i> Instant Downloads</div>
+                <div><i class="fa-solid fa-music text-red"></i> Free Downloads</div>
+                <div><i class="fa-solid fa-crown text-red"></i> Premium Licensing</div>
                 <div><i class="fa-solid fa-lock text-red"></i> Secure Payments</div>
             </div>
             <div style="margin-top: 3rem;">
@@ -342,11 +371,47 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
         </div>
     </section>
 
+    <!-- 6. DRUM KITS (TOUT GRATUIT + BOX 3D) -->
+    <section id="kits">
+        <div class="container">
+            <h2 class="section-title">🥁 DRUM KITS & SAMPLE PACKS</h2>
+            <p class="section-subtitle">High quality packs — ready to use in your productions.</p>
+
+            <div class="kits-grid" id="kitsGrid">
+                <!-- Généré par JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. YOUTUBE VIDEOS DIRECT -->
+    <section id="playlists">
+        <div class="container">
+            <h2 class="section-title">🎬 MES VIDÉOS YOUTUBE</h2>
+            <p class="section-subtitle">Regardez mes prods directement ici</p>
+            
+            <div class="video-grid">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/mv2Yeb9xpmg" title="Beat 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/H9l_Yt54tsg" title="Beat 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/4GUFY6QB4rY" title="Beat 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" class="btn btn-primary" style="font-size: 1.3rem; padding: 1rem 2rem;"><i class="fa-brands fa-youtube"></i> S'ABONNER À LA CHAÎNE »</a>
+            </div>
+        </div>
+    </section>
+
     <!-- 4. LICENSING & PRICING -->
     <section id="licensing">
         <div class="container">
-            <h2 class="section-title">Licensing & Pricing Options</h2>
-            <p class="section-subtitle">Compare what pricing option is right for you.</p>
+            <h2 class="section-title">Licensing Options</h2>
+            <p class="section-subtitle">Achetez des licences pour utiliser mes beats commercialement.</p>
 
             <div class="pricing-grid">
                 <!-- Leasing -->
@@ -422,6 +487,7 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
     <!-- 5. ABOUT STATS -->
     <section id="about">
         <div class="container">
+            <h2 class="section-title">STATISTIQUES</h2>
             <div class="about-stats">
                 <div>
                     <div class="stat-value">760+</div>
@@ -439,45 +505,6 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
                     <div class="stat-value">524K</div>
                     <div class="stat-label">VUES/MOIS TIKTOK</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. DRUM KITS (TOUT GRATUIT + BOX 3D) -->
-    <section id="kits">
-        <div class="container">
-            <h2 class="section-title">🥁 DRUM KITS & SAMPLE PACKS</h2>
-            <p class="section-subtitle">High quality packs — ready to use in your productions.</p>
-
-            <div class="kits-grid" id="kitsGrid">
-                <!-- Généré par JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. YOUTUBE VIDEOS DIRECT -->
-    <section id="playlists">
-        <div class="container">
-            <h2 class="section-title">🎬 MES VIDÉOS YOUTUBE</h2>
-            <p class="section-subtitle">Regardez mes prods directement ici</p>
-            
-            <div class="video-grid">
-                <!-- Video 1 -->
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/mv2Yeb9xpmg" title="Beat 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <!-- Video 2 -->
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/H9l_Yt54tsg" title="Beat 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <!-- Video 3 -->
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/4GUFY6QB4rY" title="Beat 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" class="btn btn-primary" style="font-size: 1.3rem; padding: 1rem 2rem;"><i class="fa-brands fa-youtube"></i> S'ABONNER À LA CHAÎNE »</a>
             </div>
         </div>
     </section>
@@ -512,39 +539,83 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
     <div class="notification-popup" id="notifPopup">
         <i class="fa-solid fa-circle-check" style="color: #4ade80; font-size: 2rem;"></i>
         <div>
-            <div class="notif-text" id="notifText">Beat ajouté au panier</div>
+            <div class="notif-text" id="notifText">Article ajouté au panier</div>
             <div class="notif-time">À l'instant</div>
         </div>
     </div>
 
     <script>
-        // LOGIQUE DU PANIER D'ACHAT
-        let cartItems = 0;
+        // LOGIQUE DU PANIER D'ACHAT (SIDEBAR)
+        let cartItems = [];
         let cartTotalPrice = 0.00;
 
-        function addToCart(price, licenseType) {
-            // Mise à jour des valeurs
-            cartItems += 1;
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+        }
+
+        function addToCart(price, licenseType, beatName = null) {
+            const itemTitle = beatName ? beatName : (currentBeatForModal || 'Licence');
+            
+            // Si c'est gratuit, on télécharge directement
+            if(price === 0) {
+                showNotification(`<strong>${itemTitle}</strong> téléchargé gratuitement !`);
+                return;
+            }
+
+            // Mise à jour des valeurs du panier
+            cartItems.push({ title: itemTitle, type: licenseType, price: price });
             cartTotalPrice += price;
             
-            // Mise à jour de l'affichage dans le header
-            document.getElementById('cartCount').innerText = cartItems;
-            document.getElementById('cartTotal').innerText = cartTotalPrice.toFixed(2);
-            
-            // Animation du panier
+            updateCartUI();
+
+            // Animation du bouton du header
             const cartElement = document.getElementById('cartInfo');
             cartElement.classList.remove('bounce');
             void cartElement.offsetWidth; // reset animation
             cartElement.classList.add('bounce');
 
-            // Fermer modal si ouvert
+            // Fermer modal si ouvert et ouvrir le panier
             closeModal();
+            document.getElementById('cartSidebar').classList.add('open');
 
             // Afficher la notification
-            showNotification(`<strong>${currentBeatForModal || 'Licence'} (${licenseType})</strong> ajouté au panier.`);
+            showNotification(`<strong>${itemTitle} (${licenseType})</strong> ajouté au panier.`);
         }
 
-        // GENERATION DES BEATS
+        function removeFromCart(index) {
+            cartTotalPrice -= cartItems[index].price;
+            cartItems.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // Header stats
+            document.getElementById('cartCount').innerText = cartItems.length;
+            document.getElementById('cartTotal').innerText = cartTotalPrice.toFixed(2);
+            document.getElementById('cartSidebarTotal').innerText = cartTotalPrice.toFixed(2) + '€';
+
+            // Sidebar list
+            const list = document.getElementById('cartItemsList');
+            document.getElementById('emptyCartText').style.display = cartItems.length === 0 ? 'block' : 'none';
+            
+            let html = '';
+            cartItems.forEach((item, index) => {
+                html += `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <h4>${item.title}</h4>
+                        <p>${item.type}</p>
+                    </div>
+                    <div style="display:flex; align-items:center;">
+                        <span class="cart-item-price">${item.price.toFixed(2)}€</span>
+                        <button class="cart-remove" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>`;
+            });
+            list.innerHTML = html + (cartItems.length === 0 ? '<p style="color:#888; text-align:center; margin-top:2rem;">Ton panier est vide.</p>' : '');
+        }
+
+        // GENERATION DES BEATS (AVEC BOUTON FREE DOWNLOAD)
         const beats = [
             { title: 'VATIMBORA', type: 'Afrotrap x Reggaeton', bpm: 140, plays: '1.2k' },
             { title: 'ARGELIA', type: 'Oriental Trap', bpm: 128, plays: '890' },
@@ -565,7 +636,10 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
                     <div class="beat-meta">
                         <span><i class="fa-solid fa-play"></i> ${beat.plays}</span>
                         <span>BPM ${beat.bpm}</span>
-                        <button class="btn btn-outline" style="padding: 0.3rem 0.8rem; font-size: 0.9rem;" onclick="openModal('${beat.title}', event)"><i class="fa-solid fa-cart-plus"></i> BUY</button>
+                        <!-- Bouton Gratuit -->
+                        <button class="btn btn-outline" style="padding: 0.3rem 0.8rem; font-size: 0.9rem;" onclick="addToCart(0, 'Free Download', '${beat.title}'); event.stopPropagation();"><i class="fa-solid fa-download"></i> FREE</button>
+                        <!-- Bouton Licence -->
+                        <button class="btn btn-primary" style="padding: 0.3rem 0.8rem; font-size: 0.9rem;" onclick="openModal('${beat.title}', event)"><i class="fa-solid fa-cart-plus"></i> BUY</button>
                     </div>
                 </div>
             `;
@@ -594,8 +668,8 @@ Voici le code complet à copier/coller dans votre fichier `index.html` :
                     <div class="kit-info">
                         <div class="kit-title">${kit.title}</div>
                         <div class="kit-type">${kit.type}</div>
-                        <button class="btn btn-primary" style="width: 100%; font-size: 0.9rem;" onclick="window.open('https://djbilboxbeats.com', '_blank')">
-                            DOWNLOAD FREE
+                        <button class="btn btn-primary" style="width: 100%; font-size: 0.9rem;" onclick="addToCart(0, 'Free Pack', '${kit.title}')">
+                            <i class="fa-solid fa-download"></i> DOWNLOAD FREE
                         </button>
                     </div>
                 </div>
