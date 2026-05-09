@@ -10,23 +10,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome pour les beaux logos réseaux sociaux et icônes -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR"></script>
+    
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
         :root {
-            --bg-main: #0a0a0a;
-            --bg-surface: #111111;
+            --bg-main: #050505;
+            --bg-surface: #0f0f0f;
             --bg-surface-light: #1a1a1a;
-            --accent-red: #e63946;
+            --accent-red: #ff3333;
             --accent-orange: #ff6b35;
-            --text-main: #f0f0f0;
-            --text-muted: #888888;
-            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-color: rgba(255, 255, 255, 0.1);
             
             --font-display: 'Bebas Neue', sans-serif;
             --font-body: 'Inter', sans-serif;
             --font-accent: 'Rajdhani', sans-serif;
+            
+            --glass-bg: rgba(15, 15, 15, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,664 +51,584 @@
             position: relative;
         }
 
-        /* Texture Grain / Noise */
-        body::before {
-            content: '';
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
-            opacity: 0.03; pointer-events: none; z-index: 1000;
+        /* Noise Texture Overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
         }
 
-        a { color: inherit; text-decoration: none; transition: 0.3s ease; }
+        a { color: inherit; text-decoration: none; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
         ul { list-style: none; }
 
-        h1, h2, h3, h4, .font-display { font-family: var(--font-display); letter-spacing: 1px; font-weight: 400; }
-        .section-title { font-size: 3rem; margin-bottom: 0.5rem; color: var(--text-main); text-align: center; }
-        .section-subtitle { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 3rem; text-align: center; }
+        h1, h2, h3, h4, .font-display { font-family: var(--font-display); letter-spacing: 2px; font-weight: 400; text-transform: uppercase; }
+        .section-title { font-size: 4rem; margin-bottom: 0.5rem; text-align: center; background: linear-gradient(to bottom, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-subtitle { font-size: 1rem; color: var(--text-muted); margin-bottom: 4rem; text-align: center; text-transform: uppercase; letter-spacing: 4px; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        section { padding: 5rem 0; border-bottom: 1px solid var(--border-color); }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 8rem 0; position: relative; }
 
-        /* BOUTONS */
+        /* BUTTONS */
         .btn {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 0.8rem 1.5rem; font-family: var(--font-accent); font-size: 1.1rem;
-            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-            border-radius: 4px; cursor: pointer; transition: all 0.3s ease;
-            border: 1px solid transparent; gap: 0.5rem;
+            padding: 1rem 2rem; font-family: var(--font-accent); font-size: 1rem;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+            border-radius: 2px; cursor: pointer; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid transparent; gap: 0.75rem; position: relative; overflow: hidden;
         }
         .btn-primary {
             background: var(--accent-red); color: white;
-            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+            box-shadow: 0 10px 20px rgba(255, 51, 51, 0.2);
         }
         .btn-primary:hover {
-            background: #f02d3d; box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5);
-            transform: translateY(-2px);
+            background: #ff0000; transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 51, 51, 0.4);
         }
-        .btn-outline { background: transparent; border-color: var(--border-color); color: var(--text-main); }
-        .btn-outline:hover { border-color: var(--accent-red); color: var(--accent-red); }
+        .btn-outline { 
+            background: transparent; border-color: var(--border-color); color: var(--text-main); 
+        }
+        .btn-outline:hover { 
+            border-color: var(--accent-red); color: white; background: rgba(255, 51, 51, 0.1);
+        }
 
-        /* 1. HEADER & CART ICON */
+        /* HEADER */
         header {
-            position: fixed; top: 0; left: 0; right: 0; height: 80px;
-            background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color); z-index: 100;
+            position: fixed; top: 0; left: 0; right: 0; height: 90px;
+            background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color); z-index: 1000;
             display: flex; align-items: center;
         }
         .header-content { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .logo { font-family: 'Brush Script MT', cursive, sans-serif; font-size: 1.8rem; color: white; text-decoration: underline; text-decoration-color: var(--accent-red); text-underline-offset: 6px; }
-        .nav-links { display: flex; gap: 2rem; font-size: 0.9rem; text-transform: uppercase; font-weight: 500; }
-        .nav-links a:hover { color: var(--accent-red); }
+        .logo { 
+            font-family: var(--font-display); font-size: 2.2rem; color: white; 
+            letter-spacing: -1px; display: flex; align-items: center; gap: 10px;
+        }
+        .logo span { color: var(--accent-red); }
+        .nav-links { display: flex; gap: 2.5rem; font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 2px; }
+        .nav-links a { color: var(--text-muted); }
+        .nav-links a:hover { color: white; }
 
-        .header-right { display: flex; align-items: center; gap: 1.5rem; }
-        .social-icons-nav { display: flex; gap: 1rem; align-items: center; }
-        .social-icons-nav a { font-size: 1.3rem; color: var(--text-muted); transition: color 0.3s, transform 0.3s; }
-        
-        /* Couleurs officielles réseaux sociaux au survol */
-        .social-icons-nav a.instagram:hover { color: #E1306C; transform: scale(1.2); }
-        .social-icons-nav a.youtube:hover { color: #FF0000; transform: scale(1.2); }
-        .social-icons-nav a.facebook:hover { color: #1877F2; transform: scale(1.2); }
-        .social-icons-nav a.spotify:hover { color: #1DB954; transform: scale(1.2); }
-        .social-icons-nav a.tiktok:hover { color: #00f2fe; transform: scale(1.2); }
+        .header-right { display: flex; align-items: center; gap: 2rem; }
+        .social-icons-nav { display: flex; gap: 1.2rem; align-items: center; }
+        .social-icons-nav a { font-size: 1.2rem; color: var(--text-muted); }
+        .social-icons-nav a:hover { transform: translateY(-3px); }
+        .social-icons-nav a.instagram:hover { color: #E1306C; }
+        .social-icons-nav a.youtube:hover { color: #FF0000; }
+        .social-icons-nav a.spotify:hover { color: #1DB954; }
+        .social-icons-nav a.tiktok:hover { color: #fff; }
 
         .cart-info {
-            display: flex; align-items: center; gap: 0.5rem;
-            font-family: var(--font-accent); font-weight: 700; font-size: 1.2rem;
-            color: var(--accent-red); background: rgba(230,57,70,0.1);
-            padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid rgba(230,57,70,0.3);
+            display: flex; align-items: center; gap: 0.8rem;
+            font-family: var(--font-accent); font-weight: 700; font-size: 1rem;
+            color: white; background: var(--bg-surface-light);
+            padding: 0.6rem 1.2rem; border-radius: 4px; border: 1px solid var(--border-color);
             transition: 0.3s; cursor: pointer;
         }
-        .cart-info:hover { background: rgba(230,57,70,0.2); }
-        .cart-info.bounce { animation: cartBounce 0.4s ease; }
-        @keyframes cartBounce { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .cart-info:hover { border-color: var(--accent-red); background: rgba(255, 51, 51, 0.05); }
 
-        /* PANIER SIDEBAR */
+        /* CART SIDEBAR */
         .cart-sidebar {
-            position: fixed; top: 0; right: -400px; width: 400px; height: 100vh;
-            background: #111; border-left: 1px solid var(--border-color);
-            z-index: 1000; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
-            display: flex; flex-direction: column;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+            position: fixed; top: 0; right: -450px; width: 450px; height: 100vh;
+            background: var(--bg-surface); border-left: 1px solid var(--border-color);
+            z-index: 2000; transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex; flex-direction: column; padding: 2rem;
+            box-shadow: -20px 0 60px rgba(0,0,0,0.8);
         }
         .cart-sidebar.open { right: 0; }
-        .cart-header { padding: 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
-        .cart-header h3 { font-family: var(--font-display); font-size: 1.8rem; }
-        .cart-close-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
-        .cart-items { flex-grow: 1; overflow-y: auto; padding: 1.5rem; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #222; }
-        .cart-item-info h4 { font-family: var(--font-display); font-size: 1.2rem; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .cart-close-btn { background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; }
+        .cart-items { flex-grow: 1; overflow-y: auto; }
+        .cart-item { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 1.5rem 0; border-bottom: 1px solid var(--border-color); 
+        }
+        .cart-item-info h4 { font-size: 1.1rem; margin-bottom: 0.2rem; }
         .cart-item-info p { font-size: 0.8rem; color: var(--text-muted); }
         .cart-item-price { font-family: var(--font-accent); font-weight: 700; font-size: 1.2rem; color: var(--accent-red); }
-        .cart-remove { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.9rem; margin-left: 10px; }
-        .cart-remove:hover { color: var(--accent-red); }
-        .cart-footer { padding: 1.5rem; border-top: 1px solid var(--border-color); background: #0a0a0a; }
-        .cart-total-box { display: flex; justify-content: space-between; font-family: var(--font-accent); font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .cart-footer { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color); }
+        .cart-total { display: flex; justify-content: space-between; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; }
 
-        /* 2. HERO */
+        /* HERO */
         .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center; position: relative;
-            background-image: linear-gradient(to bottom, rgba(10,10,10,0.6), rgba(10,10,10,1)), url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover; background-position: center; text-align: center; padding-top: 80px;
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(rgba(5,5,5,0.7), rgba(5,5,5,1)), url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center; text-align: center;
         }
-        .hero h1 { font-size: clamp(4rem, 8vw, 7rem); margin-bottom: 1rem; color: white; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
-        .hero p { font-size: 1.2rem; color: #ddd; margin-bottom: 2rem; letter-spacing: 2px; text-transform: uppercase; }
-        .hero-badges { display: flex; justify-content: center; gap: 2rem; font-family: var(--font-accent); font-size: 1.1rem; font-weight: 600; }
-        .hero-badges div { display: flex; align-items: center; gap: 0.5rem; background: rgba(0,0,0,0.5); padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid var(--border-color); }
+        .hero-content h1 { font-size: clamp(5rem, 12vw, 10rem); line-height: 0.9; margin-bottom: 1.5rem; color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .hero-content p { font-size: 1.2rem; color: var(--text-muted); letter-spacing: 8px; margin-bottom: 3rem; }
 
-        /* 3. BEAT STORE */
-        .store-interface { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .store-controls { display: flex; justify-content: space-between; padding: 1rem; background: var(--bg-surface-light); border-bottom: 1px solid var(--border-color); }
-        .store-search input { background: var(--bg-main); border: 1px solid var(--border-color); color: white; padding: 0.5rem 1rem; border-radius: 4px; outline: none; }
-        
-        .player-header { display: flex; align-items: center; padding: 1.5rem; background: #141414; border-bottom: 1px solid var(--border-color); position: relative; overflow: hidden; gap: 1.5rem;}
-        .play-btn { background: var(--accent-red); border: none; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; transition: 0.3s; font-size: 1.2rem; }
-        .play-btn:hover { transform: scale(1.05); }
-        
-        .progress-container { flex-grow: 1; display: flex; align-items: center; gap: 1rem; font-family: var(--font-accent); }
-        .progress-bar-bg { flex-grow: 1; height: 6px; background: #333; border-radius: 3px; position: relative; cursor: pointer; }
-        .progress-bar-fill { position: absolute; top: 0; left: 0; height: 100%; background: linear-gradient(90deg, var(--accent-red), var(--accent-orange)); width: 30%; border-radius: 3px; }
+        /* SPOTIFY PLAYER */
+        .spotify-section { background: var(--bg-surface); }
+        .spotify-container { 
+            background: #121212; border-radius: 12px; overflow: hidden; 
+            box-shadow: var(--shadow-premium); border: 1px solid var(--glass-border);
+        }
 
-        .beat-list { height: 400px; overflow-y: auto; }
-        .beat-item { display: flex; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border-color); transition: 0.2s; cursor: pointer; }
-        .beat-item:hover, .beat-item.active { background: rgba(255,255,255,0.03); }
-        .beat-item.active { border-left: 4px solid var(--accent-red); }
-        .beat-cover { width: 50px; height: 50px; background: #222; border-radius: 4px; margin-right: 1.5rem; display: flex; align-items: center; justify-content: center; }
-        .beat-info { flex-grow: 1; }
-        .beat-title { font-weight: 600; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
-        .beat-meta { display: flex; align-items: center; gap: 1.5rem; font-family: var(--font-accent); font-size: 1.1rem; }
-        
-        /* 4. PRICING CARDS (STYLE EXACT BUJAA BEATS) */
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+        /* PRICING */
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
         .pricing-card {
-            background: #fff; /* Fond blanc pour les features */
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: transform 0.3s;
+            background: var(--bg-surface); border: 1px solid var(--border-color);
+            border-radius: 12px; transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex; flex-direction: column; overflow: hidden;
         }
-        .pricing-card:hover { transform: translateY(-5px); }
+        .pricing-card:hover { transform: translateY(-10px); border-color: var(--accent-red); }
+        .pricing-header { padding: 3rem 2rem; text-align: center; background: rgba(255, 255, 255, 0.02); }
+        .pricing-price { font-size: 4rem; font-weight: 700; color: white; margin: 1rem 0; font-family: var(--font-accent); }
+        .pricing-price span { font-size: 1.5rem; vertical-align: top; color: var(--accent-red); }
+        .pricing-old-price { text-decoration: line-through; color: var(--text-muted); font-size: 1.2rem; margin-right: 0.5rem; }
+        .pricing-features { padding: 2rem; flex-grow: 1; }
+        .pricing-features li { padding: 0.8rem 0; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; color: var(--text-muted); }
+        .pricing-features li i { color: var(--accent-red); margin-right: 10px; }
+        .pricing-footer { padding: 2rem; }
 
-        .pricing-header {
-            background: #252525;
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            border-bottom: 4px solid var(--accent-red);
-            position: relative;
+        /* KITS GRID */
+        .kits-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; }
+        .kit-card {
+            background: var(--bg-surface); border-radius: 12px; border: 1px solid var(--border-color);
+            overflow: hidden; transition: 0.4s; position: relative;
         }
-        
-        .pricing-card.unlimited .pricing-header { background: #2d2d2d; border-color: #ffd700; }
-        .pricing-card.exclusive .pricing-header { background: #1a1a1a; border-color: #ff6b35; }
-
-        .pricing-title { font-family: var(--font-body); font-size: 1.4rem; font-weight: 400; margin-bottom: 1rem; }
-        
-        .pricing-price { font-family: var(--font-body); font-size: 4rem; font-weight: 700; line-height: 1; }
-        .pricing-price span { font-size: 2rem; vertical-align: top; font-weight: 400; }
-        
-        .pricing-target { font-size: 0.85rem; margin-top: 1rem; color: #fff; }
-        .pricing-card.leasing .pricing-target { color: #fff; }
-        .pricing-card.unlimited .pricing-target { color: #00e5ff; font-weight: bold; }
-        .pricing-card.exclusive .pricing-target { color: #ff9800; font-weight: bold; }
-
-        .pricing-body { padding: 0; flex-grow: 1; display: flex; flex-direction: column; }
-        .pricing-features { list-style: none; margin: 0; padding: 0; }
-        .pricing-features li {
-            padding: 0.8rem 1rem;
-            border-bottom: 1px dotted #ccc;
-            font-size: 0.8rem;
-            color: #333;
-            text-transform: uppercase;
-            font-weight: 600;
-            text-align: center;
+        .kit-card:hover { border-color: var(--accent-red); transform: scale(1.02); }
+        .kit-img-wrapper { position: relative; padding-top: 100%; overflow: hidden; background: #000; }
+        .kit-img { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            object-fit: cover; transition: 0.6s; filter: grayscale(20%);
         }
-        .pricing-features li:last-child { border-bottom: none; }
-        
-        .pricing-btn-container { padding: 1.5rem; text-align: center; background: #f9f9f9; border-top: 1px solid #eee; }
-
-        /* 5. ABOUT STATS (Réplique image) */
-        .about-stats {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            margin: 3rem 0;
-            padding: 2rem 0;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
+        .kit-card:hover .kit-img { transform: scale(1.1); filter: grayscale(0%); }
+        .kit-info { padding: 2rem; }
+        .kit-title { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .kit-badge { 
+            position: absolute; top: 1.5rem; right: 1.5rem; background: var(--accent-red);
+            color: white; font-weight: 800; padding: 0.4rem 1rem; border-radius: 2px;
+            font-family: var(--font-accent); font-size: 0.8rem; z-index: 10;
         }
-        .stat-value { font-family: var(--font-display); font-size: 2.5rem; color: white; line-height: 1; margin-bottom: 0.5rem; }
-        .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* 6. DRUM KITS (Boîtes 3D) */
-        .kits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-        .kit-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; transition: 0.3s; text-align: center; }
-        .kit-card:hover { border-color: var(--accent-red); }
-        
-        .kit-img {
-            height: 200px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; position: relative;
-            perspective: 1000px;
+        /* NOTIFICATION */
+        #notification {
+            position: fixed; bottom: 30px; left: 30px; background: white; color: black;
+            padding: 1.2rem 2.5rem; border-radius: 4px; font-weight: 700; z-index: 3000;
+            transform: translateX(-150%); transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4); display: flex; align-items: center; gap: 15px;
         }
-        .cube-icon { font-size: 4rem; color: #555; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.5s; }
-        .kit-card:hover .cube-icon { transform: translateY(-10px) rotateY(180deg) scale(1.2); color: var(--accent-red); }
-        
-        .badge-free { position: absolute; top: 10px; right: 10px; background: var(--accent-red); color: white; font-family: var(--font-accent); font-weight: 700; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
-        
-        .kit-info { padding: 1.5rem; }
-        .kit-title { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 0.2rem; }
-        .kit-type { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; text-transform: uppercase; }
+        #notification.show { transform: translateX(0); }
+        #notification i { color: var(--accent-red); font-size: 1.5rem; }
 
-        /* 8. YOUTUBE PLAYLISTS */
-        .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 0 10px 20px rgba(0,0,0,0.5); transition: 0.3s; }
-        .video-wrapper:hover { border-color: var(--accent-red); transform: translateY(-5px); }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        /* 10. FOOTER & MODALS */
-        footer { background: #050505; padding: 4rem 0 2rem; text-align: center; }
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 1000; display: none; align-items: center; justify-content: center; }
-        .modal-overlay.active { display: flex; }
-        .modal-content { background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 8px; width: 90%; max-width: 900px; padding: 2rem; position: relative; }
-        .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: white; cursor: pointer; font-size: 1.5rem; }
-
-        .notification-popup {
-            position: fixed; bottom: 20px; left: 20px; background: var(--bg-surface-light); border-left: 3px solid var(--accent-red);
-            padding: 1rem; border-radius: 4px; display: flex; align-items: center; gap: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            z-index: 999; transform: translateX(-150%); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* MODAL */
+        .modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
+            z-index: 3000; display: none; align-items: center; justify-content: center; padding: 2rem;
         }
-        .notification-popup.show { transform: translateX(0); }
+        .modal.active { display: flex; }
+        .modal-content { 
+            background: var(--bg-surface); border: 1px solid var(--border-color);
+            max-width: 600px; width: 100%; padding: 3rem; border-radius: 12px; position: relative;
+        }
+        .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; cursor: pointer; color: var(--text-muted); }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-red); border-radius: 10px; }
+
+        @media (max-width: 1024px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 3rem; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- PANIER SIDEBAR -->
+    <!-- NOTIFICATION -->
+    <div id="notification">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="notifMessage">Ajouté au panier</span>
+    </div>
+
+    <!-- CART SIDEBAR -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h3><i class="fa-solid fa-cart-shopping"></i> TON PANIER</h3>
+            <h3><i class="fa-solid fa-bag-shopping"></i> Ton Panier</h3>
             <button class="cart-close-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="cart-items" id="cartItemsList">
-            <!-- Items injectés ici par JS -->
-            <p style="color: #888; text-align: center; margin-top: 2rem;" id="emptyCartText">Ton panier est vide.</p>
+            <p style="color: var(--text-muted); text-align: center; margin-top: 4rem;">Votre panier est vide.</p>
         </div>
         <div class="cart-footer">
-            <div class="cart-total-box">
-                <span>TOTAL</span>
-                <span id="cartSidebarTotal">0.00€</span>
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotalDisplay">0.00€</span>
             </div>
-            <button class="btn btn-primary" style="width: 100%;">CHECKOUT</button>
+            <button class="btn btn-primary" style="width: 100%;" onclick="startCheckout()">Finaliser la commande</button>
+            <div id="paypal-button-container" style="margin-top: 1rem; display: none;"></div>
         </div>
     </div>
 
-    <!-- 1. HEADER -->
+    <!-- MODAL CHECKOUT SUCCESS -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">&times;</div>
+            <h2 style="margin-bottom: 1rem; color: var(--accent-red);">Merci pour votre commande !</h2>
+            <p id="checkoutMsg">Vos liens de téléchargement et contrats arrivent par email.</p>
+            <div id="downloadLinks" style="margin-top: 2rem;"></div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
     <header>
         <div class="container header-content">
-            <a href="#" class="logo">DJBILBOX BEATS</a>
+            <a href="#" class="logo">BILBOX<span>BEATS</span></a>
             
             <nav class="nav-links">
-                <a href="#beats">Beats</a>
+                <a href="#beats">Beat Store</a>
                 <a href="#kits">Drum Kits</a>
-                <a href="#playlists">Playlists</a>
                 <a href="#licensing">Licensing</a>
                 <a href="#about">About</a>
-                <a href="#contact">Contact</a>
             </nav>
 
             <div class="header-right">
                 <div class="social-icons-nav">
-                    <a href="https://www.instagram.com/djbilboxbeats" class="instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/@djbilboxbeats" class="youtube"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://www.facebook.com/Djbilboxbeats" class="facebook"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" class="spotify"><i class="fa-brands fa-spotify"></i></a>
-                    <a href="https://www.tiktok.com/@djbilboxbeats" class="tiktok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/djbilboxbeats" target="_blank" class="instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" class="youtube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="spotify"><i class="fa-brands fa-spotify"></i></a>
+                    <a href="https://www.tiktok.com/@djbilboxbeats" target="_blank" class="tiktok"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
-                <!-- Panier Cliquable -->
-                <div class="cart-info" id="cartInfo" onclick="toggleCart()">
-                    <i class="fa-solid fa-cart-shopping"></i> <span id="cartCount">0</span> items — <span id="cartTotal">0.00</span>€
+                <div class="cart-info" onclick="toggleCart()">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cartCount">0</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- 2. HERO -->
+    <!-- HERO -->
     <section class="hero">
-        <div class="container">
-            <h1>DJBILBOX BEATS</h1>
-            <p>Professional Beats. Instant Downloads. Secure Payments.</p>
-            <div class="hero-badges">
-                <div><i class="fa-solid fa-music text-red"></i> Free Downloads</div>
-                <div><i class="fa-solid fa-crown text-red"></i> Premium Licensing</div>
-                <div><i class="fa-solid fa-lock text-red"></i> Secure Payments</div>
-            </div>
-            <div style="margin-top: 3rem;">
-                <a href="#beats" class="btn btn-primary">Browse Beat Store <i class="fa-solid fa-arrow-down"></i></a>
+        <div class="container hero-content">
+            <h1>CRAFTING THE FUTURE <span>OF SOUND</span></h1>
+            <p>PROFESSIONAL BEATS • INSTANT DELIVERY • EXCLUSIVE RIGHTS</p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center;">
+                <a href="#beats" class="btn btn-primary">Browse Store</a>
+                <a href="#kits" class="btn btn-outline">Drum Kits</a>
             </div>
         </div>
     </section>
 
-    <!-- 3. BEAT STORE -->
-    <section id="beats">
+    <!-- BEAT STORE (SPOTIFY SYNC) -->
+    <section id="beats" class="spotify-section">
         <div class="container">
-            <h2 class="section-title">🎧 BEAT STORE</h2>
-            <div class="store-interface">
-                <div class="store-controls">
-                    <div style="display: flex; gap: 1rem;">
-                        <button class="btn btn-outline" style="padding: 0.3rem 1rem;">Sort <i class="fa-solid fa-chevron-down"></i></button>
-                    </div>
-                    <div>
-                        <input type="text" placeholder="Search beats..." style="background: var(--bg-main); border: 1px solid var(--border-color); color: white; padding: 0.5rem 1rem; border-radius: 4px; outline: none;">
-                    </div>
-                </div>
-
-                <div class="player-header">
-                    <i class="fa-solid fa-backward-step" style="cursor: pointer; font-size:1.2rem;"></i>
-                    <button class="play-btn"><i class="fa-solid fa-play"></i></button>
-                    <i class="fa-solid fa-forward-step" style="cursor: pointer; font-size:1.2rem;"></i>
-                    
-                    <div class="progress-container">
-                        <span style="font-size: 0.9rem;">00:00</span>
-                        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
-                        <span style="font-size: 0.9rem;">03:18</span>
-                    </div>
-                    <i class="fa-solid fa-volume-high" style="cursor: pointer; font-size:1.2rem;"></i>
-                </div>
-
-                <div class="beat-list" id="beatList">
-                    <!-- Généré par JS -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. DRUM KITS (TOUT GRATUIT + BOX 3D) -->
-    <section id="kits">
-        <div class="container">
-            <h2 class="section-title">🥁 DRUM KITS & SAMPLE PACKS</h2>
-            <p class="section-subtitle">High quality packs — ready to use in your productions.</p>
-
-            <div class="kits-grid" id="kitsGrid">
-                <!-- Généré par JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. YOUTUBE VIDEOS DIRECT -->
-    <section id="playlists">
-        <div class="container">
-            <h2 class="section-title">🎬 MES VIDÉOS YOUTUBE</h2>
-            <p class="section-subtitle">Regardez mes prods directement ici</p>
+            <h2 class="section-title">Beat Store</h2>
+            <p class="section-subtitle">Synced with Spotify Artist Profile</p>
             
-            <div class="video-grid">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/mv2Yeb9xpmg" title="Beat 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/H9l_Yt54tsg" title="Beat 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/4GUFY6QB4rY" title="Beat 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" class="btn btn-primary" style="font-size: 1.3rem; padding: 1rem 2rem;"><i class="fa-brands fa-youtube"></i> S'ABONNER À LA CHAÎNE »</a>
+            <div class="spotify-container">
+                <!-- User's Spotify Playlist Embed -->
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1E4vT8N6S2U8Q1?utm_source=generator&theme=0" width="100%" height="600" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- 4. LICENSING & PRICING -->
+    <!-- LICENSING -->
     <section id="licensing">
         <div class="container">
-            <h2 class="section-title">Licensing Options</h2>
-            <p class="section-subtitle">Achetez des licences pour utiliser mes beats commercialement.</p>
+            <h2 class="section-title">Licensing</h2>
+            <p class="section-subtitle">Premium rights for your hits</p>
 
             <div class="pricing-grid">
                 <!-- Leasing -->
-                <div class="pricing-card leasing">
+                <div class="pricing-card">
                     <div class="pricing-header">
-                        <div class="pricing-title">Leasing</div>
-                        <div class="pricing-price"><span>€</span>29,99</div>
-                        <div class="pricing-target">For artists starting out</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li>UNTAGGED MP3</li>
-                            <li>USE FOR 1 MUSIC VIDEO</li>
-                            <li>UPLOAD TO YOUTUBE AND SOUNDCLOUD</li>
-                            <li>SELL 5,000 COPIES</li>
-                            <li>PAID PERFORMANCES</li>
-                            <li>MUST CREDIT ( Prod. by DJBILBOX )</li>
-                        </ul>
-                        <div class="pricing-btn-container">
-                            <button class="btn btn-primary" style="width: 100%; color: white;" onclick="addToCart(29.99, 'Leasing')">BUY NOW</button>
+                        <h3>Leasing</h3>
+                        <div class="pricing-price">
+                            <span class="pricing-old-price">29.99€</span>
+                            <span>€</span>0.00
                         </div>
+                        <p style="color: var(--accent-red); font-weight: 700; font-size: 0.8rem; letter-spacing: 2px;">PROMO OFFER</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> High Quality MP3</li>
+                        <li><i class="fa-solid fa-check"></i> 1 Music Video</li>
+                        <li><i class="fa-solid fa-check"></i> 5,000 Sales Limit</li>
+                        <li><i class="fa-solid fa-check"></i> Credit Required</li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Leasing', 0, 'Standard Beat')">Add to Cart</button>
                     </div>
                 </div>
 
                 <!-- Unlimited -->
-                <div class="pricing-card unlimited">
+                <div class="pricing-card" style="border-color: var(--accent-red);">
                     <div class="pricing-header">
-                        <i class="fa-solid fa-crown" style="position: absolute; right: 20px; top: 20px; color: #ffd700; font-size: 1.5rem;"></i>
-                        <div class="pricing-title">Unlimited</div>
-                        <div class="pricing-price"><span>€</span>49,99</div>
-                        <div class="pricing-target">For Professional artists</div>
-                    </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li>UNTAGGED MP3 + WAVE</li>
-                            <li>TRACKED OUT FILES / STEMS</li>
-                            <li>USE FOR UNLIMITED MUSIC VIDEO</li>
-                            <li>UPLOAD TO SPOTIFY, APPLE MUSIC ETC.</li>
-                            <li>SELL UNLIMITED COPIES</li>
-                            <li>UNLIMITED STREAMS</li>
-                        </ul>
-                        <div class="pricing-btn-container">
-                            <button class="btn btn-primary" style="width: 100%;" onclick="addToCart(49.99, 'Unlimited')">BUY NOW</button>
+                        <h3>Unlimited</h3>
+                        <div class="pricing-price">
+                            <span class="pricing-old-price">49.99€</span>
+                            <span>€</span>0.00
                         </div>
+                        <p style="color: var(--accent-red); font-weight: 700; font-size: 0.8rem; letter-spacing: 2px;">PROMO OFFER</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> MP3 + WAV + STEMS</li>
+                        <li><i class="fa-solid fa-check"></i> Unlimited Streams</li>
+                        <li><i class="fa-solid fa-check"></i> Spotify/Apple Music</li>
+                        <li><i class="fa-solid fa-check"></i> No Credit Required</li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Unlimited', 0, 'Premium Beat')">Add to Cart</button>
                     </div>
                 </div>
 
                 <!-- Exclusive -->
-                <div class="pricing-card exclusive">
+                <div class="pricing-card">
                     <div class="pricing-header">
-                        <div class="pricing-title">EXCLUSIVE</div>
-                        <div class="pricing-price"><span>€</span>99,00</div>
-                        <div class="pricing-target">For Professional artists or Companies</div>
+                        <h3>Exclusive</h3>
+                        <div class="pricing-price"><span>€</span>99.00</div>
+                        <p style="color: var(--text-muted); font-size: 0.8rem; letter-spacing: 2px;">FULL OWNERSHIP</p>
                     </div>
-                    <div class="pricing-body">
-                        <ul class="pricing-features">
-                            <li>UNTAGGED MP3 + WAVE</li>
-                            <li>TRACKED OUT FILES / STEMS</li>
-                            <li>USE FOR UNLIMITED MUSIC VIDEO</li>
-                            <li>UPLOAD TO SPOTIFY, APPLE MUSIC ETC.</li>
-                            <li>SELL UNLIMITED COPIES</li>
-                            <li>FULL EXCLUSIVE RIGHTS</li>
-                        </ul>
-                        <div class="pricing-btn-container">
-                            <button class="btn btn-outline" style="width: 100%; color: black; border-color: black;" onclick="addToCart(99.00, 'Exclusive')">SUR COMMANDE</button>
-                        </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Full Exclusive Rights</li>
+                        <li><i class="fa-solid fa-check"></i> Contract of Ownership</li>
+                        <li><i class="fa-solid fa-check"></i> Removed from Store</li>
+                        <li><i class="fa-solid fa-check"></i> Signature via PayPal</li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <button class="btn btn-outline" style="width: 100%;" onclick="addToCart('Exclusive', 99.00, 'Custom Project')">Order Now</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. ABOUT STATS -->
-    <section id="about">
+    <!-- DRUM KITS -->
+    <section id="kits">
         <div class="container">
-            <h2 class="section-title">STATISTIQUES</h2>
-            <div class="about-stats">
-                <div>
-                    <div class="stat-value">760+</div>
-                    <div class="stat-label">BEATS PRODUITS</div>
-                </div>
-                <div>
-                    <div class="stat-value">5</div>
-                    <div class="stat-label">ANS D'EXPÉRIENCE</div>
-                </div>
-                <div>
-                    <div class="stat-value">1.4K</div>
-                    <div class="stat-label">ABONNÉS YOUTUBE</div>
-                </div>
-                <div>
-                    <div class="stat-value">524K</div>
-                    <div class="stat-label">VUES/MOIS TIKTOK</div>
-                </div>
+            <h2 class="section-title">Drum Kits</h2>
+            <p class="section-subtitle">Professional sound design packs</p>
+
+            <div class="kits-grid" id="kitsGrid">
+                <!-- Packs will be generated by JS -->
             </div>
         </div>
     </section>
 
-    <!-- MODAL & POPUP -->
-    <div class="modal-overlay" id="licenseModal">
-        <div class="modal-content" style="background: #111;">
-            <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-            <h2 class="font-display" style="font-size: 2.5rem; margin-bottom: 1.5rem;" id="modalBeatTitle">CHOOSE LICENSE</h2>
-            
-            <div style="display: flex; gap: 1rem;">
-                <div style="flex: 1; border: 1px solid var(--border-color); padding: 1.5rem; border-top: 3px solid var(--accent-red); border-radius: 4px; text-align: center;">
-                    <h3 class="font-display" style="font-size: 1.8rem;">LEASING</h3>
-                    <div style="font-family: var(--font-accent); font-size: 2rem; font-weight: bold; margin: 1rem 0;">29,99€</div>
-                    <button class="btn btn-outline" style="width: 100%;" onclick="addToCart(29.99, 'Leasing')">ADD TO CART</button>
-                </div>
-                <div style="flex: 1; border: 1px solid var(--accent-red); padding: 1.5rem; border-radius: 4px; text-align: center; position: relative;">
-                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent-red); padding: 2px 10px; border-radius: 10px; font-size: 0.8rem; font-weight: bold;">BEST VALUE</div>
-                    <h3 class="font-display" style="font-size: 1.8rem;">UNLIMITED</h3>
-                    <div style="font-family: var(--font-accent); font-size: 2rem; font-weight: bold; margin: 1rem 0;">49,99€</div>
-                    <button class="btn btn-primary" style="width: 100%;" onclick="addToCart(49.99, 'Unlimited')">ADD TO CART</button>
-                </div>
-                <div style="flex: 1; border: 1px solid var(--border-color); padding: 1.5rem; border-top: 3px solid #ffd700; border-radius: 4px; text-align: center;">
-                    <h3 class="font-display" style="font-size: 1.8rem; color: #ffd700;">EXCLUSIVE</h3>
-                    <div style="font-family: var(--font-accent); font-size: 2rem; font-weight: bold; margin: 1rem 0;">99,00€</div>
-                    <button class="btn btn-outline" style="width: 100%;" onclick="addToCart(99.00, 'Exclusive')">SUR COMMANDE</button>
+    <!-- ABOUT -->
+    <section id="about" style="background: var(--bg-surface);">
+        <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+            <div>
+                <h2 style="font-size: 3rem; margin-bottom: 2rem;">DJBILBOX <span style="color: var(--accent-red);">BEATS</span></h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem;">
+                    Producteur et Beatmaker passionné, je crée des ambiances uniques pour les artistes en quête de sonorités professionnelles. Spécialisé dans l'Afro, le Trap et les sonorités orientales.
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <div style="font-family: var(--font-accent); font-size: 3rem; font-weight: 700; color: var(--accent-red);">760+</div>
+                        <div style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Beats Produits</div>
+                    </div>
+                    <div>
+                        <div style="font-family: var(--font-accent); font-size: 3rem; font-weight: 700; color: var(--accent-red);">524K</div>
+                        <div style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">TikTok Views</div>
+                    </div>
                 </div>
             </div>
+            <div style="background: #111; padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                <img src="https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=800&q=80" style="width: 100%; border-radius: 8px;" alt="Studio">
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="notification-popup" id="notifPopup">
-        <i class="fa-solid fa-circle-check" style="color: #4ade80; font-size: 2rem;"></i>
-        <div>
-            <div class="notif-text" id="notifText">Article ajouté au panier</div>
-            <div class="notif-time">À l'instant</div>
+    <footer style="padding: 4rem 0; border-top: 1px solid var(--border-color); text-align: center;">
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 2rem;">BILBOX<span>BEATS</span></div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 DJBILBOX BEATS. All Rights Reserved.</p>
         </div>
-    </div>
+    </footer>
 
     <script>
-        // LOGIQUE DU PANIER D'ACHAT (SIDEBAR)
-        let cartItems = [];
-        let cartTotalPrice = 0.00;
+        // --- DATA ---
+        const drumKits = [
+            { name: "Digital Oasis", type: "Drums & Loops", img: "file:///C:/Users/User/.gemini/antigravity/brain/32b10eb9-a34e-47fd-9042-984ecdfe6b29/kit_digital_oasis_1778301222454.png" },
+            { name: "Ziploc Vol.3", type: "Afro Beats", img: "file:///C:/Users/User/.gemini/antigravity/brain/32b10eb9-a34e-47fd-9042-984ecdfe6b29/kit_ziploc_1778301322852.png" },
+            { name: "Oriental Vol.1", type: "Ethnic Vibes", img: "file:///C:/Users/User/.gemini/antigravity/brain/32b10eb9-a34e-47fd-9042-984ecdfe6b29/kit_oriental_vol1_1778301506281.png" },
+            { name: "Vice City", type: "Synthwave", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" }
+        ];
+
+        let cart = [];
+        let total = 0;
+
+        // --- CORE FUNCTIONS ---
+        function init() {
+            renderKits();
+            initPaypal();
+        }
 
         function toggleCart() {
             document.getElementById('cartSidebar').classList.toggle('open');
         }
 
-        function addToCart(price, licenseType, beatName = null) {
-            const itemTitle = beatName ? beatName : (currentBeatForModal || 'Licence');
+        function addToCart(license, price, beatName) {
+            cart.push({ license, price, name: beatName });
+            updateCart();
+            showNotification(`${license} ajouté !`);
+        }
+
+        function updateCart() {
+            const list = document.getElementById('cartItemsList');
+            const count = document.getElementById('cartCount');
+            const totalDisplay = document.getElementById('cartTotalDisplay');
             
-            // Si c'est gratuit, on télécharge directement
-            if(price === 0) {
-                showNotification(`<strong>${itemTitle}</strong> téléchargé gratuitement !`);
-                return;
+            count.innerText = cart.length;
+            
+            if (cart.length === 0) {
+                list.innerHTML = `<p style="color: var(--text-muted); text-align: center; margin-top: 4rem;">Votre panier est vide.</p>`;
+                total = 0;
+            } else {
+                list.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p>${item.license}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="cart-item-price">${item.price === 0 ? 'GRATUIT' : item.price.toFixed(2) + '€'}</div>
+                            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:var(--accent-red); cursor:pointer; font-size:0.8rem;">Supprimer</button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                total = cart.reduce((sum, item) => sum + item.price, 0);
             }
-
-            // Mise à jour des valeurs du panier
-            cartItems.push({ title: itemTitle, type: licenseType, price: price });
-            cartTotalPrice += price;
             
-            updateCartUI();
-
-            // Animation du bouton du header
-            const cartElement = document.getElementById('cartInfo');
-            cartElement.classList.remove('bounce');
-            void cartElement.offsetWidth; // reset animation
-            cartElement.classList.add('bounce');
-
-            // Fermer modal si ouvert et ouvrir le panier
-            closeModal();
-            document.getElementById('cartSidebar').classList.add('open');
-
-            // Afficher la notification
-            showNotification(`<strong>${itemTitle} (${licenseType})</strong> ajouté au panier.`);
+            totalDisplay.innerText = total.toFixed(2) + '€';
+            
+            // Show/Hide PayPal based on total
+            const paypalBtn = document.getElementById('paypal-button-container');
+            const checkoutBtn = document.querySelector('.cart-footer .btn-primary');
+            
+            if (total > 0) {
+                paypalBtn.style.display = 'block';
+                checkoutBtn.style.display = 'none';
+            } else {
+                paypalBtn.style.display = 'none';
+                checkoutBtn.style.display = 'block';
+            }
         }
 
         function removeFromCart(index) {
-            cartTotalPrice -= cartItems[index].price;
-            cartItems.splice(index, 1);
-            updateCartUI();
+            cart.splice(index, 1);
+            updateCart();
         }
 
-        function updateCartUI() {
-            // Header stats
-            document.getElementById('cartCount').innerText = cartItems.length;
-            document.getElementById('cartTotal').innerText = cartTotalPrice.toFixed(2);
-            document.getElementById('cartSidebarTotal').innerText = cartTotalPrice.toFixed(2) + '€';
-
-            // Sidebar list
-            const list = document.getElementById('cartItemsList');
-            document.getElementById('emptyCartText').style.display = cartItems.length === 0 ? 'block' : 'none';
-            
-            let html = '';
-            cartItems.forEach((item, index) => {
-                html += `
-                <div class="cart-item">
-                    <div class="cart-item-info">
-                        <h4>${item.title}</h4>
-                        <p>${item.type}</p>
-                    </div>
-                    <div style="display:flex; align-items:center;">
-                        <span class="cart-item-price">${item.price.toFixed(2)}€</span>
-                        <button class="cart-remove" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>`;
-            });
-            list.innerHTML = html + (cartItems.length === 0 ? '<p style="color:#888; text-align:center; margin-top:2rem;">Ton panier est vide.</p>' : '');
-        }
-
-        // GENERATION DES BEATS (AVEC BOUTON FREE DOWNLOAD)
-        const beats = [
-            { title: 'VATIMBORA', type: 'Afrotrap x Reggaeton', bpm: 140, plays: '1.2k' },
-            { title: 'ARGELIA', type: 'Oriental Trap', bpm: 128, plays: '890' },
-            { title: 'HABIBTI', type: 'Oriental Instrumental', bpm: 105, plays: '760' },
-            { title: 'AUDI RS7', type: 'G-Funk / West Coast', bpm: 96, plays: '640' },
-            { title: 'BILLIONAIRE', type: 'Hip-Hop Trap', bpm: 138, plays: '520' }
-        ];
-
-        const beatList = document.getElementById('beatList');
-        beats.forEach((beat, index) => {
-            beatList.innerHTML += `
-                <div class="beat-item ${index === 0 ? 'active' : ''}" onclick="document.querySelectorAll('.beat-item').forEach(i=>i.classList.remove('active')); this.classList.add('active');">
-                    <div class="beat-cover"><i class="fa-solid fa-music"></i></div>
-                    <div class="beat-info">
-                        <div class="beat-title">${beat.title}</div>
-                        <div style="font-size: 0.85rem; color: #888;">DJBILBOX BEATS • ${beat.type}</div>
-                    </div>
-                    <div class="beat-meta">
-                        <span><i class="fa-solid fa-play"></i> ${beat.plays}</span>
-                        <span>BPM ${beat.bpm}</span>
-                        <!-- Bouton Gratuit -->
-                        <button class="btn btn-outline" style="padding: 0.3rem 0.8rem; font-size: 0.9rem;" onclick="addToCart(0, 'Free Download', '${beat.title}'); event.stopPropagation();"><i class="fa-solid fa-download"></i> FREE</button>
-                        <!-- Bouton Licence -->
-                        <button class="btn btn-primary" style="padding: 0.3rem 0.8rem; font-size: 0.9rem;" onclick="openModal('${beat.title}', event)"><i class="fa-solid fa-cart-plus"></i> BUY</button>
-                    </div>
-                </div>
-            `;
-        });
-
-        // GENERATION DES KITS (TOUS GRATUITS AVEC BOITE 3D)
-        const kits = [
-            { title: 'DIGITAL OASIS', type: 'DRUMS LOOP' },
-            { title: 'DIGITAL OASIS', type: 'MELODY SAMPLE' },
-            { title: 'ORIENTAL VOL.1', type: 'MELODY LOOP' },
-            { title: 'VICE CITY Vol.4', type: 'SYNTH' },
-            { title: 'ZIPLOC Vol.3', type: 'AFRO' },
-            { title: 'BREAK YA NECK Vol.2', type: 'BOOM BAP' },
-            { title: '23 NEW MELODY', type: 'FUTUR LOOPS' },
-            { title: 'VOL.1 DRUMS LOOP', type: 'CLASSIC' }
-        ];
-
-        const kitsGrid = document.getElementById('kitsGrid');
-        kits.forEach(kit => {
-            kitsGrid.innerHTML += `
+        function renderKits() {
+            const grid = document.getElementById('kitsGrid');
+            grid.innerHTML = drumKits.map(kit => `
                 <div class="kit-card">
-                    <div class="badge-free">🆓 FREE</div>
-                    <div class="kit-img">
-                        <i class="fa-solid fa-cube cube-icon"></i>
+                    <span class="kit-badge">FREE</span>
+                    <div class="kit-img-wrapper">
+                        <img src="${kit.img}" class="kit-img" alt="${kit.name}">
                     </div>
                     <div class="kit-info">
-                        <div class="kit-title">${kit.title}</div>
-                        <div class="kit-type">${kit.type}</div>
-                        <button class="btn btn-primary" style="width: 100%; font-size: 0.9rem;" onclick="addToCart(0, 'Free Pack', '${kit.title}')">
-                            <i class="fa-solid fa-download"></i> DOWNLOAD FREE
-                        </button>
+                        <div class="kit-title">${kit.name}</div>
+                        <div style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">${kit.type}</div>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Free Kit', 0, '${kit.name}')">Download Free</button>
                     </div>
                 </div>
-            `;
-        });
+            `).join('');
+        }
 
-        // MODAL & NOTIFICATIONS
-        const modal = document.getElementById('licenseModal');
-        const modalTitle = document.getElementById('modalBeatTitle');
-        let currentBeatForModal = '';
-
-        function openModal(beatName, event) {
-            event.stopPropagation();
-            currentBeatForModal = beatName;
-            modalTitle.innerText = beatName + " — LICENSES";
-            modal.classList.add('active');
+        function showNotification(msg) {
+            const notif = document.getElementById('notification');
+            document.getElementById('notifMessage').innerText = msg;
+            notif.classList.add('show');
+            setTimeout(() => notif.classList.remove('show'), 3000);
         }
 
         function closeModal() {
-            modal.classList.remove('active');
+            document.getElementById('checkoutModal').classList.remove('active');
         }
 
-        function showNotification(htmlContent) {
-            const popup = document.getElementById('notifPopup');
-            document.getElementById('notifText').innerHTML = htmlContent;
-            popup.classList.add('show');
-            setTimeout(() => { popup.classList.remove('show'); }, 4000);
+        // --- PDF GENERATION ---
+        async function generateContract(userName, beatName, licenseType) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(22);
+            doc.text("CONTRAT DE LICENCE DE DIFFUSION", 20, 30);
+            
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            doc.text(`Entre: DJBILBOX BEATS (Producteur)`, 20, 50);
+            doc.text(`Et: ${userName || 'L\'Artiste'} (Licencié)`, 20, 60);
+            
+            doc.setFont("helvetica", "bold");
+            doc.text(`Objet: Licence ${licenseType} pour l'œuvre "${beatName}"`, 20, 80);
+            
+            doc.setFont("helvetica", "normal");
+            let terms = "";
+            if (licenseType === "Leasing") {
+                terms = "Autorise 5000 ventes, 1 clip vidéo, crédit obligatoire (Prod. by DJBILBOX).";
+            } else if (licenseType === "Unlimited") {
+                terms = "Autorise streams illimités, Spotify/Apple Music illimité, pas de limite de vente.";
+            } else {
+                terms = "Cession complète des droits exclusifs de propriété intellectuelle.";
+            }
+            
+            doc.text(doc.splitTextToSize(terms, 170), 20, 90);
+            
+            doc.text("Signature du Producteur:", 20, 130);
+            doc.setFont("courier", "italic");
+            doc.text("DJBILBOX BEATS", 20, 140);
+            
+            return doc.output('bloburl');
         }
+
+        // --- CHECKOUT LOGIC ---
+        async function startCheckout() {
+            if (cart.length === 0) return;
+            
+            if (total === 0) {
+                // Free Checkout
+                const modal = document.getElementById('checkoutModal');
+                const linksContainer = document.getElementById('downloadLinks');
+                
+                linksContainer.innerHTML = '<h3>Vos fichiers :</h3>';
+                
+                for (const item of cart) {
+                    const pdfUrl = await generateContract('Client', item.name, item.license);
+                    linksContainer.innerHTML += `
+                        <div style="margin: 10px 0; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 4px;">
+                            <strong>${item.name}</strong><br>
+                            <a href="${pdfUrl}" target="_blank" style="color: var(--accent-red);">Télécharger Contrat (PDF)</a> | 
+                            <a href="#" style="color: var(--accent-red);">Télécharger Instru (WAV)</a>
+                        </div>
+                    `;
+                }
+                
+                modal.classList.add('active');
+                cart = [];
+                updateCart();
+            }
+        }
+
+        function initPaypal() {
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: { value: total.toString() }
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        showNotification('Paiement réussi !');
+                        startCheckout(); // Process downloads
+                    });
+                }
+            }).render('#paypal-button-container');
+        }
+
+        init();
     </script>
 </body>
 </html>
-```
