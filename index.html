@@ -123,10 +123,18 @@
         .nav-links a { color: var(--text-muted); }
         .nav-links a:hover { color: white; }
 
-        .header-right { display: flex; align-items: center; gap: 1.5rem; }
-        .social-icons-nav { display: flex; gap: 1rem; align-items: center; }
-        .social-icons-nav a { font-size: 1.2rem; color: var(--text-muted); }
-        .social-icons-nav a:hover { color: white; transform: translateY(-2px); }
+        /* TOP PLAYER */
+        .top-player { position: sticky; top: 0; left: 0; right: 0; height: 70px; background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); z-index: 1500; display: flex; align-items: center; padding: 0 2rem; display: none; transition: 0.5s; }
+        .top-player.active { display: flex; }
+        .player-info { display: flex; align-items: center; gap: 1rem; width: 250px; }
+        .player-art { width: 45px; height: 45px; border-radius: 4px; }
+        .player-title-info h4 { font-size: 0.9rem; margin: 0; color: white; }
+        .player-waveform { flex-grow: 1; height: 30px; margin: 0 2rem; background: rgba(255,255,255,0.05); border-radius: 4px; position: relative; overflow: hidden; cursor: pointer; }
+        .player-controls { display: flex; gap: 1.2rem; align-items: center; }
+        .control-btn { font-size: 1.2rem; color: white; cursor: pointer; }
+        .control-btn:hover { color: var(--accent-red); }
+        
+        header { position: sticky; top: -80px; } /* Optional: push header up when player is active, or keep both */
 
         .cart-info {
             display: flex; align-items: center; gap: 0.8rem;
@@ -137,6 +145,23 @@
         }
         .cart-info:hover { background: #ff0000; transform: scale(1.05); }
         .cart-total-header { margin-left: 5px; opacity: 0.8; }
+
+        /* YOUTUBE PLAYLISTS GRID */
+        .yt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+        .yt-card { background: var(--bg-surface); border-radius: 8px; overflow: hidden; transition: 0.3s; border: 1px solid var(--border-color); cursor: pointer; }
+        .yt-card:hover { transform: translateY(-5px); border-color: var(--accent-red); }
+        .yt-thumb-wrapper { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+        .yt-thumb { width: 100%; height: 100%; object-fit: cover; }
+        .yt-play-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
+        .yt-card:hover .yt-play-overlay { opacity: 1; }
+        .yt-play-overlay i { font-size: 3rem; color: white; }
+        .yt-info { padding: 1.2rem; }
+        .yt-title { font-weight: 700; font-size: 1rem; color: white; margin-bottom: 0.5rem; }
+
+        /* STATISTICS SECTION */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; padding: 4rem 0; }
+        .stat-item h2 { font-size: 3.5rem; color: var(--accent-red); font-family: var(--font-display); margin-bottom: 0.5rem; }
+        .stat-item p { color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
 
         /* CART SIDEBAR */
         .cart-sidebar {
@@ -346,13 +371,13 @@
         </div>
     </div>
 
-    <!-- BOTTOM PLAYER -->
-    <div class="bottom-player" id="bottomPlayer">
+    <!-- TOP PLAYER -->
+    <div class="top-player" id="topPlayer">
         <div class="player-info">
             <img src="" class="player-art" id="playerArt">
-            <div>
+            <div class="player-title-info">
                 <h4 id="playerTitle">Beat Title</h4>
-                <p id="playerBpm" style="font-size: 0.8rem; color: var(--text-muted);">140 BPM</p>
+                <p id="playerBpm" style="font-size: 0.7rem; color: var(--text-muted);">140 BPM</p>
             </div>
         </div>
         
@@ -362,7 +387,7 @@
             <i class="fa-solid fa-backward-step control-btn"></i>
             <i class="fa-solid fa-play control-btn" id="playBtn" onclick="togglePlay()"></i>
             <i class="fa-solid fa-forward-step control-btn"></i>
-            <div class="btn-buy-track" style="margin-left: 2rem;" id="playerBuyBtn">BUY 29.99€</div>
+            <div class="btn-buy-track" style="margin-left: 1.5rem; font-size: 0.8rem; padding: 0.4rem 0.8rem;" id="playerBuyBtn">BUY 29.99€</div>
         </div>
     </div>
 
@@ -399,6 +424,30 @@
             <div style="display: flex; gap: 1.5rem; justify-content: center;">
                 <a href="#beats" class="btn btn-primary">Browse Store</a>
                 <a href="#kits" class="btn btn-outline">Drum Kits</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATISTICS -->
+    <section id="stats" style="background: var(--bg-main); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h2>264</h2>
+                    <p>Total Tracks</p>
+                </div>
+                <div class="stat-item">
+                    <h2>5M+</h2>
+                    <p>Spotify Streams</p>
+                </div>
+                <div class="stat-item">
+                    <h2>10K+</h2>
+                    <p>Beats Sold</p>
+                </div>
+                <div class="stat-item">
+                    <h2>Multi</h2>
+                    <p>Platinum Producer</p>
+                </div>
             </div>
         </div>
     </section>
@@ -510,12 +559,11 @@
     <!-- PLAYLISTS -->
     <section id="playlists" style="background: var(--bg-surface);">
         <div class="container">
-            <h2 class="section-title">Official Playlists</h2>
-            <p class="section-subtitle">Curated by DJBILBOX BEATS</p>
+            <h2 class="section-title">YouTube Playlists</h2>
+            <p class="section-subtitle">Official Instrumentals & Tutorials</p>
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7mMZNSfaQiiAuexSS0jdQp?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <div class="yt-grid" id="ytGrid">
+                <!-- YouTube Playlists generated by JS -->
             </div>
         </div>
     </section>
@@ -555,22 +603,36 @@
     <script>
         // --- DATA ---
         const beats = [
-            { name: "VATIMBORA", bpm: 105, tags: ["Afro", "Reggaeton"], art: "https://images.unsplash.com/photo-1594122230689-45899d9e6f69?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
-            { name: "MANCHILD REMIX", bpm: 140, tags: ["R&B", "Trap"], art: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
-            { name: "KEEP WATCHING (RMX 2)", bpm: 95, tags: ["Drill", "Dark"], art: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
-            { name: "KEEP WATCHING (RMX)", bpm: 95, tags: ["Drill", "Trap"], art: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
-            { name: "ABU DHABI", bpm: 120, tags: ["Trap", "Balkan"], art: "https://images.unsplash.com/photo-1514525253361-bee8a187499b?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" },
-            { name: "RIDE", bpm: 128, tags: ["House", "Radio"], art: "https://images.unsplash.com/photo-1459749411177-042180ceea72?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" },
-            { name: "FLASHBACK", bpm: 140, tags: ["Dark", "Oldschool"], art: "https://images.unsplash.com/photo-1420161907993-e298aa234830?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" }
+            { name: "VATIMBORA", bpm: 105, tags: ["Afro", "Reggaeton"], art: "https://i.scdn.co/image/ab67616d0000b2734e56598379435f6063683669", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+            { name: "MANCHILD REMIX", bpm: 140, tags: ["R&B", "Trap"], art: "https://i.scdn.co/image/ab67616d0000b273b749666060c5c6c6c6c6c6c6", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+            { name: "KEEP WATCHING (RMX 2)", bpm: 95, tags: ["Drill", "Dark"], art: "https://i.scdn.co/image/ab67616d0000b273d9d9d9d9d9d9d9d9d9d9d9d9", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
+            { name: "ABU DHABI", bpm: 120, tags: ["Trap", "Balkan"], art: "https://i.scdn.co/image/ab67616d0000b273e5e5e5e5e5e5e5e5e5e5e5e5", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
+            { name: "RIDE", bpm: 128, tags: ["House", "Radio"], art: "https://i.scdn.co/image/ab67616d0000b273f6f6f6f6f6f6f6f6f6f6f6f6", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" },
+            { name: "FLASHBACK", bpm: 140, tags: ["Dark", "Oldschool"], art: "https://i.scdn.co/image/ab67616d0000b273a1a1a1a1a1a1a1a1a1a1a1a1", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" },
+            { name: "ARGELIA", bpm: 110, tags: ["Ethnic", "Afro"], art: "https://i.scdn.co/image/ab67616d0000b273b2b2b2b2b2b2b2b2b2b2b2b2", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" },
+            { name: "OMRI", bpm: 130, tags: ["Lofi", "Melodic"], art: "https://i.scdn.co/image/ab67616d0000b273c3c3c3c3c3c3c3c3c3c3c3c3", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" },
+            { name: "GOOD LIFE", bpm: 100, tags: ["Happy", "Pop"], art: "https://i.scdn.co/image/ab67616d0000b273d4d4d4d4d4d4d4d4d4d4d4d4", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" },
+            { name: "NOKIA", bpm: 145, tags: ["Grime", "Hard"], art: "https://i.scdn.co/image/ab67616d0000b273e5e5e5e5e5e5e5e5e5e5e5e5", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" }
         ];
 
         const drumKits = [
-            { name: "Vice City Vol. 4", type: "Drill Afrotrap", img: "kit_digital_oasis_1778301222454.png", price: 0 },
-            { name: "ORIENTAL ARABIC", type: "Loop Sample", img: "kit_oriental_vol1_1778301506281.png", price: 0 },
-            { name: "VOL.3 BLUE PACK", type: "Drums Loop", img: "kit_ziploc_1778301322852.png", price: 0 },
-            { name: "VOL.2 BREACK YA NECK", type: "Hip Hop", img: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80", price: 0 },
-            { name: "FUTUR MELODY", type: "23 Samples", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", price: 0 },
-            { name: "VOL.1 DRUMS LOOP", type: "11 Samples", img: "https://images.unsplash.com/photo-1514525253361-bee8a187499b?auto=format&fit=crop&w=800&q=80", price: 0 }
+            { name: "Vice City Vol. 4", type: "Drill Afrotrap", img: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80", link: "https://www.beatstars.com/sound-kit/245443" },
+            { name: "ORIENTAL ARABIC", type: "Loop Sample", img: "https://images.unsplash.com/photo-1514525253361-bee8a187499b?auto=format&fit=crop&w=800&q=80", link: "https://www.beatstars.com/sound-kit/238679" },
+            { name: "VOL.3 BLUE PACK", type: "Drums Loop", img: "https://images.unsplash.com/photo-1594122230689-45899d9e6f69?auto=format&fit=crop&w=800&q=80", link: "https://www.beatstars.com/sound-kit/237083" },
+            { name: "VOL.2 BREACK YA NECK", type: "Hip Hop", img: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80", link: "https://www.beatstars.com/sound-kit/194959" },
+            { name: "FUTUR MELODY", type: "23 Samples", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", link: "https://www.beatstars.com/sound-kit/143802" },
+            { name: "VOL.1 DRUMS LOOP", type: "11 Samples", img: "https://images.unsplash.com/photo-1514525253361-bee8a187499b?auto=format&fit=crop&w=800&q=80", link: "https://www.beatstars.com/sound-kit/143800" }
+        ];
+
+        const ytPlaylists = [
+            { title: "FL STUDIO", id: "PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ", thumb: "https://i.ytimg.com/vi/PmjSZbmIifM/maxresdefault.jpg" },
+            { title: "Rock Indie Alternative", id: "PLbtcZhy947NX_wb3vnR4vml6uUdHIyI9Y", thumb: "https://i.ytimg.com/vi/rOA2lTmEKF0/maxresdefault.jpg" },
+            { title: "KOMPA", id: "PLbtcZhy947NV9GwLUVD_a0jvCg00rHQjy", thumb: "https://i.ytimg.com/vi/3nbqgoyBuPY/maxresdefault.jpg" },
+            { title: "Oriental Instrumental", id: "PLbtcZhy947NUC6PqUplrygUgHJSTvS61u", thumb: "https://i.ytimg.com/vi/H6WMAMTFcXk/maxresdefault.jpg" },
+            { title: "Hip-hop Trap Drill", id: "PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg", thumb: "https://i.ytimg.com/vi/XvtoKUxGD7Y/maxresdefault.jpg" },
+            { title: "Afrotrap Type Beats", id: "PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_", thumb: "https://i.ytimg.com/vi/JyKh1VPJWlU/maxresdefault.jpg" },
+            { title: "Deephouse DNB", id: "PLbtcZhy947NV_wb3vnR4vml6uUdHIyI9Y", thumb: "https://i.ytimg.com/vi/rOA2lTmEKF0/maxresdefault.jpg" },
+            { title: "Music Mix & RMX", id: "PLbtcZhy947NW-W8-zB9-mE4v4fJ7f9I6-", thumb: "https://i.ytimg.com/vi/rOA2lTmEKF0/maxresdefault.jpg" }
         ];
 
         const licenses = [
@@ -578,12 +640,6 @@
             { id: "wav", name: "Premium (WAV)", price: 49.99, features: "WAV + MP3, 10000 Streams" },
             { id: "stems", name: "Unlimited (Stems)", price: 99.99, features: "Full Stems, Unlimited Streams" },
             { id: "exclusive", name: "Exclusive", price: 299.99, features: "Full Ownership, Removed from Store" }
-        ];
-
-        const drumKits = [
-            { name: "Digital Oasis", type: "Drums & Loops", img: "kit_digital_oasis_1778301222454.png", price: 0 },
-            { name: "Ziploc Vol.3", type: "Afro Beats", img: "kit_ziploc_1778301322852.png", price: 0 },
-            { name: "Oriental Vol.1", type: "Ethnic Vibes", img: "kit_oriental_vol1_1778301506281.png", price: 0 }
         ];
 
         let cart = [];
@@ -595,6 +651,7 @@
         function init() {
             renderTracklist();
             renderKits();
+            renderYTPlaylists();
             initPaypal();
             initTilt();
             
@@ -674,7 +731,7 @@
             document.getElementById('playerBuyBtn').innerText = `BUY 29.99€+`;
             document.getElementById('playerBuyBtn').onclick = () => openLicenseModal(index);
             
-            document.getElementById('bottomPlayer').classList.add('active');
+            document.getElementById('topPlayer').classList.add('active');
             
             wavesurfer.on('ready', () => {
                 wavesurfer.play();
@@ -770,14 +827,32 @@
             const grid = document.getElementById('kitsGrid');
             grid.innerHTML = drumKits.map(kit => `
                 <div class="kit-card">
-                    <span class="kit-badge">FREE</span>
+                    <span class="kit-badge">NEW</span>
                     <div class="kit-img-wrapper">
-                        <img src="${kit.img}" class="kit-img" alt="${kit.name}" onerror="this.src='https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80'">
+                        <img src="${kit.img}" class="kit-img" alt="${kit.name}">
                     </div>
                     <div class="kit-info">
                         <div class="kit-title">${kit.name}</div>
                         <div style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">${kit.type}</div>
-                        <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Free Kit', 0, '${kit.name}')">Download Free</button>
+                        <a href="${kit.link}" target="_blank" class="btn btn-primary" style="width: 100%; text-decoration: none; display: inline-block;">View on Beatstars</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderYTPlaylists() {
+            const grid = document.getElementById('ytGrid');
+            grid.innerHTML = ytPlaylists.map(pl => `
+                <div class="yt-card" onclick="window.open('https://www.youtube.com/playlist?list=${pl.id}', '_blank')">
+                    <div class="yt-thumb-wrapper">
+                        <img src="${pl.thumb}" class="yt-thumb" alt="${pl.title}" onerror="this.src='https://i.ytimg.com/vi/${pl.id.substring(2)}/hqdefault.jpg'">
+                        <div class="yt-play-overlay">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="yt-info">
+                        <div class="yt-title">${pl.title}</div>
+                        <div style="color: var(--text-muted); font-size: 0.8rem;">Official Playlist</div>
                     </div>
                 </div>
             `).join('');
