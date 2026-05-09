@@ -26,13 +26,15 @@
             --bg-surface-light: #1a1a1a;
             --accent-red: #ff3333;
             --accent-orange: #ff6b35;
+            --accent-gold: #ffd700;
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
-            --border-color: rgba(255, 255, 255, 0.1);
+            --border-color: rgba(255, 255, 255, 0.08);
             
             --font-display: 'Bebas Neue', sans-serif;
             --font-body: 'Inter', sans-serif;
             --font-accent: 'Rajdhani', sans-serif;
+            --font-signature: 'Brush Script MT', cursive;
             
             --glass-bg: rgba(15, 15, 15, 0.8);
             --glass-border: rgba(255, 255, 255, 0.05);
@@ -107,6 +109,8 @@
         .logo { 
             font-family: var(--font-display); font-size: 2.2rem; color: white; 
             letter-spacing: -1px; display: flex; align-items: center; gap: 10px;
+            text-decoration: underline; text-decoration-color: var(--accent-red);
+            text-underline-offset: 8px;
         }
         .logo span { color: var(--accent-red); }
         .nav-links { display: flex; gap: 2.5rem; font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 2px; }
@@ -278,8 +282,8 @@
     <div class="modal" id="checkoutModal">
         <div class="modal-content">
             <div class="modal-close" onclick="closeModal()">&times;</div>
-            <h2 style="margin-bottom: 1rem; color: var(--accent-red);">Merci pour votre commande !</h2>
-            <p id="checkoutMsg">Vos liens de téléchargement et contrats arrivent par email.</p>
+            <h2 style="margin-bottom: 1rem; color: var(--accent-red);">FÉLICITATIONS !</h2>
+            <p id="checkoutMsg" style="margin-bottom: 2rem;">Votre licence est prête. Vous pouvez télécharger votre contrat et vos fichiers ci-dessous.</p>
             <div id="downloadLinks" style="margin-top: 2rem;"></div>
         </div>
     </div>
@@ -331,7 +335,7 @@
             
             <div class="spotify-container">
                 <!-- DJBILBOX BEATS Artist Profile Embed -->
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/6S0Hw7F0i9Kx75Xh9oV5Z5?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="450" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
         </div>
     </section>
@@ -465,16 +469,16 @@
     <script>
         // --- DATA ---
         const drumKits = [
-            { name: "Digital Oasis", type: "Drums & Loops", img: "kit_digital_oasis_1778301222454.png" },
-            { name: "Ziploc Vol.3", type: "Afro Beats", img: "kit_ziploc_1778301322852.png" },
-            { name: "Oriental Vol.1", type: "Ethnic Vibes", img: "kit_oriental_vol1_1778301506281.png" },
+            { name: "Digital Oasis", type: "Drums & Loops", img: "kit_digital_oasis.png" },
+            { name: "Ziploc Vol.3", type: "Afro Beats", img: "kit_ziploc.png" },
+            { name: "Oriental Vol.1", type: "Ethnic Vibes", img: "kit_oriental.png" },
             { name: "Vice City", type: "Synthwave", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" }
         ];
 
         const loopPacks = [
-            { name: "Melodic Waves", type: "Synth Loops", spotify: "https://open.spotify.com/track/4uLU6hMCjBh62p7s1uXuAF" },
-            { name: "Midnight Soul", type: "Guitar Loops", spotify: "https://open.spotify.com/track/4uLU6hMCjBh62p7s1uXuAF" },
-            { name: "Urban Grit", type: "Percussion", spotify: "https://open.spotify.com/track/4uLU6hMCjBh62p7s1uXuAF" }
+            { name: "Vatimbora Pack", type: "Afro Trap", spotify: "https://open.spotify.com/track/7dyKV6dcZ4kyC2xHno12fN" },
+            { name: "Manchild Remix", type: "R&B / Soul", spotify: "https://open.spotify.com/track/3UyQ1zq8YpuSPfxojsk7VM" },
+            { name: "Keep Watching", type: "Deep Vibes", spotify: "https://open.spotify.com/track/6BcLzpB0ED6Ph3sx12pd9Q" }
         ];
 
         let cart = [];
@@ -597,47 +601,101 @@
             const doc = new jsPDF();
             const date = new Date().toLocaleDateString();
             
-            doc.setFont("helvetica", "bold");
-            doc.setFontSize(22);
-            doc.text("LICENSE AGREEMENT", 20, 30);
+            // Background / Border
+            doc.setDrawColor(255, 51, 51);
+            doc.setLineWidth(1);
+            doc.rect(5, 5, 200, 287); 
             
+            // Header
+            doc.setFillColor(5, 5, 5);
+            doc.rect(5, 5, 200, 40, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(28);
+            doc.text("DJBILBOX BEATS", 20, 25);
+            doc.setFontSize(12);
+            doc.text("CONTRAT DE CESSION DE DROITS D'UTILISATION", 20, 35);
+            
+            // Content
+            doc.setTextColor(0, 0, 0);
             doc.setFontSize(10);
             doc.setFont("helvetica", "normal");
-            doc.text(`Date: ${date}`, 150, 30);
+            doc.text(`Date : ${date}`, 160, 55);
+            
+            doc.setFontSize(11);
+            doc.text("Entre le Producteur :", 20, 70);
+            doc.setFont("helvetica", "bold");
+            doc.text("DJBILBOX BEATS (Le Concédant)", 20, 75);
+            
+            doc.setFont("helvetica", "normal");
+            doc.text("Et le Licencié :", 20, 85);
+            doc.setFont("helvetica", "bold");
+            doc.text(`${userName.toUpperCase()} (L'Utilisateur)`, 20, 90);
+            
+            doc.setDrawColor(230, 230, 230);
+            doc.line(20, 100, 190, 100);
+            
+            doc.setFontSize(14);
+            doc.text("OBJET DU CONTRAT", 20, 115);
+            doc.setFontSize(11);
+            doc.setFont("helvetica", "normal");
+            doc.text(`Titre de l'œuvre : ${beatName}`, 20, 125);
+            doc.text(`Type de Licence : ${licenseType}`, 20, 132);
             
             doc.setFontSize(12);
-            doc.text(`Producer: DJBILBOX BEATS`, 20, 50);
-            doc.text(`Buyer: ${userName || 'Valued Artist'}`, 20, 60);
-            
             doc.setFont("helvetica", "bold");
-            doc.text(`Work Title: "${beatName}"`, 20, 80);
-            doc.text(`License Type: ${licenseType}`, 20, 90);
+            doc.text("AUTORISATIONS DE DIFFUSION :", 20, 150);
             
-            doc.setFont("helvetica", "normal");
             doc.setFontSize(10);
+            doc.setFont("helvetica", "normal");
             let terms = "";
             if (licenseType === "Leasing") {
-                terms = "Grant non-exclusive rights for streaming and sync. Limit: 5000 sales/streams. Mandatory credit: 'Prod. by DJBILBOX BEATS'.";
+                terms = "Le Concédant autorise expressément l'Utilisateur à :\n" +
+                        "- Diffuser l'œuvre sur INTERNET (YouTube, Streaming, Réseaux Sociaux).\n" +
+                        "- Diffuser l'œuvre en RADIO (Locale, Web-radio).\n" +
+                        "- Utiliser l'œuvre pour des performances LIVE (Scènes, Clubs).\n\n" +
+                        "RESTRICTION : Limité à 5.000 flux/ventes. Crédit 'Prod. by DJBILBOX BEATS' obligatoire.";
             } else if (licenseType === "Unlimited") {
-                terms = "Grant unlimited non-exclusive rights for streaming, sync, and performances. Mandatory credit: 'Prod. by DJBILBOX BEATS'.";
+                terms = "Le Concédant autorise expressément l'Utilisateur à :\n" +
+                        "- Diffuser l'œuvre de manière ILLIMITÉE sur INTERNET et Plateformes de Streaming.\n" +
+                        "- Diffuser l'œuvre en RADIO (Nationale et Internationale).\n" +
+                        "- Utiliser l'œuvre pour des performances LIVE illimitées.\n\n" +
+                        "Usage commercial illimité. Crédit 'Prod. by DJBILBOX BEATS' obligatoire.";
             } else if (licenseType === "Loop License") {
-                terms = "Loops are royalty-free for original productions. Cannot be resold as-is. Mandatory credit: 'Prod. by DJBILBOX BEATS'.";
+                terms = "Les samples/loops sont cédés libres de droits pour toute production musicale originale.\n" +
+                        "- Autorise la diffusion sur Radio, Internet et Live.\n" +
+                        "- Interdiction formelle de revendre ou distribuer les fichiers en l'état.\n\n" +
+                        "Crédit 'Prod. by DJBILBOX BEATS' apprécié.";
             } else {
-                terms = "Full exclusive ownership and transfer of intellectual property.";
+                terms = "Cession totale et exclusive de tous les droits d'exploitation et de propriété intellectuelle.";
             }
             
-            doc.text(doc.splitTextToSize(terms, 170), 20, 110);
+            const splitTerms = doc.splitTextToSize(terms, 170);
+            doc.text(splitTerms, 20, 160);
             
-            doc.text("Digital Signature (Producer):", 20, 160);
+            // Signatures
+            const sigY = 220;
+            doc.setFont("helvetica", "bold");
+            doc.text("SIGNATURE PRODUCTEUR", 20, sigY);
+            doc.setFont("signature", "italic"); // Uses custom font if available, fallback to courier
             doc.setFont("courier", "italic");
-            doc.setFontSize(16);
-            doc.text("DJBILBOX BEATS", 20, 175);
+            doc.setFontSize(22);
+            doc.setTextColor(255, 51, 51);
+            doc.text("DJBILBOX BEATS", 20, sigY + 15);
             
+            doc.setTextColor(0, 0, 0);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(11);
+            doc.text("SIGNATURE LICENCIÉ", 120, sigY);
+            doc.setFont("courier", "italic");
+            doc.setFontSize(18);
+            doc.text(userName, 120, sigY + 15);
+            
+            // Bottom Info
             doc.setFont("helvetica", "normal");
-            doc.setFontSize(10);
-            doc.text("Digital Signature (Buyer):", 120, 160);
-            doc.setFont("courier", "italic");
-            doc.text(userName || "Verified Buyer", 120, 175);
+            doc.setFontSize(8);
+            doc.setTextColor(150, 150, 150);
+            doc.text("Ce contrat numérique est généré automatiquement et fait office de preuve légale d'acquisition de droits.", 105, 280, { align: "center" });
             
             return doc.output('bloburl');
         }
