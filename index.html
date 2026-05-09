@@ -375,6 +375,7 @@
                 <a href="#beats">Beat Store</a>
                 <a href="#kits">Drum Kits</a>
                 <a href="#licensing">Licensing</a>
+                <a href="#playlists">Playlists</a>
             </nav>
 
             <div class="header-right">
@@ -506,6 +507,19 @@
         </div>
     </section>
 
+    <!-- PLAYLISTS -->
+    <section id="playlists" style="background: var(--bg-surface);">
+        <div class="container">
+            <h2 class="section-title">Official Playlists</h2>
+            <p class="section-subtitle">Curated by DJBILBOX BEATS</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7mMZNSfaQiiAuexSS0jdQp?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
     <!-- ABOUT -->
     <section id="about" style="background: var(--bg-surface);">
         <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
@@ -542,9 +556,21 @@
         // --- DATA ---
         const beats = [
             { name: "VATIMBORA", bpm: 105, tags: ["Afro", "Reggaeton"], art: "https://images.unsplash.com/photo-1594122230689-45899d9e6f69?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
-            { name: "MANCHILD", bpm: 140, tags: ["R&B", "Trap"], art: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
-            { name: "KEEP WATCHING", bpm: 95, tags: ["Drill", "Dark"], art: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
-            { name: "ARGELIA", bpm: 110, tags: ["Ethnic", "Afro"], art: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" }
+            { name: "MANCHILD REMIX", bpm: 140, tags: ["R&B", "Trap"], art: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+            { name: "KEEP WATCHING (RMX 2)", bpm: 95, tags: ["Drill", "Dark"], art: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
+            { name: "KEEP WATCHING (RMX)", bpm: 95, tags: ["Drill", "Trap"], art: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
+            { name: "ABU DHABI", bpm: 120, tags: ["Trap", "Balkan"], art: "https://images.unsplash.com/photo-1514525253361-bee8a187499b?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" },
+            { name: "RIDE", bpm: 128, tags: ["House", "Radio"], art: "https://images.unsplash.com/photo-1459749411177-042180ceea72?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" },
+            { name: "FLASHBACK", bpm: 140, tags: ["Dark", "Oldschool"], art: "https://images.unsplash.com/photo-1420161907993-e298aa234830?auto=format&fit=crop&w=300&q=80", preview: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" }
+        ];
+
+        const drumKits = [
+            { name: "Vice City Vol. 4", type: "Drill Afrotrap", img: "kit_digital_oasis_1778301222454.png", price: 0 },
+            { name: "ORIENTAL ARABIC", type: "Loop Sample", img: "kit_oriental_vol1_1778301506281.png", price: 0 },
+            { name: "VOL.3 BLUE PACK", type: "Drums Loop", img: "kit_ziploc_1778301322852.png", price: 0 },
+            { name: "VOL.2 BREACK YA NECK", type: "Hip Hop", img: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80", price: 0 },
+            { name: "FUTUR MELODY", type: "23 Samples", img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80", price: 0 },
+            { name: "VOL.1 DRUMS LOOP", type: "11 Samples", img: "https://images.unsplash.com/photo-1514525253361-bee8a187499b?auto=format&fit=crop&w=800&q=80", price: 0 }
         ];
 
         const licenses = [
@@ -746,7 +772,7 @@
                 <div class="kit-card">
                     <span class="kit-badge">FREE</span>
                     <div class="kit-img-wrapper">
-                        <img src="${kit.img}" class="kit-img" alt="${kit.name}">
+                        <img src="${kit.img}" class="kit-img" alt="${kit.name}" onerror="this.src='https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80'">
                     </div>
                     <div class="kit-info">
                         <div class="kit-title">${kit.name}</div>
