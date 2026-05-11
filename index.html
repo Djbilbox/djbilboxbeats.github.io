@@ -188,7 +188,7 @@
         /* HERO */
         .hero {
             height: 100vh; display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(rgba(5,5,5,0.7), rgba(5,5,5,1)), url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(rgba(5,5,5,0.4), rgba(5,5,5,0.9)), url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1920&q=80');
             background-size: cover; background-position: center; text-align: center;
         }
         .hero-content h1 { font-size: clamp(5rem, 12vw, 10rem); line-height: 0.9; margin-bottom: 1.5rem; color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
@@ -218,49 +218,101 @@
         .pricing-features li i { color: var(--accent-red); margin-right: 10px; }
         .pricing-footer { padding: 2rem; }
 
-        /* KITS GRID WITH 3D EFFECT */
+        /* 3D DVD BOX STYLE FOR KITS */
         .kits-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 3rem; 
-            perspective: 1000px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
+            gap: 4rem; 
+            perspective: 1500px;
+            padding: 3rem 0;
         }
         .kit-card {
-            background: var(--bg-surface); 
-            border-radius: 12px; 
-            border: 1px solid var(--border-color);
-            transition: 0.3s; 
             position: relative;
+            width: 100%;
+            aspect-ratio: 3/4;
             transform-style: preserve-3d;
             cursor: pointer;
+            background: transparent;
+            border: none;
+            transform: rotateY(-20deg); /* Initial 3D tilt */
         }
-        .kit-card:hover { 
-            border-color: var(--accent-red); 
-            box-shadow: -20px 20px 50px rgba(0,0,0,0.5);
+        .kit-box-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            border-radius: 4px 12px 12px 4px;
+            overflow: hidden;
+            transform: translateZ(25px);
+            box-shadow: inset -5px 0 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
         }
-        .kit-img-wrapper { 
-            position: relative; 
-            padding-top: 100%; 
-            overflow: hidden; 
-            background: #000; 
-            border-radius: 12px 12px 0 0;
-            transform: translateZ(20px); /* Lift the image */
+        .kit-box-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-        .kit-img { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            object-fit: cover; transition: 0.6s; filter: grayscale(20%);
+        .kit-box-spine {
+            position: absolute;
+            width: 50px;
+            height: 100%;
+            background: linear-gradient(to right, #1a1a1a, #333);
+            left: 0;
+            transform-origin: left center;
+            transform: rotateY(-90deg) translateZ(25px);
+            border-radius: 8px 0 0 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 5px 0 15px rgba(0,0,0,0.9), inset 0 0 0 1px rgba(255,255,255,0.05);
         }
-        .kit-card:hover .kit-img { transform: scale(1.1); filter: grayscale(0%); }
-        .kit-info { 
-            padding: 2rem; 
-            transform: translateZ(30px); /* Lift the text even more */
+        .kit-box-top {
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            background: #151515;
+            top: 0;
+            transform-origin: top center;
+            transform: rotateX(90deg) translateZ(25px);
         }
-        .kit-title { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .kit-badge { 
-            position: absolute; top: 1.5rem; right: 1.5rem; background: var(--accent-red);
-            color: white; font-weight: 800; padding: 0.4rem 1rem; border-radius: 2px;
-            font-family: var(--font-accent); font-size: 0.8rem; z-index: 10;
-            transform: translateZ(50px);
+        .kit-spine-text {
+            color: white;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            white-space: nowrap;
+            transform: rotate(-90deg);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px black;
+        }
+        .kit-box-shadow {
+            position: absolute;
+            bottom: -30px;
+            left: 5%;
+            width: 90%;
+            height: 25px;
+            background: rgba(0,0,0,1);
+            filter: blur(20px);
+            transform: translateZ(-30px);
+        }
+        .kit-buy-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateZ(40px);
+            background: var(--accent-red);
+            color: white;
+            padding: 10px 25px;
+            font-family: var(--font-accent);
+            font-weight: 800;
+            font-size: 1rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+        .kit-card:hover .kit-buy-btn {
+            background: #ff0000;
+            transform: translateX(-50%) translateZ(60px) scale(1.1);
         }
 
         /* NOTIFICATION */
@@ -346,8 +398,8 @@
     <!-- HERO -->
     <section class="hero">
         <div class="container hero-content">
-            <h1>CRAFTING THE FUTURE <span>OF SOUND</span></h1>
-            <p>PROFESSIONAL BEATS • INSTANT DELIVERY • EXCLUSIVE RIGHTS</p>
+            <h1>WEST COAST <span>VIBES</span></h1>
+            <p>CLASSIC DRUM KITS • LA LIFESTYLE • MULTI-PLATINUM SOUNDS</p>
             <div style="display: flex; gap: 1.5rem; justify-content: center;">
                 <a href="#spotify" class="btn btn-primary">Écouter sur Spotify</a>
                 <a href="#kits" class="btn btn-outline">Drum Kits</a>
@@ -657,16 +709,17 @@
         function renderKits() {
             const grid = document.getElementById('kitsGrid');
             grid.innerHTML = drumKits.map(kit => `
-                <div class="kit-card">
-                    <span class="kit-badge">NEW</span>
-                    <div class="kit-img-wrapper">
-                        <img src="${kit.img}" class="kit-img" alt="${kit.name}">
+                <div class="kit-card" onclick="window.open('${kit.link}', '_blank')">
+                    <div class="kit-box-shadow"></div>
+                    <div class="kit-box-spine">
+                        <span class="kit-spine-text">${kit.name}</span>
                     </div>
-                    <div class="kit-info">
-                        <div class="kit-title">${kit.name}</div>
-                        <div style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem;">${kit.type}</div>
-                        <a href="${kit.link}" target="_blank" class="btn btn-primary" style="width: 100%; text-decoration: none; display: inline-block;">View on Beatstars</a>
+                    <div class="kit-box-top"></div>
+                    <div class="kit-box-front">
+                        <img src="${kit.img}" alt="${kit.name}">
+                        <div style="position:absolute; top:20px; left:-40px; background:var(--accent-red); padding:5px 45px; font-weight:900; font-family:var(--font-accent); font-size:1.1rem; color:white; transform:rotate(-45deg); box-shadow:0 10px 20px rgba(0,0,0,0.5);">FREE</div>
                     </div>
+                    <div class="kit-buy-btn">DOWNLOAD</div>
                 </div>
             `).join('');
         }
