@@ -882,7 +882,7 @@
         function renderYTPlaylists() {
             const grid = document.getElementById('ytGrid');
             grid.innerHTML = ytPlaylists.map(pl => `
-                <div class="yt-card" onclick="window.open('https://www.youtube.com/playlist?list=${pl.id}', '_blank')">
+                <div class="yt-card" onclick="openYtModal('${pl.title}', '${pl.id}')">
                     <div class="yt-thumb-wrapper">
                         <img src="${pl.thumb}" class="yt-thumb" alt="${pl.title}" onerror="this.src='https://i.ytimg.com/vi/${pl.id.substring(2)}/hqdefault.jpg'">
                         <div class="yt-play-overlay">
