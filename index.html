@@ -272,19 +272,15 @@
 
         /* HERO */
         .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(rgba(5,5,5,0.4), rgba(5,5,5,0.9)), url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover; background-position: center; text-align: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(rgba(5, 5, 5, 0.4), rgba(5, 5, 5, 0.9)), url('img/hero-bg.jpg') center/cover no-repeat, url('https://images.unsplash.com/photo-1590509618163-9524f2b96ff2?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            margin-top: 80px;
         }
         .hero-content h1 { font-size: clamp(5rem, 12vw, 10rem); line-height: 0.9; margin-bottom: 1.5rem; color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .hero-content p { font-size: 1.2rem; color: var(--text-muted); letter-spacing: 8px; margin-bottom: 3rem; }
-
-        /* SPOTIFY PLAYER */
-        .spotify-section { background: var(--bg-surface); }
-        .spotify-container { 
-            background: #121212; border-radius: 12px; overflow: hidden; 
-            box-shadow: var(--shadow-premium); border: 1px solid var(--glass-border);
-        }
 
         /* PRICING */
         .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
@@ -461,7 +457,7 @@
             <a href="#" class="logo">BILBOX<span>BEATS</span></a>
             
             <nav class="nav-links">
-                <a href="#spotify">Discographie</a>
+                <a href="#discography">Discographie</a>
                 <a href="#kits">Drum Kits</a>
                 <a href="#playlists">Playlists</a>
             </nav>
@@ -472,7 +468,7 @@
                     <a href="https://www.instagram.com/djbilboxbeats" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/instagram.svg" style="width:18px; height:18px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="Instagram"></a>
                     <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/youtube.svg" style="width:18px; height:18px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="YouTube"></a>
                     <a href="https://soundcloud.com/djbilbox" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/soundcloud.svg" style="width:18px; height:18px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="SoundCloud"></a>
-                    <a href="https://www.twitch.tv/djbilbox" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/twitch.svg" style="width:18px; height:18px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="Twitch"></a>
+                    <a href="https://www.twitch.tv/bilox_tv" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/twitch.svg" style="width:18px; height:18px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="Twitch"></a>
                     <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/spotify.svg" style="width:18px; height:18px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="Spotify"></a>
                     <a href="https://x.com/djbilbox" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/x.svg" style="width:18px; height:18px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="X"></a>
                 </div>
@@ -514,17 +510,6 @@
 
 
 
-    <!-- SPOTIFY SECTION -->
-    <section id="spotify" class="spotify-section">
-        <div class="container">
-            <h2 class="section-title">Spotify</h2>
-            <p class="section-subtitle">Official Discography</p>
-            <div class="spotify-container" style="max-width: 800px; margin: 0 auto; text-align: center; padding: 2rem;">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="btn btn-primary" style="margin-top: 2rem;">Listen on Spotify</a>
-            </div>
-        </div>
-    </section>
 
     <!-- DRUM KITS -->
     <section id="kits">
@@ -604,7 +589,7 @@
                 <a href="https://www.instagram.com/djbilboxbeats" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/instagram.svg" style="width:24px; height:24px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="Instagram"></a>
                 <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/youtube.svg" style="width:24px; height:24px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="YouTube"></a>
                 <a href="https://soundcloud.com/djbilbox" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/soundcloud.svg" style="width:24px; height:24px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="SoundCloud"></a>
-                <a href="https://www.twitch.tv/djbilbox" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/twitch.svg" style="width:24px; height:24px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="Twitch"></a>
+                <a href="https://www.twitch.tv/bilox_tv" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/twitch.svg" style="width:24px; height:24px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="Twitch"></a>
                 <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/spotify.svg" style="width:24px; height:24px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="Spotify"></a>
                 <a href="https://x.com/djbilbox" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13.0.0/icons/x.svg" style="width:24px; height:24px; filter: invert(1); transition: 0.3s;" onmouseover="this.style.filter='invert(0.5) sepia(1) saturate(5) hue-rotate(320deg)'" onmouseout="this.style.filter='invert(1)'" alt="X"></a>
             </div>
@@ -642,12 +627,12 @@
             { title: "BALKAN", year: "2024", tracks: 7, thumb: "https://i.ytimg.com/vi/pIQlCEqgbkg/maxresdefault.jpg", id: "PLbtcZhy947NV9GwLUVD_a0jvCg00rHQjy" },
             { title: "Funky4life", year: "2023", tracks: 25, thumb: "https://i.ytimg.com/vi/GVxATwlh7Lo/maxresdefault.jpg", id: "PLbtcZhy947NUC6PqUplrygUgHJSTvS61u" },
             { title: "VIDEO CLUB", year: "2023", tracks: 14, thumb: "https://i.ytimg.com/vi/OhyWvW8V5qY/maxresdefault.jpg", id: "PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg" },
-            { title: "WHY NOT 2", year: "2023", tracks: 20, thumb: "img/why_not_2.jpg", id: "PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_" },
+            { title: "WHY NOT 2", year: "2023", tracks: 20, thumb: "https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/img/why_not_2.jpg", id: "PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_" },
             { title: "You Got Power", year: "2022", tracks: 15, thumb: "https://i.ytimg.com/vi/G5_y3w6k_8I/maxresdefault.jpg", id: "PLbtcZhy947NV_wb3vnR4vml6uUdHIyI9Y" },
             { title: "WHY NOT (VOL.1)", year: "2022", tracks: 24, thumb: "https://i.ytimg.com/vi/0h9Vp5Z3Z5U/maxresdefault.jpg", id: "PLbtcZhy947NW-W8-zB9-mE4v4fJ7f9I6-" },
-            { title: "G-FUNK", year: "2022", tracks: 6, thumb: "img/g_funk.jpg", id: "PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ" },
-            { title: "Cyberpunk 2077", year: "2021", tracks: 19, thumb: "img/cyberpunk_2077.jpg", id: "PLbtcZhy947NX_wb3vnR4vml6uUdHIyI9Y" },
-            { title: "Raï\\'n\\'B Fever (2025)", year: "2025", tracks: 25, thumb: "img/rainb_fever_2025.jpg", id: "PLbtcZhy947NV9GwLUVD_a0jvCg00rHQjy" }
+            { title: "G-FUNK", year: "2022", tracks: 6, thumb: "https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/img/g_funk.jpg", id: "PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ" },
+            { title: "Cyberpunk 2077", year: "2021", tracks: 19, thumb: "https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/img/cyberpunk_2077.jpg", id: "PLbtcZhy947NX_wb3vnR4vml6uUdHIyI9Y" },
+            { title: "Raï\\'n\\'B Fever (2025)", year: "2025", tracks: 25, thumb: "https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/img/rainb_fever_2025.jpg", id: "PLbtcZhy947NV9GwLUVD_a0jvCg00rHQjy" }
         ];
 
         const ytPlaylists = [
