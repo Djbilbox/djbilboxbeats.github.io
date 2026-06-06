@@ -1,0 +1,6 @@
+name = "djbilbox-spotify"
+main = "spotify-proxy.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+# Les secrets sont configurés via `wrangler secret put`

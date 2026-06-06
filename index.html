@@ -459,6 +459,7 @@
             <a href="#" class="logo">BILBOX<span>BEATS</span></a>
             
             <nav class="nav-links">
+                <a href="#spotify">Catalogue</a>
                 <a href="#discography">Discographie</a>
                 <a href="#kits">Drum Kits</a>
                 <a href="#playlists">Playlists</a>
@@ -525,12 +526,64 @@
         </div>
     </section>
 
+    <!-- SPOTIFY CATALOGUE DYNAMIQUE -->
+    <section id="spotify" style="background: var(--bg-surface); padding-bottom: 4rem;">
+        <div class="container">
+            <h2 class="section-title">Spotify Catalogue</h2>
+            <p class="section-subtitle">Tous mes instrumentaux • Licence gratuite</p>
+
+            <!-- Lecteur Spotify Sticky -->
+            <div id="spotifyPlayerContainer" style="position: sticky; top: 90px; z-index: 900; margin-bottom: 2rem; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.6); background: #111;">
+                <iframe id="spotifyEmbed"
+                    src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0"
+                    width="100%" height="152" frameborder="0"
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy" style="border-radius:12px; display:block;"></iframe>
+            </div>
+
+            <!-- Filtres Albums -->
+            <div id="spotifyFilters" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:2rem;">
+                <button class="spotify-filter-btn active" data-filter="all">Tous</button>
+            </div>
+
+            <!-- Grille Tracks -->
+            <div class="album-grid" id="spotifyGrid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem;"></div>
+
+            <!-- Loader -->
+            <div id="spotifyLoader" style="text-align:center; padding:2rem; display:none;">
+                <div style="display:inline-block; width:24px; height:24px; border:2px solid rgba(255,255,255,0.1); border-top-color:var(--accent-red); border-radius:50%; animation:spin 0.8s linear infinite;"></div>
+                <span style="margin-left:10px; color:var(--text-muted);">Chargement...</span>
+            </div>
+            <div id="spotifySentinel" style="height:1px;"></div>
+        </div>
+    </section>
+
+    <style>
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .spotify-filter-btn { padding:6px 14px; border:1px solid var(--border-color); border-radius:20px; background:transparent; color:var(--text-muted); font-size:0.75rem; font-weight:600; cursor:pointer; transition:0.3s; font-family:var(--font-body); }
+        .spotify-filter-btn:hover, .spotify-filter-btn.active { background:var(--accent-red); color:white; border-color:var(--accent-red); }
+        .sp-track-card { background:var(--bg-surface-light); border:1px solid var(--border-color); border-radius:8px; overflow:hidden; transition:0.3s; cursor:pointer; }
+        .sp-track-card:hover { transform:translateY(-4px); border-color:var(--accent-red); box-shadow:0 15px 30px rgba(255,51,51,0.1); }
+        .sp-track-card.playing { border-color:var(--accent-red); box-shadow:0 0 20px rgba(255,51,51,0.2); }
+        .sp-track-img { width:100%; aspect-ratio:1; object-fit:cover; display:block; transition:transform 0.4s; }
+        .sp-track-card:hover .sp-track-img { transform:scale(1.05); }
+        .sp-track-info { padding:0.8rem; }
+        .sp-track-info h4 { font-size:0.85rem; color:white; margin-bottom:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-family:var(--font-body); font-weight:600; letter-spacing:0; text-transform:none; }
+        .sp-track-info .sp-album { font-size:0.7rem; color:var(--text-muted); margin-bottom:6px; }
+        .sp-track-meta { display:flex; justify-content:space-between; align-items:center; }
+        .sp-track-meta .sp-dur { font-size:0.7rem; color:var(--text-muted); }
+        .sp-track-meta .sp-price { color:var(--accent-red); font-weight:700; font-size:0.8rem; font-family:var(--font-accent); }
+        .sp-btn-license { background:var(--accent-red); color:white; border:none; padding:4px 10px; border-radius:4px; font-size:0.7rem; font-weight:700; cursor:pointer; transition:0.3s; font-family:var(--font-accent); text-transform:uppercase; }
+        .sp-btn-license:hover { background:#ff0000; transform:scale(1.05); }
+        .sp-btn-license.added { background:transparent; border:1px solid var(--accent-red); color:var(--accent-red); }
+    </style>
+
     <!-- DISCOGRAPHY (ALBUM GRID) -->
-    <section id="discography" style="background: var(--bg-surface);">
+    <section id="discography" style="background: var(--bg-main);">
         <div class="container">
             <h2 class="section-title">Discographie</h2>
             <p class="section-subtitle">Albums & EPs Officiels</p>
-            
+
             <div class="album-grid" id="albumGrid">
                 <!-- Albums generated by JS -->
             </div>
@@ -1053,6 +1106,272 @@
             }).render('#paypal-button-container');
         }
 
+        // ====== SPOTIFY DYNAMIC CATALOGUE ======
+        const WORKER_URL = 'https://djbilbox-spotify.djbilbox.workers.dev';
+        const SP_PER_PAGE = 12;
+        let spTracks = [];
+        let spOffset = 0;
+        let spLoading = false;
+        let spHasMore = true;
+        let spFilter = 'all';
+        let spAlbums = [];
+        let spCart = [];
+
+        function initSpotifyCatalogue() {
+            loadSpotifyTracks();
+            setupSpotifyScroll();
+            setupSpotifyEvents();
+        }
+
+        function loadSpotifyTracks() {
+            if (spLoading || !spHasMore) return;
+            spLoading = true;
+            document.getElementById('spotifyLoader').style.display = 'block';
+
+            fetch(WORKER_URL + '/tracks?offset=' + spOffset + '&limit=' + SP_PER_PAGE)
+                .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+                .then(data => {
+                    const tracks = data.tracks || [];
+                    spTracks = spTracks.concat(tracks);
+                    spHasMore = data.hasMore;
+                    spOffset += tracks.length;
+                    extractSpAlbums(tracks);
+                    appendSpTracks(tracks);
+                })
+                .catch(() => {
+                    if (spTracks.length === 0) renderSpFallback();
+                    spHasMore = false;
+                })
+                .finally(() => {
+                    spLoading = false;
+                    document.getElementById('spotifyLoader').style.display = 'none';
+                });
+        }
+
+        function extractSpAlbums(tracks) {
+            tracks.forEach(t => {
+                if (t.albumName && !spAlbums.find(a => a.id === t.albumId)) {
+                    spAlbums.push({ id: t.albumId, name: t.albumName });
+                }
+            });
+            renderSpFilters();
+        }
+
+        function renderSpFilters() {
+            const c = document.getElementById('spotifyFilters');
+            c.innerHTML = '<button class="spotify-filter-btn' + (spFilter === 'all' ? ' active' : '') + '" data-filter="all">Tous</button>' +
+                spAlbums.map(a => '<button class="spotify-filter-btn' + (spFilter === a.id ? ' active' : '') + '" data-filter="' + a.id + '">' + a.name + '</button>').join('');
+        }
+
+        function appendSpTracks(tracks) {
+            const grid = document.getElementById('spotifyGrid');
+            const filtered = spFilter === 'all' ? tracks : tracks.filter(t => t.albumId === spFilter);
+            filtered.forEach(t => grid.insertAdjacentHTML('beforeend', spTrackCard(t)));
+        }
+
+        function renderSpAll() {
+            const grid = document.getElementById('spotifyGrid');
+            const filtered = spFilter === 'all' ? spTracks : spTracks.filter(t => t.albumId === spFilter);
+            grid.innerHTML = filtered.map(spTrackCard).join('');
+        }
+
+        function spTrackCard(t) {
+            const inCart = spCart.some(c => c.id === t.id);
+            const dur = t.duration ? Math.floor(t.duration/60000) + ':' + ('0' + Math.floor((t.duration%60000)/1000)).slice(-2) : '';
+            const img = t.albumImage || 'https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?auto=format&fit=crop&w=300&q=60';
+            return '<div class="sp-track-card" data-spid="' + t.id + '">' +
+                '<img class="sp-track-img" src="' + img + '" alt="' + (t.name||'').replace(/"/g,'&quot;') + '" loading="lazy">' +
+                '<div class="sp-track-info">' +
+                    '<h4 title="' + (t.name||'').replace(/"/g,'&quot;') + '">' + (t.name||'') + '</h4>' +
+                    '<div class="sp-album">' + (t.albumName||'') + '</div>' +
+                    '<div class="sp-track-meta">' +
+                        '<span class="sp-dur">' + dur + '</span>' +
+                        '<span class="sp-price">0€</span>' +
+                        '<button class="sp-btn-license' + (inCart ? ' added' : '') + '" data-sp-cart="' + t.id + '">' + (inCart ? '✓' : 'LICENCE') + '</button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+        }
+
+        function renderSpFallback() {
+            document.getElementById('spotifyFilters').style.display = 'none';
+            document.getElementById('spotifyGrid').innerHTML =
+                '<div style="grid-column:1/-1; text-align:center; padding:2rem;">' +
+                '<p style="color:var(--text-muted); margin-bottom:1rem;">Catalogue en cours de chargement depuis Spotify...</p>' +
+                '<iframe src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:12px;"></iframe>' +
+                '</div>';
+        }
+
+        function setupSpotifyScroll() {
+            if (!('IntersectionObserver' in window)) return;
+            new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting && !spLoading && spHasMore) loadSpotifyTracks();
+            }, { rootMargin: '300px' }).observe(document.getElementById('spotifySentinel'));
+        }
+
+        function setupSpotifyEvents() {
+            const grid = document.getElementById('spotifyGrid');
+            grid.addEventListener('click', e => {
+                const btn = e.target.closest('.sp-btn-license');
+                if (btn) {
+                    e.stopPropagation();
+                    const id = btn.dataset.spCart;
+                    if (spCart.some(c => c.id === id)) {
+                        spCart = spCart.filter(c => c.id !== id);
+                        btn.classList.remove('added');
+                        btn.textContent = 'LICENCE';
+                    } else {
+                        const track = spTracks.find(t => t.id === id);
+                        if (track) spCart.push(track);
+                        btn.classList.add('added');
+                        btn.textContent = '✓';
+                        showNotification(track.name + ' ajouté au panier licence !');
+                    }
+                    updateSpCartBadge();
+                    return;
+                }
+                const card = e.target.closest('.sp-track-card');
+                if (card) {
+                    const id = card.dataset.spid;
+                    document.getElementById('spotifyEmbed').src = 'https://open.spotify.com/embed/track/' + id + '?utm_source=generator&theme=0&autoplay=1';
+                    document.querySelectorAll('.sp-track-card.playing').forEach(el => el.classList.remove('playing'));
+                    card.classList.add('playing');
+                }
+            });
+
+            document.getElementById('spotifyFilters').addEventListener('click', e => {
+                const btn = e.target.closest('.spotify-filter-btn');
+                if (!btn) return;
+                spFilter = btn.dataset.filter;
+                renderSpFilters();
+                renderSpAll();
+            });
+        }
+
+        function updateSpCartBadge() {
+            // Update existing cart count if present, or show notification
+            const existing = document.getElementById('cartCount');
+            if (existing) existing.innerText = cart.length + spCart.length;
+        }
+
+        // Spotify licence PDF generation (uses existing generateContract)
+        async function generateSpLicenses() {
+            const buyerName = prompt('Entrez votre nom pour le contrat de licence :');
+            if (!buyerName) return;
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const date = new Date().toLocaleDateString('fr-FR');
+            const refId = 'LIC-' + Date.now().toString(36).toUpperCase();
+
+            doc.setDrawColor(255, 51, 51);
+            doc.setLineWidth(1);
+            doc.rect(5, 5, 200, 287);
+
+            doc.setFillColor(5, 5, 5);
+            doc.rect(5, 5, 200, 40, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(28);
+            doc.text("DJBILBOX BEATS", 20, 25);
+            doc.setFontSize(12);
+            doc.text("LICENCE D'UTILISATION GRATUITE", 20, 35);
+
+            doc.setTextColor(0, 0, 0);
+            doc.setFontSize(10);
+            doc.setFont("helvetica", "normal");
+            doc.text('Date : ' + date, 160, 55);
+            doc.text('Réf : ' + refId, 160, 61);
+
+            doc.setFontSize(11);
+            doc.text("Producteur :", 20, 70);
+            doc.setFont("helvetica", "bold");
+            doc.text("DJBILBOX BEATS", 20, 76);
+            doc.setFont("helvetica", "normal");
+            doc.text("Licencié :", 20, 86);
+            doc.setFont("helvetica", "bold");
+            doc.text(buyerName.toUpperCase(), 20, 92);
+
+            doc.setDrawColor(230, 230, 230);
+            doc.line(20, 100, 190, 100);
+
+            doc.setFontSize(12);
+            doc.text("OEUVRES CONCERNÉES :", 20, 112);
+            doc.setFontSize(10);
+            doc.setFont("helvetica", "normal");
+            let y = 120;
+            spCart.forEach(t => {
+                if (y > 250) { doc.addPage(); y = 20; }
+                doc.text('• ' + t.name + (t.albumName ? ' (' + t.albumName + ')' : ''), 25, y);
+                y += 6;
+            });
+
+            y += 10;
+            if (y > 200) { doc.addPage(); y = 20; }
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(11);
+            doc.text("CONDITIONS :", 20, y);
+            y += 8;
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(9);
+            const terms = [
+                '✓ Diffusion autorisée : Internet, Radio, Live, Streaming',
+                '✓ Usage dans vidéos YouTube, podcasts, contenus en ligne',
+                '✓ Projets musicaux personnels ou collaboratifs',
+                '',
+                '✗ Revente ou redistribution des instrumentaux seuls interdite',
+                '✗ Crédit "Prod. by DJBILBOX BEATS" obligatoire',
+                '✗ Transfert de licence à un tiers interdit',
+                '',
+                'Prix : 0,00 EUR (licence gratuite)'
+            ];
+            terms.forEach(line => { doc.text(line, 25, y); y += 5; });
+
+            y += 15;
+            doc.setFont("courier", "italic");
+            doc.setFontSize(18);
+            doc.setTextColor(255, 51, 51);
+            doc.text("DJBILBOX BEATS", 20, y);
+            doc.setTextColor(0, 0, 0);
+            doc.text(buyerName, 120, y);
+
+            doc.save('Licence_DJBILBOX_' + refId + '.pdf');
+
+            // Save log
+            try {
+                const logs = JSON.parse(localStorage.getItem('djbilbox_licenses') || '[]');
+                logs.push({ id: refId, date: new Date().toISOString(), userName: buyerName, beats: spCart.map(t => ({id:t.id, title:t.name, album:t.albumName})) });
+                localStorage.setItem('djbilbox_licenses', JSON.stringify(logs));
+            } catch(e) {}
+
+            showNotification('Contrat PDF généré !');
+            spCart = [];
+            renderSpAll();
+            updateSpCartBadge();
+        }
+
+        // Add "Get Licenses" button listener
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('spotifyGrid');
+            if (grid) {
+                const sentinel = document.getElementById('spotifySentinel');
+                const btn = document.createElement('div');
+                btn.id = 'spCheckoutBtn';
+                btn.style.cssText = 'text-align:center; margin:2rem 0; display:none;';
+                btn.innerHTML = '<button onclick="generateSpLicenses()" class="btn btn-primary" style="font-size:1rem;"><i class="fa-solid fa-file-pdf"></i> Générer les licences (0€)</button>';
+                sentinel.before(btn);
+            }
+        });
+
+        // Show/hide checkout button based on cart
+        const origUpdateSpCart = updateSpCartBadge;
+        updateSpCartBadge = function() {
+            origUpdateSpCart();
+            const btn = document.getElementById('spCheckoutBtn');
+            if (btn) btn.style.display = spCart.length > 0 ? 'block' : 'none';
+        };
+
+        initSpotifyCatalogue();
         init();
     </script>
 </body>
