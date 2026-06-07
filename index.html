@@ -495,7 +495,7 @@ function renderTracks(list){
         const idx=TRACKS.indexOf(t);
         const isActive=idx===cur;
         return `<div class="trk ${isActive?'active':''}" data-idx="${idx}" onclick="playTrack(${idx})">
-        <span class="trk-num" style="${isActive?'color:var(--accent);':''}">${isActive?'<i class=\\'fa-solid fa-volume-high\\'></i>':i+1}</span>
+        <span class="trk-num" style="${isActive?'color:var(--accent);':''}">${isActive?'<i class="fa-solid fa-volume-high"></i>':i+1}</span>
         <img class="trk-cover" src="${t.cover}" alt="${t.title}" loading="lazy">
         <div class="trk-info">
             <div class="trk-title">${t.title}</div>
