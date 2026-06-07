@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJBILBOX BEATS | Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-light: #1c1c1c;
+            --surface-hover: #252525;
+            --accent: #ff3333;
+            --accent-glow: rgba(255, 51, 51, 0.3);
+            --green: #1DB954;
+            --blue: #2196F3;
+            --text: #ffffff;
+            --text-muted: #888888;
+            --text-dim: #555555;
+            --border: rgba(255,255,255,0.06);
+            --radius: 8px;
+            --font-logo: 'Permanent Marker', cursive;
+            --font-body: 'Inter', sans-serif;
+            --font-accent: 'Rajdhani', sans-serif;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background:var(--bg); color:var(--text); font-family:var(--font-body); min-height:100vh; }
+        a { color:inherit; text-decoration:none; }
+
+        /* ===== HEADER ===== */
+        .player-header {
+            background: var(--bg);
+            padding: 2rem 1.5rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .player-logo {
+            font-family: var(--font-logo);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: white;
+            text-shadow: 0 0 20px rgba(255,255,255,0.1), 0 4px 8px rgba(0,0,0,0.5);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+        .player-logo span { color: var(--accent); }
+        .header-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .header-features div {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .header-features i { color: var(--accent); font-size: 0.9rem; }
+
+        /* ===== PLAYER CONTAINER ===== */
+        .player-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .player-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        /* ===== TOOLBAR ===== */
+        .player-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1.2rem;
+            background: var(--surface-light);
+            border-bottom: 1px solid var(--border);
+        }
+        .toolbar-left { display:flex; gap:0.8rem; align-items:center; }
+        .toolbar-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: var(--font-body);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .toolbar-btn:hover { background:var(--surface-hover); color:white; border-color:var(--accent); }
+        .toolbar-search {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            width: 160px;
+            outline: none;
+            font-family: var(--font-body);
+        }
+        .toolbar-search:focus { border-color:var(--accent); }
+        .toolbar-cart {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-accent);
+            transition: 0.2s;
+        }
+        .toolbar-cart:hover { background:#ff0000; transform:scale(1.03); }
+
+        /* ===== PLAYBACK BAR ===== */
+        .playback-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.2rem;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+        }
+        .pb-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 4px;
+        }
+        .pb-btn:hover { color:white; }
+        .pb-btn.play-btn {
+            color: white;
+            font-size: 1.4rem;
+            background: var(--accent);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pb-btn.play-btn:hover { box-shadow:0 0 15px var(--accent-glow); }
+        .pb-time { font-size:0.7rem; color:var(--text-dim); font-family:var(--font-accent); min-width:35px; }
+        .pb-waveform {
+            flex: 1;
+            height: 30px;
+            background: var(--surface-light);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .pb-waveform-fill {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            width: 35%;
+            background: linear-gradient(90deg, var(--accent), rgba(255,51,51,0.3));
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+        .pb-waveform-bars {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 4px 0;
+        }
+        .pb-waveform-bars span {
+            width: 2px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            display: block;
+        }
+        .pb-volume {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .pb-volume input[type="range"] {
+            width: 60px;
+            height: 3px;
+            appearance: none;
+            background: var(--surface-light);
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        .pb-volume input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* ===== TRACK LIST ===== */
+        .track-list { max-height: 500px; overflow-y: auto; }
+        .track-item {
+            display: flex;
+            align-items: center;
+            padding: 0.7rem 1.2rem;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .track-item:hover { background:var(--surface-hover); }
+        .track-item.active { background:rgba(255,51,51,0.05); border-left:3px solid var(--accent); }
+        .track-cover {
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .track-info { flex:1; min-width:0; }
+        .track-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .track-item.active .track-title { color:var(--accent); }
+        .track-artist {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .track-tags {
+            display: flex;
+            gap: 4px;
+            margin-top: 4px;
+        }
+        .track-tag {
+            font-size: 0.6rem;
+            padding: 1px 6px;
+            border-radius: 3px;
+            background: var(--surface-light);
+            color: var(--text-dim);
+            font-weight: 500;
+        }
+        .track-buy {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: var(--font-accent);
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+        .track-buy:hover { background:#ff0000; transform:scale(1.05); }
+        .track-duration {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            font-family: var(--font-accent);
+            min-width: 35px;
+            text-align: right;
+        }
+
+        /* ===== FOOTER STEPS ===== */
+        .player-steps {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1.5rem;
+            background: var(--surface-light);
+            border-top: 1px solid var(--border);
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .step-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        /* ===== FLOATING BUTTONS ===== */
+        .find-beat-btn {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 25px var(--accent-glow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+            transition: 0.3s;
+            font-family: var(--font-accent);
+        }
+        .find-beat-btn:hover { transform:scale(1.05); }
+
+        .chat-bubble {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: var(--blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(33,150,243,0.3);
+            z-index: 100;
+            transition: 0.3s;
+        }
+        .chat-bubble:hover { transform:scale(1.1); }
+
+        /* ===== SCROLLBAR ===== */
+        .track-list::-webkit-scrollbar { width:5px; }
+        .track-list::-webkit-scrollbar-track { background:var(--surface); }
+        .track-list::-webkit-scrollbar-thumb { background:var(--accent); border-radius:10px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width:600px) {
+            .header-features { gap:1rem; font-size:0.7rem; }
+            .toolbar-search { width:100px; }
+            .playback-bar { flex-wrap:wrap; gap:0.5rem; }
+            .pb-waveform { order:10; width:100%; flex:none; margin-top:0.5rem; }
+            .pb-volume { display:none; }
+            .track-item { padding:0.6rem 0.8rem; gap:0.6rem; }
+            .track-cover { width:40px; height:40px; }
+            .player-steps { gap:1.5rem; flex-wrap:wrap; }
+            .find-beat-btn { bottom:80px; padding:10px 16px; font-size:0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="player-header">
+    <h1 class="player-logo">DJBILBOX <span>BEATS</span></h1>
+    <div class="header-features">
+        <div><i class="fa-solid fa-music"></i> DJ-Set & Beats Professionnels</div>
+        <div><i class="fa-solid fa-download"></i> Téléchargements Instantanés</div>
+        <div><i class="fa-solid fa-lock"></i> Paiements Sécurisés</div>
+    </div>
+</div>
+
+<!-- PLAYER -->
+<div class="player-container">
+    <div class="player-panel">
+
+        <!-- Toolbar -->
+        <div class="player-toolbar">
+            <div class="toolbar-left">
+                <button class="toolbar-btn"><i class="fa-solid fa-sort"></i> Trier</button>
+                <button class="toolbar-btn"><i class="fa-solid fa-circle-question"></i> Aide</button>
+                <input type="text" class="toolbar-search" placeholder="Rechercher..." id="searchInput">
+            </div>
+            <button class="toolbar-cart" id="cartBtn"><i class="fa-solid fa-cart-shopping"></i> Mon Panier <span id="cartNum">0</span></button>
+        </div>
+
+        <!-- Playback Bar -->
+        <div class="playback-bar">
+            <button class="pb-btn"><i class="fa-solid fa-backward-step"></i></button>
+            <button class="pb-btn play-btn" id="playPauseBtn"><i class="fa-solid fa-play"></i></button>
+            <button class="pb-btn"><i class="fa-solid fa-forward-step"></i></button>
+            <span class="pb-time" id="currentTime">0:00</span>
+            <div class="pb-waveform" id="waveform">
+                <div class="pb-waveform-fill" id="waveformFill"></div>
+                <div class="pb-waveform-bars" id="waveformBars"></div>
+            </div>
+            <span class="pb-time" id="totalTime">3:24</span>
+            <div class="pb-volume">
+                <i class="fa-solid fa-volume-high" style="color:var(--text-dim); font-size:0.8rem;"></i>
+                <input type="range" min="0" max="100" value="80">
+            </div>
+        </div>
+
+        <!-- Track List -->
+        <div class="track-list" id="trackList"></div>
+
+        <!-- Steps -->
+        <div class="player-steps">
+            <div class="step"><span class="step-num">1</span> Sélectionner Mixes</div>
+            <div class="step"><span class="step-num">2</span> Panier</div>
+            <div class="step"><span class="step-num">3</span> Téléchargement Instantané</div>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Buttons -->
+<button class="find-beat-btn"><i class="fa-solid fa-magnifying-glass"></i> Trouver Mon Beat</button>
+<div class="chat-bubble"><i class="fa-solid fa-comment-dots"></i></div>
+
+<script>
+const TRACKS = [
+    { title:"BILBOX ANTHEM", artist:"DjBilbox Beats", tags:["Trap","Oriental"], duration:"3:24", cover:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg", bpm:135 },
+    { title:"NIGHTSHIFT MIX", artist:"DjBilbox Beats", tags:["Drill","Dark"], duration:"2:58", cover:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg", bpm:142 },
+    { title:"SOULFUL VIBES", artist:"DjBilbox Beats", tags:["Soul","Jazz"], duration:"3:45", cover:"https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg", bpm:95 },
+    { title:"ORIENTAL FIRE", artist:"DjBilbox Beats", tags:["Oriental","Trap"], duration:"3:12", cover:"https://i.ytimg.com/vi/GVxATwlh7Lo/hqdefault.jpg", bpm:128 },
+    { title:"BALKAN EMPIRE", artist:"DjBilbox Beats", tags:["Balkan","Ethnic"], duration:"3:33", cover:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg", bpm:118 },
+    { title:"AFRO KING", artist:"DjBilbox Beats", tags:["Afrotrap","Dancehall"], duration:"2:48", cover:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg", bpm:108 },
+    { title:"CYBER DRIFT", artist:"DjBilbox Beats", tags:["Synth","Futuristic"], duration:"3:55", cover:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg", bpm:150 },
+    { title:"G-FUNK SUNDAY", artist:"DjBilbox Beats", tags:["G-Funk","West Coast"], duration:"4:02", cover:"https://i.ytimg.com/vi/PmjSZbmIifM/hqdefault.jpg", bpm:96 },
+    { title:"KHALIFA", artist:"DjBilbox Beats", tags:["Oriental","Hard"], duration:"3:18", cover:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg", bpm:130 },
+    { title:"MIDNIGHT RIDE", artist:"DjBilbox Beats", tags:["House","Radio"], duration:"3:40", cover:"https://i.ytimg.com/vi/OhyWvW8V5qY/hqdefault.jpg", bpm:126 },
+    { title:"VATIMBORA", artist:"DjBilbox Beats", tags:["Afro","Reggaeton"], duration:"3:05", cover:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg", bpm:105 },
+    { title:"DRILL ZONE", artist:"DjBilbox Beats", tags:["Drill UK","Rap"], duration:"2:52", cover:"https://img.youtube.com/vi/BW_HLS7payE/hqdefault.jpg", bpm:142 },
+    { title:"HERMÈS", artist:"DjBilbox Beats", tags:["Trap","Melodic"], duration:"3:28", cover:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg", bpm:135 },
+    { title:"AMNÉSIA", artist:"DjBilbox Beats", tags:["Melodic","Trap"], duration:"3:15", cover:"https://i.ytimg.com/vi/xHlx666A6WA/hqdefault.jpg", bpm:138 },
+    { title:"FLASHBACK", artist:"DjBilbox Beats", tags:["Dark","Oldschool"], duration:"3:50", cover:"https://i.ytimg.com/vi/xHlx666A6WA/hqdefault.jpg", bpm:140 },
+];
+
+let currentTrack = 0;
+let isPlaying = false;
+let cartCount = 0;
+
+function renderTracks(filter = '') {
+    const list = document.getElementById('trackList');
+    const filtered = filter ? TRACKS.filter(t => t.title.toLowerCase().includes(filter) || t.tags.some(tag => tag.toLowerCase().includes(filter))) : TRACKS;
+    list.innerHTML = filtered.map((t, i) => `
+        <div class="track-item ${i === currentTrack ? 'active' : ''}" onclick="selectTrack(${TRACKS.indexOf(t)})">
+            <img class="track-cover" src="${t.cover}" alt="${t.title}" loading="lazy">
+            <div class="track-info">
+                <div class="track-title">${t.title}</div>
+                <div class="track-artist">${t.artist} • ${t.bpm} BPM</div>
+                <div class="track-tags">${t.tags.map(tag => `<span class="track-tag">${tag}</span>`).join('')}</div>
+            </div>
+            <span class="track-duration">${t.duration}</span>
+            <button class="track-buy" onclick="event.stopPropagation(); addToCart('${t.title}')"><i class="fa-solid fa-cart-plus"></i> Buy</button>
+        </div>
+    `).join('');
+}
+
+function selectTrack(idx) {
+    currentTrack = idx;
+    isPlaying = true;
+    updatePlayButton();
+    renderTracks(document.getElementById('searchInput').value.toLowerCase());
+    document.getElementById('totalTime').textContent = TRACKS[idx].duration;
+    document.getElementById('currentTime').textContent = '0:00';
+    animateWaveform();
+}
+
+function updatePlayButton() {
+    const btn = document.getElementById('playPauseBtn');
+    btn.innerHTML = isPlaying ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+}
+
+document.getElementById('playPauseBtn').addEventListener('click', () => {
+    isPlaying = !isPlaying;
+    updatePlayButton();
+    if (isPlaying) animateWaveform();
+});
+
+function addToCart(title) {
+    cartCount++;
+    document.getElementById('cartNum').textContent = cartCount;
+    // Quick flash animation
+    const btn = document.getElementById('cartBtn');
+    btn.style.transform = 'scale(1.15)';
+    setTimeout(() => btn.style.transform = '', 200);
+}
+
+function animateWaveform() {
+    const fill = document.getElementById('waveformFill');
+    fill.style.width = '0%';
+    fill.style.transition = 'none';
+    setTimeout(() => {
+        fill.style.transition = 'width 180s linear';
+        fill.style.width = '100%';
+    }, 50);
+}
+
+// Generate waveform bars
+function generateBars() {
+    const container = document.getElementById('waveformBars');
+    let bars = '';
+    for (let i = 0; i < 80; i++) {
+        const h = Math.random() * 18 + 4;
+        bars += `<span style="height:${h}px;"></span>`;
+    }
+    container.innerHTML = bars;
+}
+
+// Search
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    renderTracks(e.target.value.toLowerCase());
+});
+
+// Init
+generateBars();
+renderTracks();
+</script>
+</body>
+</html>

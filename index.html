@@ -275,25 +275,22 @@
 </section>
 
 
-<!-- CATALOGUE COMPLET — BEATSTARS PLAYER -->
-<section id="catalogue" style="background:var(--bg-surface);">
+<!-- CATALOGUE — PLAYER PREMIUM -->
+<section id="catalogue" style="background:var(--bg-surface); padding:4rem 0;">
     <div class="container">
-        <h2 class="section-title">Catalogue Complet</h2>
-        <p class="section-subtitle">+3000 instrumentaux • Écoute • Licence • Download</p>
-
-        <!-- BEATSTARS PLAYER EMBED (affiche TOUT le catalogue avec player, filtres, panier) -->
-        <div style="border-radius:12px; overflow:hidden; box-shadow:0 10px 50px rgba(0,0,0,0.5); margin-bottom:3rem; min-height:600px;">
-            <iframe src="https://www.beatstars.com/embed/djbilbox?type=player" width="100%" height="800" frameborder="0" allow="autoplay; clipboard-write; encrypted-media" style="border:none; border-radius:12px;" loading="lazy"></iframe>
+        <!-- Player embed (fichier séparé pour performance) -->
+        <div style="border-radius:12px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.5); margin-bottom:3rem;">
+            <iframe src="player.html" width="100%" height="900" frameborder="0" style="border:none; border-radius:12px;" loading="lazy"></iframe>
         </div>
 
-        <!-- SPOTIFY — Catalogue streaming -->
+        <!-- SPOTIFY -->
         <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:16px; padding:2rem; margin-bottom:3rem;">
             <h3 style="font-family:var(--font-display); font-size:2.5rem; margin-bottom:0.5rem; text-align:center;">SPOTIFY</h3>
-            <p style="color:var(--text-muted); text-align:center; margin-bottom:1.5rem; font-size:0.9rem;">Écoute sur toutes les plateformes de streaming</p>
+            <p style="color:var(--text-muted); text-align:center; margin-bottom:1.5rem; font-size:0.9rem;">Tout mon catalogue streaming</p>
             <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="400" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
 
-        <!-- YOUTUBE — Playlist complète -->
+        <!-- YOUTUBE -->
         <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:16px; padding:2rem; margin-bottom:3rem;">
             <h3 style="font-family:var(--font-display); font-size:2.5rem; margin-bottom:0.5rem; text-align:center;">YOUTUBE</h3>
             <p style="color:var(--text-muted); text-align:center; margin-bottom:1.5rem; font-size:0.9rem;">+3000 instrumentaux — Playlist complète</p>
@@ -302,7 +299,7 @@
             </div>
         </div>
 
-        <!-- LICENCE GRATUITE (pour ceux qui passent pas par BeatStars) -->
+        <!-- LICENCE PDF -->
         <div style="background:linear-gradient(135deg, rgba(255,51,51,0.05), rgba(255,107,53,0.05)); border:1px solid var(--accent-red); border-radius:16px; padding:3rem; text-align:center;">
             <h3 style="font-family:var(--font-display); font-size:2.5rem; margin-bottom:0.5rem; color:var(--accent-red);">LICENCE GRATUITE PDF</h3>
             <p style="color:var(--text-muted); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto;">Besoin d'un contrat officiel pour un beat gratuit ? Générez votre licence PDF instantanément.</p>
