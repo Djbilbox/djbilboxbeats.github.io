@@ -10,11 +10,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js" defer></script>
     <style>
 :root{--bg:#090909;--surface:#111;--surface-2:#181818;--surface-3:#222;--accent:#ff2d2d;--accent-h:#e60000;--accent-glow:rgba(255,45,45,.15);--green:#1DB954;--text:#fff;--text-2:#ccc;--text-3:#888;--text-4:#555;--border:rgba(255,255,255,.06);--r:8px;--rl:12px;--font:'Inter',sans-serif;--font-a:'Rajdhani',sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.5;overflow-x:hidden}
+
+/* VIDEO BACKGROUND */
+.video-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden}
+.video-bg video{width:100%;height:100%;object-fit:cover}
+.video-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.82);pointer-events:none}
+
+/* 3D TILT KITS */
+.kit-c{transform-style:preserve-3d;perspective:1000px}
+.kit-c .kit-c-body{transform:translateZ(20px)}
+.kit-c img{transition:transform 0.4s}
+.kit-c:hover img{transform:scale(1.05)}
 a{color:inherit;text-decoration:none}
 button{font-family:var(--font);cursor:pointer}
 
@@ -178,6 +190,13 @@ button{font-family:var(--font);cursor:pointer}
     </style>
 </head>
 <body>
+
+<!-- VIDEO BACKGROUND (LA night skyline) -->
+<div class="video-bg">
+    <video autoplay muted loop playsinline>
+        <source src="https://cdn.pixabay.com/video/2024/02/12/200712-912703685_large.mp4" type="video/mp4">
+    </video>
+</div>
 
 <!-- HEADER -->
 <header class="hdr">
@@ -604,6 +623,15 @@ function toast(m){const t=document.getElementById('toast');document.getElementBy
 
 // ===== INIT =====
 renderTracks();renderKits();renderYT();
+
+// Init VanillaTilt on Drum Kit cards
+setTimeout(function(){
+    if(window.VanillaTilt){
+        VanillaTilt.init(document.querySelectorAll('.kit-c'),{
+            max:15,speed:400,glare:true,'max-glare':0.2,perspective:1000,scale:1.03
+        });
+    }
+},200);
 </script>
 </body>
 </html>
