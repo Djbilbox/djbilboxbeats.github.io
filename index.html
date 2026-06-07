@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js" defer></script>
-    <!-- EmailJS pour envoi email licence -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
 
     <style>
         :root {
@@ -571,33 +569,32 @@ document.getElementById('licForm').addEventListener('submit', function(e) {
     const ref = 'LIC-' + Date.now().toString(36).toUpperCase();
     const beatsNames = cart.map(b => b.name).join(', ');
 
-    // Generate PDF
+    // Generate PDF for client
     generatePDF(name, email, project, ref);
 
-    // Send email notification to djbilboxbeats@gmail.com via EmailJS
-    if (window.emailjs) {
-        emailjs.send('service_djbilbox', 'template_licence', {
-            to_email: 'djbilboxbeats@gmail.com',
-            client_name: name,
-            client_email: email,
-            client_project: project || 'Non spécifié',
-            beats_list: beatsNames,
-            reference: ref,
-            date: new Date().toLocaleDateString('fr-FR')
-        }).catch(function(){});
-    }
-
-    // Fallback: mailto link (always works)
-    const mailBody = 'Nouvelle licence accordée !\n\nRéférence: ' + ref + '\nClient: ' + name + '\nEmail: ' + email + '\nProjet: ' + (project||'N/A') + '\nBeats: ' + beatsNames + '\nDate: ' + new Date().toLocaleDateString('fr-FR');
-    const mailLink = document.createElement('a');
-    mailLink.href = 'mailto:djbilboxbeats@gmail.com?subject=Nouvelle Licence ' + ref + '&body=' + encodeURIComponent(mailBody);
-    mailLink.click();
+    // Send email to djbilboxbeats@gmail.com via FormSubmit (no signup needed)
+    fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+            _subject: '🎵 Nouvelle Licence ' + ref,
+            Référence: ref,
+            'Nom client': name,
+            'Email client': email,
+            Projet: project || 'Non spécifié',
+            Beats: beatsNames,
+            Date: new Date().toLocaleDateString('fr-FR'),
+            'Nombre de beats': cart.length.toString()
+        })
+    }).then(r => r.json()).then(data => {
+        if (data.success) console.log('Email envoyé à djbilboxbeats@gmail.com');
+    }).catch(()=>{});
 
     // Save log locally
     try { const logs = JSON.parse(localStorage.getItem('djbilbox_licenses')||'[]'); logs.push({id:ref, date:new Date().toISOString(), userName:name, userEmail:email, project, beats:cart.map(b=>({name:b.name,tags:b.tags}))}); localStorage.setItem('djbilbox_licenses', JSON.stringify(logs)); } catch(ex){}
 
     cart = []; updateCartUI(); closeLicModal(); this.reset();
-    notify('Contrat PDF généré + notification envoyée !');
+    notify('Contrat PDF téléchargé ! Licence enregistrée.');
 });
 
 function generatePDF(userName, userEmail, project, ref) {
@@ -720,22 +717,9 @@ function initScrollReveal() {
     reveals.forEach(el => observer.observe(el));
 }
 
-// ============ EMAILJS INIT ============
-function initEmailJS() {
-    if (window.emailjs) {
-        // To set up EmailJS:
-        // 1. Go to emailjs.com, create free account
-        // 2. Add Gmail service (service_djbilbox)
-        // 3. Create template (template_licence) with variables: client_name, client_email, client_project, beats_list, reference, date
-        // 4. Replace YOUR_PUBLIC_KEY below with your EmailJS public key
-        emailjs.init('YOUR_PUBLIC_KEY');
-    }
-}
-
 // ============ START ============
 init();
 setTimeout(initScrollReveal, 100);
-setTimeout(initEmailJS, 500);
 </script>
 </body>
 </html>
