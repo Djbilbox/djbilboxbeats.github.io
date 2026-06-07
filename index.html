@@ -22,32 +22,45 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:
 .video-bg video{width:100%;height:100%;object-fit:cover;filter:saturate(1.1)}
 .video-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.75) 50%,rgba(0,0,0,0.9) 100%);pointer-events:none}
 
-/* 3D BOX KITS */
-.kit-c{transform-style:preserve-3d;perspective:1000px;position:relative;border:1px solid rgba(255,45,45,.15);box-shadow:0 8px 32px rgba(0,0,0,.6),0 0 15px rgba(255,45,45,.08),inset 0 1px 0 rgba(255,255,255,.05);transition:transform .4s ease,box-shadow .4s ease,border-color .4s ease}
-.kit-c::before{content:'';position:absolute;inset:-1px;border-radius:var(--rl);background:linear-gradient(135deg,rgba(255,45,45,.2),transparent 50%,rgba(255,45,45,.1));opacity:0;transition:opacity .4s;pointer-events:none;z-index:1}
-.kit-c:hover::before{opacity:1}
-.kit-c:hover{border-color:rgba(255,45,45,.5);box-shadow:0 15px 40px rgba(0,0,0,.7),0 0 25px rgba(255,45,45,.2),0 0 60px rgba(255,45,45,.08);transform:translateY(-4px) rotateX(2deg) rotateY(-1deg)}
-.kit-c .kit-c-body{transform:translateZ(20px);position:relative;z-index:2}
-.kit-c img{transition:transform 0.4s,filter .4s;filter:brightness(.95)}
-.kit-c:hover img{transform:scale(1.05);filter:brightness(1.05)}
+/* ===== 3D VOLUMETRIC ENGINE ===== */
+@keyframes levitate{0%,100%{transform:translateY(0) rotateX(2deg) rotateY(-1deg)}50%{transform:translateY(-10px) rotateX(-1deg) rotateY(2deg)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 15px rgba(255,45,45,.15)}50%{box-shadow:0 0 35px rgba(255,45,45,.4)}}
+@keyframes neonBreath{0%,100%{opacity:.7}50%{opacity:1}}
 
-/* MICRO-ANIMATIONS */
-@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes glowPulse{0%,100%{box-shadow:0 0 15px rgba(255,45,45,.1)}50%{box-shadow:0 0 25px rgba(255,45,45,.25)}}
+/* 3D BOX KITS — volumetric with side faces */
+.kit-c{transform-style:preserve-3d;position:relative;border:none;transition:transform .5s cubic-bezier(.25,.46,.45,.94),box-shadow .5s ease;animation:levitate 6s ease-in-out infinite,fadeInUp .6s ease both;box-shadow:0 15px 40px rgba(0,0,0,.8),0 0 20px var(--kit-glow,rgba(0,255,255,.2)),0 0 60px var(--kit-glow,rgba(0,255,255,.1))}
+.kit-c:hover{transform:translateY(-12px) rotateX(5deg) rotateY(-3deg) scale(1.04);box-shadow:0 25px 60px rgba(0,0,0,.9),0 0 40px var(--kit-glow,rgba(0,255,255,.5)),0 0 100px var(--kit-glow,rgba(0,255,255,.25))}
 
+/* Side face — right edge (depth) */
+.kit-c::before{content:'';position:absolute;top:4px;right:-12px;width:12px;height:calc(100% - 8px);background:linear-gradient(to right,var(--surface-2),#0a0a0a);border-radius:0 4px 4px 0;transform:rotateY(90deg) translateZ(0px);transform-origin:left center;box-shadow:inset 0 0 10px rgba(0,0,0,.5);pointer-events:none}
+
+/* Bottom face (depth) */
+.kit-c::after{content:'';position:absolute;bottom:-12px;left:4px;width:calc(100% - 8px);height:12px;background:linear-gradient(to bottom,var(--surface-2),#0a0a0a);border-radius:0 0 4px 4px;transform:rotateX(-90deg) translateZ(0px);transform-origin:top center;box-shadow:inset 0 0 10px rgba(0,0,0,.5);pointer-events:none}
+
+.kit-c .kit-c-body{transform:translateZ(15px);position:relative;z-index:2}
+.kit-c img{transition:transform .4s,filter .4s;filter:brightness(.9) contrast(1.05)}
+.kit-c:hover img{transform:scale(1.06) translateZ(5px);filter:brightness(1.1)}
+
+/* Neon color variants per kit */
+.kit-c:nth-child(1){--kit-glow:rgba(0,255,255,.25)}
+.kit-c:nth-child(2){--kit-glow:rgba(255,165,0,.25);animation-delay:.3s}
+.kit-c:nth-child(3){--kit-glow:rgba(0,255,100,.25);animation-delay:.6s}
+.kit-c:nth-child(4){--kit-glow:rgba(255,45,45,.25);animation-delay:.9s}
+.kit-c:nth-child(5){--kit-glow:rgba(180,0,255,.25);animation-delay:1.2s}
+.kit-c:nth-child(6){--kit-glow:rgba(255,220,0,.25);animation-delay:1.5s}
+
+/* ===== MICRO-ANIMATIONS ===== */
 .hero-c h1,.hero-c p{animation:fadeInUp .8s ease both}
 .hero-c p{animation-delay:.2s}
 .sec-title,.sec-sub{animation:fadeInUp .6s ease both}
 .sec-sub{animation-delay:.15s}
-.kit-c,.yt-c{animation:fadeInUp .5s ease both}
-.kit-c:nth-child(2),.yt-c:nth-child(2){animation-delay:.1s}
-.kit-c:nth-child(3),.yt-c:nth-child(3){animation-delay:.2s}
-.kit-c:nth-child(4),.yt-c:nth-child(4){animation-delay:.25s}
-.kit-c:nth-child(5),.yt-c:nth-child(5){animation-delay:.3s}
-.kit-c:nth-child(6),.yt-c:nth-child(6){animation-delay:.35s}
+.yt-c{animation:fadeInUp .5s ease both}
+.yt-c:nth-child(2){animation-delay:.1s}
+.yt-c:nth-child(3){animation-delay:.2s}
+.yt-c:nth-child(4){animation-delay:.25s}
 .brand span{animation:glowPulse 3s ease-in-out infinite}
-.hero-c h1 span{display:inline-block;animation:float 4s ease-in-out infinite}
+.hero-c h1 span{display:inline-block;animation:levitate 5s ease-in-out infinite}
 a{color:inherit;text-decoration:none}
 button{font-family:var(--font);cursor:pointer}
 
@@ -125,9 +138,9 @@ button{font-family:var(--font);cursor:pointer}
 .sec-sub{font-size:.78rem;color:var(--text-3);margin-bottom:1.5rem}
 
 /* Kits grid */
-.kits-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.2rem}
-.kit-c{background:linear-gradient(145deg,var(--surface) 0%,var(--surface-2) 100%);border-radius:var(--rl);overflow:hidden;cursor:pointer}
-.kit-c img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.kits-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:2rem;perspective:1000px;padding:1rem}
+.kit-c{background:linear-gradient(145deg,#1a1a1a 0%,#0a0a0a 100%);border-radius:var(--rl);overflow:visible;cursor:pointer}
+.kit-c img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--rl) var(--rl) 0 0}
 .kit-c-body{padding:.8rem}
 .kit-c-body h4{font-size:.85rem;margin-bottom:2px}
 .kit-c-body p{font-size:.68rem;color:var(--text-3);margin-bottom:.5rem}
@@ -135,25 +148,34 @@ button{font-family:var(--font);cursor:pointer}
 .kit-price{font-family:var(--font-a);font-weight:700;color:var(--green)}
 .kit-dl{background:var(--accent);color:#fff;border:none;padding:4px 10px;border-radius:4px;font-size:.65rem;font-weight:700;font-family:var(--font-a)}
 
-/* Discographie grid — 3D perspective */
-.disco-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem;perspective:1200px}
-.disco-c{position:relative;background:linear-gradient(145deg,var(--surface) 0%,var(--surface-2) 100%);border:1px solid rgba(255,45,45,.12);border-radius:var(--rl);overflow:hidden;cursor:pointer;transform-style:preserve-3d;transition:transform .4s ease,box-shadow .4s ease,border-color .4s ease;animation:fadeInUp .5s ease both}
-.disco-c:hover{border-color:rgba(255,45,45,.5);box-shadow:0 20px 50px rgba(0,0,0,.7),0 0 30px rgba(255,45,45,.15);transform:translateY(-6px) rotateX(3deg) rotateY(-2deg) scale(1.02)}
-.disco-c::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 60%);pointer-events:none;z-index:1}
-.disco-c img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .5s,filter .4s;filter:brightness(.9)}
-.disco-c:hover img{transform:scale(1.08);filter:brightness(1)}
-.disco-c-body{position:absolute;bottom:0;left:0;right:0;padding:.8rem;z-index:2;transform:translateZ(25px)}
-.disco-c-body h4{font-size:.85rem;font-weight:700;margin-bottom:2px;text-shadow:0 2px 8px rgba(0,0,0,.8)}
+/* Discographie grid — 3D volumetric CD cases */
+.disco-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:2rem;perspective:1200px}
+.disco-c{position:relative;background:linear-gradient(145deg,#1a1a1a 0%,#0d0d0d 100%);border:1px solid rgba(0,255,255,.1);border-radius:var(--rl);overflow:visible;cursor:pointer;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.25,.46,.45,.94),box-shadow .5s ease;animation:levitate 7s ease-in-out infinite,fadeInUp .6s ease both;box-shadow:0 15px 40px rgba(0,0,0,.8),0 0 20px var(--disco-glow,rgba(0,255,255,.2)),0 0 60px var(--disco-glow,rgba(0,255,255,.08))}
+.disco-c:hover{transform:translateY(-14px) rotateX(6deg) rotateY(-4deg) scale(1.05);box-shadow:0 30px 70px rgba(0,0,0,.9),0 0 50px var(--disco-glow,rgba(0,255,255,.6)),0 0 120px var(--disco-glow,rgba(0,255,255,.3))}
+
+/* CD case side face — right (spine) */
+.disco-c::before{content:'';position:absolute;top:3px;right:-10px;width:10px;height:calc(100% - 6px);background:linear-gradient(to right,#1a1a1a,#050505);border-radius:0 3px 3px 0;transform:rotateY(90deg);transform-origin:left center;box-shadow:inset -2px 0 8px rgba(0,0,0,.8),0 0 8px var(--disco-glow,rgba(0,255,255,.15));pointer-events:none}
+
+/* CD case bottom face */
+.disco-c::after{content:'';position:absolute;bottom:-10px;left:3px;width:calc(100% - 6px);height:10px;background:linear-gradient(to bottom,#1a1a1a,#050505);border-radius:0 0 3px 3px;transform:rotateX(-90deg);transform-origin:top center;box-shadow:inset 0 -2px 8px rgba(0,0,0,.8),0 0 8px var(--disco-glow,rgba(0,255,255,.15));pointer-events:none}
+
+.disco-c img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--rl) var(--rl) 0 0;transition:transform .5s,filter .4s;filter:brightness(.85) contrast(1.1)}
+.disco-c:hover img{transform:scale(1.06) translateZ(8px);filter:brightness(1.05)}
+.disco-c-body{position:relative;padding:.8rem;z-index:2;transform:translateZ(20px);background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.4))}
+.disco-c-body h4{font-size:.85rem;font-weight:700;margin-bottom:2px;text-shadow:0 0 10px var(--disco-glow,rgba(0,255,255,.5))}
 .disco-c-body p{font-size:.62rem;color:var(--text-2);margin-bottom:.5rem}
-.disco-c-body .disco-spot{display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--green);background:rgba(29,185,84,.12);padding:3px 8px;border-radius:12px;transition:.2s}
-.disco-c-body .disco-spot:hover{background:rgba(29,185,84,.25);transform:scale(1.05)}
-.disco-c:nth-child(2){animation-delay:.08s}
-.disco-c:nth-child(3){animation-delay:.16s}
-.disco-c:nth-child(4){animation-delay:.24s}
-.disco-c:nth-child(5){animation-delay:.32s}
-.disco-c:nth-child(6){animation-delay:.4s}
-.disco-c:nth-child(7){animation-delay:.48s}
-.disco-c:nth-child(8){animation-delay:.56s}
+.disco-c-body .disco-spot{display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--green);background:rgba(29,185,84,.15);padding:3px 8px;border-radius:12px;transition:.2s;box-shadow:0 0 10px rgba(29,185,84,.2)}
+.disco-c-body .disco-spot:hover{background:rgba(29,185,84,.3);transform:scale(1.08);box-shadow:0 0 20px rgba(29,185,84,.4)}
+
+/* Neon color per album */
+.disco-c:nth-child(1){--disco-glow:rgba(0,255,255,.25)}
+.disco-c:nth-child(2){--disco-glow:rgba(255,100,0,.25);animation-delay:.4s}
+.disco-c:nth-child(3){--disco-glow:rgba(255,0,100,.25);animation-delay:.8s}
+.disco-c:nth-child(4){--disco-glow:rgba(120,0,255,.25);animation-delay:1.2s}
+.disco-c:nth-child(5){--disco-glow:rgba(0,255,150,.25);animation-delay:1.6s}
+.disco-c:nth-child(6){--disco-glow:rgba(255,220,0,.25);animation-delay:2s}
+.disco-c:nth-child(7){--disco-glow:rgba(255,45,45,.25);animation-delay:2.4s}
+.disco-c:nth-child(8){--disco-glow:rgba(0,200,255,.25);animation-delay:2.8s}
 
 /* Playlists grid */
 .yt-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
@@ -225,9 +247,11 @@ button{font-family:var(--font);cursor:pointer}
     .plb-vol{display:none}
     .pl-steps{gap:1rem;font-size:.6rem}
     .mc{width:100%}
-    .kits-g,.yt-g{grid-template-columns:1fr 1fr;gap:.7rem}
-    .disco-g{grid-template-columns:1fr 1fr;gap:.8rem}
-    .disco-c-body h4{font-size:.75rem}
+    .kits-g{grid-template-columns:1fr 1fr;gap:1.2rem;padding:.5rem}
+    .yt-g{grid-template-columns:1fr 1fr;gap:.7rem}
+    .disco-g{grid-template-columns:1fr 1fr;gap:1.2rem}
+    .disco-c-body h4{font-size:.72rem}
+    .kit-c,.disco-c{animation-duration:4s}
 }
     </style>
 </head>
@@ -522,9 +546,6 @@ const TRACKS=[
 {title:"No Eddies No Life",trackId:"5i8JjG7Mhe4k0EXrWswZpC",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Synth"]},
 {title:"Cold Heart",trackId:"4bmEp020iZvVHL1e0Y2XQG",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","R&B"]},
 // Singles populaires
-{title:"Manchild (Sabrina Carpenter) REMIX",trackId:"3UyQ1zq8YpuSPfxojsk7VM",cover:"https://i.scdn.co/image/ab67616d0000b2734f59542b8bb32de1c81cb365",tags:["R&B","Trap"]},
-{title:"Just Keep Watching (RMX 2)",trackId:"6BcLzpB0ED6Ph3sx12pd9Q",cover:"https://i.scdn.co/image/ab67616d0000b27355f40e1306f22ac0b6b93fbd",tags:["Drill","Dark"]},
-{title:"Just Keep Watching (RMX)",trackId:"7wBgyX4N4VuEip9nEfq11C",cover:"https://i.scdn.co/image/ab67616d0000b273cdd29024c2ba1a71efd4eef1",tags:["Drill","Dark"]},
 {title:"Argelia",trackId:"77Q6sbboPCE5vHdUHq0igW",cover:"https://i.scdn.co/image/ab67616d0000b273ff8f1f633dbedf11b8b20ff5",tags:["Ethnic","Afro"]},
 ];
 
