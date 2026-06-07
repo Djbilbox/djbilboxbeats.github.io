@@ -371,23 +371,26 @@ section{padding:4rem 0}
 
 <script>
 // === DATA ===
+// Real Spotify album/single IDs
 const BEATS = [
-    {title:"3TINI",tags:["oriental","trap"],bpm:125,cover:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg",price:"FREE"},
-    {title:"MARIAMA",tags:["afro"],bpm:110,cover:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg",price:"FREE"},
-    {title:"KHALIFA",tags:["oriental","trap"],bpm:130,cover:"https://i.ytimg.com/vi/GVxATwlh7Lo/hqdefault.jpg",price:"FREE"},
-    {title:"BOSS",tags:["trap","drill"],bpm:140,cover:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg",price:"FREE"},
-    {title:"NAGAZAKI",tags:["trap"],bpm:145,cover:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg",price:"FREE"},
-    {title:"AMNÉSIA",tags:["trap","rnb"],bpm:135,cover:"https://i.ytimg.com/vi/xHlx666A6WA/hqdefault.jpg",price:"FREE"},
-    {title:"ALBANIA",tags:["balkan"],bpm:120,cover:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg",price:"FREE"},
-    {title:"ALYA",tags:["oriental"],bpm:118,cover:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg",price:"FREE"},
-    {title:"ABU DHABI",tags:["trap","balkan"],bpm:120,cover:"https://i.ytimg.com/vi/GVxATwlh7Lo/hqdefault.jpg",price:"FREE"},
-    {title:"VATIMBORA",tags:["afro"],bpm:105,cover:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg",price:"FREE"},
-    {title:"HERMÈS",tags:["trap","oriental"],bpm:135,cover:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg",price:"FREE"},
-    {title:"BALKAN EMPIRE",tags:["balkan"],bpm:118,cover:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg",price:"FREE"},
-    {title:"CYBERPUNK",tags:["trap"],bpm:150,cover:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg",price:"FREE"},
-    {title:"G-FUNK CLASSIC",tags:["funk"],bpm:96,cover:"https://i.ytimg.com/vi/PmjSZbmIifM/hqdefault.jpg",price:"FREE"},
-    {title:"DRILL ZONE",tags:["drill"],bpm:142,cover:"https://img.youtube.com/vi/BW_HLS7payE/hqdefault.jpg",price:"FREE"},
-    {title:"SOULFUL VIBES",tags:["rnb","funk"],bpm:95,cover:"https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg",price:"FREE"},
+    {title:"3tini",tags:["oriental","trap"],spotifyId:"30RtOqF5cmuSjBuGt5ctvn",type:"album",price:"FREE"},
+    {title:"Mariama",tags:["afro"],spotifyId:"3PEWNxtNfjAIQUUQjtAjlR",type:"album",price:"FREE"},
+    {title:"KHALIFA",tags:["oriental","trap"],spotifyId:"7t9X00Fnap9RLO3qLruGsP",type:"album",price:"FREE"},
+    {title:"BOSS",tags:["trap","drill"],spotifyId:"3BjZi53447NMYq60sbynFa",type:"album",price:"FREE"},
+    {title:"Nagazaki",tags:["trap"],spotifyId:"2vFJBMzeeMmiEKl4KIufxZ",type:"album",price:"FREE"},
+    {title:"Amnésia",tags:["trap","rnb"],spotifyId:"4CXlJpjofCBoJwjm7v9tJO",type:"album",price:"FREE"},
+    {title:"Albania",tags:["balkan"],spotifyId:"0vZYkoGbEfkPQdWT987YY6",type:"album",price:"FREE"},
+    {title:"ALYA",tags:["oriental"],spotifyId:"347VK8wWtDrcidL5eL8uNR",type:"album",price:"FREE"},
+    {title:"ABU DHABI",tags:["trap","balkan"],spotifyId:"16guykz9GYqwevkVjPFz1N",type:"album",price:"FREE"},
+    {title:"VATIMBORA",tags:["afro"],spotifyId:"641j8Vdiintzg1Sjq00mSr",type:"album",price:"FREE"},
+    {title:"Cyberpunk 2077",tags:["trap","funk"],spotifyId:"469qLPb1l97wMTih2t9P2u",type:"album",price:"FREE"},
+    {title:"Raï'n'B Fever",tags:["rnb","oriental"],spotifyId:"4ButYqI5EAWH8tGgvt1lbB",type:"album",price:"FREE"},
+    {title:"Hermès",tags:["trap","oriental"],spotifyId:"1Vpgv0L0iNGlx9HEsT6uK3",type:"album",price:"FREE"},
+    {title:"WHY NOT 3",tags:["trap","drill"],spotifyId:"56q7mjhVlTbWzet00vIGjl",type:"album",price:"FREE"},
+    {title:"BALKAN",tags:["balkan"],spotifyId:"51o20OIYkMXg2Ef8BpTOgj",type:"album",price:"FREE"},
+    {title:"Funky4life",tags:["funk"],spotifyId:"2Zvcoj0ac0e2i4ddECMm1W",type:"album",price:"FREE"},
+    {title:"VIDEO CLUB",tags:["funk","rnb"],spotifyId:"5uAsgVi5C3a4XFNzqfjKiv",type:"album",price:"FREE"},
+    {title:"WHY NOT 2",tags:["trap"],spotifyId:"3JWBtrMG99xAlDjtb5t70k",type:"album",price:"FREE"},
 ];
 
 const KITS = [
@@ -432,18 +435,19 @@ function renderBeats() {
     const grid = document.getElementById('beatsGrid');
     const filtered = currentFilter === 'all' ? BEATS : BEATS.filter(b => b.tags.includes(currentFilter));
     grid.innerHTML = filtered.map((b,i) => `
-        <div class="product-card">
-            <div style="position:relative">
-                <img class="pc-cover" src="${b.cover}" alt="${b.title}" loading="lazy" onclick="playBeat(${BEATS.indexOf(b)})">
-                <div class="pc-play-overlay" onclick="playBeat(${BEATS.indexOf(b)})"><i class="fa-solid fa-play"></i></div>
+        <div class="product-card" style="display:flex;flex-direction:column;">
+            <div style="padding:0.8rem 0.8rem 0;">
+                <iframe style="border-radius:8px;" src="https://open.spotify.com/embed/album/${b.spotifyId}?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
             </div>
-            <div class="pc-body">
-                <div class="pc-type">Beat • ${b.bpm} BPM</div>
-                <div class="pc-title">${b.title}</div>
-                <div class="pc-tags">${b.tags.map(t=>'<span class="pc-tag">'+t+'</span>').join('')}</div>
-                <div class="pc-footer">
+            <div class="pc-body" style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                    <div class="pc-type"><i class="fa-brands fa-spotify" style="color:var(--green);"></i> ${b.type === 'album' && b.title.length > 10 ? 'Album' : 'Single'}</div>
+                    <div class="pc-title">${b.title}</div>
+                    <div class="pc-tags">${b.tags.map(t=>'<span class="pc-tag">'+t+'</span>').join('')}</div>
+                </div>
+                <div class="pc-footer" style="margin-top:0.6rem;">
                     <span class="pc-price free">${b.price}</span>
-                    <button class="pc-buy" onclick="addToCart('${b.title}','Beat','${b.price}')"><i class="fa-solid fa-plus"></i> Ajouter</button>
+                    <button class="pc-buy" onclick="addToCart('${b.title}','Beat - Licence','${b.price}')"><i class="fa-solid fa-plus"></i> Licence</button>
                 </div>
             </div>
         </div>`).join('');
