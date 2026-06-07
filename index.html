@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DJBILBOX BEATS | Premium Beat Store</title>
-    <meta name="description" content="DJBILBOX BEATS - Beat Store. +3000 Instrumentaux Trap, Oriental, Afrotrap, Drill, G-Funk. Licences instantanées.">
+    <meta name="description" content="DJBILBOX BEATS - Beat Store. +1000 BEATS Instrumentaux Trap, Oriental, Afrotrap, Drill, G-Funk. Licences instantanées.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js" defer></script>
     <style>
 :root{--bg:#090909;--surface:#111;--surface-2:#181818;--surface-3:#222;--accent:#ff2d2d;--accent-h:#e60000;--accent-glow:rgba(255,45,45,.15);--green:#1DB954;--text:#fff;--text-2:#ccc;--text-3:#888;--text-4:#555;--border:rgba(255,255,255,.06);--r:8px;--rl:12px;--font:'Inter',sans-serif;--font-a:'Rajdhani',sans-serif}
@@ -19,14 +19,35 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:
 
 /* VIDEO BACKGROUND */
 .video-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden}
-.video-bg video{width:100%;height:100%;object-fit:cover}
-.video-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.82);pointer-events:none}
+.video-bg video{width:100%;height:100%;object-fit:cover;filter:saturate(1.1)}
+.video-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.75) 50%,rgba(0,0,0,0.9) 100%);pointer-events:none}
 
-/* 3D TILT KITS */
-.kit-c{transform-style:preserve-3d;perspective:1000px}
-.kit-c .kit-c-body{transform:translateZ(20px)}
-.kit-c img{transition:transform 0.4s}
-.kit-c:hover img{transform:scale(1.05)}
+/* 3D BOX KITS */
+.kit-c{transform-style:preserve-3d;perspective:1000px;position:relative;border:1px solid rgba(255,45,45,.15);box-shadow:0 8px 32px rgba(0,0,0,.6),0 0 15px rgba(255,45,45,.08),inset 0 1px 0 rgba(255,255,255,.05);transition:transform .4s ease,box-shadow .4s ease,border-color .4s ease}
+.kit-c::before{content:'';position:absolute;inset:-1px;border-radius:var(--rl);background:linear-gradient(135deg,rgba(255,45,45,.2),transparent 50%,rgba(255,45,45,.1));opacity:0;transition:opacity .4s;pointer-events:none;z-index:1}
+.kit-c:hover::before{opacity:1}
+.kit-c:hover{border-color:rgba(255,45,45,.5);box-shadow:0 15px 40px rgba(0,0,0,.7),0 0 25px rgba(255,45,45,.2),0 0 60px rgba(255,45,45,.08);transform:translateY(-4px) rotateX(2deg) rotateY(-1deg)}
+.kit-c .kit-c-body{transform:translateZ(20px);position:relative;z-index:2}
+.kit-c img{transition:transform 0.4s,filter .4s;filter:brightness(.95)}
+.kit-c:hover img{transform:scale(1.05);filter:brightness(1.05)}
+
+/* MICRO-ANIMATIONS */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 15px rgba(255,45,45,.1)}50%{box-shadow:0 0 25px rgba(255,45,45,.25)}}
+
+.hero-c h1,.hero-c p{animation:fadeInUp .8s ease both}
+.hero-c p{animation-delay:.2s}
+.sec-title,.sec-sub{animation:fadeInUp .6s ease both}
+.sec-sub{animation-delay:.15s}
+.kit-c,.yt-c{animation:fadeInUp .5s ease both}
+.kit-c:nth-child(2),.yt-c:nth-child(2){animation-delay:.1s}
+.kit-c:nth-child(3),.yt-c:nth-child(3){animation-delay:.2s}
+.kit-c:nth-child(4),.yt-c:nth-child(4){animation-delay:.25s}
+.kit-c:nth-child(5),.yt-c:nth-child(5){animation-delay:.3s}
+.kit-c:nth-child(6),.yt-c:nth-child(6){animation-delay:.35s}
+.brand span{animation:glowPulse 3s ease-in-out infinite}
+.hero-c h1 span{display:inline-block;animation:float 4s ease-in-out infinite}
 a{color:inherit;text-decoration:none}
 button{font-family:var(--font);cursor:pointer}
 
@@ -104,9 +125,8 @@ button{font-family:var(--font);cursor:pointer}
 .sec-sub{font-size:.78rem;color:var(--text-3);margin-bottom:1.5rem}
 
 /* Kits grid */
-.kits-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
-.kit-c{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;transition:.2s;cursor:pointer}
-.kit-c:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.kits-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.2rem}
+.kit-c{background:linear-gradient(145deg,var(--surface) 0%,var(--surface-2) 100%);border-radius:var(--rl);overflow:hidden;cursor:pointer}
 .kit-c img{width:100%;aspect-ratio:4/3;object-fit:cover}
 .kit-c-body{padding:.8rem}
 .kit-c-body h4{font-size:.85rem;margin-bottom:2px}
@@ -114,6 +134,26 @@ button{font-family:var(--font);cursor:pointer}
 .kit-c-foot{display:flex;justify-content:space-between;align-items:center}
 .kit-price{font-family:var(--font-a);font-weight:700;color:var(--green)}
 .kit-dl{background:var(--accent);color:#fff;border:none;padding:4px 10px;border-radius:4px;font-size:.65rem;font-weight:700;font-family:var(--font-a)}
+
+/* Discographie grid — 3D perspective */
+.disco-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem;perspective:1200px}
+.disco-c{position:relative;background:linear-gradient(145deg,var(--surface) 0%,var(--surface-2) 100%);border:1px solid rgba(255,45,45,.12);border-radius:var(--rl);overflow:hidden;cursor:pointer;transform-style:preserve-3d;transition:transform .4s ease,box-shadow .4s ease,border-color .4s ease;animation:fadeInUp .5s ease both}
+.disco-c:hover{border-color:rgba(255,45,45,.5);box-shadow:0 20px 50px rgba(0,0,0,.7),0 0 30px rgba(255,45,45,.15);transform:translateY(-6px) rotateX(3deg) rotateY(-2deg) scale(1.02)}
+.disco-c::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 60%);pointer-events:none;z-index:1}
+.disco-c img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .5s,filter .4s;filter:brightness(.9)}
+.disco-c:hover img{transform:scale(1.08);filter:brightness(1)}
+.disco-c-body{position:absolute;bottom:0;left:0;right:0;padding:.8rem;z-index:2;transform:translateZ(25px)}
+.disco-c-body h4{font-size:.85rem;font-weight:700;margin-bottom:2px;text-shadow:0 2px 8px rgba(0,0,0,.8)}
+.disco-c-body p{font-size:.62rem;color:var(--text-2);margin-bottom:.5rem}
+.disco-c-body .disco-spot{display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--green);background:rgba(29,185,84,.12);padding:3px 8px;border-radius:12px;transition:.2s}
+.disco-c-body .disco-spot:hover{background:rgba(29,185,84,.25);transform:scale(1.05)}
+.disco-c:nth-child(2){animation-delay:.08s}
+.disco-c:nth-child(3){animation-delay:.16s}
+.disco-c:nth-child(4){animation-delay:.24s}
+.disco-c:nth-child(5){animation-delay:.32s}
+.disco-c:nth-child(6){animation-delay:.4s}
+.disco-c:nth-child(7){animation-delay:.48s}
+.disco-c:nth-child(8){animation-delay:.56s}
 
 /* Playlists grid */
 .yt-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
@@ -186,15 +226,17 @@ button{font-family:var(--font);cursor:pointer}
     .pl-steps{gap:1rem;font-size:.6rem}
     .mc{width:100%}
     .kits-g,.yt-g{grid-template-columns:1fr 1fr;gap:.7rem}
+    .disco-g{grid-template-columns:1fr 1fr;gap:.8rem}
+    .disco-c-body h4{font-size:.75rem}
 }
     </style>
 </head>
 <body>
 
-<!-- VIDEO BACKGROUND (LA night skyline) -->
+<!-- VIDEO BACKGROUND (LA drone shots + Low Rider Cadillac) -->
 <div class="video-bg">
     <video autoplay muted loop playsinline>
-        <source src="https://cdn.pixabay.com/video/2024/02/12/200712-912703685_large.mp4" type="video/mp4">
+        <source src="https://cdn.pixabay.com/video/2020/05/25/39587-424804498_large.mp4" type="video/mp4">
     </video>
 </div>
 
@@ -205,12 +247,12 @@ button{font-family:var(--font);cursor:pointer}
         <nav class="hdr-nav">
             <a href="#player">Beats</a>
             <a href="#kits">Drum Kits</a>
+            <a href="#discography">Discographie</a>
             <a href="#playlists">Playlists</a>
         </nav>
         <div class="hdr-r">
             <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
             <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.instagram.com/djbilboxbeats" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             <button class="cart-btn" onclick="toggleCart()"><i class="fa-solid fa-bag-shopping"></i> <span class="cart-badge" id="cBadge">0</span></button>
         </div>
     </div>
@@ -219,7 +261,7 @@ button{font-family:var(--font);cursor:pointer}
 <!-- HERO -->
 <div class="hero-c">
     <h1>DJBILBOX <span>BEATS</span></h1>
-    <p>+3000 Beats • Free For Profit • Licences Instantanées</p>
+    <p>+1000 BEATS • Free For Profit • Licences Instantanées</p>
 </div>
 
 <!-- MAIN PLAYER PANEL -->
@@ -263,6 +305,13 @@ button{font-family:var(--font);cursor:pointer}
     <div class="kits-g" id="kitsG"></div>
 </div>
 
+<!-- DISCOGRAPHIE -->
+<div class="sec" id="discography">
+    <h2 class="sec-title">Discographie</h2>
+    <p class="sec-sub">Albums & Projets • Disponibles sur toutes les plateformes</p>
+    <div class="disco-g" id="discoG"></div>
+</div>
+
 <!-- PLAYLISTS -->
 <div class="sec" id="playlists">
     <h2 class="sec-title">Playlists YouTube</h2>
@@ -277,7 +326,6 @@ button{font-family:var(--font);cursor:pointer}
         <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify fa-lg"></i></a>
         <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube fa-lg"></i></a>
         <a href="https://www.tiktok.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-tiktok fa-lg"></i></a>
-        <a href="https://www.instagram.com/djbilboxbeats" target="_blank"><i class="fa-brands fa-instagram fa-lg"></i></a>
         <a href="https://soundcloud.com/djbilbox" target="_blank"><i class="fa-brands fa-soundcloud fa-lg"></i></a>
     </div>
     <p style="color:var(--text-4);font-size:.7rem">© 2026 DJBILBOX BEATS. All Rights Reserved.</p>
@@ -490,18 +538,18 @@ const KITS=[
 ];
 
 const PLAYLISTS=[
-{title:"ALL BEATS",sub:"+3000 beats",id:"PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th",img:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg"},
-{title:"Oriental Type Beats",sub:"Arabes, turcs, balkaniques",id:"PLbtcZhy947NUC6PqUplrygUgHJSTvS61u",img:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg"},
-{title:"Hip-hop Trap Drill",sub:"Trap, Drill UK",id:"PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg",img:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg"},
-{title:"Afrotrap",sub:"Afrobeat, Dancehall",id:"PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_",img:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg"},
-{title:"Deephouse DNB",sub:"Electronic, Techno",id:"PLbtcZhy947NUF9V0rVWzY_-gl1Cy8vw5r",img:"https://i.ytimg.com/vi/OhyWvW8V5qY/hqdefault.jpg"},
-{title:"Funk",sub:"Funk, Disco, Groove",id:"PLbtcZhy947NW5vq7XI-R0nB5rnSMesR8B",img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg"},
-{title:"SOUL & JAZZ",sub:"Neo-soul, Smooth",id:"PLbtcZhy947NUOk5HoAYNmLnpMGzLSsR8h",img:"https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg"},
-{title:"Music Mix & RMX",sub:"Remixes, DJ sets",id:"PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-",img:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg"},
-{title:"FL STUDIO",sub:"Tutoriels",id:"PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ",img:"https://i.ytimg.com/vi/PmjSZbmIifM/hqdefault.jpg"},
-{title:"Pack Loop SAMPLE",sub:"Samples & boucles",id:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",img:"https://img.youtube.com/vi/BW_HLS7payE/hqdefault.jpg"},
-{title:"Rock Indie",sub:"Rock, Post-punk",id:"PLbtcZhy947NX_wb3vnR4vml6uUdHIyI9Y",img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg"},
-{title:"AI Visuals",sub:"Clips IA, Motion",id:"PLbtcZhy947NWbPbX4VepMkY3lIzvm681V",img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg"},
+{title:"ALL BEATS",sub:"+1000 BEATS",id:"PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th",img:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg"},
+{title:"Oriental × Balkan Type Beats",sub:"Arabes, turcs, balkaniques",id:"PLbtcZhy947NUC6PqUplrygUgHJSTvS61u",img:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg"},
+{title:"Trap × Drill Type Beats",sub:"Trap, Drill UK, Hard",id:"PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg",img:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg"},
+{title:"Afrotrap × Dancehall Type Beats",sub:"Afrobeat, Dancehall, Reggaeton",id:"PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_",img:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg"},
+{title:"Deep House × DNB × Electronic",sub:"House, Techno, Drum & Bass",id:"PLbtcZhy947NUF9V0rVWzY_-gl1Cy8vw5r",img:"https://i.ytimg.com/vi/OhyWvW8V5qY/hqdefault.jpg"},
+{title:"Funky4Life × G-Funk Type Beats",sub:"Funk, Disco, West Coast Groove",id:"PLbtcZhy947NW5vq7XI-R0nB5rnSMesR8B",img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg"},
+{title:"Soul × Jazz Type Beats",sub:"Neo-soul, Smooth Jazz",id:"PLbtcZhy947NUOk5HoAYNmLnpMGzLSsR8h",img:"https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg"},
+{title:"Music Mix & Remixes",sub:"DJ sets, Remixes officiels",id:"PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-",img:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg"},
+{title:"FL Studio Tutorials",sub:"Tutos production, Making-of",id:"PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ",img:"https://i.ytimg.com/vi/PmjSZbmIifM/hqdefault.jpg"},
+{title:"Sample Packs & Loop Kits",sub:"Packs de samples gratuits",id:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",img:"https://img.youtube.com/vi/BW_HLS7payE/hqdefault.jpg"},
+{title:"Rock × Indie Type Beats",sub:"Rock, Post-punk, Alternative",id:"PLbtcZhy947NX_wb3vnR4vml6uUdHIyI9Y",img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg"},
+{title:"AI Visual Clips",sub:"Clips générés par IA, Motion design",id:"PLbtcZhy947NWbPbX4VepMkY3lIzvm681V",img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg"},
 ];
 
 // ===== STATE =====
@@ -579,42 +627,102 @@ document.getElementById('licM').addEventListener('click',e=>{if(e.target.id==='l
 document.getElementById('licF').addEventListener('submit',function(e){
     e.preventDefault();
     const n=document.getElementById('fN').value.trim(),em=document.getElementById('fE').value.trim(),b=document.getElementById('fB').value.trim(),p=document.getElementById('fP').value.trim();
-    if(!n||!em||!b)return;
+    const chk=document.getElementById('fA').checked;
+
+    // Validation avec feedback utilisateur
+    if(!n){toast('⚠ Veuillez entrer votre nom');document.getElementById('fN').focus();return;}
+    if(!em){toast('⚠ Veuillez entrer votre email');document.getElementById('fE').focus();return;}
+    if(!em.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)){toast('⚠ Email invalide');document.getElementById('fE').focus();return;}
+    if(!b){toast('⚠ Veuillez indiquer les beats sélectionnés');document.getElementById('fB').focus();return;}
+    if(!chk){toast('⚠ Veuillez accepter les conditions');return;}
+
+    // Vérifier que jsPDF est bien chargé
+    if(!window.jspdf||!window.jspdf.jsPDF){
+        toast('⚠ Chargement en cours... Réessayez');
+        console.error('[LICENCE] jsPDF non chargé. Vérifiez la connexion ou le CDN.');
+        return;
+    }
+
     const ref='LIC-'+Date.now().toString(36).toUpperCase();
     const beats=b.split(',').map(x=>x.trim()).filter(x=>x);
-    genPDF(n,em,p,ref,beats);
-    fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({_subject:'Licence '+ref,Nom:n,Email:em,Beats:b,Projet:p||'N/A',Date:new Date().toLocaleDateString('fr-FR')})}).catch(()=>{});
-    try{const l=JSON.parse(localStorage.getItem('djb_lic')||'[]');l.push({ref,date:new Date().toISOString(),name:n,email:em,beats});localStorage.setItem('djb_lic',JSON.stringify(l))}catch(x){}
-    cart=[];updCart();closeModal();this.reset();toast('PDF téléchargé !');
+
+    // Génération PDF avec gestion d'erreur
+    try{
+        genPDF(n,em,p,ref,beats);
+        console.log('[LICENCE] PDF généré avec succès:',ref);
+    }catch(err){
+        toast('⚠ Erreur génération PDF — réessayez');
+        console.error('[LICENCE] Erreur genPDF:',err);
+        return;
+    }
+
+    // Envoi email avec feedback
+    fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({_subject:'Licence '+ref,Nom:n,Email:em,Beats:b,Projet:p||'N/A',Date:new Date().toLocaleDateString('fr-FR')})
+    }).then(r=>{
+        if(!r.ok)throw new Error('HTTP '+r.status);
+        console.log('[LICENCE] Email envoyé au producteur');
+    }).catch(err=>{
+        console.warn('[LICENCE] Email non envoyé (PDF OK):',err.message);
+    });
+
+    // Sauvegarde locale
+    try{const l=JSON.parse(localStorage.getItem('djb_lic')||'[]');l.push({ref,date:new Date().toISOString(),name:n,email:em,beats});localStorage.setItem('djb_lic',JSON.stringify(l))}catch(x){console.warn('[LICENCE] localStorage:',x)}
+
+    cart=[];updCart();closeModal();this.reset();toast('✓ Licence '+ref+' téléchargée !');
 });
 
+function sanitizeText(str){
+    return str.replace(/[éèêë]/g,'e').replace(/[àâä]/g,'a').replace(/[ùûü]/g,'u').replace(/[ôö]/g,'o').replace(/[îï]/g,'i').replace(/[ç]/g,'c').replace(/[É]/g,'E').replace(/[À]/g,'A');
+}
 function genPDF(name,email,project,ref,beats){
-    const{jsPDF}=window.jspdf,doc=new jsPDF(),d=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+    const{jsPDF}=window.jspdf;
+    if(!jsPDF)throw new Error('jsPDF not available');
+    const doc=new jsPDF(),d=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+    const sName=sanitizeText(name),sProject=sanitizeText(project||'');
+
     doc.setDrawColor(255,45,45);doc.setLineWidth(1);doc.rect(5,5,200,287);
     doc.setFillColor(9,9,9);doc.rect(5,5,200,32,'F');
     doc.setTextColor(255,255,255);doc.setFont("helvetica","bold");doc.setFontSize(22);doc.text("DJBILBOX BEATS",20,20);
     doc.setFontSize(9);doc.text("CONTRAT DE LICENCE - "+ref,20,28);
-    doc.setTextColor(0);doc.setFontSize(9);doc.setFont("helvetica","normal");doc.text("Date : "+d,150,45);
+    doc.setTextColor(0);doc.setFontSize(9);doc.setFont("helvetica","normal");doc.text("Date : "+sanitizeText(d),150,45);
     let y=50;doc.setFont("helvetica","bold");doc.setFontSize(10);doc.text("PARTIES",20,y);y+=6;
     doc.setFont("helvetica","normal");doc.setFontSize(8.5);
     doc.text("Producteur : DJBILBOX BEATS | djbilboxbeats@gmail.com",20,y);y+=4.5;
-    doc.text("Licencie : "+name+" | "+email,20,y);y+=4.5;
-    if(project){doc.text("Projet : "+project,20,y);y+=4.5;}
+    doc.text("Licencie : "+sName+" | "+email,20,y);y+=4.5;
+    if(sProject){doc.text("Projet : "+sProject,20,y);y+=4.5;}
     y+=6;doc.setFont("helvetica","bold");doc.setFontSize(10);doc.text("OEUVRES ("+beats.length+")",20,y);y+=6;
     doc.setFont("helvetica","normal");doc.setFontSize(8.5);
-    beats.forEach(b=>{if(y>265){doc.addPage();y=15;}doc.text("- "+b,24,y);y+=4.5;});
+    beats.forEach(b=>{if(y>265){doc.addPage();y=15;}doc.text("- "+sanitizeText(b),24,y);y+=4.5;});
     y+=6;doc.setFont("helvetica","bold");doc.setFontSize(10);doc.text("DROITS",20,y);y+=6;
     doc.setFont("helvetica","normal");doc.setFontSize(8);
     ["OK: Streaming, YouTube, Radio, Live, Reseaux sociaux","OK: Projets personnels et collaboratifs","OBLIGATOIRE: Credit 'Prod. DJBILBOX BEATS'","INTERDIT: Revente instrumentaux seuls","INTERDIT: Transfert a un tiers","PRIX: 0.00 EUR (Free for Profit)","DUREE: Illimitee"].forEach(l=>{doc.text(l,24,y);y+=4;});
     y+=8;doc.setDrawColor(255,45,45);doc.line(20,y,190,y);y+=7;
     doc.setFont("courier","italic");doc.setFontSize(13);doc.setTextColor(255,45,45);doc.text("DJBILBOX BEATS",20,y);
-    doc.setTextColor(0);doc.text(name,120,y);
+    doc.setTextColor(0);doc.text(sName,120,y);
     doc.save("Licence_DJBILBOX_"+ref+".pdf");
 }
 
-// ===== RENDER KITS & PLAYLISTS =====
+// ===== DISCOGRAPHIE DATA =====
+const DISCOGRAPHY=[
+{title:"WHY NOT 3",year:"2025",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",spotifyUrl:"https://open.spotify.com/album/3VzsvmhnCb0t7FqBNRJFhA"},
+{title:"Hermès",year:"2025",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",spotifyUrl:"https://open.spotify.com/album/1eM3CnMoDBvFjkBPhCwGP4"},
+{title:"Raï'n'B Fever 2025",year:"2025",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",spotifyUrl:"https://open.spotify.com/album/3vD7xlhqhMyvfN4jMKalfP"},
+{title:"Cyberpunk 2077",year:"2024",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",spotifyUrl:"https://open.spotify.com/album/1FcYgMgcOI46PUHJVwO1FZ"},
+{title:"Video Club",year:"2024",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",spotifyUrl:"https://open.spotify.com/album/0jDi4k7BQSF2FnRYSfbsua"},
+{title:"Funky4Life",year:"2024",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",spotifyUrl:"https://open.spotify.com/album/3H3MZcTFOahHe2hBUzlsIz"},
+{title:"Balkan",year:"2024",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b2739648a06936788f6884fa9743",spotifyUrl:"https://open.spotify.com/album/5c2SHR04yHLjk8sBIHrk3g"},
+{title:"WHY NOT 2",year:"2023",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",spotifyUrl:"https://open.spotify.com/album/0DcrVmk7eTigVhFGMpjftF"},
+];
+
+// ===== RENDER KITS, DISCOGRAPHIE & PLAYLISTS =====
 function renderKits(){
     document.getElementById('kitsG').innerHTML=KITS.map(k=>`<div class="kit-c" onclick="window.open('${k.link}','_blank')"><img src="${k.img}" alt="${k.title}" loading="lazy"><div class="kit-c-body"><h4>${k.title}</h4><p>${k.sub}</p><div class="kit-c-foot"><span class="kit-price">FREE</span><button class="kit-dl">Download</button></div></div></div>`).join('');
+}
+function renderDisco(){
+    document.getElementById('discoG').innerHTML=DISCOGRAPHY.map(a=>`<div class="disco-c" onclick="window.open('${a.spotifyUrl}','_blank')"><img src="${a.img}" alt="${a.title}" loading="lazy"><div class="disco-c-body"><h4>${a.title}</h4><p>${a.year} • ${a.type}</p><span class="disco-spot"><i class="fa-brands fa-spotify"></i> Écouter</span></div></div>`).join('');
 }
 function renderYT(){
     document.getElementById('ytG').innerHTML=PLAYLISTS.map(p=>`<div class="yt-c" onclick="window.open('https://www.youtube.com/playlist?list=${p.id}','_blank')"><img src="${p.img}" alt="${p.title}" loading="lazy"><div class="yt-c-body"><h4>${p.title}</h4><p>${p.sub}</p></div></div>`).join('');
@@ -624,13 +732,16 @@ function renderYT(){
 function toast(m){const t=document.getElementById('toast');document.getElementById('toastT').textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
 // ===== INIT =====
-renderTracks();renderKits();renderYT();
+renderTracks();renderKits();renderDisco();renderYT();
 
-// Init VanillaTilt on Drum Kit cards
+// Init VanillaTilt on Drum Kit + Discographie cards
 setTimeout(function(){
     if(window.VanillaTilt){
         VanillaTilt.init(document.querySelectorAll('.kit-c'),{
             max:15,speed:400,glare:true,'max-glare':0.2,perspective:1000,scale:1.03
+        });
+        VanillaTilt.init(document.querySelectorAll('.disco-c'),{
+            max:12,speed:300,glare:true,'max-glare':0.15,perspective:1200,scale:1.02
         });
     }
 },200);
