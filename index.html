@@ -274,37 +274,34 @@
     </div>
 </section>
 
-<!-- SPOTIFY PLAYER STICKY -->
-<div class="sp-player-wrap">
-    <div class="container">
-        <iframe id="spotifyPlayer" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="380" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:12px;"></iframe>
-    </div>
-</div>
 
-<!-- CATALOGUE SPOTIFY COMPLET -->
+<!-- CATALOGUE COMPLET -->
 <section id="catalogue">
     <div class="container">
         <h2 class="section-title">Catalogue Complet</h2>
-        <p class="section-subtitle">+1000 instrumentaux • Écoute & licence gratuite</p>
+        <p class="section-subtitle">+3000 instrumentaux • Écoute directe • Licence gratuite</p>
 
-        <!-- Spotify embed artiste complet (affiche TOUT le catalogue) -->
-        <div style="margin-bottom:2rem;">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="500" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <!-- Spotify releases grid (chaque sortie = embed + bouton licence) -->
+        <div id="releasesGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:1.5rem; margin-bottom:3rem;"></div>
+
+        <!-- YOUTUBE — Tout le catalogue -->
+        <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:16px; padding:2rem; margin-bottom:3rem;">
+            <h3 style="font-family:var(--font-display); font-size:2.5rem; margin-bottom:0.5rem; text-align:center;">TOUS MES BEATS YOUTUBE</h3>
+            <p style="color:var(--text-muted); text-align:center; margin-bottom:1.5rem; font-size:0.9rem;">+3000 instrumentaux — Naviguez dans la playlist complète</p>
+            <div style="position:relative; padding-bottom:56.25%; border-radius:12px; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,0.5);">
+                <iframe style="position:absolute; inset:0; width:100%; height:100%;" src="https://www.youtube.com/embed/videoseries?list=PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
         </div>
 
-        <!-- Playlist YouTube complète embed (toutes les musiques) -->
-        <h3 style="font-family:var(--font-display); font-size:2rem; margin:2rem 0 1rem;">TOUS MES BEATS YOUTUBE</h3>
-        <div style="position:relative; padding-bottom:56.25%; border-radius:12px; overflow:hidden; margin-bottom:2rem; box-shadow:0 10px 40px rgba(0,0,0,0.5);">
-            <iframe style="position:absolute; inset:0; width:100%; height:100%;" src="https://www.youtube.com/embed/videoseries?list=PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <p style="text-align:center; color:var(--text-muted); font-size:0.85rem; margin-bottom:3rem;">▲ Playlist complète — naviguez pour écouter tous les beats</p>
-
-        <!-- Grille beats avec licence -->
-        <h3 style="font-family:var(--font-display); font-size:2rem; margin:2rem 0 1rem;">SÉLECTION • LICENCE GRATUITE</h3>
-        <p style="color:var(--text-muted); text-align:center; margin-bottom:2rem; font-size:0.85rem;">Ajoutez des beats au panier et téléchargez votre contrat de licence PDF gratuitement</p>
-        <div class="cat-grid" id="catGrid"></div>
-        <div style="text-align:center; margin-top:2.5rem;">
-            <button id="loadMoreBtn" class="btn btn-outline" style="display:none;" onclick="loadMore()"><i class="fa-solid fa-plus"></i> Charger plus</button>
+        <!-- PANIER LICENCE -->
+        <div id="licCartBar" style="display:none; position:fixed; bottom:0; left:0; right:0; background:rgba(15,15,15,0.95); backdrop-filter:blur(20px); border-top:1px solid var(--accent-red); padding:1rem 2rem; z-index:900; display:none;">
+            <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+                <div><strong id="licCartCount">0</strong> beat(s) dans le panier : <span id="licCartNames" style="color:var(--text-muted); font-size:0.85rem;"></span></div>
+                <div style="display:flex; gap:1rem;">
+                    <button class="btn btn-outline" onclick="clearLicCart()" style="padding:0.6rem 1rem; font-size:0.8rem;">Vider</button>
+                    <button class="btn btn-primary" onclick="openLicModal()" style="padding:0.6rem 1.5rem;"><i class="fa-solid fa-file-pdf"></i> Obtenir licence (0€)</button>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -374,21 +371,19 @@
 <div class="modal" id="licModal">
     <div class="modal-content">
         <button class="modal-close" onclick="closeLicModal()">&times;</button>
-        <h2 style="font-size:2rem; margin-bottom:0.5rem; color:var(--accent-red);">Licence Gratuite</h2>
-        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1.5rem;">Remplissez vos informations pour télécharger votre contrat d'autorisation PDF.</p>
-        <div id="licCartSummary" style="margin-bottom:1.5rem; padding:1rem; background:var(--bg-main); border-radius:8px; border:1px solid var(--border-color); font-size:0.8rem; color:var(--text-muted);"></div>
+        <h2 style="font-size:2rem; margin-bottom:0.5rem; color:var(--accent-red);">Licence Gratuite (0€)</h2>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1.5rem;">Remplissez le formulaire ci-dessous. Votre contrat PDF sera téléchargé instantanément et une copie sera envoyée au producteur.</p>
         <form id="licForm">
-            <div class="form-group"><label>Nom complet *</label><input type="text" id="licName" required minlength="2" maxlength="100"></div>
-            <div class="form-group"><label>Email *</label><input type="email" id="licEmail" required></div>
+            <div class="form-group"><label>Nom complet *</label><input type="text" id="licName" required minlength="2" maxlength="100" placeholder="Votre nom complet"></div>
+            <div class="form-group"><label>Email *</label><input type="email" id="licEmail" required placeholder="votre@email.com"></div>
+            <div class="form-group"><label>Beats sélectionnés * (séparez par des virgules)</label><textarea id="licBeats" required rows="3" style="width:100%; padding:12px 16px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-main); color:white; font-size:0.9rem; font-family:var(--font-body); resize:vertical;" placeholder="Ex: VATIMBORA, ABU DHABI, HERMÈS, BALKAN VIBES..."></textarea></div>
             <div class="form-group"><label>Projet / Utilisation</label><input type="text" id="licProject" maxlength="200" placeholder="Album, vidéo YouTube, podcast..."></div>
-            <div class="form-group cb-group"><input type="checkbox" id="licAccept" required><label for="licAccept">J'accepte les conditions et m'engage à créditer "Prod. DJBILBOX BEATS" dans mes productions.</label></div>
-            <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fa-solid fa-file-pdf"></i> Générer le contrat PDF</button>
+            <div class="form-group cb-group"><input type="checkbox" id="licAccept" required><label for="licAccept">J'accepte les conditions et m'engage à créditer "Prod. DJBILBOX BEATS" dans toutes mes productions utilisant ces beats.</label></div>
+            <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fa-solid fa-file-pdf"></i> Télécharger le contrat PDF</button>
         </form>
     </div>
 </div>
 
-<!-- CART FAB -->
-<button class="cart-fab" id="cartFab" onclick="openLicModal()"><i class="fa-solid fa-file-contract"></i><span class="badge" id="cartBadge">0</span></button>
 
 <!-- NOTIF -->
 <div class="notif" id="notif"><i class="fa-solid fa-check-circle"></i> <span id="notifText"></span></div>
@@ -412,41 +407,28 @@
 
 <script>
 // ============ DATA ============
-const BEATS = [
-    // Singles 2026
-    { name:"3TINI", tags:"Oriental • Trap", bpm:125, img:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg", spotify:"" },
-    { name:"MARIAMA", tags:"Afro • Melodic", bpm:110, img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg", spotify:"" },
-    { name:"KHALIFA", tags:"Oriental • Hard", bpm:130, img:"https://i.ytimg.com/vi/GVxATwlh7Lo/hqdefault.jpg", spotify:"" },
-    { name:"BOSS", tags:"Trap • Dark", bpm:140, img:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg", spotify:"" },
-    { name:"NAGAZAKI", tags:"Hard • Synth", bpm:145, img:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg", spotify:"" },
-    { name:"AMNÉSIA", tags:"Melodic • Trap", bpm:135, img:"https://i.ytimg.com/vi/xHlx666A6WA/hqdefault.jpg", spotify:"" },
-    { name:"ALBANIA", tags:"Balkan • Ethnic", bpm:120, img:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg", spotify:"" },
-    { name:"ALYA", tags:"Oriental • Guitar", bpm:118, img:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg", spotify:"" },
-    { name:"ABU DHABI", tags:"Trap • Balkan", bpm:120, img:"https://i.ytimg.com/vi/GVxATwlh7Lo/hqdefault.jpg", spotify:"" },
-    // Hits
-    { name:"VATIMBORA", tags:"Afro • Reggaeton", bpm:105, img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg", spotify:"" },
-    { name:"MANCHILD REMIX", tags:"R&B • Trap", bpm:140, img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg", spotify:"" },
-    { name:"KEEP WATCHING RMX", tags:"Drill • Dark", bpm:95, img:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg", spotify:"" },
-    { name:"KEEP WATCHING RMX 2", tags:"Drill • UK", bpm:140, img:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg", spotify:"" },
-    { name:"ARGELIA", tags:"Ethnic • Afro", bpm:110, img:"https://i.ytimg.com/vi/G5_y3w6k_8I/hqdefault.jpg", spotify:"" },
-    { name:"RIDE", tags:"House • Radio", bpm:128, img:"https://i.ytimg.com/vi/OhyWvW8V5qY/hqdefault.jpg", spotify:"" },
-    { name:"FLASHBACK", tags:"Dark • Oldschool", bpm:140, img:"https://i.ytimg.com/vi/xHlx666A6WA/hqdefault.jpg", spotify:"" },
-    { name:"OMRI", tags:"Lofi • Melodic", bpm:130, img:"https://i.ytimg.com/vi/0h9Vp5Z3Z5U/hqdefault.jpg", spotify:"" },
-    { name:"GOOD LIFE", tags:"Happy • Pop", bpm:100, img:"https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg", spotify:"" },
-    { name:"NOKIA", tags:"Grime • Hard", bpm:145, img:"https://i.ytimg.com/vi/5IZbkC_Dq4s/hqdefault.jpg", spotify:"" },
-    { name:"HERMÈS", tags:"Trap • Oriental", bpm:135, img:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg", spotify:"" },
-    { name:"BALKAN VIBES", tags:"Balkan • Ethnic", bpm:118, img:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg", spotify:"" },
-    { name:"CYBERPUNK", tags:"Futuristic • Synth", bpm:150, img:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg", spotify:"" },
-    { name:"G-FUNK CLASSIC", tags:"G-Funk • West Coast", bpm:96, img:"https://i.ytimg.com/vi/PmjSZbmIifM/hqdefault.jpg", spotify:"" },
-    { name:"RAÏ N B FEVER", tags:"Raï • R&B", bpm:108, img:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg", spotify:"" },
-    { name:"ORIENTAL DREAMS", tags:"Oriental • Guitar", bpm:125, img:"https://img.youtube.com/vi/4VyncAFZ0HQ/hqdefault.jpg", spotify:"" },
-    { name:"DRILL LONDON", tags:"Drill UK • Rap", bpm:142, img:"https://img.youtube.com/vi/BW_HLS7payE/hqdefault.jpg", spotify:"" },
-    { name:"AFRO SUNSET", tags:"Afrotrap • Summer", bpm:112, img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg", spotify:"" },
-    { name:"FUNKY GROOVE", tags:"Funk • Disco", bpm:115, img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg", spotify:"" },
-    { name:"VIDEO CLUB", tags:"Synthwave • Retro", bpm:120, img:"https://i.ytimg.com/vi/OhyWvW8V5qY/hqdefault.jpg", spotify:"" },
-    { name:"KOMPA LOVE", tags:"Kompa • Gouyad", bpm:100, img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg", spotify:"" },
-    { name:"WHY NOT", tags:"Trap • Melodic", bpm:138, img:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg", spotify:"" }
+// Toutes les sorties Spotify (albums + singles)
+const SPOTIFY_RELEASES = [
+    { name:"3tini", type:"Single", year:"2026", spotifyId:"3tini" },
+    { name:"Mariama", type:"Single", year:"2026", spotifyId:"mariama" },
+    { name:"KHALIFA", type:"Single", year:"2026", spotifyId:"khalifa" },
+    { name:"BOSS", type:"Single", year:"2026", spotifyId:"boss" },
+    { name:"Nagazaki", type:"Single", year:"2026", spotifyId:"nagazaki" },
+    { name:"Amnésia", type:"Single", year:"2026", spotifyId:"amnesia" },
+    { name:"Albania", type:"Single", year:"2026", spotifyId:"albania" },
+    { name:"ALYA", type:"Single", year:"2026", spotifyId:"alya" },
+    { name:"ABU DHABI", type:"Single", year:"2026", spotifyId:"abu-dhabi" },
+    { name:"Cyberpunk 2077", type:"Album", year:"2025", spotifyId:"cyberpunk-2077" },
+    { name:"Raï'n'B Fever", type:"Album", year:"2025", spotifyId:"rainb-fever" },
+    { name:"Hermès", type:"Album", year:"2025", spotifyId:"hermes" },
+    { name:"WHY NOT 3", type:"Album", year:"2025", spotifyId:"why-not-3" },
+    { name:"BALKAN", type:"Album", year:"2024", spotifyId:"balkan" },
+    { name:"Funky4life", type:"Album", year:"2024", spotifyId:"funky4life" },
+    { name:"VIDEO CLUB", type:"Album", year:"2024", spotifyId:"video-club" },
+    { name:"WHY NOT 2", type:"Album", year:"2024", spotifyId:"why-not-2" },
 ];
+
+let licCart = [];
 
 const KITS = [
     { name:"Vice City Vol. 4", type:"Drill Afrotrap", img:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210739.png", link:"https://www.beatstars.com/sound-kit/245443" },
@@ -486,76 +468,57 @@ const YT_PLAYLISTS = [
     { title:"AI Visuals & Motion Design", desc:"Visuels IA, clips générés, motion design", id:"PLbtcZhy947NWbPbX4VepMkY3lIzvm681V", img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg" }
 ];
 
-// ============ STATE ============
-let cart = [];
-let displayed = 0;
-const PER_PAGE = 999;
+// ============ RELEASES CATALOGUE ============
+function renderReleases() {
+    const grid = document.getElementById('releasesGrid');
+    grid.innerHTML = SPOTIFY_RELEASES.map((r, i) => {
+        const inCart = licCart.includes(r.name);
+        return `<div class="release-card reveal" style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:12px; padding:1rem; transition:0.3s;${inCart?' border-color:var(--accent-red);':''}">
+            <iframe style="border-radius:8px; margin-bottom:0.8rem;" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <strong style="font-size:0.9rem;">${r.name}</strong>
+                    <div style="font-size:0.7rem; color:var(--text-muted);">${r.type} • ${r.year}</div>
+                </div>
+                <button onclick="toggleLicCart('${r.name}')" class="btn-lic-add" style="background:${inCart?'transparent':'var(--accent-red)'}; color:${inCart?'var(--accent-red)':'white'}; border:1px solid var(--accent-red); padding:6px 14px; border-radius:4px; font-size:0.75rem; font-weight:700; cursor:pointer; font-family:var(--font-accent); transition:0.3s;">${inCart?'✓ AJOUTÉ':'+ PANIER'}</button>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function toggleLicCart(name) {
+    const idx = licCart.indexOf(name);
+    if (idx > -1) { licCart.splice(idx, 1); notify(name + ' retiré du panier'); }
+    else { licCart.push(name); notify(name + ' ajouté au panier'); }
+    updateLicCartBar();
+    renderReleases();
+}
+
+function clearLicCart() { licCart = []; updateLicCartBar(); renderReleases(); }
+
+function updateLicCartBar() {
+    const bar = document.getElementById('licCartBar');
+    bar.style.display = licCart.length > 0 ? 'block' : 'none';
+    document.getElementById('licCartCount').textContent = licCart.length;
+    document.getElementById('licCartNames').textContent = licCart.join(', ');
+}
 
 // ============ INIT ============
 function init() {
-    loadMore();
+    renderReleases();
     renderKits();
     renderAlbums();
     renderYT();
 }
 
-// ============ CATALOGUE ============
-function loadMore() {
-    const grid = document.getElementById('catGrid');
-    const slice = BEATS.slice(displayed, displayed + PER_PAGE);
-    slice.forEach(b => grid.insertAdjacentHTML('beforeend', catCard(b)));
-    displayed += slice.length;
-    document.getElementById('loadMoreBtn').style.display = displayed < BEATS.length ? 'inline-flex' : 'none';
-}
-
-function catCard(b) {
-    const inCart = cart.some(c => c.name === b.name);
-    return `<div class="cat-card ${inCart?'in-cart':''}" data-name="${b.name}" onclick="playOnSpotify('${b.spotify}')">
-        <div class="cat-img-wrap">
-            <img class="cat-img" src="${b.img}" alt="${b.name}" loading="lazy">
-            <div class="cat-play"><i class="fa-solid fa-play"></i></div>
-        </div>
-        <div class="cat-info">
-            <h4>${b.name}</h4>
-            <div class="cat-sub">${b.tags} • ${b.bpm} BPM</div>
-            <div class="cat-bottom">
-                <span class="cat-price">0€</span>
-                <button class="cat-btn ${inCart?'added':''}" onclick="event.stopPropagation(); toggleCart('${b.name}')">${inCart?'✓ AJOUTÉ':'LICENCE'}</button>
-            </div>
-        </div>
-    </div>`;
-}
-
-function playOnSpotify(id) {
-    if (!id) return;
-    document.getElementById('spotifyPlayer').src = 'https://open.spotify.com/embed/track/' + id + '?utm_source=generator&theme=0';
-}
-
-function toggleCart(name) {
-    const idx = cart.findIndex(c => c.name === name);
-    if (idx > -1) { cart.splice(idx, 1); notify(name + ' retiré'); }
-    else { const b = BEATS.find(x => x.name === name); if (b) cart.push(b); notify(name + ' ajouté'); }
-    updateCartUI();
-}
-
-function updateCartUI() {
-    const fab = document.getElementById('cartFab');
-    fab.style.display = cart.length > 0 ? 'flex' : 'none';
-    document.getElementById('cartBadge').textContent = cart.length;
-    document.querySelectorAll('.cat-card').forEach(card => {
-        const name = card.dataset.name;
-        const inCart = cart.some(c => c.name === name);
-        card.classList.toggle('in-cart', inCart);
-        const btn = card.querySelector('.cat-btn');
-        if (btn) { btn.classList.toggle('added', inCart); btn.textContent = inCart ? '✓ AJOUTÉ' : 'LICENCE'; }
-    });
-}
 
 // ============ LICENCE ============
 function openLicModal() {
-    if (!cart.length) return;
-    document.getElementById('licCartSummary').innerHTML = '<strong style="color:white;">' + cart.length + ' beat(s) sélectionné(s) :</strong><br>' + cart.map(c => '• ' + c.name + ' <span style="color:var(--accent-red);">0€</span>').join('<br>') + '<br><br><strong style="color:var(--accent-red);">Total : 0,00€</strong>';
     document.getElementById('licModal').classList.add('active');
+    // Pre-fill beats field if cart has items
+    if (licCart.length > 0) {
+        document.getElementById('licBeats').value = licCart.join(', ');
+    }
 }
 function closeLicModal() { document.getElementById('licModal').classList.remove('active'); }
 
@@ -563,74 +526,89 @@ document.getElementById('licForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const name = document.getElementById('licName').value.trim();
     const email = document.getElementById('licEmail').value.trim();
+    const beatsText = document.getElementById('licBeats').value.trim();
     const project = document.getElementById('licProject').value.trim();
-    if (!name || !email) return;
+    if (!name || !email || !beatsText) return;
 
     const ref = 'LIC-' + Date.now().toString(36).toUpperCase();
-    const beatsNames = cart.map(b => b.name).join(', ');
+    const beatsList = beatsText.split(',').map(b => b.trim()).filter(b => b.length > 0);
 
-    // Generate PDF for client
-    generatePDF(name, email, project, ref);
+    // Generate PDF
+    generatePDF(name, email, project, ref, beatsList);
 
-    // Send email to djbilboxbeats@gmail.com via FormSubmit (no signup needed)
+    // Send email to djbilboxbeats@gmail.com
     fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
             _subject: '🎵 Nouvelle Licence ' + ref,
-            Référence: ref,
+            'Référence': ref,
             'Nom client': name,
             'Email client': email,
-            Projet: project || 'Non spécifié',
-            Beats: beatsNames,
-            Date: new Date().toLocaleDateString('fr-FR'),
-            'Nombre de beats': cart.length.toString()
+            'Projet': project || 'Non spécifié',
+            'Beats demandés': beatsList.join(', '),
+            'Nombre de beats': beatsList.length.toString(),
+            'Date': new Date().toLocaleDateString('fr-FR')
         })
     }).then(r => r.json()).then(data => {
-        if (data.success) console.log('Email envoyé à djbilboxbeats@gmail.com');
+        if (data.success) console.log('Email envoyé');
     }).catch(()=>{});
 
-    // Save log locally
-    try { const logs = JSON.parse(localStorage.getItem('djbilbox_licenses')||'[]'); logs.push({id:ref, date:new Date().toISOString(), userName:name, userEmail:email, project, beats:cart.map(b=>({name:b.name,tags:b.tags}))}); localStorage.setItem('djbilbox_licenses', JSON.stringify(logs)); } catch(ex){}
+    // Save log
+    try { const logs = JSON.parse(localStorage.getItem('djbilbox_licenses')||'[]'); logs.push({id:ref, date:new Date().toISOString(), userName:name, userEmail:email, project, beats:beatsList}); localStorage.setItem('djbilbox_licenses', JSON.stringify(logs)); } catch(ex){}
 
-    cart = []; updateCartUI(); closeLicModal(); this.reset();
-    notify('Contrat PDF téléchargé ! Licence enregistrée.');
+    licCart = []; updateLicCartBar(); renderReleases();
+    closeLicModal(); this.reset();
+    notify('Contrat PDF téléchargé ! Notification envoyée.');
 });
 
-function generatePDF(userName, userEmail, project, ref) {
+function generatePDF(userName, userEmail, project, ref, beatsList) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     const date = new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
     if (!ref) ref = 'LIC-' + Date.now().toString(36).toUpperCase();
+    if (!beatsList) beatsList = [];
+
     doc.setDrawColor(255,51,51); doc.setLineWidth(1); doc.rect(5,5,200,287);
     doc.setFillColor(5,5,5); doc.rect(5,5,200,38,'F');
     doc.setTextColor(255,255,255); doc.setFont("helvetica","bold"); doc.setFontSize(26);
     doc.text("DJBILBOX BEATS",20,24); doc.setFontSize(11);
     doc.text("CONTRAT DE LICENCE D'UTILISATION GRATUITE",20,34);
     doc.setTextColor(0,0,0); doc.setFontSize(9); doc.setFont("helvetica","normal");
-    doc.text('Réf : '+ref,150,50); doc.text('Date : '+date,150,56);
+    doc.text('Ref : '+ref,150,50); doc.text('Date : '+date,150,56);
     let y=62; doc.setFontSize(11); doc.setFont("helvetica","bold");
     doc.text("1. PARTIES",20,y); y+=8; doc.setFontSize(10); doc.setFont("helvetica","normal");
-    doc.text("Le Concédant : DJBILBOX BEATS (Producteur)",20,y); y+=5;
+    doc.text("Le Concedant : DJBILBOX BEATS (Producteur)",20,y); y+=5;
     doc.text("Contact : Djbilboxbeats@gmail.com",20,y); y+=8;
-    doc.text("Le Licencié : "+userName,20,y); y+=5;
+    doc.text("Le Licencie : "+userName,20,y); y+=5;
     doc.text("Email : "+userEmail,20,y); y+=5;
     if(project){doc.text("Projet : "+project,20,y); y+=5;}
     y+=8; doc.setFont("helvetica","bold"); doc.setFontSize(11);
-    doc.text("2. OEUVRES CONCERNÉES",20,y); y+=8; doc.setFont("helvetica","normal"); doc.setFontSize(10);
-    cart.forEach(b=>{if(y>255){doc.addPage();y=20;} doc.text("• "+b.name+" ("+b.tags+", "+b.bpm+" BPM)",25,y); y+=6;});
+    doc.text("2. OEUVRES CONCERNEES ("+beatsList.length+" beat"+(beatsList.length>1?'s':'')+")",20,y); y+=8;
+    doc.setFont("helvetica","normal"); doc.setFontSize(10);
+    beatsList.forEach(b=>{if(y>255){doc.addPage();y=20;} doc.text("  - "+b,25,y); y+=6;});
     y+=8; if(y>200){doc.addPage();y=20;} doc.setFont("helvetica","bold"); doc.setFontSize(11);
-    doc.text("3. DROITS ACCORDÉS",20,y); y+=8; doc.setFont("helvetica","normal"); doc.setFontSize(9);
-    ["✓ Diffusion Internet (YouTube, Streaming, Réseaux Sociaux)","✓ Diffusion Radio (Locale, Nationale, Web-radio)","✓ Performances Live (Scènes, Clubs, Festivals)","✓ Projets musicaux personnels ou collaboratifs","","✗ Revente/redistribution des instrumentaux seuls INTERDITE","✗ Crédit 'Prod. by DJBILBOX BEATS' OBLIGATOIRE","✗ Transfert de licence à un tiers INTERDIT"].forEach(l=>{doc.text(l,25,y);y+=5;});
+    doc.text("3. DROITS ACCORDES",20,y); y+=8; doc.setFont("helvetica","normal"); doc.setFontSize(9);
+    var rights = [
+        "Autorise : Diffusion Internet (YouTube, Streaming, Reseaux Sociaux)",
+        "Autorise : Diffusion Radio (Locale, Nationale, Web-radio)",
+        "Autorise : Performances Live (Scenes, Clubs, Festivals)",
+        "Autorise : Projets musicaux personnels ou collaboratifs",
+        "",
+        "INTERDIT : Revente/redistribution des instrumentaux seuls",
+        "OBLIGATOIRE : Credit 'Prod. by DJBILBOX BEATS'",
+        "INTERDIT : Transfert de licence a un tiers"
+    ];
+    rights.forEach(l=>{doc.text(l,25,y);y+=5;});
     y+=8; doc.setFont("helvetica","bold"); doc.setFontSize(11); doc.text("4. PRIX",20,y); y+=7;
     doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.text("Montant : 0,00 EUR (Free for Profit)",25,y);
-    y+=12; doc.setFont("helvetica","bold"); doc.text("5. DURÉE",20,y); y+=7;
-    doc.setFont("helvetica","normal"); doc.text("Licence valable sans limite sous réserve du respect des conditions.",25,y);
+    y+=12; doc.setFont("helvetica","bold"); doc.text("5. DUREE",20,y); y+=7;
+    doc.setFont("helvetica","normal"); doc.text("Licence valable sans limite sous reserve du respect des conditions.",25,y);
     y+=15; doc.setDrawColor(255,51,51); doc.line(20,y,190,y); y+=10;
     doc.setFont("courier","italic"); doc.setFontSize(16); doc.setTextColor(255,51,51);
     doc.text("DJBILBOX BEATS",20,y); doc.setTextColor(0,0,0); doc.text(userName,120,y);
     y+=12; doc.setFont("helvetica","normal"); doc.setFontSize(7); doc.setTextColor(150,150,150);
-    doc.text("Document généré automatiquement. Réf: "+ref+" | Ce contrat fait foi de preuve d'autorisation.",105,y,{align:'center'});
+    doc.text("Document genere automatiquement. Ref: "+ref+" | Ce contrat fait foi de preuve d'autorisation.",105,y,{align:'center'});
     doc.save('Licence_DJBILBOX_'+ref+'.pdf');
 }
 
