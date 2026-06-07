@@ -3,645 +3,614 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DJBILBOX BEATS | Beatmaker & Producteur Musical</title>
-    <meta name="description" content="DJBILBOX BEATS - Producteur musical, beatmaker. Instrumentaux gratuits Trap, Afrotrap, Oriental, Drill, G-Funk. Free for profit.">
-
+    <title>DJBILBOX BEATS | Premium Beat Store</title>
+    <meta name="description" content="DJBILBOX BEATS - Beat Store Premium. Instrumentaux Trap, Oriental, Afrotrap, Drill, G-Funk. Licences instantanées. Free for profit.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js" defer></script>
-
     <style>
-        :root {
-            --bg-main: #050505;
-            --bg-surface: #0f0f0f;
-            --bg-surface-light: #1a1a1a;
-            --accent-red: #ff3333;
-            --accent-orange: #ff6b35;
-            --accent-gold: #ffd700;
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --font-accent: 'Rajdhani', sans-serif;
-            --glass-bg: rgba(15, 15, 15, 0.8);
-            --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.6);
-        }
+:root {
+    --bg: #090909;
+    --surface: #111111;
+    --surface-2: #181818;
+    --surface-3: #222222;
+    --accent: #ff2d2d;
+    --accent-hover: #e60000;
+    --accent-glow: rgba(255,45,45,0.15);
+    --green: #1DB954;
+    --text: #ffffff;
+    --text-2: #cccccc;
+    --text-3: #888888;
+    --text-4: #555555;
+    --border: rgba(255,255,255,0.06);
+    --radius: 8px;
+    --radius-lg: 12px;
+    --shadow: 0 10px 40px rgba(0,0,0,0.4);
+    --font: 'Inter', -apple-system, sans-serif;
+    --font-accent: 'Rajdhani', sans-serif;
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.5;overflow-x:hidden;padding-bottom:80px}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--font);cursor:pointer}
+img{display:block;max-width:100%}
 
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; }
-        body { background-color:var(--bg-main); color:var(--text-main); font-family:var(--font-body); line-height:1.6; overflow-x:hidden; }
-        body::after { content:""; position:fixed; top:0; left:0; width:100%; height:100%; background:url("https://www.transparenttextures.com/patterns/carbon-fibre.png"); opacity:0.03; pointer-events:none; z-index:9999; }
-        a { color:inherit; text-decoration:none; transition:all 0.4s cubic-bezier(0.23,1,0.32,1); }
-        ul { list-style:none; }
-        img { max-width:100%; display:block; }
-        .container { max-width:1300px; margin:0 auto; padding:0 2rem; }
-        section { padding:8rem 0; position:relative; }
+/* === LAYOUT === */
+.wrap{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+section{padding:4rem 0}
 
-        h1,h2,h3,h4,.font-display { font-family:var(--font-display); letter-spacing:2px; font-weight:400; text-transform:uppercase; }
-        .section-title { font-size:4rem; margin-bottom:0.5rem; text-align:center; background:linear-gradient(to bottom,#fff,#888); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-        .section-subtitle { font-size:1rem; color:var(--text-muted); margin-bottom:4rem; text-align:center; text-transform:uppercase; letter-spacing:4px; }
+/* === HEADER === */
+.site-header{position:fixed;top:0;left:0;right:0;height:60px;background:rgba(9,9,9,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:900;display:flex;align-items:center}
+.site-header .wrap{display:flex;justify-content:space-between;align-items:center;width:100%}
+.brand{font-family:var(--font-accent);font-size:1.5rem;font-weight:700;color:white;letter-spacing:1px}
+.brand span{color:var(--accent)}
+.header-nav{display:flex;gap:1.8rem;align-items:center}
+.header-nav a{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);transition:var(--transition)}
+.header-nav a:hover{color:white}
+.header-socials{display:flex;gap:10px;align-items:center}
+.header-socials a{color:var(--text-3);font-size:0.95rem;transition:var(--transition)}
+.header-socials a:hover{color:var(--accent)}
 
-        /* BUTTONS */
-        .btn { display:inline-flex; align-items:center; justify-content:center; padding:1rem 2rem; font-family:var(--font-accent); font-size:1rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; border-radius:2px; cursor:pointer; transition:all 0.4s cubic-bezier(0.23,1,0.32,1); border:1px solid transparent; gap:0.75rem; position:relative; overflow:hidden; }
-        .btn-primary { background:var(--accent-red); color:white; box-shadow:0 10px 20px rgba(255,51,51,0.2); }
-        .btn-primary:hover { background:#ff0000; transform:translateY(-3px); box-shadow:0 15px 30px rgba(255,51,51,0.4); }
-        .btn-outline { background:transparent; border-color:var(--border-color); color:var(--text-main); }
-        .btn-outline:hover { border-color:var(--accent-red); color:white; background:rgba(255,51,51,0.1); }
+/* === PLAYER BAR (fixed bottom) === */
+.player-bar{position:fixed;bottom:0;left:0;right:0;height:72px;background:var(--surface);border-top:1px solid var(--border);z-index:1000;display:flex;align-items:center;padding:0 1.5rem;gap:1rem;box-shadow:0 -4px 20px rgba(0,0,0,0.4)}
+.pb-info{display:flex;align-items:center;gap:0.8rem;width:250px;min-width:0}
+.pb-cover{width:48px;height:48px;border-radius:4px;object-fit:cover;flex-shrink:0}
+.pb-meta{min-width:0}
+.pb-title{font-size:0.82rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pb-artist{font-size:0.7rem;color:var(--text-3)}
+.pb-controls{display:flex;align-items:center;gap:1rem}
+.pb-btn{background:none;border:none;color:var(--text-2);font-size:1rem;transition:var(--transition);padding:4px}
+.pb-btn:hover{color:white}
+.pb-play{width:36px;height:36px;border-radius:50%;background:var(--accent);color:white;border:none;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+.pb-play:hover{background:var(--accent-hover);box-shadow:0 0 20px var(--accent-glow)}
+.pb-progress{flex:1;display:flex;align-items:center;gap:0.6rem}
+.pb-time{font-size:0.65rem;color:var(--text-4);font-family:var(--font-accent);min-width:32px}
+.pb-bar{flex:1;height:4px;background:var(--surface-3);border-radius:2px;position:relative;cursor:pointer}
+.pb-bar-fill{position:absolute;top:0;left:0;height:100%;background:var(--accent);border-radius:2px;width:0%;transition:width 0.5s linear}
+.pb-vol{display:flex;align-items:center;gap:6px}
+.pb-vol i{color:var(--text-4);font-size:0.8rem}
+.pb-vol input[type=range]{width:70px;height:3px;appearance:none;background:var(--surface-3);border-radius:2px}
+.pb-vol input[type=range]::-webkit-slider-thumb{appearance:none;width:10px;height:10px;background:white;border-radius:50%;cursor:pointer}
 
-        /* HEADER */
-        header { position:fixed; top:0; left:0; right:0; height:80px; background:rgba(5,5,5,0.85); backdrop-filter:blur(20px); border-bottom:1px solid var(--border-color); z-index:1000; display:flex; align-items:center; }
-        .header-content { display:flex; justify-content:space-between; align-items:center; width:100%; }
-        .logo { font-family:var(--font-display); font-size:2.2rem; color:white; display:flex; align-items:center; gap:10px; text-decoration:underline; text-decoration-color:var(--accent-red); text-underline-offset:8px; }
-        .logo span { color:var(--accent-red); }
-        .nav-links { display:flex; gap:2.5rem; font-size:0.8rem; text-transform:uppercase; font-weight:600; letter-spacing:2px; }
-        .nav-links a { color:var(--text-muted); }
-        .nav-links a:hover { color:white; }
-        .social-icons-nav { display:flex; gap:12px; align-items:center; }
-        .social-icons-nav a { color:var(--text-muted); font-size:1rem; transition:0.3s; }
-        .social-icons-nav a:hover { color:var(--accent-red); }
+/* === MINI CART === */
+.mini-cart{position:fixed;top:60px;right:0;width:380px;height:calc(100vh - 60px - 72px);background:var(--surface);border-left:1px solid var(--border);z-index:800;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,0.5)}
+.mini-cart.open{transform:translateX(0)}
+.mc-header{padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.mc-header h3{font-family:var(--font-accent);font-size:1.1rem;font-weight:700}
+.mc-close{background:none;border:none;color:var(--text-3);font-size:1.3rem}
+.mc-items{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.mc-item{display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid var(--border)}
+.mc-item-info h4{font-size:0.85rem;margin-bottom:2px}
+.mc-item-info p{font-size:0.7rem;color:var(--text-3)}
+.mc-item-price{font-family:var(--font-accent);font-weight:700;color:var(--accent)}
+.mc-item-remove{background:none;border:none;color:var(--text-4);font-size:0.9rem;margin-left:0.8rem;transition:var(--transition)}
+.mc-item-remove:hover{color:var(--accent)}
+.mc-footer{padding:1.5rem;border-top:1px solid var(--border)}
+.mc-total{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:700;margin-bottom:1rem}
+.mc-total span:last-child{color:var(--accent);font-family:var(--font-accent)}
+.mc-checkout{width:100%;padding:0.9rem;background:var(--accent);color:white;border:none;border-radius:var(--radius);font-size:0.9rem;font-weight:700;font-family:var(--font-accent);text-transform:uppercase;letter-spacing:1px;transition:var(--transition)}
+.mc-checkout:hover{background:var(--accent-hover)}
+.mc-empty{text-align:center;color:var(--text-4);padding:3rem 1rem;font-size:0.85rem}
 
-        /* HERO — Paysage californien */
-        .hero { height:80vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; background:linear-gradient(rgba(5,5,5,0.3), rgba(5,5,5,0.85)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; margin-top:80px; }
-        .hero-content h1 { font-size:clamp(3rem,8vw,6rem); line-height:0.95; margin-bottom:1.5rem; color:white; text-shadow:0 10px 30px rgba(0,0,0,0.5); }
-        .hero-content p { font-size:1.1rem; color:var(--text-muted); letter-spacing:6px; margin-bottom:3rem; }
+/* === CART TOGGLE (header) === */
+.cart-toggle{background:var(--accent);color:white;border:none;padding:6px 14px;border-radius:var(--radius);font-size:0.78rem;font-weight:700;font-family:var(--font-accent);display:flex;align-items:center;gap:6px;transition:var(--transition)}
+.cart-toggle:hover{background:var(--accent-hover)}
+.cart-badge{background:white;color:var(--accent);width:18px;height:18px;border-radius:50%;font-size:0.65rem;display:flex;align-items:center;justify-content:center;font-weight:800}
 
-        /* ANIMATIONS */
-        @keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
-        @keyframes fadeInLeft { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); } }
-        @keyframes glow { 0%,100% { text-shadow:0 0 10px rgba(255,51,51,0.3); } 50% { text-shadow:0 0 30px rgba(255,51,51,0.6), 0 0 60px rgba(255,51,51,0.2); } }
-        @keyframes typing { from { width:0; } to { width:100%; } }
-        @keyframes blink { 50% { border-color:transparent; } }
-        @keyframes slideDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
-        @keyframes scaleIn { from { opacity:0; transform:scale(0.9); } to { opacity:1; transform:scale(1); } }
+/* === HERO === */
+.hero{padding:8rem 0 5rem;text-align:center;margin-top:60px;background:linear-gradient(180deg, rgba(255,45,45,0.03) 0%, transparent 60%)}
+.hero h1{font-family:var(--font-accent);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;letter-spacing:2px;margin-bottom:0.8rem}
+.hero h1 span{color:var(--accent)}
+.hero p{color:var(--text-3);font-size:0.9rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:0.8rem 1.8rem;border-radius:var(--radius);font-size:0.85rem;font-weight:700;font-family:var(--font-accent);text-transform:uppercase;letter-spacing:1px;border:1px solid transparent;transition:var(--transition)}
+.btn-accent{background:var(--accent);color:white;border-color:var(--accent)}
+.btn-accent:hover{background:var(--accent-hover);transform:translateY(-1px);box-shadow:0 8px 25px var(--accent-glow)}
+.btn-ghost{border-color:var(--border);color:var(--text-2)}
+.btn-ghost:hover{border-color:var(--accent);color:white}
 
-        .anim-fade-up { opacity:0; animation:fadeInUp 0.8s ease forwards; }
-        .anim-fade-left { opacity:0; animation:fadeInLeft 0.8s ease forwards; }
-        .anim-glow { animation:glow 3s ease-in-out infinite; }
-        .anim-scale { opacity:0; animation:scaleIn 0.6s ease forwards; }
-        .anim-delay-1 { animation-delay:0.2s; }
-        .anim-delay-2 { animation-delay:0.4s; }
-        .anim-delay-3 { animation-delay:0.6s; }
-        .anim-delay-4 { animation-delay:0.8s; }
+/* === FILTERS === */
+.filters{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.filter-btn{background:var(--surface-2);border:1px solid var(--border);color:var(--text-3);padding:0.5rem 1.2rem;border-radius:20px;font-size:0.75rem;font-weight:600;transition:var(--transition)}
+.filter-btn:hover,.filter-btn.active{background:var(--accent);color:white;border-color:var(--accent)}
 
-        .hero-content h1 { animation:fadeInUp 1s ease; }
-        .hero-content p { animation:fadeInUp 1s ease 0.3s both; }
-        .hero-content .btn { animation:fadeInUp 0.8s ease both; }
-        .hero-content .btn:nth-child(1) { animation-delay:0.5s; }
-        .hero-content .btn:nth-child(2) { animation-delay:0.7s; }
-        .hero-content .btn:nth-child(3) { animation-delay:0.9s; }
+/* === PRODUCT GRID === */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.product-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);position:relative}
+.product-card:hover{border-color:rgba(255,45,45,0.3);transform:translateY(-3px);box-shadow:var(--shadow)}
+.pc-cover{width:100%;aspect-ratio:1;object-fit:cover;cursor:pointer;transition:transform 0.4s}
+.product-card:hover .pc-cover{transform:scale(1.03)}
+.pc-play-overlay{position:absolute;top:0;left:0;width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);opacity:0;transition:var(--transition);cursor:pointer}
+.product-card:hover .pc-play-overlay{opacity:1}
+.pc-play-overlay i{font-size:2.5rem;color:white;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5))}
+.pc-body{padding:1rem}
+.pc-type{font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);font-weight:700;margin-bottom:4px}
+.pc-title{font-size:0.9rem;font-weight:700;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc-sub{font-size:0.72rem;color:var(--text-3);margin-bottom:0.8rem}
+.pc-footer{display:flex;justify-content:space-between;align-items:center}
+.pc-price{font-family:var(--font-accent);font-weight:700;color:var(--accent);font-size:1rem}
+.pc-price.free{color:var(--green)}
+.pc-buy{background:var(--accent);color:white;border:none;padding:6px 14px;border-radius:4px;font-size:0.72rem;font-weight:700;font-family:var(--font-accent);text-transform:uppercase;transition:var(--transition);display:flex;align-items:center;gap:4px}
+.pc-buy:hover{background:var(--accent-hover);transform:scale(1.05)}
+.pc-tags{display:flex;gap:4px;margin-bottom:0.6rem;flex-wrap:wrap}
+.pc-tag{font-size:0.6rem;padding:2px 6px;background:var(--surface-3);border-radius:3px;color:var(--text-4)}
 
-        .section-title { animation:fadeInUp 0.8s ease both; }
-        .section-subtitle { animation:fadeInUp 0.8s ease 0.2s both; }
+/* === SECTION TITLES === */
+.s-title{font-family:var(--font-accent);font-size:2rem;font-weight:700;letter-spacing:1px;margin-bottom:0.3rem}
+.s-sub{color:var(--text-3);font-size:0.82rem;margin-bottom:2rem}
 
-        /* Scroll reveal */
-        .reveal { opacity:0; transform:translateY(30px); transition:all 0.8s cubic-bezier(0.23,1,0.32,1); }
-        .reveal.visible { opacity:1; transform:translateY(0); }
+/* === LICENCE MODAL === */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:var(--transition);padding:1rem;backdrop-filter:blur(5px)}
+.modal-overlay.open{opacity:1;pointer-events:auto}
+.modal-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;max-width:500px;width:100%;position:relative;max-height:85vh;overflow-y:auto}
+.modal-box h2{font-family:var(--font-accent);font-size:1.5rem;margin-bottom:0.5rem}
+.modal-box p{font-size:0.82rem;color:var(--text-3);margin-bottom:1.5rem}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text-3);font-size:1.5rem;transition:var(--transition)}
+.modal-close:hover{color:white;transform:rotate(90deg)}
+.form-field{margin-bottom:1rem}
+.form-field label{display:block;font-size:0.72rem;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-weight:600}
+.form-field input,.form-field textarea{width:100%;padding:0.7rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);color:white;font-size:0.85rem;font-family:var(--font)}
+.form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--accent)}
+.form-field textarea{resize:vertical;min-height:60px}
+.cb-field{display:flex;align-items:flex-start;gap:8px;margin-bottom:1.5rem}
+.cb-field label{font-size:0.72rem;color:var(--text-3);line-height:1.4}
 
-        /* Typing effect */
-        .typing-text { display:inline-block; overflow:hidden; white-space:nowrap; border-right:3px solid var(--accent-red); animation:typing 3s steps(40) 1s both, blink 0.7s step-end infinite; }
+/* === EMBEDS === */
+.embed-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1.5rem}
+.embed-block h3{font-family:var(--font-accent);font-size:1.2rem;margin-bottom:0.3rem}
+.embed-block p{font-size:0.75rem;color:var(--text-3);margin-bottom:1rem}
 
-        /* STATS */
-        .stats-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:2rem; text-align:center; padding:4rem 0; max-width:700px; margin:0 auto; }
-        .stat-item h2 { font-size:3.5rem; color:var(--accent-red); font-family:var(--font-display); margin-bottom:0.5rem; }
-        .stat-item p { color:var(--text-muted); text-transform:uppercase; letter-spacing:2px; font-size:0.8rem; }
+/* === FOOTER === */
+.site-footer{padding:3rem 0;border-top:1px solid var(--border);text-align:center}
+.site-footer .brand{margin-bottom:1rem;display:inline-block}
+.footer-socials{display:flex;justify-content:center;gap:1.2rem;margin-bottom:1rem}
+.footer-socials a{color:var(--text-3);font-size:1.1rem;transition:var(--transition)}
+.footer-socials a:hover{color:var(--accent)}
 
-        /* SPOTIFY PLAYER */
-        .sp-player-wrap { background:var(--bg-main); border-bottom:1px solid var(--border-color); padding:1.5rem 0; }
+/* === TOAST === */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--surface-2);border:1px solid var(--border);color:white;padding:0.8rem 1.5rem;border-radius:var(--radius);font-size:0.8rem;font-weight:600;z-index:3000;transition:0.4s;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast i{color:var(--accent)}
 
-        /* CATALOGUE */
-        .cat-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:1.5rem; }
-        .cat-card { background:var(--bg-surface); border:1px solid var(--border-color); border-radius:8px; overflow:hidden; transition:0.3s; position:relative; cursor:pointer; }
-        .cat-card:hover { transform:translateY(-4px); border-color:var(--accent-red); box-shadow:0 20px 40px rgba(255,51,51,0.1); }
-        .cat-card.in-cart { border-color:var(--accent-red); }
-        .cat-card.in-cart::after { content:'✓'; position:absolute; top:10px; right:10px; background:var(--accent-red); color:white; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.7rem; font-weight:700; z-index:2; }
-        .cat-img-wrap { position:relative; aspect-ratio:1; overflow:hidden; }
-        .cat-img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
-        .cat-card:hover .cat-img { transform:scale(1.08); }
-        .cat-play { position:absolute; bottom:10px; right:10px; width:36px; height:36px; border-radius:50%; background:var(--accent-red); display:flex; align-items:center; justify-content:center; opacity:0; transform:translateY(8px); transition:0.3s; box-shadow:0 4px 12px rgba(255,51,51,0.4); }
-        .cat-card:hover .cat-play { opacity:1; transform:translateY(0); }
-        .cat-play i { color:white; font-size:0.9rem; }
-        .cat-info { padding:0.8rem 1rem; }
-        .cat-info h4 { font-size:0.85rem; font-weight:700; margin-bottom:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-family:var(--font-body); letter-spacing:0; text-transform:none; }
-        .cat-sub { font-size:0.7rem; color:var(--text-muted); margin-bottom:6px; }
-        .cat-bottom { display:flex; justify-content:space-between; align-items:center; }
-        .cat-price { color:var(--accent-red); font-family:var(--font-accent); font-weight:700; font-size:0.9rem; }
-        .cat-btn { background:var(--accent-red); color:white; border:none; padding:5px 12px; border-radius:4px; font-size:0.7rem; font-weight:700; cursor:pointer; font-family:var(--font-accent); text-transform:uppercase; transition:0.3s; }
-        .cat-btn:hover { background:#ff0000; }
-        .cat-btn.added { background:transparent; border:1px solid var(--accent-red); color:var(--accent-red); }
-
-        /* 3D DVD BOX KITS */
-        .kits-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:4rem; perspective:1500px; padding:3rem 0; }
-        .kit-card { position:relative; width:100%; aspect-ratio:3/4; transform-style:preserve-3d; cursor:pointer; background:transparent; border:none; }
-        .kit-box-front { position:absolute; width:100%; height:100%; background:#111; border-radius:4px 12px 12px 4px; overflow:hidden; transform:translateZ(25px); box-shadow:inset -5px 0 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1); }
-        .kit-box-front img { width:100%; height:100%; object-fit:cover; }
-        .kit-box-spine { position:absolute; width:50px; height:100%; background:linear-gradient(to right,#1a1a1a,#333); left:0; transform-origin:left center; transform:rotateY(-90deg) translateZ(25px); border-radius:8px 0 0 8px; display:flex; align-items:center; justify-content:center; box-shadow:inset 5px 0 15px rgba(0,0,0,0.9), inset 0 0 0 1px rgba(255,255,255,0.05); }
-        .kit-box-top { position:absolute; width:100%; height:50px; background:#151515; top:0; transform-origin:top center; transform:rotateX(90deg) translateZ(25px); }
-        .kit-spine-text { color:white; font-family:var(--font-display); font-size:1.5rem; white-space:nowrap; transform:rotate(-90deg); letter-spacing:2px; text-shadow:2px 2px 5px black; }
-        .kit-box-shadow { position:absolute; bottom:-30px; left:5%; width:90%; height:25px; background:rgba(0,0,0,1); filter:blur(20px); transform:translateZ(-30px); }
-        .kit-buy-btn { position:absolute; bottom:20px; left:50%; transform:translateX(-50%) translateZ(40px); background:var(--accent-red); color:white; padding:10px 25px; font-family:var(--font-accent); font-weight:800; font-size:1rem; border-radius:4px; text-transform:uppercase; box-shadow:0 15px 30px rgba(0,0,0,0.6); transition:0.3s; white-space:nowrap; }
-        .kit-card:hover .kit-buy-btn { background:#ff0000; transform:translateX(-50%) translateZ(60px) scale(1.1); }
-        .kit-free-badge { position:absolute; top:20px; left:-40px; background:var(--accent-red); padding:5px 45px; font-weight:900; font-family:var(--font-accent); font-size:1.1rem; color:white; transform:rotate(-45deg); box-shadow:0 10px 20px rgba(0,0,0,0.5); z-index:2; }
-
-        /* ALBUM GRID */
-        .album-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:2rem; padding:2rem 0; }
-        .album-card { background:transparent; cursor:pointer; transition:0.3s; }
-        .album-card:hover .album-cover-img { transform:scale(1.05); filter:brightness(1.1); }
-        .album-cover-wrapper { position:relative; aspect-ratio:1/1; border-radius:8px; overflow:hidden; box-shadow:0 10px 20px rgba(0,0,0,0.5); margin-bottom:1rem; }
-        .album-cover-img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.23,1,0.32,1), filter 0.5s; }
-        .album-tracks-badge { position:absolute; bottom:10px; right:10px; background:rgba(0,0,0,0.8); color:white; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; display:flex; align-items:center; gap:5px; backdrop-filter:blur(5px); }
-        .album-info { padding:0.5rem 0; }
-        .album-title { font-family:var(--font-body); font-weight:700; font-size:1.1rem; color:white; margin-bottom:0.3rem; letter-spacing:0; text-transform:none; }
-        .album-artist { color:var(--text-muted); font-size:0.85rem; }
-
-        /* YOUTUBE PLAYLISTS */
-        .yt-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:2rem; }
-        .yt-card { background:var(--bg-surface); border-radius:8px; overflow:hidden; transition:0.3s; border:1px solid var(--border-color); cursor:pointer; }
-        .yt-card:hover { transform:translateY(-5px); border-color:var(--accent-red); }
-        .yt-thumb-wrapper { position:relative; aspect-ratio:16/9; overflow:hidden; }
-        .yt-thumb { width:100%; height:100%; object-fit:cover; }
-        .yt-play-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; opacity:0; transition:0.3s; }
-        .yt-card:hover .yt-play-overlay { opacity:1; }
-        .yt-play-overlay i { font-size:3rem; color:white; }
-        .yt-info { padding:1.2rem; }
-        .yt-title { font-weight:700; font-size:1rem; color:white; margin-bottom:0.5rem; }
-        .yt-desc { font-size:0.8rem; color:var(--text-muted); }
-
-        /* MODAL */
-        .modal { position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:2000; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:0.3s; backdrop-filter:blur(10px); padding:1rem; }
-        .modal.active { opacity:1; pointer-events:auto; }
-        .modal-content { background:var(--bg-surface); border:1px solid var(--border-color); border-radius:12px; padding:2.5rem; max-width:600px; width:100%; position:relative; max-height:90vh; overflow-y:auto; transform:translateY(20px); transition:0.4s; }
-        .modal.active .modal-content { transform:translateY(0); }
-        .modal-close { position:absolute; top:12px; right:16px; background:none; border:none; color:var(--text-muted); font-size:2rem; cursor:pointer; transition:0.3s; }
-        .modal-close:hover { color:white; transform:rotate(90deg); }
-
-        /* LICENCE FORM */
-        .form-group { margin-bottom:1.2rem; }
-        .form-group label { display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px; text-transform:uppercase; letter-spacing:1px; }
-        .form-group input { width:100%; padding:12px 16px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-main); color:white; font-size:0.9rem; font-family:var(--font-body); }
-        .form-group input:focus { outline:none; border-color:var(--accent-red); }
-        .cb-group { display:flex; align-items:flex-start; gap:10px; }
-        .cb-group label { font-size:0.78rem; line-height:1.4; color:var(--text-muted); }
-
-        /* CART FAB */
-        .cart-fab { position:fixed; bottom:24px; right:24px; background:var(--accent-red); color:white; border:none; width:60px; height:60px; border-radius:50%; font-size:1.3rem; cursor:pointer; box-shadow:0 8px 25px rgba(255,51,51,0.4); z-index:800; display:none; align-items:center; justify-content:center; transition:0.3s; }
-        .cart-fab:hover { transform:scale(1.1); }
-        .cart-fab .badge { position:absolute; top:-4px; right:-4px; background:white; color:var(--accent-red); width:22px; height:22px; border-radius:50%; font-size:0.7rem; font-weight:800; display:flex; align-items:center; justify-content:center; }
-
-        /* NOTIFICATION */
-        .notif { position:fixed; bottom:100px; right:24px; background:white; color:black; padding:1rem 2rem; border-radius:4px; font-weight:700; font-size:0.85rem; z-index:3000; transform:translateX(150%); transition:0.4s cubic-bezier(0.23,1,0.32,1); box-shadow:0 15px 40px rgba(0,0,0,0.4); display:flex; align-items:center; gap:10px; }
-        .notif.show { transform:translateX(0); }
-        .notif i { color:var(--accent-red); font-size:1.2rem; }
-
-        /* FOOTER */
-        footer { padding:4rem 0; border-top:1px solid var(--border-color); text-align:center; }
-
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width:6px; }
-        ::-webkit-scrollbar-track { background:var(--bg-main); }
-        ::-webkit-scrollbar-thumb { background:var(--accent-red); border-radius:10px; }
-
-        @media (max-width:1024px) {
-            .section-title { font-size:3rem; }
-            .kits-grid { gap:3rem; }
-        }
-        @media (max-width:768px) {
-            .nav-links { display:none; }
-            .hero { height:60vh; }
-            .hero-content h1 { font-size:2.5rem; }
-            .stats-grid { grid-template-columns:repeat(3,1fr); gap:1rem; }
-            .stat-item h2 { font-size:2rem; }
-            .cat-grid { grid-template-columns:repeat(2,1fr); gap:1rem; }
-            .kits-grid { grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:2rem; }
-            header { height:60px; }
-            .hero { margin-top:60px; }
-            .sp-player-wrap { top:60px; }
-        }
-        @media (max-width:480px) {
-            .cat-grid { grid-template-columns:1fr 1fr; gap:0.8rem; }
-            .album-grid { grid-template-columns:repeat(2,1fr); }
-        }
+/* === RESPONSIVE === */
+@media(max-width:768px){
+    .header-nav{display:none}
+    .hero h1{font-size:2rem}
+    .product-grid{grid-template-columns:repeat(2,1fr);gap:0.8rem}
+    .pc-body{padding:0.7rem}
+    .pc-title{font-size:0.78rem}
+    .pb-info{width:auto;flex:1;min-width:0}
+    .pb-progress{display:none}
+    .pb-vol{display:none}
+    .player-bar{height:64px;padding:0 1rem;gap:0.6rem}
+    .mini-cart{width:100%}
+    .filters{overflow-x:auto;flex-wrap:nowrap;padding-bottom:0.5rem}
+}
+@media(max-width:480px){
+    .product-grid{grid-template-columns:1fr 1fr;gap:0.6rem}
+    .pc-tags{display:none}
+}
     </style>
 </head>
 <body>
 
 <!-- HEADER -->
-<header>
-    <div class="container header-content">
-        <a href="#" class="logo">BILBOX<span>BEATS</span></a>
-        <nav class="nav-links">
-            <a href="#catalogue">Catalogue</a>
+<header class="site-header">
+    <div class="wrap">
+        <a href="#" class="brand">DJBILBOX <span>BEATS</span></a>
+        <nav class="header-nav">
+            <a href="#beats">Beats</a>
             <a href="#kits">Drum Kits</a>
-            <a href="#discography">Discographie</a>
+            <a href="#licences">Licences</a>
             <a href="#playlists">Playlists</a>
         </nav>
-        <div class="social-icons-nav">
-            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-            <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/djbilboxbeats" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://soundcloud.com/djbilbox" target="_blank"><i class="fa-brands fa-soundcloud"></i></a>
-            <a href="https://www.twitch.tv/bilox_tv" target="_blank"><i class="fa-brands fa-twitch"></i></a>
-            <a href="https://x.com/djbilbox" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+        <div style="display:flex;align-items:center;gap:1rem;">
+            <div class="header-socials">
+                <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+                <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.instagram.com/djbilboxbeats" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <button class="cart-toggle" onclick="toggleCart()"><i class="fa-solid fa-bag-shopping"></i> Panier <span class="cart-badge" id="cartBadge">0</span></button>
         </div>
     </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-    <div class="container hero-content">
-        <h1 class="anim-glow">DJBILBOX BEATS<br><span style="font-size:0.5em; color:var(--text-muted);">INSTRUMENTAL & KIT SAMPLE</span><br><span style="font-size:0.7em; color:var(--accent-red);">FREE FOR PROFIT</span></h1>
-        <p><span class="typing-text">+1000 BEATS • TRAP • ORIENTAL • AFRO • DRILL • G-FUNK</span></p>
-        <div style="display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap;">
-            <a href="#catalogue" class="btn btn-primary"><i class="fa-solid fa-music"></i> Catalogue</a>
-            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="btn btn-outline"><i class="fa-brands fa-spotify"></i> Spotify</a>
-            <a href="#kits" class="btn btn-outline"><i class="fa-solid fa-drum"></i> Drum Kits</a>
+    <div class="wrap">
+        <h1>DJBILBOX <span>BEATS</span></h1>
+        <p>+3000 Beats • Licences Instantanées • Free For Profit</p>
+        <div class="hero-btns">
+            <a href="#beats" class="btn btn-accent"><i class="fa-solid fa-play"></i> Explorer les Beats</a>
+            <a href="#kits" class="btn btn-ghost"><i class="fa-solid fa-drum"></i> Drum Kits</a>
+            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="btn btn-ghost"><i class="fa-brands fa-spotify"></i> Spotify</a>
         </div>
     </div>
 </section>
 
-<!-- STATS -->
-<section id="stats" style="background:var(--bg-main); border-bottom:1px solid var(--border-color); padding:2rem 0;">
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat-item"><h2>2000+</h2><p>Beats Produits</p></div>
-            <div class="stat-item"><h2>303K</h2><p>YouTube Views</p></div>
-            <div class="stat-item"><h2>FREE</h2><p>For Profit</p></div>
-        </div>
-    </div>
-</section>
+<!-- BEATS SECTION -->
+<section id="beats">
+    <div class="wrap">
+        <h2 class="s-title">Catalogue Beats</h2>
+        <p class="s-sub">Écoutez, sélectionnez, téléchargez. Tous les beats sont disponibles en licence gratuite ou premium.</p>
 
-
-<!-- CATALOGUE — PLAYER PREMIUM -->
-<section id="catalogue" style="background:var(--bg-surface); padding:4rem 0;">
-    <div class="container">
-        <!-- Player embed (fichier séparé pour performance) -->
-        <div style="border-radius:12px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.5); margin-bottom:3rem;">
-            <iframe src="player.html" width="100%" height="900" frameborder="0" style="border:none; border-radius:12px;" loading="lazy"></iframe>
+        <div class="filters" id="filters">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="trap">Trap</button>
+            <button class="filter-btn" data-filter="oriental">Oriental</button>
+            <button class="filter-btn" data-filter="afro">Afro</button>
+            <button class="filter-btn" data-filter="drill">Drill</button>
+            <button class="filter-btn" data-filter="funk">Funk</button>
+            <button class="filter-btn" data-filter="rnb">R&B</button>
+            <button class="filter-btn" data-filter="balkan">Balkan</button>
         </div>
 
-        <!-- SPOTIFY -->
-        <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:16px; padding:2rem; margin-bottom:3rem;">
-            <h3 style="font-family:var(--font-display); font-size:2.5rem; margin-bottom:0.5rem; text-align:center;">SPOTIFY</h3>
-            <p style="color:var(--text-muted); text-align:center; margin-bottom:1.5rem; font-size:0.9rem;">Tout mon catalogue streaming</p>
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="400" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="product-grid" id="beatsGrid"></div>
+
+        <!-- Spotify embed for full catalogue -->
+        <div class="embed-block" style="margin-top:2rem;">
+            <h3><i class="fa-brands fa-spotify" style="color:var(--green);"></i> Catalogue Spotify Complet</h3>
+            <p>Naviguez dans l'intégralité de mon catalogue sur Spotify</p>
+            <iframe style="border-radius:8px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
 
-        <!-- YOUTUBE -->
-        <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:16px; padding:2rem; margin-bottom:3rem;">
-            <h3 style="font-family:var(--font-display); font-size:2.5rem; margin-bottom:0.5rem; text-align:center;">YOUTUBE</h3>
-            <p style="color:var(--text-muted); text-align:center; margin-bottom:1.5rem; font-size:0.9rem;">+3000 instrumentaux — Playlist complète</p>
-            <div style="position:relative; padding-bottom:56.25%; border-radius:12px; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,0.5);">
-                <iframe style="position:absolute; inset:0; width:100%; height:100%;" src="https://www.youtube.com/embed/videoseries?list=PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <!-- YouTube playlist -->
+        <div class="embed-block">
+            <h3><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> Tous les Beats YouTube (+3000)</h3>
+            <p>Playlist complète navigable</p>
+            <div style="position:relative;padding-bottom:56.25%;border-radius:8px;overflow:hidden;">
+                <iframe style="position:absolute;inset:0;width:100%;height:100%;" src="https://www.youtube.com/embed/videoseries?list=PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
         </div>
+    </div>
+</section>
 
-        <!-- LICENCE PDF -->
-        <div style="background:linear-gradient(135deg, rgba(255,51,51,0.05), rgba(255,107,53,0.05)); border:1px solid var(--accent-red); border-radius:16px; padding:3rem; text-align:center;">
-            <h3 style="font-family:var(--font-display); font-size:2.5rem; margin-bottom:0.5rem; color:var(--accent-red);">LICENCE GRATUITE PDF</h3>
-            <p style="color:var(--text-muted); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto;">Besoin d'un contrat officiel pour un beat gratuit ? Générez votre licence PDF instantanément.</p>
-            <button class="btn btn-primary" onclick="openLicModal()" style="font-size:1.1rem; padding:1.2rem 3rem;"><i class="fa-solid fa-file-pdf"></i> Obtenir une licence (0€)</button>
+<!-- DRUM KITS -->
+<section id="kits" style="background:var(--surface);">
+    <div class="wrap">
+        <h2 class="s-title">Drum Kits & Sample Packs</h2>
+        <p class="s-sub">Packs professionnels pour votre production. Téléchargement instantané.</p>
+        <div class="product-grid" id="kitsGrid"></div>
+    </div>
+</section>
+
+<!-- LICENCES -->
+<section id="licences">
+    <div class="wrap">
+        <h2 class="s-title">Licences & Contrats</h2>
+        <p class="s-sub">Choisissez le type de licence adapté à votre projet.</p>
+        <div class="product-grid" id="licGrid"></div>
+        <div style="margin-top:2rem;text-align:center;">
+            <button class="btn btn-accent" onclick="openLicModal()"><i class="fa-solid fa-file-pdf"></i> Générer un Contrat PDF Gratuit</button>
         </div>
     </div>
 </section>
 
-<!-- DRUM KITS 3D -->
-<section id="kits" style="background:var(--bg-surface);">
-    <div class="container">
-        <h2 class="section-title">Drum Kits</h2>
-        <p class="section-subtitle">Professional sound design packs</p>
-        <div class="kits-grid" id="kitsGrid"></div>
+<!-- PLAYLISTS -->
+<section id="playlists" style="background:var(--surface);">
+    <div class="wrap">
+        <h2 class="s-title">Playlists YouTube</h2>
+        <p class="s-sub">Explorez par genre</p>
+        <div class="product-grid" id="playlistsGrid"></div>
     </div>
 </section>
 
-<!-- DISCOGRAPHY -->
-<section id="discography">
-    <div class="container">
-        <h2 class="section-title">Discographie</h2>
-        <p class="section-subtitle">Albums & EPs Officiels</p>
-        <div class="album-grid" id="albumGrid"></div>
-    </div>
-</section>
-
-<!-- YOUTUBE PLAYLISTS -->
-<section id="playlists" style="background:var(--bg-surface);">
-    <div class="container">
-        <h2 class="section-title">YouTube Playlists</h2>
-        <p class="section-subtitle" style="max-width:800px; margin:0 auto 3rem; line-height:1.6;">Beats, Instrumentales, Mix, Remix, Tutoriels FL Studio & Sessions Live</p>
-        <div class="yt-grid" id="ytGrid"></div>
-    </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" style="background:var(--bg-main);">
-    <div class="container" style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
-        <div>
-            <h2 style="font-size:3rem; margin-bottom:2rem;">DJBILBOX <span style="color:var(--accent-red);">BEATS</span></h2>
-            <p style="color:var(--text-muted); margin-bottom:2rem; line-height:1.8;">Producteur musical et beatmaker basé à Toulouse. Fusion de sonorités orientales, afrotrap, balkaniques et West Coast. Tous mes instrumentaux sont disponibles gratuitement (Free for Profit) avec une licence d'utilisation.</p>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
-                <div>
-                    <div style="font-family:var(--font-accent); font-size:3rem; font-weight:700; color:var(--accent-red);">2000+</div>
-                    <div style="text-transform:uppercase; letter-spacing:2px; font-size:0.8rem; color:var(--text-muted);">Beats Produits</div>
-                </div>
-                <div>
-                    <div style="font-family:var(--font-accent); font-size:3rem; font-weight:700; color:var(--accent-red);">303K</div>
-                    <div style="text-transform:uppercase; letter-spacing:2px; font-size:0.8rem; color:var(--text-muted);">YouTube Views</div>
-                </div>
-            </div>
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="wrap">
+        <a href="#" class="brand">DJBILBOX <span>BEATS</span></a>
+        <div class="footer-socials">
+            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/djbilboxbeats" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://soundcloud.com/djbilbox" target="_blank"><i class="fa-brands fa-soundcloud"></i></a>
+            <a href="https://www.twitch.tv/bilox_tv" target="_blank"><i class="fa-brands fa-twitch"></i></a>
         </div>
-        <div style="background:#111; padding:2rem; border-radius:12px; border:1px solid var(--border-color);">
-            <img src="https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=800&q=80" style="width:100%; border-radius:8px;" alt="Studio">
+        <p style="color:var(--text-4);font-size:0.75rem;">© 2026 DJBILBOX BEATS. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<!-- PLAYER BAR (fixed bottom) -->
+<div class="player-bar" id="playerBar">
+    <div class="pb-info">
+        <img class="pb-cover" id="pbCover" src="https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg" alt="">
+        <div class="pb-meta">
+            <div class="pb-title" id="pbTitle">Sélectionnez un beat</div>
+            <div class="pb-artist" id="pbArtist">DjBilbox Beats</div>
         </div>
     </div>
-</section>
+    <div class="pb-controls">
+        <button class="pb-btn" onclick="prevTrack()"><i class="fa-solid fa-backward-step"></i></button>
+        <button class="pb-play" id="pbPlay" onclick="togglePlay()"><i class="fa-solid fa-play"></i></button>
+        <button class="pb-btn" onclick="nextTrack()"><i class="fa-solid fa-forward-step"></i></button>
+    </div>
+    <div class="pb-progress">
+        <span class="pb-time" id="pbCur">0:00</span>
+        <div class="pb-bar" id="pbBar"><div class="pb-bar-fill" id="pbFill"></div></div>
+        <span class="pb-time" id="pbDur">0:00</span>
+    </div>
+    <div class="pb-vol"><i class="fa-solid fa-volume-high"></i><input type="range" min="0" max="100" value="80"></div>
+</div>
 
-<!-- YT MODAL -->
-<div class="modal" id="ytModal">
-    <div class="modal-content" style="max-width:900px; padding:1.5rem; background:#0f0f0f;">
-        <button class="modal-close" onclick="closeYtModal()">&times;</button>
-        <h2 id="ytModalTitle" style="margin:0.5rem 0 1.5rem; color:white; font-size:1.8rem;"></h2>
-        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px; background:#000; box-shadow:0 10px 30px rgba(0,0,0,0.8);">
-            <iframe id="ytIframe" style="position:absolute; inset:0; width:100%; height:100%;" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
+<!-- MINI CART -->
+<div class="mini-cart" id="miniCart">
+    <div class="mc-header"><h3><i class="fa-solid fa-bag-shopping"></i> Panier</h3><button class="mc-close" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="mc-items" id="mcItems"><div class="mc-empty">Votre panier est vide</div></div>
+    <div class="mc-footer">
+        <div class="mc-total"><span>Total</span><span id="mcTotal">0€</span></div>
+        <button class="mc-checkout" onclick="openLicModal()">Valider & Télécharger</button>
     </div>
 </div>
 
 <!-- LICENCE MODAL -->
-<div class="modal" id="licModal">
-    <div class="modal-content">
-        <button class="modal-close" onclick="closeLicModal()">&times;</button>
-        <h2 style="font-size:2rem; margin-bottom:0.5rem; color:var(--accent-red);">Licence Gratuite (0€)</h2>
-        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1.5rem;">Remplissez le formulaire ci-dessous. Votre contrat PDF sera téléchargé instantanément et une copie sera envoyée au producteur.</p>
+<div class="modal-overlay" id="licModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeLicModal()"><i class="fa-solid fa-xmark"></i></button>
+        <h2 style="color:var(--accent);">Licence Gratuite (0€)</h2>
+        <p>Remplissez le formulaire pour générer votre contrat PDF et recevoir votre licence instantanément.</p>
         <form id="licForm">
-            <div class="form-group"><label>Nom complet *</label><input type="text" id="licName" required minlength="2" maxlength="100" placeholder="Votre nom complet"></div>
-            <div class="form-group"><label>Email *</label><input type="email" id="licEmail" required placeholder="votre@email.com"></div>
-            <div class="form-group"><label>Beats sélectionnés * (séparez par des virgules)</label><textarea id="licBeats" required rows="3" style="width:100%; padding:12px 16px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-main); color:white; font-size:0.9rem; font-family:var(--font-body); resize:vertical;" placeholder="Ex: VATIMBORA, ABU DHABI, HERMÈS, BALKAN VIBES..."></textarea></div>
-            <div class="form-group"><label>Projet / Utilisation</label><input type="text" id="licProject" maxlength="200" placeholder="Album, vidéo YouTube, podcast..."></div>
-            <div class="form-group cb-group"><input type="checkbox" id="licAccept" required><label for="licAccept">J'accepte les conditions et m'engage à créditer "Prod. DJBILBOX BEATS" dans toutes mes productions utilisant ces beats.</label></div>
-            <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fa-solid fa-file-pdf"></i> Télécharger le contrat PDF</button>
+            <div class="form-field"><label>Nom complet *</label><input type="text" id="fName" required></div>
+            <div class="form-field"><label>Email *</label><input type="email" id="fEmail" required></div>
+            <div class="form-field"><label>Beats sélectionnés *</label><textarea id="fBeats" required placeholder="Ex: BILBOX ANTHEM, KHALIFA, ORIENTAL FIRE..."></textarea></div>
+            <div class="form-field"><label>Projet</label><input type="text" id="fProject" placeholder="Album, YouTube, podcast..."></div>
+            <div class="cb-field"><input type="checkbox" id="fAccept" required><label for="fAccept">J'accepte les conditions et je m'engage à créditer "Prod. DJBILBOX BEATS"</label></div>
+            <button type="submit" class="btn btn-accent" style="width:100%;justify-content:center;"><i class="fa-solid fa-file-pdf"></i> Télécharger le Contrat PDF</button>
         </form>
     </div>
 </div>
 
-
-<!-- NOTIF -->
-<div class="notif" id="notif"><i class="fa-solid fa-check-circle"></i> <span id="notifText"></span></div>
-
-<!-- FOOTER -->
-<footer>
-    <div class="container">
-        <div class="logo" style="justify-content:center; margin-bottom:2rem;">BILBOX<span>BEATS</span></div>
-        <div style="display:flex; justify-content:center; gap:20px; margin-bottom:2rem;">
-            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" style="color:var(--text-muted);"><i class="fa-brands fa-spotify fa-xl"></i></a>
-            <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" style="color:var(--text-muted);"><i class="fa-brands fa-youtube fa-xl"></i></a>
-            <a href="https://www.tiktok.com/@djbilboxbeats" target="_blank" style="color:var(--text-muted);"><i class="fa-brands fa-tiktok fa-xl"></i></a>
-            <a href="https://www.instagram.com/djbilboxbeats" target="_blank" style="color:var(--text-muted);"><i class="fa-brands fa-instagram fa-xl"></i></a>
-            <a href="https://soundcloud.com/djbilbox" target="_blank" style="color:var(--text-muted);"><i class="fa-brands fa-soundcloud fa-xl"></i></a>
-            <a href="https://www.twitch.tv/bilox_tv" target="_blank" style="color:var(--text-muted);"><i class="fa-brands fa-twitch fa-xl"></i></a>
-            <a href="https://x.com/djbilbox" target="_blank" style="color:var(--text-muted);"><i class="fa-brands fa-x-twitter fa-xl"></i></a>
-        </div>
-        <p style="color:var(--text-muted); font-size:0.85rem;">© 2026 DJBILBOX BEATS. All Rights Reserved.</p>
-    </div>
-</footer>
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fa-solid fa-check"></i> <span id="toastText"></span></div>
 
 <script>
-// ============ DATA ============
-let licCart = [];
+// === DATA ===
+const BEATS = [
+    {title:"3TINI",tags:["oriental","trap"],bpm:125,cover:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg",price:"FREE"},
+    {title:"MARIAMA",tags:["afro"],bpm:110,cover:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg",price:"FREE"},
+    {title:"KHALIFA",tags:["oriental","trap"],bpm:130,cover:"https://i.ytimg.com/vi/GVxATwlh7Lo/hqdefault.jpg",price:"FREE"},
+    {title:"BOSS",tags:["trap","drill"],bpm:140,cover:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg",price:"FREE"},
+    {title:"NAGAZAKI",tags:["trap"],bpm:145,cover:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg",price:"FREE"},
+    {title:"AMNÉSIA",tags:["trap","rnb"],bpm:135,cover:"https://i.ytimg.com/vi/xHlx666A6WA/hqdefault.jpg",price:"FREE"},
+    {title:"ALBANIA",tags:["balkan"],bpm:120,cover:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg",price:"FREE"},
+    {title:"ALYA",tags:["oriental"],bpm:118,cover:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg",price:"FREE"},
+    {title:"ABU DHABI",tags:["trap","balkan"],bpm:120,cover:"https://i.ytimg.com/vi/GVxATwlh7Lo/hqdefault.jpg",price:"FREE"},
+    {title:"VATIMBORA",tags:["afro"],bpm:105,cover:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg",price:"FREE"},
+    {title:"HERMÈS",tags:["trap","oriental"],bpm:135,cover:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg",price:"FREE"},
+    {title:"BALKAN EMPIRE",tags:["balkan"],bpm:118,cover:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg",price:"FREE"},
+    {title:"CYBERPUNK",tags:["trap"],bpm:150,cover:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg",price:"FREE"},
+    {title:"G-FUNK CLASSIC",tags:["funk"],bpm:96,cover:"https://i.ytimg.com/vi/PmjSZbmIifM/hqdefault.jpg",price:"FREE"},
+    {title:"DRILL ZONE",tags:["drill"],bpm:142,cover:"https://img.youtube.com/vi/BW_HLS7payE/hqdefault.jpg",price:"FREE"},
+    {title:"SOULFUL VIBES",tags:["rnb","funk"],bpm:95,cover:"https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg",price:"FREE"},
+];
 
 const KITS = [
-    { name:"Vice City Vol. 4", type:"Drill Afrotrap", img:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210739.png", link:"https://www.beatstars.com/sound-kit/245443" },
-    { name:"ORIENTAL ARABIC", type:"Loop Sample", img:"https://img.youtube.com/vi/GVxATwlh7Lo/maxresdefault.jpg", link:"https://www.beatstars.com/sound-kit/238679" },
-    { name:"VOL.3 BLUE PACK", type:"Drums Loop", img:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210813.png", link:"https://www.beatstars.com/sound-kit/237083" },
-    { name:"VOL.2 BREACK YA NECK", type:"Hip Hop", img:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210851.png", link:"https://www.beatstars.com/sound-kit/194959" },
-    { name:"FUTUR MELODY", type:"23 Samples", img:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210921.png", link:"https://www.beatstars.com/sound-kit/143802" },
-    { name:"VOL.1 DRUMS LOOP", type:"11 Samples", img:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20224611.png", link:"https://www.beatstars.com/sound-kit/143800" }
+    {title:"Vice City Vol. 4",sub:"Drill Afrotrap • 45 Samples",cover:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210739.png",price:"FREE",link:"https://www.beatstars.com/sound-kit/245443"},
+    {title:"ORIENTAL ARABIC",sub:"Loop Sample • 30 Loops",cover:"https://img.youtube.com/vi/GVxATwlh7Lo/maxresdefault.jpg",price:"FREE",link:"https://www.beatstars.com/sound-kit/238679"},
+    {title:"VOL.3 BLUE PACK",sub:"Drums Loop • 35 Samples",cover:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210813.png",price:"FREE",link:"https://www.beatstars.com/sound-kit/237083"},
+    {title:"VOL.2 BREACK YA NECK",sub:"Hip Hop • 28 Samples",cover:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210851.png",price:"FREE",link:"https://www.beatstars.com/sound-kit/194959"},
+    {title:"FUTUR MELODY",sub:"23 Samples Melodic",cover:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210921.png",price:"FREE",link:"https://www.beatstars.com/sound-kit/143802"},
+    {title:"VOL.1 DRUMS LOOP",sub:"11 Samples Drums",cover:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20224611.png",price:"FREE",link:"https://www.beatstars.com/sound-kit/143800"},
 ];
 
-const ALBUMS = [
-    { title:"Raï'n'B Fever (2025)", year:"2025", tracks:25, img:"img/rainb_fever_2025.jpg", yt:"PLbtcZhy947NV9GwLUVD_a0jvCg00rHQjy" },
-    { title:"Hermès", year:"2024", tracks:27, img:"img/hermes.jpg", yt:"PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ" },
-    { title:"WHY NOT 3", year:"2024", tracks:30, img:"img/why_not_3.jpg", yt:"PLbtcZhy947NX_wb3vnR4vml6uUdHIyI9Y" },
-    { title:"BALKAN", year:"2024", tracks:7, img:"img/balkan.jpg", yt:"PLbtcZhy947NV9GwLUVD_a0jvCg00rHQjy" },
-    { title:"Funky4life", year:"2023", tracks:25, img:"img/funky4life.jpg", yt:"PLbtcZhy947NUC6PqUplrygUgHJSTvS61u" },
-    { title:"VIDEO CLUB", year:"2023", tracks:14, img:"img/video_club.jpg", yt:"PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg" },
-    { title:"WHY NOT 2", year:"2023", tracks:20, img:"img/why_not_2.jpg", yt:"PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_" },
-    { title:"You Got Power", year:"2022", tracks:15, img:"img/you_got_power.jpg", yt:"PLbtcZhy947NV_wb3vnR4vml6uUdHIyI9Y" },
-    { title:"WHY NOT (VOL.1)", year:"2022", tracks:24, img:"img/why_not_vol1.jpg", yt:"PLbtcZhy947NW-W8-zB9-mE4v4fJ7f9I6-" },
-    { title:"G-FUNK", year:"2022", tracks:6, img:"img/g_funk.jpg", yt:"PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ" },
-    { title:"Cyberpunk 2077", year:"2021", tracks:19, img:"img/cyberpunk_2077.jpg", yt:"PLbtcZhy947NX_wb3vnR4vml6uUdHIyI9Y" }
+const LICENCES = [
+    {title:"Licence MP3 (Free)",sub:"Usage non-commercial • Crédit obligatoire",price:"0€",icon:"fa-file-audio"},
+    {title:"Licence WAV Premium",sub:"Qualité studio • 10 000 streams • Commercial",price:"29€",icon:"fa-file-waveform"},
+    {title:"Licence Unlimited",sub:"Streams illimités • Radio • Live • Stems",price:"99€",icon:"fa-infinity"},
+    {title:"Licence Exclusive",sub:"Propriété totale • Retiré du catalogue",price:"299€",icon:"fa-crown"},
 ];
 
-const YT_PLAYLISTS = [
-    { title:"ALL BEATS", desc:"Toutes mes instrumentales (+1000 beats)", id:"PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th", img:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg" },
-    { title:"Oriental Instrumental Type Beats", desc:"Beats orientaux, arabes, turcs, balkaniques & moyen-orient", id:"PLbtcZhy947NUC6PqUplrygUgHJSTvS61u", img:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg" },
-    { title:"Hip-hop Trap Drill Type Beats", desc:"Instrumentaux Trap, Drill UK, Dark Trap, Hard Beat", id:"PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg", img:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg" },
-    { title:"Afrotrap Type Beats", desc:"Afrobeat, Afrotrap, Amapiano, Dancehall, Reggaeton", id:"PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_", img:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg" },
-    { title:"Deephouse DNB Type Beats", desc:"Deep House, Drum & Bass, Techno, Electronic", id:"PLbtcZhy947NUF9V0rVWzY_-gl1Cy8vw5r", img:"https://i.ytimg.com/vi/OhyWvW8V5qY/hqdefault.jpg" },
-    { title:"Funk Type Beats", desc:"Funk, Disco, Groove, Soul instrumentals", id:"PLbtcZhy947NW5vq7XI-R0nB5rnSMesR8B", img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg" },
-    { title:"SOUL & JAZZ Instrumental", desc:"Soul, Jazz, Neo-soul, Smooth instrumentals", id:"PLbtcZhy947NUOk5HoAYNmLnpMGzLSsR8h", img:"https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg" },
-    { title:"Rock Indie Alternative", desc:"Rock, Indie, Post-punk, Alternative vibes", id:"PLbtcZhy947NX_wb3vnR4vml6uUdHIyI9Y", img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg" },
-    { title:"Music Mix & RMX", desc:"Remixes officiels, mashups et mix DJ", id:"PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-", img:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg" },
-    { title:"Pack Loop SAMPLE", desc:"Drum kits, boucles, one-shots, packs de samples", id:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr", img:"https://i.ytimg.com/vi/BW_HLS7payE/hqdefault.jpg" },
-    { title:"FL STUDIO", desc:"Tutoriels production, sound design, mix & mastering", id:"PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ", img:"https://i.ytimg.com/vi/PmjSZbmIifM/hqdefault.jpg" },
-    { title:"AI Visuals & Motion Design", desc:"Visuels IA, clips générés, motion design", id:"PLbtcZhy947NWbPbX4VepMkY3lIzvm681V", img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg" }
+const PLAYLISTS = [
+    {title:"ALL BEATS",sub:"+3000 instrumentaux",id:"PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th",cover:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg"},
+    {title:"Oriental Type Beats",sub:"Arabes, turcs, balkaniques",id:"PLbtcZhy947NUC6PqUplrygUgHJSTvS61u",cover:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg"},
+    {title:"Hip-hop Trap Drill",sub:"Trap, Drill UK, Dark",id:"PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg",cover:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg"},
+    {title:"Afrotrap",sub:"Afrobeat, Dancehall, Reggaeton",id:"PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_",cover:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg"},
+    {title:"Deephouse & DNB",sub:"Electronic, Techno",id:"PLbtcZhy947NUF9V0rVWzY_-gl1Cy8vw5r",cover:"https://i.ytimg.com/vi/OhyWvW8V5qY/hqdefault.jpg"},
+    {title:"Funk",sub:"Funk, Disco, Groove",id:"PLbtcZhy947NW5vq7XI-R0nB5rnSMesR8B",cover:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg"},
+    {title:"SOUL & JAZZ",sub:"Neo-soul, Smooth jazz",id:"PLbtcZhy947NUOk5HoAYNmLnpMGzLSsR8h",cover:"https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg"},
+    {title:"Music Mix & RMX",sub:"Remixes, mashups, DJ sets",id:"PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-",cover:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg"},
+    {title:"FL STUDIO",sub:"Tutoriels production",id:"PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ",cover:"https://i.ytimg.com/vi/PmjSZbmIifM/hqdefault.jpg"},
+    {title:"Pack Loop SAMPLE",sub:"Samples & boucles",id:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",cover:"https://img.youtube.com/vi/BW_HLS7payE/hqdefault.jpg"},
+    {title:"Rock Indie Alternative",sub:"Rock, Indie, Post-punk",id:"PLbtcZhy947NX_wb3vnR4vml6uUdHIyI9Y",cover:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg"},
+    {title:"AI Visuals",sub:"Clips IA, motion design",id:"PLbtcZhy947NWbPbX4VepMkY3lIzvm681V",cover:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg"},
 ];
 
-// ============ INIT ============
-function init() {
-    renderKits();
-    renderAlbums();
-    renderYT();
+// === STATE ===
+let cart = [];
+let currentBeat = 0;
+let playing = false;
+let currentFilter = 'all';
+
+// === RENDER ===
+function renderBeats() {
+    const grid = document.getElementById('beatsGrid');
+    const filtered = currentFilter === 'all' ? BEATS : BEATS.filter(b => b.tags.includes(currentFilter));
+    grid.innerHTML = filtered.map((b,i) => `
+        <div class="product-card">
+            <div style="position:relative">
+                <img class="pc-cover" src="${b.cover}" alt="${b.title}" loading="lazy" onclick="playBeat(${BEATS.indexOf(b)})">
+                <div class="pc-play-overlay" onclick="playBeat(${BEATS.indexOf(b)})"><i class="fa-solid fa-play"></i></div>
+            </div>
+            <div class="pc-body">
+                <div class="pc-type">Beat • ${b.bpm} BPM</div>
+                <div class="pc-title">${b.title}</div>
+                <div class="pc-tags">${b.tags.map(t=>'<span class="pc-tag">'+t+'</span>').join('')}</div>
+                <div class="pc-footer">
+                    <span class="pc-price free">${b.price}</span>
+                    <button class="pc-buy" onclick="addToCart('${b.title}','Beat','${b.price}')"><i class="fa-solid fa-plus"></i> Ajouter</button>
+                </div>
+            </div>
+        </div>`).join('');
 }
 
+function renderKits() {
+    document.getElementById('kitsGrid').innerHTML = KITS.map(k => `
+        <div class="product-card">
+            <div style="position:relative">
+                <img class="pc-cover" src="${k.cover}" alt="${k.title}" loading="lazy">
+                <div class="pc-play-overlay" onclick="window.open('${k.link}','_blank')"><i class="fa-solid fa-download"></i></div>
+            </div>
+            <div class="pc-body">
+                <div class="pc-type">Drum Kit</div>
+                <div class="pc-title">${k.title}</div>
+                <div class="pc-sub">${k.sub}</div>
+                <div class="pc-footer">
+                    <span class="pc-price free">${k.price}</span>
+                    <button class="pc-buy" onclick="window.open('${k.link}','_blank')"><i class="fa-solid fa-download"></i> Download</button>
+                </div>
+            </div>
+        </div>`).join('');
+}
 
-// ============ LICENCE ============
-function openLicModal() {
-    document.getElementById('licModal').classList.add('active');
-    // Pre-fill beats field if cart has items
-    if (licCart.length > 0) {
-        document.getElementById('licBeats').value = licCart.join(', ');
+function renderLicences() {
+    document.getElementById('licGrid').innerHTML = LICENCES.map(l => `
+        <div class="product-card" style="cursor:default;">
+            <div style="padding:2rem;text-align:center;background:var(--surface-2);">
+                <i class="fa-solid ${l.icon}" style="font-size:2.5rem;color:var(--accent);"></i>
+            </div>
+            <div class="pc-body">
+                <div class="pc-type">Licence</div>
+                <div class="pc-title">${l.title}</div>
+                <div class="pc-sub">${l.sub}</div>
+                <div class="pc-footer">
+                    <span class="pc-price ${l.price==='0€'?'free':''}">${l.price}</span>
+                    <button class="pc-buy" onclick="${l.price==='0€'?'openLicModal()':'toast(\"Contactez-nous pour cette licence\")'}">${l.price==='0€'?'Générer PDF':'Commander'}</button>
+                </div>
+            </div>
+        </div>`).join('');
+}
+
+function renderPlaylists() {
+    document.getElementById('playlistsGrid').innerHTML = PLAYLISTS.map(p => `
+        <div class="product-card" onclick="window.open('https://www.youtube.com/playlist?list=${p.id}','_blank')" style="cursor:pointer;">
+            <img class="pc-cover" src="${p.cover}" alt="${p.title}" loading="lazy">
+            <div class="pc-body">
+                <div class="pc-type"><i class="fa-brands fa-youtube"></i> Playlist</div>
+                <div class="pc-title">${p.title}</div>
+                <div class="pc-sub">${p.sub}</div>
+            </div>
+        </div>`).join('');
+}
+
+// === PLAYER ===
+function playBeat(idx) {
+    currentBeat = idx;
+    playing = true;
+    const b = BEATS[idx];
+    document.getElementById('pbCover').src = b.cover;
+    document.getElementById('pbTitle').textContent = b.title;
+    document.getElementById('pbArtist').textContent = 'DjBilbox Beats • ' + b.bpm + ' BPM';
+    document.getElementById('pbPlay').innerHTML = '<i class="fa-solid fa-pause"></i>';
+    document.getElementById('pbDur').textContent = '3:' + (20 + idx * 3);
+    animateProgress();
+}
+function togglePlay() {
+    playing = !playing;
+    document.getElementById('pbPlay').innerHTML = playing ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+    if (playing) animateProgress();
+}
+function prevTrack() { playBeat(currentBeat > 0 ? currentBeat - 1 : BEATS.length - 1); }
+function nextTrack() { playBeat(currentBeat < BEATS.length - 1 ? currentBeat + 1 : 0); }
+function animateProgress() {
+    const fill = document.getElementById('pbFill');
+    fill.style.transition = 'none'; fill.style.width = '0%';
+    setTimeout(() => { fill.style.transition = 'width 200s linear'; fill.style.width = '100%'; }, 50);
+}
+
+// === CART ===
+function addToCart(title, type, price) {
+    cart.push({title, type, price});
+    updateCart();
+    toast(title + ' ajouté au panier');
+}
+function removeFromCart(idx) {
+    cart.splice(idx, 1);
+    updateCart();
+}
+function updateCart() {
+    document.getElementById('cartBadge').textContent = cart.length;
+    const items = document.getElementById('mcItems');
+    if (cart.length === 0) { items.innerHTML = '<div class="mc-empty">Votre panier est vide</div>'; }
+    else {
+        items.innerHTML = cart.map((c,i) => `<div class="mc-item"><div class="mc-item-info"><h4>${c.title}</h4><p>${c.type}</p></div><span class="mc-item-price">${c.price}</span><button class="mc-item-remove" onclick="removeFromCart(${i})"><i class="fa-solid fa-trash"></i></button></div>`).join('');
     }
+    document.getElementById('mcTotal').textContent = cart.length > 0 ? '0€ (Free)' : '0€';
 }
-function closeLicModal() { document.getElementById('licModal').classList.remove('active'); }
+function toggleCart() { document.getElementById('miniCart').classList.toggle('open'); }
+
+// === FILTERS ===
+document.getElementById('filters').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    currentFilter = btn.dataset.filter;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderBeats();
+});
+
+// === LICENCE MODAL ===
+function openLicModal() {
+    document.getElementById('miniCart').classList.remove('open');
+    document.getElementById('licModal').classList.add('open');
+    if (cart.length > 0) document.getElementById('fBeats').value = cart.map(c => c.title).join(', ');
+}
+function closeLicModal() { document.getElementById('licModal').classList.remove('open'); }
+document.getElementById('licModal').addEventListener('click', e => { if (e.target === document.getElementById('licModal')) closeLicModal(); });
 
 document.getElementById('licForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const name = document.getElementById('licName').value.trim();
-    const email = document.getElementById('licEmail').value.trim();
-    const beatsText = document.getElementById('licBeats').value.trim();
-    const project = document.getElementById('licProject').value.trim();
-    if (!name || !email || !beatsText) return;
-
+    const name = document.getElementById('fName').value.trim();
+    const email = document.getElementById('fEmail').value.trim();
+    const beats = document.getElementById('fBeats').value.trim();
+    const project = document.getElementById('fProject').value.trim();
+    if (!name || !email || !beats) return;
     const ref = 'LIC-' + Date.now().toString(36).toUpperCase();
-    const beatsList = beatsText.split(',').map(b => b.trim()).filter(b => b.length > 0);
-
-    // Generate PDF
+    const beatsList = beats.split(',').map(b => b.trim()).filter(b => b);
     generatePDF(name, email, project, ref, beatsList);
-
-    // Send email to djbilboxbeats@gmail.com
-    fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-            _subject: '🎵 Nouvelle Licence ' + ref,
-            'Référence': ref,
-            'Nom client': name,
-            'Email client': email,
-            'Projet': project || 'Non spécifié',
-            'Beats demandés': beatsList.join(', '),
-            'Nombre de beats': beatsList.length.toString(),
-            'Date': new Date().toLocaleDateString('fr-FR')
-        })
-    }).then(r => r.json()).then(data => {
-        if (data.success) console.log('Email envoyé');
-    }).catch(()=>{});
-
-    // Save log
-    try { const logs = JSON.parse(localStorage.getItem('djbilbox_licenses')||'[]'); logs.push({id:ref, date:new Date().toISOString(), userName:name, userEmail:email, project, beats:beatsList}); localStorage.setItem('djbilbox_licenses', JSON.stringify(logs)); } catch(ex){}
-
-    closeLicModal(); this.reset();
-    notify('Contrat PDF téléchargé ! Notification envoyée.');
+    fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({_subject:'Nouvelle Licence '+ref,'Nom':name,'Email':email,'Beats':beats,'Projet':project||'N/A','Date':new Date().toLocaleDateString('fr-FR')})}).catch(()=>{});
+    try{const l=JSON.parse(localStorage.getItem('djbilbox_lic')||'[]');l.push({ref,date:new Date().toISOString(),name,email,beats:beatsList});localStorage.setItem('djbilbox_lic',JSON.stringify(l));}catch(x){}
+    cart=[];updateCart();closeLicModal();this.reset();toast('Contrat PDF téléchargé !');
 });
 
-function generatePDF(userName, userEmail, project, ref, beatsList) {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    const date = new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
-    if (!ref) ref = 'LIC-' + Date.now().toString(36).toUpperCase();
-    if (!beatsList) beatsList = [];
-
-    doc.setDrawColor(255,51,51); doc.setLineWidth(1); doc.rect(5,5,200,287);
-    doc.setFillColor(5,5,5); doc.rect(5,5,200,38,'F');
-    doc.setTextColor(255,255,255); doc.setFont("helvetica","bold"); doc.setFontSize(26);
-    doc.text("DJBILBOX BEATS",20,24); doc.setFontSize(11);
-    doc.text("CONTRAT DE LICENCE D'UTILISATION GRATUITE",20,34);
-    doc.setTextColor(0,0,0); doc.setFontSize(9); doc.setFont("helvetica","normal");
-    doc.text('Ref : '+ref,150,50); doc.text('Date : '+date,150,56);
-    let y=62; doc.setFontSize(11); doc.setFont("helvetica","bold");
-    doc.text("1. PARTIES",20,y); y+=8; doc.setFontSize(10); doc.setFont("helvetica","normal");
-    doc.text("Le Concedant : DJBILBOX BEATS (Producteur)",20,y); y+=5;
-    doc.text("Contact : Djbilboxbeats@gmail.com",20,y); y+=8;
-    doc.text("Le Licencie : "+userName,20,y); y+=5;
-    doc.text("Email : "+userEmail,20,y); y+=5;
-    if(project){doc.text("Projet : "+project,20,y); y+=5;}
-    y+=8; doc.setFont("helvetica","bold"); doc.setFontSize(11);
-    doc.text("2. OEUVRES CONCERNEES ("+beatsList.length+" beat"+(beatsList.length>1?'s':'')+")",20,y); y+=8;
-    doc.setFont("helvetica","normal"); doc.setFontSize(10);
-    beatsList.forEach(b=>{if(y>255){doc.addPage();y=20;} doc.text("  - "+b,25,y); y+=6;});
-    y+=8; if(y>200){doc.addPage();y=20;} doc.setFont("helvetica","bold"); doc.setFontSize(11);
-    doc.text("3. DROITS ACCORDES",20,y); y+=8; doc.setFont("helvetica","normal"); doc.setFontSize(9);
-    var rights = [
-        "Autorise : Diffusion Internet (YouTube, Streaming, Reseaux Sociaux)",
-        "Autorise : Diffusion Radio (Locale, Nationale, Web-radio)",
-        "Autorise : Performances Live (Scenes, Clubs, Festivals)",
-        "Autorise : Projets musicaux personnels ou collaboratifs",
-        "",
-        "INTERDIT : Revente/redistribution des instrumentaux seuls",
-        "OBLIGATOIRE : Credit 'Prod. by DJBILBOX BEATS'",
-        "INTERDIT : Transfert de licence a un tiers"
-    ];
-    rights.forEach(l=>{doc.text(l,25,y);y+=5;});
-    y+=8; doc.setFont("helvetica","bold"); doc.setFontSize(11); doc.text("4. PRIX",20,y); y+=7;
-    doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.text("Montant : 0,00 EUR (Free for Profit)",25,y);
-    y+=12; doc.setFont("helvetica","bold"); doc.text("5. DUREE",20,y); y+=7;
-    doc.setFont("helvetica","normal"); doc.text("Licence valable sans limite sous reserve du respect des conditions.",25,y);
-    y+=15; doc.setDrawColor(255,51,51); doc.line(20,y,190,y); y+=10;
-    doc.setFont("courier","italic"); doc.setFontSize(16); doc.setTextColor(255,51,51);
-    doc.text("DJBILBOX BEATS",20,y); doc.setTextColor(0,0,0); doc.text(userName,120,y);
-    y+=12; doc.setFont("helvetica","normal"); doc.setFontSize(7); doc.setTextColor(150,150,150);
-    doc.text("Document genere automatiquement. Ref: "+ref+" | Ce contrat fait foi de preuve d'autorisation.",105,y,{align:'center'});
-    doc.save('Licence_DJBILBOX_'+ref+'.pdf');
+// === PDF ===
+function generatePDF(name, email, project, ref, beats) {
+    const {jsPDF}=window.jspdf; const doc=new jsPDF();
+    const d=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+    doc.setDrawColor(255,45,45);doc.setLineWidth(1);doc.rect(5,5,200,287);
+    doc.setFillColor(9,9,9);doc.rect(5,5,200,35,'F');
+    doc.setTextColor(255,255,255);doc.setFont("helvetica","bold");doc.setFontSize(24);doc.text("DJBILBOX BEATS",20,22);
+    doc.setFontSize(10);doc.text("CONTRAT DE LICENCE - "+ref,20,32);
+    doc.setTextColor(0);doc.setFontSize(9);doc.setFont("helvetica","normal");
+    doc.text("Date : "+d,150,48);let y=55;
+    doc.setFont("helvetica","bold");doc.setFontSize(11);doc.text("PARTIES",20,y);y+=7;
+    doc.setFont("helvetica","normal");doc.setFontSize(9);
+    doc.text("Producteur : DJBILBOX BEATS | djbilboxbeats@gmail.com",20,y);y+=5;
+    doc.text("Licencie : "+name+" | "+email,20,y);y+=5;
+    if(project){doc.text("Projet : "+project,20,y);y+=5;}
+    y+=8;doc.setFont("helvetica","bold");doc.setFontSize(11);doc.text("OEUVRES ("+beats.length+")",20,y);y+=7;
+    doc.setFont("helvetica","normal");doc.setFontSize(9);
+    beats.forEach(b=>{if(y>260){doc.addPage();y=20;}doc.text("- "+b,25,y);y+=5;});
+    y+=8;doc.setFont("helvetica","bold");doc.setFontSize(11);doc.text("DROITS",20,y);y+=7;
+    doc.setFont("helvetica","normal");doc.setFontSize(8);
+    ["Autorise: Streaming, YouTube, Radio, Live, Reseaux sociaux","Autorise: Projets personnels et collaboratifs","OBLIGATOIRE: Credit 'Prod. DJBILBOX BEATS'","INTERDIT: Revente des instrumentaux seuls","INTERDIT: Transfert a un tiers","Prix: 0,00 EUR (Free for Profit)","Duree: Illimitee"].forEach(l=>{doc.text(l,25,y);y+=4.5;});
+    y+=10;doc.setDrawColor(255,45,45);doc.line(20,y,190,y);y+=8;
+    doc.setFont("courier","italic");doc.setFontSize(14);doc.setTextColor(255,45,45);doc.text("DJBILBOX BEATS",20,y);
+    doc.setTextColor(0);doc.text(name,120,y);
+    doc.save("Licence_DJBILBOX_"+ref+".pdf");
 }
 
-// ============ KITS 3D ============
-function renderKits() {
-    document.getElementById('kitsGrid').innerHTML = KITS.map(k => `
-        <div class="kit-card" onclick="window.open('${k.link}','_blank')">
-            <div class="kit-box-shadow"></div>
-            <div class="kit-box-spine"><span class="kit-spine-text">${k.name}</span></div>
-            <div class="kit-box-top"></div>
-            <div class="kit-box-front">
-                <img src="${k.img}" alt="${k.name}" loading="lazy">
-                <div class="kit-free-badge">FREE</div>
-            </div>
-            <div class="kit-buy-btn">DOWNLOAD</div>
-        </div>
-    `).join('');
-    setTimeout(() => {
-        VanillaTilt.init(document.querySelectorAll(".kit-card"), {
-            max:15, speed:400, glare:true, "max-glare":0.2, perspective:1000, scale:1.05
-        });
-    }, 100);
+// === TOAST ===
+function toast(msg) {
+    const t=document.getElementById('toast');document.getElementById('toastText').textContent=msg;
+    t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);
 }
 
-// ============ ALBUMS ============
-function renderAlbums() {
-    document.getElementById('albumGrid').innerHTML = ALBUMS.map(a => `
-        <div class="album-card" onclick="openYtModal('${a.title}','${a.yt}')">
-            <div class="album-cover-wrapper">
-                <img class="album-cover-img" src="${a.img}" alt="${a.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?auto=format&fit=crop&w=400&q=60'">
-                <div class="album-tracks-badge"><i class="fa-solid fa-music"></i> ${a.tracks} titres</div>
-            </div>
-            <div class="album-info">
-                <h3 class="album-title">${a.title}</h3>
-                <p class="album-artist">DjBilbox Beats · Album ${a.year}</p>
-            </div>
-        </div>
-    `).join('');
-}
-
-// ============ YOUTUBE PLAYLISTS ============
-function renderYT() {
-    document.getElementById('ytGrid').innerHTML = YT_PLAYLISTS.map(p => `
-        <div class="yt-card" onclick="openYtModal('${p.title}','${p.id}')">
-            <div class="yt-thumb-wrapper">
-                <img class="yt-thumb" src="${p.img}" alt="${p.title}" loading="lazy">
-                <div class="yt-play-overlay"><i class="fa-solid fa-play"></i></div>
-            </div>
-            <div class="yt-info">
-                <h4 class="yt-title">${p.title}</h4>
-                <p class="yt-desc">${p.desc}</p>
-            </div>
-        </div>
-    `).join('');
-}
-
-function openYtModal(title, id) {
-    document.getElementById('ytModalTitle').textContent = title;
-    document.getElementById('ytIframe').src = 'https://www.youtube.com/embed/videoseries?list='+id+'&autoplay=1';
-    document.getElementById('ytModal').classList.add('active');
-}
-function closeYtModal() { document.getElementById('ytModal').classList.remove('active'); document.getElementById('ytIframe').src=''; }
-document.getElementById('ytModal').addEventListener('click', function(e) { if(e.target===this) closeYtModal(); });
-document.getElementById('licModal').addEventListener('click', function(e) { if(e.target===this) closeLicModal(); });
-
-// ============ NOTIFY ============
-function notify(msg) { const el=document.getElementById('notif'); document.getElementById('notifText').textContent=msg; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),3000); }
-
-// ============ ADMIN ============
-window.showAdmin = function() { const l=JSON.parse(localStorage.getItem('djbilbox_licenses')||'[]'); console.table(l); return l.length+' licences'; };
-
-// ============ SCROLL REVEAL ============
-function initScrollReveal() {
-    const reveals = document.querySelectorAll('.cat-card, .kit-card, .album-card, .yt-card, .stat-item');
-    reveals.forEach(el => el.classList.add('reveal'));
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                entry.target.style.animationDelay = (Math.random() * 0.3) + 's';
-            }
-        });
-    }, { threshold:0.1, rootMargin:'50px' });
-    reveals.forEach(el => observer.observe(el));
-}
-
-// ============ START ============
-init();
-setTimeout(initScrollReveal, 100);
+// === INIT ===
+renderBeats();renderKits();renderLicences();renderPlaylists();
 </script>
 </body>
 </html>
