@@ -217,15 +217,9 @@ button{font-family:var(--font);cursor:pointer}
         <span style="font-size:.7rem;color:var(--text-3);" id="trackCount">18 titres</span>
     </div>
 
-    <!-- Playback -->
-    <div class="pl-playback">
-        <button class="plb-btn" onclick="prevT()"><i class="fa-solid fa-backward-step"></i></button>
-        <button class="plb-play" id="playBtn" onclick="togglePlay()"><i class="fa-solid fa-play"></i></button>
-        <button class="plb-btn" onclick="nextT()"><i class="fa-solid fa-forward-step"></i></button>
-        <span class="plb-time" id="curT">0:00</span>
-        <div class="plb-bar" id="pBar"><div class="plb-fill" id="pFill"></div></div>
-        <span class="plb-time" id="durT">0:00</span>
-        <div class="plb-vol"><i class="fa-solid fa-volume-high"></i><input type="range" min="0" max="100" value="80"></div>
+    <!-- Spotify Embed Player (active audio) -->
+    <div style="padding:0.5rem 1rem;background:var(--bg);border-bottom:1px solid var(--border);">
+        <iframe id="spotifyEmbed" src="https://open.spotify.com/embed/track/1UnJqR2s8q07k3vFhNFtvm?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" style="border-radius:8px;" loading="lazy"></iframe>
     </div>
 
     <!-- Track List -->
@@ -312,24 +306,41 @@ button{font-family:var(--font);cursor:pointer}
 <script>
 // ===== DATA (Real Spotify IDs) =====
 const TRACKS=[
-{title:"3tini",tags:["Oriental","Trap"],spotifyId:"30RtOqF5cmuSjBuGt5ctvn",cover:"https://i.scdn.co/image/ab67616d0000b273d5992a1efc3211726d796caf",dur:"3:24"},
-{title:"Mariama",tags:["Afro","Melodic"],spotifyId:"3PEWNxtNfjAIQUUQjtAjlR",cover:"https://i.scdn.co/image/ab67616d0000b273395cfbfa4fda7a889cf999ce",dur:"2:58"},
-{title:"KHALIFA",tags:["Oriental","Hard"],spotifyId:"7t9X00Fnap9RLO3qLruGsP",cover:"https://i.scdn.co/image/ab67616d0000b273d78525c8799d1efe701ba16b",dur:"3:15"},
-{title:"BOSS",tags:["Trap","Drill"],spotifyId:"3BjZi53447NMYq60sbynFa",cover:"https://i.scdn.co/image/ab67616d0000b273ae8108a08d11cde6b69ea3f2",dur:"3:30"},
-{title:"Nagazaki",tags:["Trap","Synth"],spotifyId:"2vFJBMzeeMmiEKl4KIufxZ",cover:"https://i.scdn.co/image/ab67616d0000b2730fc62d04c200019d7370ad2d",dur:"3:05"},
-{title:"Amnésia",tags:["Trap","R&B"],spotifyId:"4CXlJpjofCBoJwjm7v9tJO",cover:"https://i.scdn.co/image/ab67616d0000b27354e295b6c03147b78da28575",dur:"3:18"},
-{title:"Albania",tags:["Balkan","Ethnic"],spotifyId:"0vZYkoGbEfkPQdWT987YY6",cover:"https://i.scdn.co/image/ab67616d0000b273b95f607428d7acee01b504d6",dur:"3:22"},
-{title:"ALYA",tags:["Oriental","Guitar"],spotifyId:"347VK8wWtDrcidL5eL8uNR",cover:"https://i.scdn.co/image/ab67616d0000b27356bb0c7baad5da47e3824b43",dur:"3:10"},
-{title:"ABU DHABI",tags:["Trap","Balkan"],spotifyId:"16guykz9GYqwevkVjPFz1N",cover:"https://i.scdn.co/image/ab67616d0000b2731a58ff44a2f3ab78b4f33fe0",dur:"3:28"},
-{title:"VATIMBORA",tags:["Afro","Reggaeton"],spotifyId:"641j8Vdiintzg1Sjq00mSr",cover:"https://i.scdn.co/image/ab67616d0000b273e54eea14ad4fdfda88e276a2",dur:"3:05"},
-{title:"Cyberpunk 2077",tags:["Trap","Synth"],spotifyId:"469qLPb1l97wMTih2t9P2u",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",dur:"4:12",type:"Album"},
-{title:"Raï'n'B Fever",tags:["R&B","Oriental"],spotifyId:"4ButYqI5EAWH8tGgvt1lbB",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",dur:"3:45",type:"Album"},
-{title:"Hermès",tags:["Trap","Oriental"],spotifyId:"1Vpgv0L0iNGlx9HEsT6uK3",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",dur:"3:55",type:"Album"},
-{title:"WHY NOT 3",tags:["Trap","Drill"],spotifyId:"56q7mjhVlTbWzet00vIGjl",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",dur:"3:40",type:"Album"},
-{title:"BALKAN",tags:["Balkan","Ethnic"],spotifyId:"51o20OIYkMXg2Ef8BpTOgj",cover:"https://i.scdn.co/image/ab67616d0000b2739648a06936788f6884fa9743",dur:"3:33",type:"Album"},
-{title:"Funky4life",tags:["Funk","Disco"],spotifyId:"2Zvcoj0ac0e2i4ddECMm1W",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",dur:"3:50",type:"Album"},
-{title:"VIDEO CLUB",tags:["Funk","Synth"],spotifyId:"5uAsgVi5C3a4XFNzqfjKiv",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",dur:"3:28",type:"Album"},
-{title:"WHY NOT 2",tags:["Trap"],spotifyId:"3JWBtrMG99xAlDjtb5t70k",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",dur:"3:35",type:"Album"},
+// Singles
+{title:"3tini",trackId:"1UnJqR2s8q07k3vFhNFtvm",cover:"https://i.scdn.co/image/ab67616d0000b273d5992a1efc3211726d796caf",tags:["Oriental","Trap"]},
+{title:"Mariama",trackId:"728NpnWQjj4618mNODphTc",cover:"https://i.scdn.co/image/ab67616d0000b273395cfbfa4fda7a889cf999ce",tags:["Afro","Melodic"]},
+{title:"KHALIFA",trackId:"1eAZaSK0DCtI0D8c3Is0Ga",cover:"https://i.scdn.co/image/ab67616d0000b273d78525c8799d1efe701ba16b",tags:["Oriental","Hard"]},
+{title:"BOSS",trackId:"1JDY2oobfT4pDKDcfqOXkD",cover:"https://i.scdn.co/image/ab67616d0000b273ae8108a08d11cde6b69ea3f2",tags:["Trap","Drill"]},
+{title:"Nagazaki",trackId:"5WaxhX9KnSY9Xg0goqEhCY",cover:"https://i.scdn.co/image/ab67616d0000b2730fc62d04c200019d7370ad2d",tags:["Trap","Synth"]},
+{title:"Amnésia",trackId:"5kbmgqegfIvyu0FrSDExjI",cover:"https://i.scdn.co/image/ab67616d0000b27354e295b6c03147b78da28575",tags:["Trap","R&B"]},
+{title:"Albania",trackId:"6ZLRuoesiUmaJGTSNN4cmJ",cover:"https://i.scdn.co/image/ab67616d0000b273b95f607428d7acee01b504d6",tags:["Balkan","Ethnic"]},
+{title:"ALYA",trackId:"3XPJ1IHqPMkjovkvUU44wA",cover:"https://i.scdn.co/image/ab67616d0000b27356bb0c7baad5da47e3824b43",tags:["Oriental","Guitar"]},
+{title:"ABU DHABI",trackId:"5jhQVQCOWvxuLtAd09T4rY",cover:"https://i.scdn.co/image/ab67616d0000b2731a58ff44a2f3ab78b4f33fe0",tags:["Trap","Balkan"]},
+{title:"VATIMBORA",trackId:"7dyKV6dcZ4kyC2xHno12fN",cover:"https://i.scdn.co/image/ab67616d0000b273e54eea14ad4fdfda88e276a2",tags:["Afro","Reggaeton"]},
+// Cyberpunk 2077
+{title:"Live and Die",trackId:"2jAWDwhOJZwpHoxYXLgZsD",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Synth"]},
+{title:"Hunter Neon",trackId:"5BivdrmALUgldN3fStj334",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Synth"]},
+{title:"Chrome War",trackId:"4vNkEcolyixRnhYvpzt406",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Dark"]},
+{title:"Dogtown",trackId:"60Jh3Q0QVyU7zFGMYtlu58",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Synth"]},
+{title:"Phantom Liberty",trackId:"53QKgtmRa0gkW7PSdNakt9",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Synth"]},
+// Raï'n'B Fever
+{title:"Rehla bila nihaya",trackId:"2OgFsXz8rcjLkU0c4ccLr0",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["R&B","Oriental"]},
+{title:"Khlioni Brou7i",trackId:"15R1a4Vdiy6ePxQ2moz22n",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["R&B","Oriental"]},
+{title:"Ma Tebkich",trackId:"5PMLFy7yXd8fzGOf9pDpBK",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["R&B","Oriental"]},
+{title:"Jacqueline",trackId:"2jadJyl7OWw5K0PRZxANKU",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["R&B","Oriental"]},
+{title:"Ya Habibi",trackId:"2GtJhCAjEqY6e5MumfojVq",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["R&B","Oriental"]},
+// Hermès
+{title:"SHE FOUND ME",trackId:"0ivHjkQJPwHBt1pQ8Dtkr6",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Melodic"]},
+{title:"Elle",trackId:"2mkqctXWsjpOTgZlLgBXw6",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","R&B"]},
+{title:"Hey Ken",trackId:"2Wp0QI2PBWONcSqwbdqVV3",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Melodic"]},
+{title:"My Sunshine",trackId:"0mvoJPiuAQ2Ag1PQCQDgUy",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Afro","Melodic"]},
+{title:"Zoubida",trackId:"1GXoJ5XRviMiwjDif2Q2Gt",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Oriental","R&B"]},
+// WHY NOT 3
+{title:"Deth Raw",trackId:"14HoqkZ5izrZGxpFYh6cBO",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Drill"]},
+{title:"Airbus",trackId:"3bfuK14Gh596NgY5dbT7Nj",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Hard"]},
+{title:"Just Wu It",trackId:"4kBBgPxsfSIFASBE6sulG4",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Drill"]},
+{title:"Megane",trackId:"7fO76e782HRK80bLq69u7G",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Melodic"]},
+{title:"Instagram",trackId:"45wgco7S1dWWmYeRLMMKBk",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Synth"]},
 ];
 
 const KITS=[
@@ -361,18 +372,17 @@ let cart=[], cur=0, playing=false, sorted=false;
 function renderTracks(list){
     const el=document.getElementById('trackList');
     if(!list) list=TRACKS;
-    document.getElementById('trackCount').textContent=list.length+' titres';
+    document.getElementById('trackCount').textContent=list.length+' pistes';
     el.innerHTML=list.map((t,i)=>`
-    <div class="trk ${TRACKS.indexOf(t)===cur?'active':''}" onclick="selectTrack(${TRACKS.indexOf(t)})">
+    <div class="trk ${TRACKS.indexOf(t)===cur?'active':''}" data-idx="${TRACKS.indexOf(t)}">
         <span class="trk-num">${i+1}</span>
-        <img class="trk-cover" src="${t.cover}" alt="${t.title}" loading="lazy">
-        <div class="trk-info">
+        <img class="trk-cover" src="${t.cover}" alt="${t.title}" loading="lazy" onclick="selectTrack(${TRACKS.indexOf(t)})">
+        <div class="trk-info" onclick="selectTrack(${TRACKS.indexOf(t)})">
             <div class="trk-title">${t.title}</div>
-            <div class="trk-sub">DjBilbox Beats${t.type?' • '+t.type:' • Single'}</div>
+            <div class="trk-sub">DjBilbox Beats</div>
             <div class="trk-tags">${t.tags.map(x=>'<span class="trk-tag">'+x+'</span>').join('')}</div>
         </div>
-        <span class="trk-dur">${t.dur}</span>
-        <button class="trk-buy" onclick="event.stopPropagation();addCart('${t.title}')"><i class="fa-solid fa-plus"></i> Licence</button>
+        <button class="trk-buy" onclick="addCart('${t.title}')"><i class="fa-solid fa-plus"></i> Licence</button>
     </div>`).join('');
 }
 
@@ -381,19 +391,19 @@ function selectTrack(idx){
     cur=idx;playing=true;
     const t=TRACKS[idx];
     document.getElementById('playBtn').innerHTML='<i class="fa-solid fa-pause"></i>';
-    document.getElementById('durT').textContent=t.dur;
-    document.getElementById('curT').textContent='0:00';
-    // Update player bar info if exists
-    const pbCover=document.querySelector('.plb-cover');
-    if(pbCover)pbCover.src=t.cover;
+    // Load Spotify embed player for this track
+    const playerArea=document.getElementById('spotifyEmbed');
+    if(playerArea){
+        playerArea.src='https://open.spotify.com/embed/track/'+t.trackId+'?utm_source=generator&theme=0';
+    }
     animFill();
     renderTracks();
     toast('▶ '+t.title);
 }
 function togglePlay(){
     playing=!playing;
-    document.getElementById('playBtn').innerHTML=playing?'<i class="fa-solid fa-pause"></i>':'<i class="fa-solid fa-play"></i>';
-    if(playing)animFill();
+    var btn=document.getElementById('playBtn');
+    if(btn)btn.innerHTML=playing?'<i class="fa-solid fa-pause"></i>':'<i class="fa-solid fa-play"></i>';
 }
 function prevT(){selectTrack(cur>0?cur-1:TRACKS.length-1)}
 function nextT(){selectTrack(cur<TRACKS.length-1?cur+1:0)}
