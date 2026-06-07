@@ -109,8 +109,8 @@
         .stat-item h2 { font-size:3.5rem; color:var(--accent-red); font-family:var(--font-display); margin-bottom:0.5rem; }
         .stat-item p { color:var(--text-muted); text-transform:uppercase; letter-spacing:2px; font-size:0.8rem; }
 
-        /* SPOTIFY PLAYER STICKY */
-        .sp-player-wrap { position:sticky; top:80px; z-index:500; background:var(--bg-main); border-bottom:1px solid var(--border-color); padding:12px 0; }
+        /* SPOTIFY PLAYER */
+        .sp-player-wrap { background:var(--bg-main); border-bottom:1px solid var(--border-color); padding:1.5rem 0; }
 
         /* CATALOGUE */
         .cat-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:1.5rem; }
@@ -277,7 +277,7 @@
 <!-- SPOTIFY PLAYER STICKY -->
 <div class="sp-player-wrap">
     <div class="container">
-        <iframe id="spotifyPlayer" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:12px;"></iframe>
+        <iframe id="spotifyPlayer" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="380" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="border-radius:12px;"></iframe>
     </div>
 </div>
 
@@ -289,7 +289,7 @@
 
         <!-- Spotify embed artiste complet (affiche TOUT le catalogue) -->
         <div style="margin-bottom:2rem;">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="500" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
 
         <!-- Playlist YouTube complète embed (toutes les musiques) -->
@@ -489,7 +489,7 @@ const YT_PLAYLISTS = [
 // ============ STATE ============
 let cart = [];
 let displayed = 0;
-const PER_PAGE = 16;
+const PER_PAGE = 999;
 
 // ============ INIT ============
 function init() {
