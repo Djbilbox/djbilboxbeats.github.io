@@ -233,7 +233,7 @@
     <div class="container">
         <div class="stats-grid">
             <div class="stat-item"><h2>2000+</h2><p>Beats Produits</p></div>
-            <div class="stat-item"><h2>524K</h2><p>TikTok Views</p></div>
+            <div class="stat-item"><h2>303K</h2><p>YouTube Views</p></div>
             <div class="stat-item"><h2>FREE</h2><p>For Profit</p></div>
         </div>
     </div>
@@ -246,11 +246,19 @@
     </div>
 </div>
 
-<!-- CATALOGUE -->
+<!-- CATALOGUE SPOTIFY COMPLET -->
 <section id="catalogue">
     <div class="container">
-        <h2 class="section-title">Catalogue</h2>
-        <p class="section-subtitle">Sélectionnez vos beats • Licence gratuite instantanée</p>
+        <h2 class="section-title">Catalogue Spotify</h2>
+        <p class="section-subtitle">Tout mon catalogue • Écoute & licence gratuite instantanée</p>
+
+        <!-- Catalogue Spotify complet -->
+        <h3 style="font-family:var(--font-display); font-size:2rem; margin-bottom:1rem;">TOUT MON CATALOGUE SPOTIFY</h3>
+        <div id="spotifyAlbums" style="display:grid; grid-template-columns:1fr; gap:1.5rem; margin-bottom:3rem;"></div>
+
+        <!-- Grille beats avec licence -->
+        <h3 style="font-family:var(--font-display); font-size:2rem; margin:3rem 0 1rem;">BEATS • LICENCE GRATUITE</h3>
+        <p style="color:var(--text-muted); text-align:center; margin-bottom:2rem; font-size:0.85rem;">Cliquez sur un beat pour l'écouter dans Spotify • Bouton LICENCE pour obtenir le contrat PDF</p>
         <div class="cat-grid" id="catGrid"></div>
         <div style="text-align:center; margin-top:2.5rem;">
             <button id="loadMoreBtn" class="btn btn-outline" style="display:none;" onclick="loadMore()"><i class="fa-solid fa-plus"></i> Charger plus</button>
@@ -297,8 +305,8 @@
                     <div style="text-transform:uppercase; letter-spacing:2px; font-size:0.8rem; color:var(--text-muted);">Beats Produits</div>
                 </div>
                 <div>
-                    <div style="font-family:var(--font-accent); font-size:3rem; font-weight:700; color:var(--accent-red);">524K</div>
-                    <div style="text-transform:uppercase; letter-spacing:2px; font-size:0.8rem; color:var(--text-muted);">TikTok Views</div>
+                    <div style="font-family:var(--font-accent); font-size:3rem; font-weight:700; color:var(--accent-red);">303K</div>
+                    <div style="text-transform:uppercase; letter-spacing:2px; font-size:0.8rem; color:var(--text-muted);">YouTube Views</div>
                 </div>
             </div>
         </div>
@@ -362,24 +370,39 @@
 <script>
 // ============ DATA ============
 const BEATS = [
-    { name:"VATIMBORA", tags:"Afro • Reggaeton", bpm:105, img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg", spotify:"4xGCRbkFdMmBbQmn7z3gqH" },
-    { name:"MANCHILD REMIX", tags:"R&B • Trap", bpm:140, img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg", spotify:"3tRJF0caFb0N8QVcHcHrSA" },
-    { name:"KEEP WATCHING RMX", tags:"Drill • Dark", bpm:95, img:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg", spotify:"5JQEaGIfl5XCaQREfRILLo" },
-    { name:"ABU DHABI", tags:"Trap • Balkan", bpm:120, img:"https://i.ytimg.com/vi/GVxATwlh7Lo/hqdefault.jpg", spotify:"0OvLdWG8xNVLj5Y1RlsJYl" },
-    { name:"RIDE", tags:"House • Radio", bpm:128, img:"https://i.ytimg.com/vi/OhyWvW8V5qY/hqdefault.jpg", spotify:"6QgjcU0zPcMKRkv9lINWdn" },
-    { name:"FLASHBACK", tags:"Dark • Oldschool", bpm:140, img:"https://i.ytimg.com/vi/xHlx666A6WA/hqdefault.jpg", spotify:"7p1GIVk8x3C2MqD2NnzJng" },
-    { name:"ARGELIA", tags:"Ethnic • Afro", bpm:110, img:"https://i.ytimg.com/vi/G5_y3w6k_8I/hqdefault.jpg", spotify:"1kDGnHIOYqhPTxfmXFDVvC" },
-    { name:"OMRI", tags:"Lofi • Melodic", bpm:130, img:"https://i.ytimg.com/vi/0h9Vp5Z3Z5U/hqdefault.jpg", spotify:"2lFyQfnUao4KWsn18XaAO3" },
-    { name:"GOOD LIFE", tags:"Happy • Pop", bpm:100, img:"https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg", spotify:"4v1OT2kBp4q5d8Kwf3OcIC" },
-    { name:"NOKIA", tags:"Grime • Hard", bpm:145, img:"https://i.ytimg.com/vi/5IZbkC_Dq4s/hqdefault.jpg", spotify:"3nhSBLSDBJKCNHLMKrIBsy" },
-    { name:"HERMÈS", tags:"Trap • Oriental", bpm:135, img:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg", spotify:"5GU6d0F2GNXBCburzjkUgS" },
-    { name:"BALKAN VIBES", tags:"Balkan • Ethnic", bpm:118, img:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg", spotify:"6WfWLN9TRlFNd99FqGn8Xe" },
-    { name:"CYBERPUNK", tags:"Futuristic • Synth", bpm:150, img:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg", spotify:"0RPuPGLLMaXWIkl9Fc7zYK" },
-    { name:"G-FUNK CLASSIC", tags:"G-Funk • West Coast", bpm:96, img:"https://i.ytimg.com/vi/PmjSZbmIifM/hqdefault.jpg", spotify:"4RpKGAmBxCCPp2tvJmEnCi" },
-    { name:"RAÏ N B FEVER", tags:"Raï • R&B", bpm:108, img:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg", spotify:"2qIFxOG0XbLiRMWfIBMYJj" },
-    { name:"ORIENTAL DREAMS", tags:"Oriental • Guitar", bpm:125, img:"https://img.youtube.com/vi/4VyncAFZ0HQ/hqdefault.jpg", spotify:"7hJMbPJAwjS6tPPkVH7jcS" },
-    { name:"DRILL LONDON", tags:"Drill UK • Rap", bpm:142, img:"https://img.youtube.com/vi/BW_HLS7payE/hqdefault.jpg", spotify:"0uVFyKp8VR7BgoCnUGb5nJ" },
-    { name:"AFRO SUNSET", tags:"Afrotrap • Summer", bpm:112, img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg", spotify:"3q0w7bqD0SXhLAXPMVHlpQ" }
+    // Singles 2026
+    { name:"3TINI", tags:"Oriental • Trap", bpm:125, img:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg", spotify:"" },
+    { name:"MARIAMA", tags:"Afro • Melodic", bpm:110, img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg", spotify:"" },
+    { name:"KHALIFA", tags:"Oriental • Hard", bpm:130, img:"https://i.ytimg.com/vi/GVxATwlh7Lo/hqdefault.jpg", spotify:"" },
+    { name:"BOSS", tags:"Trap • Dark", bpm:140, img:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg", spotify:"" },
+    { name:"NAGAZAKI", tags:"Hard • Synth", bpm:145, img:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg", spotify:"" },
+    { name:"AMNÉSIA", tags:"Melodic • Trap", bpm:135, img:"https://i.ytimg.com/vi/xHlx666A6WA/hqdefault.jpg", spotify:"" },
+    { name:"ALBANIA", tags:"Balkan • Ethnic", bpm:120, img:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg", spotify:"" },
+    { name:"ALYA", tags:"Oriental • Guitar", bpm:118, img:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg", spotify:"" },
+    { name:"ABU DHABI", tags:"Trap • Balkan", bpm:120, img:"https://i.ytimg.com/vi/GVxATwlh7Lo/hqdefault.jpg", spotify:"" },
+    // Hits
+    { name:"VATIMBORA", tags:"Afro • Reggaeton", bpm:105, img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg", spotify:"" },
+    { name:"MANCHILD REMIX", tags:"R&B • Trap", bpm:140, img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg", spotify:"" },
+    { name:"KEEP WATCHING RMX", tags:"Drill • Dark", bpm:95, img:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg", spotify:"" },
+    { name:"KEEP WATCHING RMX 2", tags:"Drill • UK", bpm:140, img:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg", spotify:"" },
+    { name:"ARGELIA", tags:"Ethnic • Afro", bpm:110, img:"https://i.ytimg.com/vi/G5_y3w6k_8I/hqdefault.jpg", spotify:"" },
+    { name:"RIDE", tags:"House • Radio", bpm:128, img:"https://i.ytimg.com/vi/OhyWvW8V5qY/hqdefault.jpg", spotify:"" },
+    { name:"FLASHBACK", tags:"Dark • Oldschool", bpm:140, img:"https://i.ytimg.com/vi/xHlx666A6WA/hqdefault.jpg", spotify:"" },
+    { name:"OMRI", tags:"Lofi • Melodic", bpm:130, img:"https://i.ytimg.com/vi/0h9Vp5Z3Z5U/hqdefault.jpg", spotify:"" },
+    { name:"GOOD LIFE", tags:"Happy • Pop", bpm:100, img:"https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg", spotify:"" },
+    { name:"NOKIA", tags:"Grime • Hard", bpm:145, img:"https://i.ytimg.com/vi/5IZbkC_Dq4s/hqdefault.jpg", spotify:"" },
+    { name:"HERMÈS", tags:"Trap • Oriental", bpm:135, img:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg", spotify:"" },
+    { name:"BALKAN VIBES", tags:"Balkan • Ethnic", bpm:118, img:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg", spotify:"" },
+    { name:"CYBERPUNK", tags:"Futuristic • Synth", bpm:150, img:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg", spotify:"" },
+    { name:"G-FUNK CLASSIC", tags:"G-Funk • West Coast", bpm:96, img:"https://i.ytimg.com/vi/PmjSZbmIifM/hqdefault.jpg", spotify:"" },
+    { name:"RAÏ N B FEVER", tags:"Raï • R&B", bpm:108, img:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg", spotify:"" },
+    { name:"ORIENTAL DREAMS", tags:"Oriental • Guitar", bpm:125, img:"https://img.youtube.com/vi/4VyncAFZ0HQ/hqdefault.jpg", spotify:"" },
+    { name:"DRILL LONDON", tags:"Drill UK • Rap", bpm:142, img:"https://img.youtube.com/vi/BW_HLS7payE/hqdefault.jpg", spotify:"" },
+    { name:"AFRO SUNSET", tags:"Afrotrap • Summer", bpm:112, img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg", spotify:"" },
+    { name:"FUNKY GROOVE", tags:"Funk • Disco", bpm:115, img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg", spotify:"" },
+    { name:"VIDEO CLUB", tags:"Synthwave • Retro", bpm:120, img:"https://i.ytimg.com/vi/OhyWvW8V5qY/hqdefault.jpg", spotify:"" },
+    { name:"KOMPA LOVE", tags:"Kompa • Gouyad", bpm:100, img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg", spotify:"" },
+    { name:"WHY NOT", tags:"Trap • Melodic", bpm:138, img:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg", spotify:"" }
 ];
 
 const KITS = [
@@ -419,10 +442,32 @@ const YT_PLAYLISTS = [
 // ============ STATE ============
 let cart = [];
 let displayed = 0;
-const PER_PAGE = 9;
+const PER_PAGE = 16;
+
+// ============ SPOTIFY ALBUM EMBEDS ============
+const SPOTIFY_ALBUMS = [
+    { name:"3tini (2026)", id:"3tini" },
+    { name:"Cyberpunk 2077", id:"cyberpunk-2077" },
+    { name:"Raï'n'B Fever", id:"rainb-fever" },
+    { name:"Hermès", id:"hermes" },
+    { name:"WHY NOT 3", id:"why-not-3" },
+    { name:"BALKAN", id:"balkan" },
+    { name:"Funky4life", id:"funky4life" },
+    { name:"VIDEO CLUB", id:"video-club" },
+    { name:"WHY NOT 2", id:"why-not-2" },
+];
+
+function renderSpotifyAlbums() {
+    // Use artist embed which shows ALL music
+    document.getElementById('spotifyAlbums').innerHTML = `
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <p style="text-align:center; margin-top:0.5rem;"><a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" style="color:var(--accent-red); font-weight:700; font-size:0.9rem;">Voir tout le catalogue sur Spotify <i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+    `;
+}
 
 // ============ INIT ============
 function init() {
+    renderSpotifyAlbums();
     loadMore();
     renderKits();
     renderAlbums();
