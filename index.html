@@ -217,15 +217,15 @@ button{font-family:var(--font);cursor:pointer}
         <span style="font-size:.7rem;color:var(--text-3);" id="trackCount">18 titres</span>
     </div>
 
-    <!-- Spotify Embed Player (active audio) -->
-    <div style="padding:0.5rem 1rem;background:var(--bg);border-bottom:1px solid var(--border);">
-        <iframe id="spotifyEmbed" src="https://open.spotify.com/embed/track/1UnJqR2s8q07k3vFhNFtvm?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" style="border-radius:8px;" loading="lazy"></iframe>
-    </div>
-
-    <!-- Catalogue complet Spotify (tout afficher) -->
-    <div style="padding:0.8rem 1rem;background:var(--surface-2);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
-        <span style="font-size:0.7rem;color:var(--text-3);">151 pistes ci-dessous • <strong style="color:var(--accent);">300+ au total</strong></span>
-        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" style="font-size:0.7rem;color:var(--green);font-weight:700;display:flex;align-items:center;gap:4px;"><i class="fa-brands fa-spotify"></i> Voir tout sur Spotify</a>
+    <!-- Spotify Embed Player (STICKY — persiste pendant le scroll) -->
+    <div id="stickyPlayer" style="position:sticky;top:56px;z-index:100;padding:0.6rem 1rem;background:var(--bg);border-bottom:1px solid var(--border);">
+        <div id="playerContainer">
+            <iframe id="spotifyEmbed" src="https://open.spotify.com/embed/track/1UnJqR2s8q07k3vFhNFtvm?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" style="border-radius:8px;" loading="lazy"></iframe>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.4rem;">
+            <span style="font-size:0.65rem;color:var(--text-4);" id="nowPlaying">Cliquez sur un titre pour lancer la lecture</span>
+            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" style="font-size:0.65rem;color:var(--green);font-weight:600;display:flex;align-items:center;gap:3px;"><i class="fa-brands fa-spotify"></i> 300+ titres sur Spotify</a>
+        </div>
     </div>
 
     <!-- Track List -->
@@ -509,54 +509,37 @@ function renderTracks(list){
     const el=document.getElementById('trackList');
     if(!list) list=TRACKS;
     document.getElementById('trackCount').textContent=list.length+' pistes';
-    el.innerHTML=list.map((t,i)=>`
-    <div class="trk ${TRACKS.indexOf(t)===cur?'active':''}" data-idx="${TRACKS.indexOf(t)}">
-        <span class="trk-num">${i+1}</span>
-        <img class="trk-cover" src="${t.cover}" alt="${t.title}" loading="lazy" onclick="selectTrack(${TRACKS.indexOf(t)})">
-        <div class="trk-info" onclick="selectTrack(${TRACKS.indexOf(t)})">
+    el.innerHTML=list.map((t,i)=>{
+        const idx=TRACKS.indexOf(t);
+        const isActive=idx===cur;
+        return `<div class="trk ${isActive?'active':''}" data-idx="${idx}" onclick="playTrack(${idx})">
+        <span class="trk-num" style="${isActive?'color:var(--accent);':''}">${isActive?'<i class=\\'fa-solid fa-volume-high\\'></i>':i+1}</span>
+        <img class="trk-cover" src="${t.cover}" alt="${t.title}" loading="lazy">
+        <div class="trk-info">
             <div class="trk-title">${t.title}</div>
             <div class="trk-sub">DjBilbox Beats</div>
             <div class="trk-tags">${t.tags.map(x=>'<span class="trk-tag">'+x+'</span>').join('')}</div>
         </div>
-        <button class="trk-buy" onclick="addCart('${t.title}')"><i class="fa-solid fa-plus"></i> Licence</button>
-    </div>`).join('');
+        <button class="trk-buy" onclick="event.stopPropagation();addCart('${t.title}')"><i class="fa-solid fa-plus"></i> Licence</button>
+    </div>`;}).join('');
 }
 
 // ===== PLAYER CONTROLS =====
-function selectTrack(idx){
+function playTrack(idx){
     cur=idx;playing=true;
     const t=TRACKS[idx];
-    var btn=document.getElementById('playBtn');
-    if(btn)btn.innerHTML='<i class="fa-solid fa-pause"></i>';
-    // Destroy and recreate iframe to force reload with new track
-    var container=document.getElementById('spotifyEmbed').parentElement;
-    var oldIframe=document.getElementById('spotifyEmbed');
-    var newIframe=document.createElement('iframe');
-    newIframe.id='spotifyEmbed';
-    newIframe.src='https://open.spotify.com/embed/track/'+t.trackId+'?utm_source=generator&theme=0';
-    newIframe.width='100%';
-    newIframe.height='80';
-    newIframe.frameBorder='0';
-    newIframe.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-    newIframe.style.cssText='border-radius:8px;';
-    newIframe.loading='lazy';
-    container.replaceChild(newIframe,oldIframe);
-    // Scroll player into view
-    container.scrollIntoView({behavior:'smooth',block:'nearest'});
+    // Destroy old iframe and create fresh one with new track ID
+    var container=document.getElementById('playerContainer');
+    container.innerHTML='<iframe id="spotifyEmbed" src="https://open.spotify.com/embed/track/'+t.trackId+'?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" style="border-radius:8px;"></iframe>';
+    // Update now playing indicator
+    document.getElementById('nowPlaying').innerHTML='<i class="fa-solid fa-volume-high" style="color:var(--accent);margin-right:4px;"></i> <strong>'+t.title+'</strong> — DjBilbox Beats';
+    // Re-render list to highlight active
     renderTracks();
     toast('▶ '+t.title);
 }
-function togglePlay(){
-    playing=!playing;
-    var btn=document.getElementById('playBtn');
-    if(btn)btn.innerHTML=playing?'<i class="fa-solid fa-pause"></i>':'<i class="fa-solid fa-play"></i>';
-}
-function prevT(){selectTrack(cur>0?cur-1:TRACKS.length-1)}
-function nextT(){selectTrack(cur<TRACKS.length-1?cur+1:0)}
-function animFill(){
-    const f=document.getElementById('pFill');f.style.transition='none';f.style.width='0%';
-    setTimeout(()=>{f.style.transition='width 200s linear';f.style.width='100%';},30);
-}
+function selectTrack(idx){playTrack(idx);}
+function prevT(){playTrack(cur>0?cur-1:TRACKS.length-1)}
+function nextT(){playTrack(cur<TRACKS.length-1?cur+1:0)}
 
 // ===== SEARCH & SORT =====
 function filterTracks(){
