@@ -275,33 +275,38 @@
 </section>
 
 
-<!-- CATALOGUE COMPLET -->
-<section id="catalogue">
+<!-- CATALOGUE COMPLET — BEATSTARS PLAYER -->
+<section id="catalogue" style="background:var(--bg-surface);">
     <div class="container">
         <h2 class="section-title">Catalogue Complet</h2>
-        <p class="section-subtitle">+3000 instrumentaux • Écoute directe • Licence gratuite</p>
+        <p class="section-subtitle">+3000 instrumentaux • Écoute • Licence • Download</p>
 
-        <!-- Spotify releases grid (chaque sortie = embed + bouton licence) -->
-        <div id="releasesGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:1.5rem; margin-bottom:3rem;"></div>
+        <!-- BEATSTARS PLAYER EMBED (affiche TOUT le catalogue avec player, filtres, panier) -->
+        <div style="border-radius:12px; overflow:hidden; box-shadow:0 10px 50px rgba(0,0,0,0.5); margin-bottom:3rem; min-height:600px;">
+            <iframe src="https://www.beatstars.com/embed/djbilbox?type=player" width="100%" height="800" frameborder="0" allow="autoplay; clipboard-write; encrypted-media" style="border:none; border-radius:12px;" loading="lazy"></iframe>
+        </div>
 
-        <!-- YOUTUBE — Tout le catalogue -->
-        <div style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:16px; padding:2rem; margin-bottom:3rem;">
-            <h3 style="font-family:var(--font-display); font-size:2.5rem; margin-bottom:0.5rem; text-align:center;">TOUS MES BEATS YOUTUBE</h3>
-            <p style="color:var(--text-muted); text-align:center; margin-bottom:1.5rem; font-size:0.9rem;">+3000 instrumentaux — Naviguez dans la playlist complète</p>
+        <!-- SPOTIFY — Catalogue streaming -->
+        <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:16px; padding:2rem; margin-bottom:3rem;">
+            <h3 style="font-family:var(--font-display); font-size:2.5rem; margin-bottom:0.5rem; text-align:center;">SPOTIFY</h3>
+            <p style="color:var(--text-muted); text-align:center; margin-bottom:1.5rem; font-size:0.9rem;">Écoute sur toutes les plateformes de streaming</p>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="400" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+
+        <!-- YOUTUBE — Playlist complète -->
+        <div style="background:var(--bg-main); border:1px solid var(--border-color); border-radius:16px; padding:2rem; margin-bottom:3rem;">
+            <h3 style="font-family:var(--font-display); font-size:2.5rem; margin-bottom:0.5rem; text-align:center;">YOUTUBE</h3>
+            <p style="color:var(--text-muted); text-align:center; margin-bottom:1.5rem; font-size:0.9rem;">+3000 instrumentaux — Playlist complète</p>
             <div style="position:relative; padding-bottom:56.25%; border-radius:12px; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,0.5);">
                 <iframe style="position:absolute; inset:0; width:100%; height:100%;" src="https://www.youtube.com/embed/videoseries?list=PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
         </div>
 
-        <!-- PANIER LICENCE -->
-        <div id="licCartBar" style="display:none; position:fixed; bottom:0; left:0; right:0; background:rgba(15,15,15,0.95); backdrop-filter:blur(20px); border-top:1px solid var(--accent-red); padding:1rem 2rem; z-index:900; display:none;">
-            <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
-                <div><strong id="licCartCount">0</strong> beat(s) dans le panier : <span id="licCartNames" style="color:var(--text-muted); font-size:0.85rem;"></span></div>
-                <div style="display:flex; gap:1rem;">
-                    <button class="btn btn-outline" onclick="clearLicCart()" style="padding:0.6rem 1rem; font-size:0.8rem;">Vider</button>
-                    <button class="btn btn-primary" onclick="openLicModal()" style="padding:0.6rem 1.5rem;"><i class="fa-solid fa-file-pdf"></i> Obtenir licence (0€)</button>
-                </div>
-            </div>
+        <!-- LICENCE GRATUITE (pour ceux qui passent pas par BeatStars) -->
+        <div style="background:linear-gradient(135deg, rgba(255,51,51,0.05), rgba(255,107,53,0.05)); border:1px solid var(--accent-red); border-radius:16px; padding:3rem; text-align:center;">
+            <h3 style="font-family:var(--font-display); font-size:2.5rem; margin-bottom:0.5rem; color:var(--accent-red);">LICENCE GRATUITE PDF</h3>
+            <p style="color:var(--text-muted); margin-bottom:2rem; max-width:600px; margin-left:auto; margin-right:auto;">Besoin d'un contrat officiel pour un beat gratuit ? Générez votre licence PDF instantanément.</p>
+            <button class="btn btn-primary" onclick="openLicModal()" style="font-size:1.1rem; padding:1.2rem 3rem;"><i class="fa-solid fa-file-pdf"></i> Obtenir une licence (0€)</button>
         </div>
     </div>
 </section>
@@ -407,27 +412,6 @@
 
 <script>
 // ============ DATA ============
-// Toutes les sorties Spotify (albums + singles)
-const SPOTIFY_RELEASES = [
-    { name:"3tini", type:"Single", year:"2026", spotifyId:"3tini" },
-    { name:"Mariama", type:"Single", year:"2026", spotifyId:"mariama" },
-    { name:"KHALIFA", type:"Single", year:"2026", spotifyId:"khalifa" },
-    { name:"BOSS", type:"Single", year:"2026", spotifyId:"boss" },
-    { name:"Nagazaki", type:"Single", year:"2026", spotifyId:"nagazaki" },
-    { name:"Amnésia", type:"Single", year:"2026", spotifyId:"amnesia" },
-    { name:"Albania", type:"Single", year:"2026", spotifyId:"albania" },
-    { name:"ALYA", type:"Single", year:"2026", spotifyId:"alya" },
-    { name:"ABU DHABI", type:"Single", year:"2026", spotifyId:"abu-dhabi" },
-    { name:"Cyberpunk 2077", type:"Album", year:"2025", spotifyId:"cyberpunk-2077" },
-    { name:"Raï'n'B Fever", type:"Album", year:"2025", spotifyId:"rainb-fever" },
-    { name:"Hermès", type:"Album", year:"2025", spotifyId:"hermes" },
-    { name:"WHY NOT 3", type:"Album", year:"2025", spotifyId:"why-not-3" },
-    { name:"BALKAN", type:"Album", year:"2024", spotifyId:"balkan" },
-    { name:"Funky4life", type:"Album", year:"2024", spotifyId:"funky4life" },
-    { name:"VIDEO CLUB", type:"Album", year:"2024", spotifyId:"video-club" },
-    { name:"WHY NOT 2", type:"Album", year:"2024", spotifyId:"why-not-2" },
-];
-
 let licCart = [];
 
 const KITS = [
@@ -468,44 +452,8 @@ const YT_PLAYLISTS = [
     { title:"AI Visuals & Motion Design", desc:"Visuels IA, clips générés, motion design", id:"PLbtcZhy947NWbPbX4VepMkY3lIzvm681V", img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg" }
 ];
 
-// ============ RELEASES CATALOGUE ============
-function renderReleases() {
-    const grid = document.getElementById('releasesGrid');
-    grid.innerHTML = SPOTIFY_RELEASES.map((r, i) => {
-        const inCart = licCart.includes(r.name);
-        return `<div class="release-card reveal" style="background:var(--bg-surface); border:1px solid var(--border-color); border-radius:12px; padding:1rem; transition:0.3s;${inCart?' border-color:var(--accent-red);':''}">
-            <iframe style="border-radius:8px; margin-bottom:0.8rem;" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div>
-                    <strong style="font-size:0.9rem;">${r.name}</strong>
-                    <div style="font-size:0.7rem; color:var(--text-muted);">${r.type} • ${r.year}</div>
-                </div>
-                <button onclick="toggleLicCart('${r.name}')" class="btn-lic-add" style="background:${inCart?'transparent':'var(--accent-red)'}; color:${inCart?'var(--accent-red)':'white'}; border:1px solid var(--accent-red); padding:6px 14px; border-radius:4px; font-size:0.75rem; font-weight:700; cursor:pointer; font-family:var(--font-accent); transition:0.3s;">${inCart?'✓ AJOUTÉ':'+ PANIER'}</button>
-            </div>
-        </div>`;
-    }).join('');
-}
-
-function toggleLicCart(name) {
-    const idx = licCart.indexOf(name);
-    if (idx > -1) { licCart.splice(idx, 1); notify(name + ' retiré du panier'); }
-    else { licCart.push(name); notify(name + ' ajouté au panier'); }
-    updateLicCartBar();
-    renderReleases();
-}
-
-function clearLicCart() { licCart = []; updateLicCartBar(); renderReleases(); }
-
-function updateLicCartBar() {
-    const bar = document.getElementById('licCartBar');
-    bar.style.display = licCart.length > 0 ? 'block' : 'none';
-    document.getElementById('licCartCount').textContent = licCart.length;
-    document.getElementById('licCartNames').textContent = licCart.join(', ');
-}
-
 // ============ INIT ============
 function init() {
-    renderReleases();
     renderKits();
     renderAlbums();
     renderYT();
@@ -557,7 +505,6 @@ document.getElementById('licForm').addEventListener('submit', function(e) {
     // Save log
     try { const logs = JSON.parse(localStorage.getItem('djbilbox_licenses')||'[]'); logs.push({id:ref, date:new Date().toISOString(), userName:name, userEmail:email, project, beats:beatsList}); localStorage.setItem('djbilbox_licenses', JSON.stringify(logs)); } catch(ex){}
 
-    licCart = []; updateLicCartBar(); renderReleases();
     closeLicModal(); this.reset();
     notify('Contrat PDF téléchargé ! Notification envoyée.');
 });
