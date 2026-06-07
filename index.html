@@ -526,13 +526,23 @@ function renderTracks(list){
 function selectTrack(idx){
     cur=idx;playing=true;
     const t=TRACKS[idx];
-    document.getElementById('playBtn').innerHTML='<i class="fa-solid fa-pause"></i>';
-    // Load Spotify embed player for this track
-    const playerArea=document.getElementById('spotifyEmbed');
-    if(playerArea){
-        playerArea.src='https://open.spotify.com/embed/track/'+t.trackId+'?utm_source=generator&theme=0';
-    }
-    animFill();
+    var btn=document.getElementById('playBtn');
+    if(btn)btn.innerHTML='<i class="fa-solid fa-pause"></i>';
+    // Destroy and recreate iframe to force reload with new track
+    var container=document.getElementById('spotifyEmbed').parentElement;
+    var oldIframe=document.getElementById('spotifyEmbed');
+    var newIframe=document.createElement('iframe');
+    newIframe.id='spotifyEmbed';
+    newIframe.src='https://open.spotify.com/embed/track/'+t.trackId+'?utm_source=generator&theme=0';
+    newIframe.width='100%';
+    newIframe.height='80';
+    newIframe.frameBorder='0';
+    newIframe.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+    newIframe.style.cssText='border-radius:8px;';
+    newIframe.loading='lazy';
+    container.replaceChild(newIframe,oldIframe);
+    // Scroll player into view
+    container.scrollIntoView({behavior:'smooth',block:'nearest'});
     renderTracks();
     toast('▶ '+t.title);
 }
