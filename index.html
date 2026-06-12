@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
 :root{--bg:#090909;--surface:#111;--surface-2:#181818;--surface-3:#222;--accent:#ff2d2d;--accent-h:#e60000;--accent-glow:rgba(255,45,45,.15);--green:#1DB954;--text:#fff;--text-2:#ccc;--text-3:#888;--text-4:#555;--border:rgba(255,255,255,.06);--r:8px;--rl:12px;--font:'Inter',sans-serif;--font-a:'Rajdhani',sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -336,16 +337,110 @@ button{font-family:var(--font);cursor:pointer}
     .kit-c,.disco-c{animation-duration:8s}
     .kit-c::before,.kit-c::after,.disco-c::before,.disco-c::after{display:block}
 }
+
+/* ============================================================
+   COSMIC REDESIGN — astronomical bg + 3D gear (RS69 style)
+   ============================================================ */
+
+/* WebGL star/nebula background — fixed full screen */
+#space-bg{position:fixed;inset:0;width:100%;height:100%;z-index:-2;display:block;background:radial-gradient(ellipse at 50% 35%,#1a1033 0%,#0a0a18 45%,#04040a 100%)}
+/* faint nebula color wash over the canvas */
+.space-veil{position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+        radial-gradient(circle at 22% 30%,rgba(120,60,255,.18),transparent 45%),
+        radial-gradient(circle at 78% 65%,rgba(255,60,120,.14),transparent 45%),
+        radial-gradient(circle at 50% 50%,rgba(0,0,0,.55),rgba(0,0,0,.78));}
+
+/* ===== CINEMATIC HERO (full screen, RS69) ===== */
+.hero-x{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;overflow:hidden}
+.hero-x .hx-eyebrow{font-family:var(--font-a);font-size:.62rem;letter-spacing:.55em;text-transform:uppercase;color:var(--text-3);margin-bottom:1.4rem;padding-left:.55em;animation:fadeInUp .8s ease both}
+.hero-x h1{font-family:var(--font-a);font-weight:700;font-size:clamp(3rem,13vw,9.5rem);line-height:.9;letter-spacing:.02em;text-transform:uppercase;
+    background:linear-gradient(180deg,#fff 0%,#b9c4ff 55%,#6a5acd 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 40px rgba(120,90,255,.55)) drop-shadow(0 0 90px rgba(120,90,255,.25));
+    animation:fadeInUp 1s ease both,heroFloat 8s ease-in-out infinite}
+.hero-x h1 span{display:block;font-size:.42em;letter-spacing:.5em;background:linear-gradient(90deg,var(--accent),#ff7a7a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 25px rgba(255,45,45,.5));margin-top:.3em}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+.hero-x .hx-sub{margin-top:1.8rem;font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--text-2);animation:fadeInUp 1s ease .2s both}
+.hero-x .hx-meta{margin-top:1rem;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-4);animation:fadeInUp 1s ease .3s both}
+.hero-x .hx-cta{margin-top:2.6rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeInUp 1s ease .4s both}
+.hx-btn{padding:.85rem 1.8rem;border-radius:40px;font-family:var(--font-a);font-weight:700;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;transition:.25s;border:1px solid transparent}
+.hx-btn.primary{background:var(--accent);color:#fff;box-shadow:0 0 30px rgba(255,45,45,.4)}
+.hx-btn.primary:hover{background:var(--accent-h);transform:translateY(-3px);box-shadow:0 0 45px rgba(255,45,45,.6)}
+.hx-btn.ghost{background:rgba(255,255,255,.04);border-color:rgba(160,140,255,.4);color:#cfd3ff}
+.hx-btn.ghost:hover{border-color:rgba(160,140,255,.9);background:rgba(120,90,255,.12);transform:translateY(-3px)}
+.hx-scroll{position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;color:var(--text-4);display:flex;flex-direction:column;align-items:center;gap:.4rem;animation:fadeInUp 1s ease .6s both}
+.hx-scroll i{animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ===== 3D GEAR SHOWCASE ===== */
+.gear-sec{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
+.gear-head{text-align:center;margin-bottom:2.5rem}
+.gear-head .sec-title{font-size:clamp(1.6rem,4vw,2.4rem)}
+.gear-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.gear-card{position:relative;background:linear-gradient(160deg,rgba(30,22,55,.55),rgba(8,8,16,.55));border:1px solid rgba(150,130,255,.18);border-radius:18px;overflow:hidden;backdrop-filter:blur(8px);transition:.35s;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.gear-card:hover{border-color:var(--gear-glow,rgba(150,130,255,.6));transform:translateY(-6px);box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 50px var(--gear-glow,rgba(150,130,255,.3))}
+.gear-canvas{width:100%;height:300px;display:block;cursor:grab}
+.gear-canvas:active{cursor:grabbing}
+.gear-card-body{padding:1rem 1.2rem 1.3rem;text-align:center;position:relative;z-index:2}
+.gear-card-body h4{font-family:var(--font-a);font-size:1rem;font-weight:700;letter-spacing:.05em;margin-bottom:.25rem}
+.gear-card-body p{font-size:.66rem;color:var(--text-3);letter-spacing:.04em}
+.gear-card .gear-tag{position:absolute;top:.8rem;left:.8rem;font-size:.55rem;font-family:var(--font-a);font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:rgba(0,0,0,.5);border:1px solid var(--gear-glow,rgba(150,130,255,.5));color:#fff;z-index:3}
+.gear-card:nth-child(1){--gear-glow:rgba(120,90,255,.6)}
+.gear-card:nth-child(2){--gear-glow:rgba(255,60,120,.55)}
+.gear-card:nth-child(3){--gear-glow:rgba(255,160,0,.55)}
+
+/* surfaces get translucent so the stars show through */
+.player-panel{background:rgba(17,17,17,.82);backdrop-filter:blur(10px)}
+.pl-toolbar{background:rgba(24,24,24,.85)}
+.pl-playback,#stickyPlayer{background:rgba(9,9,9,.85)!important}
+.hdr{background:rgba(9,9,9,.78)}
+
+@media(max-width:768px){
+    .gear-grid{grid-template-columns:1fr;gap:1rem}
+    .gear-canvas{height:260px}
+    .hero-x h1{font-size:clamp(2.6rem,15vw,5rem)}
+}
+
+/* ===== SERVICES ===== */
+.svc-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.svc-card{position:relative;padding:1.6rem 1.3rem;border-radius:16px;background:linear-gradient(160deg,rgba(28,24,48,.55),rgba(10,10,18,.6));border:1px solid rgba(150,130,255,.16);backdrop-filter:blur(8px);transition:.3s;overflow:hidden}
+.svc-card:hover{transform:translateY(-5px);border-color:var(--sg,rgba(150,130,255,.6));box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 40px var(--sg,rgba(150,130,255,.25))}
+.svc-ico{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;background:var(--sg,rgba(150,130,255,.5));box-shadow:0 0 24px var(--sg,rgba(150,130,255,.5));margin-bottom:1rem}
+.svc-card h4{font-family:var(--font-a);font-size:1.05rem;font-weight:700;letter-spacing:.04em;margin-bottom:.4rem}
+.svc-card p{font-size:.74rem;line-height:1.55;color:var(--text-3)}
+.svc-card:nth-child(1){--sg:rgba(120,90,255,.6)}
+.svc-card:nth-child(2){--sg:rgba(58,134,255,.6)}
+.svc-card:nth-child(3){--sg:rgba(255,60,120,.55)}
+.svc-card:nth-child(4){--sg:rgba(29,185,84,.55)}
+.svc-card:nth-child(5){--sg:rgba(255,160,0,.55)}
+.svc-card:nth-child(6){--sg:rgba(180,90,255,.6)}
+
+/* ===== CHAT IA ===== */
+.chat-fab{position:fixed;bottom:20px;right:20px;z-index:300;width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,#7a5aff,#ff2d6b);color:#fff;font-size:1.35rem;box-shadow:0 10px 30px rgba(122,90,255,.5);transition:.25s;display:flex;align-items:center;justify-content:center}
+.chat-fab:hover{transform:scale(1.08)}
+.chat-panel{position:fixed;bottom:90px;right:20px;z-index:300;width:min(380px,calc(100vw - 40px));height:min(560px,70vh);background:rgba(14,13,22,.94);backdrop-filter:blur(16px);border:1px solid rgba(150,130,255,.25);border-radius:20px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.chat-panel.open{display:flex;animation:fadeInUp .25s ease}
+.chat-head{padding:1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem}
+.chat-head .av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#7a5aff,#ff2d6b);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.chat-head h4{font-family:var(--font-a);font-size:.95rem;font-weight:700;letter-spacing:.04em}
+.chat-head .st{font-size:.6rem;color:var(--green)}
+.chat-head .cx{margin-left:auto;background:none;border:none;color:var(--text-3);cursor:pointer;font-size:1.05rem}
+.chat-body{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem}
+.chat-msg{max-width:85%;padding:.65rem .9rem;border-radius:14px;font-size:.8rem;line-height:1.5;white-space:pre-wrap}
+.chat-msg.bot{align-self:flex-start;background:rgba(122,90,255,.16);border:1px solid rgba(122,90,255,.25)}
+.chat-msg.me{align-self:flex-end;background:rgba(255,45,107,.18);border:1px solid rgba(255,45,107,.3)}
+.chat-foot{padding:.8rem;border-top:1px solid var(--border);display:flex;gap:.5rem}
+.chat-foot input{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:24px;padding:.6rem 1rem;color:#fff;font-size:.8rem;outline:none}
+.chat-foot button{background:linear-gradient(135deg,#7a5aff,#ff2d6b);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;flex-shrink:0}
+@media(max-width:768px){.svc-g{grid-template-columns:1fr}}
     </style>
 </head>
 <body>
 
-<!-- VIDEO BACKGROUND (LA drone shots + Low Rider Cadillac) -->
-<div class="video-bg">
-    <video autoplay muted loop playsinline>
-        <source src="https://cdn.pixabay.com/video/2020/05/25/39587-424804498_large.mp4" type="video/mp4">
-    </video>
-</div>
+<!-- ASTRONOMICAL BACKGROUND (WebGL starfield + nebula) -->
+<canvas id="space-bg"></canvas>
+<div class="space-veil"></div>
 
 <!-- HEADER -->
 <header class="hdr">
@@ -353,9 +448,12 @@ button{font-family:var(--font);cursor:pointer}
         <a href="#" class="brand">DJBILBOX <span>BEATS</span></a>
         <nav class="hdr-nav">
             <a href="#player">Beats</a>
+            <a href="#gear">Studio 3D</a>
             <a href="#kits">Drum Kits</a>
+            <a href="#services">Services</a>
             <a href="#discography">Discographie</a>
             <a href="#playlists">Playlists</a>
+            <a href="#" onclick="toggleChat();return false;">Chat IA</a>
         </nav>
         <div class="hdr-r">
             <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
@@ -365,11 +463,18 @@ button{font-family:var(--font);cursor:pointer}
     </div>
 </header>
 
-<!-- HERO -->
-<div class="hero-c">
-    <h1>DJBILBOX <span>BEATS</span></h1>
-    <p>+1000 BEATS • Free For Profit • Licences Instantanées</p>
-</div>
+<!-- CINEMATIC HERO -->
+<section class="hero-x">
+    <div class="hx-eyebrow">+1000 BEATS · ORIENTAL · TRAP · DRILL · G-FUNK</div>
+    <h1>DJBILBOX<span>BEATS</span></h1>
+    <div class="hx-sub">Free For Profit · Licences Instantanées</div>
+    <div class="hx-meta">Producer · Beatmaker · Sound Designer</div>
+    <div class="hx-cta">
+        <a href="#player" class="hx-btn primary"><i class="fa-solid fa-play"></i> Écouter les beats</a>
+        <a href="#gear" class="hx-btn ghost"><i class="fa-solid fa-cube"></i> Le Studio 3D</a>
+    </div>
+    <a href="#gear" class="hx-scroll">Scroll<i class="fa-solid fa-chevron-down"></i></a>
+</section>
 
 <!-- MAIN PLAYER PANEL -->
 <div class="player-panel" id="player">
@@ -404,6 +509,30 @@ button{font-family:var(--font);cursor:pointer}
     </div>
 </div>
 
+<!-- 3D GEAR SHOWCASE -->
+<section class="gear-sec" id="gear">
+    <div class="gear-head">
+        <h2 class="sec-title">Le Studio en 3D</h2>
+        <p class="sec-sub">Les outils derrière le son DJBILBOX — glisse pour faire tourner</p>
+    </div>
+    <div class="gear-grid">
+        <div class="gear-card">
+            <span class="gear-tag">Synth · MIDI</span>
+            <canvas class="gear-canvas" id="gear-synth"></canvas>
+            <div class="gear-card-body"><h4>Novation FLkey 49</h4><p>Clavier MIDI · 49 touches · intégration FL Studio</p></div>
+        </div>
+        <div class="gear-card">
+            <span class="gear-tag">Micro</span>
+            <canvas class="gear-canvas" id="gear-mic"></canvas>
+            <div class="gear-card-body"><h4>Bomge BMG-22M</h4><p>Micro à condensateur · prise de voix studio</p></div>
+        </div>
+        <div class="gear-card">
+            <span class="gear-tag">DAW</span>
+            <canvas class="gear-canvas" id="gear-fl"></canvas>
+            <div class="gear-card-body"><h4>FL Studio</h4><p>Fruity Loops · production · mix · mastering</p></div>
+        </div>
+    </div>
+</section>
 
 <!-- DRUM KITS -->
 <div class="sec" id="kits">
@@ -424,6 +553,47 @@ button{font-family:var(--font);cursor:pointer}
     <h2 class="sec-title">Playlists YouTube</h2>
     <p class="sec-sub">Explorez par genre</p>
     <div class="yt-g" id="ytG"></div>
+</div>
+
+<!-- SERVICES -->
+<div class="sec" id="services">
+    <h2 class="sec-title">Services</h2>
+    <p class="sec-sub">Createur digital · production musicale · collaborations</p>
+    <div class="svc-g">
+        <div class="svc-card">
+            <div class="svc-ico"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h4>Createur Digital</h4>
+            <p>Identite visuelle, branding, direction artistique et contenu pour artistes et marques.</p>
+        </div>
+        <div class="svc-card">
+            <div class="svc-ico"><i class="fa-solid fa-code"></i></div>
+            <h4>Developpeur Web</h4>
+            <p>Sites vitrines, e-commerce, landing pages 3D et experiences interactives sur-mesure.</p>
+        </div>
+        <div class="svc-card">
+            <div class="svc-ico"><i class="fa-solid fa-clapperboard"></i></div>
+            <h4>Image &amp; Video</h4>
+            <p>Clips, visualizers, montage, motion design et cover art pour vos sorties.</p>
+        </div>
+        <div class="svc-card">
+            <div class="svc-ico"><i class="fa-solid fa-drum"></i></div>
+            <h4>Beatmaking</h4>
+            <p>Instrumentales oriental, trap, drill, g-funk, balkan. Beats exclusifs ou licences.</p>
+        </div>
+        <div class="svc-card">
+            <div class="svc-ico"><i class="fa-solid fa-sliders"></i></div>
+            <h4>Mix &amp; Mastering</h4>
+            <p>Mix professionnel et mastering pour un son puissant, clair et pret pour le streaming.</p>
+        </div>
+        <div class="svc-card">
+            <div class="svc-ico"><i class="fa-solid fa-music"></i></div>
+            <h4>Compositeur &amp; Collab</h4>
+            <p>Composition, topline, sound design et collaborations artistiques sur vos projets.</p>
+        </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+        <a href="#" onclick="toggleChat();return false;" class="hx-btn primary" style="display:inline-flex;align-items:center;gap:.5rem"><i class="fa-solid fa-comments"></i> Discuter d'une collab</a>
+    </div>
 </div>
 
 <!-- FOOTER -->
@@ -465,8 +635,24 @@ button{font-family:var(--font);cursor:pointer}
 <!-- TOAST -->
 <div class="toast" id="toast"><i class="fa-solid fa-check"></i> <span id="toastT"></span></div>
 
+<!-- CHAT IA -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Chat IA"><i class="fa-solid fa-robot"></i></button>
+<div class="chat-panel" id="chatPanel">
+    <div class="chat-head">
+        <div class="av"><i class="fa-solid fa-robot"></i></div>
+        <div><h4>BILBOX AI</h4><div class="st">● en ligne · sait tout sur DJBILBOX</div></div>
+        <button class="cx" onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="chat-body" id="chatBody"></div>
+    <div class="chat-foot">
+        <input id="chatInput" type="text" placeholder="Pose ta question..." onkeydown="if(event.key==='Enter')sendChat()">
+        <button onclick="sendChat()"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+</div>
+
 <script>
 // ===== DATA (Real Spotify IDs) =====
+// <<<TRACKS_AUTO_START>>>  (généré/actualisé par tools/spotify-sync.mjs)
 const TRACKS=[
 // Singles
 {title:"3tini",trackId:"1UnJqR2s8q07k3vFhNFtvm",cover:"https://i.scdn.co/image/ab67616d0000b273d5992a1efc3211726d796caf",tags:["Oriental","Trap"]},
@@ -613,6 +799,7 @@ const TRACKS=[
 // Singles populaires
 {title:"Argelia",trackId:"77Q6sbboPCE5vHdUHq0igW",cover:"https://i.scdn.co/image/ab67616d0000b273ff8f1f633dbedf11b8b20ff5",tags:["Ethnic","Afro"]},
 ];
+// <<<TRACKS_AUTO_END>>>
 
 const KITS=[
 {title:"Vice City Vol. 4",sub:"Drill Afrotrap • 45 Samples",img:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210739.png",link:"https://www.beatstars.com/sound-kit/245443"},
@@ -700,6 +887,55 @@ function updCart(){
     document.getElementById('mcTot').textContent=cart.length?'0€ (Free)':'0€';
 }
 function toggleCart(){document.getElementById('mc').classList.toggle('open')}
+
+/* ===== CHAT IA ===== */
+const CHAT_ENDPOINT=''; // <-- URL du Worker Cloudflare (ex: https://djbilbox-ai.xxx.workers.dev/chat) pour activer la vraie IA
+const BILBOX_KB=`DJBILBOX BEATS — beatmaker, producer, sound designer et createur digital.
+Genres: oriental, trap, drill, g-funk, funk, balkan, afro, melodic.
+Catalogue: 300+ titres sur Spotify, 130+ beats sur le site en free-for-profit avec licence PDF instantanee.
+Albums/projets: Cyberpunk 2077, Hermes, Why Not 3, Balkan, Funky4life, Video Club.
+Materiel: Novation FLkey 49, micro Bomge BMG-22M, FL Studio.
+Services: createur digital, developpeur web, image & video, beatmaking, mix & mastering, composition & collaborations.
+Licences: gratuites (free for profit) avec credit obligatoire "Prod. DJBILBOX BEATS"; exclusives sur demande.
+Reseaux: Spotify, YouTube @djbilboxbeats, TikTok @djbilboxbeats, SoundCloud djbilbox.`;
+const chatHist=[];
+function toggleChat(){
+    const p=document.getElementById('chatPanel');p.classList.toggle('open');
+    if(p.classList.contains('open')&&!chatHist.length)botSay("Salut ! Je suis BILBOX AI. Je sais tout sur DJBILBOX BEATS — beats, genres, licences, services, collabs. Qu'est-ce que tu veux savoir ?");
+    if(p.classList.contains('open'))setTimeout(()=>document.getElementById('chatInput').focus(),100);
+}
+function addMsg(txt,cls){
+    const b=document.getElementById('chatBody');
+    const d=document.createElement('div');d.className='chat-msg '+cls;d.textContent=txt;
+    b.appendChild(d);b.scrollTop=b.scrollHeight;return d;
+}
+function botSay(t){addMsg(t,'bot');chatHist.push({role:'assistant',content:t});}
+async function sendChat(){
+    const inp=document.getElementById('chatInput');const q=inp.value.trim();if(!q)return;
+    inp.value='';addMsg(q,'me');chatHist.push({role:'user',content:q});
+    const typing=addMsg('...','bot');
+    let reply='';
+    if(CHAT_ENDPOINT){
+        try{
+            const r=await fetch(CHAT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({messages:chatHist,system:BILBOX_KB})});
+            const j=await r.json();reply=j.reply||j.content||'';
+        }catch(e){reply='';}
+    }
+    if(!reply)reply=localBot(q);
+    typing.remove();botSay(reply);
+}
+function localBot(q){
+    q=q.toLowerCase();
+    if(/licen|gratuit|free|prix|cout|tarif|combien/.test(q))return "Les beats sont en free-for-profit : licence gratuite avec credit obligatoire « Prod. DJBILBOX BEATS ». Genere ton contrat PDF en 1 clic depuis le panier. Licences exclusives sur demande.";
+    if(/genre|style|oriental|trap|drill|funk|balkan/.test(q))return "DJBILBOX produit oriental, trap, drill, g-funk, funk, balkan, afro et melodic. 300+ titres sur Spotify.";
+    if(/service|collab|mix|master|video|clip|site|web|develop/.test(q))return "Services DJBILBOX : createur digital, developpeur web, image & video, beatmaking, mix & mastering, composition & collaborations. Dis-moi ton projet !";
+    if(/materiel|gear|studio|clavier|micro|fl studio|logiciel/.test(q))return "Studio DJBILBOX : clavier Novation FLkey 49, micro Bomge BMG-22M, FL Studio.";
+    if(/spotify|ecout|musique|album|projet|titre/.test(q))return "Tout le catalogue est sur Spotify (300+ titres) : Cyberpunk 2077, Hermes, Why Not 3, Balkan, Funky4life, Video Club. Le player en haut du site te laisse tout ecouter.";
+    if(/contact|reseau|insta|tiktok|youtube/.test(q))return "Retrouve DJBILBOX sur Spotify, YouTube/TikTok @djbilboxbeats et SoundCloud djbilbox. Pour une collab, ecris-moi ici !";
+    if(/salut|bonjour|hello|yo|coucou|hey/.test(q))return "Yo ! Bienvenue chez DJBILBOX BEATS. Beats, licences, services, collabs — demande ce que tu veux.";
+    return "DJBILBOX BEATS fait du beatmaking (oriental/trap/drill/funk/balkan), du mix/master, du dev web et de la creation digitale. Precise ta demande (beats, licence, collab, services) et je t'oriente.";
+}
 
 // ===== MODAL =====
 function openModal(){
@@ -831,6 +1067,315 @@ setTimeout(function(){
         });
     }
 },200);
+
+/* ============================================================
+   ASTRONOMICAL BACKGROUND + 3D GEAR (Three.js r128)
+   ============================================================ */
+(function(){
+if(typeof THREE==='undefined'){console.warn('[3D] Three.js non chargé');return;}
+const DPR=Math.min(window.devicePixelRatio||1,2);
+const animators=[];               // per-frame callbacks
+let mouseX=0,mouseY=0;
+window.addEventListener('mousemove',e=>{mouseX=(e.clientX/innerWidth)*2-1;mouseY=(e.clientY/innerHeight)*2-1;});
+
+/* ---------- STARFIELD + NEBULA BACKGROUND ---------- */
+function initSpace(){
+    const cv=document.getElementById('space-bg');if(!cv)return;
+    const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+    renderer.setPixelRatio(DPR);renderer.setSize(innerWidth,innerHeight,false);
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,1,2000);
+    camera.position.z=600;
+
+    // round soft star sprite
+    function starTex(){
+        const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');
+        const g=x.createRadialGradient(32,32,0,32,32,32);
+        g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.25,'rgba(255,255,255,.85)');
+        g.addColorStop(.5,'rgba(160,170,255,.35)');g.addColorStop(1,'rgba(0,0,0,0)');
+        x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(c);
+    }
+    const tex=starTex();
+
+    function makeLayer(count,spread,size,colorFn){
+        const geo=new THREE.BufferGeometry();
+        const pos=new Float32Array(count*3),col=new Float32Array(count*3);
+        for(let i=0;i<count;i++){
+            pos[i*3]=(Math.random()-.5)*spread;
+            pos[i*3+1]=(Math.random()-.5)*spread;
+            pos[i*3+2]=(Math.random()-.5)*spread;
+            const c=colorFn();col[i*3]=c.r;col[i*3+1]=c.g;col[i*3+2]=c.b;
+        }
+        geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+        geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+        const mat=new THREE.PointsMaterial({size,map:tex,vertexColors:true,transparent:true,
+            depthWrite:false,blending:THREE.AdditiveBlending,opacity:.95});
+        const pts=new THREE.Points(geo,mat);scene.add(pts);return pts;
+    }
+    const white=()=>new THREE.Color(1,1,1);
+    const tinted=()=>{const h=Math.random();return new THREE.Color().setHSL(.6+h*.25,.7,.7);};
+    const warm=()=>{const h=Math.random();return new THREE.Color().setHSL(.9+h*.08,.8,.65);};
+    const far=makeLayer(2600,1700,2.2,white);
+    const mid=makeLayer(1400,1200,4.5,tinted);
+    const near=makeLayer(500,900,8,warm);
+
+    // distant nebula glow billboards
+    function neb(color,x,y,z,s){
+        const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d');
+        const rg=g.createRadialGradient(128,128,0,128,128,128);
+        rg.addColorStop(0,color);rg.addColorStop(1,'rgba(0,0,0,0)');
+        g.fillStyle=rg;g.fillRect(0,0,256,256);
+        const m=new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),blending:THREE.AdditiveBlending,depthWrite:false,opacity:.5});
+        const sp=new THREE.Sprite(m);sp.position.set(x,y,z);sp.scale.set(s,s,1);scene.add(sp);
+    }
+    neb('rgba(120,60,255,.55)',-300,150,-200,900);
+    neb('rgba(255,50,120,.4)',350,-150,-150,750);
+    neb('rgba(40,120,255,.4)',100,250,-400,1000);
+
+    // ===== GIANT NASA EARTH =====
+    const texLoader=new THREE.TextureLoader();
+    const earthGroup=new THREE.Group();
+    earthGroup.position.set(360,-150,-120);   // géant, bas-droite, en retrait
+    earthGroup.rotation.z=0.22;               // inclinaison axiale
+    scene.add(earthGroup);
+    const R=250;
+    const earth=new THREE.Mesh(
+        new THREE.SphereGeometry(R,96,96),
+        new THREE.MeshPhongMaterial({
+            map:texLoader.load('textures/earth_day.jpg'),
+            bumpMap:texLoader.load('textures/earth_bump.jpg'),bumpScale:7,
+            specularMap:texLoader.load('textures/earth_specular.jpg'),
+            specular:new THREE.Color(0x2a4a66),shininess:15
+        }));
+    earthGroup.add(earth);
+    const clouds=new THREE.Mesh(
+        new THREE.SphereGeometry(R*1.012,96,96),
+        new THREE.MeshPhongMaterial({map:texLoader.load('textures/earth_clouds.png'),transparent:true,opacity:.5,depthWrite:false}));
+    earthGroup.add(clouds);
+    // halo atmosphère (fresnel backside additif)
+    const atmo=new THREE.Mesh(
+        new THREE.SphereGeometry(R*1.2,64,64),
+        new THREE.ShaderMaterial({
+            transparent:true,blending:THREE.AdditiveBlending,side:THREE.BackSide,depthWrite:false,
+            vertexShader:'varying vec3 vN;void main(){vN=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+            fragmentShader:'varying vec3 vN;void main(){float i=pow(0.78-dot(vN,vec3(0.0,0.0,1.0)),2.6);gl_FragColor=vec4(0.34,0.60,1.0,1.0)*clamp(i,0.0,1.6);}'
+        }));
+    earthGroup.add(atmo);
+
+    // ===== SOLEIL (key light + lens flare cinéma crêtant le limbe) =====
+    const sun=new THREE.DirectionalLight(0xfff4e2,4.2);sun.position.set(-260,210,820);scene.add(sun);
+    scene.add(new THREE.AmbientLight(0x2a3a55,0.85));
+    const rim=new THREE.PointLight(0x3a6bff,1.3,2000);rim.position.set(780,-120,300);scene.add(rim);
+
+    function glowSprite(stops,size,opacity){
+        const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d');
+        const rg=g.createRadialGradient(128,128,0,128,128,128);
+        stops.forEach(s=>rg.addColorStop(s[0],s[1]));
+        g.fillStyle=rg;g.fillRect(0,0,256,256);
+        const m=new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),blending:THREE.AdditiveBlending,depthWrite:false,depthTest:false,transparent:true,opacity});
+        const sp=new THREE.Sprite(m);sp.scale.set(size,size,1);return sp;
+    }
+    // soleil rasant au limbe haut-gauche de la Terre
+    const sunPos=new THREE.Vector3(150,80,30);
+    const sunHalo=glowSprite([[0,'rgba(255,250,235,1)'],[.12,'rgba(255,236,190,.95)'],[.32,'rgba(255,180,90,.45)'],[1,'rgba(255,120,40,0)']],560,.95);
+    sunHalo.position.copy(sunPos);scene.add(sunHalo);
+    const sunCore=glowSprite([[0,'rgba(255,255,255,1)'],[.42,'rgba(255,255,250,1)'],[.72,'rgba(255,240,210,.55)'],[1,'rgba(255,220,160,0)']],150,1);
+    sunCore.position.copy(sunPos);scene.add(sunCore);
+    // flares secondaires le long de l'axe soleil→centre
+    [[-0.3,90,'rgba(120,180,255,.45)'],[0.45,70,'rgba(255,160,80,.5)'],[0.8,120,'rgba(160,120,255,.38)'],[1.25,55,'rgba(255,255,255,.4)']].forEach(f=>{
+        const sp=glowSprite([[0,f[2]],[1,'rgba(0,0,0,0)']],f[1],.85);
+        sp.position.copy(sunPos).multiplyScalar(f[0]);scene.add(sp);
+    });
+
+    // ===== LUNE (échelle + profondeur) =====
+    const moon=new THREE.Mesh(new THREE.SphereGeometry(34,48,48),
+        new THREE.MeshStandardMaterial({color:0x9094a0,roughness:1,metalness:0,
+            bumpMap:texLoader.load('textures/earth_bump.jpg'),bumpScale:3}));
+    moon.position.set(-440,200,-280);scene.add(moon);
+
+    // ===== ASTÉROÏDES (dérive lente, profondeur Star Wars) =====
+    const rocks=[];
+    const rockMat=new THREE.MeshStandardMaterial({color:0x46443f,roughness:1,metalness:.1,flatShading:true});
+    for(let i=0;i<14;i++){
+        const geo=new THREE.IcosahedronGeometry(8+Math.random()*22,0);
+        const p=geo.attributes.position;
+        for(let j=0;j<p.count;j++)p.setXYZ(j,p.getX(j)*(.8+Math.random()*.5),p.getY(j)*(.8+Math.random()*.5),p.getZ(j)*(.8+Math.random()*.5));
+        geo.computeVertexNormals();
+        const m=new THREE.Mesh(geo,rockMat);
+        m.position.set((Math.random()-.5)*1400,(Math.random()-.5)*900,-120-Math.random()*500);
+        m.userData={sx:(Math.random()-.5)*4,sy:(Math.random()-.5)*4,rx:Math.random()*.4,ry:Math.random()*.4};
+        scene.add(m);rocks.push(m);
+    }
+
+    animators.push((t)=>{
+        far.rotation.y=t*0.005;far.rotation.x=t*0.002;
+        mid.rotation.y=-t*0.01;
+        near.rotation.y=t*0.015;
+        earth.rotation.y=t*0.03;
+        clouds.rotation.y=t*0.042;
+        moon.rotation.y=t*0.04;
+        const pulse=1+Math.sin(t*1.5)*0.03;sunCore.scale.set(150*pulse,150*pulse,1);
+        rocks.forEach(m=>{m.position.x+=m.userData.sx*0.06;m.position.y+=m.userData.sy*0.06;m.rotation.x+=m.userData.rx*0.01;m.rotation.y+=m.userData.ry*0.01;});
+        camera.position.x+= (mouseX*60-camera.position.x)*0.03;
+        camera.position.y+= (-mouseY*40-camera.position.y)*0.03;
+        camera.lookAt(scene.position);
+        renderer.render(scene,camera);
+    });
+    window.addEventListener('resize',()=>{
+        camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
+        renderer.setSize(innerWidth,innerHeight,false);
+    });
+}
+
+/* ---------- generic gear scene (drag to rotate) ---------- */
+function initGear(id,buildFn,glow){
+    const cv=document.getElementById(id);if(!cv)return;
+    const w=cv.clientWidth||360,h=cv.clientHeight||300;
+    const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+    renderer.setPixelRatio(DPR);renderer.setSize(w,h,false);
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(40,w/h,0.1,100);
+    camera.position.set(0,1.5,9);
+    scene.add(new THREE.AmbientLight(0x6677aa,0.9));
+    const key=new THREE.DirectionalLight(0xffffff,1.1);key.position.set(4,6,6);scene.add(key);
+    const p1=new THREE.PointLight(glow[0],1.4,40);p1.position.set(-5,2,4);scene.add(p1);
+    const p2=new THREE.PointLight(glow[1],1.2,40);p2.position.set(5,-2,3);scene.add(p2);
+    const group=new THREE.Group();scene.add(group);
+    buildFn(group);
+
+    // drag-to-rotate
+    let drag=false,px=0,py=0,velX=0,velY=0,rotY=0,rotX=0;
+    cv.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;py=e.clientY;cv.setPointerCapture(e.pointerId);});
+    cv.addEventListener('pointermove',e=>{if(!drag)return;velY=(e.clientX-px)*0.01;velX=(e.clientY-py)*0.01;rotY+=velY;rotX+=velX;px=e.clientX;py=e.clientY;});
+    cv.addEventListener('pointerup',()=>drag=false);
+    cv.addEventListener('pointerleave',()=>drag=false);
+
+    animators.push((t)=>{
+        if(!drag){rotY+=0.005;velX*=0.95;}
+        rotX=Math.max(-0.8,Math.min(0.8,rotX));
+        group.rotation.y=rotY;
+        group.rotation.x=rotX*0.6;
+        group.position.y=Math.sin(t*1.2)*0.12;
+        renderer.render(scene,camera);
+    });
+    new ResizeObserver(()=>{
+        const nw=cv.clientWidth,nh=cv.clientHeight;if(!nw||!nh)return;
+        camera.aspect=nw/nh;camera.updateProjectionMatrix();renderer.setSize(nw,nh,false);
+    }).observe(cv);
+}
+
+/* materials */
+const matDark=()=>new THREE.MeshStandardMaterial({color:0x1a1a20,metalness:.6,roughness:.4});
+const matMetal=(c)=>new THREE.MeshStandardMaterial({color:c,metalness:.85,roughness:.3});
+
+/* ---------- MODEL: Novation FLkey 49 ---------- */
+function buildSynth(g){
+    const body=new THREE.Mesh(new THREE.BoxGeometry(6,0.5,2.1),matDark());g.add(body);
+    // top panel slightly inset
+    const top=new THREE.Mesh(new THREE.BoxGeometry(5.8,0.06,0.95),new THREE.MeshStandardMaterial({color:0x111114,metalness:.5,roughness:.5}));
+    top.position.set(0,0.28,-0.5);g.add(top);
+    // white keys (front half)
+    const wkMat=new THREE.MeshStandardMaterial({color:0xf2f2f2,metalness:.1,roughness:.6});
+    const bkMat=new THREE.MeshStandardMaterial({color:0x0a0a0a,metalness:.2,roughness:.5});
+    const nW=24,kw=5.6/nW;
+    for(let i=0;i<nW;i++){
+        const k=new THREE.Mesh(new THREE.BoxGeometry(kw*0.9,0.12,0.9),wkMat);
+        k.position.set(-2.8+kw*0.5+i*kw,0.28,0.55);g.add(k);
+        // black keys (skip pattern E-F & B-C)
+        const m=i%7;
+        if(m!==2&&m!==6&&i<nW-1){
+            const b=new THREE.Mesh(new THREE.BoxGeometry(kw*0.55,0.16,0.55),bkMat);
+            b.position.set(-2.8+kw*1.0+i*kw,0.34,0.38);g.add(b);
+        }
+    }
+    // knobs (8) on top-left
+    for(let i=0;i<8;i++){
+        const kn=new THREE.Mesh(new THREE.CylinderGeometry(0.12,0.12,0.14,16),matMetal(0x2a2a32));
+        kn.position.set(-2.6+i*0.32,0.35,-0.55);g.add(kn);
+        const cap=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.05,0.16,12),new THREE.MeshStandardMaterial({color:0x7a5aff,emissive:0x3a2a99,emissiveIntensity:.6}));
+        cap.position.set(-2.6+i*0.32,0.37,-0.55);g.add(cap);
+    }
+    // RGB pads 2x8 on right
+    const cols=[0xff3366,0x33ff99,0x3399ff,0xffaa00];
+    for(let r=0;r<2;r++)for(let c=0;c<8;c++){
+        const col=cols[(r+c)%cols.length];
+        const pad=new THREE.Mesh(new THREE.BoxGeometry(0.2,0.05,0.2),new THREE.MeshStandardMaterial({color:col,emissive:col,emissiveIntensity:.7,roughness:.4}));
+        pad.position.set(0.7+c*0.26,0.3,-0.75+r*0.28);g.add(pad);
+    }
+    // small screen
+    const scr=new THREE.Mesh(new THREE.BoxGeometry(0.6,0.04,0.3),new THREE.MeshStandardMaterial({color:0x0a1a2a,emissive:0x1166aa,emissiveIntensity:.8}));
+    scr.position.set(0.0,0.32,-0.6);g.add(scr);
+    g.scale.set(1.05,1.05,1.05);g.position.y=0.2;
+}
+
+/* ---------- MODEL: Bomge BMG-22M condenser mic ---------- */
+function buildMic(g){
+    const mic=new THREE.Group();
+    const body=new THREE.Mesh(new THREE.CylinderGeometry(0.55,0.55,2.0,32),matMetal(0x202028));
+    body.position.y=-0.2;mic.add(body);
+    // grille head (mesh look)
+    const grille=new THREE.Mesh(new THREE.CylinderGeometry(0.62,0.62,1.1,32),new THREE.MeshStandardMaterial({color:0x9aa0aa,metalness:.95,roughness:.25,wireframe:true}));
+    grille.position.y=1.15;mic.add(grille);
+    const grilleCore=new THREE.Mesh(new THREE.CylinderGeometry(0.58,0.58,1.05,24),new THREE.MeshStandardMaterial({color:0x303038,metalness:.7,roughness:.4}));
+    grilleCore.position.y=1.15;mic.add(grilleCore);
+    const cap=new THREE.Mesh(new THREE.SphereGeometry(0.62,24,16,0,Math.PI*2,0,Math.PI/2),matMetal(0xb0b6c0));
+    cap.position.y=1.7;mic.add(cap);
+    // accent ring
+    const ring=new THREE.Mesh(new THREE.TorusGeometry(0.56,0.05,12,32),new THREE.MeshStandardMaterial({color:0xff3366,emissive:0xff3366,emissiveIntensity:.6}));
+    ring.rotation.x=Math.PI/2;ring.position.y=0.55;mic.add(ring);
+    mic.rotation.z=0.18;
+    g.add(mic);
+    // shock mount
+    const mount=new THREE.Mesh(new THREE.TorusGeometry(0.95,0.06,12,40),matMetal(0x44464d));
+    mount.rotation.x=Math.PI/2;mount.position.y=0.1;g.add(mount);
+    g.scale.set(1.15,1.15,1.15);
+}
+
+/* ---------- MODEL: FL Studio (Fruity Loops) ---------- */
+function buildFL(g){
+    // canvas texture for the screen face
+    const c=document.createElement('canvas');c.width=512;c.height=384;const x=c.getContext('2d');
+    const bg=x.createLinearGradient(0,0,512,384);bg.addColorStop(0,'#1a1410');bg.addColorStop(1,'#2a1a08');
+    x.fillStyle=bg;x.fillRect(0,0,512,384);
+    // orange header
+    const og=x.createLinearGradient(0,0,512,0);og.addColorStop(0,'#ff7a00');og.addColorStop(1,'#ff3d00');
+    x.fillStyle=og;x.fillRect(0,0,512,70);
+    x.fillStyle='#fff';x.font='bold 40px Rajdhani,Arial';x.fillText('FL STUDIO',24,50);
+    // step-sequencer dots
+    for(let r=0;r<5;r++)for(let i=0;i<16;i++){
+        x.fillStyle=(i%4===0)?'#ff7a00':'#3a3a44';
+        x.fillRect(28+i*28,110+r*48,20,20);
+    }
+    // playlist bars
+    x.fillStyle='#ff9d3d';x.fillRect(28,340,460,8);
+    const tex=new THREE.CanvasTexture(c);
+    const faceMat=new THREE.MeshStandardMaterial({map:tex,emissive:0xff5500,emissiveMap:tex,emissiveIntensity:.55,roughness:.5});
+    const sideMat=new THREE.MeshStandardMaterial({color:0x141418,metalness:.6,roughness:.4});
+    const screen=new THREE.Mesh(new THREE.BoxGeometry(4,3,0.25),[sideMat,sideMat,sideMat,sideMat,faceMat,sideMat]);
+    g.add(screen);
+    // glowing frame
+    const frame=new THREE.Mesh(new THREE.BoxGeometry(4.25,3.25,0.15),new THREE.MeshStandardMaterial({color:0xff7a00,emissive:0xff5500,emissiveIntensity:.5}));
+    frame.position.z=-0.08;g.add(frame);
+    // floating play button
+    const play=new THREE.Mesh(new THREE.CylinderGeometry(0.45,0.45,0.18,3),new THREE.MeshStandardMaterial({color:0xffffff,emissive:0xffaa55,emissiveIntensity:.5}));
+    play.rotation.x=Math.PI/2;play.rotation.z=-Math.PI/2;play.position.set(0,0,0.5);g.add(play);
+    g.scale.set(0.95,0.95,0.95);
+}
+
+/* ---------- BOOT ---------- */
+initSpace();
+initGear('gear-synth',buildSynth,[0x7a5aff,0x3a86ff]);
+initGear('gear-mic',buildMic,[0xff3366,0x9aa0aa]);
+initGear('gear-fl',buildFL,[0xff7a00,0xff3d00]);
+
+let t0=performance.now();
+function loop(){
+    const t=(performance.now()-t0)/1000;
+    for(const a of animators)a(t);
+    requestAnimationFrame(loop);
+}
+loop();
+})();
 </script>
 </body>
 </html>
