@@ -30,15 +30,19 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function getAlbumIds() {
   const ids = new Set();
-  // page artiste + page discography (au cas où l'une expose plus d'ids)
-  for (const url of [
-    `https://open.spotify.com/artist/${ARTIST_ID}`,
-    `https://open.spotify.com/artist/${ARTIST_ID}/discography/all`,
-  ]) {
-    try {
-      const html = await (await fetch(url, { headers: UA })).text();
-      for (const m of html.matchAll(/\/album\/([A-Za-z0-9]{22})/g)) ids.add(m[1]);
-    } catch (e) { console.error("warn artist fetch", e.message); }
+  // 1) fichier tools/album-ids.txt (discographie COMPLETE récupérée via token web-player)
+  try {
+    const txt = readFileSync(join(__dir, "album-ids.txt"), "utf8");
+    for (const line of txt.split(/\s+/)) if (/^[A-Za-z0-9]{22}$/.test(line.trim())) ids.add(line.trim());
+  } catch {}
+  // 2) fallback : scrape page artiste (sous-ensemble)
+  if (ids.size === 0) {
+    for (const url of [`https://open.spotify.com/artist/${ARTIST_ID}`, `https://open.spotify.com/artist/${ARTIST_ID}/discography/all`]) {
+      try {
+        const html = await (await fetch(url, { headers: UA })).text();
+        for (const m of html.matchAll(/\/album\/([A-Za-z0-9]{22})/g)) ids.add(m[1]);
+      } catch (e) { console.error("warn artist fetch", e.message); }
+    }
   }
   return [...ids];
 }
@@ -96,8 +100,9 @@ function parseExistingTracks(html) {
   return map;
 }
 function fmtTrack(t, tags) {
-  const tagStr = tags.map((x) => `"${x.replace(/"/g, "")}"`).join(",");
-  return `{title:"${t.title.replace(/"/g, "'")}",trackId:"${t.trackId}",cover:"${t.cover}",tags:[${tagStr}]},`;
+  const tagStr = tags.map((x) => `"${x.replace(/[\\"]/g, "")}"`).join(",");
+  const safe = t.title.replace(/\\/g, "").replace(/"/g, "'").trim();
+  return `{title:"${safe}",trackId:"${t.trackId}",cover:"${t.cover}",tags:[${tagStr}]},`;
 }
 
 (async () => {
