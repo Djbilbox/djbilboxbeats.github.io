@@ -418,6 +418,14 @@ button{font-family:var(--font);cursor:pointer}
 @media(max-width:768px){.svc-g{grid-template-columns:1fr}}
 .nav-burger{display:none;background:none;border:none;color:#fff;font-size:1.25rem;cursor:pointer;padding:6px;margin-left:4px}
 
+/* ===== VIDEO PRESENTATION (top) ===== */
+.vid-hero{max-width:1000px;margin:0 auto;padding:2.2rem 1.5rem .5rem;text-align:center}
+.vid-hero .vh-badge{display:inline-block;font-family:var(--font-a);font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:#ffcf6a;border:1px solid rgba(255,200,90,.4);padding:5px 12px;border-radius:20px;margin-bottom:.9rem}
+.vid-hero h2{font-family:var(--font-a);font-weight:800;font-size:clamp(1.7rem,4.5vw,2.8rem);line-height:1;background:linear-gradient(90deg,#ffe1a0,#ff8a3c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.3rem}
+.vid-hero .vh-sub{color:var(--text-3);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem}
+.vid-hero video{width:100%;border-radius:16px;box-shadow:0 30px 70px rgba(0,0,0,.7),0 0 60px rgba(255,160,50,.18);display:block;background:#000;border:1px solid rgba(255,180,70,.2)}
+.vid-hero-cta{display:flex;gap:.9rem;justify-content:center;margin-top:1.3rem;flex-wrap:wrap}
+
 /* ===== VST LANDING (Oriental Instrument) ===== */
 .vst-sec{max-width:1100px;margin:0 auto;padding:3.5rem 1.5rem}
 .vst-hero{display:grid;grid-template-columns:1fr 1.05fr;gap:2.5rem;align-items:center}
@@ -526,6 +534,20 @@ button{font-family:var(--font);cursor:pointer}
         </div>
     </div>
 </header>
+
+<!-- VIDEO PRESENTATION (top) -->
+<section class="vid-hero" id="presentation">
+    <span class="vh-badge">Nouveau · VST Plugin</span>
+    <h2>Oriental Instrument</h2>
+    <div class="vh-sub">La vidéo de présentation — DJBILBOX BEATS</div>
+    <video controls playsinline preload="metadata" poster="media/oriental-poster.jpg">
+        <source src="media/oriental-demo.mp4" type="video/mp4">
+    </video>
+    <div class="vid-hero-cta">
+        <a class="vst-btn demo" onclick="vstAction('demo')"><i class="fa-solid fa-download"></i> Download Demo</a>
+        <a class="vst-btn bundle" onclick="vstAction('bundle')"><i class="fa-solid fa-gem"></i> Get Bundle</a>
+    </div>
+</section>
 
 <!-- CINEMATIC HERO -->
 <section class="hero-x">
@@ -1569,8 +1591,8 @@ function renderYT(){
 function toast(m){const t=document.getElementById('toast');document.getElementById('toastT').textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
 /* ===== VST Oriental Instrument — liens demo/bundle (remplace par Gumroad/BeatStars/Stripe) ===== */
-const DEMO_URL='';   // <-- URL telechargement demo gratuite
-const BUNDLE_URL=''; // <-- URL achat bundle 300+ (Gumroad/BeatStars/Stripe)
+const DEMO_URL='https://djbilboxbeats.gumroad.com/l/oriental-instrument-demo-free-Download';
+const BUNDLE_URL='https://djbilboxbeats.gumroad.com/l/oriental-instrument-djbilbox-beats';
 function vstAction(kind){
     const url=kind==='bundle'?BUNDLE_URL:DEMO_URL;
     if(url){window.open(url,'_blank');return;}
