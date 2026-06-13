@@ -418,6 +418,34 @@ button{font-family:var(--font);cursor:pointer}
 @media(max-width:768px){.svc-g{grid-template-columns:1fr}}
 .nav-burger{display:none;background:none;border:none;color:#fff;font-size:1.25rem;cursor:pointer;padding:6px;margin-left:4px}
 
+/* ===== VST LANDING (Oriental Instrument) ===== */
+.vst-sec{max-width:1100px;margin:0 auto;padding:3.5rem 1.5rem}
+.vst-hero{display:grid;grid-template-columns:1fr 1.05fr;gap:2.5rem;align-items:center}
+.vst-badge{display:inline-block;font-family:var(--font-a);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:#ffcf6a;border:1px solid rgba(255,200,90,.4);padding:5px 12px;border-radius:20px;margin-bottom:1rem}
+.vst-copy h2{font-family:var(--font-a);font-weight:800;font-size:clamp(2rem,5vw,3.2rem);line-height:1;margin-bottom:.5rem;background:linear-gradient(90deg,#ffe1a0,#ff8a3c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.vst-copy .vst-sub{color:var(--text-2);font-size:.95rem;line-height:1.55;margin-bottom:1.3rem}
+.vst-feats{list-style:none;padding:0;margin:0 0 1.6rem;display:flex;flex-direction:column;gap:.55rem}
+.vst-feats li{font-size:.82rem;color:var(--text-2);display:flex;gap:.6rem;align-items:flex-start}
+.vst-feats li i{color:#ffcf6a;margin-top:3px}
+.vst-cta{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
+.vst-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.95rem 1.7rem;border-radius:40px;font-family:var(--font-a);font-weight:800;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s}
+.vst-btn.demo{background:linear-gradient(135deg,#ffd16a,#ff9a2e);color:#241500;box-shadow:0 8px 30px rgba(255,160,50,.4)}
+.vst-btn.demo:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,160,50,.6)}
+.vst-btn.bundle{background:rgba(255,180,70,.1);border:1px solid rgba(255,180,70,.5);color:#ffcf6a}
+.vst-btn.bundle:hover{background:rgba(255,180,70,.2);transform:translateY(-3px)}
+.vst-watch{font-size:.72rem;color:var(--text-3);text-decoration:none}.vst-watch:hover{color:#ffcf6a}
+.vst-visual{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.7),0 0 60px rgba(255,160,50,.15)}
+.vst-visual img{width:100%;display:block}
+.vst-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,200,90,.12),transparent 42%);pointer-events:none}
+.vst-tiers{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.5rem}
+.vst-tier{padding:1.5rem;border-radius:16px;background:linear-gradient(160deg,rgba(34,24,10,.6),rgba(10,8,4,.72));border:1px solid rgba(255,180,70,.18)}
+.vst-tier.pro{border-color:rgba(255,180,70,.55);box-shadow:0 0 40px rgba(255,160,50,.12)}
+.vst-tier h4{font-family:var(--font-a);font-size:1.2rem;font-weight:800;margin-bottom:.2rem}
+.vst-tier .price{font-family:var(--font-a);font-size:1.05rem;color:#ffcf6a;margin-bottom:.8rem}
+.vst-tier ul{list-style:none;padding:0;margin:0 0 1rem;display:flex;flex-direction:column;gap:.45rem}
+.vst-tier li{font-size:.78rem;color:var(--text-3);display:flex;gap:.5rem;align-items:flex-start}.vst-tier li i{color:#ffcf6a;margin-top:2px}
+@media(max-width:768px){.vst-hero{grid-template-columns:1fr}.vst-visual{order:-1}.vst-tiers{grid-template-columns:1fr}}
+
 /* ===== TESTIMONIALS (What Producers Are Saying) ===== */
 .tst-head{display:flex;align-items:center;justify-content:center;gap:1rem;position:relative}
 .tst-scroll-hint{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-4);border:1px solid var(--border);padding:5px 12px;border-radius:20px}
@@ -480,6 +508,7 @@ button{font-family:var(--font);cursor:pointer}
         <nav class="hdr-nav">
             <a href="#player">Beats</a>
             <a href="#gear">Studio 3D</a>
+            <a href="#vst">VST</a>
             <a href="#kits">Drum Kits</a>
             <a href="#services">Services</a>
             <a href="#reviews">Avis</a>
@@ -568,6 +597,50 @@ button{font-family:var(--font);cursor:pointer}
         </div>
     </div>
 </section>
+
+<!-- VST — ORIENTAL INSTRUMENT -->
+<div class="sec vst-sec" id="vst">
+    <div class="vst-hero">
+        <div class="vst-copy">
+            <span class="vst-badge">VST Plugin · Maqam Engine Pro</span>
+            <h2>Oriental Instrument</h2>
+            <p class="vst-sub">Sonorités authentiques du Moyen-Orient pour producteurs modernes. Plucks, cordes, leads, pads &amp; textures — parfait pour Trap, Afrotrap, Drill, G-Funk, Deep House &amp; cinématique.</p>
+            <ul class="vst-feats">
+                <li><i class="fa-solid fa-check"></i> Sound design authentique : oud, ney, qanun, violon, darbouka, cordes orientales</li>
+                <li><i class="fa-solid fa-check"></i> Léger &amp; rapide — faible CPU, compatible FL Studio, Ableton, Logic, Cubase</li>
+                <li><i class="fa-solid fa-check"></i> Qualité studio, prêt pour sorties commerciales</li>
+                <li><i class="fa-solid fa-check"></i> Interface claire, workflow instantané — Maqam Engine Pro</li>
+            </ul>
+            <div class="vst-cta">
+                <a class="vst-btn demo" onclick="vstAction('demo')"><i class="fa-solid fa-download"></i> Download Demo</a>
+                <a class="vst-btn bundle" onclick="vstAction('bundle')"><i class="fa-solid fa-gem"></i> Get Bundle</a>
+                <a class="vst-watch" href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i> Voir la démo vidéo</a>
+            </div>
+        </div>
+        <div class="vst-visual"><img src="img/oriental-instrument.jpg" alt="Oriental Instrument VST par DJBILBOX BEATS" loading="lazy"></div>
+    </div>
+    <div class="vst-tiers">
+        <div class="vst-tier">
+            <h4>Demo</h4><div class="price">Gratuit</div>
+            <ul>
+                <li><i class="fa-solid fa-check"></i> Sélection d'instruments de base</li>
+                <li><i class="fa-solid fa-check"></i> Teste le son &amp; le workflow</li>
+                <li><i class="fa-solid fa-check"></i> Idéal avant d'acheter</li>
+            </ul>
+            <a class="vst-btn demo" onclick="vstAction('demo')"><i class="fa-solid fa-download"></i> Download Demo</a>
+        </div>
+        <div class="vst-tier pro">
+            <h4>Bundle 300+</h4><div class="price">Accès à vie · MAJ gratuites</div>
+            <ul>
+                <li><i class="fa-solid fa-star"></i> 300+ instruments exclusifs</li>
+                <li><i class="fa-solid fa-star"></i> Plucks, cordes, leads, pads, textures rares</li>
+                <li><i class="fa-solid fa-star"></i> FX &amp; textures jouables pour beats modernes</li>
+                <li><i class="fa-solid fa-star"></i> Paiement sécurisé · support pro</li>
+            </ul>
+            <a class="vst-btn bundle" onclick="vstAction('bundle')"><i class="fa-solid fa-gem"></i> Get Bundle</a>
+        </div>
+    </div>
+</div>
 
 <!-- DRUM KITS -->
 <div class="sec" id="kits">
@@ -1494,6 +1567,17 @@ function renderYT(){
 
 // ===== TOAST =====
 function toast(m){const t=document.getElementById('toast');document.getElementById('toastT').textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+
+/* ===== VST Oriental Instrument — liens demo/bundle (remplace par Gumroad/BeatStars/Stripe) ===== */
+const DEMO_URL='';   // <-- URL telechargement demo gratuite
+const BUNDLE_URL=''; // <-- URL achat bundle 300+ (Gumroad/BeatStars/Stripe)
+function vstAction(kind){
+    const url=kind==='bundle'?BUNDLE_URL:DEMO_URL;
+    if(url){window.open(url,'_blank');return;}
+    const subj=kind==='bundle'?'Oriental Instrument - Bundle 300+':'Oriental Instrument - Demo gratuite';
+    window.location.href='mailto:djbilboxbeats@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent('Bonjour, je veux '+(kind==='bundle'?'le bundle 300+ Oriental Instrument.':'la demo gratuite Oriental Instrument.'));
+    toast(kind==='bundle'?'Demande bundle envoyee':'Demande demo envoyee');
+}
 
 /* ===== NEWSLETTER ===== */
 const NEWSLETTER_ENDPOINT='https://formsubmit.co/ajax/djbilboxbeats@gmail.com'; // emails -> Gmail (active a la 1ere soumission)
