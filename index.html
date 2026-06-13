@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="vendor/GLTFLoader.js"></script>
@@ -1340,6 +1340,11 @@ function botSay(t){addMsg(t,'bot');chatHist.push({role:'assistant',content:t});}
 async function sendChat(){
     const inp=document.getElementById('chatInput');const q=inp.value.trim();if(!q)return;
     inp.value='';addMsg(q,'me');chatHist.push({role:'user',content:q});
+    // capture demande collab / contact -> mail producteur (djbilboxbeats@gmail.com)
+    if(/collab|contact|booking|exclus|achat|buy|mail|@|whats?app|insta|prix|price|custom|feature/i.test(q)){
+        fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+            body:JSON.stringify({_subject:'DJBILBOX site - demande via chat',Message:q,Type:'collab/contact'})}).catch(()=>{});
+    }
     const typing=addMsg('...','bot');
     let reply='';
     if(CHAT_ENDPOINT){
@@ -1373,7 +1378,15 @@ function openModal(){
 function closeModal(){document.getElementById('licM').classList.remove('open')}
 document.getElementById('licM').addEventListener('click',e=>{if(e.target.id==='licM')closeModal()});
 
-document.getElementById('licF').addEventListener('submit',function(e){
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+async function ensureJsPDF(){
+    if(window.jspdf&&window.jspdf.jsPDF)return true;
+    for(const u of ['https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js','https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js','https://unpkg.com/jspdf@2.5.2/dist/jspdf.umd.min.js']){
+        try{await loadScript(u);if(window.jspdf&&window.jspdf.jsPDF)return true;}catch(e){}
+    }
+    return !!(window.jspdf&&window.jspdf.jsPDF);
+}
+document.getElementById('licF').addEventListener('submit',async function(e){
     e.preventDefault();
     const n=document.getElementById('fN').value.trim(),em=document.getElementById('fE').value.trim(),b=document.getElementById('fB').value.trim(),p=document.getElementById('fP').value.trim();
     const chk=document.getElementById('fA').checked;
@@ -1385,10 +1398,12 @@ document.getElementById('licF').addEventListener('submit',function(e){
     if(!b){toast('⚠ Veuillez indiquer les beats sélectionnés');document.getElementById('fB').focus();return;}
     if(!chk){toast('⚠ Veuillez accepter les conditions');return;}
 
-    // Vérifier que jsPDF est bien chargé
-    if(!window.jspdf||!window.jspdf.jsPDF){
-        toast('⚠ Chargement en cours... Réessayez');
-        console.error('[LICENCE] jsPDF non chargé. Vérifiez la connexion ou le CDN.');
+    // Charger jsPDF (dynamique + fallback CDN si le head a échoué)
+    toast('Génération du contrat...');
+    const ok=await ensureJsPDF();
+    if(!ok){
+        toast('⚠ PDF bloqué (extension anti-pub ?) — réessaie');
+        console.error('[LICENCE] jsPDF introuvable après fallbacks.');
         return;
     }
 
@@ -1481,7 +1496,7 @@ function renderYT(){
 function toast(m){const t=document.getElementById('toast');document.getElementById('toastT').textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
 /* ===== NEWSLETTER ===== */
-const NEWSLETTER_ENDPOINT=''; // <-- URL Formspree (https://formspree.io/f/xxxxxx) pour collecter les emails
+const NEWSLETTER_ENDPOINT='https://formsubmit.co/ajax/djbilboxbeats@gmail.com'; // emails -> Gmail (active a la 1ere soumission)
 async function subscribeNewsletter(e){
     e.preventDefault();
     const email=document.getElementById('nlEmail').value.trim();
