@@ -12,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="vendor/GLTFLoader.js"></script>
+    <script src="vendor/RoomEnvironment.js"></script>
     <style>
 :root{--bg:#090909;--surface:#111;--surface-2:#181818;--surface-3:#222;--accent:#ff2d2d;--accent-h:#e60000;--accent-glow:rgba(255,45,45,.15);--green:#1DB954;--text:#fff;--text-2:#ccc;--text-3:#888;--text-4:#555;--border:rgba(255,255,255,.06);--r:8px;--rl:12px;--font:'Inter',sans-serif;--font-a:'Rajdhani',sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -1207,6 +1209,26 @@ function initSpace(){
         scene.add(m);rocks.push(m);
     }
 
+    // ===== ENV PBR (reflets réalistes) + MODÈLE GLB PHOTORÉEL FLOTTANT =====
+    // Placeholder photoréel (DamagedHelmet). Remplaçable par tes vrais .glb (clavier/micro) dans models/.
+    try{
+        const pmrem=new THREE.PMREMGenerator(renderer);
+        if(THREE.RoomEnvironment)scene.environment=pmrem.fromScene(new THREE.RoomEnvironment(),0.04).texture;
+    }catch(e){console.warn('[3D] env PBR skip',e);}
+    const glbItems=[];
+    if(THREE.GLTFLoader){
+        new THREE.GLTFLoader().load('models/DamagedHelmet.glb',function(g){
+            const proto=g.scene;
+            [[-300,120,210,110,0x6a9bff],[-180,-210,300,70,0xff7a3a]].forEach((p,i)=>{
+                const o=(i===0)?proto:proto.clone(true);
+                o.scale.setScalar(p[3]);o.position.set(p[0],p[1],p[2]);
+                o.userData={base:p[1],phase:Math.random()*6.28,spin:0.12+i*0.06};
+                scene.add(o);glbItems.push(o);
+                const pl=new THREE.PointLight(p[4],1.1,650);pl.position.set(p[0],p[1]+60,p[2]+90);scene.add(pl);
+            });
+        },undefined,function(err){console.warn('[3D] GLB load fail',err);});
+    }
+
     animators.push((t)=>{
         far.rotation.y=t*0.005;far.rotation.x=t*0.002;
         mid.rotation.y=-t*0.01;
@@ -1216,6 +1238,7 @@ function initSpace(){
         moon.rotation.y=t*0.04;
         const pulse=1+Math.sin(t*1.5)*0.03;sunCore.scale.set(150*pulse,150*pulse,1);
         rocks.forEach(m=>{m.position.x+=m.userData.sx*0.06;m.position.y+=m.userData.sy*0.06;m.rotation.x+=m.userData.rx*0.01;m.rotation.y+=m.userData.ry*0.01;});
+        glbItems.forEach(o=>{o.rotation.y=t*o.userData.spin;o.rotation.x=Math.sin(t*0.4+o.userData.phase)*0.15;o.position.y=o.userData.base+Math.sin(t*0.6+o.userData.phase)*22;});
         camera.position.x+= (mouseX*60-camera.position.x)*0.03;
         camera.position.y+= (-mouseY*40-camera.position.y)*0.03;
         camera.lookAt(scene.position);
