@@ -33,55 +33,44 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:
 
 /* === 3D MONOLITH KITS — thick slab panels (30px depth) === */
 .kit-c{
+    --d:42px;
     transform-style:preserve-3d;
     position:relative;
-    border:2px solid var(--kit-glow,rgba(0,255,255,.4));
-    transition:transform .6s cubic-bezier(.25,.46,.45,.94),box-shadow .6s ease;
-    animation:floating 5s ease-in-out infinite,fadeInUp .7s ease both;
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.9),
-        0 0 30px var(--kit-glow,rgba(0,255,255,.3)),
-        0 0 80px var(--kit-glow,rgba(0,255,255,.15)),
-        inset 0 0 20px rgba(0,0,0,.3);
-    transform:perspective(800px) rotateY(-3deg) rotateX(1deg);
+    transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .6s ease;
+    transform:rotateY(-26deg) rotateX(7deg);
+    filter:drop-shadow(20px 32px 24px rgba(0,0,0,.7));
+    cursor:pointer;
 }
 .kit-c:hover{
-    transform:perspective(800px) translateY(-16px) rotateY(4deg) rotateX(-2deg) scale(1.06);
-    box-shadow:
-        0 35px 80px rgba(0,0,0,.95),
-        0 0 50px var(--kit-glow,rgba(0,255,255,.6)),
-        0 0 120px var(--kit-glow,rgba(0,255,255,.35)),
-        inset 0 0 30px rgba(0,0,0,.2);
-    border-color:var(--kit-glow,rgba(0,255,255,.8));
+    transform:translateY(-14px) rotateY(-12deg) rotateX(4deg) scale(1.04);
+    filter:drop-shadow(28px 42px 34px rgba(0,0,0,.8)) drop-shadow(0 0 36px var(--kit-glow,rgba(0,255,255,.5)));
 }
-
-/* RIGHT FACE — 30px thick slab */
+/* FRONT face = cover */
+.kit-cover{position:relative;border-radius:7px;overflow:hidden;transform:translateZ(calc(var(--d)/2));
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),inset 0 0 70px rgba(0,0,0,.28);}
+.kit-cover img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;filter:contrast(1.08) saturate(1.1);transition:filter .5s}
+.kit-c:hover .kit-cover img{filter:contrast(1.12) saturate(1.18) brightness(1.06)}
+/* gloss sweep (reflet produit) */
+.kit-gloss{position:absolute;inset:0;pointer-events:none;border-radius:7px;
+    background:linear-gradient(118deg,rgba(255,255,255,.3) 0%,rgba(255,255,255,.06) 16%,transparent 32%);
+    mix-blend-mode:screen}
+/* RIGHT face (tranche) */
 .kit-c::before{
-    content:'';position:absolute;
-    top:0;right:0;width:30px;height:100%;
-    background:linear-gradient(to right,#1a1a1a 0%,#080808 60%,#000 100%);
-    transform:rotateY(90deg) translateZ(0px);
-    transform-origin:right center;
-    border-left:1px solid var(--kit-glow,rgba(0,255,255,.2));
-    box-shadow:inset 0 0 15px rgba(0,0,0,.8),0 0 10px var(--kit-glow,rgba(0,255,255,.1));
-    pointer-events:none;
+    content:'';position:absolute;top:0;right:0;width:var(--d);height:100%;
+    background:linear-gradient(to right,#26262b,#0c0c0e 65%,#000);
+    transform-origin:right center;transform:translateZ(calc(var(--d)/2)) rotateY(90deg);
+    border-left:1px solid var(--kit-glow,rgba(0,255,255,.25));
+    box-shadow:inset 0 0 24px rgba(0,0,0,.85);pointer-events:none;
 }
-
-/* BOTTOM FACE — 30px thick slab */
+/* TOP face (dessus) */
 .kit-c::after{
-    content:'';position:absolute;
-    bottom:0;left:0;width:100%;height:30px;
-    background:linear-gradient(to bottom,#1a1a1a 0%,#080808 60%,#000 100%);
-    transform:rotateX(-90deg) translateZ(0px);
-    transform-origin:bottom center;
-    border-top:1px solid var(--kit-glow,rgba(0,255,255,.15));
-    box-shadow:inset 0 0 15px rgba(0,0,0,.8),0 0 10px var(--kit-glow,rgba(0,255,255,.1));
-    pointer-events:none;
+    content:'';position:absolute;top:0;left:0;width:100%;height:var(--d);
+    background:linear-gradient(to bottom,#303036,#0d0d10 65%,#000);
+    transform-origin:top center;transform:translateZ(calc(var(--d)/2)) rotateX(-90deg);
+    border-bottom:1px solid var(--kit-glow,rgba(0,255,255,.2));
+    box-shadow:inset 0 0 24px rgba(0,0,0,.85);pointer-events:none;
 }
-
-.kit-c .kit-c-body{transform:translateZ(30px);position:relative;z-index:3}
-.kit-c img{transition:transform .5s,filter .5s;filter:brightness(.95) contrast(1.1)}
-.kit-c:hover img{transform:translateZ(10px) scale(1.03);filter:brightness(1.15)}
+.kit-c .kit-c-body{transform:translateZ(calc(var(--d)/2));position:relative;z-index:3}
 
 /* Neon glow colors — unique per kit */
 .kit-c:nth-child(1){--kit-glow:rgba(0,255,255,.4)}
@@ -179,9 +168,9 @@ button{font-family:var(--font);cursor:pointer}
 .sec-sub{font-size:.78rem;color:var(--text-3);margin-bottom:1.5rem}
 
 /* Kits grid — wide spacing for 3D depth overflow */
-.kits-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:3rem;perspective:900px;padding:2rem 1rem}
+.kits-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:3.6rem 3rem;perspective:1300px;padding:2.5rem 2rem 3rem}
 .kit-c{background:linear-gradient(145deg,#1a1a1a 0%,#080808 100%);border-radius:var(--rl);overflow:visible;cursor:pointer}
-.kit-c img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--rl) var(--rl) 0 0}
+.kit-c-body{background:linear-gradient(180deg,rgba(20,20,24,.92),rgba(8,8,10,.96));border-radius:0 0 7px 7px;margin-top:-1px}
 .kit-c-body{padding:.8rem}
 .kit-c-body h4{font-size:.85rem;margin-bottom:2px}
 .kit-c-body p{font-size:.68rem;color:var(--text-3);margin-bottom:.5rem}
@@ -1382,7 +1371,7 @@ const DISCOGRAPHY=[
 
 // ===== RENDER KITS, DISCOGRAPHIE & PLAYLISTS =====
 function renderKits(){
-    document.getElementById('kitsG').innerHTML=KITS.map(k=>`<div class="kit-c" onclick="window.open('${k.link}','_blank')"><img src="${k.img}" alt="${k.title}" loading="lazy"><div class="kit-c-body"><h4>${k.title}</h4><p>${k.sub}</p><div class="kit-c-foot"><span class="kit-price">FREE</span><button class="kit-dl">Download</button></div></div></div>`).join('');
+    document.getElementById('kitsG').innerHTML=KITS.map(k=>`<div class="kit-c" onclick="window.open('${k.link}','_blank')"><div class="kit-cover"><img src="${k.img}" alt="${k.title}" loading="lazy"><span class="kit-gloss"></span></div><div class="kit-c-body"><h4>${k.title}</h4><p>${k.sub}</p><div class="kit-c-foot"><span class="kit-price">FREE</span><button class="kit-dl">Download</button></div></div></div>`).join('');
 }
 function renderDisco(){
     document.getElementById('discoG').innerHTML=DISCOGRAPHY.map(a=>`<div class="disco-c" onclick="window.open('${a.spotifyUrl}','_blank')"><img src="${a.img}" alt="${a.title}" loading="lazy"><div class="disco-c-body"><h4>${a.title}</h4><p>${a.year} • ${a.type}</p><span class="disco-spot"><i class="fa-brands fa-spotify"></i> Écouter</span></div></div>`).join('');
@@ -1400,9 +1389,6 @@ renderTracks();renderKits();renderDisco();renderYT();
 // Init VanillaTilt on Drum Kit + Discographie cards
 setTimeout(function(){
     if(window.VanillaTilt){
-        VanillaTilt.init(document.querySelectorAll('.kit-c'),{
-            max:15,speed:400,glare:true,'max-glare':0.2,perspective:1000,scale:1.03
-        });
         VanillaTilt.init(document.querySelectorAll('.disco-c'),{
             max:12,speed:300,glare:true,'max-glare':0.15,perspective:1200,scale:1.02
         });
