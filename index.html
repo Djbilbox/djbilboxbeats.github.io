@@ -324,7 +324,11 @@ button{font-family:var(--font);cursor:pointer}
 
 /* Responsive */
 @media(max-width:768px){
-    .hdr-nav{display:none}
+    .hdr-r .nav-burger{display:flex}
+    .hdr-r > a{display:none}
+    .hdr-nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(9,9,9,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:.4rem 0;transform:translateY(-8px);opacity:0;pointer-events:none;transition:.22s}
+    .hdr-nav.open{transform:none;opacity:1;pointer-events:auto}
+    .hdr-nav a{padding:.95rem 1.4rem;width:100%;font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04)}
     .trk{padding:.4rem .7rem;gap:.5rem}
     .trk-cover{width:36px;height:36px}
     .trk-tags{display:none}
@@ -436,6 +440,7 @@ button{font-family:var(--font);cursor:pointer}
 .chat-foot input{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:24px;padding:.6rem 1rem;color:#fff;font-size:.8rem;outline:none}
 .chat-foot button{background:linear-gradient(135deg,#7a5aff,#ff2d6b);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;flex-shrink:0}
 @media(max-width:768px){.svc-g{grid-template-columns:1fr}}
+.nav-burger{display:none;background:none;border:none;color:#fff;font-size:1.25rem;cursor:pointer;padding:6px;margin-left:4px}
     </style>
 </head>
 <body>
@@ -461,6 +466,7 @@ button{font-family:var(--font);cursor:pointer}
             <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
             <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
             <button class="cart-btn" onclick="toggleCart()"><i class="fa-solid fa-bag-shopping"></i> <span class="cart-badge" id="cBadge">0</span></button>
+            <button class="nav-burger" onclick="toggleNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
         </div>
     </div>
 </header>
@@ -889,6 +895,8 @@ function updCart(){
     document.getElementById('mcTot').textContent=cart.length?'0€ (Free)':'0€';
 }
 function toggleCart(){document.getElementById('mc').classList.toggle('open')}
+function toggleNav(){document.querySelector('.hdr-nav').classList.toggle('open')}
+document.addEventListener('click',e=>{const a=e.target.closest('.hdr-nav a');if(a)document.querySelector('.hdr-nav').classList.remove('open');});
 
 /* ===== CHAT IA ===== */
 const CHAT_ENDPOINT=''; // <-- URL du Worker Cloudflare (ex: https://djbilbox-ai.xxx.workers.dev/chat) pour activer la vraie IA
