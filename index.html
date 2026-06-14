@@ -468,11 +468,13 @@ body{top:0!important;position:static!important}
 /* ===== TESTIMONIALS (What Producers Are Saying) ===== */
 .tst-head{display:flex;align-items:center;justify-content:center;gap:1rem;position:relative}
 .tst-scroll-hint{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-4);border:1px solid var(--border);padding:5px 12px;border-radius:20px}
-.tst-row{display:flex;gap:1.1rem;overflow-x:auto;padding:1.5rem .5rem 2rem;scroll-snap-type:x mandatory;scrollbar-width:thin}
-.tst-row::-webkit-scrollbar{height:6px}.tst-row::-webkit-scrollbar-thumb{background:rgba(150,130,255,.3);border-radius:3px}
-.tst-card{scroll-snap-align:start;flex:0 0 320px;background:linear-gradient(170deg,rgba(26,24,40,.85),rgba(12,12,18,.9));border:1px solid rgba(150,130,255,.16);border-radius:16px;padding:1.1rem 1.2rem;backdrop-filter:blur(8px)}
+.tst-row{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;max-width:920px;margin:0 auto;padding:1.5rem .5rem 1rem;max-height:560px;overflow-y:auto;scrollbar-width:thin}
+.tst-row::-webkit-scrollbar{width:6px}.tst-row::-webkit-scrollbar-thumb{background:rgba(150,130,255,.3);border-radius:3px}
+.tst-card{background:linear-gradient(170deg,rgba(26,24,40,.85),rgba(12,12,18,.9));border:1px solid rgba(150,130,255,.16);border-radius:16px;padding:1.1rem 1.2rem;backdrop-filter:blur(8px)}
+@media(max-width:680px){.tst-row{grid-template-columns:1fr}}
 .tst-top{display:flex;align-items:center;gap:.6rem;margin-bottom:.7rem}
 .tst-av{width:38px;height:38px;border-radius:50%;object-fit:cover;background:#2a2a33;flex-shrink:0}
+.tst-av-ltr{display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#fff;font-family:var(--font-a)}
 .tst-name{font-weight:700;font-size:.82rem;display:flex;align-items:center;gap:.3rem}
 .tst-name i{color:#3897f0;font-size:.7rem}
 .tst-src{font-size:.6rem;color:var(--text-4)}
@@ -756,7 +758,7 @@ body{top:0!important;position:static!important}
 <div class="sec" id="reviews">
     <div class="tst-head">
         <h2 class="sec-title">What Producers Are Saying</h2>
-        <span class="tst-scroll-hint">Scroll &rarr;</span>
+        <span class="tst-scroll-hint">Scroll &darr;</span>
     </div>
     <p class="sec-sub" style="text-align:center">Real reviews from the DJBILBOX BEATS community</p>
     <div class="tst-stats">
@@ -1672,6 +1674,35 @@ const TESTIMONIALS=[
   {name:"@popatyourecords",verified:false,src:"YouTube",text:"Great track my friend enjoy your day cheers",likes:"1",avatar:"https://yt3.ggpht.com/oORllyygB5IiKaACmMT67RS5ZnFlyq04UJnqqg9ZU7jC2gh5eJenO6uP1y16vcoYAw5gScWH=s88-c-k-c0x00ffffff-no-rj"},
   {name:"@DadiUSA",verified:false,src:"YouTube",text:"Liked and watched this extremely beautiful video tour presentation and thanks for sharing this with your friend.",likes:"1",avatar:"https://yt3.ggpht.com/salRTi-BTHj6nPkUkjDDQ22xG8GgMMQkSYfIra35ts93Wbix0AN0X9FZM6niMQEo1Qf_GxV1yg=s88-c-k-c0x00ffffff-no-rj"},
   {name:"@Lapuissancemusic-w6u",verified:false,src:"YouTube",text:"La puissance Music papi",likes:"1",avatar:"https://yt3.ggpht.com/cGuNLy6LFQ3UuFDzL8yumf3A-oMEHzKhmE8Qg_wprgg5mf7yL_QdhoTXb7YLwyQ-lUkYSDcg=s88-c-k-c0x00ffffff-no-rj"},
+  {name:"@sambobx",verified:false,src:"YouTube",text:"Je viens de te découvrir via Tik Tok. Pense à toi, j'aime bien tes instrus, on peut dire que tu as vraiment ton style, tu as ta recette et tes sonorités carrer dans l'axe c'est propre 🎉🎉",likes:"2"},
+  {name:"@PlaceChristophe",verified:false,src:"YouTube",text:"Très bien cette musique est dansante et tranquille à la fois. J'aime beaucoup la mélodie et les instruments. C'est excellent, bravo Bilel 👍🙂",likes:"1"},
+  {name:"@stephane-cappelletti",verified:false,src:"YouTube",text:"Evasion assurée, quand culture rime avec modernité à travers des sons ancestraux, bravo.",likes:"1"},
+  {name:"@GabrielValdez-me2eb",verified:false,src:"YouTube",text:"This might be an offense or compliment depending on what you're trying to accomplish, but this could definitely lead to a pop career. The melody feels like something that could be sang over. Regardless it's a movie track and I envision the potential beyond rap.",likes:"1"},
+  {name:"@TechnoSyncStudio",verified:false,src:"YouTube",text:"Impressive beat, very good sounds 🎶🎵👍🌟🌟🌟👍",likes:"2"},
+  {name:"@MasGuapoQueCR7",verified:false,src:"YouTube",text:"I love the bass mate! New suscriber 🔥🔥🔥",likes:"1"},
+  {name:"@prod.dugster",verified:false,src:"YouTube",text:"nice music g",likes:"2"},
+  {name:"@Drenchhh27",verified:false,src:"YouTube",text:"🔥🔥🔥🔥🔥 keep dropping more!!!!",likes:"1"},
+  {name:"@trakoofficial9448",verified:false,src:"YouTube",text:"T monter en level mon reuf 🎉🎉🎉🎉🎉",likes:"1"},
+  {name:"@Enissay_Beats",verified:true,src:"YouTube",text:"Sounds very good 🎉",likes:"1"},
+  {name:"@manalexeman5599",verified:false,src:"YouTube",text:"This is nice 👌 👍 music 🎶",likes:"1"},
+  {name:"@rossendgri",verified:false,src:"YouTube",text:"Excellent work!!",likes:"1"},
+  {name:"@moody9013",verified:false,src:"YouTube",text:"fire beat 💯",likes:"1"},
+  {name:"@DJSOEGAARD",verified:false,src:"YouTube",text:"GO GO GO!",likes:"1"},
+  {name:"@DJSOEGAARD",verified:false,src:"YouTube",text:"Viiiibe!!!",likes:"1"},
+  {name:"@AlexiOMic",verified:false,src:"YouTube",text:"Lourd ma gueule",likes:"1"},
+  {name:"@sk-esko",verified:false,src:"YouTube",text:"Lourd frérot 🎉",likes:"1"},
+  {name:"@Sophiasalvador33",verified:false,src:"YouTube",text:"lourd",likes:"1"},
+  {name:"@zeo77-it1ym",verified:false,src:"YouTube",text:"Ye frère j'ai bien aimé tes son 🙂",likes:"1"},
+  {name:"@AnimeMindLaboratory",verified:false,src:"YouTube",text:"I love this",likes:"1"},
+  {name:"@VesnaDjordjevic-i5q",verified:false,src:"YouTube",text:"Great",likes:"1"},
+  {name:"@Alhamdulillah-For-Everything-0",verified:false,src:"YouTube",text:"Awesome",likes:"1"},
+  {name:"@sayeloffishal",verified:false,src:"YouTube",text:"Yesss... Good vibe bro 🔥💪",likes:"1"},
+  {name:"@PsychéOfficiel",verified:false,src:"YouTube",text:"Oufff celle là 😮",likes:"1"},
+  {name:"@InstruEFMproductions",verified:false,src:"YouTube",text:"Ok lets go bro",likes:"1"},
+  {name:"@RASPOUTINE-OFFICIEL",verified:false,src:"YouTube",text:"Ont va collaborer",likes:"1"},
+  {name:"@braininfinityrecords8395",verified:false,src:"YouTube",text:"🔥🔥",likes:"1"},
+  {name:"@leliyanto712",verified:false,src:"YouTube",text:"😮 👍👍",likes:"1"},
+  {name:"@MasBeb",verified:false,src:"YouTube",text:"Very nice ......... 👍❤👌",likes:"1"},
 ];
 // <<<TESTIMONIALS_AUTO_END>>>
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -1683,7 +1714,10 @@ function renderTestimonials(){
   if(!all.length){document.getElementById('reviews').style.display='none';return;}
   row.innerHTML=all.map(t=>{
     const stars=t.rating?`<div style="color:#ffcf6a;font-size:.7rem;margin-bottom:.4rem">${'★'.repeat(t.rating)}${'☆'.repeat(5-t.rating)}</div>`:'';
-    return `<div class="tst-card"><div class="tst-top">${t.avatar?`<img class="tst-av" src="${t.avatar}" alt="">`:'<div class="tst-av"></div>'}<div><div class="tst-name">${esc(t.name)}${t.verified?' <i class="fa-solid fa-circle-check"></i>':''}</div><div class="tst-src">${esc(t.src||'')}</div></div></div>${stars}<div class="tst-text">${esc(t.text)}</div><div class="tst-foot"><span class="lk"><i class="fa-solid fa-heart"></i> ${esc(t.likes||'0')}</span><span><i class="fa-regular fa-comment"></i> Reply</span></div></div>`;
+    const ltr=(t.name||'?').replace(/^@/,'').charAt(0).toUpperCase();
+    const hue=[...(t.name||'')].reduce((a,c)=>a+c.charCodeAt(0),0)%360;
+    const av=t.avatar?`<img class="tst-av" src="${t.avatar}" alt="">`:`<div class="tst-av tst-av-ltr" style="background:hsl(${hue},55%,42%)">${esc(ltr)}</div>`;
+    return `<div class="tst-card"><div class="tst-top">${av}<div><div class="tst-name">${esc(t.name)}${t.verified?' <i class="fa-solid fa-circle-check"></i>':''}</div><div class="tst-src">${esc(t.src||'')}</div></div></div>${stars}<div class="tst-text">${esc(t.text)}</div><div class="tst-foot"><span class="lk"><i class="fa-solid fa-heart"></i> ${esc(t.likes||'0')}</span><span><i class="fa-regular fa-comment"></i> Reply</span></div></div>`;
   }).join('');
 }
 // ===== REVIEW FORM (vrais visiteurs) =====
