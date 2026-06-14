@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -418,6 +418,17 @@ button{font-family:var(--font);cursor:pointer}
 @media(max-width:768px){.svc-g{grid-template-columns:1fr}}
 .nav-burger{display:none;background:none;border:none;color:#fff;font-size:1.25rem;cursor:pointer;padding:6px;margin-left:4px}
 
+/* ===== LANGUAGE SWITCHER (Google Translate, 27 langs) ===== */
+.goog-te-banner-frame,.goog-te-gadget-icon,.goog-logo-link,.goog-te-gadget span{display:none!important}
+body{top:0!important;position:static!important}
+.skiptranslate>iframe{display:none!important}
+.lang-wrap{display:inline-flex;align-items:center;gap:5px;color:var(--text-3)}
+.lang-wrap>i{font-size:.85rem;color:var(--text-3)}
+#google_translate_element{display:inline-flex;align-items:center}
+.goog-te-gadget{font-size:0!important;line-height:0!important}
+.goog-te-combo{margin:0!important;background:rgba(255,255,255,.06)!important;color:#fff!important;border:1px solid var(--border)!important;border-radius:20px!important;padding:5px 10px!important;font-size:.72rem!important;font-family:var(--font)!important;cursor:pointer;outline:none;max-width:140px}
+.goog-te-combo option{background:#111;color:#fff}
+
 /* ===== VIDEO PRESENTATION (top) ===== */
 .vid-hero{max-width:1000px;margin:0 auto;padding:2.2rem 1.5rem .5rem;text-align:center}
 .vid-hero .vh-badge{display:inline-block;font-family:var(--font-a);font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:#ffcf6a;border:1px solid rgba(255,200,90,.4);padding:5px 12px;border-radius:20px;margin-bottom:.9rem}
@@ -519,16 +530,17 @@ button{font-family:var(--font);cursor:pointer}
             <a href="#vst">VST</a>
             <a href="#kits">Drum Kits</a>
             <a href="#services">Services</a>
-            <a href="#reviews">Avis</a>
-            <a href="#licensing">Licence</a>
-            <a href="#discography">Discographie</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#licensing">License</a>
+            <a href="#discography">Discography</a>
             <a href="#playlists">Playlists</a>
             <a href="#newsletter">News</a>
-            <a href="#" onclick="toggleChat();return false;">Chat IA</a>
+            <a href="#" onclick="toggleChat();return false;">AI Chat</a>
         </nav>
         <div class="hdr-r">
             <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
             <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <span class="lang-wrap notranslate" translate="no"><i class="fa-solid fa-globe"></i><div id="google_translate_element"></div></span>
             <button class="cart-btn" onclick="toggleCart()"><i class="fa-solid fa-bag-shopping"></i> <span class="cart-badge" id="cBadge">0</span></button>
             <button class="nav-burger" onclick="toggleNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
         </div>
@@ -537,9 +549,9 @@ button{font-family:var(--font);cursor:pointer}
 
 <!-- VIDEO PRESENTATION (top) -->
 <section class="vid-hero" id="presentation">
-    <span class="vh-badge">Nouveau · VST Plugin</span>
+    <span class="vh-badge">New · VST Plugin</span>
     <h2>Oriental Instrument</h2>
-    <div class="vh-sub">La vidéo de présentation — DJBILBOX BEATS</div>
+    <div class="vh-sub">The presentation video — DJBILBOX BEATS</div>
     <video controls playsinline preload="metadata" poster="media/oriental-poster.jpg">
         <source src="media/oriental-demo.mp4" type="video/mp4">
     </video>
@@ -553,11 +565,11 @@ button{font-family:var(--font);cursor:pointer}
 <section class="hero-x">
     <div class="hx-eyebrow">+1000 BEATS · ORIENTAL · TRAP · DRILL · G-FUNK</div>
     <h1>DJBILBOX<span>BEATS</span></h1>
-    <div class="hx-sub">Free For Profit · Licences Instantanées</div>
+    <div class="hx-sub">Free For Profit · Instant Licenses</div>
     <div class="hx-meta">Producer · Beatmaker · Sound Designer</div>
     <div class="hx-cta">
-        <a href="#player" class="hx-btn primary"><i class="fa-solid fa-play"></i> Écouter les beats</a>
-        <a href="#gear" class="hx-btn ghost"><i class="fa-solid fa-cube"></i> Le Studio 3D</a>
+        <a href="#player" class="hx-btn primary"><i class="fa-solid fa-play"></i> Listen to the beats</a>
+        <a href="#gear" class="hx-btn ghost"><i class="fa-solid fa-cube"></i> The 3D Studio</a>
     </div>
     <a href="#gear" class="hx-scroll">Scroll<i class="fa-solid fa-chevron-down"></i></a>
 </section>
@@ -567,10 +579,10 @@ button{font-family:var(--font);cursor:pointer}
     <!-- Toolbar -->
     <div class="pl-toolbar">
         <div class="pl-toolbar-l">
-            <button class="pl-tbtn" onclick="sortTracks()"><i class="fa-solid fa-sort"></i> Trier</button>
-            <input class="pl-search" type="text" placeholder="Rechercher..." id="searchIn" oninput="filterTracks()">
+            <button class="pl-tbtn" onclick="sortTracks()"><i class="fa-solid fa-sort"></i> Sort</button>
+            <input class="pl-search" type="text" placeholder="Search..." id="searchIn" oninput="filterTracks()">
         </div>
-        <span style="font-size:.7rem;color:var(--text-3);" id="trackCount">18 titres</span>
+        <span style="font-size:.7rem;color:var(--text-3);" id="trackCount">18 tracks</span>
     </div>
 
     <!-- Spotify Embed Player (STICKY — persiste pendant le scroll) -->
@@ -579,8 +591,8 @@ button{font-family:var(--font);cursor:pointer}
             <iframe id="spotifyEmbed" src="https://open.spotify.com/embed/track/1UnJqR2s8q07k3vFhNFtvm?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" style="border-radius:8px;" loading="lazy"></iframe>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.4rem;">
-            <span style="font-size:0.65rem;color:var(--text-4);" id="nowPlaying">Cliquez sur un titre pour lancer la lecture</span>
-            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" style="font-size:0.65rem;color:var(--green);font-weight:600;display:flex;align-items:center;gap:3px;"><i class="fa-brands fa-spotify"></i> 300+ titres sur Spotify</a>
+            <span style="font-size:0.65rem;color:var(--text-4);" id="nowPlaying">Click a track to start playing</span>
+            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" style="font-size:0.65rem;color:var(--green);font-weight:600;display:flex;align-items:center;gap:3px;"><i class="fa-brands fa-spotify"></i> 300+ tracks on Spotify</a>
         </div>
     </div>
 
@@ -589,17 +601,17 @@ button{font-family:var(--font);cursor:pointer}
 
     <!-- Steps -->
     <div class="pl-steps">
-        <div class="pl-step"><span class="pl-step-n">1</span> Écouter</div>
-        <div class="pl-step"><span class="pl-step-n">2</span> Ajouter au Panier</div>
-        <div class="pl-step"><span class="pl-step-n">3</span> Télécharger la Licence</div>
+        <div class="pl-step"><span class="pl-step-n">1</span> Listen</div>
+        <div class="pl-step"><span class="pl-step-n">2</span> Add to Cart</div>
+        <div class="pl-step"><span class="pl-step-n">3</span> Download License</div>
     </div>
 </div>
 
 <!-- 3D GEAR SHOWCASE -->
 <section class="gear-sec" id="gear">
     <div class="gear-head">
-        <h2 class="sec-title">Le Studio en 3D</h2>
-        <p class="sec-sub">Les outils derrière le son DJBILBOX — glisse pour faire tourner</p>
+        <h2 class="sec-title">The Studio in 3D</h2>
+        <p class="sec-sub">The tools behind the DJBILBOX sound — drag to rotate</p>
     </div>
     <div class="gear-grid">
         <div class="gear-card">
@@ -652,7 +664,7 @@ button{font-family:var(--font);cursor:pointer}
             <a class="vst-btn demo" onclick="vstAction('demo')"><i class="fa-solid fa-download"></i> Download Demo</a>
         </div>
         <div class="vst-tier pro">
-            <h4>Bundle 300+</h4><div class="price">Accès à vie · MAJ gratuites</div>
+            <h4>Bundle 300+</h4><div class="price">Lifetime access · free updates</div>
             <ul>
                 <li><i class="fa-solid fa-star"></i> 300+ instruments exclusifs</li>
                 <li><i class="fa-solid fa-star"></i> Plucks, cordes, leads, pads, textures rares</li>
@@ -667,62 +679,62 @@ button{font-family:var(--font);cursor:pointer}
 <!-- DRUM KITS -->
 <div class="sec" id="kits">
     <h2 class="sec-title">Drum Kits & Samples</h2>
-    <p class="sec-sub">Packs professionnels • Téléchargement instantané</p>
+    <p class="sec-sub">Professional packs • Instant download</p>
     <div class="kits-g" id="kitsG"></div>
 </div>
 
 <!-- DISCOGRAPHIE -->
 <div class="sec" id="discography">
     <h2 class="sec-title">Discographie</h2>
-    <p class="sec-sub">Albums & Projets • Disponibles sur toutes les plateformes</p>
+    <p class="sec-sub">Albums & Projects • Available on all platforms</p>
     <div class="disco-g" id="discoG"></div>
 </div>
 
 <!-- PLAYLISTS -->
 <div class="sec" id="playlists">
-    <h2 class="sec-title">Playlists YouTube</h2>
-    <p class="sec-sub">Explorez par genre</p>
+    <h2 class="sec-title">YouTube Playlists</h2>
+    <p class="sec-sub">Browse by genre</p>
     <div class="yt-g" id="ytG"></div>
 </div>
 
 <!-- SERVICES -->
 <div class="sec" id="services">
     <h2 class="sec-title">Services</h2>
-    <p class="sec-sub">Createur digital · production musicale · collaborations</p>
+    <p class="sec-sub">Digital creator · music production · collaborations</p>
     <div class="svc-g">
         <div class="svc-card">
             <div class="svc-ico"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-            <h4>Createur Digital</h4>
-            <p>Identite visuelle, branding, direction artistique et contenu pour artistes et marques.</p>
+            <h4>Digital Creator</h4>
+            <p>Visual identity, branding, art direction and content for artists and brands.</p>
         </div>
         <div class="svc-card">
             <div class="svc-ico"><i class="fa-solid fa-code"></i></div>
-            <h4>Developpeur Web</h4>
-            <p>Sites vitrines, e-commerce, landing pages 3D et experiences interactives sur-mesure.</p>
+            <h4>Web Developer</h4>
+            <p>Showcase sites, e-commerce, 3D landing pages and custom interactive experiences.</p>
         </div>
         <div class="svc-card">
             <div class="svc-ico"><i class="fa-solid fa-clapperboard"></i></div>
             <h4>Image &amp; Video</h4>
-            <p>Clips, visualizers, montage, motion design et cover art pour vos sorties.</p>
+            <p>Music videos, visualizers, editing, motion design and cover art for your releases.</p>
         </div>
         <div class="svc-card">
             <div class="svc-ico"><i class="fa-solid fa-drum"></i></div>
             <h4>Beatmaking</h4>
-            <p>Instrumentales oriental, trap, drill, g-funk, balkan. Beats exclusifs ou licences.</p>
+            <p>Oriental, trap, drill, g-funk, balkan instrumentals. Exclusive beats or licenses.</p>
         </div>
         <div class="svc-card">
             <div class="svc-ico"><i class="fa-solid fa-sliders"></i></div>
             <h4>Mix &amp; Mastering</h4>
-            <p>Mix professionnel et mastering pour un son puissant, clair et pret pour le streaming.</p>
+            <p>Professional mix and mastering for a powerful, clear, streaming-ready sound.</p>
         </div>
         <div class="svc-card">
             <div class="svc-ico"><i class="fa-solid fa-music"></i></div>
-            <h4>Compositeur &amp; Collab</h4>
-            <p>Composition, topline, sound design et collaborations artistiques sur vos projets.</p>
+            <h4>Composer &amp; Collab</h4>
+            <p>Composition, topline, sound design and artistic collaborations on your projects.</p>
         </div>
     </div>
     <div style="text-align:center;margin-top:2rem">
-        <a href="#" onclick="toggleChat();return false;" class="hx-btn primary" style="display:inline-flex;align-items:center;gap:.5rem"><i class="fa-solid fa-comments"></i> Discuter d'une collab</a>
+        <a href="#" onclick="toggleChat();return false;" class="hx-btn primary" style="display:inline-flex;align-items:center;gap:.5rem"><i class="fa-solid fa-comments"></i> Discuss a collab</a>
     </div>
 </div>
 
@@ -732,56 +744,56 @@ button{font-family:var(--font);cursor:pointer}
         <h2 class="sec-title">What Producers Are Saying</h2>
         <span class="tst-scroll-hint">Scroll &rarr;</span>
     </div>
-    <p class="sec-sub" style="text-align:center">Avis réels de la communauté DJBILBOX BEATS</p>
+    <p class="sec-sub" style="text-align:center">Real reviews from the DJBILBOX BEATS community</p>
     <div class="tst-row" id="tstRow"></div>
-    <div class="tst-cta"><a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i> Laisse ton avis sur YouTube</a></div>
+    <div class="tst-cta"><a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i> Leave your review on YouTube</a></div>
 </div>
 
 <!-- LICENSING -->
 <div class="sec" id="licensing">
     <h2 class="sec-title">Licensing Information</h2>
-    <p class="sec-sub">Toutes les instrus DJBILBOX BEATS — Free Unlimited License</p>
+    <p class="sec-sub">All DJBILBOX BEATS instrumentals — Free Unlimited License</p>
     <div class="lic-g">
         <div class="lic-card free">
             <h3><i class="fa-solid fa-unlock-keyhole"></i> Free Unlimited License</h3>
-            <div class="lic-sub">Pour tous — artistes, créateurs, YouTubers, streamers, cinéastes. Aucun achat.</div>
+            <div class="lic-sub">For everyone — artists, creators, YouTubers, streamers, filmmakers. No purchase.</div>
             <ul class="lic-list">
-                <li><i class="fa-solid fa-check lic-yes"></i> Fichier MP3 — téléchargement gratuit</li>
-                <li><i class="fa-solid fa-check lic-yes"></i> Streaming &amp; distribution illimités</li>
-                <li><i class="fa-solid fa-check lic-yes"></i> Clips &amp; lives illimités</li>
-                <li><i class="fa-solid fa-check lic-yes"></i> Usage commercial (YouTube, Spotify, TikTok, Insta…)</li>
-                <li><i class="fa-solid fa-check lic-yes"></i> Mondial · non-exclusif</li>
-                <li><i class="fa-solid fa-triangle-exclamation lic-warn"></i> Crédit obligatoire : <b>(Prod. by DJBILBOX BEATS)</b></li>
-                <li><i class="fa-solid fa-xmark lic-no"></i> Pas de revente / re-licence / redistribution du beat</li>
-                <li><i class="fa-solid fa-xmark lic-no"></i> Pas de Content ID sur l'instru seule (sans voix)</li>
+                <li><i class="fa-solid fa-check lic-yes"></i> MP3 file — free download</li>
+                <li><i class="fa-solid fa-check lic-yes"></i> Unlimited streaming &amp; distribution</li>
+                <li><i class="fa-solid fa-check lic-yes"></i> Unlimited music videos &amp; live shows</li>
+                <li><i class="fa-solid fa-check lic-yes"></i> Commercial use (YouTube, Spotify, TikTok, Insta…)</li>
+                <li><i class="fa-solid fa-check lic-yes"></i> Worldwide · non-exclusive</li>
+                <li><i class="fa-solid fa-triangle-exclamation lic-warn"></i> Credit required: <b>(Prod. by DJBILBOX BEATS)</b></li>
+                <li><i class="fa-solid fa-xmark lic-no"></i> No resale / re-license / redistribution of the beat</li>
+                <li><i class="fa-solid fa-xmark lic-no"></i> No Content ID on the instrumental alone (no vocals)</li>
             </ul>
         </div>
         <div class="lic-card exclusive">
             <h3><i class="fa-solid fa-gem"></i> Exclusive · WAV / Stems</h3>
-            <div class="lic-sub">Exclusivité totale ou fichiers WAV + stems pour mix pro.</div>
+            <div class="lic-sub">Full exclusivity or WAV + stems files for pro mixing.</div>
             <ul class="lic-list">
-                <li><i class="fa-solid fa-star lic-warn"></i> Droits exclusifs (beat retiré du catalogue)</li>
-                <li><i class="fa-solid fa-star lic-warn"></i> Pack WAV / Trackouts / Stems</li>
-                <li><i class="fa-solid fa-star lic-warn"></i> Beat custom sur demande</li>
-                <li><i class="fa-solid fa-star lic-warn"></i> Sync licensing (film, pub, jeux)</li>
+                <li><i class="fa-solid fa-star lic-warn"></i> Exclusive rights (beat removed from catalog)</li>
+                <li><i class="fa-solid fa-star lic-warn"></i> WAV / Trackouts / Stems pack</li>
+                <li><i class="fa-solid fa-star lic-warn"></i> Custom beat on demand</li>
+                <li><i class="fa-solid fa-star lic-warn"></i> Sync licensing (film, ads, games)</li>
                 <li><i class="fa-solid fa-star lic-warn"></i> Collab &amp; features</li>
             </ul>
-            <a href="#" onclick="toggleChat();return false;" class="lic-cta"><i class="fa-solid fa-comments"></i> Discuter d'une licence exclusive</a>
+            <a href="#" onclick="toggleChat();return false;" class="lic-cta"><i class="fa-solid fa-comments"></i> Discuss an exclusive license</a>
         </div>
     </div>
-    <p class="lic-note">En téléchargeant une instru DJBILBOX BEATS, tu acceptes la <b>Free Unlimited License</b>. Contact : djbilboxbeats@gmail.com</p>
+    <p class="lic-note">By downloading a DJBILBOX BEATS instrumental, you agree to the <b>Free Unlimited License</b>. Contact: djbilboxbeats@gmail.com</p>
 </div>
 
 <!-- NEWSLETTER -->
 <div class="sec" id="newsletter">
     <div class="nl-band">
-        <h2>Reste connecté à <span style="color:#1DB954">DJBILBOX BEATS</span></h2>
-        <p>Nouveaux beats, kits, sorties &amp; offres exclusives — direct dans ta boîte mail.</p>
+        <h2>Stay connected with <span style="color:#1DB954">DJBILBOX BEATS</span></h2>
+        <p>New beats, kits, releases &amp; exclusive offers — straight to your inbox.</p>
         <form class="nl-form" id="nlForm" onsubmit="subscribeNewsletter(event)">
-            <input type="email" id="nlEmail" placeholder="ton@email.com" required>
-            <button type="submit"><i class="fa-solid fa-paper-plane"></i> S'inscrire</button>
+            <input type="email" id="nlEmail" placeholder="your@email.com" required>
+            <button type="submit"><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
         </form>
-        <div class="nl-mini">Pas de spam. Désinscription à tout moment.</div>
+        <div class="nl-mini">No spam. Unsubscribe anytime.</div>
     </div>
 </div>
 
@@ -799,24 +811,24 @@ button{font-family:var(--font);cursor:pointer}
 
 <!-- MINI CART -->
 <div class="mc" id="mc">
-    <div class="mc-h"><h3><i class="fa-solid fa-bag-shopping"></i> Panier</h3><button class="mc-x" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button></div>
-    <div class="mc-list" id="mcList"><p style="text-align:center;color:var(--text-4);padding:2rem">Votre panier est vide</p></div>
-    <div class="mc-foot"><div class="mc-total"><span>Total</span><span id="mcTot">0€</span></div><button class="btn-full" onclick="openModal()"><i class="fa-solid fa-file-pdf"></i> Télécharger Licence (0€)</button></div>
+    <div class="mc-h"><h3><i class="fa-solid fa-bag-shopping"></i> Cart</h3><button class="mc-x" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="mc-list" id="mcList"><p style="text-align:center;color:var(--text-4);padding:2rem">Your cart is empty</p></div>
+    <div class="mc-foot"><div class="mc-total"><span>Total</span><span id="mcTot">0€</span></div><button class="btn-full" onclick="openModal()"><i class="fa-solid fa-file-pdf"></i> Download License (0€)</button></div>
 </div>
 
 <!-- LICENCE MODAL -->
 <div class="modal-o" id="licM">
     <div class="modal-b">
         <button class="modal-x" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-        <h2>Licence Gratuite</h2>
-        <p>Générez votre contrat PDF instantanément. Vous recevrez le fichier et une copie sera envoyée au producteur.</p>
+        <h2>Free License</h2>
+        <p>Generate your PDF contract instantly. You'll receive the file and a copy will be sent to the producer.</p>
         <form id="licF">
-            <div class="ff"><label>Nom *</label><input type="text" id="fN" required></div>
+            <div class="ff"><label>Name *</label><input type="text" id="fN" required></div>
             <div class="ff"><label>Email *</label><input type="email" id="fE" required></div>
-            <div class="ff"><label>Beats sélectionnés *</label><textarea id="fB" required placeholder="Ex: 3tini, KHALIFA, Hermès..."></textarea></div>
-            <div class="ff"><label>Projet</label><input type="text" id="fP" placeholder="Album, YouTube, podcast..."></div>
-            <div class="cb-f"><input type="checkbox" id="fA" required><label for="fA">J'accepte les conditions et je m'engage à créditer "Prod. DJBILBOX BEATS"</label></div>
-            <button type="submit" class="btn-full"><i class="fa-solid fa-download"></i> Télécharger le PDF</button>
+            <div class="ff"><label>Selected beats *</label><textarea id="fB" required placeholder="e.g. 3tini, KHALIFA, Hermès..."></textarea></div>
+            <div class="ff"><label>Project</label><input type="text" id="fP" placeholder="Album, YouTube, podcast..."></div>
+            <div class="cb-f"><input type="checkbox" id="fA" required><label for="fA">I accept the terms and agree to credit "Prod. DJBILBOX BEATS"</label></div>
+            <button type="submit" class="btn-full"><i class="fa-solid fa-download"></i> Download PDF</button>
         </form>
     </div>
 </div>
@@ -829,12 +841,12 @@ button{font-family:var(--font);cursor:pointer}
 <div class="chat-panel" id="chatPanel">
     <div class="chat-head">
         <div class="av"><i class="fa-solid fa-robot"></i></div>
-        <div><h4>BILBOX AI</h4><div class="st">● en ligne · sait tout sur DJBILBOX</div></div>
+        <div><h4>BILBOX AI</h4><div class="st">● online · knows everything about DJBILBOX</div></div>
         <button class="cx" onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="chat-body" id="chatBody"></div>
     <div class="chat-foot">
-        <input id="chatInput" type="text" placeholder="Pose ta question..." onkeydown="if(event.key==='Enter')sendChat()">
+        <input id="chatInput" type="text" placeholder="Ask your question..." onkeydown="if(event.key==='Enter')sendChat()">
         <button onclick="sendChat()"><i class="fa-solid fa-paper-plane"></i></button>
     </div>
 </div>
@@ -1352,7 +1364,7 @@ let cart=[], cur=0, playing=false, sorted=false;
 function renderTracks(list){
     const el=document.getElementById('trackList');
     if(!list) list=TRACKS;
-    document.getElementById('trackCount').textContent=list.length+' pistes';
+    document.getElementById('trackCount').textContent=list.length+' tracks';
     el.innerHTML=list.map((t,i)=>{
         const idx=TRACKS.indexOf(t);
         const isActive=idx===cur;
@@ -1398,12 +1410,12 @@ function sortTracks(){
 }
 
 // ===== CART =====
-function addCart(title){cart.push({title,type:'Licence Free'});updCart();toast(title+' ajouté')}
+function addCart(title){cart.push({title,type:'Free License'});updCart();toast(title+' added')}
 function rmCart(i){cart.splice(i,1);updCart()}
 function updCart(){
     document.getElementById('cBadge').textContent=cart.length;
     const el=document.getElementById('mcList');
-    el.innerHTML=cart.length?cart.map((c,i)=>`<div class="mc-item"><div><h4>${c.title}</h4><p>${c.type}</p></div><button class="mc-rm" onclick="rmCart(${i})"><i class="fa-solid fa-trash"></i></button></div>`).join(''):'<p style="text-align:center;color:var(--text-4);padding:2rem">Votre panier est vide</p>';
+    el.innerHTML=cart.length?cart.map((c,i)=>`<div class="mc-item"><div><h4>${c.title}</h4><p>${c.type}</p></div><button class="mc-rm" onclick="rmCart(${i})"><i class="fa-solid fa-trash"></i></button></div>`).join(''):'<p style="text-align:center;color:var(--text-4);padding:2rem">Your cart is empty</p>';
     document.getElementById('mcTot').textContent=cart.length?'0€ (Free)':'0€';
 }
 function toggleCart(){document.getElementById('mc').classList.toggle('open')}
@@ -1412,18 +1424,19 @@ document.addEventListener('click',e=>{const a=e.target.closest('.hdr-nav a');if(
 
 /* ===== CHAT IA ===== */
 const CHAT_ENDPOINT=''; // <-- URL du Worker Cloudflare (ex: https://djbilbox-ai.xxx.workers.dev/chat) pour activer la vraie IA
-const BILBOX_KB=`DJBILBOX BEATS — beatmaker, producer, sound designer et createur digital.
+const BILBOX_KB=`DJBILBOX BEATS — beatmaker, producer, sound designer and digital creator.
 Genres: oriental, trap, drill, g-funk, funk, balkan, afro, melodic.
-Catalogue: 300+ titres sur Spotify, 130+ beats sur le site en free-for-profit avec licence PDF instantanee.
-Albums/projets: Cyberpunk 2077, Hermes, Why Not 3, Balkan, Funky4life, Video Club.
-Materiel: Novation FLkey 49, micro Bomge BMG-22M, FL Studio.
-Services: createur digital, developpeur web, image & video, beatmaking, mix & mastering, composition & collaborations.
-Licences: gratuites (free for profit) avec credit obligatoire "Prod. DJBILBOX BEATS"; exclusives sur demande.
-Reseaux: Spotify, YouTube @djbilboxbeats, TikTok @djbilboxbeats, SoundCloud djbilbox.`;
+Catalog: 475+ tracks on Spotify, 130+ beats on the site, free-for-profit with instant PDF license.
+Albums/projects: Cyberpunk 2077, Hermes, Why Not 3, Balkan, Funky4life, Video Club.
+VST: Oriental Instrument (Maqam Engine Pro) — free demo + 300+ bundle on Gumroad.
+Gear: Novation FLkey 49, Bomge BMG-22M mic, FL Studio.
+Services: digital creator, web developer, image & video, beatmaking, mix & mastering, composition & collaborations.
+Licenses: free (free for profit) with required credit "Prod. DJBILBOX BEATS"; exclusive on request.
+Socials: Spotify, YouTube @djbilboxbeats, TikTok @djbilboxbeats, SoundCloud djbilboxbeats.`;
 const chatHist=[];
 function toggleChat(){
     const p=document.getElementById('chatPanel');p.classList.toggle('open');
-    if(p.classList.contains('open')&&!chatHist.length)botSay("Salut ! Je suis BILBOX AI. Je sais tout sur DJBILBOX BEATS — beats, genres, licences, services, collabs. Qu'est-ce que tu veux savoir ?");
+    if(p.classList.contains('open')&&!chatHist.length)botSay("Hey! I'm BILBOX AI. I know everything about DJBILBOX BEATS — beats, genres, licenses, services, collabs. What do you want to know?");
     if(p.classList.contains('open'))setTimeout(()=>document.getElementById('chatInput').focus(),100);
 }
 function addMsg(txt,cls){
@@ -1454,14 +1467,15 @@ async function sendChat(){
 }
 function localBot(q){
     q=q.toLowerCase();
-    if(/licen|gratuit|free|prix|cout|tarif|combien/.test(q))return "Les beats sont en free-for-profit : licence gratuite avec credit obligatoire « Prod. DJBILBOX BEATS ». Genere ton contrat PDF en 1 clic depuis le panier. Licences exclusives sur demande.";
-    if(/genre|style|oriental|trap|drill|funk|balkan/.test(q))return "DJBILBOX produit oriental, trap, drill, g-funk, funk, balkan, afro et melodic. 300+ titres sur Spotify.";
-    if(/service|collab|mix|master|video|clip|site|web|develop/.test(q))return "Services DJBILBOX : createur digital, developpeur web, image & video, beatmaking, mix & mastering, composition & collaborations. Dis-moi ton projet !";
-    if(/materiel|gear|studio|clavier|micro|fl studio|logiciel/.test(q))return "Studio DJBILBOX : clavier Novation FLkey 49, micro Bomge BMG-22M, FL Studio.";
-    if(/spotify|ecout|musique|album|projet|titre/.test(q))return "Tout le catalogue est sur Spotify (300+ titres) : Cyberpunk 2077, Hermes, Why Not 3, Balkan, Funky4life, Video Club. Le player en haut du site te laisse tout ecouter.";
-    if(/contact|reseau|insta|tiktok|youtube/.test(q))return "Retrouve DJBILBOX sur Spotify, YouTube/TikTok @djbilboxbeats et SoundCloud djbilbox. Pour une collab, ecris-moi ici !";
-    if(/salut|bonjour|hello|yo|coucou|hey/.test(q))return "Yo ! Bienvenue chez DJBILBOX BEATS. Beats, licences, services, collabs — demande ce que tu veux.";
-    return "DJBILBOX BEATS fait du beatmaking (oriental/trap/drill/funk/balkan), du mix/master, du dev web et de la creation digitale. Precise ta demande (beats, licence, collab, services) et je t'oriente.";
+    if(/licen|license|free|prix|price|cost|how much|tarif|paid|payment/.test(q))return "Beats are free-for-profit: free license with required credit \"Prod. DJBILBOX BEATS\". Generate your PDF contract in 1 click from the cart. Exclusive licenses on request.";
+    if(/genre|style|oriental|trap|drill|funk|balkan|what music|what style/.test(q))return "DJBILBOX makes oriental, trap, drill, g-funk, funk, balkan, afro and melodic. 475+ tracks on Spotify.";
+    if(/service|collab|collaboration|mix|master|mastering|video|clip|site|web|develop|developer|design/.test(q))return "DJBILBOX services: digital creator, web developer, image & video, beatmaking, mix & mastering, composition & collaborations. Tell me about your project!";
+    if(/vst|plugin|instrument|oriental instrument|maqam|synth|sound/.test(q))return "Oriental Instrument VST (Maqam Engine Pro): authentic Middle Eastern sounds. Free demo + 300+ bundle on Gumroad — see the VST section.";
+    if(/gear|studio|keyboard|mic|equipment|setup|software|fl studio|ableton|logic|hardware/.test(q))return "DJBILBOX studio: Novation FLkey 49 keyboard, Bomge BMG-22M mic, FL Studio.";
+    if(/spotify|listen|music|album|project|track|beat|song|play|stream|hear/.test(q))return "The whole catalog is on Spotify (475+ tracks): Cyberpunk 2077, Hermes, Why Not 3, Balkan, Funky4life, Video Club. The player at the top lets you listen to everything.";
+    if(/contact|email|reach|social|insta|instagram|tiktok|youtube|message|dm/.test(q))return "Find DJBILBOX on Spotify, YouTube/TikTok @djbilboxbeats and SoundCloud djbilboxbeats. For a collab, message me right here!";
+    if(/salut|bonjour|hello|yo|hey|hi|welcome|start/.test(q))return "Yo! Welcome to DJBILBOX BEATS. Beats, licenses, services, collabs — ask anything.";
+    return "DJBILBOX BEATS does beatmaking (oriental/trap/drill/funk/balkan), mix/master, web dev and digital creation. Tell me what you need (beats, license, collab, services) and I'll guide you.";
 }
 
 // ===== MODAL =====
@@ -1494,10 +1508,10 @@ document.getElementById('licF').addEventListener('submit',async function(e){
     if(!chk){toast('⚠ Veuillez accepter les conditions');return;}
 
     // Charger jsPDF (dynamique + fallback CDN si le head a échoué)
-    toast('Génération du contrat...');
+    toast('Generating contract...');
     const ok=await ensureJsPDF();
     if(!ok){
-        toast('⚠ PDF bloqué (extension anti-pub ?) — réessaie');
+        toast('⚠ PDF blocked (ad-blocker?) — try again');
         console.error('[LICENCE] jsPDF introuvable après fallbacks.');
         return;
     }
@@ -1530,7 +1544,7 @@ document.getElementById('licF').addEventListener('submit',async function(e){
     // Sauvegarde locale
     try{const l=JSON.parse(localStorage.getItem('djb_lic')||'[]');l.push({ref,date:new Date().toISOString(),name:n,email:em,beats});localStorage.setItem('djb_lic',JSON.stringify(l))}catch(x){console.warn('[LICENCE] localStorage:',x)}
 
-    cart=[];updCart();closeModal();this.reset();toast('✓ Licence '+ref+' téléchargée !');
+    cart=[];updCart();closeModal();this.reset();toast('✓ License '+ref+' downloaded!');
 });
 
 function sanitizeText(str){
@@ -1581,7 +1595,7 @@ function renderKits(){
     document.getElementById('kitsG').innerHTML=KITS.map(k=>`<div class="kit-c" onclick="window.open('${k.link}','_blank')"><div class="kit-cover"><img src="${k.img}" alt="${k.title}" loading="lazy"><span class="kit-gloss"></span></div><div class="kit-c-body"><h4>${k.title}</h4><p>${k.sub}</p><div class="kit-c-foot"><span class="kit-price">FREE</span><button class="kit-dl">Download</button></div></div></div>`).join('');
 }
 function renderDisco(){
-    document.getElementById('discoG').innerHTML=DISCOGRAPHY.map(a=>`<div class="disco-c" onclick="window.open('${a.spotifyUrl}','_blank')"><img src="${a.img}" alt="${a.title}" loading="lazy"><div class="disco-c-body"><h4>${a.title}</h4><p>${a.year} • ${a.type}</p><span class="disco-spot"><i class="fa-brands fa-spotify"></i> Écouter</span></div></div>`).join('');
+    document.getElementById('discoG').innerHTML=DISCOGRAPHY.map(a=>`<div class="disco-c" onclick="window.open('${a.spotifyUrl}','_blank')"><img src="${a.img}" alt="${a.title}" loading="lazy"><div class="disco-c-body"><h4>${a.title}</h4><p>${a.year} • ${a.type}</p><span class="disco-spot"><i class="fa-brands fa-spotify"></i> Listen</span></div></div>`).join('');
 }
 function renderYT(){
     document.getElementById('ytG').innerHTML=PLAYLISTS.map(p=>`<div class="yt-c" onclick="window.open('https://www.youtube.com/playlist?list=${p.id}','_blank')"><img src="${p.img}" alt="${p.title}" loading="lazy"><div class="yt-c-body"><h4>${p.title}</h4><p>${p.sub}</p></div></div>`).join('');
@@ -1596,9 +1610,9 @@ const BUNDLE_URL='https://djbilboxbeats.gumroad.com/l/oriental-instrument-djbilb
 function vstAction(kind){
     const url=kind==='bundle'?BUNDLE_URL:DEMO_URL;
     if(url){window.open(url,'_blank');return;}
-    const subj=kind==='bundle'?'Oriental Instrument - Bundle 300+':'Oriental Instrument - Demo gratuite';
-    window.location.href='mailto:djbilboxbeats@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent('Bonjour, je veux '+(kind==='bundle'?'le bundle 300+ Oriental Instrument.':'la demo gratuite Oriental Instrument.'));
-    toast(kind==='bundle'?'Demande bundle envoyee':'Demande demo envoyee');
+    const subj=kind==='bundle'?'Oriental Instrument - Bundle 300+':'Oriental Instrument - Free Demo';
+    window.location.href='mailto:djbilboxbeats@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent('Hi, I want '+(kind==='bundle'?'the Oriental Instrument 300+ bundle.':'the free Oriental Instrument demo.'));
+    toast(kind==='bundle'?'Bundle request sent':'Demo request sent');
 }
 
 /* ===== NEWSLETTER ===== */
@@ -1974,5 +1988,13 @@ function loop(){
 loop();
 })();
 </script>
+
+<!-- Language switcher — Google Translate (27 langues) -->
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,fr,es,pt,de,it,nl,ar,tr,ru,hi,ur,bn,id,ms,zh-CN,ja,ko,pl,ro,el,sv,he,fa,sw,th,vi',autoDisplay:false},'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
