@@ -479,9 +479,23 @@ body{top:0!important;position:static!important}
 .tst-text{font-size:.82rem;line-height:1.5;color:var(--text-2)}
 .tst-foot{display:flex;align-items:center;gap:1.1rem;margin-top:.9rem;font-size:.68rem;color:var(--text-4)}
 .tst-foot .lk{color:var(--accent)}
-.tst-cta{text-align:center;margin-top:.5rem}
-.tst-cta a{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.5rem;border-radius:30px;background:rgba(122,90,255,.14);border:1px solid rgba(150,130,255,.4);color:#cfd3ff;font-weight:700;font-size:.78rem;text-decoration:none;transition:.2s}
-.tst-cta a:hover{background:rgba(122,90,255,.26)}
+.tst-cta{text-align:center;margin-top:.5rem;display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
+.tst-cta a,.tst-cta button{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.5rem;border-radius:30px;background:rgba(122,90,255,.14);border:1px solid rgba(150,130,255,.4);color:#cfd3ff;font-weight:700;font-size:.78rem;text-decoration:none;transition:.2s;cursor:pointer}
+.tst-cta a:hover,.tst-cta button:hover{background:rgba(122,90,255,.26)}
+/* stats band — chiffres réels */
+.tst-stats{display:flex;justify-content:center;gap:2.2rem;flex-wrap:wrap;margin:.4rem 0 1.4rem}
+.tst-stat{text-align:center}
+.tst-stat b{display:block;font-family:var(--font-a);font-size:1.7rem;font-weight:800;background:linear-gradient(90deg,#a78bff,#ff6ad5);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.tst-stat span{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-4)}
+/* review form */
+.rev-form{max-width:560px;margin:1.6rem auto 0;background:linear-gradient(170deg,rgba(26,24,40,.7),rgba(12,12,18,.85));border:1px solid rgba(150,130,255,.18);border-radius:16px;padding:1.3rem}
+.rev-form h4{font-family:var(--font-a);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:.9rem}
+.rev-form input,.rev-form textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:#fff;font-family:var(--font);font-size:.82rem;padding:.7rem .9rem;margin-bottom:.7rem;outline:none}
+.rev-form textarea{resize:vertical;min-height:74px}
+.rev-form .rev-stars{display:flex;gap:.3rem;justify-content:center;margin-bottom:.8rem;font-size:1.3rem;color:#444}
+.rev-form .rev-stars i{cursor:pointer;transition:.15s}
+.rev-form .rev-stars i.on{color:#ffcf6a}
+.rev-form button{width:100%;padding:.8rem;border-radius:10px;background:linear-gradient(90deg,#7a5aff,#ff6ad5);border:none;color:#fff;font-weight:700;font-size:.85rem;cursor:pointer}
 
 /* ===== LICENSING ===== */
 .lic-g{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-bottom:1.4rem}
@@ -745,8 +759,24 @@ body{top:0!important;position:static!important}
         <span class="tst-scroll-hint">Scroll &rarr;</span>
     </div>
     <p class="sec-sub" style="text-align:center">Real reviews from the DJBILBOX BEATS community</p>
+    <div class="tst-stats">
+        <div class="tst-stat"><b>634</b><span>YouTube subs</span></div>
+        <div class="tst-stat"><b>475+</b><span>Spotify tracks</span></div>
+        <div class="tst-stat"><b>330+</b><span>Videos</span></div>
+        <div class="tst-stat"><b>10</b><span>Albums</span></div>
+    </div>
     <div class="tst-row" id="tstRow"></div>
-    <div class="tst-cta"><a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i> Leave your review on YouTube</a></div>
+    <!-- Review form — real visitors submit, emailed to producer + shown instantly -->
+    <form class="rev-form" id="revForm" onsubmit="submitReview(event)">
+        <h4><i class="fa-solid fa-star"></i> Leave your review</h4>
+        <div class="rev-stars" id="revStars">
+            <i class="fa-solid fa-star" data-v="1"></i><i class="fa-solid fa-star" data-v="2"></i><i class="fa-solid fa-star" data-v="3"></i><i class="fa-solid fa-star" data-v="4"></i><i class="fa-solid fa-star" data-v="5"></i>
+        </div>
+        <input type="text" id="revName" placeholder="Your name *" required maxlength="40">
+        <textarea id="revText" placeholder="Your review *" required maxlength="240"></textarea>
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i> Post my review</button>
+    </form>
+    <div class="tst-cta"><a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i> Or review on YouTube</a></div>
 </div>
 
 <!-- LICENSING -->
@@ -1636,15 +1666,58 @@ async function subscribeNewsletter(e){
 // ===== INIT =====
 // ===== TEMOIGNAGES (vrais commentaires) =====
 // Ajoute ici les vrais avis reçus (YouTube, BeatStars, DM, mail).
+// <<<TESTIMONIALS_AUTO_START>>>
 const TESTIMONIALS=[
-  {name:"nevenka vukobratovic",verified:false,src:"YouTube",text:"It's great ❤❤❤",likes:"1",avatar:"https://yt3.ggpht.com/eb5-F-sTVBkQPFJgTkTVCtMqlHI3ItYCqdQ2M_R18ciNrdCCixT0KslEseC6u7Sbgcx0x0R5sD0=s88-c-k-c0x00ffffff-no-rj"},
+  {name:"@nevenkavukobratovic1111",verified:false,src:"YouTube",text:"It's great ❤❤❤",likes:"1",avatar:"https://yt3.ggpht.com/eb5-F-sTVBkQPFJgTkTVCtMqlHI3ItYCqdQ2M_R18ciNrdCCixT0KslEseC6u7Sbgcx0x0R5sD0=s88-c-k-c0x00ffffff-no-rj"},
+  {name:"@popatyourecords",verified:false,src:"YouTube",text:"Great track my friend enjoy your day cheers",likes:"1",avatar:"https://yt3.ggpht.com/oORllyygB5IiKaACmMT67RS5ZnFlyq04UJnqqg9ZU7jC2gh5eJenO6uP1y16vcoYAw5gScWH=s88-c-k-c0x00ffffff-no-rj"},
+  {name:"@DadiUSA",verified:false,src:"YouTube",text:"Liked and watched this extremely beautiful video tour presentation and thanks for sharing this with your friend.",likes:"1",avatar:"https://yt3.ggpht.com/salRTi-BTHj6nPkUkjDDQ22xG8GgMMQkSYfIra35ts93Wbix0AN0X9FZM6niMQEo1Qf_GxV1yg=s88-c-k-c0x00ffffff-no-rj"},
+  {name:"@Lapuissancemusic-w6u",verified:false,src:"YouTube",text:"La puissance Music papi",likes:"1",avatar:"https://yt3.ggpht.com/cGuNLy6LFQ3UuFDzL8yumf3A-oMEHzKhmE8Qg_wprgg5mf7yL_QdhoTXb7YLwyQ-lUkYSDcg=s88-c-k-c0x00ffffff-no-rj"},
 ];
+// <<<TESTIMONIALS_AUTO_END>>>
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function getStoredReviews(){try{return JSON.parse(localStorage.getItem('djb_reviews')||'[]');}catch(e){return[];}}
 function renderTestimonials(){
   const row=document.getElementById('tstRow');if(!row)return;
-  if(!TESTIMONIALS.length){document.getElementById('reviews').style.display='none';return;}
-  row.innerHTML=TESTIMONIALS.map(t=>`<div class="tst-card"><div class="tst-top">${t.avatar?`<img class="tst-av" src="${t.avatar}" alt="">`:'<div class="tst-av"></div>'}<div><div class="tst-name">${t.name}${t.verified?' <i class="fa-solid fa-circle-check"></i>':''}</div><div class="tst-src">${t.src||''}</div></div></div><div class="tst-text">${t.text}</div><div class="tst-foot"><span class="lk"><i class="fa-solid fa-heart"></i> ${t.likes||'0'}</span><span><i class="fa-regular fa-comment"></i> Reply</span></div></div>`).join('');
+  // vrais avis curés + avis visiteurs (localStorage, affichés en premier)
+  const all=getStoredReviews().concat(TESTIMONIALS);
+  if(!all.length){document.getElementById('reviews').style.display='none';return;}
+  row.innerHTML=all.map(t=>{
+    const stars=t.rating?`<div style="color:#ffcf6a;font-size:.7rem;margin-bottom:.4rem">${'★'.repeat(t.rating)}${'☆'.repeat(5-t.rating)}</div>`:'';
+    return `<div class="tst-card"><div class="tst-top">${t.avatar?`<img class="tst-av" src="${t.avatar}" alt="">`:'<div class="tst-av"></div>'}<div><div class="tst-name">${esc(t.name)}${t.verified?' <i class="fa-solid fa-circle-check"></i>':''}</div><div class="tst-src">${esc(t.src||'')}</div></div></div>${stars}<div class="tst-text">${esc(t.text)}</div><div class="tst-foot"><span class="lk"><i class="fa-solid fa-heart"></i> ${esc(t.likes||'0')}</span><span><i class="fa-regular fa-comment"></i> Reply</span></div></div>`;
+  }).join('');
 }
-renderTracks();renderKits();renderDisco();renderYT();renderTestimonials();
+// ===== REVIEW FORM (vrais visiteurs) =====
+let revRating=5;
+function initRevStars(){
+  const box=document.getElementById('revStars');if(!box)return;
+  const paint=n=>box.querySelectorAll('i').forEach(s=>s.classList.toggle('on',+s.dataset.v<=n));
+  box.querySelectorAll('i').forEach(s=>{
+    s.onmouseenter=()=>paint(+s.dataset.v);
+    s.onclick=()=>{revRating=+s.dataset.v;paint(revRating);};
+  });
+  box.onmouseleave=()=>paint(revRating);
+  paint(revRating);
+}
+async function submitReview(e){
+  e.preventDefault();
+  const name=document.getElementById('revName').value.trim();
+  const text=document.getElementById('revText').value.trim();
+  if(!name||!text)return;
+  const rev={name,text,rating:revRating,src:'Verified visitor',likes:'0',date:new Date().toISOString()};
+  // 1) affichage instant (localStorage de ce visiteur)
+  try{const l=getStoredReviews();l.unshift(rev);localStorage.setItem('djb_reviews',JSON.stringify(l.slice(0,20)));}catch(x){}
+  renderTestimonials();
+  document.getElementById('revForm').reset();revRating=5;initRevStars();
+  toast('✓ Thanks for your review!');
+  // 2) envoi au producteur (FormSubmit) pour curation -> ajout aux vrais avis
+  try{
+    await fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com',{
+      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({_subject:'New site review — '+name,name,rating:revRating+'/5',review:text})
+    });
+  }catch(x){console.warn('[review] mail failed',x);}
+}
+renderTracks();renderKits();renderDisco();renderYT();renderTestimonials();initRevStars();
 
 // Init VanillaTilt on Drum Kit + Discographie cards
 setTimeout(function(){
