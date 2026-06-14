@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JUCE C++ Developer for Hire | Custom VST3 / AU Audio Plugins — DJBILBOX BEATS</title>
+<meta name="description" content="C++ / JUCE audio plugin developer. Custom VST3 & AU plugins for Windows & macOS — real-time DSP, multi-sampling, Maqam quarter-tone tuning. Builder of Oriental Instrument. Request a quote.">
+<link rel="canonical" href="https://djbilboxbeats.com/vst-plugins/juce-cpp-developer/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://djbilboxbeats.com/vst-plugins/juce-cpp-developer/">
+<link rel="alternate" hreflang="fr" href="https://djbilboxbeats.com/fr/vst-plugins/developpeur-juce-cpp/">
+<link rel="alternate" hreflang="x-default" href="https://djbilboxbeats.com/vst-plugins/juce-cpp-developer/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JUCE C++ Developer | Custom VST3 / AU Audio Plugins — DJBILBOX BEATS">
+<meta property="og:description" content="C++ / JUCE audio plugin engineering. Builder of Oriental Instrument. Real-time DSP done right.">
+<meta property="og:url" content="https://djbilboxbeats.com/vst-plugins/juce-cpp-developer/">
+<meta property="og:image" content="https://djbilboxbeats.com/img/juce-dev-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+:root{--bg:#0a0a0f;--surf:#14141c;--line:#262633;--txt:#e8e8f0;--mut:#9a9ab0;--acc:#ff3d54;--acc2:#6c4cff}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+header.top{position:sticky;top:0;z-index:9;background:rgba(10,10,15,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{max-width:1180px;margin:auto;display:flex;gap:1.5rem;align-items:center;padding:.8rem 1.2rem}
+.bar a{color:var(--mut);font-size:.9rem}.bar .brand{color:var(--txt);font-weight:700;margin-right:auto}
+nav.crumb{max-width:1180px;margin:auto;padding:.7rem 1.2rem;font-size:.82rem;color:var(--mut)}
+nav.crumb a{color:var(--mut)}
+.wrap{max-width:1180px;margin:auto;display:grid;grid-template-columns:230px 1fr;gap:2.5rem;padding:1rem 1.2rem 4rem}
+aside.toc{position:sticky;top:84px;align-self:start;font-size:.88rem}
+aside.toc strong{display:block;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;font-size:.7rem;margin-bottom:.6rem}
+aside.toc a{display:block;color:var(--mut);padding:.32rem 0;border-left:2px solid var(--line);padding-left:.8rem}
+aside.toc a:hover,aside.toc a.on{color:var(--txt);border-left-color:var(--acc);text-decoration:none}
+main h1{font-size:2.3rem;line-height:1.14;margin:.4rem 0 1rem;background:linear-gradient(90deg,#fff,var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent}
+main h2{font-size:1.5rem;margin:2.8rem 0 .8rem;scroll-margin-top:84px}
+main h3{font-size:1.12rem;margin:1.6rem 0 .5rem}
+main p,main li{color:#d2d2e0}main ul{padding-left:1.2rem}
+.intro{font-size:1.12rem;color:#e8e8f0}
+.hero-cta{display:inline-block;background:var(--acc);color:#fff;font-weight:700;padding:.85rem 1.6rem;border-radius:8px;margin:.4rem .5rem .4rem 0}
+.hero-cta.ghost{background:transparent;border:1px solid var(--acc);color:var(--acc)}
+.store{border:1px solid var(--line);background:var(--surf);border-radius:12px;padding:1rem;margin:1.6rem 0}
+.store .player{width:100%;height:120px;border-radius:8px;background:linear-gradient(90deg,#14141c,#1d1530);display:flex;align-items:center;gap:1rem;padding:0 1.2rem;border:1px solid var(--line)}
+.store .player .btn{width:48px;height:48px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.store .player .wave{flex:1;height:40px;background:repeating-linear-gradient(90deg,var(--acc2) 0 2px,transparent 2px 6px);opacity:.5;border-radius:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1.2rem 0}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:1.1rem}
+.card h3{margin-top:0}
+.spec{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.92rem}
+.spec td,.spec th{border:1px solid var(--line);padding:.55rem .7rem;text-align:left}
+.spec th{background:var(--surf);color:var(--mut)}
+details{border-bottom:1px solid var(--line);padding:.75rem 0}details summary{cursor:pointer;font-weight:600}
+details p{margin-top:.5rem}
+.lead{display:flex;gap:.6rem;flex-wrap:wrap;background:var(--surf);border:1px solid var(--acc2);border-radius:12px;padding:1.3rem;margin:2.4rem 0;align-items:center}
+.lead input{flex:1;min-width:180px;padding:.7rem;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--txt)}
+.lead button{border:0;cursor:pointer}
+.stats{display:flex;gap:1rem;flex-wrap:wrap;margin:1.4rem 0}
+.stats div{flex:1;min-width:120px;background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:1rem;text-align:center}
+.stats b{display:block;font-size:1.6rem;color:var(--acc)}
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:.85rem;text-align:center;padding:2rem 1rem}
+footer a{color:var(--mut)}
+@media(max-width:820px){.wrap{grid-template-columns:1fr}aside.toc{display:none}.bar a:not(.brand){display:none}main h1{font-size:1.9rem}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="bar">
+  <a class="brand" href="/">DJBILBOX BEATS</a>
+  <a href="/vst-plugins/">VST Plugins</a>
+  <a href="/beats/">Beats</a>
+  <a href="/web-dev-music/">Web Dev</a>
+  <a href="#lead" class="hero-cta" style="padding:.45rem 1rem">Get a Quote</a>
+</div></header>
+
+<nav class="crumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> › <a href="/vst-plugins/">VST Plugins</a> › <span>JUCE C++ Developer</span>
+</nav>
+
+<div class="wrap">
+
+  <aside class="toc" aria-label="On this page">
+    <strong>On this page</strong>
+    <a href="#why">Why JUCE</a>
+    <a href="#oriental">Proof: Oriental Instrument</a>
+    <a href="#services">What I build</a>
+    <a href="#dsp">DSP & engineering</a>
+    <a href="#formats">Formats & delivery</a>
+    <a href="#process">Process</a>
+    <a href="#who">Who I work with</a>
+    <a href="#faq">FAQ</a>
+    <a href="#lead">Get a quote</a>
+  </aside>
+
+  <main>
+    <h1>JUCE C++ Developer — Custom VST3 / AU Audio Plugins</h1>
+    <p class="intro">You have a sound in your head, a signature processing chain, or an instrument idea your DAW can't deliver. I build it in C++ with the <strong>JUCE framework</strong> as a <strong>VST3 / AU plugin</strong> for Windows and macOS. My own product, <a href="#oriental"><strong>Oriental Instrument</strong></a> — a multi-sampled oriental sampler with a Maqam quarter-tone tuning system — is built on this exact stack. Real-time DSP done properly: lock-free buffers, sample-accurate automation, multi-threaded scheduling, and transient and harmonic processing.</p>
+    <a href="#lead" class="hero-cta">Request a Quote</a>
+    <a href="/vst-plugins/dsp-optimization-service/" class="hero-cta ghost">DSP Optimization Service</a>
+
+    <div class="stats">
+      <div><b>C++ / JUCE</b>core framework</div>
+      <div><b>VST3 · AU</b>Windows &amp; macOS</div>
+      <div><b>iOS · Android</b>mobile audio too</div>
+      <div><b>Maqam</b>microtonal DSP</div>
+    </div>
+
+    <!-- DEMO PLAYER ZONE -->
+    <section id="demo" class="store" aria-label="Plugin demo audio">
+      <h3 style="margin-top:.2rem">Oriental Instrument — sound demo</h3>
+      <div class="player"><div class="btn">▶</div><div class="wave"></div><span style="color:var(--mut);font-size:.85rem">demo</span></div>
+      <p style="color:var(--mut);font-size:.85rem;margin-top:.6rem">Demo slot — audio player embeds here. Oriental Instrument is in active development (beta to come).</p>
+    </section>
+
+    <h2 id="why">Why a dedicated JUCE developer beats an off-the-shelf plugin</h2>
+    <p>Stock plugins are designed for the average use case. A producer chasing a signature sound, or one who needs an instrument that doesn't exist off the shelf — an authentic oriental sampler with real quarter-tone Maqam tuning, for example — is not average. <strong>JUCE</strong> is the C++ framework behind a large share of commercial plugins because it compiles one codebase to VST3 and AU across Windows and macOS, and out to iOS and Android. Commission a custom build and you get processing tuned to <em>your</em> material, a UI built around <em>your</em> workflow, and code you own.</p>
+    <ul>
+      <li><strong>Your DSP, not a preset.</strong> Custom transfer curves, instrument character, and dynamics behaviour modelled on references you send me.</li>
+      <li><strong>One codebase, multiple targets.</strong> VST3 and AU from a single C++/JUCE build; the same engine runs the iOS and Android versions of Oriental Instrument.</li>
+      <li><strong>Real-time safe.</strong> No allocations or locks on the audio thread.</li>
+      <li><strong>You own the IP.</strong> Source handover on custom engagements — brand it, extend it, keep it in-house.</li>
+    </ul>
+
+    <h2 id="oriental">Proof of work: Oriental Instrument (Maqam Engine Pro)</h2>
+    <p>Rather than claim numbers I can't show you, here is the real product I build in C++/JUCE — live on <a href="https://www.djbilboxbeats.com">djbilboxbeats.com</a> with a free demo:</p>
+    <ul>
+      <li><strong>Oriental instruments</strong> — Oud, Ney, Qanun, Violin, Darbouka and oriental strings, captured with multi-layer multi-sampling for vibrato and slides.</li>
+      <li><strong>Maqam quarter-tone tuning</strong> — a microtonal system so oriental scales are played correctly, not bent approximations.</li>
+      <li><strong>70 presets</strong> and an <strong>8-effect chain</strong> including convolution reverb and delay.</li>
+      <li><strong>VST3 / AU</strong> for Windows and macOS — compatible with <strong>FL Studio, Ableton, Logic and Cubase</strong>.</li>
+    </ul>
+    <p style="color:var(--mut)">Pricing: free demo, or the full Bundle 300+ with lifetime access and free updates. Backed by a real catalogue — 475+ tracks on Spotify, 10 albums.</p>
+
+    <h2 id="services">What I build</h2>
+    <div class="grid">
+      <div class="card"><h3>Audio effects</h3><p>Compressors, multiband dynamics, saturation, EQ (linear- &amp; minimum-phase), transient shapers, reverbs, delays, glue and bus processors.</p></div>
+      <div class="card"><h3>Instruments &amp; samplers</h3><p>Sample-based instruments, granular engines, drum machines, synths with custom oscillators and modulation matrices.</p></div>
+      <div class="card"><h3>Signature / artist tools</h3><p>One-knob "your sound" plugins, label mastering chains, producer-branded white-label products for release or resale.</p></div>
+      <div class="card"><h3>Audit &amp; optimization</h3><p>Existing JUCE codebase too heavy or glitchy? CPU profiling, real-time-safety fixes, SIMD and oversampling rework.</p></div>
+    </div>
+
+    <h2 id="dsp">DSP &amp; engineering — under the hood</h2>
+    <p>Great audio software lives at the intersection of signal processing and software architecture. Both have to be right or the plugin either sounds wrong or drops out. Here's how I treat the audio thread as sacred:</p>
+    <h3>Real-time-safe signal flow</h3>
+    <p>Every sample passes through a <strong>lock-free</strong> path: no memory allocation, no mutexes, no system calls on the audio callback. Parameter changes from the UI cross to the DSP via lock-free FIFOs and atomic smoothing, so automation is <strong>sample-accurate</strong> and click-free. Buffers are pre-allocated and reused; denormals are flushed to keep CPU flat when signals decay to silence.</p>
+    <h3>Dynamics, transients &amp; harmonics</h3>
+    <p>Musical processing is the whole point. I build envelope followers with program-dependent attack/release, transient detectors that separate the stick from the body of a drum, and saturation stages whose <strong>harmonic</strong> content I shape deliberately — even-order warmth vs odd-order edge — with oversampling and anti-aliasing so the top end stays clean instead of turning to fizz.</p>
+    <h3>Performance: multi-threading &amp; SIMD</h3>
+    <p>Heavy offline work (FFT analysis, impulse rendering, oversampled convolution) can run on background threads so the real-time path stays light, with per-sample math vectorized via SIMD (SSE/AVX on Intel, NEON on Apple Silicon). Latency is reported correctly to the host for sample-accurate PDC. I don't publish a CPU benchmark figure — performance is measured and tuned per project on real hardware.</p>
+
+    <h2 id="formats">Formats, platforms &amp; delivery</h2>
+    <table class="spec">
+      <tr><th>Target</th><th>Status</th></tr>
+      <tr><td>VST3</td><td>Default build — cross-DAW (Ableton, Cubase, FL Studio, Reaper, Bitwig). Ships on Oriental Instrument.</td></tr>
+      <tr><td>AU</td><td>Default build — macOS (Logic Pro, GarageBand). Ships on Oriental Instrument.</td></tr>
+      <tr><td>iOS / Android</td><td>Standalone mobile from the same JUCE engine (Oriental Instrument mobile).</td></tr>
+      <tr><td>AAX / CLAP</td><td>Available on request — scoped per project, not part of a default build.</td></tr>
+    </table>
+    <p>Builds for <strong>Windows</strong> and <strong>macOS</strong>. On custom engagements, delivery includes documented C++ source and a buildable CMake/Projucer project so you're never locked to me.</p>
+
+    <h2 id="process">How an engagement works</h2>
+    <ul>
+      <li><strong>1 · Scope call.</strong> You describe the sound, the workflow, the references. I scope feasibility, formats and price.</li>
+      <li><strong>2 · Prototype.</strong> A working DSP proof you can A/B against your references before committing to the full build.</li>
+      <li><strong>3 · Build &amp; UI.</strong> Production code, custom interface, host automation, presets.</li>
+      <li><strong>4 · QA.</strong> Tested in real sessions on Windows and macOS across hosts.</li>
+      <li><strong>5 · Handover.</strong> Build, source and docs; optional support/iteration.</li>
+    </ul>
+
+    <h2 id="who">Who I work with</h2>
+    <div class="grid">
+      <div class="card"><h3>Studios</h3><p>Lock your signature chain into one plugin every engineer recalls instantly.</p></div>
+      <div class="card"><h3>Labels</h3><p>Standardize loudness and tone across a catalog — a branded mastering tool for your roster.</p></div>
+      <div class="card"><h3>Producers &amp; artists</h3><p>Ship a name-brand plugin as merch or a product line. I build it, you sell it.</p></div>
+      <div class="card"><h3>Audio startups</h3><p>Contract DSP/JUCE engineering to hit a release window without hiring full-time.</p></div>
+    </div>
+
+    <!-- LEAD CAPTURE -->
+    <form id="lead" class="lead" action="https://djbilboxbeats.com/api/lead" method="post">
+      <input name="email" type="email" required placeholder="you@studio.com">
+      <input name="project" placeholder="What plugin do you need?">
+      <button class="hero-cta" type="submit">Request a Quote →</button>
+    </form>
+    <p style="text-align:center;color:var(--mut)">Tell me what you need and I'll come back with scope and pricing. Email: <a href="mailto:djbilboxbeats@gmail.com">djbilboxbeats@gmail.com</a></p>
+
+    <h2 id="faq">FAQ</h2>
+    <details open><summary>How much does a custom VST plugin cost?</summary><p>It depends on scope — a single instrument or effect is very different from a multi-engine sampler. Tell me what you need and you get a quote for that specific project. No fixed price is published because there's no honest one-size-fits-all figure.</p></details>
+    <details><summary>Do I own the source code?</summary><p>On a custom engagement, yes — you receive a documented, buildable C++ source handover and own the IP. Scope and terms are agreed up front in the quote.</p></details>
+    <details><summary>Which formats and platforms do you deliver?</summary><p>VST3 and AU for Windows and macOS — the stack Oriental Instrument ships on — plus standalone iOS and Android. Other formats (AAX, CLAP) can be scoped on request but aren't part of a default build.</p></details>
+    <details><summary>Can you work on an existing JUCE codebase?</summary><p>Yes — DSP and real-time-safety work, performance profiling and debugging via the <a href="/vst-plugins/dsp-optimization-service/">DSP optimization service</a>.</p></details>
+    <details><summary>What can I actually see today?</summary><p>Oriental Instrument is the live proof of work — C++/JUCE, 7 instruments, Maqam quarter-tone tuning, VST3/AU + mobile. A free demo is available now.</p></details>
+
+    <p style="margin-top:2rem">Related: <a href="/vst-plugins/custom-vst-plugin-creation/">Custom VST plugin creation</a> · <a href="/vst-plugins/audio-effects-plugin-architecture/">Audio effects plugin architecture</a> · <a href="/beats/">Need beats instead?</a> · <a href="/web-dev-music/">Music-industry web development</a></p>
+  </main>
+</div>
+
+<footer>© <span id="y"></span> DJBILBOX BEATS — Paris · Toulouse · Worldwide ·
+  <a href="/vst-plugins/">VST</a> · <a href="/beats/">Beats</a> · <a href="/web-dev-music/">Web</a></footer>
+
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+var ls=[].slice.call(document.querySelectorAll('aside.toc a')),hs=ls.map(function(a){return document.querySelector(a.getAttribute('href'))});
+addEventListener('scroll',function(){var y=scrollY+90,i=hs.length;while(--i>=0){if(hs[i]&&hs[i].offsetTop<=y){ls.forEach(function(a){a.classList.remove('on')});ls[i].classList.add('on');break}}},{passive:true});
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://djbilboxbeats.com/"},
+        {"@type":"ListItem","position":2,"name":"VST Plugins","item":"https://djbilboxbeats.com/vst-plugins/"},
+        {"@type":"ListItem","position":3,"name":"JUCE C++ Developer","item":"https://djbilboxbeats.com/vst-plugins/juce-cpp-developer/"}
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://djbilboxbeats.com/vst-plugins/juce-cpp-developer/#oriental-instrument",
+      "name": "Oriental Instrument",
+      "description": "Oriental Instrument (Maqam Engine Pro) — multi-sampled oriental virtual instrument built in C++/JUCE: Oud, Ney, Qanun, Violin, Darbouka and oriental strings, 70 presets, 8 effects, Maqam quarter-tone tuning. Compatible with FL Studio, Ableton, Logic, Cubase.",
+      "applicationCategory": "MultimediaApplication",
+      "applicationSubCategory": "Audio Plugin (VST3 / AU)",
+      "operatingSystem": "Windows, macOS",
+      "author": {"@id":"https://djbilboxbeats.com/#musicgroup"},
+      "offers": {"@type":"Offer","priceCurrency":"USD","price":"0","description":"Free demo available; Bundle 300+ (lifetime access, free updates)","availability":"https://schema.org/InStock"}
+    },
+    {
+      "@type": "MusicGroup",
+      "@id": "https://djbilboxbeats.com/#musicgroup",
+      "name": "DJBILBOX BEATS",
+      "url": "https://djbilboxbeats.com/",
+      "genre": ["Hip-Hop","Afrotrap","Deep House","G-Funk","Oriental"],
+      "foundingLocation": {"@type":"Place","name":"Paris, France"},
+      "areaServed": ["US","GB","FR","DE","AE","Worldwide"]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://djbilboxbeats.com/#service",
+      "name": "DJBILBOX BEATS — Audio Plugin & Music Web Engineering",
+      "url": "https://djbilboxbeats.com/vst-plugins/juce-cpp-developer/",
+      "serviceType": "Custom VST / JUCE C++ audio plugin development",
+      "provider": {"@id":"https://djbilboxbeats.com/#musicgroup"},
+      "areaServed": ["Paris","Toulouse","London","Los Angeles","Atlanta","Berlin","Dubai","Worldwide"],
+      "knowsAbout": ["C++","JUCE","DSP","VST3","AU","real-time audio","multi-sampling","Maqam microtonal tuning","transient shaping","multi-threading"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"How much does a custom VST plugin cost?","acceptedAnswer":{"@type":"Answer","text":"It depends on scope — a single instrument or effect differs greatly from a multi-engine sampler. Tell me what you need and you get a quote for that specific project. No fixed price is published."}},
+        {"@type":"Question","name":"Do I own the source code?","acceptedAnswer":{"@type":"Answer","text":"On a custom engagement, yes — you receive a documented, buildable C++ source handover and own the IP. Terms are agreed up front in the quote."}},
+        {"@type":"Question","name":"Which formats and platforms do you deliver?","acceptedAnswer":{"@type":"Answer","text":"VST3 and AU for Windows and macOS — the stack Oriental Instrument ships on — plus standalone iOS and Android. AAX and CLAP can be scoped on request, not as a default build."}},
+        {"@type":"Question","name":"Can you work on an existing JUCE codebase?","acceptedAnswer":{"@type":"Answer","text":"Yes — DSP and real-time-safety work, performance profiling and debugging."}},
+        {"@type":"Question","name":"What can I see today?","acceptedAnswer":{"@type":"Answer","text":"Oriental Instrument — C++/JUCE oriental sampler, 7 instruments, Maqam quarter-tone tuning, VST3/AU and mobile. A free demo is available now."}}
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
