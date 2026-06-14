@@ -326,14 +326,13 @@ button{font-family:var(--font);cursor:pointer}
    COSMIC REDESIGN — astronomical bg + 3D gear (RS69 style)
    ============================================================ */
 
-/* WebGL star/nebula background — fixed full screen */
-#space-bg{position:fixed;inset:0;width:100%;height:100%;z-index:-2;display:block;background:radial-gradient(ellipse at 50% 35%,#1a1033 0%,#0a0a18 45%,#04040a 100%)}
-/* faint nebula color wash over the canvas */
+/* Desert background — fixed full screen */
+#space-bg{position:fixed;inset:0;width:100%;height:100%;z-index:-2;display:block;background:url('/desert-hero.jpg') center/cover no-repeat,#0a0a0a}
+/* dark wash over desert for text legibility */
 .space-veil{position:fixed;inset:0;z-index:-1;pointer-events:none;
     background:
-        radial-gradient(circle at 22% 30%,rgba(120,60,255,.18),transparent 45%),
-        radial-gradient(circle at 78% 65%,rgba(255,60,120,.14),transparent 45%),
-        radial-gradient(circle at 50% 50%,rgba(0,0,0,.55),rgba(0,0,0,.78));}
+        radial-gradient(circle at 50% 20%,rgba(0,0,0,.25),transparent 55%),
+        linear-gradient(180deg,rgba(10,10,10,.55) 0%,rgba(10,10,10,.35) 40%,rgba(10,10,10,.75) 100%);}
 
 /* ===== CINEMATIC HERO (full screen, RS69) ===== */
 .hero-x{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;overflow:hidden}
@@ -580,9 +579,7 @@ body{top:0!important;position:static!important}
 </section>
 
 <!-- CINEMATIC HERO -->
-<section class="hero-x" style="background-image:url('/monument-djbilbox.svg');background-size:cover;background-position:center;background-attachment:fixed">
-    <div style="position:absolute;inset:0;background:rgba(9,9,9,0.5)"></div>
-    <div style="position:relative;z-index:1">
+<section class="hero-x">
     <div class="hx-eyebrow">+1000 BEATS · ORIENTAL · TRAP · DRILL · G-FUNK</div>
     <h1>DJBILBOX<span>BEATS</span></h1>
     <div style="display:flex;gap:2rem;justify-content:center;margin-top:1.2rem;font-size:.75rem;animation:fadeInUp .8s ease .1s both;opacity:0;animation-fill-mode:forwards">
@@ -597,7 +594,6 @@ body{top:0!important;position:static!important}
         <a href="#gear" class="hx-btn ghost"><i class="fa-solid fa-cube"></i> The 3D Studio</a>
     </div>
     <a href="#gear" class="hx-scroll">Scroll<i class="fa-solid fa-chevron-down"></i></a>
-    </div>
 </section>
 
 <!-- MAIN PLAYER PANEL -->
@@ -2131,7 +2127,7 @@ function buildFL(g){
 }
 
 /* ---------- BOOT ---------- */
-initSpace();
+/* initSpace(); — disabled: desert background via CSS instead of WebGL planet/starfield */
 initGear('gear-synth',buildSynth,[0x7a5aff,0x3a86ff]);
 initGear('gear-mic',buildMic,[0xff3366,0x9aa0aa]);
 initGear('gear-fl',buildFL,[0xff7a00,0xff3d00]);
