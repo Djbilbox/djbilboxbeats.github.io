@@ -617,12 +617,12 @@ body{top:0!important;position:static!important}
         <div class="gear-card">
             <span class="gear-tag">Synth · MIDI</span>
             <canvas class="gear-canvas" id="gear-synth"></canvas>
-            <div class="gear-card-body"><h4>Novation FLkey 49</h4><p>Clavier MIDI · 49 touches · intégration FL Studio</p></div>
+            <div class="gear-card-body"><h4>Novation FLkey 49</h4><p>MIDI keyboard · 49 keys · FL Studio integration</p></div>
         </div>
         <div class="gear-card">
-            <span class="gear-tag">Micro</span>
+            <span class="gear-tag">Mic · Interface</span>
             <canvas class="gear-canvas" id="gear-mic"></canvas>
-            <div class="gear-card-body"><h4>Bomge BMG-22M</h4><p>Micro à condensateur · prise de voix studio</p></div>
+            <div class="gear-card-body"><h4>Bomge BMG-22M</h4><p>Condenser mic + USB audio interface · 48V phantom · studio vocals</p></div>
         </div>
         <div class="gear-card">
             <span class="gear-tag">DAW</span>
@@ -1429,7 +1429,7 @@ Genres: oriental, trap, drill, g-funk, funk, balkan, afro, melodic.
 Catalog: 475+ tracks on Spotify, 130+ beats on the site, free-for-profit with instant PDF license.
 Albums/projects: Cyberpunk 2077, Hermes, Why Not 3, Balkan, Funky4life, Video Club.
 VST: Oriental Instrument (Maqam Engine Pro) — free demo + 300+ bundle on Gumroad.
-Gear: Novation FLkey 49, Bomge BMG-22M mic, FL Studio.
+Gear: Novation FLkey 49, Bomge BMG-22M condenser mic + USB audio interface (48V phantom), FL Studio.
 Services: digital creator, web developer, image & video, beatmaking, mix & mastering, composition & collaborations.
 Licenses: free (free for profit) with required credit "Prod. DJBILBOX BEATS"; exclusive on request.
 Socials: Spotify, YouTube @djbilboxbeats, TikTok @djbilboxbeats, SoundCloud djbilboxbeats.`;
@@ -1471,7 +1471,7 @@ function localBot(q){
     if(/genre|style|oriental|trap|drill|funk|balkan|what music|what style/.test(q))return "DJBILBOX makes oriental, trap, drill, g-funk, funk, balkan, afro and melodic. 475+ tracks on Spotify.";
     if(/service|collab|collaboration|mix|master|mastering|video|clip|site|web|develop|developer|design/.test(q))return "DJBILBOX services: digital creator, web developer, image & video, beatmaking, mix & mastering, composition & collaborations. Tell me about your project!";
     if(/vst|plugin|instrument|oriental instrument|maqam|synth|sound/.test(q))return "Oriental Instrument VST (Maqam Engine Pro): authentic Middle Eastern sounds. Free demo + 300+ bundle on Gumroad — see the VST section.";
-    if(/gear|studio|keyboard|mic|equipment|setup|software|fl studio|ableton|logic|hardware/.test(q))return "DJBILBOX studio: Novation FLkey 49 keyboard, Bomge BMG-22M mic, FL Studio.";
+    if(/gear|studio|keyboard|mic|interface|sound card|audio interface|phantom|equipment|setup|software|fl studio|ableton|logic|hardware/.test(q))return "DJBILBOX studio: Novation FLkey 49 keyboard, Bomge BMG-22M condenser mic + USB audio interface (48V phantom), FL Studio.";
     if(/spotify|listen|music|album|project|track|beat|song|play|stream|hear/.test(q))return "The whole catalog is on Spotify (475+ tracks): Cyberpunk 2077, Hermes, Why Not 3, Balkan, Funky4life, Video Club. The player at the top lets you listen to everything.";
     if(/contact|email|reach|social|insta|instagram|tiktok|youtube|message|dm/.test(q))return "Find DJBILBOX on Spotify, YouTube/TikTok @djbilboxbeats and SoundCloud djbilboxbeats. For a collab, message me right here!";
     if(/salut|bonjour|hello|yo|hey|hi|welcome|start/.test(q))return "Yo! Welcome to DJBILBOX BEATS. Beats, licenses, services, collabs — ask anything.";
