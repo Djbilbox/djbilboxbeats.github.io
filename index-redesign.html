@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DJBILBOX BEATS — Oriental · Trap · Drill · G-Funk Beats</title>
+<meta name="description" content="DJBILBOX BEATS — beatmaker & sound designer. 475+ Spotify tracks, free-for-profit beats, VST plugins, drum kits, mixing & 3D studio services.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="hdr">
+  <div class="hdr-inner">
+    <a href="index-redesign.html" class="brand">DJBILBOX <span>BEATS</span></a>
+    <nav class="hdr-nav" id="navMenu">
+      <a href="beats-redesign.html" class="active">Beats</a>
+      <a href="#studio3d">Studio 3D</a>
+      <a href="vst.html">VST</a>
+      <a href="drum-kits.html">Drum Kits</a>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#license">License</a>
+      <a href="#discography">Discography</a>
+      <a href="#playlists">Playlists</a>
+      <a href="#news">News</a>
+      <a href="#" onclick="document.getElementById('aiChat').classList.toggle('open');return false;">AI Chat</a>
+    </nav>
+    <div class="hdr-r">
+      <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <span class="lang-wrap notranslate" translate="no"><i class="fa-solid fa-globe"></i><div id="google_translate_element"></div></span>
+      <button class="icon-btn" onclick="alert('Cart — '+Cart.get().length+' item(s)')" title="Cart">
+        <i class="fa-solid fa-bag-shopping"></i><span class="badge" data-cart-badge>0</span>
+      </button>
+      <button class="nav-burger" onclick="toggleNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">+1000 Beats · Oriental · Trap · Drill · G-Funk</div>
+    <h1>DJBILBOX<span>BEATS</span></h1>
+    <p class="sub">Producer · Beatmaker · Sound Designer — Free for profit · Instant licenses</p>
+    <div class="hero-cta">
+      <a href="beats-redesign.html" class="btn primary"><i class="fa-solid fa-play"></i> Listen to the beats</a>
+      <a href="#studio3d" class="btn ghost"><i class="fa-solid fa-cube"></i> The 3D Studio</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">367K+</div><div class="lbl">YouTube Views</div></div>
+      <div class="stat"><div class="num">475+</div><div class="lbl">Spotify Tracks</div></div>
+      <div class="stat"><div class="num">3000+</div><div class="lbl">Videos</div></div>
+    </div>
+    <div class="video-showcase">
+      <video controls playsinline preload="metadata" poster="desert-hero.jpg">
+        <source src="clip2.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEATS PREVIEW (grid) ============ -->
+<section class="section" id="beats">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Latest Drops</div>
+        <h2>Beats</h2>
+      </div>
+      <a href="beats-redesign.html" class="see-all">View all 475+ →</a>
+    </div>
+    <div class="grid" id="beatsPreview"></div>
+  </div>
+</section>
+
+<!-- ============ STUDIO 3D ============ -->
+<section class="section" id="studio3d" style="background:var(--surface)">
+  <div class="container">
+    <div class="section-head"><div><div class="eyebrow">Immersive</div><h2>Studio 3D</h2></div></div>
+    <div class="video-showcase" style="margin-top:0">
+      <video controls playsinline preload="metadata" poster="desert-pyramids.jpg">
+        <source src="clip4.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VST PLUGINS PREVIEW ============ -->
+<section class="section" id="vst">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow">Sound Design</div><h2>VST Plugins</h2></div>
+      <a href="vst.html" class="see-all">All plugins →</a>
+    </div>
+    <div class="grid" id="vstGrid"></div>
+  </div>
+</section>
+
+<!-- ============ DRUM KITS PREVIEW ============ -->
+<section class="section" id="drumkits" style="background:var(--surface)">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow">Sample Packs</div><h2>Drum Kits</h2></div>
+      <a href="drum-kits.html" class="see-all">All kits →</a>
+    </div>
+    <div class="grid" id="kitsGrid"></div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head"><div><div class="eyebrow">Work with me</div><h2>Services</h2></div></div>
+    <div class="grid" id="servicesGrid"></div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="section" id="reviews" style="background:var(--surface)">
+  <div class="container">
+    <div class="section-head"><div><div class="eyebrow">What artists say</div><h2>Reviews</h2></div></div>
+    <div class="grid" id="reviewsGrid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))"></div>
+  </div>
+</section>
+
+<!-- ============ DISCOGRAPHY / PLAYLISTS ============ -->
+<section class="section" id="discography">
+  <div class="container">
+    <div class="section-head"><div><div class="eyebrow">On Spotify</div><h2>Discography &amp; Playlists</h2></div>
+      <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="see-all">Full catalog →</a>
+    </div>
+    <div id="playlists">
+      <iframe style="border-radius:14px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0"
+        width="100%" height="380" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LICENSE ============ -->
+<section class="section" id="license" style="background:var(--surface)">
+  <div class="container">
+    <div class="section-head"><div><div class="eyebrow">Clear terms</div><h2>Licensing</h2></div></div>
+    <div class="grid" id="licenseGrid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))"></div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER / NEWS ============ -->
+<section class="section" id="news">
+  <div class="container">
+    <div class="newsletter">
+      <h2>Stay in the loop</h2>
+      <p>New beats, free drops & exclusive offers — straight to your inbox.</p>
+      <form onsubmit="alert('Subscribed: '+this.email.value);return false">
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button class="btn primary" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index-redesign.html" class="brand">DJBILBOX <span>BEATS</span></a>
+      <div class="footer-links">
+        <a href="#license">License</a>
+        <a href="#services">Contact</a>
+        <a href="#news">Newsletter</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 DJBILBOX BEATS — All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ============ STICKY PROMO ============ -->
+<div class="promo-bar" id="promo">
+  <strong>🔥 931 Beats Free</strong> — Download the DJBILBOX BIG PACK · free for profit.
+  <a href="https://djbilboxbeats.gumroad.com/l/djbilbox-beats-big-pack-931-beats" target="_blank" class="promo-cta">Get the pack</a>
+  <button class="promo-close" onclick="closePromo()" aria-label="Close">✕</button>
+</div>
+
+<!-- ============ AI CHAT (placeholder widget) ============ -->
+<div id="aiChat" style="position:fixed;right:18px;bottom:62px;width:320px;max-width:90vw;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:14px;padding:16px;z-index:1200;display:none">
+  <strong style="font-family:var(--font-a);text-transform:uppercase">AI Chat</strong>
+  <p style="color:var(--text-3);font-size:.8rem;margin-top:8px">Ask me about beats, licenses or services.</p>
+</div>
+<style>#aiChat.open{display:block}</style>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="assets/js/beats-data.js"></script>
+<script src="assets/js/packs-data.js"></script>
+<script src="assets/js/vst-data.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+// Homepage preview grids — real data
+renderBeats((window.BEATS||[]).slice(0,8),'beatsPreview');
+renderPacks((window.PACKS||[]).slice(0,4),'kitsGrid'); // real drum-kit covers
+renderVsts(window.VSTS,'vstGrid');                      // real VST covers
+
+const SERVICES=[
+  {name:'Mix & Mastering',img:'desert-pyramids.jpg',price:'from 49',badge:''},
+  {name:'Music Video',img:'desert-hero.jpg',price:'from 199',badge:''},
+  {name:'Web Dev for Music',img:'favicon.png',price:'quote',badge:''},
+  {name:'Branding & Cover Art',img:'desert-pyramids.jpg',price:'from 39',badge:''},
+];
+const LICENSES=[
+  {name:'Free for profit',img:'',price:'FREE',old:'',badge:'free',desc:'Credit required · streaming only'},
+  {name:'Basic Lease',img:'',price:'25',old:'',badge:'',desc:'MP3 · 5k streams'},
+  {name:'Premium Lease',img:'',price:'49',old:'',badge:'',desc:'WAV+Stems · 100k streams'},
+  {name:'Exclusive',img:'',price:'199',old:'',badge:'-20%',desc:'Full ownership transfer'},
+];
+const REVIEWS=[
+  {name:'★★★★★ — MC Rida','txt':'"Oriental vibes are unmatched. Bought 3 beats already."'},
+  {name:'★★★★★ — Lyna B','txt':'"Cleanest trap drums I found this year. Instant license, instant fire."'},
+  {name:'★★★★★ — K-Drill','txt':'"Studio 3D service blew my mind. Pro-level mix."'},
+];
+
+function productCard(p){
+  const badge=p.badge? (p.badge==='free'?`<span class="card-badge free">Free</span>`:`<span class="card-badge">${p.badge}</span>`):'';
+  const media=p.img?`<div class="card-media">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"></div>`:'';
+  const oldP=p.old?`<span class="old">€${p.old}</span>`:'';
+  const isFree=String(p.price).toUpperCase()==='FREE';
+  const nowP=isFree?`<span class="now free">FREE</span>`:(isNaN(p.price)?`<span class="now" style="font-size:.85rem">${p.price}</span>`:`<span class="now">€${p.price}</span>`);
+  return `<article class="card">${media}<div class="card-body">
+    <h3 class="card-title">${p.name}</h3>
+    ${p.desc?`<p style="color:var(--text-3);font-size:.72rem">${p.desc}</p>`:''}
+    <div class="card-foot"><div class="price">${nowP}${oldP}</div>
+    <button class="btn-cta" onclick="addToCart('${p.name}','${p.price}')"><i class="fa-solid fa-bag-shopping"></i> ${isFree?'Get':'Add'}</button>
+    </div></div></article>`;
+}
+function fill(id,arr){ const g=document.getElementById(id); if(g) g.innerHTML=arr.map(productCard).join(''); }
+fill('servicesGrid',SERVICES); fill('licenseGrid',LICENSES);
+document.getElementById('reviewsGrid').innerHTML=REVIEWS.map(r=>
+  `<article class="card"><div class="card-body"><p style="font-size:.9rem;color:var(--text-2)">${r.txt}</p>
+   <div class="card-meta" style="margin-top:10px;color:var(--accent);font-weight:700">${r.name}</div></div></article>`).join('');
+</script>
+</body>
+</html>

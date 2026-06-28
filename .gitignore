@@ -2,3 +2,7 @@
 # screenshots de test
 _*.png
 proof*.html
+
+# dev / preview artifacts (local only)
+.serve.js
+.claude/

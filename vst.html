@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VST Plugins — DJBILBOX BEATS</title>
+<meta name="description" content="DJBILBOX BEATS VST plugins — Oriental Instrument, Vice City synth. Free demos & instant download on Gumroad.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="hdr">
+  <div class="hdr-inner">
+    <a href="index-redesign.html" class="brand">DJBILBOX <span>BEATS</span></a>
+    <nav class="hdr-nav" id="navMenu">
+      <a href="beats-redesign.html">Beats</a>
+      <a href="index-redesign.html#studio3d">Studio 3D</a>
+      <a href="vst.html" class="active">VST</a>
+      <a href="drum-kits.html">Drum Kits</a>
+      <a href="index-redesign.html#services">Services</a>
+      <a href="index-redesign.html#reviews">Reviews</a>
+      <a href="index-redesign.html#license">License</a>
+      <a href="index-redesign.html#discography">Discography</a>
+      <a href="index-redesign.html#playlists">Playlists</a>
+      <a href="index-redesign.html#news">News</a>
+      <a href="#" onclick="document.getElementById('aiChat').classList.toggle('open');return false;">AI Chat</a>
+    </nav>
+    <div class="hdr-r">
+      <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <span class="lang-wrap notranslate" translate="no"><i class="fa-solid fa-globe"></i><div id="google_translate_element"></div></span>
+      <button class="icon-btn" onclick="alert('Cart — '+Cart.get().length+' item(s)')" title="Cart">
+        <i class="fa-solid fa-bag-shopping"></i><span class="badge" data-cart-badge>0</span>
+      </button>
+      <button class="nav-burger" onclick="toggleNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO (VST showcase) ============ -->
+<section class="hero" style="padding-bottom:30px">
+  <div class="container">
+    <div class="eyebrow">Sound Design · Instant download</div>
+    <h1>VST <span>PLUGINS</span></h1>
+    <p class="sub">Pro-grade instruments by DJBILBOX BEATS — try the free demo, own it on Gumroad.</p>
+  </div>
+</section>
+
+<!-- ============ VST GRID ============ -->
+<main class="container">
+  <div class="grid" id="vstGrid" style="margin-bottom:60px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))"></div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index-redesign.html" class="brand">DJBILBOX <span>BEATS</span></a>
+      <div class="footer-links">
+        <a href="index-redesign.html#license">License</a>
+        <a href="index-redesign.html#services">Contact</a>
+        <a href="index-redesign.html#news">Newsletter</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 DJBILBOX BEATS — All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ============ STICKY PROMO ============ -->
+<div class="promo-bar" id="promo">
+  <strong>🎹 VST</strong> — Free demo available · Full version with instant download on Gumroad.
+  <a href="https://djbilboxbeats.gumroad.com" target="_blank" class="promo-cta">Visit store</a>
+  <button class="promo-close" onclick="closePromo()" aria-label="Close">✕</button>
+</div>
+
+<div id="aiChat" style="position:fixed;right:18px;bottom:62px;width:320px;max-width:90vw;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:14px;padding:16px;z-index:1200;display:none">
+  <strong style="font-family:var(--font-a);text-transform:uppercase">AI Chat</strong>
+  <p style="color:var(--text-3);font-size:.8rem;margin-top:8px">Ask me about plugins, licenses or services.</p>
+</div>
+<style>#aiChat.open{display:block}</style>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="assets/js/vst-data.js"></script>
+<script src="assets/js/site.js"></script>
+<script>renderVsts(window.VSTS,'vstGrid');</script>
+</body>
+</html>

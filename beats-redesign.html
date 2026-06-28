@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beats — DJBILBOX BEATS</title>
+<meta name="description" content="Browse 475+ DJBILBOX beats — Oriental, Trap, Drill, House, G-Funk. Free for profit & premium licenses.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<!-- ============ HEADER (shared structure) ============ -->
+<header class="hdr">
+  <div class="hdr-inner">
+    <a href="index-redesign.html" class="brand">DJBILBOX <span>BEATS</span></a>
+    <nav class="hdr-nav" id="navMenu">
+      <a href="beats-redesign.html" class="active">Beats</a>
+      <a href="index-redesign.html#studio3d">Studio 3D</a>
+      <a href="vst-plugins/">VST</a>
+      <a href="index-redesign.html#drumkits">Drum Kits</a>
+      <a href="index-redesign.html#services">Services</a>
+      <a href="index-redesign.html#reviews">Reviews</a>
+      <a href="index-redesign.html#license">License</a>
+      <a href="index-redesign.html#discography">Discography</a>
+      <a href="index-redesign.html#playlists">Playlists</a>
+      <a href="index-redesign.html#news">News</a>
+      <a href="#" onclick="document.getElementById('aiChat').classList.toggle('open');return false;">AI Chat</a>
+    </nav>
+    <div class="hdr-r">
+      <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <span class="lang-wrap notranslate" translate="no"><i class="fa-solid fa-globe"></i><div id="google_translate_element"></div></span>
+      <button class="icon-btn" onclick="alert('Cart — '+Cart.get().length+' item(s)')" title="Cart">
+        <i class="fa-solid fa-bag-shopping"></i><span class="badge" data-cart-badge>0</span>
+      </button>
+      <button class="nav-burger" onclick="toggleNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SUB-NAV : genre filter pills ============ -->
+<div class="subnav">
+  <div class="subnav-inner" id="genrePills"><!-- pills injected by JS --></div>
+</div>
+
+<!-- ============ PAGE ============ -->
+<main class="container" style="padding-top:24px">
+
+  <!-- page heading + search -->
+  <div class="section-head" style="margin-top:16px">
+    <div>
+      <div class="eyebrow">Free for profit · Instant licenses</div>
+      <h2>All Beats</h2>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <span style="font-size:.78rem;color:var(--text-3)" id="beatCount">…</span>
+      <div style="position:relative">
+        <i class="fa-solid fa-magnifying-glass" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-4);font-size:.8rem"></i>
+        <input type="text" placeholder="Search a beat…" oninput="searchBeats(this.value,'beatsGrid')"
+          style="background:var(--surface-2);border:1px solid var(--border);border-radius:9px;padding:10px 14px 10px 34px;color:#fff;font-size:.82rem;width:220px">
+      </div>
+    </div>
+  </div>
+
+  <!-- mini sticky player -->
+  <div id="miniPlayer" style="position:sticky;top:calc(var(--hdr-h) + var(--subnav-h));z-index:800;
+       background:var(--bg);padding:8px 0 12px;display:none">
+    <iframe id="spotifyEmbed" src="https://open.spotify.com/embed/track/1UnJqR2s8q07k3vFhNFtvm?utm_source=generator&theme=0"
+      width="100%" height="80" frameborder="0" style="border-radius:10px"
+      allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
+    <div style="display:flex;justify-content:space-between;margin-top:6px">
+      <span style="font-size:.65rem;color:var(--text-4)" id="nowPlaying">Click a beat to play</span>
+      <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" style="font-size:.65rem;color:var(--green);font-weight:600">
+        <i class="fa-brands fa-spotify"></i> 475+ on Spotify</a>
+    </div>
+  </div>
+  <style>#miniPlayer.show{display:block}</style>
+
+  <!-- BEATS GRID -->
+  <div class="grid" id="beatsGrid" style="margin-bottom:60px"></div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index-redesign.html" class="brand">DJBILBOX <span>BEATS</span></a>
+      <div class="footer-links">
+        <a href="index-redesign.html#license">License</a>
+        <a href="index-redesign.html#services">Contact</a>
+        <a href="index-redesign.html#news">Newsletter</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 DJBILBOX BEATS — All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ============ STICKY PROMO ============ -->
+<div class="promo-bar" id="promo">
+  <strong>🔥 931 Beats</strong> — Get the full BIG PACK · free for profit · instant download.
+  <a href="https://djbilboxbeats.gumroad.com/l/djbilbox-beats-big-pack-931-beats" target="_blank" class="promo-cta">Download the pack</a>
+  <button class="promo-close" onclick="closePromo()" aria-label="Close">✕</button>
+</div>
+
+<div id="aiChat" style="position:fixed;right:18px;bottom:62px;width:320px;max-width:90vw;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:14px;padding:16px;z-index:1200;display:none">
+  <strong style="font-family:var(--font-a);text-transform:uppercase">AI Chat</strong>
+  <p style="color:var(--text-3);font-size:.8rem;margin-top:8px">Ask me about beats, licenses or services.</p>
+</div>
+<style>#aiChat.open{display:block}</style>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="assets/js/beats-data.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+  buildGenrePills('genrePills','beatsGrid');   // builds filter pills from real tag counts
+  renderBeats(window.BEATS,'beatsGrid');         // initial render: all 475 beats
+</script>
+</body>
+</html>
