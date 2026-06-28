@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oriental Beats Producer | Trap, Drill, G-Funk — DJBILBOX</title>
+    <meta name="description" content="Oriental beats producer. Trap, drill, G-funk beats with instant licenses. Royalty-free instrumentals by DJBILBOX. +475 Spotify tracks.">
+    <meta name="google-site-verification" content="NcYeDf_XvEFqKewI-2Puh455JLyZ7DL5tZegJXvvolE" />
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="vendor/GLTFLoader.js"></script>
+    <script src="vendor/RoomEnvironment.js"></script>
+    <style>
+:root{--bg:#090909;--surface:#111;--surface-2:#181818;--surface-3:#222;--accent:#ff2d2d;--accent-h:#e60000;--accent-glow:rgba(255,45,45,.15);--green:#1DB954;--text:#fff;--text-2:#ccc;--text-3:#888;--text-4:#555;--border:rgba(255,255,255,.06);--r:8px;--rl:12px;--font:'Inter',sans-serif;--font-a:'Rajdhani',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.5;overflow-x:hidden}
+
+/* VIDEO BACKGROUND — LA visible, overlay léger */
+.video-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden}
+.video-bg video{width:100%;height:100%;object-fit:cover;filter:saturate(1.2) brightness(1.05)}
+.video-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.6);pointer-events:none}
+
+/* ===== 3D VOLUMETRIC ENGINE — MONOLITH STYLE ===== */
+@keyframes floating{0%,100%{transform:translateY(0px) rotateY(-2deg)}50%{transform:translateY(-14px) rotateY(2deg)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 20px rgba(255,45,45,.2)}50%{box-shadow:0 0 45px rgba(255,45,45,.5)}}
+@keyframes neonFlicker{0%,100%{opacity:1}50%{opacity:.85}}
+
+/* === KITS — glowing product box + mouse-tilt 3D (style APESHYT) === */
+.kit-c{
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform .5s ease;
+    cursor:pointer;
+    border-radius:14px;
+    will-change:transform;
+}
+/* halo lumineux pulsant DERRIERE la box */
+.kit-c::before{
+    content:'';position:absolute;inset:-14% -14% 4%;z-index:0;border-radius:46%;
+    background:radial-gradient(closest-side,var(--kit-glow,rgba(0,200,255,.6)),transparent 72%);
+    filter:blur(38px);transform:translateZ(-60px);pointer-events:none;
+    animation:kitPulse 4.5s ease-in-out infinite;
+}
+@keyframes kitPulse{0%,100%{opacity:.4;transform:translateZ(-60px) scale(.9)}50%{opacity:.85;transform:translateZ(-60px) scale(1.08)}}
+.kit-c:hover::before{animation-duration:2.2s}
+/* la box (image render) */
+.kit-cover{position:relative;z-index:2;border-radius:12px;overflow:hidden;transform:translateZ(38px);
+    box-shadow:0 26px 55px rgba(0,0,0,.75);}
+.kit-cover img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;transition:filter .4s}
+.kit-c:hover .kit-cover img{filter:brightness(1.09) contrast(1.05)}
+/* reflet gloss statique (en plus du glare VanillaTilt) */
+.kit-gloss{position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:12px;
+    background:linear-gradient(125deg,rgba(255,255,255,.18),transparent 42%);mix-blend-mode:screen}
+.kit-c .kit-c-body{position:relative;z-index:2;transform:translateZ(38px)}
+
+/* Neon glow colors — unique per kit */
+.kit-c:nth-child(1){--kit-glow:rgba(0,255,255,.4)}
+.kit-c:nth-child(2){--kit-glow:rgba(255,140,0,.4);animation-delay:.5s}
+.kit-c:nth-child(3){--kit-glow:rgba(0,255,80,.4);animation-delay:1s}
+.kit-c:nth-child(4){--kit-glow:rgba(255,45,45,.4);animation-delay:1.5s}
+.kit-c:nth-child(5){--kit-glow:rgba(160,0,255,.4);animation-delay:2s}
+.kit-c:nth-child(6){--kit-glow:rgba(255,220,0,.4);animation-delay:2.5s}
+
+/* ===== MICRO-ANIMATIONS ===== */
+.hero-c h1,.hero-c p{animation:fadeInUp .8s ease both}
+.hero-c p{animation-delay:.2s}
+.sec-title,.sec-sub{animation:fadeInUp .6s ease both}
+.sec-sub{animation-delay:.15s}
+.yt-c{animation:fadeInUp .5s ease both}
+.yt-c:nth-child(2){animation-delay:.1s}
+.yt-c:nth-child(3){animation-delay:.2s}
+.yt-c:nth-child(4){animation-delay:.25s}
+.brand span{animation:glowPulse 3s ease-in-out infinite}
+.hero-c h1 span{display:inline-block;animation:floating 6s ease-in-out infinite}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--font);cursor:pointer}
+
+/* HEADER */
+.hdr{position:sticky;top:0;height:56px;background:rgba(9,9,9,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:900;display:flex;align-items:center;padding:0 1.5rem}
+.hdr-inner{max-width:1100px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:center}
+.brand{font-family:var(--font-a);font-size:1.4rem;font-weight:700;letter-spacing:1px}
+.brand span{color:var(--accent)}
+.hdr-nav{display:flex;gap:1.5rem;align-items:center}
+.hdr-nav a{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);transition:.2s}
+.hdr-nav a:hover{color:#fff}
+.hdr-r{display:flex;gap:.8rem;align-items:center}
+.hdr-r a{color:var(--text-3);transition:.2s}
+.hdr-r a:hover{color:var(--accent)}
+.cart-btn{background:var(--accent);color:#fff;border:none;padding:5px 12px;border-radius:var(--r);font-size:.72rem;font-weight:700;font-family:var(--font-a);display:flex;align-items:center;gap:5px;transition:.2s}
+.cart-btn:hover{background:var(--accent-h)}
+.cart-badge{background:#fff;color:var(--accent);width:16px;height:16px;border-radius:50%;font-size:.6rem;display:flex;align-items:center;justify-content:center;font-weight:800}
+
+/* HERO COMPACT */
+.hero-c{padding:3rem 1.5rem 2rem;text-align:center;margin-top:56px}
+.hero-c h1{font-family:var(--font-a);font-size:clamp(1.8rem,4vw,3rem);font-weight:700;letter-spacing:1px;margin-bottom:.4rem}
+.hero-c h1 span{color:var(--accent)}
+.hero-c p{color:var(--text-3);font-size:.8rem;letter-spacing:2px;text-transform:uppercase}
+
+/* MAIN PLAYER PANEL */
+.player-panel{max-width:900px;margin:0 auto 2rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+
+/* Toolbar */
+.pl-toolbar{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1rem;background:var(--surface-2);border-bottom:1px solid var(--border);gap:.5rem;flex-wrap:wrap}
+.pl-toolbar-l{display:flex;gap:.5rem;align-items:center}
+.pl-tbtn{background:var(--surface);border:1px solid var(--border);color:var(--text-3);padding:5px 10px;border-radius:4px;font-size:.7rem;font-weight:600;transition:.2s;display:flex;align-items:center;gap:4px}
+.pl-tbtn:hover{border-color:var(--accent);color:#fff}
+.pl-search{background:var(--surface);border:1px solid var(--border);color:#fff;padding:5px 10px;border-radius:4px;font-size:.75rem;width:140px;outline:none;font-family:var(--font)}
+.pl-search:focus{border-color:var(--accent)}
+
+/* Playback bar */
+.pl-playback{display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem;background:var(--bg);border-bottom:1px solid var(--border)}
+.plb-btn{background:none;border:none;color:var(--text-2);font-size:.9rem;padding:3px;transition:.2s}
+.plb-btn:hover{color:#fff}
+.plb-play{width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:.2s}
+.plb-play:hover{background:var(--accent-h);box-shadow:0 0 15px var(--accent-glow)}
+.plb-time{font-size:.6rem;color:var(--text-4);font-family:var(--font-a);min-width:28px}
+.plb-bar{flex:1;height:3px;background:var(--surface-3);border-radius:2px;position:relative;cursor:pointer}
+.plb-fill{position:absolute;top:0;left:0;height:100%;width:0%;background:var(--accent);border-radius:2px;transition:width .5s linear}
+.plb-vol{display:flex;align-items:center;gap:4px}
+.plb-vol i{color:var(--text-4);font-size:.7rem}
+.plb-vol input[type=range]{width:50px;height:2px;appearance:none;background:var(--surface-3);border-radius:2px}
+.plb-vol input::-webkit-slider-thumb{appearance:none;width:8px;height:8px;background:#fff;border-radius:50%}
+
+/* Track list */
+.pl-list{max-height:550px;overflow-y:auto}
+.trk{display:flex;align-items:center;padding:.55rem 1rem;gap:.8rem;border-bottom:1px solid var(--border);transition:.15s;cursor:pointer}
+.trk:hover{background:var(--surface-2)}
+.trk.active{background:rgba(255,45,45,.04);border-left:3px solid var(--accent)}
+.trk-num{font-size:.7rem;color:var(--text-4);width:22px;text-align:center;font-family:var(--font-a)}
+.trk-cover{width:42px;height:42px;border-radius:4px;object-fit:cover;flex-shrink:0}
+.trk-info{flex:1;min-width:0}
+.trk-title{font-size:.8rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trk.active .trk-title{color:var(--accent)}
+.trk-sub{font-size:.65rem;color:var(--text-3);margin-top:1px}
+.trk-tags{display:flex;gap:3px;margin-top:3px}
+.trk-tag{font-size:.55rem;padding:1px 5px;background:var(--surface-3);border-radius:2px;color:var(--text-4)}
+.trk-dur{font-size:.65rem;color:var(--text-4);font-family:var(--font-a);min-width:30px;text-align:right}
+.trk-buy{background:var(--accent);color:#fff;border:none;padding:5px 10px;border-radius:4px;font-size:.65rem;font-weight:700;font-family:var(--font-a);text-transform:uppercase;transition:.2s;white-space:nowrap;display:flex;align-items:center;gap:3px}
+.trk-buy:hover{background:var(--accent-h);transform:scale(1.05)}
+
+/* Steps footer */
+.pl-steps{display:flex;justify-content:center;gap:2rem;padding:1rem;background:var(--surface-2);border-top:1px solid var(--border)}
+.pl-step{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--text-3)}
+.pl-step-n{width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700}
+
+/* SECTIONS */
+.sec{max-width:900px;margin:0 auto;padding:3rem 1.5rem}
+.sec-title{font-family:var(--font-a);font-size:1.6rem;font-weight:700;margin-bottom:.3rem}
+.sec-sub{font-size:.78rem;color:var(--text-3);margin-bottom:1.5rem}
+
+/* Kits grid — wide spacing for 3D depth overflow */
+.kits-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:3rem 2.4rem;perspective:1000px;padding:2.5rem 1.5rem 3rem}
+.kit-c{background:linear-gradient(145deg,#1a1a1a 0%,#080808 100%);border-radius:var(--rl);overflow:visible;cursor:pointer}
+.kit-c-body{background:linear-gradient(180deg,rgba(20,20,24,.92),rgba(8,8,10,.96));border-radius:0 0 7px 7px;margin-top:-1px}
+.kit-c-body{padding:.8rem}
+.kit-c-body h4{font-size:.85rem;margin-bottom:2px}
+.kit-c-body p{font-size:.68rem;color:var(--text-3);margin-bottom:.5rem}
+.kit-c-foot{display:flex;justify-content:space-between;align-items:center}
+.kit-price{font-family:var(--font-a);font-weight:700;color:var(--green)}
+.kit-dl{background:var(--accent);color:#fff;border:none;padding:4px 10px;border-radius:4px;font-size:.65rem;font-weight:700;font-family:var(--font-a)}
+
+/* === DISCOGRAPHIE — 3D MONOLITH CD SLABS (30px depth) === */
+.disco-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:2.5rem;perspective:1000px;padding:1rem}
+.disco-c{
+    position:relative;
+    background:linear-gradient(145deg,#1a1a1a 0%,#0a0a0a 100%);
+    border:2px solid var(--disco-glow,rgba(0,255,255,.4));
+    border-radius:var(--rl);
+    overflow:visible;
+    cursor:pointer;
+    transform-style:preserve-3d;
+    transition:transform .6s cubic-bezier(.25,.46,.45,.94),box-shadow .6s ease;
+    animation:floating 6s ease-in-out infinite,fadeInUp .7s ease both;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.9),
+        0 0 25px var(--disco-glow,rgba(0,255,255,.35)),
+        0 0 70px var(--disco-glow,rgba(0,255,255,.15)),
+        inset 0 0 15px rgba(0,0,0,.4);
+    transform:perspective(800px) rotateY(-2deg) rotateX(1deg);
+}
+.disco-c:hover{
+    transform:perspective(800px) translateY(-18px) rotateY(5deg) rotateX(-3deg) scale(1.07);
+    box-shadow:
+        0 40px 90px rgba(0,0,0,.95),
+        0 0 60px var(--disco-glow,rgba(0,255,255,.7)),
+        0 0 140px var(--disco-glow,rgba(0,255,255,.35)),
+        inset 0 0 25px rgba(0,0,0,.2);
+    border-color:var(--disco-glow,rgba(0,255,255,.9));
+}
+
+/* RIGHT FACE — CD spine 30px thick */
+.disco-c::before{
+    content:'';position:absolute;
+    top:0;right:0;width:30px;height:100%;
+    background:linear-gradient(to right,#1a1a1a 0%,#0a0a0a 50%,#000 100%);
+    transform:rotateY(90deg) translateZ(0px);
+    transform-origin:right center;
+    border-left:1px solid var(--disco-glow,rgba(0,255,255,.3));
+    box-shadow:inset 0 0 12px rgba(0,0,0,.9),0 0 12px var(--disco-glow,rgba(0,255,255,.15));
+    pointer-events:none;
+    border-radius:0 4px 4px 0;
+}
+
+/* BOTTOM FACE — 30px thick */
+.disco-c::after{
+    content:'';position:absolute;
+    bottom:0;left:0;width:100%;height:30px;
+    background:linear-gradient(to bottom,#1a1a1a 0%,#0a0a0a 50%,#000 100%);
+    transform:rotateX(-90deg) translateZ(0px);
+    transform-origin:bottom center;
+    border-top:1px solid var(--disco-glow,rgba(0,255,255,.2));
+    box-shadow:inset 0 0 12px rgba(0,0,0,.9),0 0 12px var(--disco-glow,rgba(0,255,255,.15));
+    pointer-events:none;
+    border-radius:0 0 4px 4px;
+}
+
+.disco-c img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--rl) var(--rl) 0 0;transition:transform .5s,filter .5s;filter:brightness(.9) contrast(1.1)}
+.disco-c:hover img{transform:translateZ(12px) scale(1.04);filter:brightness(1.15)}
+.disco-c-body{position:relative;padding:.8rem;z-index:3;transform:translateZ(30px);background:linear-gradient(to top,rgba(0,0,0,.85),transparent)}
+.disco-c-body h4{font-size:.82rem;font-weight:700;margin-bottom:3px;text-shadow:0 0 15px var(--disco-glow,rgba(0,255,255,.6)),0 2px 4px rgba(0,0,0,.8)}
+.disco-c-body p{font-size:.6rem;color:var(--text-2);margin-bottom:.4rem}
+.disco-c-body .disco-spot{display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--green);background:rgba(29,185,84,.15);padding:3px 8px;border-radius:12px;transition:.3s;box-shadow:0 0 12px rgba(29,185,84,.25)}
+.disco-c-body .disco-spot:hover{background:rgba(29,185,84,.35);transform:scale(1.1) translateZ(5px);box-shadow:0 0 25px rgba(29,185,84,.5)}
+
+/* Neon glow per album — varied colors */
+.disco-c:nth-child(1){--disco-glow:rgba(0,255,255,.4)}
+.disco-c:nth-child(2){--disco-glow:rgba(255,120,0,.4);animation-delay:.6s}
+.disco-c:nth-child(3){--disco-glow:rgba(255,0,120,.4);animation-delay:1.2s}
+.disco-c:nth-child(4){--disco-glow:rgba(140,0,255,.4);animation-delay:1.8s}
+.disco-c:nth-child(5){--disco-glow:rgba(0,255,130,.4);animation-delay:2.4s}
+.disco-c:nth-child(6){--disco-glow:rgba(255,200,0,.4);animation-delay:3s}
+.disco-c:nth-child(7){--disco-glow:rgba(255,45,45,.4);animation-delay:3.6s}
+.disco-c:nth-child(8){--disco-glow:rgba(0,180,255,.4);animation-delay:4.2s}
+
+/* Playlists grid */
+.yt-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+.yt-c{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.2s}
+.yt-c:hover{border-color:var(--accent);transform:translateY(-2px)}
+.yt-c img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.yt-c-body{padding:.7rem}
+.yt-c-body h4{font-size:.8rem;margin-bottom:2px}
+.yt-c-body p{font-size:.65rem;color:var(--text-3)}
+
+/* MODAL */
+.modal-o{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.25s;padding:1rem;backdrop-filter:blur(5px)}
+.modal-o.open{opacity:1;pointer-events:auto}
+.modal-b{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:2rem;max-width:480px;width:100%;position:relative;max-height:85vh;overflow-y:auto}
+.modal-b h2{font-family:var(--font-a);font-size:1.4rem;color:var(--accent);margin-bottom:.3rem}
+.modal-b>p{font-size:.78rem;color:var(--text-3);margin-bottom:1.2rem}
+.modal-x{position:absolute;top:.8rem;right:1rem;background:none;border:none;color:var(--text-3);font-size:1.3rem;transition:.2s}
+.modal-x:hover{color:#fff;transform:rotate(90deg)}
+.ff{margin-bottom:.8rem}
+.ff label{display:block;font-size:.68rem;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;font-weight:600}
+.ff input,.ff textarea{width:100%;padding:.6rem .8rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--r);color:#fff;font-size:.82rem;font-family:var(--font)}
+.ff input:focus,.ff textarea:focus{outline:none;border-color:var(--accent)}
+.ff textarea{resize:vertical;min-height:50px}
+.cb-f{display:flex;gap:8px;align-items:flex-start;margin-bottom:1rem}
+.cb-f label{font-size:.68rem;color:var(--text-3);line-height:1.4}
+.btn-full{width:100%;padding:.8rem;background:var(--accent);color:#fff;border:none;border-radius:var(--r);font-size:.85rem;font-weight:700;font-family:var(--font-a);text-transform:uppercase;letter-spacing:1px;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-full:hover{background:var(--accent-h)}
+
+/* MINI CART */
+.mc{position:fixed;top:56px;right:0;width:360px;height:calc(100vh - 56px);background:var(--surface);border-left:1px solid var(--border);z-index:800;transform:translateX(100%);transition:.35s;display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.5)}
+.mc.open{transform:translateX(0)}
+.mc-h{padding:1rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.mc-h h3{font-family:var(--font-a);font-size:1rem}
+.mc-x{background:none;border:none;color:var(--text-3);font-size:1.2rem}
+.mc-list{flex:1;overflow-y:auto;padding:.8rem}
+.mc-item{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--border)}
+.mc-item h4{font-size:.8rem}
+.mc-item p{font-size:.65rem;color:var(--text-3)}
+.mc-rm{background:none;border:none;color:var(--text-4);font-size:.8rem;transition:.2s}
+.mc-rm:hover{color:var(--accent)}
+.mc-foot{padding:1rem;border-top:1px solid var(--border)}
+.mc-total{display:flex;justify-content:space-between;font-weight:700;margin-bottom:.8rem}
+.mc-total span:last-child{color:var(--accent);font-family:var(--font-a)}
+
+/* Toast */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--surface-2);border:1px solid var(--border);color:#fff;padding:.6rem 1.2rem;border-radius:var(--r);font-size:.78rem;font-weight:600;z-index:3000;transition:.4s;display:flex;align-items:center;gap:6px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast i{color:var(--accent)}
+
+/* Footer */
+.site-foot{max-width:900px;margin:0 auto;padding:2rem 1.5rem;border-top:1px solid var(--border);text-align:center}
+.site-foot .brand{display:inline-block;margin-bottom:.8rem}
+.foot-soc{display:flex;justify-content:center;gap:1rem;margin-bottom:.8rem}
+.foot-soc a{color:var(--text-3);transition:.2s}
+.foot-soc a:hover{color:var(--accent)}
+
+/* Scrollbar */
+.pl-list::-webkit-scrollbar{width:4px}
+.pl-list::-webkit-scrollbar-track{background:var(--surface)}
+.pl-list::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px}
+
+/* Responsive */
+@media(max-width:768px){
+    .hdr-r .nav-burger{display:flex}
+    .hdr-r > a{display:none}
+    .hdr-nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(9,9,9,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:.4rem 0;transform:translateY(-8px);opacity:0;pointer-events:none;transition:.22s}
+    .hdr-nav.open{transform:none;opacity:1;pointer-events:auto}
+    .hdr-nav a{padding:.95rem 1.4rem;width:100%;font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04)}
+    .trk{padding:.4rem .7rem;gap:.5rem}
+    .trk-cover{width:36px;height:36px}
+    .trk-tags{display:none}
+    .trk-dur{display:none}
+    .plb-vol{display:none}
+    .pl-steps{gap:1rem;font-size:.6rem}
+    .mc{width:100%}
+    .kits-g{grid-template-columns:1fr;gap:2.5rem;padding:1rem .5rem}
+    .yt-g{grid-template-columns:1fr 1fr;gap:.7rem}
+    .disco-g{grid-template-columns:1fr 1fr;gap:2rem;padding:.5rem}
+    .disco-c-body h4{font-size:.7rem}
+    .kit-c,.disco-c{animation-duration:8s}
+    .kit-c::before,.kit-c::after,.disco-c::before,.disco-c::after{display:block}
+}
+
+/* ============================================================
+   COSMIC REDESIGN — astronomical bg + 3D gear (RS69 style)
+   ============================================================ */
+
+/* Desert background — fixed full screen */
+#space-bg{position:fixed;inset:0;width:100%;height:100%;z-index:-2;display:block;background:url('/desert-hero.jpg') center/cover no-repeat,#0a0a0a}
+/* dark wash over desert for text legibility */
+.space-veil{position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+        radial-gradient(circle at 50% 20%,rgba(0,0,0,.25),transparent 55%),
+        linear-gradient(180deg,rgba(10,10,10,.55) 0%,rgba(10,10,10,.35) 40%,rgba(10,10,10,.75) 100%);}
+
+/* ===== CINEMATIC HERO (full screen, RS69) ===== */
+.hero-x{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;overflow:hidden}
+.hero-x .hx-eyebrow{font-family:var(--font-a);font-size:.62rem;letter-spacing:.55em;text-transform:uppercase;color:var(--text-3);margin-bottom:1.4rem;padding-left:.55em;animation:fadeInUp .8s ease both}
+.hero-x h1{font-family:var(--font-a);font-weight:700;font-size:clamp(3rem,13vw,9.5rem);line-height:.9;letter-spacing:.02em;text-transform:uppercase;
+    background:linear-gradient(180deg,#fff 0%,#b9c4ff 55%,#6a5acd 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 0 40px rgba(120,90,255,.55)) drop-shadow(0 0 90px rgba(120,90,255,.25));
+    animation:fadeInUp 1s ease both,heroFloat 8s ease-in-out infinite}
+.hero-x h1 span{display:block;font-size:.42em;letter-spacing:.5em;background:linear-gradient(90deg,var(--accent),#ff7a7a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 25px rgba(255,45,45,.5));margin-top:.3em}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+.hero-x .hx-sub{margin-top:1.8rem;font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--text-2);animation:fadeInUp 1s ease .2s both}
+.hero-x .hx-meta{margin-top:1rem;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-4);animation:fadeInUp 1s ease .3s both}
+.hero-x .hx-cta{margin-top:2.6rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeInUp 1s ease .4s both}
+.hx-btn{padding:.85rem 1.8rem;border-radius:40px;font-family:var(--font-a);font-weight:700;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;transition:.25s;border:1px solid transparent}
+.hx-btn.primary{background:var(--accent);color:#fff;box-shadow:0 0 30px rgba(255,45,45,.4)}
+.hx-btn.primary:hover{background:var(--accent-h);transform:translateY(-3px);box-shadow:0 0 45px rgba(255,45,45,.6)}
+.hx-btn.ghost{background:rgba(255,255,255,.04);border-color:rgba(160,140,255,.4);color:#cfd3ff}
+.hx-btn.ghost:hover{border-color:rgba(160,140,255,.9);background:rgba(120,90,255,.12);transform:translateY(-3px)}
+.hx-scroll{position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;color:var(--text-4);display:flex;flex-direction:column;align-items:center;gap:.4rem;animation:fadeInUp 1s ease .6s both}
+.hx-scroll i{animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ===== 3D GEAR SHOWCASE ===== */
+.gear-sec{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
+.gear-head{text-align:center;margin-bottom:2.5rem}
+.gear-head .sec-title{font-size:clamp(1.6rem,4vw,2.4rem)}
+.gear-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.gear-card{position:relative;background:linear-gradient(160deg,rgba(30,22,55,.55),rgba(8,8,16,.55));border:1px solid rgba(150,130,255,.18);border-radius:18px;overflow:hidden;backdrop-filter:blur(8px);transition:.35s;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.gear-card:hover{border-color:var(--gear-glow,rgba(150,130,255,.6));transform:translateY(-6px);box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 50px var(--gear-glow,rgba(150,130,255,.3))}
+.gear-canvas{width:100%;height:300px;display:block;cursor:grab}
+.gear-canvas:active{cursor:grabbing}
+.gear-card-body{padding:1rem 1.2rem 1.3rem;text-align:center;position:relative;z-index:2}
+.gear-card-body h4{font-family:var(--font-a);font-size:1rem;font-weight:700;letter-spacing:.05em;margin-bottom:.25rem}
+.gear-card-body p{font-size:.66rem;color:var(--text-3);letter-spacing:.04em}
+.gear-card .gear-tag{position:absolute;top:.8rem;left:.8rem;font-size:.55rem;font-family:var(--font-a);font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:rgba(0,0,0,.5);border:1px solid var(--gear-glow,rgba(150,130,255,.5));color:#fff;z-index:3}
+.gear-card:nth-child(1){--gear-glow:rgba(120,90,255,.6)}
+.gear-card:nth-child(2){--gear-glow:rgba(255,60,120,.55)}
+.gear-card:nth-child(3){--gear-glow:rgba(255,160,0,.55)}
+
+/* surfaces get translucent so the stars show through */
+.player-panel{background:rgba(17,17,17,.82);backdrop-filter:blur(10px)}
+.pl-toolbar{background:rgba(24,24,24,.85)}
+.pl-playback,#stickyPlayer{background:rgba(9,9,9,.85)!important}
+.hdr{background:rgba(9,9,9,.78)}
+
+@media(max-width:768px){
+    .gear-grid{grid-template-columns:1fr;gap:1rem}
+    .gear-canvas{height:260px}
+    .hero-x h1{font-size:clamp(2.6rem,15vw,5rem)}
+}
+
+/* ===== SERVICES ===== */
+.svc-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.svc-card{position:relative;padding:1.6rem 1.3rem;border-radius:16px;background:linear-gradient(160deg,rgba(28,24,48,.55),rgba(10,10,18,.6));border:1px solid rgba(150,130,255,.16);backdrop-filter:blur(8px);transition:.3s;overflow:hidden}
+.svc-card:hover{transform:translateY(-5px);border-color:var(--sg,rgba(150,130,255,.6));box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 40px var(--sg,rgba(150,130,255,.25))}
+.svc-ico{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;background:var(--sg,rgba(150,130,255,.5));box-shadow:0 0 24px var(--sg,rgba(150,130,255,.5));margin-bottom:1rem}
+.svc-card h4{font-family:var(--font-a);font-size:1.05rem;font-weight:700;letter-spacing:.04em;margin-bottom:.4rem}
+.svc-card p{font-size:.74rem;line-height:1.55;color:var(--text-3)}
+.svc-card:nth-child(1){--sg:rgba(120,90,255,.6)}
+.svc-card:nth-child(2){--sg:rgba(58,134,255,.6)}
+.svc-card:nth-child(3){--sg:rgba(255,60,120,.55)}
+.svc-card:nth-child(4){--sg:rgba(29,185,84,.55)}
+.svc-card:nth-child(5){--sg:rgba(255,160,0,.55)}
+.svc-card:nth-child(6){--sg:rgba(180,90,255,.6)}
+
+/* ===== CHAT IA ===== */
+.chat-fab{position:fixed;bottom:20px;right:20px;z-index:300;width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,#7a5aff,#ff2d6b);color:#fff;font-size:1.35rem;box-shadow:0 10px 30px rgba(122,90,255,.5);transition:.25s;display:flex;align-items:center;justify-content:center}
+.chat-fab:hover{transform:scale(1.08)}
+.chat-panel{position:fixed;bottom:90px;right:20px;z-index:300;width:min(380px,calc(100vw - 40px));height:min(560px,70vh);background:rgba(14,13,22,.94);backdrop-filter:blur(16px);border:1px solid rgba(150,130,255,.25);border-radius:20px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.chat-panel.open{display:flex;animation:fadeInUp .25s ease}
+.chat-head{padding:1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem}
+.chat-head .av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#7a5aff,#ff2d6b);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.chat-head h4{font-family:var(--font-a);font-size:.95rem;font-weight:700;letter-spacing:.04em}
+.chat-head .st{font-size:.6rem;color:var(--green)}
+.chat-head .cx{margin-left:auto;background:none;border:none;color:var(--text-3);cursor:pointer;font-size:1.05rem}
+.chat-body{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem}
+.chat-msg{max-width:85%;padding:.65rem .9rem;border-radius:14px;font-size:.8rem;line-height:1.5;white-space:pre-wrap}
+.chat-msg.bot{align-self:flex-start;background:rgba(122,90,255,.16);border:1px solid rgba(122,90,255,.25)}
+.chat-msg.me{align-self:flex-end;background:rgba(255,45,107,.18);border:1px solid rgba(255,45,107,.3)}
+.chat-foot{padding:.8rem;border-top:1px solid var(--border);display:flex;gap:.5rem}
+.chat-foot input{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:24px;padding:.6rem 1rem;color:#fff;font-size:.8rem;outline:none}
+.chat-foot button{background:linear-gradient(135deg,#7a5aff,#ff2d6b);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;flex-shrink:0}
+@media(max-width:768px){.svc-g{grid-template-columns:1fr}}
+.nav-burger{display:none;background:none;border:none;color:#fff;font-size:1.25rem;cursor:pointer;padding:6px;margin-left:4px}
+
+/* ===== LANGUAGE SWITCHER (Google Translate, 27 langs) ===== */
+.goog-te-banner-frame,.goog-te-gadget-icon,.goog-logo-link,.goog-te-gadget span{display:none!important}
+body{top:0!important;position:static!important}
+.skiptranslate>iframe{display:none!important}
+.lang-wrap{display:inline-flex;align-items:center;gap:5px;color:var(--text-3)}
+.lang-wrap>i{font-size:.85rem;color:var(--text-3)}
+#google_translate_element{display:inline-flex;align-items:center}
+.goog-te-gadget{font-size:0!important;line-height:0!important}
+.goog-te-combo{margin:0!important;background:rgba(255,255,255,.06)!important;color:#fff!important;border:1px solid var(--border)!important;border-radius:20px!important;padding:5px 10px!important;font-size:.72rem!important;font-family:var(--font)!important;cursor:pointer;outline:none;max-width:140px}
+.goog-te-combo option{background:#111;color:#fff}
+
+/* ===== VIDEO PRESENTATION (top) ===== */
+.vid-hero{max-width:1000px;margin:0 auto;padding:2.2rem 1.5rem .5rem;text-align:center}
+.vid-hero .vh-badge{display:inline-block;font-family:var(--font-a);font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:#ffcf6a;border:1px solid rgba(255,200,90,.4);padding:5px 12px;border-radius:20px;margin-bottom:.9rem}
+.vid-hero h2{font-family:var(--font-a);font-weight:800;font-size:clamp(1.7rem,4.5vw,2.8rem);line-height:1;background:linear-gradient(90deg,#ffe1a0,#ff8a3c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.3rem}
+.vid-hero .vh-sub{color:var(--text-3);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem}
+.vid-hero video{width:100%;border-radius:16px;box-shadow:0 30px 70px rgba(0,0,0,.7),0 0 60px rgba(255,160,50,.18);display:block;background:#000;border:1px solid rgba(255,180,70,.2)}
+.vid-hero-cta{display:flex;gap:.9rem;justify-content:center;margin-top:1.3rem;flex-wrap:wrap}
+
+/* ===== VST LANDING (Oriental Instrument) ===== */
+.vst-sec{max-width:1100px;margin:0 auto;padding:3.5rem 1.5rem}
+.vst-hero{display:grid;grid-template-columns:1fr 1.05fr;gap:2.5rem;align-items:center}
+.vst-badge{display:inline-block;font-family:var(--font-a);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:#ffcf6a;border:1px solid rgba(255,200,90,.4);padding:5px 12px;border-radius:20px;margin-bottom:1rem}
+.vst-copy h2{font-family:var(--font-a);font-weight:800;font-size:clamp(2rem,5vw,3.2rem);line-height:1;margin-bottom:.5rem;background:linear-gradient(90deg,#ffe1a0,#ff8a3c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.vst-copy .vst-sub{color:var(--text-2);font-size:.95rem;line-height:1.55;margin-bottom:1.3rem}
+.vst-feats{list-style:none;padding:0;margin:0 0 1.6rem;display:flex;flex-direction:column;gap:.55rem}
+.vst-feats li{font-size:.82rem;color:var(--text-2);display:flex;gap:.6rem;align-items:flex-start}
+.vst-feats li i{color:#ffcf6a;margin-top:3px}
+.vst-cta{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}
+.vst-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.95rem 1.7rem;border-radius:40px;font-family:var(--font-a);font-weight:800;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s}
+.vst-btn.demo{background:linear-gradient(135deg,#ffd16a,#ff9a2e);color:#241500;box-shadow:0 8px 30px rgba(255,160,50,.4)}
+.vst-btn.demo:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,160,50,.6)}
+.vst-btn.bundle{background:rgba(255,180,70,.1);border:1px solid rgba(255,180,70,.5);color:#ffcf6a}
+.vst-btn.bundle:hover{background:rgba(255,180,70,.2);transform:translateY(-3px)}
+.vst-watch{font-size:.72rem;color:var(--text-3);text-decoration:none}.vst-watch:hover{color:#ffcf6a}
+.vst-visual{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.7),0 0 60px rgba(255,160,50,.15)}
+.vst-visual img{width:100%;display:block}
+.vst-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,200,90,.12),transparent 42%);pointer-events:none}
+.vst-tiers{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.5rem}
+.vst-tier{padding:1.5rem;border-radius:16px;background:linear-gradient(160deg,rgba(34,24,10,.6),rgba(10,8,4,.72));border:1px solid rgba(255,180,70,.18)}
+.vst-tier.pro{border-color:rgba(255,180,70,.55);box-shadow:0 0 40px rgba(255,160,50,.12)}
+.vst-tier h4{font-family:var(--font-a);font-size:1.2rem;font-weight:800;margin-bottom:.2rem}
+.vst-tier .price{font-family:var(--font-a);font-size:1.05rem;color:#ffcf6a;margin-bottom:.8rem}
+.vst-tier ul{list-style:none;padding:0;margin:0 0 1rem;display:flex;flex-direction:column;gap:.45rem}
+.vst-tier li{font-size:.78rem;color:var(--text-3);display:flex;gap:.5rem;align-items:flex-start}.vst-tier li i{color:#ffcf6a;margin-top:2px}
+@media(max-width:768px){.vst-hero{grid-template-columns:1fr}.vst-visual{order:-1}.vst-tiers{grid-template-columns:1fr}}
+
+/* ===== TESTIMONIALS (What Producers Are Saying) ===== */
+.tst-head{display:flex;align-items:center;justify-content:center;gap:1rem;position:relative}
+.tst-scroll-hint{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-4);border:1px solid var(--border);padding:5px 12px;border-radius:20px}
+.tst-row{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;max-width:920px;margin:0 auto;padding:1.5rem .5rem 1rem;max-height:560px;overflow-y:auto;scrollbar-width:thin}
+.tst-row::-webkit-scrollbar{width:6px}.tst-row::-webkit-scrollbar-thumb{background:rgba(150,130,255,.3);border-radius:3px}
+.tst-card{background:linear-gradient(170deg,rgba(26,24,40,.85),rgba(12,12,18,.9));border:1px solid rgba(150,130,255,.16);border-radius:16px;padding:1.1rem 1.2rem;backdrop-filter:blur(8px)}
+@media(max-width:680px){.tst-row{grid-template-columns:1fr}}
+.tst-top{display:flex;align-items:center;gap:.6rem;margin-bottom:.7rem}
+.tst-av{width:38px;height:38px;border-radius:50%;object-fit:cover;background:#2a2a33;flex-shrink:0}
+.tst-av-ltr{display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#fff;font-family:var(--font-a)}
+.tst-name{font-weight:700;font-size:.82rem;display:flex;align-items:center;gap:.3rem}
+.tst-name i{color:#3897f0;font-size:.7rem}
+.tst-src{font-size:.6rem;color:var(--text-4)}
+.tst-text{font-size:.82rem;line-height:1.5;color:var(--text-2)}
+.tst-foot{display:flex;align-items:center;gap:1.1rem;margin-top:.9rem;font-size:.68rem;color:var(--text-4)}
+.tst-foot .lk{color:var(--accent)}
+.tst-cta{text-align:center;margin-top:.5rem;display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
+.tst-cta a,.tst-cta button{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.5rem;border-radius:30px;background:rgba(122,90,255,.14);border:1px solid rgba(150,130,255,.4);color:#cfd3ff;font-weight:700;font-size:.78rem;text-decoration:none;transition:.2s;cursor:pointer}
+.tst-cta a:hover,.tst-cta button:hover{background:rgba(122,90,255,.26)}
+/* stats band — chiffres réels */
+.tst-stats{display:flex;justify-content:center;gap:2.2rem;flex-wrap:wrap;margin:.4rem 0 1.4rem}
+.tst-stat{text-align:center}
+.tst-stat b{display:block;font-family:var(--font-a);font-size:1.7rem;font-weight:800;background:linear-gradient(90deg,#a78bff,#ff6ad5);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.tst-stat span{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-4)}
+/* review form */
+.rev-form{max-width:560px;margin:1.6rem auto 0;background:linear-gradient(170deg,rgba(26,24,40,.7),rgba(12,12,18,.85));border:1px solid rgba(150,130,255,.18);border-radius:16px;padding:1.3rem}
+.rev-form h4{font-family:var(--font-a);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:.9rem}
+.rev-form input,.rev-form textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:#fff;font-family:var(--font);font-size:.82rem;padding:.7rem .9rem;margin-bottom:.7rem;outline:none}
+.rev-form textarea{resize:vertical;min-height:74px}
+.rev-form .rev-stars{display:flex;gap:.3rem;justify-content:center;margin-bottom:.8rem;font-size:1.3rem;color:#444}
+.rev-form .rev-stars i{cursor:pointer;transition:.15s}
+.rev-form .rev-stars i.on{color:#ffcf6a}
+.rev-form button{width:100%;padding:.8rem;border-radius:10px;background:linear-gradient(90deg,#7a5aff,#ff6ad5);border:none;color:#fff;font-weight:700;font-size:.85rem;cursor:pointer}
+
+/* ===== LICENSING ===== */
+.lic-g{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-bottom:1.4rem}
+.lic-card{position:relative;padding:1.6rem 1.4rem;border-radius:16px;background:linear-gradient(160deg,rgba(28,24,48,.5),rgba(10,10,18,.6));border:1px solid rgba(150,130,255,.16);backdrop-filter:blur(8px)}
+.lic-card.free{border-color:rgba(29,185,84,.4)}
+.lic-card.exclusive{border-color:rgba(255,200,60,.35)}
+.lic-card h3{font-family:var(--font-a);font-size:1.15rem;font-weight:700;letter-spacing:.03em;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem}
+.lic-card.free h3{color:#1DB954}.lic-card.exclusive h3{color:#ffd23c}
+.lic-card .lic-sub{font-size:.72rem;color:var(--text-3);margin-bottom:1rem}
+.lic-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin:0;padding:0}
+.lic-list li{font-size:.78rem;line-height:1.4;display:flex;gap:.55rem;align-items:flex-start;color:var(--text-2)}
+.lic-list li i{margin-top:2px;flex-shrink:0}
+.lic-yes{color:#1DB954}.lic-no{color:var(--accent)}.lic-warn{color:#ffd23c}
+.lic-note{font-size:.72rem;color:var(--text-3);text-align:center;line-height:1.6;margin-top:.4rem}
+.lic-note b{color:var(--green)}
+.lic-cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;padding:.7rem 1.4rem;border-radius:30px;background:rgba(255,210,60,.12);border:1px solid rgba(255,210,60,.4);color:#ffd23c;font-weight:700;font-size:.78rem;text-decoration:none;transition:.2s}
+.lic-cta:hover{background:rgba(255,210,60,.22)}
+
+/* ===== NEWSLETTER ===== */
+.nl-band{max-width:760px;margin:0 auto 1rem;padding:2.2rem 1.5rem;border-radius:20px;text-align:center;
+    background:linear-gradient(135deg,rgba(122,90,255,.18),rgba(255,45,107,.14));border:1px solid rgba(150,130,255,.25);backdrop-filter:blur(10px)}
+.nl-band h2{font-family:var(--font-a);font-size:clamp(1.4rem,4vw,2rem);font-weight:700;margin-bottom:.4rem}
+.nl-band p{font-size:.82rem;color:var(--text-2);margin-bottom:1.3rem}
+.nl-form{display:flex;gap:.6rem;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.nl-form input{flex:1;min-width:200px;background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:30px;padding:.8rem 1.3rem;color:#fff;font-size:.85rem;outline:none}
+.nl-form input:focus{border-color:rgba(150,130,255,.7)}
+.nl-form button{background:linear-gradient(135deg,#7a5aff,#ff2d6b);border:none;color:#fff;font-weight:800;font-size:.82rem;padding:.8rem 1.6rem;border-radius:30px;cursor:pointer;letter-spacing:.03em;transition:transform .2s}
+.nl-form button:hover{transform:translateY(-2px)}
+.nl-mini{font-size:.65rem;color:var(--text-4);margin-top:.8rem}
+@media(max-width:768px){.lic-g{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+
+<!-- ASTRONOMICAL BACKGROUND (WebGL starfield + nebula) -->
+<canvas id="space-bg"></canvas>
+<div class="space-veil"></div>
+
+<!-- HEADER -->
+<header class="hdr">
+    <div class="hdr-inner">
+        <a href="#" class="brand">DJBILBOX <span>BEATS</span></a>
+        <nav class="hdr-nav">
+            <a href="#player">Beats</a>
+            <a href="#gear">Studio 3D</a>
+            <a href="#vst">VST</a>
+            <a href="#kits">Drum Kits</a>
+            <a href="#services">Services</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#licensing">License</a>
+            <a href="#discography">Discography</a>
+            <a href="#playlists">Playlists</a>
+            <a href="#newsletter">News</a>
+            <a href="#" onclick="toggleChat();return false;">AI Chat</a>
+        </nav>
+        <div class="hdr-r">
+            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <span class="lang-wrap notranslate" translate="no"><i class="fa-solid fa-globe"></i><div id="google_translate_element"></div></span>
+            <button class="cart-btn" onclick="toggleCart()"><i class="fa-solid fa-bag-shopping"></i> <span class="cart-badge" id="cBadge">0</span></button>
+            <button class="nav-burger" onclick="toggleNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<!-- VIDEO PRESENTATION (top) -->
+<section class="vid-hero" id="presentation">
+    <span class="vh-badge">New · VST Plugin</span>
+    <h2>Oriental Instrument</h2>
+    <div class="vh-sub">The presentation video — DJBILBOX BEATS</div>
+    <video controls playsinline preload="metadata" poster="media/oriental-poster.jpg">
+        <source src="media/oriental-demo.mp4" type="video/mp4">
+    </video>
+    <div class="vid-hero-cta">
+        <a class="vst-btn demo" onclick="vstAction('demo')"><i class="fa-solid fa-download"></i> Download Demo</a>
+        <a class="vst-btn bundle" onclick="vstAction('bundle')"><i class="fa-solid fa-gem"></i> Get Bundle</a>
+    </div>
+</section>
+
+<!-- CINEMATIC HERO -->
+<section class="hero-x">
+    <div class="hx-eyebrow">+1000 BEATS · ORIENTAL · TRAP · DRILL · G-FUNK</div>
+    <h1>DJBILBOX<span>BEATS</span></h1>
+    <div style="display:flex;gap:2rem;justify-content:center;margin-top:1.2rem;font-size:.75rem;animation:fadeInUp .8s ease .1s both;opacity:0;animation-fill-mode:forwards">
+        <div style="text-align:center"><div style="color:var(--accent);font-weight:700;font-size:1.1rem">367K+</div><div style="color:var(--text-3)">YouTube Views</div></div>
+        <div style="text-align:center"><div style="color:var(--accent);font-weight:700;font-size:1.1rem">475+</div><div style="color:var(--text-3)">Spotify Tracks</div></div>
+        <div style="text-align:center"><div style="color:var(--accent);font-weight:700;font-size:1.1rem">3000+</div><div style="color:var(--text-3)">Videos</div></div>
+    </div>
+    <div class="hx-sub">Free For Profit · Instant Licenses</div>
+    <div class="hx-meta">Producer · Beatmaker · Sound Designer</div>
+    <div class="hx-cta">
+        <a href="#player" class="hx-btn primary"><i class="fa-solid fa-play"></i> Listen to the beats</a>
+        <a href="#gear" class="hx-btn ghost"><i class="fa-solid fa-cube"></i> The 3D Studio</a>
+    </div>
+    <a href="#gear" class="hx-scroll">Scroll<i class="fa-solid fa-chevron-down"></i></a>
+</section>
+
+<!-- MAIN PLAYER PANEL -->
+<div class="player-panel" id="player">
+    <!-- Toolbar -->
+    <div class="pl-toolbar">
+        <div class="pl-toolbar-l">
+            <button class="pl-tbtn" onclick="sortTracks()"><i class="fa-solid fa-sort"></i> Sort</button>
+            <input class="pl-search" type="text" placeholder="Search..." id="searchIn" oninput="filterTracks()">
+        </div>
+        <span style="font-size:.7rem;color:var(--text-3);" id="trackCount">18 tracks</span>
+    </div>
+
+    <!-- Spotify Embed Player (STICKY — persiste pendant le scroll) -->
+    <div id="stickyPlayer" style="position:sticky;top:56px;z-index:100;padding:0.6rem 1rem;background:var(--bg);border-bottom:1px solid var(--border);">
+        <div id="playerContainer">
+            <iframe id="spotifyEmbed" src="https://open.spotify.com/embed/track/1UnJqR2s8q07k3vFhNFtvm?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" style="border-radius:8px;" loading="lazy"></iframe>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.4rem;">
+            <span style="font-size:0.65rem;color:var(--text-4);" id="nowPlaying">Click a track to start playing</span>
+            <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" style="font-size:0.65rem;color:var(--green);font-weight:600;display:flex;align-items:center;gap:3px;"><i class="fa-brands fa-spotify"></i> 300+ tracks on Spotify</a>
+        </div>
+    </div>
+
+    <!-- Track List -->
+    <div class="pl-list" id="trackList"></div>
+
+    <!-- Steps -->
+    <div class="pl-steps">
+        <div class="pl-step"><span class="pl-step-n">1</span> Listen</div>
+        <div class="pl-step"><span class="pl-step-n">2</span> Add to Cart</div>
+        <div class="pl-step"><span class="pl-step-n">3</span> Download License</div>
+    </div>
+</div>
+
+<!-- 3D GEAR SHOWCASE -->
+<section class="gear-sec" id="gear">
+    <div class="gear-head">
+        <h2 class="sec-title">The Studio in 3D</h2>
+        <p class="sec-sub">The tools behind the DJBILBOX sound — drag to rotate</p>
+    </div>
+    <div class="gear-grid">
+        <div class="gear-card">
+            <span class="gear-tag">Synth · MIDI</span>
+            <canvas class="gear-canvas" id="gear-synth"></canvas>
+            <div class="gear-card-body"><h4>Novation FLkey 49</h4><p>MIDI keyboard · 49 keys · FL Studio integration</p></div>
+        </div>
+        <div class="gear-card">
+            <span class="gear-tag">Mic · Interface</span>
+            <canvas class="gear-canvas" id="gear-mic"></canvas>
+            <div class="gear-card-body"><h4>Bomge BMG-22M</h4><p>Condenser mic + USB audio interface · 48V phantom · studio vocals</p></div>
+        </div>
+        <div class="gear-card">
+            <span class="gear-tag">DAW</span>
+            <canvas class="gear-canvas" id="gear-fl"></canvas>
+            <div class="gear-card-body"><h4>FL Studio</h4><p>Fruity Loops · production · mix · mastering</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- VST — ORIENTAL INSTRUMENT -->
+<div class="sec vst-sec" id="vst">
+    <div class="vst-hero">
+        <div class="vst-copy">
+            <span class="vst-badge">VST Plugin · Maqam Engine Pro</span>
+            <h2>Oriental Instrument</h2>
+            <p class="vst-sub">Sonorités authentiques du Moyen-Orient pour producteurs modernes. Plucks, cordes, leads, pads &amp; textures — parfait pour Trap, Afrotrap, Drill, G-Funk, Deep House &amp; cinématique.</p>
+            <ul class="vst-feats">
+                <li><i class="fa-solid fa-check"></i> Sound design authentique : oud, ney, qanun, violon, darbouka, cordes orientales</li>
+                <li><i class="fa-solid fa-check"></i> Léger &amp; rapide — faible CPU, compatible FL Studio, Ableton, Logic, Cubase</li>
+                <li><i class="fa-solid fa-check"></i> Qualité studio, prêt pour sorties commerciales</li>
+                <li><i class="fa-solid fa-check"></i> Interface claire, workflow instantané — Maqam Engine Pro</li>
+            </ul>
+            <div class="vst-cta">
+                <a class="vst-btn demo" onclick="vstAction('demo')"><i class="fa-solid fa-download"></i> Download Demo</a>
+                <a class="vst-btn bundle" onclick="vstAction('bundle')"><i class="fa-solid fa-gem"></i> Get Bundle</a>
+                <a class="vst-watch" href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i> Voir la démo vidéo</a>
+            </div>
+        </div>
+        <div class="vst-visual"><img src="img/oriental-instrument.jpg" alt="Oriental Instrument VST par DJBILBOX BEATS" loading="lazy"></div>
+    </div>
+    <div class="vst-tiers">
+        <div class="vst-tier">
+            <h4>Demo</h4><div class="price">Gratuit</div>
+            <ul>
+                <li><i class="fa-solid fa-check"></i> Sélection d'instruments de base</li>
+                <li><i class="fa-solid fa-check"></i> Teste le son &amp; le workflow</li>
+                <li><i class="fa-solid fa-check"></i> Idéal avant d'acheter</li>
+            </ul>
+            <a class="vst-btn demo" onclick="vstAction('demo')"><i class="fa-solid fa-download"></i> Download Demo</a>
+        </div>
+        <div class="vst-tier pro">
+            <h4>Bundle 300+</h4><div class="price">Lifetime access · free updates</div>
+            <ul>
+                <li><i class="fa-solid fa-star"></i> 300+ instruments exclusifs</li>
+                <li><i class="fa-solid fa-star"></i> Plucks, cordes, leads, pads, textures rares</li>
+                <li><i class="fa-solid fa-star"></i> FX &amp; textures jouables pour beats modernes</li>
+                <li><i class="fa-solid fa-star"></i> Paiement sécurisé · support pro</li>
+            </ul>
+            <a class="vst-btn bundle" onclick="vstAction('bundle')"><i class="fa-solid fa-gem"></i> Get Bundle</a>
+        </div>
+    </div>
+</div>
+
+<!-- DRUM KITS -->
+<div class="sec" id="kits">
+    <h2 class="sec-title">Drum Kits & Samples</h2>
+    <p class="sec-sub">Professional packs • Instant download</p>
+    <div class="kits-g" id="kitsG"></div>
+</div>
+
+<!-- DISCOGRAPHIE -->
+<div class="sec" id="discography">
+    <h2 class="sec-title">Discographie</h2>
+    <p class="sec-sub">Albums & Projects • Available on all platforms</p>
+    <div class="disco-g" id="discoG"></div>
+</div>
+
+<!-- PLAYLISTS -->
+<div class="sec" id="playlists">
+    <h2 class="sec-title">YouTube Playlists</h2>
+    <p class="sec-sub">Browse by genre</p>
+    <div class="yt-g" id="ytG"></div>
+</div>
+
+<!-- SERVICES -->
+<div class="sec" id="services">
+    <h2 class="sec-title">Services</h2>
+    <p class="sec-sub">Digital creator · music production · collaborations</p>
+    <div class="svc-g">
+        <div class="svc-card">
+            <div class="svc-ico"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h4>Digital Creator</h4>
+            <p>Visual identity, branding, art direction and content for artists and brands.</p>
+        </div>
+        <div class="svc-card">
+            <div class="svc-ico"><i class="fa-solid fa-code"></i></div>
+            <h4>Web Developer</h4>
+            <p>Showcase sites, e-commerce, 3D landing pages and custom interactive experiences.</p>
+        </div>
+        <div class="svc-card">
+            <div class="svc-ico"><i class="fa-solid fa-clapperboard"></i></div>
+            <h4>Image &amp; Video</h4>
+            <p>Music videos, visualizers, editing, motion design and cover art for your releases.</p>
+        </div>
+        <div class="svc-card">
+            <div class="svc-ico"><i class="fa-solid fa-drum"></i></div>
+            <h4>Beatmaking</h4>
+            <p>Oriental, trap, drill, g-funk, balkan instrumentals. Exclusive beats or licenses.</p>
+        </div>
+        <div class="svc-card">
+            <div class="svc-ico"><i class="fa-solid fa-sliders"></i></div>
+            <h4>Mix &amp; Mastering</h4>
+            <p>Professional mix and mastering for a powerful, clear, streaming-ready sound.</p>
+        </div>
+        <div class="svc-card">
+            <div class="svc-ico"><i class="fa-solid fa-music"></i></div>
+            <h4>Composer &amp; Collab</h4>
+            <p>Composition, topline, sound design and artistic collaborations on your projects.</p>
+        </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+        <a href="#" onclick="toggleChat();return false;" class="hx-btn primary" style="display:inline-flex;align-items:center;gap:.5rem"><i class="fa-solid fa-comments"></i> Discuss a collab</a>
+    </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="sec" id="reviews">
+    <div class="tst-head">
+        <h2 class="sec-title">What Producers Are Saying</h2>
+        <span class="tst-scroll-hint">Scroll &darr;</span>
+    </div>
+    <p class="sec-sub" style="text-align:center">Real reviews from the DJBILBOX BEATS community</p>
+    <div class="tst-stats">
+        <div class="tst-stat"><b>367K+</b><span>YouTube views</span></div>
+        <div class="tst-stat"><b>475+</b><span>Spotify tracks</span></div>
+        <div class="tst-stat"><b>3000+</b><span>Videos</span></div>
+        <div class="tst-stat"><b>10</b><span>Albums</span></div>
+    </div>
+    <div class="tst-row" id="tstRow"></div>
+    <!-- Review form — real visitors submit, emailed to producer + shown instantly -->
+    <form class="rev-form" id="revForm" onsubmit="submitReview(event)">
+        <h4><i class="fa-solid fa-star"></i> Leave your review</h4>
+        <div class="rev-stars" id="revStars">
+            <i class="fa-solid fa-star" data-v="1"></i><i class="fa-solid fa-star" data-v="2"></i><i class="fa-solid fa-star" data-v="3"></i><i class="fa-solid fa-star" data-v="4"></i><i class="fa-solid fa-star" data-v="5"></i>
+        </div>
+        <input type="text" id="revName" placeholder="Your name *" required maxlength="40">
+        <textarea id="revText" placeholder="Your review *" required maxlength="240"></textarea>
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i> Post my review</button>
+    </form>
+    <div class="tst-cta"><a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i> Or review on YouTube</a></div>
+</div>
+
+<!-- LICENSING -->
+<div class="sec" id="licensing">
+    <h2 class="sec-title">Licensing Information</h2>
+    <p class="sec-sub">All DJBILBOX BEATS instrumentals — Free Unlimited License</p>
+    <div class="lic-g">
+        <div class="lic-card free">
+            <h3><i class="fa-solid fa-unlock-keyhole"></i> Free Unlimited License</h3>
+            <div class="lic-sub">For everyone — artists, creators, YouTubers, streamers, filmmakers. No purchase.</div>
+            <ul class="lic-list">
+                <li><i class="fa-solid fa-check lic-yes"></i> MP3 file — free download</li>
+                <li><i class="fa-solid fa-check lic-yes"></i> Unlimited streaming &amp; distribution</li>
+                <li><i class="fa-solid fa-check lic-yes"></i> Unlimited music videos &amp; live shows</li>
+                <li><i class="fa-solid fa-check lic-yes"></i> Commercial use (YouTube, Spotify, TikTok, Insta…)</li>
+                <li><i class="fa-solid fa-check lic-yes"></i> Worldwide · non-exclusive</li>
+                <li><i class="fa-solid fa-triangle-exclamation lic-warn"></i> Credit required: <b>(Prod. by DJBILBOX BEATS)</b></li>
+                <li><i class="fa-solid fa-xmark lic-no"></i> No resale / re-license / redistribution of the beat</li>
+                <li><i class="fa-solid fa-xmark lic-no"></i> No Content ID on the instrumental alone (no vocals)</li>
+            </ul>
+        </div>
+        <div class="lic-card exclusive">
+            <h3><i class="fa-solid fa-gem"></i> Exclusive · WAV / Stems</h3>
+            <div class="lic-sub">Full exclusivity or WAV + stems files for pro mixing.</div>
+            <ul class="lic-list">
+                <li><i class="fa-solid fa-star lic-warn"></i> Exclusive rights (beat removed from catalog)</li>
+                <li><i class="fa-solid fa-star lic-warn"></i> WAV / Trackouts / Stems pack</li>
+                <li><i class="fa-solid fa-star lic-warn"></i> Custom beat on demand</li>
+                <li><i class="fa-solid fa-star lic-warn"></i> Sync licensing (film, ads, games)</li>
+                <li><i class="fa-solid fa-star lic-warn"></i> Collab &amp; features</li>
+            </ul>
+            <a href="#" onclick="toggleChat();return false;" class="lic-cta"><i class="fa-solid fa-comments"></i> Discuss an exclusive license</a>
+        </div>
+    </div>
+    <p class="lic-note">By downloading a DJBILBOX BEATS instrumental, you agree to the <b>Free Unlimited License</b>. Contact: djbilboxbeats@gmail.com</p>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="sec" id="newsletter">
+    <div class="nl-band">
+        <h2>Stay connected with <span style="color:#1DB954">DJBILBOX BEATS</span></h2>
+        <p>New beats, kits, releases &amp; exclusive offers — straight to your inbox.</p>
+        <form class="nl-form" id="nlForm" onsubmit="subscribeNewsletter(event)">
+            <input type="email" id="nlEmail" placeholder="your@email.com" required>
+            <button type="submit"><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+        </form>
+        <div class="nl-mini">No spam. Unsubscribe anytime.</div>
+    </div>
+</div>
+
+<!-- SEO INTERNAL LINKS (silos) -->
+<nav class="seo-links" aria-label="Services and beats">
+  <style>
+    .seo-links{max-width:1180px;margin:3rem auto 0;padding:2rem 1.2rem;border-top:1px solid rgba(255,255,255,.08);display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.6rem;font-size:.9rem}
+    .seo-links h4{color:#fff;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;margin:0 0 .7rem;opacity:.7}
+    .seo-links a{display:block;color:#bdbdce;text-decoration:none;padding:.22rem 0}
+    .seo-links a:hover{color:#ff3d54}
+  </style>
+  <div>
+    <h4>Beats by city</h4>
+    <a href="/beats/">All beats</a>
+    <a href="/beats/beatmaker-toulouse/">Beatmaker Toulouse</a>
+    <a href="/beats/beatmaker-paris/">Beatmaker Paris</a>
+    <a href="/beats/beatmaker-marseille/">Beatmaker Marseille</a>
+    <a href="/beats/beatmaker-lyon/">Beatmaker Lyon</a>
+  </div>
+  <div>
+    <h4>Beats by style</h4>
+    <a href="/beats/trap-beats-atlanta/">Trap beats</a>
+    <a href="/beats/oriental-beats-dubai/">Oriental beats</a>
+    <a href="/beats/drill-beats-london/">Drill beats</a>
+    <a href="/beats/afrotrap-beats-paris/">Afrotrap beats</a>
+    <a href="/beats/g-funk-beats-los-angeles/">G-Funk beats</a>
+  </div>
+  <div>
+    <h4>VST &amp; sound</h4>
+    <a href="/vst-plugins/">VST plugins</a>
+    <a href="/vst-plugins/juce-cpp-developer/">Custom VST developer (JUCE)</a>
+    <a href="/mix-mastering/">Mix &amp; Mastering</a>
+    <a href="/composer/">Composer &amp; topline</a>
+  </div>
+  <div>
+    <h4>Visual &amp; web</h4>
+    <a href="/music-video/">Music video &amp; visualizers</a>
+    <a href="/branding/">Artist branding</a>
+    <a href="/web-dev-music/">Web dev for artists</a>
+    <a href="/web-dev-music/music-label-web-developer/">Label web developer</a>
+  </div>
+</nav>
+
+<!-- FOOTER -->
+<footer class="site-foot">
+    <a href="#" class="brand">DJBILBOX <span>BEATS</span></a>
+    <div class="foot-soc">
+        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify fa-lg"></i></a>
+        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube fa-lg"></i></a>
+        <a href="https://www.tiktok.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-tiktok fa-lg"></i></a>
+        <a href="https://soundcloud.com/djbilboxbeats" target="_blank"><i class="fa-brands fa-soundcloud fa-lg"></i></a>
+    </div>
+    <p style="color:var(--text-4);font-size:.7rem">© 2026 DJBILBOX BEATS. All Rights Reserved.</p>
+</footer>
+
+<!-- MINI CART -->
+<div class="mc" id="mc">
+    <div class="mc-h"><h3><i class="fa-solid fa-bag-shopping"></i> Cart</h3><button class="mc-x" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="mc-list" id="mcList"><p style="text-align:center;color:var(--text-4);padding:2rem">Your cart is empty</p></div>
+    <div class="mc-foot"><div class="mc-total"><span>Total</span><span id="mcTot">0€</span></div><button class="btn-full" onclick="openModal()"><i class="fa-solid fa-file-pdf"></i> Download License (0€)</button></div>
+</div>
+
+<!-- LICENCE MODAL -->
+<div class="modal-o" id="licM">
+    <div class="modal-b">
+        <button class="modal-x" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+        <h2>Free License</h2>
+        <p>Generate your PDF contract instantly. You'll receive the file and a copy will be sent to the producer.</p>
+        <form id="licF">
+            <div class="ff"><label>Name *</label><input type="text" id="fN" required></div>
+            <div class="ff"><label>Email *</label><input type="email" id="fE" required></div>
+            <div class="ff"><label>Selected beats *</label><textarea id="fB" required placeholder="e.g. 3tini, KHALIFA, Hermès..."></textarea></div>
+            <div class="ff"><label>Project</label><input type="text" id="fP" placeholder="Album, YouTube, podcast..."></div>
+            <div class="cb-f"><input type="checkbox" id="fA" required><label for="fA">I accept the terms and agree to credit "Prod. DJBILBOX BEATS"</label></div>
+            <button type="submit" class="btn-full"><i class="fa-solid fa-download"></i> Download PDF</button>
+        </form>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fa-solid fa-check"></i> <span id="toastT"></span></div>
+
+<!-- CHAT IA -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Chat IA"><i class="fa-solid fa-robot"></i></button>
+<div class="chat-panel" id="chatPanel">
+    <div class="chat-head">
+        <div class="av"><i class="fa-solid fa-robot"></i></div>
+        <div><h4>BILBOX AI</h4><div class="st">● online · knows everything about DJBILBOX</div></div>
+        <button class="cx" onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="chat-body" id="chatBody"></div>
+    <div class="chat-foot">
+        <input id="chatInput" type="text" placeholder="Ask your question..." onkeydown="if(event.key==='Enter')sendChat()">
+        <button onclick="sendChat()"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+</div>
+
+<script>
+// ===== DATA (Real Spotify IDs) =====
+// <<<TRACKS_AUTO_START>>>
+const TRACKS=[
+  {title:"3tini",trackId:"1UnJqR2s8q07k3vFhNFtvm",cover:"https://i.scdn.co/image/ab67616d0000b273d5992a1efc3211726d796caf",tags:["Oriental","Trap"]},
+  {title:"Mariama",trackId:"728NpnWQjj4618mNODphTc",cover:"https://i.scdn.co/image/ab67616d0000b273395cfbfa4fda7a889cf999ce",tags:["Afro","Melodic"]},
+  {title:"KHALIFA",trackId:"1eAZaSK0DCtI0D8c3Is0Ga",cover:"https://i.scdn.co/image/ab67616d0000b273d78525c8799d1efe701ba16b",tags:["Oriental","Hard"]},
+  {title:"BOSS",trackId:"1JDY2oobfT4pDKDcfqOXkD",cover:"https://i.scdn.co/image/ab67616d0000b273ae8108a08d11cde6b69ea3f2",tags:["Trap","Drill"]},
+  {title:"Nagazaki",trackId:"5WaxhX9KnSY9Xg0goqEhCY",cover:"https://i.scdn.co/image/ab67616d0000b2730fc62d04c200019d7370ad2d",tags:["Trap","Synth"]},
+  {title:"Amnésia",trackId:"5kbmgqegfIvyu0FrSDExjI",cover:"https://i.scdn.co/image/ab67616d0000b27354e295b6c03147b78da28575",tags:["Trap","R&B"]},
+  {title:"Albania",trackId:"6ZLRuoesiUmaJGTSNN4cmJ",cover:"https://i.scdn.co/image/ab67616d0000b273b95f607428d7acee01b504d6",tags:["Balkan","Ethnic"]},
+  {title:"ALYA",trackId:"3XPJ1IHqPMkjovkvUU44wA",cover:"https://i.scdn.co/image/ab67616d0000b27356bb0c7baad5da47e3824b43",tags:["Oriental","Guitar"]},
+  {title:"ABU DHABI",trackId:"5jhQVQCOWvxuLtAd09T4rY",cover:"https://i.scdn.co/image/ab67616d0000b2731a58ff44a2f3ab78b4f33fe0",tags:["Trap","Balkan"]},
+  {title:"Zoulikha",trackId:"1v6FWPbuQjf8QYf9JpZD6h",cover:"https://i.scdn.co/image/ab67616d0000b2734ca36f886767e26fecb97740",tags:["Trap","Beat"]},
+  {title:"Rolls Royce (Insrumental Boombap oldschool)",trackId:"7wz5Y6NSBPh8q997uA79DE",cover:"https://i.scdn.co/image/ab67616d0000b2735a39de81e87970dc3f5ea82a",tags:["Trap","Beat"]},
+  {title:"Lamborghini (Boombap Rap)",trackId:"79hpD3XkUezdfgNo6Iypbv",cover:"https://i.scdn.co/image/ab67616d0000b27394e8ddaf9212f877b988c4fe",tags:["Trap","Beat"]},
+  {title:"Émeraude",trackId:"2Xol3DUZAmUqzd48eIQk21",cover:"https://i.scdn.co/image/ab67616d0000b27312af5e7ba228644766b71201",tags:["Trap","Beat"]},
+  {title:"Yves Saint Laurent (Lofi lounge)",trackId:"3EsXZxGhNOPX2Co9Zds1na",cover:"https://i.scdn.co/image/ab67616d0000b273c3d57add55b7fc2c8ab8c289",tags:["Trap","Beat"]},
+  {title:"WEEDS",trackId:"4Ml8WNexujoYntpYSTrbcf",cover:"https://i.scdn.co/image/ab67616d0000b27327c2bd8abc0980f088e5c3a9",tags:["Trap","Beat"]},
+  {title:"Renault",trackId:"6JT4DQQ0YANOkjPPbjOH2O",cover:"https://i.scdn.co/image/ab67616d0000b27357d45dbb635bf89be538ad7d",tags:["Trap","Beat"]},
+  {title:"Polo Ralph Lauren (Reggae Instrumental)",trackId:"5YPu2aX49gJOGcK7F6kaGr",cover:"https://i.scdn.co/image/ab67616d0000b273c54ece3d8b1ba857af1beaf5",tags:["Trap","Beat"]},
+  {title:"Peugeot",trackId:"35VNVNGRmiNYg1gGML1GTF",cover:"https://i.scdn.co/image/ab67616d0000b27363796bc6e73c853c6c0e76d1",tags:["Trap","Beat"]},
+  {title:"PORSCHE - DeepHouse Mix",trackId:"0YYCIkXa5KIQFI866HBnjX",cover:"https://i.scdn.co/image/ab67616d0000b273728d25c5fde2bce820fa0c07",tags:["House","Synth"]},
+  {title:"Mercedes Benz",trackId:"6TGkNoYBTcoRMmTn0D27vx",cover:"https://i.scdn.co/image/ab67616d0000b273b6464d939461270cbc30fdf4",tags:["Trap","Beat"]},
+  {title:"Kryptonite",trackId:"35AMvRfrK7XIX8KA5zOD52",cover:"https://i.scdn.co/image/ab67616d0000b273a0cc903195d0d8ab90724601",tags:["Trap","Beat"]},
+  {title:"JACK DANIEL’S (DNB 2025)",trackId:"2ij04aXoivr9zfwiRszOHS",cover:"https://i.scdn.co/image/ab67616d0000b273cec952ab4f8bb2761f1be8ba",tags:["House","Synth"]},
+  {title:"HULK",trackId:"6BSYaBJkoP4EC9ZTHzUZ9G",cover:"https://i.scdn.co/image/ab67616d0000b2737ae822dd52a634aac9289942",tags:["Trap","Beat"]},
+  {title:"Glacial",trackId:"0iUZHeyx83wHq5pgcLMom6",cover:"https://i.scdn.co/image/ab67616d0000b273d075f3c4ef6682f69d0551ef",tags:["Trap","Beat"]},
+  {title:"Ferrari",trackId:"7iOfJSfMcdfVBXZi4fqiyV",cover:"https://i.scdn.co/image/ab67616d0000b273d68b9143dd461b91ac6b3cfa",tags:["Trap","Beat"]},
+  {title:"Dior",trackId:"7tHzhsCsCX0rMYLxdANs0Q",cover:"https://i.scdn.co/image/ab67616d0000b27355958b4880b063283171fdfe",tags:["Trap","Beat"]},
+  {title:"Citroën (Rock Alernative Punk)",trackId:"6R5GtwOaXa53wzxBGTkiNv",cover:"https://i.scdn.co/image/ab67616d0000b273b56841cf60adfc4a09d8d993",tags:["Trap","Beat"]},
+  {title:"Bugatti",trackId:"4vqsEEK1XYSr1M4NnhWriO",cover:"https://i.scdn.co/image/ab67616d0000b2734393e9b4a9bec63cf48d6c97",tags:["Trap","Beat"]},
+  {title:"BMW SPORT",trackId:"1FlgW6BXPBMb5VxSArXh2e",cover:"https://i.scdn.co/image/ab67616d0000b273c080264b623babfe9e0bf2a0",tags:["Trap","Beat"]},
+  {title:"Audi (DeepHouse oriental)",trackId:"6murYkgD2rpbIruj2VUX2C",cover:"https://i.scdn.co/image/ab67616d0000b27340f0c981c44873fb372ce94e",tags:["Oriental","Trap"]},
+  {title:"YAMAHA",trackId:"1sLtiysXwKI19rP1bP3SZm",cover:"https://i.scdn.co/image/ab67616d0000b273afa55cebf356985e5624ccb1",tags:["Trap","Beat"]},
+  {title:"PRADA (DNB GRIME 2025)",trackId:"3ydvsT4EsFQsccDJeiYP6A",cover:"https://i.scdn.co/image/ab67616d0000b2730f5399b2228950f486754fab",tags:["House","Synth"]},
+  {title:"Monster (DNB GRIME 2025)",trackId:"13nrbwlVZuCx2gUNd7RTB2",cover:"https://i.scdn.co/image/ab67616d0000b2734f71f07365ceb8b11a622bba",tags:["House","Synth"]},
+  {title:"KTM",trackId:"2rAxAIITN9yQ78xTNAMa4D",cover:"https://i.scdn.co/image/ab67616d0000b2739a653719b63116b3d1f93c8b",tags:["Trap","Beat"]},
+  {title:"HUGO BOSS (DNB GRIME 2025)",trackId:"1wQ7D8XRmgmNVXdwtYo4J1",cover:"https://i.scdn.co/image/ab67616d0000b273ad07ba1a1ec131dcdc331615",tags:["House","Synth"]},
+  {title:"CHANEL",trackId:"7nYitGSherSqiBWbdFqPmo",cover:"https://i.scdn.co/image/ab67616d0000b2739c93af1f077bff787c286292",tags:["Trap","Beat"]},
+  {title:"Sub-zero",trackId:"6asQ2xSXQLD22ILOcB83X2",cover:"https://i.scdn.co/image/ab67616d0000b273b767996fa190d1bde2355366",tags:["Trap","Beat"]},
+  {title:"Scorpion",trackId:"3E09fuGV15jL0Zeby0oUe2",cover:"https://i.scdn.co/image/ab67616d0000b273a7afa134f6a1df75e1a42981",tags:["Trap","Beat"]},
+  {title:"SLIME FRUITY",trackId:"3rBdppfWE0TDDEsDdkpUNe",cover:"https://i.scdn.co/image/ab67616d0000b273255628b9895c754b0281d5c7",tags:["Trap","Beat"]},
+  {title:"Burbery",trackId:"2yJcthS4UgFntAjyR4L6oS",cover:"https://i.scdn.co/image/ab67616d0000b2739582d50c41d19861dd829b2f",tags:["Trap","Beat"]},
+  {title:"Nutella",trackId:"7zKcgx11hltyMtw2XUmyp9",cover:"https://i.scdn.co/image/ab67616d0000b2739dd3c9322715150bfda4db22",tags:["Trap","Beat"]},
+  {title:"Malabar",trackId:"5Y1WpUlTNZFRBJWZDwZZQb",cover:"https://i.scdn.co/image/ab67616d0000b273ee6f237f454b49c9023a1a53",tags:["Trap","Beat"]},
+  {title:"CARAMEL (Instruntal Type Beat)",trackId:"5TmsvSLe2yRKRXm6LxVyIw",cover:"https://i.scdn.co/image/ab67616d0000b273d13b983a348963de0b872bb1",tags:["Trap","Beat"]},
+  {title:"Louis Vuitton",trackId:"4cNZcwN1vym33VqIfVlalr",cover:"https://i.scdn.co/image/ab67616d0000b273ae148419b56178c8152e4028",tags:["Trap","Beat"]},
+  {title:"Ça passe crème",trackId:"45omCJCt3DuM6BwvI4TXjH",cover:"https://i.scdn.co/image/ab67616d0000b273ec67cfb840d57472c8d2d338",tags:["Trap","Beat"]},
+  {title:"pendjabi",trackId:"5zpJ0OvkvpfM7aOULojZST",cover:"https://i.scdn.co/image/ab67616d0000b273ee36ff394babc3b39893e90e",tags:["Trap","Beat"]},
+  {title:"Sauvage",trackId:"44OEd5xvK1aG20WcW01EqU",cover:"https://i.scdn.co/image/ab67616d0000b27387d612e0d615de0e6427ad53",tags:["Trap","Beat"]},
+  {title:"Detox",trackId:"7q85nsDEjjb8JoKowUrqxL",cover:"https://i.scdn.co/image/ab67616d0000b2734a9be132ada8897c6346de9c",tags:["Trap","Beat"]},
+  {title:"Coffee Shop",trackId:"5F4U7S5HfIJT0saFSesQ2x",cover:"https://i.scdn.co/image/ab67616d0000b273fa88b657d4905c9732a41adc",tags:["Trap","Beat"]},
+  {title:"Bigup",trackId:"2YpseulV7fJngKGbjcad7W",cover:"https://i.scdn.co/image/ab67616d0000b27363a01d88909edb9834894409",tags:["Trap","Beat"]},
+  {title:"Apocalypse",trackId:"4isHaXhE0FJyyZLbFVUyMf",cover:"https://i.scdn.co/image/ab67616d0000b273dc7ec117efee4215a739cc75",tags:["Trap","Beat"]},
+  {title:"Toulouse Breackdown",trackId:"2eokSJCj2r7yVVKvCQdEI8",cover:"https://i.scdn.co/image/ab67616d0000b273c0c7761e2a9e5cd74b119582",tags:["Trap","Beat"]},
+  {title:"Occitanie Gfunk",trackId:"2YUqiCjfV9XAVAf8Qg3iNp",cover:"https://i.scdn.co/image/ab67616d0000b27365e9b051ad988718c563817f",tags:["Funk","West Coast"]},
+  {title:"Ghostrider",trackId:"3fBmwGBjjRhcokJDemWY6q",cover:"https://i.scdn.co/image/ab67616d0000b273818965c19ec75d3404a390b5",tags:["Trap","Beat"]},
+  {title:"Tony Hawk's",trackId:"7GhxfMlTjlWrVMQ74OfvgV",cover:"https://i.scdn.co/image/ab67616d0000b2737bf55d44ccd973b1e06bee00",tags:["Trap","Beat"]},
+  {title:"Snapchat",trackId:"693zKB60UPrwmHqeimdwIM",cover:"https://i.scdn.co/image/ab67616d0000b2738339a09374a960b165c81608",tags:["Trap","Beat"]},
+  {title:"She Callin’ My Phone (When She’s Alone)",trackId:"1DcDzt5u8zKwBo6x0uPHj8",cover:"https://i.scdn.co/image/ab67616d0000b2738742a34dc2a9683b747ecac8",tags:["Trap","Beat"]},
+  {title:"Milshake",trackId:"79pMHgfMThojbl4fZCFjSx",cover:"https://i.scdn.co/image/ab67616d0000b273cf6daa4f73f86042eb340360",tags:["Trap","Beat"]},
+  {title:"La Plage (Mix Summer 2025)",trackId:"6jmVzGTTAlJ1GJUAwQ8Zm9",cover:"https://i.scdn.co/image/ab67616d0000b273f5203bc20dba19a1bb1d837b",tags:["Trap","Beat"]},
+  {title:"I don't care (Ed Sheran RMX)",trackId:"48Xqx7mJar7PeKiBGcJlFB",cover:"https://i.scdn.co/image/ab67616d0000b27340b4ca612111d4771e0bd7ee",tags:["Trap","Beat"]},
+  {title:"Argelia (RMX)",trackId:"1xq5GTqcuR33m52fKwONXy",cover:"https://i.scdn.co/image/ab67616d0000b273aad70e5e034605b8b6480898",tags:["Oriental","Trap"]},
+  {title:"Argelia",trackId:"77Q6sbboPCE5vHdUHq0igW",cover:"https://i.scdn.co/image/ab67616d0000b273ff8f1f633dbedf11b8b20ff5",tags:["Oriental","Trap"]},
+  {title:"tellement n'brick (faudel RMX)",trackId:"3doD4KCJMmOrfdfVqHeduT",cover:"https://i.scdn.co/image/ab67616d0000b2738e18f3f49afbcfaa97584346",tags:["R&B","Melodic"]},
+  {title:"Rani out Abdou Gambetta (RMX GFUNK)",trackId:"1NLAOnVI7dTfG07gznMWsd",cover:"https://i.scdn.co/image/ab67616d0000b273a3f5cf9b455567a6c37d7ee1",tags:["Funk","West Coast"]},
+  {title:"Manchild (by Sabrina Carpenter) REMIX",trackId:"3UyQ1zq8YpuSPfxojsk7VM",cover:"https://i.scdn.co/image/ab67616d0000b2734f59542b8bb32de1c81cb365",tags:["Trap","Beat"]},
+  {title:"Just Keep Watching (Tate McRae RMX)",trackId:"7wBgyX4N4VuEip9nEfq11C",cover:"https://i.scdn.co/image/ab67616d0000b273cdd29024c2ba1a71efd4eef1",tags:["Trap","Beat"]},
+  {title:"Just Keep Watching (Tate McRae (RMX 2)",trackId:"6BcLzpB0ED6Ph3sx12pd9Q",cover:"https://i.scdn.co/image/ab67616d0000b27355f40e1306f22ac0b6b93fbd",tags:["Trap","Beat"]},
+  {title:"Dame Un Grrr - RMX 2",trackId:"1xthSB1t5HmaqKP2EYYfrm",cover:"https://i.scdn.co/image/ab67616d0000b273bc291c2e500aa8e215e43612",tags:["Trap","Beat"]},
+  {title:"Cold Heart - RMX",trackId:"4ft2EQfwK8aIm7PjrFUdAD",cover:"https://i.scdn.co/image/ab67616d0000b2739e5f676ea91bef33659b78bd",tags:["Trap","Beat"]},
+  {title:"live and die",trackId:"2jAWDwhOJZwpHoxYXLgZsD",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Synth"]},
+  {title:"Hunter Neon",trackId:"5BivdrmALUgldN3fStj334",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Synth"]},
+  {title:"Chrome War",trackId:"4vNkEcolyixRnhYvpzt406",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Dark"]},
+  {title:"Dogtown",trackId:"60Jh3Q0QVyU7zFGMYtlu58",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Synth"]},
+  {title:"Corpo$hit",trackId:"0WcXLQW9Eq7qZPXoghX4ym",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Beat"]},
+  {title:"Trust No One",trackId:"3EucxEWsj30XHcNDBI84Ei",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Beat"]},
+  {title:"Cold heart RMX",trackId:"7LUCjGFutSKux5fieLXCSn",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Beat"]},
+  {title:"Phantom Liberty",trackId:"53QKgtmRa0gkW7PSdNakt9",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Synth"]},
+  {title:"Legend",trackId:"3xP2pepiDWWXpvGXWcGC7U",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Beat"]},
+  {title:"Nomads Ride",trackId:"6vhhOJAJ4mF35lgYpHS8XB",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Beat"]},
+  {title:"Lost 2077",trackId:"0nWsLZSPzgtP5n4TiWmPWy",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Synth","Dark"]},
+  {title:"Reality Night",trackId:"0ww8asOR5jpGYk0UJzwOrE",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Synth","Trap"]},
+  {title:"Buy or sell",trackId:"141nkMiHppPaqAUS8FGQhe",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Synth","Trap"]},
+  {title:"Turbo Funk",trackId:"2ArJcUzezEF6yKuNUKzzOG",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Funk","Synth"]},
+  {title:"Bone Cutter",trackId:"29BOm6oCtM1v1dCiymz9Ay",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Dark"]},
+  {title:"Contract Killer",trackId:"2OAPRUKIHQADEO5NecTugC",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Hard"]},
+  {title:"Ghost in the Circuit",trackId:"5hreBMkAjwqdqRXxsonpFw",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Synth","Dark"]},
+  {title:"No Eddies, No Life",trackId:"5i8JjG7Mhe4k0EXrWswZpC",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","Synth"]},
+  {title:"Cold heart",trackId:"4bmEp020iZvVHL1e0Y2XQG",cover:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",tags:["Trap","R&B"]},
+  {title:"Tomber La Chemise (RMX Gfunk 2025)",trackId:"73vCAjWWncRpWVQvzeTR7b",cover:"https://i.scdn.co/image/ab67616d0000b273a3b2f70709997bbb2f49d9f4",tags:["Funk","West Coast"]},
+  {title:"Dame Un Grrr (RMX)",trackId:"1HWyy2IohwnIaVitQkLSO0",cover:"https://i.scdn.co/image/ab67616d0000b2734db3bb3dabbb7e28c69b410e",tags:["Trap","Beat"]},
+  {title:"Aicha (RMX 2025)",trackId:"5QVqHdBKYggmM1G9o56tDT",cover:"https://i.scdn.co/image/ab67616d0000b2733fbdc063c1eddc9197e82168",tags:["Trap","Beat"]},
+  {title:"Abdel Kader (RMX 2025)",trackId:"2XUmVEWENr4pa1ohvG422R",cover:"https://i.scdn.co/image/ab67616d0000b273a062a0d731f541e427daef5f",tags:["Trap","Beat"]},
+  {title:"WIGGLE THAT BANANA",trackId:"5gKYiztQ2YXFOKxlk9snyx",cover:"https://i.scdn.co/image/ab67616d0000b273e68dd84f9b8df55c4fe8bfca",tags:["Trap","Beat"]},
+  {title:"Tokyo",trackId:"473cg7zcYRGQ3lV5euphKz",cover:"https://i.scdn.co/image/ab67616d0000b27332d6b9a6efb25a130f693505",tags:["Trap","Beat"]},
+  {title:"T'es Capoute",trackId:"4rEfyTorjJVu97jE5Fvztk",cover:"https://i.scdn.co/image/ab67616d0000b273b556441fb377ddbc37a6b1e2",tags:["Trap","Beat"]},
+  {title:"RUN (REMIX)",trackId:"6XYMOLZgExMJzvYFzp5whj",cover:"https://i.scdn.co/image/ab67616d0000b27329285ae7bf6cee0e95bee784",tags:["Trap","Beat"]},
+  {title:"RUN (Non Merci)",trackId:"1W3nyZZWb81hKsk5lZ8aTO",cover:"https://i.scdn.co/image/ab67616d0000b2734a8273c1439ca62a074f1ed1",tags:["Trap","Beat"]},
+  {title:"MOVE YOUR BODY (Mix Club 2025)",trackId:"04z4VWg50EKhyjXmVL8l4M",cover:"https://i.scdn.co/image/ab67616d0000b2730351b9e803502321816e0bcd",tags:["Trap","Beat"]},
+  {title:"DANSU WIZU MII (REMIX)",trackId:"0bvyNIurwZBZa5n6ptJfVt",cover:"https://i.scdn.co/image/ab67616d0000b273f24774426a0bb8c52f759c8c",tags:["Trap","Beat"]},
+  {title:"DANSU WIZU MII",trackId:"1thlcz2MKa2jENrqhsEwSn",cover:"https://i.scdn.co/image/ab67616d0000b27306c37a91e4798b9d5ee98202",tags:["Trap","Beat"]},
+  {title:"CLAP YOUR HANDS",trackId:"5mUi34eEVLsOtloC1EfADX",cover:"https://i.scdn.co/image/ab67616d0000b2735af0efcb8b597eb4af597a23",tags:["Trap","Beat"]},
+  {title:"Bananaaaaa RMX",trackId:"10m2mJMySdhCWWsij8htd4",cover:"https://i.scdn.co/image/ab67616d0000b273713848c776b0858e32374a2d",tags:["Trap","Beat"]},
+  {title:"Bananaaaaa",trackId:"3JryLKlqEDZR3k2sUTDwYn",cover:"https://i.scdn.co/image/ab67616d0000b2737966153e733206c6e4a73904",tags:["Trap","Beat"]},
+  {title:"Rehla bila nihaya (Voyage sans fin)",trackId:"2OgFsXz8rcjLkU0c4ccLr0",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Khlioni Brou7i (Laisse-moi tranquille)",trackId:"15R1a4Vdiy6ePxQ2moz22n",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Ma Tebkich (ما تبكيش)",trackId:"5PMLFy7yXd8fzGOf9pDpBK",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Jacqueline” (جاكلين)",trackId:"2jadJyl7OWw5K0PRZxANKU",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"El Hayet Mchya B’kdeb” (الحياة ماشية بكذب)",trackId:"5uBQ2gxI524D6AGPDoRxpb",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"S’hab el Houma” (صحاب الحومة)",trackId:"0Pppqo6OsGPTF6hONU0tyJ",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Maghreb United",trackId:"7yO8LkUT31UGMJmfWW5bG8",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Ya Habibi",trackId:"2GtJhCAjEqY6e5MumfojVq",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Oriental","Trap"]},
+  {title:"N’rouhou n’safar",trackId:"1rEQWpXBCl19qWe3DyQUe9",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Tahia El Qouloob",trackId:"6Q2AJKkTMeyxae0gZsRhqR",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Lahna fi Paname",trackId:"1nB9qtyQEjnBgsu4NCueMs",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Ya Khoya",trackId:"5INrCbsy6mTY95T0MDlAGY",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"hindi wedding",trackId:"1tWxmvuMY2UuqnIe0A7pgj",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"j’sais plus comment aimer",trackId:"4BlFmjskMQ07gL4hyRTAbJ",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"la réussite",trackId:"3Y1y1JvQ1KbXZjjRfrYEAe",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Aṣdiqāʾ Muzayyafūn",trackId:"5qg1unV871NdQS8Nv02mbM",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Yalla, yalla",trackId:"06VukHv9M6YL6wtLEqHidi",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Saturday night, tacos party",trackId:"5jwNeGNwxrvPPWLVJT742X",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Bababa",trackId:"4yFAbG9pqUyK4Z7nc78XYE",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"ma tkhalinich",trackId:"73WRPSSS46hL6l6hhkPGuh",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Je t’ai oublié",trackId:"6VFCCgQX9YJ8nHRYrwCHUN",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Je t’ai oublié REMIX",trackId:"4l7OrorbhzX3ZL5XheIURq",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Quartier",trackId:"4MzLK819hEJtK6TZR6tDWp",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Khlioni Brou7i (Laisse-moi tranquille) REMIX",trackId:"04iJjTaF4mc4kQrrGsHN1y",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Ma Tebkich (ما تبكيش) RMX",trackId:"6SYDSkIoi0vVbgZ8OSH71X",cover:"https://i.scdn.co/image/ab67616d0000b2739003c51072dc43c533bb8501",tags:["Trap","Beat"]},
+  {title:"Smile Now Cry Later",trackId:"7E0bLpGtzFMbEM3F6idFkJ",cover:"https://i.scdn.co/image/ab67616d0000b273c8550aa8bc3d586e0a02bf30",tags:["Trap","Beat"]},
+  {title:"zs_samoraï",trackId:"302PBiC6UxAzh9oCiGLbH4",cover:"https://i.scdn.co/image/ab67616d0000b2734ec39b3f1a0d0466b2da6017",tags:["Trap","Beat"]},
+  {title:"Khlioni Brou7i (Laisse-moi tranquille) RMX",trackId:"4jlCFw2PUs9HMnNzaCcXN5",cover:"https://i.scdn.co/image/ab67616d0000b273668c592ef7b1c3e8f0012679",tags:["Trap","Beat"]},
+  {title:"Khlioni Brou7i (Laisse-moi tranquille)",trackId:"3EDZq5RZCCx91LMZgWGtzw",cover:"https://i.scdn.co/image/ab67616d0000b273c7d8633c48a3bb173f4b7bf1",tags:["Trap","Beat"]},
+  {title:"Ouuuuhhh...",trackId:"7k2lqz7W7dJhnCsWQjZ4u6",cover:"https://i.scdn.co/image/ab67616d0000b2733e8febd7254d8702662f49e2",tags:["Trap","Beat"]},
+  {title:"HuGui(Gui) Les bons tuyaux",trackId:"6l2eX6LBxMBjhRbPLalkHS",cover:"https://i.scdn.co/image/ab67616d0000b2731cc5ecd691b0048c712adcd3",tags:["Trap","Beat"]},
+  {title:"Nakhra Wali Jatti (INDIA MIX 2025)",trackId:"0XH1L1BlJKbHC5MvphFSkf",cover:"https://i.scdn.co/image/ab67616d0000b2733cfb3ae48709b5564c5537d0",tags:["Trap","Beat"]},
+  {title:"Hot Like Fire (AFROBEATS 2025)",trackId:"3TvR06nMFGLAxcFWyrT5C9",cover:"https://i.scdn.co/image/ab67616d0000b273107e375c46ba933e49eaa6c3",tags:["Afro","Melodic"]},
+  {title:"Don't Play (US DRILL 2025)",trackId:"6fLQDUaNdgeyeebL5exx9i",cover:"https://i.scdn.co/image/ab67616d0000b273278617837529902079d7d100",tags:["Drill","Trap"]},
+  {title:"Vamos a Gozar (electro mix 2025)",trackId:"5OSSqyF3PWnqzNpfh3n6cm",cover:"https://i.scdn.co/image/ab67616d0000b273bc9caf151755d35eb728e4ee",tags:["Trap","Beat"]},
+  {title:"Nokia",trackId:"7ClnDGGy8EjZHOrdmxlxy5",cover:"https://i.scdn.co/image/ab67616d0000b273eeb0f20d4c9986e349f86725",tags:["Trap","Beat"]},
+  {title:"Joga Bonito",trackId:"5U16mbGxXP1fLdWo1TGqhV",cover:"https://i.scdn.co/image/ab67616d0000b2733fa9ab1c8dd68dd4761d9c10",tags:["Trap","Beat"]},
+  {title:"Je rentre que si t’es avec moi (Disco Mix 2025)",trackId:"2rJDyPrcgktZfXUQlRpAyW",cover:"https://i.scdn.co/image/ab67616d0000b273ad7ddbeee9db07b613f27def",tags:["Funk","West Coast"]},
+  {title:"Haram",trackId:"3KEDzOaxnZ6UdRuT1r2CvQ",cover:"https://i.scdn.co/image/ab67616d0000b273bd43be1eb4213b6c4a0862fb",tags:["Trap","Beat"]},
+  {title:"Faut Danser",trackId:"023eomHaTC3eTR0Ul2C0Zu",cover:"https://i.scdn.co/image/ab67616d0000b273fbb771a6360f32c9b54c4008",tags:["Trap","Beat"]},
+  {title:"C'est fini (Hiphop Rap Rnb Djbilbox Beats)",trackId:"4KBGiHg8sLPm90eHAL3f50",cover:"https://i.scdn.co/image/ab67616d0000b2731dfec70db885fcbf24d163e3",tags:["Trap","Beat"]},
+  {title:"Iam Your",trackId:"1P8XAB4tlV7c3idePqmJJn",cover:"https://i.scdn.co/image/ab67616d0000b273c5c004a84428c20c46c98711",tags:["Trap","Beat"]},
+  {title:"WAÏKIKI (Mix Club HAWAÏ)",trackId:"77S1ulN4WsHK50dMPjbkhc",cover:"https://i.scdn.co/image/ab67616d0000b273534cdbae57146716b057d7e3",tags:["Trap","Beat"]},
+  {title:"Synthwave (Funk Mix)",trackId:"5Q7hGlsxWTPMAt0q5H8qsT",cover:"https://i.scdn.co/image/ab67616d0000b273eb73b1abc12f03ef94cc2212",tags:["Funk","West Coast"]},
+  {title:"SHE FOUND ME",trackId:"0ivHjkQJPwHBt1pQ8Dtkr6",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Melodic"]},
+  {title:"Elle",trackId:"2mkqctXWsjpOTgZlLgBXw6",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","R&B"]},
+  {title:"Hey Ken",trackId:"2Wp0QI2PBWONcSqwbdqVV3",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Melodic"]},
+  {title:"My Sunshine",trackId:"0mvoJPiuAQ2Ag1PQCQDgUy",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Afro","Melodic"]},
+  {title:"Zoubida",trackId:"1GXoJ5XRviMiwjDif2Q2Gt",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Oriental","R&B"]},
+  {title:"Lost In You",trackId:"7xHwbapfU5KOquvX8tJeV8",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Beat"]},
+  {title:"Boom Bang Whine",trackId:"6sE73El5ERpG76CWvYW07F",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Beat"]},
+  {title:"Trought Time",trackId:"1akBcU9fCGtqJR7AczwXbW",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Beat"]},
+  {title:"Miami Gurls",trackId:"5M0MY5fB4jXLQvEX8m67GP",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Synth","Retro"]},
+  {title:"Reines",trackId:"1LyVjNq5kyq6yJQTUqmS35",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Beat"]},
+  {title:"My Love",trackId:"6621U5k8jGSRVLiBacdPNH",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Beat"]},
+  {title:"In My Soul",trackId:"0rPBoHQ7NzUfuv7GY6miJu",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["R&B","Melodic"]},
+  {title:"HAMDOULILAH",trackId:"4PtQ4zg5IVn0Cd6kJ0Ie5E",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Oriental","Trap"]},
+  {title:"Gazouze Limonade",trackId:"3iXlM9DQFKv4j3alTbbEMV",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Afro","Chill"]},
+  {title:"OMRI",trackId:"1NueLRe5nT8rXjMcwuhW3d",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Oriental","Melodic"]},
+  {title:"Hīrō no Kōdo",trackId:"38dINjLDoPCUJNv8GrvMvj",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Synth"]},
+  {title:"Héros",trackId:"2LZBsnZ6B5nFWrSrWS0Um3",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Melodic"]},
+  {title:"Funk Lover",trackId:"71Y9WUS7iGy9QDNI3BpKQH",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Funk","Groove"]},
+  {title:"Tiburón Loco",trackId:"5rlBjUhmBlqbNngQaIlFdI",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Latin","Afro"]},
+  {title:"Tiburon Loco (RMX)",trackId:"4DE6fZnozhYFmpLuFOoWXh",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Latin","Funk"]},
+  {title:"Você Que Sabe",trackId:"5UenawW8ZZETXi695NBmyP",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Latin","Funk"]},
+  {title:"Só Uma Vida",trackId:"72ryO3clNvpmDEidWg4HOg",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Latin","R&B"]},
+  {title:"Uk Vibes",trackId:"25ir9vzclZBc1TNyMiowa3",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Drill","Trap"]},
+  {title:"Sahar Aladdin",trackId:"2GW2xWXZrYyAlDDn4JWkcw",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Oriental","Ethnic"]},
+  {title:"Falastin tabki",trackId:"1turfenB8n71tiJGcD6l9G",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Oriental","Ethnic"]},
+  {title:"Jojo et Ginette",trackId:"6Fran2WT6gmZQe778n0x44",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Beat"]},
+  {title:"KARACHEVRE",trackId:"0ImfLwzY2PgQa8SyruXVmo",cover:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",tags:["Trap","Hard"]},
+  {title:"Un jour",trackId:"74ql46sHgdG71f4WmVG9MZ",cover:"https://i.scdn.co/image/ab67616d0000b2733ae8174f3c83e399d16e43a2",tags:["Trap","Beat"]},
+  {title:"tralalero tralala",trackId:"1p4WlpMCQWqfxFjRDd70Cv",cover:"https://i.scdn.co/image/ab67616d0000b273d99539f97b60a98685ffdf49",tags:["Trap","Beat"]},
+  {title:"Toi et Moi",trackId:"31MieGdJLcJtdEUDfQbMis",cover:"https://i.scdn.co/image/ab67616d0000b273d314ae554e26c9c0799f20c5",tags:["Trap","Beat"]},
+  {title:"Hasta La Noche",trackId:"0sC5Clme7q0iSIVfI6tGtS",cover:"https://i.scdn.co/image/ab67616d0000b2735ede43b365528f77ba336341",tags:["Trap","Beat"]},
+  {title:"Funkadelic",trackId:"1YpHmN6wffi25DcrgqA2zN",cover:"https://i.scdn.co/image/ab67616d0000b2734171f162037d58a81cc417fc",tags:["Funk","West Coast"]},
+  {title:"Good Life by Djbilbox Beats",trackId:"0iErCWeveXSx8jaZ4SDSTo",cover:"https://i.scdn.co/image/ab67616d0000b273aa10c1e7afebcd678784b2ec",tags:["Trap","Beat"]},
+  {title:"West Side",trackId:"1aSDVH7xMLTpyhwHkGKaYU",cover:"https://i.scdn.co/image/ab67616d0000b2738e753763b2907554814cab37",tags:["Trap","Beat"]},
+  {title:"Cadillac",trackId:"24FqT8HFnH3mfaWah6FPrM",cover:"https://i.scdn.co/image/ab67616d0000b273f867757c5c1baec9418067f8",tags:["Trap","Beat"]},
+  {title:"HAT-ERS",trackId:"7JoWLWFNOtymFFnFaLBXCn",cover:"https://i.scdn.co/image/ab67616d0000b273cdd7a23458f0d6ea7bc392ff",tags:["Trap","Beat"]},
+  {title:"GT-R",trackId:"1SjY0nhk0mcghp0AD3GXND",cover:"https://i.scdn.co/image/ab67616d0000b2739488aeac80facb1637cce32a",tags:["Trap","Beat"]},
+  {title:"Loin d'ici",trackId:"1ZVdnRBWvZPX5i6xQueqzG",cover:"https://i.scdn.co/image/ab67616d0000b273c3fe915ccd40f528b112e2a7",tags:["Trap","Beat"]},
+  {title:"TEKNOLOGIA",trackId:"1KXmZioKRlp7kTMnaF2Wd5",cover:"https://i.scdn.co/image/ab67616d0000b273db24b650fcca06321696a639",tags:["Trap","Beat"]},
+  {title:"Discoco Chanel",trackId:"48vf3YCdvNIStEGzQti48R",cover:"https://i.scdn.co/image/ab67616d0000b273983807ff2695524f53e9670e",tags:["Funk","West Coast"]},
+  {title:"Back To Town",trackId:"2tHHvOIviruuRDapS3IGmz",cover:"https://i.scdn.co/image/ab67616d0000b273234d0fd74bd4d7fda55ca110",tags:["Trap","Beat"]},
+  {title:"FUNKNIGHT (DJBILBOX)",trackId:"1y1YzroJyeEkSvp4tqBljt",cover:"https://i.scdn.co/image/ab67616d0000b2734d5051fd747e780c567f0bdc",tags:["Funk","West Coast"]},
+  {title:"Eid Mubarak",trackId:"7sOcElyXVDLw0zNsdeK1oU",cover:"https://i.scdn.co/image/ab67616d0000b2730aa4d215e21cfa932d70b445",tags:["Trap","Beat"]},
+  {title:"LES DÉGUNS",trackId:"0o10AkZCE4Jx2mqMEWK2jP",cover:"https://i.scdn.co/image/ab67616d0000b27324fc2fff970eb26a3d8a4ec7",tags:["Trap","Beat"]},
+  {title:"GUYANA",trackId:"0wNYvVhjm2ntQKtL5DA5Zn",cover:"https://i.scdn.co/image/ab67616d0000b2738f2cb6377fac36c3ebae9db1",tags:["Trap","Beat"]},
+  {title:"EVIJA",trackId:"1gGyzQfsPVm6ZFqwnfsd0Q",cover:"https://i.scdn.co/image/ab67616d0000b2735d4a835e38b4d4d51cc0de7a",tags:["Trap","Beat"]},
+  {title:"VATIMBORA (Afrotrap x Reggaeton Type beats Instrumental)",trackId:"7dyKV6dcZ4kyC2xHno12fN",cover:"https://i.scdn.co/image/ab67616d0000b273e54eea14ad4fdfda88e276a2",tags:["Afro","Reggaeton"]},
+  {title:"Continental (Type beats Instrumental)",trackId:"2Xfp2JTJY4LL617v9PZEWV",cover:"https://i.scdn.co/image/ab67616d0000b27394b64ebbb9da2b38b5c5eb3a",tags:["Trap","Beat"]},
+  {title:"VIRAL",trackId:"4Bs4idahXvqlr0hg1wDGJY",cover:"https://i.scdn.co/image/ab67616d0000b273fe49db7ba2699c9077edba68",tags:["Trap","Beat"]},
+  {title:"ULTRA INSTINCT",trackId:"5Qa6gY7MvAXcBBuzklaWEy",cover:"https://i.scdn.co/image/ab67616d0000b27396ca7f6464a08eb9d13a971b",tags:["Trap","Beat"]},
+  {title:"SUV",trackId:"4ZGVyxo0twntrYw7By1DG2",cover:"https://i.scdn.co/image/ab67616d0000b273c5642c4a332aac85376e28ee",tags:["Trap","Beat"]},
+  {title:"Marbella",trackId:"3SP6hJXBv7TekoIip8iBZ7",cover:"https://i.scdn.co/image/ab67616d0000b2739c8cf7bfb16f0c709e67977d",tags:["Trap","Beat"]},
+  {title:"Majin Buu",trackId:"2ZtCEayQ4E15tRdkBRbSxO",cover:"https://i.scdn.co/image/ab67616d0000b27389675246780abf47f2aeb6cf",tags:["Trap","Beat"]},
+  {title:"MEDELLÌN",trackId:"417NdpdxXxWCIM7dILwa06",cover:"https://i.scdn.co/image/ab67616d0000b2730405bab92813a2f75d2f1072",tags:["Trap","Beat"]},
+  {title:"KIMONO",trackId:"2IF32hGYtacASw1wneiJy0",cover:"https://i.scdn.co/image/ab67616d0000b2739eaf757fae75893d0591c293",tags:["Trap","Beat"]},
+  {title:"GOLDEN FREEZER",trackId:"0bRlG3esxvt7Dmo8hmn2Vq",cover:"https://i.scdn.co/image/ab67616d0000b27313295b5832c5a18d55b8892a",tags:["Trap","Beat"]},
+  {title:"DARK SIDE",trackId:"5JYnJIkxJfgwnA0bgY3EeF",cover:"https://i.scdn.co/image/ab67616d0000b2738dbf85c909d27ef66ad6124a",tags:["Trap","Beat"]},
+  {title:"Change Life",trackId:"29getJ6j4kfzZpAUjuhCMW",cover:"https://i.scdn.co/image/ab67616d0000b273cfe13a1c3f3488ab80d2f1d3",tags:["Trap","Beat"]},
+  {title:"BARCELONE",trackId:"36zXyV7hnuCrnZT3Mtzyod",cover:"https://i.scdn.co/image/ab67616d0000b2730aeb9a022ddd50c7876e89fb",tags:["Trap","Beat"]},
+  {title:"La Sacoche (Drill Type Beat Instrumental)",trackId:"3t74DArDFzex6xPKWXXZCv",cover:"https://i.scdn.co/image/ab67616d0000b273698ac35f6e64b8e82c35fef7",tags:["Drill","Trap"]},
+  {title:"Humanoïd",trackId:"0SKuwaxSaHXBR779IhZGea",cover:"https://i.scdn.co/image/ab67616d0000b2739425c76f9b56c539af805159",tags:["Trap","Beat"]},
+  {title:"BULLYb170 (Drill x Rap Type beats Instrumental)",trackId:"4j4YG7MrPXkeKlw8VuJfaE",cover:"https://i.scdn.co/image/ab67616d0000b2732dce9678f59b02a096eb71d0",tags:["Drill","Trap"]},
+  {title:"Billet Violet",trackId:"19WhV06m3euGICEShJmbD4",cover:"https://i.scdn.co/image/ab67616d0000b273865c3497787fdaf763a17d24",tags:["Trap","Beat"]},
+  {title:"Bangkok",trackId:"0cALdTmCrmcpgjyiSz2Vcp",cover:"https://i.scdn.co/image/ab67616d0000b2735935bc82ca1387c14c10299b",tags:["Trap","Beat"]},
+  {title:"Layla",trackId:"47GyxiMIRs3r3cMkTWT6bR",cover:"https://i.scdn.co/image/ab67616d0000b2737e578e7802e185a4fcdab164",tags:["Trap","Beat"]},
+  {title:"T'es trop gènant !",trackId:"5ujlbzGeT09vLKcg5B770A",cover:"https://i.scdn.co/image/ab67616d0000b273b8a68a565f83e0f82f1b6c16",tags:["Trap","Beat"]},
+  {title:"OG WARZONE",trackId:"05H73Ue8UoMx984SRZj0a4",cover:"https://i.scdn.co/image/ab67616d0000b2735a4c35c82cc24de9118dcca1",tags:["Trap","Beat"]},
+  {title:"ASKIP",trackId:"5FpX0agf3LZERneopRcqbp",cover:"https://i.scdn.co/image/ab67616d0000b273b975a0fc1e2a1023477b3b06",tags:["Trap","Beat"]},
+  {title:"Intro (WHY NOT 3)",trackId:"0QoMuN6f5wHkmfA3sNi1m4",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Beat"]},
+  {title:"2. Deth Raw",trackId:"14HoqkZ5izrZGxpFYh6cBO",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Drill"]},
+  {title:"Airbus",trackId:"3bfuK14Gh596NgY5dbT7Nj",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Hard"]},
+  {title:"Just Wu It",trackId:"4kBBgPxsfSIFASBE6sulG4",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Drill"]},
+  {title:"Megane",trackId:"7fO76e782HRK80bLq69u7G",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Melodic"]},
+  {title:"Idyllic 2",trackId:"2x7TnjWuThIGSxDeyf9gza",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Beat"]},
+  {title:"Why Not 3",trackId:"3eLpy12IAiEQru7UGooBNv",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Beat"]},
+  {title:"Instagram",trackId:"45wgco7S1dWWmYeRLMMKBk",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Synth"]},
+  {title:"Xtrem",trackId:"1acnkC9XPKtlBGRtaKDQfK",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Beat"]},
+  {title:"Douce et sucré",trackId:"5BqiQPBZzNKjQjIhZ46mur",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Beat"]},
+  {title:"Inside The Groove",trackId:"3DzpnpzrIaLmZRe4G304PV",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Funk","Groove"]},
+  {title:"Papa",trackId:"1ZhOUTihHTA0jrecI7qgsm",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Melodic"]},
+  {title:"Mon rêve",trackId:"49LMm80R9g65OnVWP9GRum",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Melodic"]},
+  {title:"Habibi Samy taxi",trackId:"2ZFwxfcSEa2QniQp4eD5LL",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Oriental","Trap"]},
+  {title:"Eclat de verité",trackId:"1wJmgQT6RoWdb4zCe4cqyQ",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Melodic"]},
+  {title:"Ville Rose",trackId:"4qWQgNoCZLBBwleIreu78v",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Chill"]},
+  {title:"Face to Face",trackId:"2UoEr9Vbb2pBftnJvOqdZl",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Hard"]},
+  {title:"Perdu",trackId:"69PFhucaZ6l1wJOKXbukbp",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Melodic"]},
+  {title:"Zion Lyon",trackId:"1PxTtmZaSYbHoO7cpsl1SL",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Ethnic"]},
+  {title:"Venha Comigo (Brasil) Superfunk",trackId:"7tioWrijm8RsN85oFEbTdq",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Funk","Latin"]},
+  {title:"Papa (Version 2)",trackId:"2NwGxmB4U5vdhA0LZEUliX",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Beat"]},
+  {title:"Mon rêve (Version 2)",trackId:"492dTkcHp0qlxhtoDOEBTE",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Beat"]},
+  {title:"khun khít à-rai yùu?",trackId:"4GPRn3u84sOAJH8TcUY5ez",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Beat"]},
+  {title:"Dance (House)",trackId:"28a4JHhJThc7QJfWji5PYn",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["House","Synth"]},
+  {title:"City of angels",trackId:"4Y6Jk4HAwrfU5RT7FU9Cgi",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","West Coast"]},
+  {title:"Racines d’Espoir",trackId:"25N8xsZn9V6HAd2ZGQUBjT",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Melodic"]},
+  {title:"Stand Up",trackId:"3AaixvQHXffOuF5s708vVu",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Hard"]},
+  {title:"Apocalypse",trackId:"1Rjrd7mn92AcfhEHC52voy",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Dark"]},
+  {title:"Paris To London",trackId:"7jfKeepY8QF2mQXN1d2QXm",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Drill","Trap"]},
+  {title:"Time to move",trackId:"1xj8WDkm1KDIOl18hn5J2s",cover:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",tags:["Trap","Synth"]},
+  {title:"GOTHAM (STVRBOY x DJBILBOX BEATS) Instrumental trap Rap",trackId:"5sfL6xDdsYcBEkWNtzrPPK",cover:"https://i.scdn.co/image/ab67616d0000b273ff033d722e5a82d40af6ed97",tags:["Trap","Beat"]},
+  {title:"SOUTH PARK",trackId:"3mGlQLYP9F9rLqyVZUpfl0",cover:"https://i.scdn.co/image/ab67616d0000b2732fe8adcde8daf600a4eb26a9",tags:["Trap","Beat"]},
+  {title:"META (DJBILBOX)",trackId:"6c5akjzZEhJQUzzjexUoFL",cover:"https://i.scdn.co/image/ab67616d0000b2738ef6e5a3bc0eb9ce7328782b",tags:["Trap","Beat"]},
+  {title:"Gorillaz",trackId:"3UHp9eqUNELE5OGzW7bFkc",cover:"https://i.scdn.co/image/ab67616d0000b273cb73e46767c6367d297016c9",tags:["Trap","Beat"]},
+  {title:"Kuala Lumpur (Oriental Instrumental x Afrotrap)",trackId:"7LeTaFjBrtYSM9WIQypPHa",cover:"https://i.scdn.co/image/ab67616d0000b273ff33c2769b8cafa5ae4db2d9",tags:["Oriental","Trap"]},
+  {title:"4MATIC",trackId:"0TlT6FPhbFRJEwW1NSoGaz",cover:"https://i.scdn.co/image/ab67616d0000b273d65213a40e27696219e14eec",tags:["Trap","Beat"]},
+  {title:"Tipaza (Oriental Instrumental)",trackId:"5dwwt15aMFATj5tXEao3Na",cover:"https://i.scdn.co/image/ab67616d0000b2730471fb9b4ab2c464a008c49f",tags:["Oriental","Trap"]},
+  {title:"ROMANIA (Reggaeton Instrumental)",trackId:"6qvT5x7fZVK9KmyrkQsfDO",cover:"https://i.scdn.co/image/ab67616d0000b2735f308b19144fba5b29353f5a",tags:["Afro","Melodic"]},
+  {title:"Mirage (Oriental Instrumental)",trackId:"14wuqzvVlukFCOS9IFVi7g",cover:"https://i.scdn.co/image/ab67616d0000b27316cfcd28a9384f2192f4dc94",tags:["Oriental","Trap"]},
+  {title:"ILUSION (Reggaeton Instrumental)",trackId:"6X82q3re77TQK3OymwQ8dR",cover:"https://i.scdn.co/image/ab67616d0000b273c7fa3909fb24c655c71dccbb",tags:["Afro","Melodic"]},
+  {title:"Athena (Oriental Instrumental)",trackId:"7q7M70SkkgdhCqncrUHPXC",cover:"https://i.scdn.co/image/ab67616d0000b2735899da24c36dfe846cfae22c",tags:["Oriental","Trap"]},
+  {title:"Torino (Guitar x Trap Hip-hop Instrumental)",trackId:"63zJMg5SBA7H2p32wzX2YD",cover:"https://i.scdn.co/image/ab67616d0000b273e399480d2148f6fce9034e96",tags:["Trap","Beat"]},
+  {title:"Oriental (Arabic x Trap Hip-hop Guitar Instrumental)",trackId:"6AbKBAZqw1yStaMqC8tT1q",cover:"https://i.scdn.co/image/ab67616d0000b27396f29dd57ccce269e7068895",tags:["Oriental","Trap"]},
+  {title:"Nice (Oriental Afrotrap x Hip-hop Instrumental)",trackId:"7KBjS8euFhbShTj3dF3oG2",cover:"https://i.scdn.co/image/ab67616d0000b273d9e8ba58140960537c632cb2",tags:["Oriental","Trap"]},
+  {title:"Lyah (Oriental x Afrotrap Instrumental)",trackId:"0PXbq1HIFgwQpn2v4xX188",cover:"https://i.scdn.co/image/ab67616d0000b273b85bdde2f3f7ba14ea568c05",tags:["Oriental","Trap"]},
+  {title:"Karine (Afrotrap x Hiphop Instrumental)",trackId:"0AHZySrdCnv3RaR5qUPKEj",cover:"https://i.scdn.co/image/ab67616d0000b2739f67f61c3242090c6e763b99",tags:["Afro","Melodic"]},
+  {title:"Karachi (Oriental Drill x Hiphop Instrumental)",trackId:"1gHyvmsMmm5sddY4U0EcDX",cover:"https://i.scdn.co/image/ab67616d0000b27370011c0d65ff68cbcaac49eb",tags:["Oriental","Trap"]},
+  {title:"DSQUARED (G-FUNK x Hip-hop Instrumental)",trackId:"7nYHoGdPcyB76hrFNtFsxQ",cover:"https://i.scdn.co/image/ab67616d0000b273fa2ed80a433903f5ac99f9f8",tags:["Funk","West Coast"]},
+  {title:"Blue Dream (Drill x Rap Type beats Instrumental)",trackId:"37dmObR14uWkVYUyTOTpl5",cover:"https://i.scdn.co/image/ab67616d0000b273121a020730daac3e6558e42e",tags:["Drill","Trap"]},
+  {title:"Balanciaga (Guitar x Lofi Hip-hop Instrumental)",trackId:"3wdzL4tPNnEkKZp5NRuJAG",cover:"https://i.scdn.co/image/ab67616d0000b2730526a43b963c6c521c44d2fb",tags:["Trap","Beat"]},
+  {title:"Maestro (DeepHouse x Club)",trackId:"0AMKQjBSKs30sEvaLkMbeR",cover:"https://i.scdn.co/image/ab67616d0000b273f7c5fc0b9a4f112a658a20f3",tags:["House","Synth"]},
+  {title:"IN DA CLUB (DeepHouse x DNB)",trackId:"2yLpUNcM2Yod1Xc1q4kWNM",cover:"https://i.scdn.co/image/ab67616d0000b273599f4d8107490dfb9c976a81",tags:["House","Synth"]},
+  {title:"",trackId:"4LxI12LYc8uk8PCm4mGami",cover:"https://i.scdn.co/image/ab67616d0000b27363952e990f2ca0f21574957f",tags:["Trap","Beat"]},
+  {title:"Tesla (oriental Instrumental)",trackId:"57A3SUaXaLCl8h5LtFG5SD",cover:"https://i.scdn.co/image/ab67616d0000b273dc170ed483596526cb5def5e",tags:["Oriental","Trap"]},
+  {title:"RightNow (Deephouse Vocoder)",trackId:"6gmsgsPq6EdtkY4FmCG2Pq",cover:"https://i.scdn.co/image/ab67616d0000b2735caea57a5b128fa512a1b66f",tags:["House","Synth"]},
+  {title:"NEOM",trackId:"3n7u0EwXrjv11yJiJgAYcm",cover:"https://i.scdn.co/image/ab67616d0000b273bd7ec7dff7c347491f1c47bf",tags:["Trap","Beat"]},
+  {title:"Laura (Drill x Dark Hip-Hop)",trackId:"6jBqzl1s5S4wNKK9E9yuBG",cover:"https://i.scdn.co/image/ab67616d0000b2738a8003abf77cbb55cf17bcf3",tags:["Drill","Trap"]},
+  {title:"Lacrim (Drill x Hiphop)",trackId:"6FWeoH2hPSoXw1LGGdJMTj",cover:"https://i.scdn.co/image/ab67616d0000b273e6d31446295becdb3b0ed2a5",tags:["Drill","Trap"]},
+  {title:"Fall in Love (Lofi x Instrumental)",trackId:"5p1hTp81YLervaJ1BZAn9W",cover:"https://i.scdn.co/image/ab67616d0000b27334bae791f071fdb3f9e66f4e",tags:["Trap","Beat"]},
+  {title:"Coconuts",trackId:"2PxFE7Qqm7nO3k6FXZhlwj",cover:"https://i.scdn.co/image/ab67616d0000b273d26c8b6a9a2518179476dcca",tags:["Trap","Beat"]},
+  {title:"Aladin (Drill Instrumental)",trackId:"75NsxVhvzz6Y396UjSQIhb",cover:"https://i.scdn.co/image/ab67616d0000b27346c03de36374bc5ce2be155e",tags:["Drill","Trap"]},
+  {title:"Turbofolk (Serbian Instrumental)",trackId:"1hWzCIS9TbDhN0EG6YDRVD",cover:"https://i.scdn.co/image/ab67616d0000b273d2801dc903ce9467675533d8",tags:["Trap","Beat"]},
+  {title:"Tolosa",trackId:"1jAKBbyFL9FQP7UmHIVd0c",cover:"https://i.scdn.co/image/ab67616d0000b2736659c2683b8d014dc89428de",tags:["Trap","Beat"]},
+  {title:"Sandy",trackId:"6g7XoHaaDrqXKgrkJNx3Lc",cover:"https://i.scdn.co/image/ab67616d0000b273c71d1cb183608136354537d9",tags:["Trap","Beat"]},
+  {title:"Rihana (Westcoast Instrumental)",trackId:"1Zgff0Tb6UE7y8sK4usMDM",cover:"https://i.scdn.co/image/ab67616d0000b2730a9fa03b7a3b95df0c966931",tags:["Trap","Beat"]},
+  {title:"RDC (Drill Instrumental)",trackId:"0Tvip8tmyxeXsi1EzqiP7E",cover:"https://i.scdn.co/image/ab67616d0000b2737f91c568072a4c0e6a73b769",tags:["Drill","Trap"]},
+  {title:"Promise (Oriental Drill)",trackId:"5YupnLkA9SdhK7461yuN4z",cover:"https://i.scdn.co/image/ab67616d0000b2734608544315e66831fc62805c",tags:["Oriental","Trap"]},
+  {title:"Pam (Trap Instrumental)",trackId:"3bFkCs5sjqQRm6HK6aj4Wb",cover:"https://i.scdn.co/image/ab67616d0000b27355a1eb787fad5d7d95504dc2",tags:["Trap","Beat"]},
+  {title:"Ouzbek",trackId:"3zTOUBN3LXQ3mG2gYfOkV0",cover:"https://i.scdn.co/image/ab67616d0000b2731aa3f3bdc2c4657a8df1c4e6",tags:["Trap","Beat"]},
+  {title:"Nevenka",trackId:"2Qy3G8bAYuO8sw7oae5jHQ",cover:"https://i.scdn.co/image/ab67616d0000b27388676d0c259547908962b056",tags:["Trap","Beat"]},
+  {title:"Musta",trackId:"5llHapsYpwHMySULDtum5X",cover:"https://i.scdn.co/image/ab67616d0000b27381e68307b246356683a73a2f",tags:["Trap","Beat"]},
+  {title:"Mathilde (Reggaeton Instrumental)",trackId:"4x3AO7TOlMCJlYmvdZT3u9",cover:"https://i.scdn.co/image/ab67616d0000b2738971d89981ea900417462dcc",tags:["Afro","Melodic"]},
+  {title:"Lamborguini",trackId:"0XcFrJAwTCI8XNl7fARpGO",cover:"https://i.scdn.co/image/ab67616d0000b273ef52fb33efef0572e2753038",tags:["Trap","Beat"]},
+  {title:"Kinetra",trackId:"1f1IcrShL6vQreZyE35aQO",cover:"https://i.scdn.co/image/ab67616d0000b273baa8556b2192d88c9141d3f3",tags:["Trap","Beat"]},
+  {title:"Inaya (Drill Instrumental)",trackId:"1xjmg8nE9ojRiTUOWr5n85",cover:"https://i.scdn.co/image/ab67616d0000b27399edeb81e082aa508efded0a",tags:["Drill","Trap"]},
+  {title:"Erika",trackId:"6ymGUuNCff5YLneHfIrg3K",cover:"https://i.scdn.co/image/ab67616d0000b2739d6aff6486ac48f2a72fc10a",tags:["Trap","Beat"]},
+  {title:"Djerba",trackId:"5Pwipa0AztNsB4RZpFjlBq",cover:"https://i.scdn.co/image/ab67616d0000b273f4335afa405c5d0c15751631",tags:["Trap","Beat"]},
+  {title:"Casablanca (Oriental Instrumental)",trackId:"7KN2rKqmy4jNzKYHwc2moS",cover:"https://i.scdn.co/image/ab67616d0000b2732913c027e8c3d1e16e696e3e",tags:["Oriental","Trap"]},
+  {title:"Anyssa",trackId:"26cvnxDoBpyN69lL0ssQQZ",cover:"https://i.scdn.co/image/ab67616d0000b27316a8cfb5e024762186737295",tags:["Trap","Beat"]},
+  {title:"Zerma (Oriental Instrumental)",trackId:"02nrKmK6cqIQl27AbX4Viq",cover:"https://i.scdn.co/image/ab67616d0000b273e37552127b2aa6ebb0f371e8",tags:["Oriental","Trap"]},
+  {title:"Rima",trackId:"3lJOgyDV2ziNx7XCG63PCv",cover:"https://i.scdn.co/image/ab67616d0000b273e5e27422604122fc08aa54bb",tags:["Trap","Beat"]},
+  {title:"Merci",trackId:"39rLVMho87hONXgbjwnTaJ",cover:"https://i.scdn.co/image/ab67616d0000b2738ade1291e186cc02be3aaa49",tags:["Trap","Beat"]},
+  {title:"Marion",trackId:"77hF2MzTRFLTmtuOCgxQgb",cover:"https://i.scdn.co/image/ab67616d0000b2738a123766d2401e12296b100b",tags:["Trap","Beat"]},
+  {title:"M.I.L.S",trackId:"7FkeOGl6xGMfc1RsLWloUL",cover:"https://i.scdn.co/image/ab67616d0000b2732f8c35f1ef46795508602d67",tags:["Trap","Beat"]},
+  {title:"Luna",trackId:"5r1BgYPbsNA2ff130f3CdW",cover:"https://i.scdn.co/image/ab67616d0000b27318200ba8653d0de72ef7ae45",tags:["Trap","Beat"]},
+  {title:"Lily (Oriental Instrumental)",trackId:"2oymx4EvWDufbsLLEQaP7n",cover:"https://i.scdn.co/image/ab67616d0000b2737dd1a616854759e8a67b5429",tags:["Oriental","Trap"]},
+  {title:"Karma",trackId:"4tdrZSTT8BODxptn1Ei1Z3",cover:"https://i.scdn.co/image/ab67616d0000b273ce7d4b4c13784dd6931837ff",tags:["Trap","Beat"]},
+  {title:"Indila (Deep-house Instrumental)",trackId:"07CWbz6JHqqNiqeRcQCkil",cover:"https://i.scdn.co/image/ab67616d0000b2737c4d668efd6e904d1d8a3352",tags:["House","Synth"]},
+  {title:"IDYLLIC (Hindous Instrumental)",trackId:"3YaAHxZZwrynX0pQMT46vW",cover:"https://i.scdn.co/image/ab67616d0000b273e34c1880b7c25586b7dbb5ad",tags:["Trap","Beat"]},
+  {title:"Habibti (Oriental Instrumental)",trackId:"1H0FlXnSKKwmCQDCLA0fDg",cover:"https://i.scdn.co/image/ab67616d0000b273709845a6d64122c522e32a08",tags:["Oriental","Trap"]},
+  {title:"Nesrine",trackId:"4tDlc86QlzzqMu9Gce1LjA",cover:"https://i.scdn.co/image/ab67616d0000b2731d401b7ecfad15d2d47b65f1",tags:["Trap","Beat"]},
+  {title:"Keisha (Trap Rap Instrumental)",trackId:"0nc8Cwq1I8oZFMLJjnOIIZ",cover:"https://i.scdn.co/image/ab67616d0000b2730daecda4ef8b7aef9d14e257",tags:["Trap","Beat"]},
+  {title:"Angela (Drill Instrumental)",trackId:"13iiTCAqDc6iAD4YlcDR49",cover:"https://i.scdn.co/image/ab67616d0000b273aa3fbf17092e7baed1f8bb59",tags:["Drill","Trap"]},
+  {title:"Shanez",trackId:"6YrpzgjaTXZTpWhqpSHGXS",cover:"https://i.scdn.co/image/ab67616d0000b2732b402f4c1f486218f43002df",tags:["Trap","Beat"]},
+  {title:"Léah (Oriental Instrumental)",trackId:"17fgdfrwFDjBwXBSiz7SS4",cover:"https://i.scdn.co/image/ab67616d0000b273150f0c70fc331f86100eb5b6",tags:["Oriental","Trap"]},
+  {title:"Fadela (Oriental Instrumental)",trackId:"4DK3dhQKwvEQtHu4981369",cover:"https://i.scdn.co/image/ab67616d0000b2731ba714468343d36a2e87bb19",tags:["Oriental","Trap"]},
+  {title:"Cirine (disco pop)",trackId:"5UuwfzfOg1WxwhvSNvK2jG",cover:"https://i.scdn.co/image/ab67616d0000b2733b81b48118e564e2c688cb28",tags:["Funk","West Coast"]},
+  {title:"Kenza (Oriental Instrumental)",trackId:"16rycA9c60jVlsg24jqlTs",cover:"https://i.scdn.co/image/ab67616d0000b273a566e5589fd3df54998ecdf4",tags:["Oriental","Trap"]},
+  {title:"Haicha (Oriental Instrumental)",trackId:"4FyCyJFlNJogCUHCFm61Za",cover:"https://i.scdn.co/image/ab67616d0000b273d019c9afd19d4a2b45c98b72",tags:["Oriental","Trap"]},
+  {title:"Kheira (Intrumental Arabic)",trackId:"53DX0YVqOVdr3D946c76ZY",cover:"https://i.scdn.co/image/ab67616d0000b273d308503e7cf71d3f97597918",tags:["Trap","Beat"]},
+  {title:"Khadija",trackId:"6wqdu1cNyRAbvcX9ddpocv",cover:"https://i.scdn.co/image/ab67616d0000b27366a9d38e3e9e83eabfc643f1",tags:["Trap","Beat"]},
+  {title:"Fatiha",trackId:"63WlkK5YoiMMqyQLNUeJCV",cover:"https://i.scdn.co/image/ab67616d0000b27335dfaf5c098d0f174d6c04fb",tags:["Trap","Beat"]},
+  {title:"Blida",trackId:"6arev45iiAzZseN0tQUlej",cover:"https://i.scdn.co/image/ab67616d0000b2737617767aef39f3af570933b2",tags:["Trap","Beat"]},
+  {title:"Zhora (Oriental Instrumental)",trackId:"4wLdHIVltaRUiVTt0tM9Ta",cover:"https://i.scdn.co/image/ab67616d0000b273e272d13444183b00f91256fa",tags:["Oriental","Trap"]},
+  {title:"Yamina (Oriental Instrumental)",trackId:"5UFbyXU3xUvIpdi2hobhU1",cover:"https://i.scdn.co/image/ab67616d0000b273a0600cf4d58e11dd6c794c00",tags:["Balkan","Oriental"]},
+  {title:"Amina",trackId:"5nObBATwjpFtvvdszTdGQW",cover:"https://i.scdn.co/image/ab67616d0000b2739648a06936788f6884fa9743",tags:["Balkan","Oriental"]},
+  {title:"Beyrouth",trackId:"1WtKj5j3n73OXTAzUr2twP",cover:"https://i.scdn.co/image/ab67616d0000b2739648a06936788f6884fa9743",tags:["Balkan","Oriental"]},
+  {title:"Dounia",trackId:"3K9PhnpfaLGzFHryWq7xmI",cover:"https://i.scdn.co/image/ab67616d0000b2739648a06936788f6884fa9743",tags:["Balkan","Melodic"]},
+  {title:"Istanbul",trackId:"0KuR4fRetE7Tj2CKbVT0Kb",cover:"https://i.scdn.co/image/ab67616d0000b2739648a06936788f6884fa9743",tags:["Balkan","Oriental"]},
+  {title:"Karima",trackId:"7IHrZvHKrsBjJ19FvAC23t",cover:"https://i.scdn.co/image/ab67616d0000b2739648a06936788f6884fa9743",tags:["Balkan","Ethnic"]},
+  {title:"Zaza",trackId:"5jyrcpnalJ6ZZ4VBrgaCkO",cover:"https://i.scdn.co/image/ab67616d0000b2739648a06936788f6884fa9743",tags:["Balkan","Ethnic"]},
+  {title:"Souhila",trackId:"4rUMduFksCz3gel5C6yyHq",cover:"https://i.scdn.co/image/ab67616d0000b2739648a06936788f6884fa9743",tags:["Balkan","Oriental"]},
+  {title:"JUKEBOX (2BG)",trackId:"6DY44LNOSy16QigdJy6aMD",cover:"https://i.scdn.co/image/ab67616d0000b27374fef0557661934826b872ee",tags:["Trap","Beat"]},
+  {title:"BiLBOX",trackId:"2mdu7TG8hp1GsvO76d9tG7",cover:"https://i.scdn.co/image/ab67616d0000b273a5467dba3e4354f3024231d1",tags:["Trap","Beat"]},
+  {title:"Purple moon",trackId:"7EybflrPBGmmPQpNiQkOsi",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Disco"]},
+  {title:"All for you",trackId:"1Qo5oj2wd8SWJpZvrxWBmJ",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","R&B"]},
+  {title:"Bangbros",trackId:"05nu1iNZDyNcFpsrpfysSU",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Hard"]},
+  {title:"Cali city",trackId:"1mhEoL70CxrmIx0D4S57nv",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","West Coast"]},
+  {title:"compton road",trackId:"0ebe5IfRkIWPFIFNZg2mTr",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","West Coast"]},
+  {title:"Cookies",trackId:"0LMMcwBjqOMmnP2jpHgdlI",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Chill"]},
+  {title:"utopia",trackId:"6okAz9c2OhFTdEQ0cRbqBM",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Melodic"]},
+  {title:"miami vice",trackId:"2o8GoZsciLxavtj5JQvuYV",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Disco"]},
+  {title:"menace",trackId:"1KPFzbvvfb6zxbJAdR81JB",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Dark"]},
+  {title:"funky flex",trackId:"1oLHOfTUeZKXyrISVnIQE8",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Groove"]},
+  {title:"Maximum",trackId:"0msCLbNyl4hnpbVFYNjIJX",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Hard"]},
+  {title:"star line",trackId:"5M4CU6LQfp9uTz0oC8COSl",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Chill"]},
+  {title:"remember",trackId:"2KdBQz5Zz3nV7mbxUCYwiv",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Melodic"]},
+  {title:"honesty",trackId:"6TJHwmQUfjRGjh4epC7ig0",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","R&B"]},
+  {title:"afinity",trackId:"47MUo1uP2Nd7fb3ZAeMFHw",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Melodic"]},
+  {title:"fabuleux",trackId:"1892uRqgbRCrHrFYEwb8rP",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Chill"]},
+  {title:"emotion",trackId:"5w6jfZyctFo0ev398laz8Y",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","R&B"]},
+  {title:"paece",trackId:"6kshXDCw5aQRYq089rFPAj",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Chill"]},
+  {title:"picolo",trackId:"5q1ZaxJGaCPrZxIsR80EWh",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Groove"]},
+  {title:"mexico",trackId:"475AEYrLjhH0Dl9eUKolix",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Latin"]},
+  {title:"morning",trackId:"4GHwafFQy55lfUATeJWShd",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Chill"]},
+  {title:"scarface",trackId:"4HrW4OHa4Cjh9wgLAkJq0g",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","West Coast"]},
+  {title:"tijuana",trackId:"4LDT7calsXpBdL9Io4PH18",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Latin"]},
+  {title:"vagabond",trackId:"2nCl0pQuTktOt87CJvRD5Q",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Melodic"]},
+  {title:"zicmu",trackId:"7DDGSgc7fblUAHWTQ26Od1",cover:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",tags:["Funk","Groove"]},
+  {title:"VR6",trackId:"0eq0dCzANn2E6Bp8hWKfqx",cover:"https://i.scdn.co/image/ab67616d0000b2733f6989195f81b1e8523eb554",tags:["Trap","Beat"]},
+  {title:"NRV",trackId:"5fyG5qumsu5XK4C9FsmiPR",cover:"https://i.scdn.co/image/ab67616d0000b273bcbe27c90880939b1d0261a0",tags:["Trap","Beat"]},
+  {title:"GOLDFINGER - Radio Edit",trackId:"44knvBNBrEYOuq6cRlOKzC",cover:"https://i.scdn.co/image/ab67616d0000b2738b56d655a02dffb4c08ef982",tags:["Trap","Beat"]},
+  {title:"BUBBLEGUM",trackId:"5FzMJ0nhtnyjM2SiwJgHPZ",cover:"https://i.scdn.co/image/ab67616d0000b273e93f42ece77a57543679d2b0",tags:["Trap","Beat"]},
+  {title:"ASTROFUNK",trackId:"5BHZk4718JXf0Rf5X4KSgn",cover:"https://i.scdn.co/image/ab67616d0000b273a70665344c707905009c30f3",tags:["Funk","West Coast"]},
+  {title:"VOCODER",trackId:"2h1Q1jCjuweGB8D1YRjvCN",cover:"https://i.scdn.co/image/ab67616d0000b2733c170de76a899a0bdd2e6c75",tags:["Trap","Beat"]},
+  {title:"LONDON",trackId:"2q7b9ICmLb2n4aNRIWNvXJ",cover:"https://i.scdn.co/image/ab67616d0000b273964670cea334446c5a39a158",tags:["Trap","Beat"]},
+  {title:"Funky Piano - Radio Edit",trackId:"1hbSRaovoCd846t83afhJI",cover:"https://i.scdn.co/image/ab67616d0000b2738cd728f2f6e8baed6af7b378",tags:["Funk","West Coast"]},
+  {title:"CLUB - Radio Edit",trackId:"5NpoBXGcwsCQzDmn3FcbT2",cover:"https://i.scdn.co/image/ab67616d0000b273406349f9c01bd235ce3b78e9",tags:["Trap","Beat"]},
+  {title:"Synphonie N°1 de Bilel Abdelkader Attalah DJBILBOX",trackId:"0biSjdMuekIZNQBL8wlNsi",cover:"https://i.scdn.co/image/ab67616d0000b2733d29d4a6e25d8a8952587f27",tags:["Trap","Beat"]},
+  {title:"ICE",trackId:"6j8tumBgi76t0QLhPZoJKT",cover:"https://i.scdn.co/image/ab67616d0000b273d569132af0d4f3a38a92a246",tags:["Trap","Beat"]},
+  {title:"XCLUSIVE",trackId:"2WMXwX2NAOO13GitKNDy8u",cover:"https://i.scdn.co/image/ab67616d0000b27334d211bd970a6c7f75198192",tags:["Trap","Beat"]},
+  {title:"START - Radio Edit",trackId:"2RMA78GzuiQHZ0q3yYacMZ",cover:"https://i.scdn.co/image/ab67616d0000b2730e61e86de89f80bebeb8fe8b",tags:["Trap","Beat"]},
+  {title:"Energy",trackId:"7uIqF048spIdjAjyNmqzCK",cover:"https://i.scdn.co/image/ab67616d0000b273883d30cf3028205906cbaf9c",tags:["Trap","Beat"]},
+  {title:"Mango - Radio Edit",trackId:"05xx7oeH7CMMbrHvH3Ipjf",cover:"https://i.scdn.co/image/ab67616d0000b27309c9e8d1a92ed49ad3ba96d2",tags:["Trap","Beat"]},
+  {title:"Billionaire - Radio Edit",trackId:"0bzr8kOSCaBEW25mNQfmFK",cover:"https://i.scdn.co/image/ab67616d0000b273a16a64cc1ecbd759e94c1ccf",tags:["Trap","Beat"]},
+  {title:"ONELIFE",trackId:"1RqXms6D8kAyjwgLfTkw9H",cover:"https://i.scdn.co/image/ab67616d0000b273e4e134773294f5615ba5badb",tags:["Trap","Beat"]},
+  {title:"FASTLIFE - Radio Edit",trackId:"4ms23ZqweDTJmPTtrF1pbg",cover:"https://i.scdn.co/image/ab67616d0000b27300e5881fc7bc6e51c4bf9443",tags:["Trap","Beat"]},
+  {title:"DOGGPOUND - Radio Edit",trackId:"3UqWnoRDHruhJHP4GIPmuk",cover:"https://i.scdn.co/image/ab67616d0000b273d2b736fe15f5276d61140c03",tags:["Trap","Beat"]},
+  {title:"COSMOS - Radio Edit",trackId:"6l5I97kUAyH4rKioHNUuxJ",cover:"https://i.scdn.co/image/ab67616d0000b273bd29800c512edf1fb3aa07fe",tags:["Trap","Beat"]},
+  {title:"money shot - Radio Edit",trackId:"4wm3vfJDufnIhJ23CH2nls",cover:"https://i.scdn.co/image/ab67616d0000b2730f746b44e4443c02ca2c9e0e",tags:["Trap","Beat"]},
+  {title:"DAVAÏ - Radio Edit",trackId:"28eGxhbBrabPA7uhnRKxob",cover:"https://i.scdn.co/image/ab67616d0000b27351811a3e61a34f1d79f332c0",tags:["Trap","Beat"]},
+  {title:"OFF",trackId:"0XbG46irHiEC5huL5x3wfP",cover:"https://i.scdn.co/image/ab67616d0000b273823b7c2689ad53643927194a",tags:["Trap","Beat"]},
+  {title:"WESTCOAST - Radio Edit",trackId:"18OkCs8Zw2ugzuqQoAD5ez",cover:"https://i.scdn.co/image/ab67616d0000b273a7ab74a7de2f6dc87305c9b3",tags:["Trap","Beat"]},
+  {title:"FLASH HOUSE - Radio Edit",trackId:"24plO4UMDHKhbLv2y9zrZM",cover:"https://i.scdn.co/image/ab67616d0000b2738b6488cc2c7085fb1bfaa55f",tags:["House","Synth"]},
+  {title:"DREAM GIRL WORLD",trackId:"1kLY9zlQ8RZre5VMHnSOL4",cover:"https://i.scdn.co/image/ab67616d0000b273e3a36f0128239c34a1f77926",tags:["Trap","Beat"]},
+  {title:"BOOST FINISHER - Radio Edit",trackId:"3rGmwo9KjBBpS1tu7CAmQs",cover:"https://i.scdn.co/image/ab67616d0000b2737510c76c96cf34d4905544e6",tags:["Trap","Beat"]},
+  {title:"SHEFFIELD - Radio Edit",trackId:"2MLWwXWbcgzoc6ybTj29tl",cover:"https://i.scdn.co/image/ab67616d0000b2736f1a991d14c636581ea83328",tags:["Trap","Beat"]},
+  {title:"ANTICIP - Radio Edit",trackId:"70y1QMCNzV8fWpKVdLXjGP",cover:"https://i.scdn.co/image/ab67616d0000b273baaada8d14a684c93cdda8fc",tags:["Trap","Beat"]},
+  {title:"Nug Life",trackId:"5xzm6hbwu43uaoqmr90Tjz",cover:"https://i.scdn.co/image/ab67616d0000b27374c40d160373c54eed802460",tags:["Trap","Beat"]},
+  {title:"CYBERPUNK",trackId:"0XfICPqF0oH5hUfcAMCXkd",cover:"https://i.scdn.co/image/ab67616d0000b2738a812baa0a3dd0aa335b3750",tags:["Synth","Dark"]},
+  {title:"RETRO",trackId:"6f20MMdeJFmufNE7kctLLt",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","Retro"]},
+  {title:"Liberty City",trackId:"3TRHsj6znmuq0hLzTjTyAB",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","Funk"]},
+  {title:"Gucci POP",trackId:"3ddScxhsVUzdZxeNXVPAn6",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","Trap"]},
+  {title:"HYPE",trackId:"1yYmsUfQm4O8m8dX0wFtoI",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","Hard"]},
+  {title:"Discovery",trackId:"0e01DEhBnOR36xOVxOhEZO",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","Melodic"]},
+  {title:"victoria",trackId:"7IAaSxQsSzTtTziQAFLmB5",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","R&B"]},
+  {title:"NUMBERS",trackId:"0YMlTRcLrwvRoqS8jZzm3M",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","Trap"]},
+  {title:"NEXT TIME",trackId:"22wBcVklnRSTGujqNdDgZf",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","Melodic"]},
+  {title:"DIGITAL GOLD",trackId:"5ER2EpWQib6LooS3h5FCeE",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","Funk"]},
+  {title:"RESURECTION",trackId:"7tflEf970QLmUwqoCc4IKd",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","Dark"]},
+  {title:"FOR YOU",trackId:"5mCmuQDp7nwhPT3wHElwRt",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","R&B"]},
+  {title:"CUSTOMERS",trackId:"6Y95OD5wu4rhCSEZw8ipMh",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","Trap"]},
+  {title:"Long Beach",trackId:"0rr2nFPTFn7oqTf5Cyn2EO",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","West Coast"]},
+  {title:"WTF",trackId:"6GjszU6PIJppequFeLfMXC",cover:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",tags:["Synth","Hard"]},
+  {title:"CARRERA GT",trackId:"2ImR1b1Zc8YA71uPiPmbrB",cover:"https://i.scdn.co/image/ab67616d0000b2733a9e8174fde0e93e4c59ec31",tags:["Trap","Beat"]},
+  {title:"GIOVANA",trackId:"41ukSDcDrjLt6TNBUzlh71",cover:"https://i.scdn.co/image/ab67616d0000b2733a9e8174fde0e93e4c59ec31",tags:["Trap","Beat"]},
+  {title:"FLASHBACK",trackId:"4WrTnjEj7pXC1edg7wVCBk",cover:"https://i.scdn.co/image/ab67616d0000b2733a9e8174fde0e93e4c59ec31",tags:["Trap","Beat"]},
+  {title:"DARK MATTER",trackId:"38ZnYW0FjMAi7EVzOSXVOq",cover:"https://i.scdn.co/image/ab67616d0000b2733a9e8174fde0e93e4c59ec31",tags:["Trap","Beat"]},
+  {title:"CRY LATER",trackId:"6T5PtAgek2rEYrHxB58feM",cover:"https://i.scdn.co/image/ab67616d0000b2733a9e8174fde0e93e4c59ec31",tags:["Trap","Beat"]},
+  {title:"AUDI RS7",trackId:"6PET3hn0tPm1OK1UqgiGLF",cover:"https://i.scdn.co/image/ab67616d0000b2733a9e8174fde0e93e4c59ec31",tags:["Trap","Beat"]},
+  {title:"Charcudok",trackId:"6xfV3S3JoebxX9i2HPOJlt",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Hard"]},
+  {title:"KandyShop",trackId:"5euwZSyIG37EzbP2elvkf7",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Melodic"]},
+  {title:"ROCKSTAR",trackId:"5yZk1uIapmhqkZRpcaN8U3",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Hard"]},
+  {title:"what your name",trackId:"6pFp5RGUdlPmOIrY8q2U4r",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","R&B"]},
+  {title:"dont need love",trackId:"3HUSdt4Spo35mNfc7h5rvL",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Melodic"]},
+  {title:"NEVER BACK DOWN",trackId:"1gxVwjT6K72NzyazGB5L8H",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Hard"]},
+  {title:"Magik Beach",trackId:"1JuzB6YcEQIchxAnzbeauS",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Chill"]},
+  {title:"Good morning",trackId:"7eMPQj0awQEpLDRN0ywAD4",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Melodic"]},
+  {title:"MY BABY",trackId:"2X2XFEd7Xywu97ySje77oE",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","R&B"]},
+  {title:"Party Hot",trackId:"1Nt9OLw7uLyhRYvMiqStLX",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Party"]},
+  {title:"BADMAN",trackId:"1RUtiaiBo8ZLw8Guno8Qok",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Drill"]},
+  {title:"BroTher LOPEZ",trackId:"2M9Not1muD8Twhp61REU3P",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Latin"]},
+  {title:"Assasin Creeds",trackId:"1O1OznAeODoyyOtj3pOD5A",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Dark"]},
+  {title:"JUICY ICE",trackId:"3dS0OznCT56R9KHJfSaq2e",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Chill"]},
+  {title:"WHY ME",trackId:"7hoFcMbCG7ifawYpJd3ofe",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Melodic"]},
+  {title:"Westside Dogg",trackId:"5caROYg7J5pag180G8tPp1",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Funk","West Coast"]},
+  {title:"NEWS PAPER",trackId:"3fC6xu8hv9wNmDE6EKVvm1",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Chill"]},
+  {title:"Miles",trackId:"72fLfPcJky1KUKR7b5R1fg",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Trap","Melodic"]},
+  {title:"Good Good",trackId:"2KjcoiukMRsOpwhxYdY6f9",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Funk","Groove"]},
+  {title:"GFUNK",trackId:"4P1OoISv2cDKXRxzWzsqOX",cover:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",tags:["Funk","West Coast"]},
+  {title:"Arasaka",trackId:"3XUEdhpBk24FzpJP7YieFj",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"Choums",trackId:"2bP3noifHWP1rF7ilPUJse",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"Genki Dama",trackId:"22mj37igJFTF7JYrkqLcsP",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"Kaizen",trackId:"0WRDc9NLeDiVohRUD84FLH",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"Konnichiwa",trackId:"6aBz4SNJ46T2ddLX38KWLg",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"Money Bruh",trackId:"0PJu0eTcJ8m7oPFKfcEpY3",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"Only Fan",trackId:"37Noy9qSHiD6ykJqcGvPjp",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"Ruff Riderz",trackId:"7ITjTOY5WOPCNV42Bs9Gw5",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"Shitstorm",trackId:"2IHClIFUzjOlhfINlSxza3",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"Samoraï",trackId:"2ZgYXgcuufeeOuZPJJ6p6B",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"Twitch Live",trackId:"28MTdxWogft4Wr4PX08pTt",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"You Got Power",trackId:"5TBcY0ntEk8eWk0bLiwyj6",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"First Date",trackId:"6bcfcSwflZQ0q04u0jMXr1",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"Funky Fingers",trackId:"6L5d4svWblIi8MwWI7aNcg",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Funk","West Coast"]},
+  {title:"Kontakt Library",trackId:"5LQQVK5vy35m7js7HWtLn1",cover:"https://i.scdn.co/image/ab67616d0000b273a30645e643ae704148d6eaa6",tags:["Trap","Beat"]},
+  {title:"Baby Driver",trackId:"7J803M7NYlkbXWbG3aWmxz",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"Go 2 Night",trackId:"1iTn6680YYwAinVpUEKCn7",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"Nice day",trackId:"2HOAYx9S2n4KrYZR07cdIA",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"Cyber Love",trackId:"0yWuY4s0Rt7zm2vpC502x7",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"Fake Friends",trackId:"3fdHypsjTbgOwb7NGbzjlA",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"FLY WINGS",trackId:"28K7lsUfMgezlc3qpoI0X4",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"Dance With Me",trackId:"1XmKcyil180y9dGLvyj5bC",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["House","Synth"]},
+  {title:"Funky Life",trackId:"7dniLO4yjwtnmiYBTkb7Wh",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Funk","West Coast"]},
+  {title:"Stand Up",trackId:"43lphebnh85LUT9qjwOQmh",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"Vice City",trackId:"5ZuB6OsqUV5tOnlEaym5sk",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"RedROOm",trackId:"5XKEVdyB4iRZ2TNzYcWeId",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"RIDERZ",trackId:"3dEKJHwHZ6bsiTuMmqMlut",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"SpaceX",trackId:"66XPYGI60HlRVh5MUyIqPv",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"SPEED",trackId:"1yGJISwWjX9D2bMjg4baZW",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"Lets Go bro",trackId:"3st7e81B4lvHc5OEGCD7LK",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"WALK INSTRU",trackId:"0GiQYMv16teoreA0tLxWSa",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"Why Not",trackId:"5npShg52ZkKwPhkUCi7bYw",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"WORK",trackId:"3KDDxy4S06HHZujZx7dGEL",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"boom outro",trackId:"1vXRuoHEqRLM9DRuqz3DHh",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"walkind dead",trackId:"3RiCB57o2dUqAOv7Z4atBB",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"Bla Bla Bla",trackId:"3aACyrRFmDRbTyhbIptrJU",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"Oriental Vibez",trackId:"3zlnHGr9al9Hh3lv2q0cmj",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Oriental","Trap"]},
+  {title:"WAG1MAN",trackId:"3JvdtSEgYJ677XrFGHQzCO",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"SilverHand",trackId:"41IPwBP9o7I0pC40XUSv0D",cover:"https://i.scdn.co/image/ab67616d0000b273621f5aa0072b6fec507d3393",tags:["Trap","Beat"]},
+  {title:"Kingofpop",trackId:"1NuKlumMm0VZc3ONLv9Wze",cover:"https://i.scdn.co/image/ab67616d0000b273f4cb5721918f50b12d338a10",tags:["Trap","Beat"]},
+  {title:"DiscoPolo",trackId:"3xuA0oG1tPTXbhQZTINhQy",cover:"https://i.scdn.co/image/ab67616d0000b273ae78035c90f0cab0eeb5928a",tags:["Funk","West Coast"]},
+  {title:"smile",trackId:"2iW0pLYXxHUraW786WmTGs",cover:"https://i.scdn.co/image/ab67616d0000b273432e1a23a3d57164aebe3caf",tags:["Trap","Beat"]},
+  {title:"L’ oeil plus grand que le ventre",trackId:"1U5KxxAFJgMJz6XtjPyNNm",cover:"https://i.scdn.co/image/ab67616d0000b273073aadc93f762d9207eab21f",tags:["Trap","Beat"]},
+  {title:"Crazy World - Radio Edit",trackId:"4f9YT4SuzPYL72FaPZRzdw",cover:"https://i.scdn.co/image/ab67616d0000b273cffd029ed2cd55236d650936",tags:["Trap","Beat"]},
+  {title:"i funk you - Radio Edit",trackId:"06Biwa6ewP0rNqQDkBeebi",cover:"https://i.scdn.co/image/ab67616d0000b2733e6815b225fdd39c057f87d5",tags:["Funk","West Coast"]},
+  {title:"Life",trackId:"3HrrkjxXQEsaHMpXvPRthA",cover:"https://i.scdn.co/image/ab67616d0000b273756640f0302f43f391abf39d",tags:["Trap","Beat"]},
+  {title:"Ride - Radio Edit",trackId:"05PL8ItcPsieH0XaNAyj2Q",cover:"https://i.scdn.co/image/ab67616d0000b273debc22f2319c729b9d89c0aa",tags:["Trap","Beat"]},
+  {title:"NiGTH CiTY - Radio Edit",trackId:"2eNYh93nbVNxGmeVCI95ke",cover:"https://i.scdn.co/image/ab67616d0000b2733c8b975a25267d6ddad02155",tags:["Trap","Beat"]},
+  {title:"YEAH - Radio Edit",trackId:"2D5HObT1FTrccjdfVmtqif",cover:"https://i.scdn.co/image/ab67616d0000b273b87825318e2a2132d2cdcd64",tags:["Trap","Beat"]},
+  {title:"Netrunner - Radio Edit",trackId:"0x2bnJLKvfuq1FqMKjzGtT",cover:"https://i.scdn.co/image/ab67616d0000b2731829a886996549c23b284773",tags:["Trap","Beat"]},
+];
+// <<<TRACKS_AUTO_END>>>
+
+const KITS=[
+{title:"Vice City Vol. 4",sub:"Drill Afrotrap • 45 Samples",img:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210739.png",link:"https://www.beatstars.com/sound-kit/245443"},
+{title:"ORIENTAL ARABIC",sub:"Loop Sample • 30 Loops",img:"https://img.youtube.com/vi/GVxATwlh7Lo/maxresdefault.jpg",link:"https://www.beatstars.com/sound-kit/238679"},
+{title:"VOL.3 BLUE PACK",sub:"Drums Loop • 35 Samples",img:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210813.png",link:"https://www.beatstars.com/sound-kit/237083"},
+{title:"VOL.2 BREACK YA NECK",sub:"Hip Hop • 28 Samples",img:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210851.png",link:"https://www.beatstars.com/sound-kit/194959"},
+{title:"FUTUR MELODY",sub:"23 Samples Melodic",img:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20210921.png",link:"https://www.beatstars.com/sound-kit/143802"},
+{title:"VOL.1 DRUMS LOOP",sub:"11 Samples Drums",img:"https://raw.githubusercontent.com/Djbilbox/djbilboxbeats.github.io/main/Capture%20d'%C3%A9cran%202025-12-30%20224611.png",link:"https://www.beatstars.com/sound-kit/143800"},
+];
+
+const PLAYLISTS=[
+{title:"ALL BEATS",sub:"+1000 BEATS",id:"PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th",img:"https://i.ytimg.com/vi/DfLmqMmHBqU/hqdefault.jpg"},
+{title:"Oriental × Balkan Type Beats",sub:"Arabes, turcs, balkaniques",id:"PLbtcZhy947NUC6PqUplrygUgHJSTvS61u",img:"https://i.ytimg.com/vi/H6WMAMTFcXk/hqdefault.jpg"},
+{title:"Trap × Drill Type Beats",sub:"Trap, Drill UK, Hard",id:"PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg",img:"https://i.ytimg.com/vi/XvtoKUxGD7Y/hqdefault.jpg"},
+{title:"Afrotrap × Dancehall Type Beats",sub:"Afrobeat, Dancehall, Reggaeton",id:"PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_",img:"https://i.ytimg.com/vi/JyKh1VPJWlU/hqdefault.jpg"},
+{title:"Deep House × DNB × Electronic",sub:"House, Techno, Drum & Bass",id:"PLbtcZhy947NUF9V0rVWzY_-gl1Cy8vw5r",img:"https://i.ytimg.com/vi/yl1OZuDlTEY/hqdefault.jpg"},
+{title:"Funky4Life × G-Funk Type Beats",sub:"Funk, Disco, West Coast Groove",id:"PLbtcZhy947NW5vq7XI-R0nB5rnSMesR8B",img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg"},
+{title:"Soul × Jazz Type Beats",sub:"Neo-soul, Smooth Jazz",id:"PLbtcZhy947NUOk5HoAYNmLnpMGzLSsR8h",img:"https://i.ytimg.com/vi/hRvWg0iXb08/hqdefault.jpg"},
+{title:"Music Mix & Remixes",sub:"DJ sets, Remixes officiels",id:"PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-",img:"https://i.ytimg.com/vi/pIQlCEqgbkg/hqdefault.jpg"},
+{title:"FL Studio Tutorials",sub:"Tutos production, Making-of",id:"PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ",img:"https://i.ytimg.com/vi/PmjSZbmIifM/hqdefault.jpg"},
+{title:"Sample Packs & Loop Kits",sub:"Packs de samples gratuits",id:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",img:"https://img.youtube.com/vi/BW_HLS7payE/hqdefault.jpg"},
+{title:"Rock × Indie Type Beats",sub:"Rock, Post-punk, Alternative",id:"PLbtcZhy947NX_wb3vnR4vml6uUdHIyI9Y",img:"https://i.ytimg.com/vi/rOA2lTmEKF0/hqdefault.jpg"},
+{title:"AI Visual Clips",sub:"Clips générés par IA, Motion design",id:"PLbtcZhy947NWbPbX4VepMkY3lIzvm681V",img:"https://i.ytimg.com/vi/3nbqgoyBuPY/hqdefault.jpg"},
+];
+
+// ===== STATE =====
+let cart=[], cur=0, playing=false, sorted=false;
+
+// ===== RENDER TRACKS =====
+function renderTracks(list){
+    const el=document.getElementById('trackList');
+    if(!list) list=TRACKS;
+    document.getElementById('trackCount').textContent=list.length+' tracks';
+    el.innerHTML=list.map((t,i)=>{
+        const idx=TRACKS.indexOf(t);
+        const isActive=idx===cur;
+        return `<div class="trk ${isActive?'active':''}" data-idx="${idx}" onclick="playTrack(${idx})">
+        <span class="trk-num" style="${isActive?'color:var(--accent);':''}">${isActive?'<i class="fa-solid fa-volume-high"></i>':i+1}</span>
+        <img class="trk-cover" src="${t.cover}" alt="${t.title}" loading="lazy">
+        <div class="trk-info">
+            <div class="trk-title">${t.title}</div>
+            <div class="trk-sub">DjBilbox Beats</div>
+            <div class="trk-tags">${t.tags.map(x=>'<span class="trk-tag">'+x+'</span>').join('')}</div>
+        </div>
+        <button class="trk-buy" onclick="event.stopPropagation();addCart('${t.title}')"><i class="fa-solid fa-plus"></i> Licence</button>
+    </div>`;}).join('');
+}
+
+// ===== PLAYER CONTROLS =====
+function playTrack(idx){
+    cur=idx;playing=true;
+    const t=TRACKS[idx];
+    // Destroy old iframe and create fresh one with new track ID
+    var container=document.getElementById('playerContainer');
+    container.innerHTML='<iframe id="spotifyEmbed" src="https://open.spotify.com/embed/track/'+t.trackId+'?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" style="border-radius:8px;"></iframe>';
+    // Update now playing indicator
+    document.getElementById('nowPlaying').innerHTML='<i class="fa-solid fa-volume-high" style="color:var(--accent);margin-right:4px;"></i> <strong>'+t.title+'</strong> — DjBilbox Beats';
+    // Re-render list to highlight active
+    renderTracks();
+    toast('▶ '+t.title);
+}
+function selectTrack(idx){playTrack(idx);}
+function prevT(){playTrack(cur>0?cur-1:TRACKS.length-1)}
+function nextT(){playTrack(cur<TRACKS.length-1?cur+1:0)}
+
+// ===== SEARCH & SORT =====
+function filterTracks(){
+    const q=document.getElementById('searchIn').value.toLowerCase();
+    const filtered=q?TRACKS.filter(t=>t.title.toLowerCase().includes(q)||t.tags.some(x=>x.toLowerCase().includes(q))):TRACKS;
+    renderTracks(filtered);
+}
+function sortTracks(){
+    sorted=!sorted;
+    const s=[...TRACKS].sort((a,b)=>sorted?a.title.localeCompare(b.title):0);
+    renderTracks(sorted?s:TRACKS);
+}
+
+// ===== CART =====
+function addCart(title){cart.push({title,type:'Free License'});updCart();toast(title+' added')}
+function rmCart(i){cart.splice(i,1);updCart()}
+function updCart(){
+    document.getElementById('cBadge').textContent=cart.length;
+    const el=document.getElementById('mcList');
+    el.innerHTML=cart.length?cart.map((c,i)=>`<div class="mc-item"><div><h4>${c.title}</h4><p>${c.type}</p></div><button class="mc-rm" onclick="rmCart(${i})"><i class="fa-solid fa-trash"></i></button></div>`).join(''):'<p style="text-align:center;color:var(--text-4);padding:2rem">Your cart is empty</p>';
+    document.getElementById('mcTot').textContent=cart.length?'0€ (Free)':'0€';
+}
+function toggleCart(){document.getElementById('mc').classList.toggle('open')}
+function toggleNav(){document.querySelector('.hdr-nav').classList.toggle('open')}
+document.addEventListener('click',e=>{const a=e.target.closest('.hdr-nav a');if(a)document.querySelector('.hdr-nav').classList.remove('open');});
+
+/* ===== CHAT IA ===== */
+const CHAT_ENDPOINT=''; // <-- URL du Worker Cloudflare (ex: https://djbilbox-ai.xxx.workers.dev/chat) pour activer la vraie IA
+const BILBOX_KB=`DJBILBOX BEATS — beatmaker, producer, sound designer and digital creator.
+Genres: oriental, trap, drill, g-funk, funk, balkan, afro, melodic.
+Catalog: 475+ tracks on Spotify, 130+ beats on the site, free-for-profit with instant PDF license.
+Albums/projects: Cyberpunk 2077, Hermes, Why Not 3, Balkan, Funky4life, Video Club.
+VST: Oriental Instrument (Maqam Engine Pro) — free demo + 300+ bundle on Gumroad.
+Gear: Novation FLkey 49, Bomge BMG-22M condenser mic + USB audio interface (48V phantom), FL Studio.
+Services: digital creator, web developer, image & video, beatmaking, mix & mastering, composition & collaborations.
+Licenses: free (free for profit) with required credit "Prod. DJBILBOX BEATS"; exclusive on request.
+Socials: Spotify, YouTube @djbilboxbeats, TikTok @djbilboxbeats, SoundCloud djbilboxbeats.`;
+const chatHist=[];
+function toggleChat(){
+    const p=document.getElementById('chatPanel');p.classList.toggle('open');
+    if(p.classList.contains('open')&&!chatHist.length)botSay("Hey! I'm BILBOX AI. I know everything about DJBILBOX BEATS — beats, genres, licenses, services, collabs. What do you want to know?");
+    if(p.classList.contains('open'))setTimeout(()=>document.getElementById('chatInput').focus(),100);
+}
+function addMsg(txt,cls){
+    const b=document.getElementById('chatBody');
+    const d=document.createElement('div');d.className='chat-msg '+cls;d.textContent=txt;
+    b.appendChild(d);b.scrollTop=b.scrollHeight;return d;
+}
+function botSay(t){addMsg(t,'bot');chatHist.push({role:'assistant',content:t});}
+async function sendChat(){
+    const inp=document.getElementById('chatInput');const q=inp.value.trim();if(!q)return;
+    inp.value='';addMsg(q,'me');chatHist.push({role:'user',content:q});
+    // capture demande collab / contact -> mail producteur (djbilboxbeats@gmail.com)
+    if(/collab|contact|booking|exclus|achat|buy|mail|@|whats?app|insta|prix|price|custom|feature/i.test(q)){
+        fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+            body:JSON.stringify({_subject:'DJBILBOX site - demande via chat',Message:q,Type:'collab/contact'})}).catch(()=>{});
+    }
+    const typing=addMsg('...','bot');
+    let reply='';
+    if(CHAT_ENDPOINT){
+        try{
+            const r=await fetch(CHAT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({messages:chatHist,system:BILBOX_KB})});
+            const j=await r.json();reply=j.reply||j.content||'';
+        }catch(e){reply='';}
+    }
+    if(!reply)reply=localBot(q);
+    typing.remove();botSay(reply);
+}
+function localBot(q){
+    q=q.toLowerCase();
+    if(/licen|license|free|prix|price|cost|how much|tarif|paid|payment/.test(q))return "Beats are free-for-profit: free license with required credit \"Prod. DJBILBOX BEATS\". Generate your PDF contract in 1 click from the cart. Exclusive licenses on request.";
+    if(/genre|style|oriental|trap|drill|funk|balkan|what music|what style/.test(q))return "DJBILBOX makes oriental, trap, drill, g-funk, funk, balkan, afro and melodic. 475+ tracks on Spotify.";
+    if(/service|collab|collaboration|mix|master|mastering|video|clip|site|web|develop|developer|design/.test(q))return "DJBILBOX services: digital creator, web developer, image & video, beatmaking, mix & mastering, composition & collaborations. Tell me about your project!";
+    if(/vst|plugin|instrument|oriental instrument|maqam|synth|sound/.test(q))return "Oriental Instrument VST (Maqam Engine Pro): authentic Middle Eastern sounds. Free demo + 300+ bundle on Gumroad — see the VST section.";
+    if(/gear|studio|keyboard|mic|interface|sound card|audio interface|phantom|equipment|setup|software|fl studio|ableton|logic|hardware/.test(q))return "DJBILBOX studio: Novation FLkey 49 keyboard, Bomge BMG-22M condenser mic + USB audio interface (48V phantom), FL Studio.";
+    if(/spotify|listen|music|album|project|track|beat|song|play|stream|hear/.test(q))return "The whole catalog is on Spotify (475+ tracks): Cyberpunk 2077, Hermes, Why Not 3, Balkan, Funky4life, Video Club. The player at the top lets you listen to everything.";
+    if(/contact|email|reach|social|insta|instagram|tiktok|youtube|message|dm/.test(q))return "Find DJBILBOX on Spotify, YouTube/TikTok @djbilboxbeats and SoundCloud djbilboxbeats. For a collab, message me right here!";
+    if(/salut|bonjour|hello|yo|hey|hi|welcome|start/.test(q))return "Yo! Welcome to DJBILBOX BEATS. Beats, licenses, services, collabs — ask anything.";
+    return "DJBILBOX BEATS does beatmaking (oriental/trap/drill/funk/balkan), mix/master, web dev and digital creation. Tell me what you need (beats, license, collab, services) and I'll guide you.";
+}
+
+// ===== MODAL =====
+function openModal(){
+    document.getElementById('mc').classList.remove('open');
+    document.getElementById('licM').classList.add('open');
+    if(cart.length)document.getElementById('fB').value=cart.map(c=>c.title).join(', ');
+}
+function closeModal(){document.getElementById('licM').classList.remove('open')}
+document.getElementById('licM').addEventListener('click',e=>{if(e.target.id==='licM')closeModal()});
+
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+async function ensureJsPDF(){
+    if(window.jspdf&&window.jspdf.jsPDF)return true;
+    for(const u of ['https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js','https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js','https://unpkg.com/jspdf@2.5.2/dist/jspdf.umd.min.js']){
+        try{await loadScript(u);if(window.jspdf&&window.jspdf.jsPDF)return true;}catch(e){}
+    }
+    return !!(window.jspdf&&window.jspdf.jsPDF);
+}
+document.getElementById('licF').addEventListener('submit',async function(e){
+    e.preventDefault();
+    const n=document.getElementById('fN').value.trim(),em=document.getElementById('fE').value.trim(),b=document.getElementById('fB').value.trim(),p=document.getElementById('fP').value.trim();
+    const chk=document.getElementById('fA').checked;
+
+    // Validation avec feedback utilisateur
+    if(!n){toast('⚠ Veuillez entrer votre nom');document.getElementById('fN').focus();return;}
+    if(!em){toast('⚠ Veuillez entrer votre email');document.getElementById('fE').focus();return;}
+    if(!em.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)){toast('⚠ Email invalide');document.getElementById('fE').focus();return;}
+    if(!b){toast('⚠ Veuillez indiquer les beats sélectionnés');document.getElementById('fB').focus();return;}
+    if(!chk){toast('⚠ Veuillez accepter les conditions');return;}
+
+    // Charger jsPDF (dynamique + fallback CDN si le head a échoué)
+    toast('Generating contract...');
+    const ok=await ensureJsPDF();
+    if(!ok){
+        toast('⚠ PDF blocked (ad-blocker?) — try again');
+        console.error('[LICENCE] jsPDF introuvable après fallbacks.');
+        return;
+    }
+
+    const ref='LIC-'+Date.now().toString(36).toUpperCase();
+    const beats=b.split(',').map(x=>x.trim()).filter(x=>x);
+
+    // Génération PDF avec gestion d'erreur
+    try{
+        genPDF(n,em,p,ref,beats);
+        console.log('[LICENCE] PDF généré avec succès:',ref);
+    }catch(err){
+        toast('⚠ Erreur génération PDF — réessayez');
+        console.error('[LICENCE] Erreur genPDF:',err);
+        return;
+    }
+
+    // Envoi email avec feedback
+    fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({_subject:'Licence '+ref,Nom:n,Email:em,Beats:b,Projet:p||'N/A',Date:new Date().toLocaleDateString('fr-FR')})
+    }).then(r=>{
+        if(!r.ok)throw new Error('HTTP '+r.status);
+        console.log('[LICENCE] Email envoyé au producteur');
+    }).catch(err=>{
+        console.warn('[LICENCE] Email non envoyé (PDF OK):',err.message);
+    });
+
+    // Sauvegarde locale
+    try{const l=JSON.parse(localStorage.getItem('djb_lic')||'[]');l.push({ref,date:new Date().toISOString(),name:n,email:em,beats});localStorage.setItem('djb_lic',JSON.stringify(l))}catch(x){console.warn('[LICENCE] localStorage:',x)}
+
+    cart=[];updCart();closeModal();this.reset();toast('✓ License '+ref+' downloaded!');
+});
+
+function sanitizeText(str){
+    return str.replace(/[éèêë]/g,'e').replace(/[àâä]/g,'a').replace(/[ùûü]/g,'u').replace(/[ôö]/g,'o').replace(/[îï]/g,'i').replace(/[ç]/g,'c').replace(/[É]/g,'E').replace(/[À]/g,'A');
+}
+function genPDF(name,email,project,ref,beats){
+    const{jsPDF}=window.jspdf;
+    if(!jsPDF)throw new Error('jsPDF not available');
+    const doc=new jsPDF(),d=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+    const sName=sanitizeText(name),sProject=sanitizeText(project||'');
+
+    doc.setDrawColor(255,45,45);doc.setLineWidth(1);doc.rect(5,5,200,287);
+    doc.setFillColor(9,9,9);doc.rect(5,5,200,32,'F');
+    doc.setTextColor(255,255,255);doc.setFont("helvetica","bold");doc.setFontSize(22);doc.text("DJBILBOX BEATS",20,20);
+    doc.setFontSize(9);doc.text("CONTRAT DE LICENCE - "+ref,20,28);
+    doc.setTextColor(0);doc.setFontSize(9);doc.setFont("helvetica","normal");doc.text("Date : "+sanitizeText(d),150,45);
+    let y=50;doc.setFont("helvetica","bold");doc.setFontSize(10);doc.text("PARTIES",20,y);y+=6;
+    doc.setFont("helvetica","normal");doc.setFontSize(8.5);
+    doc.text("Producteur : DJBILBOX BEATS | djbilboxbeats@gmail.com",20,y);y+=4.5;
+    doc.text("Licencie : "+sName+" | "+email,20,y);y+=4.5;
+    if(sProject){doc.text("Projet : "+sProject,20,y);y+=4.5;}
+    y+=6;doc.setFont("helvetica","bold");doc.setFontSize(10);doc.text("OEUVRES ("+beats.length+")",20,y);y+=6;
+    doc.setFont("helvetica","normal");doc.setFontSize(8.5);
+    beats.forEach(b=>{if(y>265){doc.addPage();y=15;}doc.text("- "+sanitizeText(b),24,y);y+=4.5;});
+    y+=6;doc.setFont("helvetica","bold");doc.setFontSize(10);doc.text("DROITS",20,y);y+=6;
+    doc.setFont("helvetica","normal");doc.setFontSize(8);
+    ["OK: Streaming, YouTube, Radio, Live, Reseaux sociaux","OK: Projets personnels et collaboratifs","OBLIGATOIRE: Credit 'Prod. DJBILBOX BEATS'","INTERDIT: Revente instrumentaux seuls","INTERDIT: Transfert a un tiers","PRIX: 0.00 EUR (Free for Profit)","DUREE: Illimitee"].forEach(l=>{doc.text(l,24,y);y+=4;});
+    y+=8;doc.setDrawColor(255,45,45);doc.line(20,y,190,y);y+=7;
+    doc.setFont("courier","italic");doc.setFontSize(13);doc.setTextColor(255,45,45);doc.text("DJBILBOX BEATS",20,y);
+    doc.setTextColor(0);doc.text(sName,120,y);
+    doc.save("Licence_DJBILBOX_"+ref+".pdf");
+}
+
+// ===== DISCOGRAPHIE DATA =====
+const DISCOGRAPHY=[
+{title:"WHY NOT 3",year:"2025",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b273752d68c487d48140dbda160f",spotifyUrl:"https://open.spotify.com/album/3VzsvmhnCb0t7FqBNRJFhA"},
+{title:"Hermès",year:"2025",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b273877ce4929aef58b4d59d27c7",spotifyUrl:"https://open.spotify.com/album/1eM3CnMoDBvFjkBPhCwGP4"},
+{title:"G-Funk",year:"2024",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",spotifyUrl:"https://open.spotify.com/album/0DcrVmk7eTigVhFGMpjftF"},
+{title:"Cyberpunk 2077",year:"2024",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b2736d2c812af3ba41fcced497aa",spotifyUrl:"https://open.spotify.com/album/1FcYgMgcOI46PUHJVwO1FZ"},
+{title:"Video Club",year:"2024",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b273f866e2d46aac8645f48cd45b",spotifyUrl:"https://open.spotify.com/album/0jDi4k7BQSF2FnRYSfbsua"},
+{title:"Funky4Life",year:"2024",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b2736c1a247b77319a53ce39dc00",spotifyUrl:"https://open.spotify.com/album/3H3MZcTFOahHe2hBUzlsIz"},
+{title:"Balkan",year:"2024",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b2739648a06936788f6884fa9743",spotifyUrl:"https://open.spotify.com/album/5c2SHR04yHLjk8sBIHrk3g"},
+{title:"WHY NOT 2",year:"2023",type:"Album",img:"https://i.scdn.co/image/ab67616d0000b273f4b343f6a7d172a1f54cf438",spotifyUrl:"https://open.spotify.com/album/0DcrVmk7eTigVhFGMpjftF"},
+];
+
+// ===== RENDER KITS, DISCOGRAPHIE & PLAYLISTS =====
+function renderKits(){
+    document.getElementById('kitsG').innerHTML=KITS.map(k=>`<div class="kit-c" onclick="window.open('${k.link}','_blank')"><div class="kit-cover"><img src="${k.img}" alt="${k.title}" loading="lazy"><span class="kit-gloss"></span></div><div class="kit-c-body"><h4>${k.title}</h4><p>${k.sub}</p><div class="kit-c-foot"><span class="kit-price">FREE</span><button class="kit-dl">Download</button></div></div></div>`).join('');
+}
+function renderDisco(){
+    document.getElementById('discoG').innerHTML=DISCOGRAPHY.map(a=>`<div class="disco-c" onclick="window.open('${a.spotifyUrl}','_blank')"><img src="${a.img}" alt="${a.title}" loading="lazy"><div class="disco-c-body"><h4>${a.title}</h4><p>${a.year} • ${a.type}</p><span class="disco-spot"><i class="fa-brands fa-spotify"></i> Listen</span></div></div>`).join('');
+}
+function renderYT(){
+    document.getElementById('ytG').innerHTML=PLAYLISTS.map(p=>`<div class="yt-c" onclick="window.open('https://www.youtube.com/playlist?list=${p.id}','_blank')"><img src="${p.img}" alt="${p.title}" loading="lazy"><div class="yt-c-body"><h4>${p.title}</h4><p>${p.sub}</p></div></div>`).join('');
+}
+
+// ===== TOAST =====
+function toast(m){const t=document.getElementById('toast');document.getElementById('toastT').textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+
+/* ===== VST Oriental Instrument — liens demo/bundle (remplace par Gumroad/BeatStars/Stripe) ===== */
+const DEMO_URL='https://djbilboxbeats.gumroad.com/l/oriental-instrument-demo-free-Download';
+const BUNDLE_URL='https://djbilboxbeats.gumroad.com/l/oriental-instrument-djbilbox-beats';
+function vstAction(kind){
+    const url=kind==='bundle'?BUNDLE_URL:DEMO_URL;
+    if(url){window.open(url,'_blank');return;}
+    const subj=kind==='bundle'?'Oriental Instrument - Bundle 300+':'Oriental Instrument - Free Demo';
+    window.location.href='mailto:djbilboxbeats@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent('Hi, I want '+(kind==='bundle'?'the Oriental Instrument 300+ bundle.':'the free Oriental Instrument demo.'));
+    toast(kind==='bundle'?'Bundle request sent':'Demo request sent');
+}
+
+/* ===== NEWSLETTER ===== */
+const NEWSLETTER_ENDPOINT='https://formsubmit.co/ajax/djbilboxbeats@gmail.com'; // emails -> Gmail (active a la 1ere soumission)
+async function subscribeNewsletter(e){
+    e.preventDefault();
+    const email=document.getElementById('nlEmail').value.trim();
+    if(!email)return;
+    if(NEWSLETTER_ENDPOINT){
+        try{
+            const r=await fetch(NEWSLETTER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({email,source:'djbilboxbeats.com'})});
+            if(r.ok){toast('Inscrit ! Merci');document.getElementById('nlForm').reset();return;}
+        }catch(err){}
+    }
+    // fallback sans backend : ouvre un mail pré-rempli vers DJBILBOX
+    window.location.href='mailto:djbilboxbeats@gmail.com?subject='+encodeURIComponent('Newsletter DJBILBOX BEATS')+'&body='+encodeURIComponent('Inscris-moi a la newsletter : '+email);
+    toast('Merci ! Valide l\'envoi du mail.');
+    document.getElementById('nlForm').reset();
+}
+
+// ===== INIT =====
+// ===== TEMOIGNAGES (vrais commentaires) =====
+// Ajoute ici les vrais avis reçus (YouTube, BeatStars, DM, mail).
+// <<<TESTIMONIALS_AUTO_START>>>
+const TESTIMONIALS=[
+  {name:"@nevenkavukobratovic1111",verified:false,src:"YouTube",text:"It's great ❤❤❤",likes:"1",avatar:"https://yt3.ggpht.com/eb5-F-sTVBkQPFJgTkTVCtMqlHI3ItYCqdQ2M_R18ciNrdCCixT0KslEseC6u7Sbgcx0x0R5sD0=s88-c-k-c0x00ffffff-no-rj"},
+  {name:"@popatyourecords",verified:false,src:"YouTube",text:"Great track my friend enjoy your day cheers",likes:"1",avatar:"https://yt3.ggpht.com/oORllyygB5IiKaACmMT67RS5ZnFlyq04UJnqqg9ZU7jC2gh5eJenO6uP1y16vcoYAw5gScWH=s88-c-k-c0x00ffffff-no-rj"},
+  {name:"@DadiUSA",verified:false,src:"YouTube",text:"Liked and watched this extremely beautiful video tour presentation and thanks for sharing this with your friend.",likes:"1",avatar:"https://yt3.ggpht.com/salRTi-BTHj6nPkUkjDDQ22xG8GgMMQkSYfIra35ts93Wbix0AN0X9FZM6niMQEo1Qf_GxV1yg=s88-c-k-c0x00ffffff-no-rj"},
+  {name:"@Lapuissancemusic-w6u",verified:false,src:"YouTube",text:"La puissance Music papi",likes:"1",avatar:"https://yt3.ggpht.com/cGuNLy6LFQ3UuFDzL8yumf3A-oMEHzKhmE8Qg_wprgg5mf7yL_QdhoTXb7YLwyQ-lUkYSDcg=s88-c-k-c0x00ffffff-no-rj"},
+  {name:"@sambobx",verified:false,src:"YouTube",text:"Je viens de te découvrir via Tik Tok. Pense à toi, j'aime bien tes instrus, on peut dire que tu as vraiment ton style, tu as ta recette et tes sonorités carrer dans l'axe c'est propre 🎉🎉",likes:"2"},
+  {name:"@PlaceChristophe",verified:false,src:"YouTube",text:"Très bien cette musique est dansante et tranquille à la fois. J'aime beaucoup la mélodie et les instruments. C'est excellent, bravo Bilel 👍🙂",likes:"1"},
+  {name:"@stephane-cappelletti",verified:false,src:"YouTube",text:"Evasion assurée, quand culture rime avec modernité à travers des sons ancestraux, bravo.",likes:"1"},
+  {name:"@GabrielValdez-me2eb",verified:false,src:"YouTube",text:"This might be an offense or compliment depending on what you're trying to accomplish, but this could definitely lead to a pop career. The melody feels like something that could be sang over. Regardless it's a movie track and I envision the potential beyond rap.",likes:"1"},
+  {name:"@TechnoSyncStudio",verified:false,src:"YouTube",text:"Impressive beat, very good sounds 🎶🎵👍🌟🌟🌟👍",likes:"2"},
+  {name:"@MasGuapoQueCR7",verified:false,src:"YouTube",text:"I love the bass mate! New suscriber 🔥🔥🔥",likes:"1"},
+  {name:"@prod.dugster",verified:false,src:"YouTube",text:"nice music g",likes:"2"},
+  {name:"@Drenchhh27",verified:false,src:"YouTube",text:"🔥🔥🔥🔥🔥 keep dropping more!!!!",likes:"1"},
+  {name:"@trakoofficial9448",verified:false,src:"YouTube",text:"T monter en level mon reuf 🎉🎉🎉🎉🎉",likes:"1"},
+  {name:"@Enissay_Beats",verified:true,src:"YouTube",text:"Sounds very good 🎉",likes:"1"},
+  {name:"@manalexeman5599",verified:false,src:"YouTube",text:"This is nice 👌 👍 music 🎶",likes:"1"},
+  {name:"@rossendgri",verified:false,src:"YouTube",text:"Excellent work!!",likes:"1"},
+  {name:"@moody9013",verified:false,src:"YouTube",text:"fire beat 💯",likes:"1"},
+  {name:"@DJSOEGAARD",verified:false,src:"YouTube",text:"GO GO GO!",likes:"1"},
+  {name:"@DJSOEGAARD",verified:false,src:"YouTube",text:"Viiiibe!!!",likes:"1"},
+  {name:"@AlexiOMic",verified:false,src:"YouTube",text:"Lourd ma gueule",likes:"1"},
+  {name:"@sk-esko",verified:false,src:"YouTube",text:"Lourd frérot 🎉",likes:"1"},
+  {name:"@Sophiasalvador33",verified:false,src:"YouTube",text:"lourd",likes:"1"},
+  {name:"@zeo77-it1ym",verified:false,src:"YouTube",text:"Ye frère j'ai bien aimé tes son 🙂",likes:"1"},
+  {name:"@AnimeMindLaboratory",verified:false,src:"YouTube",text:"I love this",likes:"1"},
+  {name:"@VesnaDjordjevic-i5q",verified:false,src:"YouTube",text:"Great",likes:"1"},
+  {name:"@Alhamdulillah-For-Everything-0",verified:false,src:"YouTube",text:"Awesome",likes:"1"},
+  {name:"@sayeloffishal",verified:false,src:"YouTube",text:"Yesss... Good vibe bro 🔥💪",likes:"1"},
+  {name:"@PsychéOfficiel",verified:false,src:"YouTube",text:"Oufff celle là 😮",likes:"1"},
+  {name:"@InstruEFMproductions",verified:false,src:"YouTube",text:"Ok lets go bro",likes:"1"},
+  {name:"@RASPOUTINE-OFFICIEL",verified:false,src:"YouTube",text:"Ont va collaborer",likes:"1"},
+  {name:"@braininfinityrecords8395",verified:false,src:"YouTube",text:"🔥🔥",likes:"1"},
+  {name:"@leliyanto712",verified:false,src:"YouTube",text:"😮 👍👍",likes:"1"},
+  {name:"@MasBeb",verified:false,src:"YouTube",text:"Very nice ......... 👍❤👌",likes:"1"},
+];
+// <<<TESTIMONIALS_AUTO_END>>>
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function getStoredReviews(){try{return JSON.parse(localStorage.getItem('djb_reviews')||'[]');}catch(e){return[];}}
+function renderTestimonials(){
+  const row=document.getElementById('tstRow');if(!row)return;
+  // vrais avis curés + avis visiteurs (localStorage, affichés en premier)
+  const all=getStoredReviews().concat(TESTIMONIALS);
+  if(!all.length){document.getElementById('reviews').style.display='none';return;}
+  row.innerHTML=all.map(t=>{
+    const stars=t.rating?`<div style="color:#ffcf6a;font-size:.7rem;margin-bottom:.4rem">${'★'.repeat(t.rating)}${'☆'.repeat(5-t.rating)}</div>`:'';
+    const ltr=(t.name||'?').replace(/^@/,'').charAt(0).toUpperCase();
+    const hue=[...(t.name||'')].reduce((a,c)=>a+c.charCodeAt(0),0)%360;
+    const av=t.avatar?`<img class="tst-av" src="${t.avatar}" alt="">`:`<div class="tst-av tst-av-ltr" style="background:hsl(${hue},55%,42%)">${esc(ltr)}</div>`;
+    return `<div class="tst-card"><div class="tst-top">${av}<div><div class="tst-name">${esc(t.name)}${t.verified?' <i class="fa-solid fa-circle-check"></i>':''}</div><div class="tst-src">${esc(t.src||'')}</div></div></div>${stars}<div class="tst-text">${esc(t.text)}</div><div class="tst-foot"><span class="lk"><i class="fa-solid fa-heart"></i> ${esc(t.likes||'0')}</span><span><i class="fa-regular fa-comment"></i> Reply</span></div></div>`;
+  }).join('');
+}
+// ===== REVIEW FORM (vrais visiteurs) =====
+let revRating=5;
+function initRevStars(){
+  const box=document.getElementById('revStars');if(!box)return;
+  const paint=n=>box.querySelectorAll('i').forEach(s=>s.classList.toggle('on',+s.dataset.v<=n));
+  box.querySelectorAll('i').forEach(s=>{
+    s.onmouseenter=()=>paint(+s.dataset.v);
+    s.onclick=()=>{revRating=+s.dataset.v;paint(revRating);};
+  });
+  box.onmouseleave=()=>paint(revRating);
+  paint(revRating);
+}
+async function submitReview(e){
+  e.preventDefault();
+  const name=document.getElementById('revName').value.trim();
+  const text=document.getElementById('revText').value.trim();
+  if(!name||!text)return;
+  const rev={name,text,rating:revRating,src:'Verified visitor',likes:'0',date:new Date().toISOString()};
+  // 1) affichage instant (localStorage de ce visiteur)
+  try{const l=getStoredReviews();l.unshift(rev);localStorage.setItem('djb_reviews',JSON.stringify(l.slice(0,20)));}catch(x){}
+  renderTestimonials();
+  document.getElementById('revForm').reset();revRating=5;initRevStars();
+  toast('✓ Thanks for your review!');
+  // 2) envoi au producteur (FormSubmit) pour curation -> ajout aux vrais avis
+  try{
+    await fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com',{
+      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({_subject:'New site review — '+name,name,rating:revRating+'/5',review:text})
+    });
+  }catch(x){console.warn('[review] mail failed',x);}
+}
+renderTracks();renderKits();renderDisco();renderYT();renderTestimonials();initRevStars();
+
+// Init VanillaTilt on Drum Kit + Discographie cards
+setTimeout(function(){
+    if(window.VanillaTilt){
+        VanillaTilt.init(document.querySelectorAll('.kit-c'),{
+            max:16,speed:500,glare:true,'max-glare':0.4,perspective:900,scale:1.05,gyroscope:false
+        });
+        VanillaTilt.init(document.querySelectorAll('.disco-c'),{
+            max:12,speed:300,glare:true,'max-glare':0.15,perspective:1200,scale:1.02
+        });
+    }
+},200);
+
+/* ============================================================
+   ASTRONOMICAL BACKGROUND + 3D GEAR (Three.js r128)
+   ============================================================ */
+(function(){
+if(typeof THREE==='undefined'){console.warn('[3D] Three.js non chargé');return;}
+const DPR=Math.min(window.devicePixelRatio||1,2);
+const animators=[];               // per-frame callbacks
+let mouseX=0,mouseY=0;
+window.addEventListener('mousemove',e=>{mouseX=(e.clientX/innerWidth)*2-1;mouseY=(e.clientY/innerHeight)*2-1;});
+
+/* ---------- STARFIELD + NEBULA BACKGROUND ---------- */
+function initSpace(){
+    const cv=document.getElementById('space-bg');if(!cv)return;
+    const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+    renderer.setPixelRatio(DPR);renderer.setSize(innerWidth,innerHeight,false);
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,1,2000);
+    camera.position.z=600;
+
+    // round soft star sprite
+    function starTex(){
+        const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');
+        const g=x.createRadialGradient(32,32,0,32,32,32);
+        g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.25,'rgba(255,255,255,.85)');
+        g.addColorStop(.5,'rgba(160,170,255,.35)');g.addColorStop(1,'rgba(0,0,0,0)');
+        x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(c);
+    }
+    const tex=starTex();
+
+    function makeLayer(count,spread,size,colorFn){
+        const geo=new THREE.BufferGeometry();
+        const pos=new Float32Array(count*3),col=new Float32Array(count*3);
+        for(let i=0;i<count;i++){
+            pos[i*3]=(Math.random()-.5)*spread;
+            pos[i*3+1]=(Math.random()-.5)*spread;
+            pos[i*3+2]=(Math.random()-.5)*spread;
+            const c=colorFn();col[i*3]=c.r;col[i*3+1]=c.g;col[i*3+2]=c.b;
+        }
+        geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+        geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+        const mat=new THREE.PointsMaterial({size,map:tex,vertexColors:true,transparent:true,
+            depthWrite:false,blending:THREE.AdditiveBlending,opacity:.95});
+        const pts=new THREE.Points(geo,mat);scene.add(pts);return pts;
+    }
+    const white=()=>new THREE.Color(1,1,1);
+    const tinted=()=>{const h=Math.random();return new THREE.Color().setHSL(.6+h*.25,.7,.7);};
+    const warm=()=>{const h=Math.random();return new THREE.Color().setHSL(.9+h*.08,.8,.65);};
+    const far=makeLayer(2600,1700,2.2,white);
+    const mid=makeLayer(1400,1200,4.5,tinted);
+    const near=makeLayer(500,900,8,warm);
+
+    // distant nebula glow billboards
+    function neb(color,x,y,z,s){
+        const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d');
+        const rg=g.createRadialGradient(128,128,0,128,128,128);
+        rg.addColorStop(0,color);rg.addColorStop(1,'rgba(0,0,0,0)');
+        g.fillStyle=rg;g.fillRect(0,0,256,256);
+        const m=new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),blending:THREE.AdditiveBlending,depthWrite:false,opacity:.5});
+        const sp=new THREE.Sprite(m);sp.position.set(x,y,z);sp.scale.set(s,s,1);scene.add(sp);
+    }
+    neb('rgba(120,60,255,.55)',-300,150,-200,900);
+    neb('rgba(255,50,120,.4)',350,-150,-150,750);
+    neb('rgba(40,120,255,.4)',100,250,-400,1000);
+
+    // ===== GIANT NASA EARTH =====
+    const texLoader=new THREE.TextureLoader();
+    const earthGroup=new THREE.Group();
+    earthGroup.position.set(360,-150,-120);   // géant, bas-droite, en retrait
+    earthGroup.rotation.z=0.22;               // inclinaison axiale
+    scene.add(earthGroup);
+    const R=250;
+    const earth=new THREE.Mesh(
+        new THREE.SphereGeometry(R,96,96),
+        new THREE.MeshPhongMaterial({
+            map:texLoader.load('textures/earth_day.jpg'),
+            bumpMap:texLoader.load('textures/earth_bump.jpg'),bumpScale:7,
+            specularMap:texLoader.load('textures/earth_specular.jpg'),
+            specular:new THREE.Color(0x2a4a66),shininess:15
+        }));
+    earthGroup.add(earth);
+    const clouds=new THREE.Mesh(
+        new THREE.SphereGeometry(R*1.012,96,96),
+        new THREE.MeshPhongMaterial({map:texLoader.load('textures/earth_clouds.png'),transparent:true,opacity:.5,depthWrite:false}));
+    earthGroup.add(clouds);
+    // halo atmosphère (fresnel backside additif)
+    const atmo=new THREE.Mesh(
+        new THREE.SphereGeometry(R*1.2,64,64),
+        new THREE.ShaderMaterial({
+            transparent:true,blending:THREE.AdditiveBlending,side:THREE.BackSide,depthWrite:false,
+            vertexShader:'varying vec3 vN;void main(){vN=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+            fragmentShader:'varying vec3 vN;void main(){float i=pow(0.78-dot(vN,vec3(0.0,0.0,1.0)),2.6);gl_FragColor=vec4(0.34,0.60,1.0,1.0)*clamp(i,0.0,1.6);}'
+        }));
+    earthGroup.add(atmo);
+
+    // ===== SOLEIL (key light + lens flare cinéma crêtant le limbe) =====
+    const sun=new THREE.DirectionalLight(0xfff4e2,4.2);sun.position.set(-260,210,820);scene.add(sun);
+    scene.add(new THREE.AmbientLight(0x2a3a55,0.85));
+    const rim=new THREE.PointLight(0x3a6bff,1.3,2000);rim.position.set(780,-120,300);scene.add(rim);
+
+    function glowSprite(stops,size,opacity){
+        const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d');
+        const rg=g.createRadialGradient(128,128,0,128,128,128);
+        stops.forEach(s=>rg.addColorStop(s[0],s[1]));
+        g.fillStyle=rg;g.fillRect(0,0,256,256);
+        const m=new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),blending:THREE.AdditiveBlending,depthWrite:false,depthTest:false,transparent:true,opacity});
+        const sp=new THREE.Sprite(m);sp.scale.set(size,size,1);return sp;
+    }
+    // soleil rasant au limbe haut-gauche de la Terre
+    const sunPos=new THREE.Vector3(150,80,30);
+    const sunHalo=glowSprite([[0,'rgba(255,250,235,1)'],[.12,'rgba(255,236,190,.95)'],[.32,'rgba(255,180,90,.45)'],[1,'rgba(255,120,40,0)']],560,.95);
+    sunHalo.position.copy(sunPos);scene.add(sunHalo);
+    const sunCore=glowSprite([[0,'rgba(255,255,255,1)'],[.42,'rgba(255,255,250,1)'],[.72,'rgba(255,240,210,.55)'],[1,'rgba(255,220,160,0)']],150,1);
+    sunCore.position.copy(sunPos);scene.add(sunCore);
+    // flares secondaires le long de l'axe soleil→centre
+    [[-0.3,90,'rgba(120,180,255,.45)'],[0.45,70,'rgba(255,160,80,.5)'],[0.8,120,'rgba(160,120,255,.38)'],[1.25,55,'rgba(255,255,255,.4)']].forEach(f=>{
+        const sp=glowSprite([[0,f[2]],[1,'rgba(0,0,0,0)']],f[1],.85);
+        sp.position.copy(sunPos).multiplyScalar(f[0]);scene.add(sp);
+    });
+
+    // ===== LUNE (échelle + profondeur) =====
+    const moon=new THREE.Mesh(new THREE.SphereGeometry(34,48,48),
+        new THREE.MeshStandardMaterial({color:0x9094a0,roughness:1,metalness:0,
+            bumpMap:texLoader.load('textures/earth_bump.jpg'),bumpScale:3}));
+    moon.position.set(-440,200,-280);scene.add(moon);
+
+    // ===== ASTÉROÏDES (dérive lente, profondeur Star Wars) =====
+    const rocks=[];
+    const rockMat=new THREE.MeshStandardMaterial({color:0x46443f,roughness:1,metalness:.1,flatShading:true});
+    for(let i=0;i<14;i++){
+        const geo=new THREE.IcosahedronGeometry(8+Math.random()*22,0);
+        const p=geo.attributes.position;
+        for(let j=0;j<p.count;j++)p.setXYZ(j,p.getX(j)*(.8+Math.random()*.5),p.getY(j)*(.8+Math.random()*.5),p.getZ(j)*(.8+Math.random()*.5));
+        geo.computeVertexNormals();
+        const m=new THREE.Mesh(geo,rockMat);
+        m.position.set((Math.random()-.5)*1400,(Math.random()-.5)*900,-120-Math.random()*500);
+        m.userData={sx:(Math.random()-.5)*4,sy:(Math.random()-.5)*4,rx:Math.random()*.4,ry:Math.random()*.4};
+        scene.add(m);rocks.push(m);
+    }
+
+    // ===== ENV PBR (reflets réalistes) + MODÈLE GLB PHOTORÉEL FLOTTANT =====
+    // Placeholder photoréel (DamagedHelmet). Remplaçable par tes vrais .glb (clavier/micro) dans models/.
+    try{
+        const pmrem=new THREE.PMREMGenerator(renderer);
+        if(THREE.RoomEnvironment)scene.environment=pmrem.fromScene(new THREE.RoomEnvironment(),0.04).texture;
+    }catch(e){console.warn('[3D] env PBR skip',e);}
+    const glbItems=[];
+    if(THREE.GLTFLoader){
+        new THREE.GLTFLoader().load('models/DamagedHelmet.glb',function(g){
+            const proto=g.scene;
+            [[-300,120,210,110,0x6a9bff],[-180,-210,300,70,0xff7a3a]].forEach((p,i)=>{
+                const o=(i===0)?proto:proto.clone(true);
+                o.scale.setScalar(p[3]);o.position.set(p[0],p[1],p[2]);
+                o.userData={base:p[1],phase:Math.random()*6.28,spin:0.12+i*0.06};
+                scene.add(o);glbItems.push(o);
+                const pl=new THREE.PointLight(p[4],1.1,650);pl.position.set(p[0],p[1]+60,p[2]+90);scene.add(pl);
+            });
+        },undefined,function(err){console.warn('[3D] GLB load fail',err);});
+    }
+
+    animators.push((t)=>{
+        far.rotation.y=t*0.005;far.rotation.x=t*0.002;
+        mid.rotation.y=-t*0.01;
+        near.rotation.y=t*0.015;
+        earth.rotation.y=t*0.03;
+        clouds.rotation.y=t*0.042;
+        moon.rotation.y=t*0.04;
+        const pulse=1+Math.sin(t*1.5)*0.03;sunCore.scale.set(150*pulse,150*pulse,1);
+        rocks.forEach(m=>{m.position.x+=m.userData.sx*0.06;m.position.y+=m.userData.sy*0.06;m.rotation.x+=m.userData.rx*0.01;m.rotation.y+=m.userData.ry*0.01;});
+        glbItems.forEach(o=>{o.rotation.y=t*o.userData.spin;o.rotation.x=Math.sin(t*0.4+o.userData.phase)*0.15;o.position.y=o.userData.base+Math.sin(t*0.6+o.userData.phase)*22;});
+        camera.position.x+= (mouseX*60-camera.position.x)*0.03;
+        camera.position.y+= (-mouseY*40-camera.position.y)*0.03;
+        camera.lookAt(scene.position);
+        renderer.render(scene,camera);
+    });
+    window.addEventListener('resize',()=>{
+        camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
+        renderer.setSize(innerWidth,innerHeight,false);
+    });
+}
+
+/* ---------- generic gear scene (drag to rotate) ---------- */
+function initGear(id,buildFn,glow){
+    const cv=document.getElementById(id);if(!cv)return;
+    const w=cv.clientWidth||360,h=cv.clientHeight||300;
+    const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+    renderer.setPixelRatio(DPR);renderer.setSize(w,h,false);
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(40,w/h,0.1,100);
+    camera.position.set(0,1.5,9);
+    scene.add(new THREE.AmbientLight(0x6677aa,0.9));
+    const key=new THREE.DirectionalLight(0xffffff,1.1);key.position.set(4,6,6);scene.add(key);
+    const p1=new THREE.PointLight(glow[0],1.4,40);p1.position.set(-5,2,4);scene.add(p1);
+    const p2=new THREE.PointLight(glow[1],1.2,40);p2.position.set(5,-2,3);scene.add(p2);
+    const group=new THREE.Group();scene.add(group);
+    buildFn(group);
+
+    // drag-to-rotate
+    let drag=false,px=0,py=0,velX=0,velY=0,rotY=0,rotX=0;
+    cv.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;py=e.clientY;cv.setPointerCapture(e.pointerId);});
+    cv.addEventListener('pointermove',e=>{if(!drag)return;velY=(e.clientX-px)*0.01;velX=(e.clientY-py)*0.01;rotY+=velY;rotX+=velX;px=e.clientX;py=e.clientY;});
+    cv.addEventListener('pointerup',()=>drag=false);
+    cv.addEventListener('pointerleave',()=>drag=false);
+
+    animators.push((t)=>{
+        if(!drag){rotY+=0.005;velX*=0.95;}
+        rotX=Math.max(-0.8,Math.min(0.8,rotX));
+        group.rotation.y=rotY;
+        group.rotation.x=rotX*0.6;
+        group.position.y=Math.sin(t*1.2)*0.12;
+        renderer.render(scene,camera);
+    });
+    new ResizeObserver(()=>{
+        const nw=cv.clientWidth,nh=cv.clientHeight;if(!nw||!nh)return;
+        camera.aspect=nw/nh;camera.updateProjectionMatrix();renderer.setSize(nw,nh,false);
+    }).observe(cv);
+}
+
+/* materials */
+const matDark=()=>new THREE.MeshStandardMaterial({color:0x1a1a20,metalness:.6,roughness:.4});
+const matMetal=(c)=>new THREE.MeshStandardMaterial({color:c,metalness:.85,roughness:.3});
+
+/* ---------- MODEL: Novation FLkey 49 ---------- */
+function buildSynth(g){
+    const body=new THREE.Mesh(new THREE.BoxGeometry(6,0.5,2.1),matDark());g.add(body);
+    // top panel slightly inset
+    const top=new THREE.Mesh(new THREE.BoxGeometry(5.8,0.06,0.95),new THREE.MeshStandardMaterial({color:0x111114,metalness:.5,roughness:.5}));
+    top.position.set(0,0.28,-0.5);g.add(top);
+    // white keys (front half)
+    const wkMat=new THREE.MeshStandardMaterial({color:0xf2f2f2,metalness:.1,roughness:.6});
+    const bkMat=new THREE.MeshStandardMaterial({color:0x0a0a0a,metalness:.2,roughness:.5});
+    const nW=24,kw=5.6/nW;
+    for(let i=0;i<nW;i++){
+        const k=new THREE.Mesh(new THREE.BoxGeometry(kw*0.9,0.12,0.9),wkMat);
+        k.position.set(-2.8+kw*0.5+i*kw,0.28,0.55);g.add(k);
+        // black keys (skip pattern E-F & B-C)
+        const m=i%7;
+        if(m!==2&&m!==6&&i<nW-1){
+            const b=new THREE.Mesh(new THREE.BoxGeometry(kw*0.55,0.16,0.55),bkMat);
+            b.position.set(-2.8+kw*1.0+i*kw,0.34,0.38);g.add(b);
+        }
+    }
+    // knobs (8) on top-left
+    for(let i=0;i<8;i++){
+        const kn=new THREE.Mesh(new THREE.CylinderGeometry(0.12,0.12,0.14,16),matMetal(0x2a2a32));
+        kn.position.set(-2.6+i*0.32,0.35,-0.55);g.add(kn);
+        const cap=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.05,0.16,12),new THREE.MeshStandardMaterial({color:0x7a5aff,emissive:0x3a2a99,emissiveIntensity:.6}));
+        cap.position.set(-2.6+i*0.32,0.37,-0.55);g.add(cap);
+    }
+    // RGB pads 2x8 on right
+    const cols=[0xff3366,0x33ff99,0x3399ff,0xffaa00];
+    for(let r=0;r<2;r++)for(let c=0;c<8;c++){
+        const col=cols[(r+c)%cols.length];
+        const pad=new THREE.Mesh(new THREE.BoxGeometry(0.2,0.05,0.2),new THREE.MeshStandardMaterial({color:col,emissive:col,emissiveIntensity:.7,roughness:.4}));
+        pad.position.set(0.7+c*0.26,0.3,-0.75+r*0.28);g.add(pad);
+    }
+    // small screen
+    const scr=new THREE.Mesh(new THREE.BoxGeometry(0.6,0.04,0.3),new THREE.MeshStandardMaterial({color:0x0a1a2a,emissive:0x1166aa,emissiveIntensity:.8}));
+    scr.position.set(0.0,0.32,-0.6);g.add(scr);
+    g.scale.set(1.05,1.05,1.05);g.position.y=0.2;
+}
+
+/* ---------- MODEL: Bomge BMG-22M condenser mic ---------- */
+function buildMic(g){
+    const mic=new THREE.Group();
+    const body=new THREE.Mesh(new THREE.CylinderGeometry(0.55,0.55,2.0,32),matMetal(0x202028));
+    body.position.y=-0.2;mic.add(body);
+    // grille head (mesh look)
+    const grille=new THREE.Mesh(new THREE.CylinderGeometry(0.62,0.62,1.1,32),new THREE.MeshStandardMaterial({color:0x9aa0aa,metalness:.95,roughness:.25,wireframe:true}));
+    grille.position.y=1.15;mic.add(grille);
+    const grilleCore=new THREE.Mesh(new THREE.CylinderGeometry(0.58,0.58,1.05,24),new THREE.MeshStandardMaterial({color:0x303038,metalness:.7,roughness:.4}));
+    grilleCore.position.y=1.15;mic.add(grilleCore);
+    const cap=new THREE.Mesh(new THREE.SphereGeometry(0.62,24,16,0,Math.PI*2,0,Math.PI/2),matMetal(0xb0b6c0));
+    cap.position.y=1.7;mic.add(cap);
+    // accent ring
+    const ring=new THREE.Mesh(new THREE.TorusGeometry(0.56,0.05,12,32),new THREE.MeshStandardMaterial({color:0xff3366,emissive:0xff3366,emissiveIntensity:.6}));
+    ring.rotation.x=Math.PI/2;ring.position.y=0.55;mic.add(ring);
+    mic.rotation.z=0.18;
+    g.add(mic);
+    // shock mount
+    const mount=new THREE.Mesh(new THREE.TorusGeometry(0.95,0.06,12,40),matMetal(0x44464d));
+    mount.rotation.x=Math.PI/2;mount.position.y=0.1;g.add(mount);
+    g.scale.set(1.15,1.15,1.15);
+}
+
+/* ---------- MODEL: FL Studio (Fruity Loops) ---------- */
+function buildFL(g){
+    // canvas texture for the screen face
+    const c=document.createElement('canvas');c.width=512;c.height=384;const x=c.getContext('2d');
+    const bg=x.createLinearGradient(0,0,512,384);bg.addColorStop(0,'#1a1410');bg.addColorStop(1,'#2a1a08');
+    x.fillStyle=bg;x.fillRect(0,0,512,384);
+    // orange header
+    const og=x.createLinearGradient(0,0,512,0);og.addColorStop(0,'#ff7a00');og.addColorStop(1,'#ff3d00');
+    x.fillStyle=og;x.fillRect(0,0,512,70);
+    x.fillStyle='#fff';x.font='bold 40px Rajdhani,Arial';x.fillText('FL STUDIO',24,50);
+    // step-sequencer dots
+    for(let r=0;r<5;r++)for(let i=0;i<16;i++){
+        x.fillStyle=(i%4===0)?'#ff7a00':'#3a3a44';
+        x.fillRect(28+i*28,110+r*48,20,20);
+    }
+    // playlist bars
+    x.fillStyle='#ff9d3d';x.fillRect(28,340,460,8);
+    const tex=new THREE.CanvasTexture(c);
+    const faceMat=new THREE.MeshStandardMaterial({map:tex,emissive:0xff5500,emissiveMap:tex,emissiveIntensity:.55,roughness:.5});
+    const sideMat=new THREE.MeshStandardMaterial({color:0x141418,metalness:.6,roughness:.4});
+    const screen=new THREE.Mesh(new THREE.BoxGeometry(4,3,0.25),[sideMat,sideMat,sideMat,sideMat,faceMat,sideMat]);
+    g.add(screen);
+    // glowing frame
+    const frame=new THREE.Mesh(new THREE.BoxGeometry(4.25,3.25,0.15),new THREE.MeshStandardMaterial({color:0xff7a00,emissive:0xff5500,emissiveIntensity:.5}));
+    frame.position.z=-0.08;g.add(frame);
+    // floating play button
+    const play=new THREE.Mesh(new THREE.CylinderGeometry(0.45,0.45,0.18,3),new THREE.MeshStandardMaterial({color:0xffffff,emissive:0xffaa55,emissiveIntensity:.5}));
+    play.rotation.x=Math.PI/2;play.rotation.z=-Math.PI/2;play.position.set(0,0,0.5);g.add(play);
+    g.scale.set(0.95,0.95,0.95);
+}
+
+/* ---------- BOOT ---------- */
+/* initSpace(); — disabled: desert background via CSS instead of WebGL planet/starfield */
+initGear('gear-synth',buildSynth,[0x7a5aff,0x3a86ff]);
+initGear('gear-mic',buildMic,[0xff3366,0x9aa0aa]);
+initGear('gear-fl',buildFL,[0xff7a00,0xff3d00]);
+
+let t0=performance.now();
+function loop(){
+    const t=(performance.now()-t0)/1000;
+    for(const a of animators)a(t);
+    requestAnimationFrame(loop);
+}
+loop();
+})();
+</script>
+
+<!-- Language switcher — Google Translate (27 langues) -->
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({pageLanguage:'en',includedLanguages:'en,fr,es,pt,de,it,nl,ar,tr,ru,hi,ur,bn,id,ms,zh-CN,ja,ko,pl,ro,el,sv,he,fa,sw,th,vi',autoDisplay:false},'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
