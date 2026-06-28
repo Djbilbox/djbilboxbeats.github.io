@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Services — DJBILBOX BEATS</title>
+<meta name="description" content="DJBILBOX BEATS services — mixing & mastering, music video, web dev for music, branding & cover art.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body data-page="services">
+<main class="container" style="padding-top:30px">
+  <div class="section-head" style="margin-top:10px">
+    <div><div class="eyebrow">Work with me</div><h2>Services</h2></div>
+  </div>
+  <div class="grid" id="servicesGrid" style="margin-bottom:60px"></div>
+</main>
+<script src="assets/js/site.js"></script>
+<script>
+renderProducts([
+  {name:'Mix & Mastering', img:'desert-pyramids.jpg', price:'from €49', desc:'Pro mix + master, radio-ready. 2 revisions included.'},
+  {name:'Music Video',     img:'desert-hero.jpg',     price:'from €199', desc:'Cinematic music video — shoot, edit, color grade.'},
+  {name:'Web Dev for Music', img:'favicon.png',       price:'quote',     desc:'Artist websites, beat stores, landing pages.'},
+  {name:'Branding & Cover Art', img:'desert-pyramids.jpg', price:'from €39', desc:'Logos, cover art, social kits & visual identity.'},
+],'servicesGrid');
+</script>
+</body>
+</html>

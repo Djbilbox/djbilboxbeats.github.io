@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discography — DJBILBOX BEATS</title>
+<meta name="description" content="DJBILBOX BEATS discography — albums & releases on Spotify.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body data-page="discography">
+<main class="container" style="padding-top:30px">
+  <div class="section-head" style="margin-top:10px">
+    <div><div class="eyebrow">On Spotify</div><h2>Discography</h2></div>
+    <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="see-all">Full catalog →</a>
+  </div>
+  <div class="grid" id="albums" style="margin-bottom:60px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))"></div>
+</main>
+<script src="assets/js/site.js"></script>
+<script>
+const ALBUMS=['0DcrVmk7eTigVhFGMpjftF','0jDi4k7BQSF2FnRYSfbsua','1FcYgMgcOI46PUHJVwO1FZ','1eM3CnMoDBvFjkBPhCwGP4','3H3MZcTFOahHe2hBUzlsIz','3VzsvmhnCb0t7FqBNRJFhA','5c2SHR04yHLjk8sBIHrk3g'];
+document.getElementById('albums').innerHTML=ALBUMS.map(id=>
+  `<iframe style="border-radius:14px" src="https://open.spotify.com/embed/album/${id}?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>`
+).join('');
+</script>
+</body>
+</html>

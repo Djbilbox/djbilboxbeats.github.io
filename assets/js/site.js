@@ -4,10 +4,119 @@
    Reusable across pages. Load AFTER beats-data.js where needed.
    ============================================================ */
 
-/* ---------- Mobile nav ---------- */
-function toggleNav(){
-  document.querySelector('.hdr-nav')?.classList.toggle('open');
+/* ============================================================
+   SIDEBAR — shared left navigation, injected on every page.
+   Each page sets <body data-page="KEY"> to highlight its link.
+   ============================================================ */
+const NAV = [
+  { key:'beats',       label:'Beats',       href:'beats-redesign.html', icon:'fa-music' },
+  { key:'studio3d',    label:'Studio 3D',   href:'studio-3d.html',      icon:'fa-cube' },
+  { key:'vst',         label:'VST',         href:'vst.html',            icon:'fa-sliders' },
+  { key:'drumkits',    label:'Drum Kits',   href:'drum-kits.html',      icon:'fa-drum' },
+  { key:'services',    label:'Services',    href:'services.html',       icon:'fa-headphones' },
+  { key:'reviews',     label:'Reviews',     href:'reviews.html',        icon:'fa-star' },
+  { key:'license',     label:'License',     href:'license.html',        icon:'fa-id-card' },
+  { key:'discography', label:'Discography', href:'discography.html',    icon:'fa-record-vinyl' },
+  { key:'playlists',   label:'Playlists',   href:'playlists.html',      icon:'fa-list-ul' },
+  { key:'news',        label:'News',        href:'news.html',           icon:'fa-newspaper' },
+];
+
+function mountSidebar(active){
+  if(document.querySelector('.sidebar')) return;
+  const links = NAV.map(n=>
+    `<a href="${n.href}"${n.key===active?' class="active"':''}><i class="fa-solid ${n.icon}"></i> ${n.label}</a>`
+  ).join('') +
+    `<a href="#" onclick="document.getElementById('aiChat')?.classList.toggle('open');return false;"><i class="fa-solid fa-robot"></i> AI Chat</a>`;
+
+  const sidebar = document.createElement('aside');
+  sidebar.className='sidebar';
+  sidebar.innerHTML = `
+    <a href="index.html" class="brand">DJBILBOX <span>BEATS</span></a>
+    <nav class="side-nav">${links}</nav>
+    <div class="side-foot">
+      <div class="side-social">
+        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+      <div class="side-actions">
+        <button class="icon-btn" onclick="alert('Cart — '+Cart.get().length+' item(s)')" title="Cart">
+          <i class="fa-solid fa-bag-shopping"></i><span class="badge" data-cart-badge>0</span>
+        </button>
+        <span class="lang-wrap notranslate" translate="no"><i class="fa-solid fa-globe"></i><div id="google_translate_element"></div></span>
+      </div>
+    </div>`;
+
+  const mtop = document.createElement('div');
+  mtop.className='mtop';
+  mtop.innerHTML = `
+    <button class="nav-burger" onclick="toggleNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    <a href="index.html" class="brand">DJBILBOX <span>BEATS</span></a>`;
+
+  const overlay = document.createElement('div');
+  overlay.className='side-overlay';
+  overlay.onclick=toggleNav;
+
+  document.body.prepend(overlay, mtop, sidebar);
+  Cart.refresh();
 }
+
+function toggleNav(){
+  document.querySelector('.sidebar')?.classList.toggle('open');
+  document.querySelector('.side-overlay')?.classList.toggle('show');
+}
+
+/* Shared footer — injected if the page has no <footer> */
+function mountFooter(){
+  if(document.querySelector('.footer')) return;
+  const f=document.createElement('footer');
+  f.className='footer';
+  f.innerHTML=`<div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="brand">DJBILBOX <span>BEATS</span></a>
+      <div class="footer-links">
+        <a href="license.html">License</a><a href="services.html">Contact</a><a href="news.html">Newsletter</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 DJBILBOX BEATS — All rights reserved.</div>
+  </div>`;
+  document.body.appendChild(f);
+}
+
+/* Shared AI-chat placeholder — injected if missing */
+function mountAiChat(){
+  if(document.getElementById('aiChat')) return;
+  const d=document.createElement('div');
+  d.id='aiChat';
+  d.style.cssText='position:fixed;right:18px;bottom:62px;width:320px;max-width:90vw;background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;z-index:1200;display:none';
+  d.innerHTML=`<strong style="font-family:var(--font-a);text-transform:uppercase">AI Chat</strong>
+    <p style="color:var(--text-3);font-size:.8rem;margin-top:8px">Ask me about beats, packs, licenses or services.</p>`;
+  document.body.appendChild(d);
+  const st=document.createElement('style');st.textContent='#aiChat.open{display:block}';document.head.appendChild(st);
+}
+
+/* Default promo (BIG PACK) — injected if the page has no .promo-bar */
+function mountPromo(){
+  if(document.querySelector('.promo-bar')) return;
+  const p=document.createElement('div');
+  p.className='promo-bar';
+  p.innerHTML=`<strong>🔥 931 Beats Free</strong> — Download the DJBILBOX BIG PACK · free for profit.
+    <a href="${gumroadUrl(BIG_PACK)}" target="_blank" class="promo-cta">Get the pack</a>
+    <button class="promo-close" onclick="closePromo()" aria-label="Close">✕</button>`;
+  document.body.appendChild(p);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  if(document.body.dataset.page!==undefined){
+    mountSidebar(document.body.dataset.page);
+    mountFooter();
+    mountAiChat();
+    mountPromo();
+  }
+});
 
 /* ---------- Sticky promo dismiss ---------- */
 function closePromo(){
@@ -200,6 +309,34 @@ function buildPackPills(containerId, gridId){
   };
   mk(`All (${window.PACKS.length})`,'All',true);
   genres.forEach(g=>mk(g,g,false));
+}
+
+/* ============================================================
+   GENERIC PRODUCT CARDS — services / license tiers
+   p: {name, img?, price ("FREE"|number|text), old?, badge?, desc?, buy?}
+   ============================================================ */
+function genericCard(p){
+  const isFree=String(p.price).toUpperCase()==='FREE';
+  const badge=p.badge? `<span class="card-badge${isFree||p.badge==='free'?' free':''}">${p.badge==='free'?'Free':p.badge}</span>`:'';
+  const media=p.img? `<div class="card-media">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"></div>`:'';
+  const old=p.old? `<span class="old">€${p.old}</span>`:'';
+  const now=isFree? `<span class="now free">FREE</span>`
+            : (isNaN(p.price)? `<span class="now" style="font-size:.85rem">${p.price}</span>` : `<span class="now">€${p.price}</span>`);
+  const onclick=p.buy!==undefined? `buy('${(p.buy||'').replace(/'/g,"\\'")}')` : `addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}')`;
+  return `<article class="card">${media}<div class="card-body">
+    <h3 class="card-title">${p.name}</h3>
+    ${p.desc?`<p style="color:var(--text-3);font-size:.74rem;line-height:1.45">${p.desc}</p>`:''}
+    <div class="card-foot"><div class="price">${now}${old}</div>
+      <button class="btn-cta" onclick="${onclick}"><i class="fa-solid fa-${isFree?'download':'bag-shopping'}"></i> ${isFree?'Get':'Choose'}</button>
+    </div></div></article>`;
+}
+function renderProducts(arr, id){ const g=document.getElementById(id); if(g) g.innerHTML=(arr||[]).map(genericCard).join(''); }
+function renderReviews(arr, id){
+  const g=document.getElementById(id); if(!g) return;
+  g.innerHTML=(arr||[]).map(r=>`<article class="card"><div class="card-body">
+    <p style="font-size:.92rem;color:var(--text-2);line-height:1.5">${r.txt}</p>
+    <div class="card-meta" style="margin-top:12px;color:var(--accent);font-weight:700">${r.name}</div>
+  </div></article>`).join('');
 }
 
 /* ============================================================
