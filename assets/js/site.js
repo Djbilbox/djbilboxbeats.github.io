@@ -38,7 +38,7 @@ function mountSidebar(active){
         <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
       </div>
       <div class="side-actions">
-        <button class="icon-btn" onclick="alert('Cart — '+Cart.get().length+' item(s)')" title="Cart">
+        <button class="icon-btn" onclick="openCart()" title="Cart">
           <i class="fa-solid fa-bag-shopping"></i><span class="badge" data-cart-badge>0</span>
         </button>
         <span class="lang-wrap notranslate" translate="no"><i class="fa-solid fa-globe"></i><div id="google_translate_element"></div></span>
@@ -123,21 +123,76 @@ function closePromo(){
   document.body.style.paddingBottom = '0';
 }
 
-/* ---------- Cart (lightweight, localStorage) ---------- */
+/* ---------- Cart (localStorage) + slide-out drawer ----------
+   Accumulate any product (packs, VST, services…) then check out on
+   Gumroad in one go. Each item stores its Gumroad ref in `buy`. */
 const Cart = {
   key:'djb_cart',
   get(){ try{ return JSON.parse(localStorage.getItem(this.key))||[] }catch{ return [] } },
   save(items){ localStorage.setItem(this.key, JSON.stringify(items)); this.refresh(); },
-  add(item){ const c=this.get(); c.push(item); this.save(c); },
+  add(item){ const c=this.get(); if(item.buy && c.some(x=>x.buy===item.buy)){ this.refresh(); return; } c.push(item); this.save(c); },
+  remove(i){ const c=this.get(); c.splice(i,1); this.save(c); renderCartItems(); },
+  clear(){ this.save([]); renderCartItems(); },
+  total(){ return this.get().reduce((s,it)=>{ const n=parseFloat(String(it.price).replace(',','.').replace(/[^0-9.]/g,'')); return s+(isNaN(n)?0:n); },0); },
   refresh(){
     const n=this.get().length;
-    document.querySelectorAll('[data-cart-badge]').forEach(b=>b.textContent=n);
+    document.querySelectorAll('[data-cart-badge]').forEach(b=>{ b.textContent=n; b.style.display=n?'flex':'none'; });
   }
 };
-function addToCart(title, price){
-  Cart.add({title,price});
+function addToCart(title, price, buy){
+  Cart.add({title, price, buy:buy||''});
   const badge=document.querySelector('[data-cart-badge]');
-  if(badge){ badge.animate([{transform:'scale(1.6)'},{transform:'scale(1)'}],{duration:300}); }
+  if(badge){ badge.animate([{transform:'scale(1.7)'},{transform:'scale(1)'}],{duration:320}); }
+  openCart();
+}
+
+/* drawer (injected once) */
+function mountCart(){
+  if(document.querySelector('.cart-drawer')) return;
+  const ov=document.createElement('div'); ov.className='cart-overlay'; ov.onclick=closeCart;
+  const d=document.createElement('aside'); d.className='cart-drawer';
+  d.innerHTML=`
+    <div class="cart-head">
+      <h3><i class="fa-solid fa-bag-shopping"></i> Your cart</h3>
+      <button class="cart-x" onclick="closeCart()" aria-label="Close">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="cart-total"><span>Total</span><strong id="cartTotal">FREE</strong></div>
+      <button class="btn primary" style="width:100%;justify-content:center" onclick="checkout()">
+        <i class="fa-solid fa-bag-shopping"></i> Checkout on Gumroad</button>
+      <button class="cart-clear" onclick="Cart.clear()">Clear cart</button>
+      <p class="cart-note">Free items: just set your price to €0 on Gumroad. Paid items from the same store are paid together.</p>
+    </div>`;
+  document.body.append(ov,d);
+}
+function openCart(){ mountCart(); renderCartItems(); document.querySelector('.cart-drawer')?.classList.add('open'); document.querySelector('.cart-overlay')?.classList.add('show'); }
+function closeCart(){ document.querySelector('.cart-drawer')?.classList.remove('open'); document.querySelector('.cart-overlay')?.classList.remove('show'); }
+function renderCartItems(){
+  const box=document.getElementById('cartItems'); if(!box) return;
+  const items=Cart.get();
+  if(!items.length){
+    box.innerHTML='<p class="cart-empty"><i class="fa-solid fa-cart-shopping"></i><br>Your cart is empty.<br><span>Add sample kits, VST plugins or packs.</span></p>';
+  }else{
+    box.innerHTML=items.map((it,i)=>{
+      const free=String(it.price).toUpperCase()==='FREE';
+      const priceTxt=free?'FREE':(isNaN(parseFloat(it.price))?it.price:'€'+it.price);
+      return `<div class="cart-item">
+        <div class="ci-info"><div class="ci-name">${it.title}</div>
+          <div class="ci-price${free?' free':''}">${priceTxt}</div></div>
+        <a class="ci-open" href="${gumroadUrl(it.buy)}" target="_blank" rel="noopener" title="Open on Gumroad"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <button class="ci-remove" onclick="Cart.remove(${i})" title="Remove">✕</button>
+      </div>`;
+    }).join('');
+  }
+  const t=Cart.total();
+  const tEl=document.getElementById('cartTotal'); if(tEl) tEl.textContent = t>0?('€'+t.toFixed(2)):'FREE';
+}
+function checkout(){
+  const items=Cart.get();
+  if(!items.length){ openCart(); return; }
+  // Open each product on Gumroad (Gumroad keeps them in its own cart for a single payment).
+  items.forEach(it=>window.open(gumroadUrl(it.buy),'_blank','noopener'));
 }
 
 /* ---------- Gumroad checkout ----------
@@ -255,12 +310,11 @@ function packCard(p){
   const tags = (p.tags||[]).slice(0,2).map(t=>`<span class="tag">${t}</span>`).join('');
   const old = p.old ? `<span class="old">€${p.old}</span>` : '';
   const priceHtml = isFree ? `<span class="now free">FREE</span>` : `<span class="now">€${p.price}</span>${old}`;
-  const btn = isFree
-    ? `<i class="fa-solid fa-download"></i> Download`
-    : `<i class="fa-solid fa-bag-shopping"></i> Buy`;
   const el = document.createElement('article');
   el.className='card';
   el.dataset.genre = p.genre || '';
+  const ref=(p.buy||'').replace(/'/g,"\\'");
+  const nm=p.name.replace(/'/g,"\\'");
   el.innerHTML = `
     <div class="card-media">
       ${badge}
@@ -271,7 +325,7 @@ function packCard(p){
       <div class="card-tags">${tags}</div>
       <div class="card-foot">
         <div class="price">${priceHtml}</div>
-        <button class="btn-cta" onclick="buy('${(p.buy||'').replace(/'/g,"\\'")}')">${btn}</button>
+        <button class="btn-cta" onclick="addToCart('${nm}','${p.price}','${ref}')"><i class="fa-solid fa-cart-plus"></i> Add</button>
       </div>
     </div>`;
   return el;
@@ -325,10 +379,11 @@ function genericCard(p){
             : (isNaN(p.price)? `<span class="now" style="font-size:.85rem">${p.price}</span>` : `<span class="now">€${p.price}</span>`);
   let btn;
   if(isContact){
-    btn=`<a class="btn-cta" href="mailto:${p.contact}?subject=Exclusive%20license%20inquiry"><i class="fa-solid fa-envelope"></i> Contact</a>`;
+    const subj=encodeURIComponent(p.subject||(p.name+' — request'));
+    btn=`<a class="btn-cta" href="mailto:${p.contact}?subject=${subj}"><i class="fa-solid fa-envelope"></i> Contact</a>`;
   }else{
-    const onclick=p.buy!==undefined? `buy('${(p.buy||'').replace(/'/g,"\\'")}')` : `addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}')`;
-    btn=`<button class="btn-cta" onclick="${onclick}"><i class="fa-solid fa-${isFree?'download':'bag-shopping'}"></i> ${isFree?'Get':'Choose'}</button>`;
+    const onclick=p.buy!==undefined? `addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')` : `addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}')`;
+    btn=`<button class="btn-cta" onclick="${onclick}"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
   }
   return `<article class="card">${media}<div class="card-body">
     <h3 class="card-title">${p.name}</h3>
@@ -359,7 +414,7 @@ function vstCard(p){
   const demo = p.demo ? `<button class="btn-cta ghost" onclick="buy('${p.demo.replace(/'/g,"\\'")}')"><i class="fa-solid fa-download"></i> Demo</button>` : '';
   const mainBtn = soon
     ? `<button class="btn-cta ghost" onclick="window.open(GUMROAD_STORE,'_blank')"><i class="fa-solid fa-bell"></i> Notify</button>`
-    : `<button class="btn-cta" onclick="buy('${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-bag-shopping"></i> Buy</button>`;
+    : `<button class="btn-cta" onclick="addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
   const noteHtml = p.note ? `<div style="background:var(--accent-glow);border:1px solid rgba(255,45,45,.3);border-radius:5px;padding:5px 9px;font-size:.64rem;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-top:2px">🎟️ ${p.note}</div>` : '';
   const el=document.createElement('article');
   el.className='card';
