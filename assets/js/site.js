@@ -241,8 +241,8 @@ function beatCard(b){
       <div class="card-tags">${tagsHtml}</div>
       <div class="card-foot">
         <div class="price"><span class="now free">FREE</span></div>
-        <button class="btn-cta" onclick="buy(BIG_PACK)">
-          <i class="fa-solid fa-download"></i> Get pack
+        <button class="btn-cta" onclick="addToCart('DJBILBOX BIG PACK — 931 beats','FREE','${BIG_PACK}')">
+          <i class="fa-solid fa-cart-plus"></i> Add
         </button>
       </div>
     </div>`;
