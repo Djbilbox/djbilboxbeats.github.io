@@ -4,25 +4,77 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Discography — DJBILBOX BEATS</title>
-<meta name="description" content="DJBILBOX BEATS full discography on Spotify — all tracks in one player.">
+<meta name="description" content="DJBILBOX BEATS full discography — every track in one player. Click any title to play.">
 <link rel="icon" href="favicon.png">
 <link rel="stylesheet" href="assets/css/theme.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  .disco-player{position:sticky;top:0;z-index:800;background:var(--bg);padding:6px 0 14px;border-bottom:1px solid var(--border);margin-bottom:16px}
+  .disco-search{width:100%;max-width:340px;margin-top:12px;background:var(--surface-2);border:1px solid var(--border);
+    border-radius:9px;padding:10px 14px;color:var(--text);font-size:.85rem}
+  .disco-search:focus{outline:none;border-color:var(--accent)}
+  .disco-list{display:flex;flex-direction:column;gap:6px;margin-bottom:60px}
+  .disco-row{display:flex;align-items:center;gap:12px;padding:8px 10px;border:1px solid var(--border);
+    border-radius:10px;background:var(--surface);cursor:pointer;transition:.15s}
+  .disco-row:hover{border-color:rgba(255,45,45,.4);background:var(--surface-2)}
+  .disco-row.active{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-glow)}
+  .disco-row img{width:44px;height:44px;border-radius:6px;object-fit:cover;flex:0 0 auto}
+  .dr-num{width:26px;text-align:center;font-size:.72rem;color:var(--text-4);flex:0 0 auto}
+  .dr-info{flex:1;min-width:0}
+  .dr-title{font-size:.86rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dr-tags{font-size:.68rem;color:var(--text-3);text-transform:uppercase;letter-spacing:.03em}
+  .disco-row>.dr-play{color:var(--text-3);font-size:.8rem;width:32px;height:32px;display:flex;align-items:center;
+    justify-content:center;border-radius:50%;background:var(--surface-2);flex:0 0 auto}
+  .disco-row:hover>.dr-play,.disco-row.active>.dr-play{background:var(--accent);color:#fff}
+</style>
 </head>
 <body data-page="discography">
 <main class="container" style="padding-top:30px">
   <div class="section-head" style="margin-top:10px">
-    <div><div class="eyebrow">All my music · one player</div><h2>Discography</h2></div>
+    <div><div class="eyebrow">All my tracks · one player</div><h2>Discography</h2></div>
     <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG/discography/all" target="_blank" class="see-all">Open on Spotify →</a>
   </div>
 
-  <!-- ONE single Spotify player for the whole catalog -->
-  <div style="margin-bottom:60px">
-    <iframe style="border-radius:14px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0"
-      width="100%" height="700" frameborder="0"
+  <!-- ONE single player, sticky -->
+  <div class="disco-player">
+    <iframe id="discoPlayer" style="border-radius:12px"
+      src="https://open.spotify.com/embed/track/1UnJqR2s8q07k3vFhNFtvm?utm_source=generator&theme=0"
+      width="100%" height="152" frameborder="0"
       allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
+    <input class="disco-search" type="text" placeholder="Search a track…" oninput="filterDisco(this.value)">
   </div>
+
+  <!-- full clickable tracklist -->
+  <div class="disco-list" id="discoList"></div>
 </main>
+
+<script src="assets/js/beats-data.js"></script>
 <script src="assets/js/site.js"></script>
+<script>
+  const discoPlayer=document.getElementById('discoPlayer');
+  function playDisco(id,el){
+    discoPlayer.src='https://open.spotify.com/embed/track/'+id+'?utm_source=generator&theme=0';
+    document.querySelectorAll('.disco-row.active').forEach(r=>r.classList.remove('active'));
+    el&&el.classList.add('active');
+    document.querySelector('.disco-player').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function renderDisco(list){
+    document.getElementById('discoList').innerHTML = list.map((b,i)=>`
+      <div class="disco-row" onclick="playDisco('${b.trackId}',this)">
+        <span class="dr-num">${i+1}</span>
+        <img loading="lazy" src="${b.cover}" alt="">
+        <div class="dr-info">
+          <div class="dr-title">${b.title}</div>
+          <div class="dr-tags">${(b.tags||[]).slice(0,2).join(' · ')}</div>
+        </div>
+        <span class="dr-play"><i class="fa-solid fa-play"></i></span>
+      </div>`).join('');
+  }
+  function filterDisco(q){
+    q=q.toLowerCase().trim();
+    renderDisco((window.BEATS||[]).filter(b=>b.title.toLowerCase().includes(q)));
+  }
+  renderDisco(window.BEATS||[]);
+</script>
 </body>
 </html>
