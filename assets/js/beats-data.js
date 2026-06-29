@@ -1,5 +1,17 @@
 // Auto-extracted from index.html — real Spotify beats (title, trackId, cover, tags)
+// Newest singles (verified DjBilbox Beats, added via Spotify) prepended below:
 window.BEATS = [
+  {title:"Lamborghini",trackId:"79hpD3XkUezdfgNo6Iypbv",cover:"https://i.scdn.co/image/ab67616d0000b27394e8ddaf9212f877b988c4fe",tags:["Hip-Hop","Boombap"]},
+  {title:"Rolls Royce",trackId:"7wz5Y6NSBPh8q997uA79DE",cover:"https://i.scdn.co/image/ab67616d0000b2735a39de81e87970dc3f5ea82a",tags:["Hip-Hop","Boombap"]},
+  {title:"Bugatti",trackId:"4vqsEEK1XYSr1M4NnhWriO",cover:"https://i.scdn.co/image/ab67616d0000b2734393e9b4a9bec63cf48d6c97",tags:["Hip-Hop"]},
+  {title:"Ferrari",trackId:"7iOfJSfMcdfVBXZi4fqiyV",cover:"https://i.scdn.co/image/ab67616d0000b273d68b9143dd461b91ac6b3cfa",tags:["Salsa","Latin"]},
+  {title:"Peugeot",trackId:"35VNVNGRmiNYg1gGML1GTF",cover:"https://i.scdn.co/image/ab67616d0000b27363796bc6e73c853c6c0e76d1",tags:["Kompa","Zouk"]},
+  {title:"Renault",trackId:"6JT4DQQ0YANOkjPPbjOH2O",cover:"https://i.scdn.co/image/ab67616d0000b27357d45dbb635bf89be538ad7d",tags:["Reggae"]},
+  {title:"Mercedes Benz",trackId:"6TGkNoYBTcoRMmTn0D27vx",cover:"https://i.scdn.co/image/ab67616d0000b273b6464d939461270cbc30fdf4",tags:["Trap","Beat"]},
+  {title:"Kryptonite",trackId:"35AMvRfrK7XIX8KA5zOD52",cover:"https://i.scdn.co/image/ab67616d0000b273a0cc903195d0d8ab90724601",tags:["Reggaeton","Latin"]},
+  {title:"Audi",trackId:"6murYkgD2rpbIruj2VUX2C",cover:"https://i.scdn.co/image/ab67616d0000b27340f0c981c44873fb372ce94e",tags:["House","Oriental"]},
+  {title:"Porsche",trackId:"0YYCIkXa5KIQFI866HBnjX",cover:"https://i.scdn.co/image/ab67616d0000b273728d25c5fde2bce820fa0c07",tags:["House"]},
+  {title:"BMW Sport",trackId:"1FlgW6BXPBMb5VxSArXh2e",cover:"https://i.scdn.co/image/ab67616d0000b273c080264b623babfe9e0bf2a0",tags:["Trap","Beat"]},
   {title:"3tini",trackId:"1UnJqR2s8q07k3vFhNFtvm",cover:"https://i.scdn.co/image/ab67616d0000b273d5992a1efc3211726d796caf",tags:["Oriental","Trap"]},
   {title:"Mariama",trackId:"728NpnWQjj4618mNODphTc",cover:"https://i.scdn.co/image/ab67616d0000b273395cfbfa4fda7a889cf999ce",tags:["Afro","Melodic"]},
   {title:"KHALIFA",trackId:"1eAZaSK0DCtI0D8c3Is0Ga",cover:"https://i.scdn.co/image/ab67616d0000b273d78525c8799d1efe701ba16b",tags:["Oriental","Hard"]},
