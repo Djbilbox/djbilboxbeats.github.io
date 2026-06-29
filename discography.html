@@ -19,7 +19,14 @@
 </main>
 <script src="assets/js/site.js"></script>
 <script>
-const ALBUMS=['0DcrVmk7eTigVhFGMpjftF','0jDi4k7BQSF2FnRYSfbsua','1FcYgMgcOI46PUHJVwO1FZ','1eM3CnMoDBvFjkBPhCwGP4','3H3MZcTFOahHe2hBUzlsIz','3VzsvmhnCb0t7FqBNRJFhA','5c2SHR04yHLjk8sBIHrk3g'];
+// Real DjBilbox Beats releases (IDs verified via Spotify)
+const ALBUMS=[
+  '30RtOqF5cmuSjBuGt5ctvn', // 3tini
+  '3BjZi53447NMYq60sbynFa', // BOSS
+  '7t9X00Fnap9RLO3qLruGsP', // KHALIFA
+  '3PEWNxtNfjAIQUUQjtAjlR', // Mariama
+  '16guykz9GYqwevkVjPFz1N', // ABU DHABI
+];
 document.getElementById('albums').innerHTML=ALBUMS.map(id=>
   `<iframe style="border-radius:14px" src="https://open.spotify.com/embed/album/${id}?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>`
 ).join('');
