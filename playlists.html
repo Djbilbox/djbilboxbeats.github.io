@@ -4,22 +4,75 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Playlists — DJBILBOX BEATS</title>
-<meta name="description" content="DJBILBOX BEATS playlists — stream the full catalog on Spotify.">
+<meta name="description" content="DJBILBOX BEATS YouTube playlists — Trap, Drill, Oriental, Afrotrap, Funk, Deep House instrumental type beats, DJ sets, tutorials & more.">
 <link rel="icon" href="favicon.png">
 <link rel="stylesheet" href="assets/css/theme.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  .pl-grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));margin-bottom:48px}
+  .pl-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;display:flex;flex-direction:column;transition:.2s ease}
+  .pl-card:hover{border-color:rgba(255,45,45,.4);box-shadow:0 10px 30px rgba(0,0,0,.12)}
+  .pl-embed{position:relative;aspect-ratio:16/9;background:#000}
+  .pl-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .pl-info{padding:13px 15px 15px}
+  .pl-info h3{font-size:.9rem;font-weight:700;line-height:1.3;margin-bottom:8px;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .pl-count{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;color:var(--text-3);font-weight:600}
+  .pl-count i{color:#ff0000;font-size:.95rem}
+</style>
 </head>
 <body data-page="playlists">
 <main class="container" style="padding-top:30px">
   <div class="section-head" style="margin-top:10px">
-    <div><div class="eyebrow">Stream now · 475+ tracks</div><h2>Playlists</h2></div>
+    <div><div class="eyebrow">Watch on YouTube · 15 playlists</div><h2>Playlists</h2></div>
+    <a href="https://www.youtube.com/@djbilboxbeats/playlists" target="_blank" class="see-all">All on YouTube →</a>
+  </div>
+
+  <div class="pl-grid" id="plGrid"></div>
+
+  <!-- Also on Spotify -->
+  <div class="section-head" style="margin-top:10px">
+    <div><div class="eyebrow">Stream now · 475+ tracks</div><h2>Also on Spotify</h2></div>
     <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" class="see-all">Follow on Spotify →</a>
   </div>
   <div style="margin-bottom:60px">
     <iframe style="border-radius:14px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0"
-      width="100%" height="500" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
+      width="100%" height="380" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
   </div>
 </main>
+
 <script src="assets/js/site.js"></script>
+<script>
+const YT=[
+  {id:'PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg', title:'Hip-Hop Trap & Drill Instrumental Beats 2026 — Free Type Beats', count:'321 videos'},
+  {id:'PLbtcZhy947NUC6PqUplrygUgHJSTvS61u', title:'Oriental & Arabic Instrumental Type Beats — Trap Oriental', count:'164 videos'},
+  {id:'PLbtcZhy947NW5vq7XI-R0nB5rnSMesR8B', title:'Funk & G-Funk Instrumental Beats — West Coast Type Beats', count:'139 videos'},
+  {id:'PLbtcZhy947NUF9V0rVWzY_-gl1Cy8vw5r', title:'Deep House & DnB Instrumental Beats — Chill Electronic', count:'127 videos'},
+  {id:'PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_', title:'Afrotrap Instrumental Type Beats — Afro Hip-Hop Beats', count:'61 videos'},
+  {id:'PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-', title:'Music Mix & Remixes — G-Funk, Arabic, Afrotrap & Original', count:'61 videos'},
+  {id:'PLbtcZhy947NVJHvg8cFVbSLvHfIb_vatw', title:'DJ Set Mix 2026 — Hip-Hop Rap Français, Afrotrap & Electronic', count:'48 videos'},
+  {id:'PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ', title:'FL Studio Beatmaking Tutorials — G-Funk, Oriental & Free VST', count:'47 videos'},
+  {id:'PLbtcZhy947NX_wb3vnR4vml6uUdHIyI9Y', title:'Rock Indie & Alternative Instrumental Type Beats — Guitar', count:'8 videos'},
+  {id:'PLbtcZhy947NUOk5HoAYNmLnpMGzLSsR8h', title:'Soul & Jazz Instrumental Beats — Lo-Fi RnB Type Beats', count:'2 videos'},
+  {id:'PLbtcZhy947NWd96DYzVDRNHYX846jE9zr', title:'Free Loop & Sample Packs — Beatmaking Samples FL Studio', count:'5 videos'},
+  {id:'PLbtcZhy947NWbPbX4VepMkY3lIzvm681V', title:'AI Visuals & Motion Design 2026 — AI Videos, Shorts & Animations', count:'191 videos'},
+  {id:'PLc6NYUyNLpTc',                     title:'Short Instrumental', count:'71 videos'},
+  {id:'PLMZ3QD38cXak',                     title:'Short Football Edit', count:'87 videos'},
+  {id:'PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th', title:'All Beats — Hip-Hop, Afrotrap, Funk, Oriental, Deep House', count:'831 episodes'},
+];
+document.getElementById('plGrid').innerHTML = YT.map(p=>`
+  <article class="pl-card">
+    <div class="pl-embed">
+      <iframe loading="lazy" src="https://www.youtube.com/embed/videoseries?list=${p.id}"
+        title="${p.title.replace(/"/g,'&quot;')}"
+        allow="accelerometer;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+    <div class="pl-info">
+      <h3>${p.title}</h3>
+      <span class="pl-count"><i class="fa-brands fa-youtube"></i> ${p.count}</span>
+    </div>
+  </article>`).join('');
+</script>
 </body>
 </html>
