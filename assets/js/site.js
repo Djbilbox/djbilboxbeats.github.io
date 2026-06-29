@@ -10,7 +10,6 @@
    ============================================================ */
 const NAV = [
   { key:'beats',       label:'Beats',       href:'beats-redesign.html', icon:'fa-music' },
-  { key:'studio3d',    label:'Studio 3D',   href:'studio-3d.html',      icon:'fa-cube' },
   { key:'vst',         label:'VST',         href:'vst.html',            icon:'fa-sliders' },
   { key:'drumkits',    label:'Drum Kits',   href:'drum-kits.html',      icon:'fa-drum' },
   { key:'services',    label:'Services',    href:'services.html',       icon:'fa-headphones' },
@@ -317,17 +316,25 @@ function buildPackPills(containerId, gridId){
    ============================================================ */
 function genericCard(p){
   const isFree=String(p.price).toUpperCase()==='FREE';
+  const isContact=p.contact!==undefined;
   const badge=p.badge? `<span class="card-badge${isFree||p.badge==='free'?' free':''}">${p.badge==='free'?'Free':p.badge}</span>`:'';
   const media=p.img? `<div class="card-media">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"></div>`:'';
   const old=p.old? `<span class="old">€${p.old}</span>`:'';
   const now=isFree? `<span class="now free">FREE</span>`
+            : isContact? `<span class="now" style="font-size:.85rem;color:var(--text-2)">On request</span>`
             : (isNaN(p.price)? `<span class="now" style="font-size:.85rem">${p.price}</span>` : `<span class="now">€${p.price}</span>`);
-  const onclick=p.buy!==undefined? `buy('${(p.buy||'').replace(/'/g,"\\'")}')` : `addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}')`;
+  let btn;
+  if(isContact){
+    btn=`<a class="btn-cta" href="mailto:${p.contact}?subject=Exclusive%20license%20inquiry"><i class="fa-solid fa-envelope"></i> Contact</a>`;
+  }else{
+    const onclick=p.buy!==undefined? `buy('${(p.buy||'').replace(/'/g,"\\'")}')` : `addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}')`;
+    btn=`<button class="btn-cta" onclick="${onclick}"><i class="fa-solid fa-${isFree?'download':'bag-shopping'}"></i> ${isFree?'Get':'Choose'}</button>`;
+  }
   return `<article class="card">${media}<div class="card-body">
     <h3 class="card-title">${p.name}</h3>
     ${p.desc?`<p style="color:var(--text-3);font-size:.74rem;line-height:1.45">${p.desc}</p>`:''}
     <div class="card-foot"><div class="price">${now}${old}</div>
-      <button class="btn-cta" onclick="${onclick}"><i class="fa-solid fa-${isFree?'download':'bag-shopping'}"></i> ${isFree?'Get':'Choose'}</button>
+      ${btn}
     </div></div></article>`;
 }
 function renderProducts(arr, id){ const g=document.getElementById(id); if(g) g.innerHTML=(arr||[]).map(genericCard).join(''); }
