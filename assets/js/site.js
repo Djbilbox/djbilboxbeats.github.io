@@ -353,6 +353,7 @@ function vstCard(p){
   const mainBtn = soon
     ? `<button class="btn-cta ghost" onclick="window.open(GUMROAD_STORE,'_blank')"><i class="fa-solid fa-bell"></i> Notify</button>`
     : `<button class="btn-cta" onclick="buy('${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-bag-shopping"></i> Buy</button>`;
+  const noteHtml = p.note ? `<div style="background:var(--accent-glow);border:1px solid rgba(255,45,45,.3);border-radius:5px;padding:5px 9px;font-size:.64rem;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-top:2px">🎟️ ${p.note}</div>` : '';
   const el=document.createElement('article');
   el.className='card';
   el.innerHTML = `
@@ -360,6 +361,7 @@ function vstCard(p){
     <div class="card-body">
       <h3 class="card-title">${p.name}</h3>
       <div class="card-tags">${tags}</div>
+      ${noteHtml}
       <div class="card-foot">
         <div class="price">${priceHtml}</div>
         <div style="display:flex;gap:6px">${soon?'':demo}${mainBtn}</div>

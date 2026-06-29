@@ -213,6 +213,34 @@ img{display:block;max-width:100%}
 .empty{text-align:center;color:var(--text-3);padding:60px 0;font-size:.9rem}
 
 /* ============================================================
+   HOME NAV CARDS (landing page quick-access grid)
+   ============================================================ */
+.home-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));margin-bottom:0}
+.home-card{display:flex;align-items:center;gap:18px;padding:20px 22px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);
+  transition:.2s;color:var(--text)}
+.home-card:hover{border-color:rgba(255,45,45,.4);transform:translateX(4px);background:var(--surface-2)}
+.home-card-icon{width:44px;height:44px;border-radius:10px;background:var(--surface-3);
+  display:flex;align-items:center;justify-content:center;font-size:1.15rem;color:var(--accent);flex-shrink:0}
+.home-card-title{font-weight:700;font-size:.92rem;text-transform:uppercase;letter-spacing:.03em}
+.home-card-sub{color:var(--text-3);font-size:.73rem;margin-top:3px}
+.home-card-arrow{color:var(--text-4);margin-left:auto;font-size:.78rem;transition:.2s}
+.home-card:hover .home-card-arrow{color:var(--accent)}
+
+/* ============================================================
+   PROMO BLOCK (homepage Vice City launch)
+   ============================================================ */
+.promo-block{border:1px solid var(--accent);border-radius:var(--rl);padding:36px;
+  background:linear-gradient(135deg,var(--accent-glow),rgba(0,0,0,0));
+  display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.promo-block img{width:120px;height:120px;border-radius:10px;object-fit:cover;flex-shrink:0}
+.promo-block-body{flex:1;min-width:200px}
+.promo-block-body h2{font-family:var(--font-a);text-transform:uppercase;font-size:1.6rem;margin-bottom:8px;line-height:1.1}
+.promo-block-body p{color:var(--text-2);font-size:.9rem;margin-bottom:16px}
+.promo-code{background:var(--surface-3);border:1px solid var(--border);padding:8px 16px;
+  border-radius:7px;font-size:.8rem;font-weight:700;color:var(--accent);letter-spacing:.06em;white-space:nowrap}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media(max-width:980px){
