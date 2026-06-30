@@ -51,11 +51,11 @@
   const isPlaylist = P.video && P.video.startsWith('PL');
   const bgSrc = P.video
     ? isPlaylist
-      ? `https://www.youtube.com/embed/videoseries?list=${P.video}&autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&showinfo=0`
-      : `https://www.youtube.com/embed/${P.video}?autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&showinfo=0`
+      ? `https://www.youtube-nocookie.com/embed/videoseries?list=${P.video}&autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&showinfo=0`
+      : `https://www.youtube-nocookie.com/embed/${P.video}?autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&showinfo=0`
     : '';
   const videoBg = bgSrc
-    ? `<div class="pd-video-bg"><iframe src="${bgSrc}" title="background" allow="autoplay;encrypted-media" frameborder="0"></iframe></div>`
+    ? `<div class="pd-video-bg"><iframe src="${bgSrc}" title="background" allow="autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>`
     : '';
 
   /* ---- price + actions ---- */
@@ -82,8 +82,8 @@
   const inclHtml  = (P.includes||[]).map(i=>`<li><i class="fa-solid fa-circle-check"></i> ${i}</li>`).join('');
   const demoSrc = P.video
     ? isPlaylist
-      ? `https://www.youtube.com/embed/videoseries?list=${P.video}&rel=0&modestbranding=1`
-      : `https://www.youtube.com/embed/${P.video}?rel=0&modestbranding=1`
+      ? `https://www.youtube-nocookie.com/embed/videoseries?list=${P.video}&rel=0&modestbranding=1`
+      : `https://www.youtube-nocookie.com/embed/${P.video}?rel=0&modestbranding=1`
     : '';
   const demoHtml = demoSrc ? `
     <section class="pd-section"><div class="pd-wrap">
