@@ -14,7 +14,7 @@ window.PRODUCTS = {
     price:"18.45", old:"36.90", badge:"-50%", code:"VICECITY50",
     note:"Code VICECITY50 · Until Jul 31, 2026",
     buy:"ykdzli/VICECITY50", demo:"",
-    video:"PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ",
+    video:"0dEw1R8ze4I",
     tags:["Synthwave","Retrowave","VST3","Standalone"],
     about:[
       "VICE CITY is a polyphonic synthwave engine built for producers chasing that sun-drenched, palm-tree-and-chrome Miami sound. Pads, leads, basses and arps — every patch drips with neon nostalgia and modern punch.",
