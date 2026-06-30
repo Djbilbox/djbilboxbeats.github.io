@@ -63,10 +63,7 @@ function loadVideoBg(el, src) {
       : `https://www.youtube-nocookie.com/embed/${P.video}?autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&showinfo=0`
     : '';
   const videoBg = bgSrc
-    ? `<div class="pd-video-bg" onclick="loadVideoBg(this,'${bgSrc}')">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,var(--pa) 0%,var(--pa-h) 100%);opacity:0.3;z-index:0"></div>
-        <div class="pd-video-bg-play"><button><i class="fa-solid fa-play"></i></button></div>
-      </div>`
+    ? `<div class="pd-video-bg" style="opacity:0;pointer-events:none" onclick="loadVideoBg(this,'${bgSrc}')"></div>`
     : '';
 
   /* ---- price + actions ---- */

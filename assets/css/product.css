@@ -36,8 +36,10 @@
   transform:translate(-50%,-50%);border:0;filter:saturate(1.15);z-index:3}
 .pd-hero::before{content:"";position:absolute;inset:0;z-index:-1;
   background:
+    url(var(--hero-bg, 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23D4AF37" width="1920" height="1080"/></svg>')) center/cover,
     radial-gradient(120% 90% at 80% 0%, color-mix(in srgb,var(--pa) 28%, transparent), transparent 60%),
-    linear-gradient(180deg, rgba(8,8,10,.55) 0%, rgba(8,8,10,.82) 55%, var(--bg) 100%)}
+    linear-gradient(180deg, rgba(8,8,10,.85) 0%, rgba(8,8,10,.92) 55%, var(--bg) 100%);
+  opacity:1}
 
 .pd-hero-inner{position:relative;display:grid;grid-template-columns:minmax(0,420px) 1fr;
   gap:48px;align-items:center;padding:72px 0 64px}
