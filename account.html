@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Account — DJBILBOX BEATS</title>
+<meta name="description" content="Join the DJBILBOX BEATS community — free beats, exclusive drops, member perks.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/chat.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+.acc-wrap{max-width:460px;margin:50px auto;padding:0 24px}
+.acc-h1{font-family:var(--font-a);font-size:2.4rem;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.acc-h1 span{color:var(--accent)}
+.acc-sub{color:var(--text-3);margin:6px 0 28px;font-size:.98rem}
+.acc-tabs{display:flex;gap:8px;margin-bottom:22px;background:var(--surface);padding:5px;border-radius:11px;border:1px solid var(--border)}
+.acc-tab{flex:1;padding:11px;border:none;background:none;color:var(--text-3);font-family:var(--font-a);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;font-size:.82rem;border-radius:8px;cursor:pointer;transition:.18s}
+.acc-tab.active{background:linear-gradient(135deg,#FFE34D,var(--accent),#B8960F);color:#141414}
+.acc-form{display:flex;flex-direction:column;gap:13px}
+.acc-form.hidden{display:none}
+.acc-input{background:var(--surface-2);border:1px solid var(--border);color:var(--text);padding:13px 14px;border-radius:9px;
+  font-family:var(--font);font-size:.95rem;outline:none;transition:.18s}
+.acc-input:focus{border-color:var(--accent);background:var(--surface)}
+.acc-btn{background:linear-gradient(135deg,#FFE34D 0%,var(--accent) 50%,#B8960F 100%);color:#141414;border:none;
+  padding:14px;border-radius:9px;font-family:var(--font-a);font-weight:700;text-transform:uppercase;font-size:.9rem;
+  letter-spacing:.04em;cursor:pointer;transition:.18s;box-shadow:0 8px 24px rgba(212,175,55,.32);margin-top:4px}
+.acc-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(212,175,55,.5)}
+.acc-msg{text-align:center;padding:12px;border-radius:9px;font-size:.88rem;display:none;margin-top:6px}
+.acc-msg.err{background:rgba(255,80,80,.14);color:#ff8a8a;display:block}
+.acc-msg.ok{background:rgba(29,185,84,.16);color:var(--green);display:block}
+.acc-note{font-size:.74rem;color:var(--text-4);text-align:center;margin-top:14px;line-height:1.5}
+/* dashboard */
+.acc-dash{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center}
+.acc-avatar{width:76px;height:76px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-a);font-weight:700;font-size:2rem;color:#141414;background:linear-gradient(135deg,#FFE34D,var(--accent),#B8960F)}
+.acc-welcome{font-family:var(--font-a);font-size:1.5rem;font-weight:700;text-transform:uppercase}
+.acc-email{color:var(--text-3);font-size:.9rem;margin-top:4px}
+.acc-perks{text-align:left;margin:26px 0;display:flex;flex-direction:column;gap:13px}
+.acc-perk{display:flex;align-items:center;gap:12px;color:var(--text-2);font-size:.92rem}
+.acc-perk i{color:var(--accent);width:20px;text-align:center}
+.acc-links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.acc-link{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px;color:var(--text);
+  font-weight:600;font-size:.85rem;transition:.18s;display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center}
+.acc-link:hover{border-color:var(--accent);transform:translateY(-2px)}
+.acc-link i{font-size:1.3rem;color:var(--accent)}
+.acc-logout{margin-top:18px;background:none;border:1px solid var(--border);color:var(--text-3);padding:11px 18px;
+  border-radius:9px;font-weight:600;cursor:pointer;transition:.18s}
+.acc-logout:hover{border-color:#ff5050;color:#ff8a8a}
+</style>
+</head>
+<body data-page="account">
+
+<main class="acc-wrap" id="accRoot"></main>
+
+<script src="assets/js/site.js"></script>
+<script src="assets/js/chat.js"></script>
+<script>
+/* ============================================================
+   Lightweight community accounts (client-side, GitHub Pages).
+   Each signup is also POSTed to Formspree so the owner captures
+   the member email (mailing list / community building).
+   ============================================================ */
+const ACC_KEY='djb_users', SESSION_KEY='djb_session';
+const FORMSPREE='https://formspree.io/f/mjvzgyeo';
+
+function hash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i)|0;}return 'h'+Math.abs(h);}
+function getUsers(){try{return JSON.parse(localStorage.getItem(ACC_KEY))||{}}catch{return{}}}
+function saveUsers(u){localStorage.setItem(ACC_KEY,JSON.stringify(u));}
+function getSession(){try{return JSON.parse(localStorage.getItem(SESSION_KEY))}catch{return null}}
+function setSession(s){s?localStorage.setItem(SESSION_KEY,JSON.stringify(s)):localStorage.removeItem(SESSION_KEY);render();}
+
+function render(){
+  const root=document.getElementById('accRoot');
+  const sess=getSession();
+  if(sess){ root.innerHTML=dashboardHTML(sess); return; }
+  root.innerHTML=authHTML();
+  wireAuth();
+}
+
+function dashboardHTML(u){
+  const initial=(u.name||u.email||'D').trim().charAt(0).toUpperCase();
+  return `
+    <h1 class="acc-h1">My <span>Account</span></h1>
+    <p class="acc-sub">Welcome back to the DJBILBOX community.</p>
+    <div class="acc-dash">
+      <div class="acc-avatar">${initial}</div>
+      <div class="acc-welcome">${u.name||'Member'}</div>
+      <div class="acc-email">${u.email}</div>
+      <div class="acc-perks">
+        <div class="acc-perk"><i class="fa-solid fa-circle-check"></i> Member of the DJBILBOX BEATS community</div>
+        <div class="acc-perk"><i class="fa-solid fa-gift"></i> Free access to all sample packs & demos</div>
+        <div class="acc-perk"><i class="fa-solid fa-bell"></i> First to know about new drops & deals</div>
+        <div class="acc-perk"><i class="fa-solid fa-percent"></i> Exclusive promo codes for VST plugins</div>
+      </div>
+      <div class="acc-links">
+        <a class="acc-link" href="${typeof gumroadUrl==='function'?gumroadUrl(BIG_PACK):'#'}" target="_blank"><i class="fa-solid fa-download"></i> 931 Beats Free</a>
+        <a class="acc-link" href="drum-kits.html"><i class="fa-solid fa-compact-disc"></i> Sample Kits</a>
+        <a class="acc-link" href="vst.html"><i class="fa-solid fa-sliders"></i> VST Plugins</a>
+        <a class="acc-link" href="news.html"><i class="fa-solid fa-newspaper"></i> Latest News</a>
+      </div>
+      <button class="acc-logout" onclick="setSession(null)"><i class="fa-solid fa-right-from-bracket"></i> Log out</button>
+    </div>`;
+}
+
+function authHTML(){
+  return `
+    <h1 class="acc-h1">Join the <span>Community</span></h1>
+    <p class="acc-sub">Create your free account — unlock drops, deals & member perks.</p>
+    <div class="acc-tabs">
+      <button class="acc-tab active" id="tabLogin" onclick="switchTab('login')">Log in</button>
+      <button class="acc-tab" id="tabSignup" onclick="switchTab('signup')">Sign up</button>
+    </div>
+    <form class="acc-form" id="loginForm" onsubmit="doLogin(event)">
+      <input class="acc-input" type="email" id="loginEmail" placeholder="Email address" required autocomplete="email">
+      <input class="acc-input" type="password" id="loginPass" placeholder="Password" required autocomplete="current-password">
+      <button class="acc-btn" type="submit">Log in</button>
+      <div class="acc-msg" id="loginMsg"></div>
+    </form>
+    <form class="acc-form hidden" id="signupForm" onsubmit="doSignup(event)">
+      <input class="acc-input" type="text" id="suName" placeholder="Your name / artist name" required autocomplete="name">
+      <input class="acc-input" type="email" id="suEmail" placeholder="Email address" required autocomplete="email">
+      <input class="acc-input" type="password" id="suPass" placeholder="Choose a password (min 6 chars)" required minlength="6" autocomplete="new-password">
+      <button class="acc-btn" type="submit">Create my account</button>
+      <div class="acc-msg" id="signupMsg"></div>
+      <p class="acc-note">By joining you'll receive occasional emails about new beats & deals. No spam, unsubscribe anytime.</p>
+    </form>`;
+}
+
+function wireAuth(){/* listeners attached inline */}
+function switchTab(which){
+  const login=which==='login';
+  document.getElementById('tabLogin').classList.toggle('active',login);
+  document.getElementById('tabSignup').classList.toggle('active',!login);
+  document.getElementById('loginForm').classList.toggle('hidden',!login);
+  document.getElementById('signupForm').classList.toggle('hidden',login);
+}
+
+function doSignup(e){
+  e.preventDefault();
+  const name=document.getElementById('suName').value.trim();
+  const email=document.getElementById('suEmail').value.trim().toLowerCase();
+  const pass=document.getElementById('suPass').value;
+  const msg=document.getElementById('signupMsg');
+  const users=getUsers();
+  if(users[email]){ msg.className='acc-msg err'; msg.textContent='An account with this email already exists. Try logging in.'; return; }
+  users[email]={name,email,pass:hash(pass),joined:new Date().toISOString()};
+  saveUsers(users);
+  /* capture member email for the owner (community mailing list) */
+  const fd=new FormData();
+  fd.append('_subject',`New community signup — ${name}`);
+  fd.append('_captcha','false');
+  fd.append('name',name); fd.append('email',email);
+  fd.append('message',`New member joined the DJBILBOX BEATS community.`);
+  fetch(FORMSPREE,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(()=>{});
+  msg.className='acc-msg ok'; msg.textContent='Account created! Logging you in…';
+  setTimeout(()=>setSession({name,email}),700);
+}
+
+function doLogin(e){
+  e.preventDefault();
+  const email=document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pass=document.getElementById('loginPass').value;
+  const msg=document.getElementById('loginMsg');
+  const users=getUsers();
+  const u=users[email];
+  if(!u || u.pass!==hash(pass)){ msg.className='acc-msg err'; msg.textContent='Wrong email or password.'; return; }
+  msg.className='acc-msg ok'; msg.textContent='Welcome back!';
+  setTimeout(()=>setSession({name:u.name,email:u.email}),400);
+}
+
+window.switchTab=switchTab; window.doSignup=doSignup; window.doLogin=doLogin; window.setSession=setSession;
+render();
+</script>
+</body>
+</html>
