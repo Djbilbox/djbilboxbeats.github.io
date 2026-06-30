@@ -315,13 +315,15 @@ function packCard(p){
   el.dataset.genre = p.genre || '';
   const ref=(p.buy||'').replace(/'/g,"\\'");
   const nm=p.name.replace(/'/g,"\\'");
+  const dHref = p.id ? `product.html?id=${p.id}` : null;
+  const media = dHref
+    ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"><span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
+    : `<div class="card-media">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"></div>`;
+  const titleHtml = dHref ? `<a href="${dHref}"><h3 class="card-title">${p.name}</h3></a>` : `<h3 class="card-title">${p.name}</h3>`;
   el.innerHTML = `
-    <div class="card-media">
-      ${badge}
-      <img loading="lazy" src="${p.img}" alt="${p.name}">
-    </div>
+    ${media}
     <div class="card-body">
-      <h3 class="card-title">${p.name}</h3>
+      ${titleHtml}
       <div class="card-tags">${tags}</div>
       <div class="card-foot">
         <div class="price">${priceHtml}</div>
@@ -418,10 +420,15 @@ function vstCard(p){
   const noteHtml = p.note ? `<div style="background:var(--accent-glow);border:1px solid rgba(255,45,45,.3);border-radius:5px;padding:5px 9px;font-size:.64rem;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-top:2px">🎟️ ${p.note}</div>` : '';
   const el=document.createElement('article');
   el.className='card';
+  const dHref = p.id ? `product.html?id=${p.id}` : null;
+  const media = dHref
+    ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"><span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
+    : `<div class="card-media">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"></div>`;
+  const titleHtml = dHref ? `<a href="${dHref}"><h3 class="card-title">${p.name}</h3></a>` : `<h3 class="card-title">${p.name}</h3>`;
   el.innerHTML = `
-    <div class="card-media">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"></div>
+    ${media}
     <div class="card-body">
-      <h3 class="card-title">${p.name}</h3>
+      ${titleHtml}
       <div class="card-tags">${tags}</div>
       ${noteHtml}
       <div class="card-foot">

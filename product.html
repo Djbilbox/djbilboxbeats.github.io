@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product — DJBILBOX BEATS</title>
+<meta name="description" content="DJBILBOX BEATS — VST plugins & sample kits. Pro instruments, free demos, instant download.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/product.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="product-page" data-page="vst">
+
+<main id="pd"></main>
+
+<!-- scripts -->
+<script src="assets/js/products-data.js"></script>
+<script>
+(function(){
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+  const P = (window.PRODUCTS||{})[id];
+  const root = document.getElementById('pd');
+
+  if(!P){
+    document.body.dataset.page = 'vst';
+    root.innerHTML = `<div class="pd-wrap" style="padding:120px 24px;text-align:center">
+      <h1 class="pd-title" style="font-size:2.4rem">Product not found</h1>
+      <p class="pd-lead" style="margin:14px auto 24px">This product doesn't exist or the link is broken.</p>
+      <a class="pd-btn primary" href="vst.html">← Back to store</a></div>`;
+    return;
+  }
+
+  /* highlight the right sidebar tab before site.js mounts it */
+  document.body.dataset.page = P.type==='vst' ? 'vst' : 'drumkits';
+  document.title = P.name + ' — DJBILBOX BEATS';
+  const md = document.querySelector('meta[name=description]');
+  if(md) md.setAttribute('content', P.tagline);
+
+  /* per-product accent */
+  document.body.style.setProperty('--pa',  P.accent  || '#ff2d2d');
+  document.body.style.setProperty('--pa2', P.accent2 || '#ff8a3d');
+
+  const isFree = String(P.price).toUpperCase()==='FREE';
+  const esc = s => String(s).replace(/'/g,"\\'");
+  const back = P.type==='vst' ? {href:'vst.html', label:'VST Plugins'} : {href:'drum-kits.html', label:'Drum Kits'};
+
+  /* ---- hero background video (muted, looping playlist) ---- */
+  const bgSrc = P.video
+    ? `https://www.youtube.com/embed/videoseries?list=${P.video}&autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&showinfo=0`
+    : '';
+  const videoBg = bgSrc
+    ? `<div class="pd-video-bg"><iframe src="${bgSrc}" title="background" allow="autoplay;encrypted-media" frameborder="0"></iframe></div>`
+    : '';
+
+  /* ---- price + actions ---- */
+  const priceHtml = isFree
+    ? `<span class="now free">FREE</span>`
+    : `<span class="now">€${P.price}</span>${P.old?`<span class="old">€${P.old}</span>`:''}${P.badge?`<span class="pd-badge">${P.badge}</span>`:''}`;
+
+  let actions;
+  if(isFree){
+    actions = `<button class="pd-btn primary" onclick="buy('${esc(P.buy)}')"><i class="fa-solid fa-download"></i> Download free</button>
+      <button class="pd-btn ghost" onclick="addToCart('${esc(P.name)}','${esc(P.price)}','${esc(P.buy)}')"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>`;
+  } else {
+    actions = `<button class="pd-btn primary" onclick="addToCart('${esc(P.name)}','${esc(P.price)}','${esc(P.buy)}')"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>
+      <button class="pd-btn ghost" onclick="buy('${esc(P.buy)}')"><i class="fa-solid fa-bag-shopping"></i> Buy now</button>
+      ${P.demo?`<button class="pd-btn ghost" onclick="buy('${esc(P.demo)}')"><i class="fa-solid fa-play"></i> Free demo</button>`:''}`;
+  }
+  const noteHtml = P.note ? `<div class="pd-note"><i class="fa-solid fa-ticket"></i> ${P.note}</div>` : '';
+
+  /* ---- sections ---- */
+  const aboutHtml = (P.about||[]).map(p=>`<p>${p}</p>`).join('');
+  const featsHtml = (P.features||[]).map(f=>
+    `<div class="pd-feat"><i class="fa-solid ${f.icon}"></i><h4>${f.t}</h4><p>${f.d}</p></div>`).join('');
+  const specsHtml = (P.specs||[]).map(s=>`<tr><td>${s.k}</td><td>${s.v}</td></tr>`).join('');
+  const inclHtml  = (P.includes||[]).map(i=>`<li><i class="fa-solid fa-circle-check"></i> ${i}</li>`).join('');
+  const demoHtml = P.video ? `
+    <section class="pd-section"><div class="pd-wrap">
+      <h2 class="pd-h2">Hear it <span>in action</span></h2>
+      <p class="pd-lead">Demos & walkthroughs straight from the DJBILBOX BEATS YouTube channel.</p>
+      <div class="pd-demo-embed"><iframe src="https://www.youtube.com/embed/videoseries?list=${P.video}&rel=0&modestbranding=1"
+        title="${P.name} demo" allow="accelerometer;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
+    </div></section>` : '';
+
+  /* related (other products) */
+  const related = Object.entries(window.PRODUCTS).filter(([k])=>k!==id).slice(0,5).map(([k,p])=>{
+    const f = String(p.price).toUpperCase()==='FREE';
+    return `<a class="pd-rel" href="product.html?id=${k}">
+      <img loading="lazy" src="${p.cover}" alt="${p.name}">
+      <div class="pd-rel-b"><h4>${p.name}</h4>
+        <div class="pd-rel-p${f?' free':''}">${f?'FREE':'€'+p.price}</div></div></a>`;
+  }).join('');
+
+  root.innerHTML = `
+    <section class="pd-hero">
+      ${videoBg}
+      <div class="pd-wrap pd-hero-inner">
+        <div class="pd-cover">
+          <img src="${P.cover}" alt="${P.name}">
+          <img class="pd-mascot" src="img/mascot-dromedary.svg" alt="DJBILBOX mascot">
+        </div>
+        <div class="pd-info">
+          <div class="pd-eyebrow"><i class="fa-solid ${P.type==='vst'?'fa-sliders':'fa-compact-disc'}"></i> ${P.type==='vst'?'VST Plugin':'Sample Kit'} · DJBILBOX BEATS</div>
+          <h1 class="pd-title">${P.name}</h1>
+          <div class="pd-sub">${P.sub||''}</div>
+          <p class="pd-tagline">${P.tagline||''}</p>
+          <div class="pd-tags">${(P.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          <div class="pd-buybox">
+            <div class="pd-price">${priceHtml}</div>
+            <div class="pd-actions">${actions}</div>
+          </div>
+          ${noteHtml}
+        </div>
+      </div>
+    </section>
+
+    <section class="pd-section"><div class="pd-wrap pd-about">
+      <h2 class="pd-h2">About <span>${P.name}</span></h2>
+      ${aboutHtml}
+    </div></section>
+
+    <section class="pd-section"><div class="pd-wrap">
+      <h2 class="pd-h2">Key <span>features</span></h2>
+      <div class="pd-feats">${featsHtml}</div>
+    </div></section>
+
+    <section class="pd-section"><div class="pd-wrap">
+      <h2 class="pd-h2">Specs <span>& contents</span></h2>
+      <div class="pd-grid2">
+        <table class="pd-specs">${specsHtml}</table>
+        <div><h4 style="font-family:var(--font-a);text-transform:uppercase;letter-spacing:.04em;margin-bottom:14px;color:var(--text-2)">What's included</h4>
+          <ul class="pd-includes">${inclHtml}</ul></div>
+      </div>
+    </div></section>
+
+    ${demoHtml}
+
+    <section class="pd-section" style="border-bottom:0"><div class="pd-wrap">
+      <h2 class="pd-h2">More from <span>DJBILBOX</span></h2>
+      <div class="pd-related">${related}</div>
+      <a class="pd-back" href="${back.href}"><i class="fa-solid fa-arrow-left"></i> Back to ${back.label}</a>
+    </div></section>
+
+    <div class="pd-sticky">
+      <div class="pd-price">${priceHtml}</div>
+      <div class="pd-actions">${actions}</div>
+    </div>`;
+})();
+</script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

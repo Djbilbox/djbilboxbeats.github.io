@@ -1,0 +1,136 @@
+/* ============================================================
+   DJBILBOX BEATS — Product detail page (DARK, apeshyt-style)
+   Loaded only on product.html. Flips the light theme to dark and
+   overrides the hardcoded-white injected sidebar / topbar / footer.
+   Per-product accent colors come from inline --pa / --pa2.
+   ============================================================ */
+
+.product-page{
+  /* dark palette override */
+  --bg:#0a0a0c; --surface:#141418; --surface-2:#1b1b21; --surface-3:#26262e;
+  --text:#f4f4f7; --text-2:#c6c6d2; --text-3:#9595a4; --text-4:#646471;
+  --border:rgba(255,255,255,.10);
+  --pa:#ff2d2d; --pa2:#ff8a3d;            /* fallbacks; set per product */
+  background:var(--bg); color:var(--text);
+}
+
+/* re-skin the injected chrome that hardcodes white */
+.product-page .sidebar{background:#0c0c10;border-right-color:var(--border)}
+.product-page .sidebar .brand{border-bottom-color:var(--border)}
+.product-page .mtop{background:rgba(10,10,12,.92);border-bottom-color:var(--border)}
+.product-page .footer{background:#0c0c10;border-top:1px solid var(--border)}
+.product-page .side-nav a:hover{background:var(--surface-2)}
+
+/* ---------- HERO with looping video background ---------- */
+.pd-hero{position:relative;overflow:hidden;min-height:560px;
+  border-bottom:1px solid var(--border);isolation:isolate}
+.pd-video-bg{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.pd-video-bg iframe{
+  position:absolute;top:50%;left:50%;width:177.78vh;min-width:100%;height:56.25vw;min-height:100%;
+  transform:translate(-50%,-50%);border:0;filter:saturate(1.15)}
+.pd-hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(120% 90% at 80% 0%, color-mix(in srgb,var(--pa) 28%, transparent), transparent 60%),
+    linear-gradient(180deg, rgba(8,8,10,.55) 0%, rgba(8,8,10,.82) 55%, var(--bg) 100%)}
+
+.pd-hero-inner{position:relative;display:grid;grid-template-columns:minmax(0,420px) 1fr;
+  gap:48px;align-items:center;padding:72px 0 64px}
+.pd-cover{position:relative}
+.pd-cover img{width:100%;border-radius:16px;border:1px solid var(--border);
+  box-shadow:0 30px 80px -20px color-mix(in srgb,var(--pa) 55%, #000)}
+.pd-cover .pd-mascot{position:absolute;width:120px;right:-26px;bottom:-26px;
+  filter:drop-shadow(0 10px 20px rgba(0,0,0,.6));animation:pdfloat 5s ease-in-out infinite}
+@keyframes pdfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.pd-eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--pa);
+  font-family:var(--font-a);font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  font-size:.72rem;margin-bottom:14px}
+.pd-title{font-family:var(--font-a);font-weight:700;line-height:.95;text-transform:uppercase;
+  font-size:clamp(2.6rem,6vw,4.6rem);letter-spacing:.01em;
+  background:linear-gradient(120deg,#fff 30%,var(--pa) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pd-sub{color:var(--text-2);font-weight:600;font-size:1.05rem;margin-top:6px}
+.pd-tagline{color:var(--text-2);font-size:1.02rem;max-width:46ch;margin-top:18px;line-height:1.6}
+.pd-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pd-tags .tag{background:rgba(255,255,255,.06);border:1px solid var(--border);
+  color:var(--text-2);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 11px;border-radius:999px}
+
+.pd-buybox{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:26px}
+.pd-price{display:flex;align-items:baseline;gap:10px}
+.pd-price .now{font-family:var(--font-a);font-weight:700;font-size:2.2rem}
+.pd-price .now.free{color:var(--green)}
+.pd-price .old{color:var(--text-4);text-decoration:line-through;font-size:1.1rem;font-weight:600}
+.pd-badge{background:var(--pa);color:#fff;font-weight:800;font-size:.7rem;letter-spacing:.04em;
+  padding:4px 9px;border-radius:6px;align-self:center}
+.pd-actions{display:flex;gap:12px;flex-wrap:wrap}
+.pd-btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-a);font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;font-size:.92rem;padding:14px 26px;border-radius:11px;
+  border:1px solid transparent;cursor:pointer;transition:.18s;white-space:nowrap}
+.pd-btn.primary{background:var(--pa);color:#fff;box-shadow:0 12px 30px -10px var(--pa)}
+.pd-btn.primary:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.pd-btn.ghost{background:rgba(255,255,255,.05);border-color:var(--border);color:var(--text)}
+.pd-btn.ghost:hover{background:rgba(255,255,255,.1)}
+.pd-note{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-size:.74rem;font-weight:700;
+  color:var(--pa);background:color-mix(in srgb,var(--pa) 14%, transparent);
+  border:1px solid color-mix(in srgb,var(--pa) 35%, transparent);border-radius:7px;padding:7px 12px}
+
+/* ---------- content sections ---------- */
+.pd-wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+.pd-section{padding:56px 0;border-bottom:1px solid var(--border)}
+.pd-h2{font-family:var(--font-a);font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+  font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:8px}
+.pd-h2 span{color:var(--pa)}
+.pd-lead{color:var(--text-3);max-width:62ch;margin-bottom:26px}
+.pd-about p{color:var(--text-2);line-height:1.8;max-width:70ch;margin-bottom:16px;font-size:1.02rem}
+
+.pd-feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.pd-feat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;
+  transition:.2s}
+.pd-feat:hover{border-color:color-mix(in srgb,var(--pa) 55%, var(--border));transform:translateY(-3px)}
+.pd-feat i{font-size:1.4rem;color:var(--pa);margin-bottom:12px}
+.pd-feat h4{font-size:1rem;font-weight:700;margin-bottom:6px}
+.pd-feat p{color:var(--text-3);font-size:.88rem;line-height:1.55}
+
+.pd-grid2{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start}
+.pd-specs{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden}
+.pd-specs tr{border-bottom:1px solid var(--border)}
+.pd-specs tr:last-child{border-bottom:0}
+.pd-specs td{padding:13px 18px;font-size:.9rem}
+.pd-specs td:first-child{color:var(--text-3);font-weight:600;width:42%;white-space:nowrap}
+.pd-specs td:last-child{color:var(--text);font-weight:600}
+.pd-includes{list-style:none;display:flex;flex-direction:column;gap:12px}
+.pd-includes li{display:flex;align-items:flex-start;gap:11px;color:var(--text-2);font-size:.95rem}
+.pd-includes li i{color:var(--green);margin-top:3px}
+
+.pd-demo-embed{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);
+  aspect-ratio:16/9;box-shadow:0 24px 60px -24px rgba(0,0,0,.8)}
+.pd-demo-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+.pd-related{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px}
+.pd-rel{display:block;background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;transition:.2s}
+.pd-rel:hover{border-color:color-mix(in srgb,var(--pa) 55%, var(--border));transform:translateY(-3px)}
+.pd-rel img{width:100%;aspect-ratio:1;object-fit:cover}
+.pd-rel .pd-rel-b{padding:13px 14px}
+.pd-rel h4{font-size:.85rem;font-weight:700;line-height:1.3}
+.pd-rel .pd-rel-p{color:var(--pa);font-weight:700;font-size:.8rem;margin-top:5px}
+.pd-rel .pd-rel-p.free{color:var(--green)}
+
+.pd-back{display:inline-flex;align-items:center;gap:8px;color:var(--text-3);font-weight:600;
+  font-size:.85rem;margin:26px 0 0;transition:.18s}
+.pd-back:hover{color:var(--pa)}
+
+/* ---------- sticky mobile buy bar ---------- */
+.pd-sticky{position:fixed;left:var(--side-w);right:0;bottom:0;z-index:950;display:none;
+  align-items:center;justify-content:space-between;gap:14px;padding:12px 18px;
+  background:rgba(12,12,15,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border)}
+.pd-sticky .pd-price .now{font-size:1.4rem}
+
+@media(max-width:880px){
+  .pd-hero-inner{grid-template-columns:1fr;gap:30px;padding:54px 0}
+  .pd-cover{max-width:320px}
+  .pd-grid2{grid-template-columns:1fr}
+  .pd-sticky{left:0;display:flex}
+  .product-page{padding-bottom:70px}
+}

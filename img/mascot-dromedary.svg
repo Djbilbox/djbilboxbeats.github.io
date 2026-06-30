@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 520" fill="none" role="img" aria-label="DJBILBOX gangsta dromedary mascot">
+  <defs>
+    <linearGradient id="dmFur" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e7b878"/>
+      <stop offset="1" stop-color="#c8924f"/>
+    </linearGradient>
+    <linearGradient id="dmGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe79a"/>
+      <stop offset="0.5" stop-color="#f5c343"/>
+      <stop offset="1" stop-color="#b8860b"/>
+    </linearGradient>
+    <linearGradient id="dmLens" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b3a55"/>
+      <stop offset="1" stop-color="#0a0f1a"/>
+    </linearGradient>
+    <linearGradient id="dmTrack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b1b1f"/>
+      <stop offset="1" stop-color="#0c0c0e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- shadow -->
+  <ellipse cx="240" cy="498" rx="150" ry="16" fill="#000" opacity=".35"/>
+
+  <!-- tracksuit shoulders -->
+  <path d="M96 520c0-78 62-128 144-128s144 50 144 128z" fill="url(#dmTrack)"/>
+  <path d="M150 520c0-44 18-78 40-92m140 92c0-44-18-78-40-92" stroke="#ff2d2d" stroke-width="9" stroke-linecap="round"/>
+  <!-- gold chain -->
+  <path d="M150 420c30 44 60 60 90 60s60-16 90-60" stroke="url(#dmGold)" stroke-width="11" stroke-linecap="round" stroke-dasharray="2 13"/>
+  <path d="M240 486l-16 22h32z" fill="url(#dmGold)"/>
+  <circle cx="240" cy="500" r="13" fill="url(#dmGold)"/>
+  <text x="240" y="506" font-family="Arial Black, Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle" fill="#7a5200">$</text>
+
+  <!-- neck -->
+  <path d="M198 300h84v130h-84z" fill="url(#dmFur)"/>
+
+  <!-- ears -->
+  <path d="M150 196c-26-10-44 2-40 24 4 18 28 24 44 14z" fill="url(#dmFur)" stroke="#a9763a" stroke-width="3"/>
+  <path d="M330 196c26-10 44 2 40 24-4 18-28 24-44 14z" fill="url(#dmFur)" stroke="#a9763a" stroke-width="3"/>
+
+  <!-- head -->
+  <path d="M240 132c66 0 104 44 104 108 0 70-46 118-104 118s-104-48-104-118c0-64 38-108 104-108z" fill="url(#dmFur)" stroke="#a9763a" stroke-width="3"/>
+
+  <!-- muzzle -->
+  <ellipse cx="240" cy="320" rx="62" ry="50" fill="#f0d4a4" stroke="#c99a5c" stroke-width="3"/>
+  <ellipse cx="216" cy="312" rx="8" ry="11" fill="#5b3d1e"/>
+  <ellipse cx="264" cy="312" rx="8" ry="11" fill="#5b3d1e"/>
+  <path d="M222 344c10 10 26 10 36 0" stroke="#7a5024" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- gold aviator sunglasses -->
+  <path d="M150 232h180" stroke="url(#dmGold)" stroke-width="7" stroke-linecap="round"/>
+  <path d="M168 236h84c6 0 9 4 8 10l-5 34c-2 14-16 24-34 24s-30-9-35-23l-12-33c-2-7 1-12 6-12z" fill="url(#dmLens)" stroke="url(#dmGold)" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M312 236h-84c-6 0-9 4-8 10l5 34c2 14 16 24 34 24s30-9 35-23l12-33c2-7-1-12-6-12z" fill="url(#dmLens)" stroke="url(#dmGold)" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M252 244h-24" stroke="url(#dmGold)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M182 250l14 30m118-30l-14 30" stroke="#7fd0ff" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+
+  <!-- Gucci-style bucket hat -->
+  <path d="M124 196c0-8 52-22 116-22s116 14 116 22v14c0 9-52 16-116 16s-116-7-116-16z" fill="#efe2c4" stroke="#b8a878" stroke-width="3"/>
+  <path d="M150 100c0-30 40-52 90-52s90 22 90 52v96c0 6-40 12-90 12s-90-6-90-12z" fill="#efe2c4" stroke="#b8a878" stroke-width="3"/>
+  <rect x="150" y="120" width="180" height="20" fill="#1a6b3a"/>
+  <rect x="150" y="140" width="180" height="14" fill="#c1121f"/>
+  <rect x="150" y="154" width="180" height="20" fill="#1a6b3a"/>
+  <text x="240" y="100" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="700" text-anchor="middle" fill="#1a6b3a" letter-spacing="-6">GG</text>
+</svg>
