@@ -66,8 +66,16 @@
 .pd-btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-a);font-weight:700;
   letter-spacing:.04em;text-transform:uppercase;font-size:.92rem;padding:14px 26px;border-radius:11px;
   border:1px solid transparent;cursor:pointer;transition:.18s;white-space:nowrap}
-.pd-btn.primary{background:var(--pa);color:#fff;box-shadow:0 12px 30px -10px var(--pa)}
-.pd-btn.primary:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.pd-btn.primary{
+  background:linear-gradient(135deg,#FFE34D 0%,var(--pa) 50%,#B8960F 100%);
+  color:#141414;font-weight:700;
+  box-shadow:0 12px 30px -10px var(--pa),inset 0 1px 0 rgba(255,255,255,.4);
+}
+.pd-btn.primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 16px 40px rgba(212,175,55,.5),inset 0 2px 0 rgba(255,255,255,.6);
+  filter:brightness(1.05);
+}
 .pd-btn.ghost{background:rgba(255,255,255,.05);border-color:var(--border);color:var(--text)}
 .pd-btn.ghost:hover{background:rgba(255,255,255,.1)}
 .pd-note{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-size:.74rem;font-weight:700;

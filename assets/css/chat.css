@@ -127,8 +127,8 @@
 }
 
 .chat-action-btn {
-  background: var(--accent);
-  color: #fff;
+  background: linear-gradient(135deg, #FFE34D 0%, var(--accent) 50%, #B8960F 100%);
+  color: #141414;font-weight:700;
   border: none;
   border-radius: 8px;
   padding: 7px 11px;
@@ -205,8 +205,8 @@
 }
 
 .chat-send {
-  background: var(--accent);
-  color: #fff;
+  background: linear-gradient(135deg, #FFE34D 0%, var(--accent) 100%);
+  color: #141414;font-weight:700;
   border: none;
   border-radius: 8px;
   width: 36px;
