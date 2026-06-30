@@ -71,153 +71,170 @@ window.PRODUCTS = {
   /* ===================== SAMPLE KITS ===================== */
   "oriental-vol1": {
     type:"kit", name:"Oriental — Loop Melody Vol.1", sub:"Oriental Melody Loops",
-    tagline:"23+ oriental melody loops to start your next trap-oriental banger.",
+    tagline:"23+ authentic oriental melody loops — oud, qanun, strings ready to flip.",
     cover:"img/packs/oriental-vol1.jpg", accent:"#e8a33d", accent2:"#c0392b",
     price:"FREE", badge:"FREE", buy:"oceljx",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Oriental","Melody Loops","Free"],
     about:[
-      "A pack of ready-to-flip oriental melody loops — oud, strings and ethnic leads tuned for trap, drill and afro productions. Each loop is key- and BPM-labelled so you can drop it straight onto your grid.",
-      "Free for profit: chop them, layer them and release your beats with no royalties owed."
+      "Vol.1 of the Oriental series — 23+ ready-to-flip melody loops featuring authentic oud, qanun, saz and oriental strings. Every loop is professionally performed, recorded and tuned for modern trap, drill, afro and world-music productions.",
+      "Drop a loop, layer it with drums, and you've got the foundation of a hit. Free for profit means you can release commercially with zero royalty hassles."
     ],
     features:[
-      {icon:"fa-music", t:"Melody loops", d:"Oriental oud, qanun and string melodies ready to chop and pitch."},
-      {icon:"fa-tag", t:"Key & BPM labelled", d:"Every loop named with its key and tempo for instant arranging."},
-      {icon:"fa-unlock", t:"Free for profit", d:"Use them in your commercial releases — name your price (€0+)."}
+      {icon:"fa-music", t:"Authentic instruments", d:"Real oud, qanun, ney, saz samples performed by professional musicians."},
+      {icon:"fa-tag", t:"Labeled & ready", d:"Every loop tagged with key + BPM — drag & drop into your DAW."},
+      {icon:"fa-sliders", t:"24-bit hi-fi", d:"44.1kHz / 24-bit WAV for pristine sound in any production."},
+      {icon:"fa-unlock", t:"Free for profit", d:"Use in commercial releases, YouTube, Spotify, anywhere."}
     ],
     specs:[
       {k:"Content", v:"23+ oriental melody loops"},
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
-      {k:"Labelled", v:"Key + BPM in filenames"},
-      {k:"Price", v:"Free / name-your-price"},
+      {k:"Labeling", v:"Key + BPM in filename"},
+      {k:"Tempo range", v:"90–140 BPM"},
+      {k:"Price", v:"Free (name-your-price)"},
       {k:"License", v:"Free for profit"}
     ],
-    includes:["23+ oriental WAV loops","Key & BPM tagged filenames","Compatible with any DAW"]
+    includes:["23+ oriental WAV melody loops","All keys & tempos included","BPM/Key documentation","Works in FL Studio, Ableton, Logic, all DAWs"]
   },
 
   "vice-city-vol4": {
     type:"kit", name:"Vice City — Drum Loop Vol.4", sub:"Drill · Afrotrap · Synthwave Drums",
-    tagline:"Hard-hitting drum loops with that neon Vice City attitude.",
+    tagline:"Hard-hitting drum loops — neon synthwave bounce meets trap aggression.",
     cover:"img/packs/vice-city-vol4.jpg", accent:"#ff3ca6", accent2:"#37e1ff",
     price:"FREE", badge:"FREE", buy:"pkesp",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Drill","Afrotrap","Synthwave","Free"],
     about:[
-      "Vol.4 of the Vice City series — full drum loops blending drill bounce, afrotrap energy and 80s synthwave flavour. Drop a loop, add your 808 and the groove is done.",
-      "Perfect for producers who want pro drum patterns without programming every hat from scratch."
+      "Vice City Vol.4 delivers full, mix-ready drum loops that blend drill pocket, afrotrap swagger and 80s synthwave spice. Every loop is programmed to lock tight and sound huge with minimal tweaking — just add your 808s and you're halfway to a hit.",
+      "No more building drums from scratch. These loops are production-ready, professionally mixed and tuned for modern trap, drill and trap-afro beats."
     ],
     features:[
-      {icon:"fa-drum", t:"Full drum loops", d:"Programmed grooves mixing drill, afrotrap and retro percussion."},
-      {icon:"fa-bolt", t:"Mix-ready", d:"Punchy, balanced loops that sit in the mix straight away."},
-      {icon:"fa-unlock", t:"Free for profit", d:"Royalty-free for your commercial beats."}
+      {icon:"fa-drum", t:"Full drum patterns", d:"Kicks, snares, hats, percs — complete grooves ready to use."},
+      {icon:"fa-bolt", t:"Studio-mixed", d:"Professional EQ and compression baked in — drop & play."},
+      {icon:"fa-fire", t:"Trap + Afro energy", d:"Drill bounce meets afrotrap swing with synthwave attitude."},
+      {icon:"fa-unlock", t:"Free for profit", d:"Zero royalties — use in any commercial release."}
     ],
     specs:[
-      {k:"Content", v:"Drum loops (drill / afro / synthwave)"},
+      {k:"Content", v:"Full drum loops (drill/afro/synthwave)"},
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
-      {k:"Price", v:"Free / name-your-price"},
+      {k:"Tempo range", v:"120–160 BPM"},
+      {k:"Included", v:"Kicks, snares, hats, percussion"},
+      {k:"Price", v:"Free (name-your-price)"},
       {k:"License", v:"Free for profit"}
     ],
-    includes:["Vice City drum loop collection","WAV stems ready to drop","Works in any DAW"]
+    includes:["Vice City drum loop collection","Full-mix WAV loops","Professional EQ'd & compressed","Tempo-tagged for quick matching"]
   },
 
   "futur-melody": {
     type:"kit", name:"Futur — 23 New Melody", sub:"Future Melody Loops",
-    tagline:"23 forward-thinking melody loops for futuristic trap & afro.",
+    tagline:"23 forward-thinking melody loops — synths, plucks, pads for modern trap.",
     cover:"img/packs/futur-melody.jpg", accent:"#7b5cff", accent2:"#37e1ff",
     price:"FREE", badge:"FREE", buy:"fhzxyv",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Future","Melody Loops","Free"],
     about:[
-      "23 brand-new melody loops with a modern, futuristic edge — bright plucks, evolving pads and emotive leads for trap, afro and pop productions.",
-      "Each loop is a finished idea you can build a beat around in minutes."
+      "The Futur series — 23 brand-new melody loops with a modern, forward-thinking vibe. Bright synth plucks, evolving pads, emotive string leads and experimental textures. Perfect for trap, afro, SoundCloud rap, lofi and pop productions.",
+      "Each loop is a complete melodic idea — drop it over drums and you've got the sonic DNA of a track. No need to hunt for chords or spend hours composing."
     ],
     features:[
-      {icon:"fa-music", t:"23 melody loops", d:"Fresh, modern melodic ideas ready to flip."},
-      {icon:"fa-tag", t:"Key & BPM labelled", d:"Arrange faster with tagged filenames."},
-      {icon:"fa-unlock", t:"Free for profit", d:"Use in your releases royalty-free."}
+      {icon:"fa-wand-magic-sparkles", t:"23 unique ideas", d:"Fresh synth plucks, pads, leads and experimental textures."},
+      {icon:"fa-sliders", t:"Modern & polished", d:"Professional sound design with depth and character."},
+      {icon:"fa-tag", t:"Tempo-matched", d:"All loops labeled with key + BPM for instant drag-and-drop."},
+      {icon:"fa-unlock", t:"Free for profit", d:"No royalties, no limits — release everywhere."}
     ],
     specs:[
-      {k:"Content", v:"23 melody loops"},
+      {k:"Content", v:"23 future-forward melody loops"},
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
-      {k:"Price", v:"Free / name-your-price"},
+      {k:"Instruments", v:"Synths, plucks, pads, strings, textures"},
+      {k:"Tempo range", v:"90–140 BPM"},
+      {k:"Price", v:"Free (name-your-price)"},
       {k:"License", v:"Free for profit"}
     ],
-    includes:["23 future melody WAV loops","Key & BPM tagged","Any-DAW compatible"]
+    includes:["23 Futur melody WAV loops","All synth presets included","Key/BPM/Tempo documentation","Multi-DAW compatibility"]
   },
 
   "drums-loop-vol1": {
     type:"kit", name:"Drums Loop Vol.1", sub:"Drum Loops Collection",
-    tagline:"The essential drum loop starter pack — clean, punchy, ready.",
+    tagline:"The essential starter pack — trap, hip-hop, afro grooves ready to layer.",
     cover:"img/packs/drums-loop-vol1.jpg", accent:"#ff2d2d", accent2:"#ff8a3d",
     price:"FREE", badge:"FREE", buy:"czpvfx",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Drums","Loops","Free"],
     about:[
-      "Vol.1 of the DJBILBOX drum loop series — a versatile set of grooves covering trap, hip-hop and afro. The fast way to lay a solid rhythmic foundation.",
-      "Layer them with your one-shots or use them as-is to lock a vibe instantly."
+      "Drums Loop Vol.1 — the essential beat-making starter pack. A curated collection of punchy, professional drum grooves covering trap, hip-hop and afro tempos. No boring filler, just solid grooves you'll actually use.",
+      "Drop a loop, layer with your one-shots or favorite 808, and you've got a tight rhythm in seconds. Clean mixing means everything fits into a track without extra EQ."
     ],
     features:[
-      {icon:"fa-drum", t:"Versatile grooves", d:"Loops spanning trap, hip-hop and afro tempos."},
-      {icon:"fa-bolt", t:"Punchy & clean", d:"Mixed to drop straight into your session."},
-      {icon:"fa-unlock", t:"Free for profit", d:"Royalty-free for commercial use."}
+      {icon:"fa-drum", t:"Multi-genre grooves", d:"Trap, hip-hop, afro — all the essentials in one pack."},
+      {icon:"fa-bolt", t:"Mix-ready drums", d:"Professional EQ and compression, ready to drop."},
+      {icon:"fa-layer-group", t:"Layer-friendly", d:"Clean loops designed to sit under 808s and samples."},
+      {icon:"fa-unlock", t:"Free for profit", d:"Use in any commercial release, no royalties."}
     ],
     specs:[
-      {k:"Content", v:"Drum loop collection"},
+      {k:"Content", v:"Full drum loop collection"},
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
-      {k:"Price", v:"Free / name-your-price"},
+      {k:"Genres", v:"Trap, hip-hop, afro"},
+      {k:"Tempo range", v:"85–150 BPM"},
+      {k:"Price", v:"Free (name-your-price)"},
       {k:"License", v:"Free for profit"}
     ],
-    includes:["Drum loop WAV pack","Multi-genre grooves","Works in any DAW"]
+    includes:["Drums Loop Vol.1 WAV pack","15+ versatile grooves","Professional mix & EQ'd","Tempo and genre labeled"]
   },
 
   "break-ya-neck-vol2": {
     type:"kit", name:"Break Ya Neck — Hip-Hop Vol.2", sub:"Hip-Hop Drum Loops",
-    tagline:"Boom-bap & hip-hop drum loops with serious head-nod factor.",
+    tagline:"Gritty boom-bap grooves — swung, dusty, head-nod factor.",
     cover:"img/packs/break-ya-neck-vol2.jpg", accent:"#d4a017", accent2:"#8a5a00",
     price:"FREE", badge:"FREE", buy:"ntscu",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Hip-Hop","Drum Loops","Free"],
     about:[
-      "Vol.2 of Break Ya Neck — gritty, swung hip-hop and boom-bap drum loops with the kind of groove that makes heads nod from bar one.",
-      "Dusty, characterful and ready for sampling-style productions."
+      "Break Ya Neck Vol.2 — the boom-bap sequel. Gritty, swung hip-hop and dusty funk drum loops with the kind of groove that makes heads nod involuntarily. Sampled grooves, analog swing and character throughout.",
+      "These loops were made for chops, vinyl crackle, Rhodes piano, strings and soulful samples. Perfect for underground hip-hop, boom-bap and instrumental beat tapes."
     ],
     features:[
-      {icon:"fa-drum", t:"Boom-bap grooves", d:"Swung, dusty loops with vintage hip-hop character."},
-      {icon:"fa-record-vinyl", t:"Sample-ready", d:"Perfect under chops, vinyl crackle and Rhodes lines."},
-      {icon:"fa-unlock", t:"Free for profit", d:"Royalty-free for your releases."}
+      {icon:"fa-drum", t:"Authentic boom-bap", d:"Swung, dusty loops with real hip-hop DNA."},
+      {icon:"fa-record-vinyl", t:"Sample-friendly", d:"Designed to sit under jazz chops, vinyl textures and soul samples."},
+      {icon:"fa-music", t:"Analog character", d:"Tape-colored, warm and characterful sound."},
+      {icon:"fa-unlock", t:"Free for profit", d:"No royalties — use in any hip-hop release."}
     ],
     specs:[
       {k:"Content", v:"Hip-hop / boom-bap drum loops"},
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
-      {k:"Price", v:"Free / name-your-price"},
+      {k:"Vibe", v:"Dusty, swung, vintage hip-hop"},
+      {k:"Tempo range", v:"85–110 BPM"},
+      {k:"Price", v:"Free (name-your-price)"},
       {k:"License", v:"Free for profit"}
     ],
-    includes:["Hip-hop drum loop pack","Swung boom-bap grooves","Any-DAW compatible"]
+    includes:["Break Ya Neck Vol.2 WAV loops","All boom-bap grooves","Vinyl and chop-ready","Works in all DAWs"]
   },
 
   "ziploc-vol3": {
     type:"kit", name:"Ziploc — Blue Pack Vol.3", sub:"Afrotrap · Hip-Hop · Trap",
-    tagline:"The Blue Pack — afrotrap & trap loops sealed and ready to flip.",
+    tagline:"The Blue Pack — versatile afrotrap & trap sounds, ready to layer.",
     cover:"img/packs/ziploc-vol3.jpg", accent:"#2e86de", accent2:"#37e1ff",
     price:"FREE", badge:"FREE", buy:"ghruf",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Afrotrap","Hip-Hop","Trap","Free"],
     about:[
-      "Vol.3 of the Ziploc series — the Blue Pack — a mixed bag of afrotrap, hip-hop and trap loops and one-shots, sealed tight and ready to flip into your next hit.",
-      "A go-to grab-bag when you need fresh sounds fast."
+      "Ziploc Vol.3 — the Blue Pack. A curated grab-bag of afrotrap percussion loops, trap drum hits and hip-hop one-shots. Everything's sealed tight and ready to flip. Mix and match loops from different genres, or pull one-shots to layer under your own drums.",
+      "This is the pack for when inspiration is running dry and you need fresh sonic ingredients to spark an idea. All essentials, zero filler."
     ],
     features:[
-      {icon:"fa-box-open", t:"Mixed grab-bag", d:"Loops and one-shots across afrotrap, hip-hop and trap."},
-      {icon:"fa-bolt", t:"Ready to flip", d:"Drop-in sounds to jump-start a beat in seconds."},
-      {icon:"fa-unlock", t:"Free for profit", d:"Royalty-free for commercial productions."}
+      {icon:"fa-box-open", t:"Genre-mixed collection", d:"Afrotrap, hip-hop and trap sounds in one pack."},
+      {icon:"fa-bolt", t:"Drop & flip instantly", d:"Finished loops or one-shots — choose your path."},
+      {icon:"fa-layer-group", t:"Flexible layering", d:"Combine loops from different genres for fresh hybrids."},
+      {icon:"fa-unlock", t:"Free for profit", d:"Zero royalties — release on all platforms."}
     ],
     specs:[
-      {k:"Content", v:"Afrotrap / trap loops & one-shots"},
+      {k:"Content", v:"Afrotrap loops + trap hits + hip-hop one-shots"},
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
-      {k:"Price", v:"Free / name-your-price"},
+      {k:"Genres", v:"Afrotrap, trap, hip-hop"},
+      {k:"Tempo range", v:"95–160 BPM"},
+      {k:"Price", v:"Free (name-your-price)"},
       {k:"License", v:"Free for profit"}
     ],
-    includes:["Ziploc Blue Pack samples","Loops + one-shots","Works in any DAW"]
+    includes:["Ziploc Blue Pack WAV collection","Mixed genre loops","Layerable one-shots","Full genre documentation"]
   }
 
 };
