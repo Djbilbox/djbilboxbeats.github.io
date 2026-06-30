@@ -18,6 +18,14 @@
 <!-- scripts -->
 <script src="assets/js/products-data.js"></script>
 <script>
+/* Load video on click (bypasses YouTube age-restriction) */
+function loadVideoBg(el, src) {
+  if (el.querySelector('iframe')) return; // Already loaded
+  el.innerHTML = `<iframe src="${src}" title="background" allow="autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>`;
+  el.style.pointerEvents = 'none';
+}
+</script>
+<script>
 (function(){
   const params = new URLSearchParams(location.search);
   const id = params.get('id');
@@ -55,7 +63,10 @@
       : `https://www.youtube-nocookie.com/embed/${P.video}?autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&showinfo=0`
     : '';
   const videoBg = bgSrc
-    ? `<div class="pd-video-bg"><iframe src="${bgSrc}" title="background" allow="autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>`
+    ? `<div class="pd-video-bg" onclick="loadVideoBg(this,'${bgSrc}')">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,var(--pa) 0%,var(--pa-h) 100%);opacity:0.3;z-index:0"></div>
+        <div class="pd-video-bg-play"><button><i class="fa-solid fa-play"></i></button></div>
+      </div>`
     : '';
 
   /* ---- price + actions ---- */
