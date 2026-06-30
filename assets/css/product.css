@@ -35,12 +35,11 @@
 
 .pd-hero-inner{position:relative;display:grid;grid-template-columns:minmax(0,420px) 1fr;
   gap:48px;align-items:center;padding:72px 0 64px}
-.pd-cover{position:relative}
-.pd-cover img{width:100%;border-radius:16px;border:1px solid var(--border);
-  box-shadow:0 30px 80px -20px color-mix(in srgb,var(--pa) 55%, #000)}
-.pd-cover .pd-mascot{position:absolute;width:120px;right:-26px;bottom:-26px;
-  filter:drop-shadow(0 10px 20px rgba(0,0,0,.6));animation:pdfloat 5s ease-in-out infinite}
-@keyframes pdfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.pd-cover{position:relative;display:flex;align-items:center;justify-content:center;gap:24px}
+.pd-cover > img:first-child{width:100%;border-radius:16px;border:1px solid var(--border);
+  box-shadow:0 30px 80px -20px color-mix(in srgb,var(--pa) 55%, #000);flex-shrink:0}
+.pd-cover .pd-mascot{width:140px;height:auto;border-radius:12px;
+  box-shadow:0 20px 60px rgba(0,0,0,.4);object-fit:cover;flex-shrink:0}
 
 .pd-eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--pa);
   font-family:var(--font-a);font-weight:700;letter-spacing:.2em;text-transform:uppercase;
