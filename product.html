@@ -46,9 +46,12 @@
   const esc = s => String(s).replace(/'/g,"\\'");
   const back = P.type==='vst' ? {href:'vst.html', label:'VST Plugins'} : {href:'drum-kits.html', label:'Drum Kits'};
 
-  /* ---- hero background video (muted, looping playlist) ---- */
+  /* ---- hero background video (muted, looping — video ID or playlist) ---- */
+  const isPlaylist = P.video && P.video.startsWith('PL');
   const bgSrc = P.video
-    ? `https://www.youtube.com/embed/videoseries?list=${P.video}&autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&showinfo=0`
+    ? isPlaylist
+      ? `https://www.youtube.com/embed/videoseries?list=${P.video}&autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&showinfo=0`
+      : `https://www.youtube.com/embed/${P.video}?autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&showinfo=0`
     : '';
   const videoBg = bgSrc
     ? `<div class="pd-video-bg"><iframe src="${bgSrc}" title="background" allow="autoplay;encrypted-media" frameborder="0"></iframe></div>`
@@ -76,11 +79,16 @@
     `<div class="pd-feat"><i class="fa-solid ${f.icon}"></i><h4>${f.t}</h4><p>${f.d}</p></div>`).join('');
   const specsHtml = (P.specs||[]).map(s=>`<tr><td>${s.k}</td><td>${s.v}</td></tr>`).join('');
   const inclHtml  = (P.includes||[]).map(i=>`<li><i class="fa-solid fa-circle-check"></i> ${i}</li>`).join('');
-  const demoHtml = P.video ? `
+  const demoSrc = P.video
+    ? isPlaylist
+      ? `https://www.youtube.com/embed/videoseries?list=${P.video}&rel=0&modestbranding=1`
+      : `https://www.youtube.com/embed/${P.video}?rel=0&modestbranding=1`
+    : '';
+  const demoHtml = demoSrc ? `
     <section class="pd-section"><div class="pd-wrap">
       <h2 class="pd-h2">Hear it <span>in action</span></h2>
-      <p class="pd-lead">Demos & walkthroughs straight from the DJBILBOX BEATS YouTube channel.</p>
-      <div class="pd-demo-embed"><iframe src="https://www.youtube.com/embed/videoseries?list=${P.video}&rel=0&modestbranding=1"
+      <p class="pd-lead">${isPlaylist ? 'Demos & walkthroughs straight from the DJBILBOX BEATS YouTube channel.' : 'Full demo walkthrough.'}</p>
+      <div class="pd-demo-embed"><iframe src="${demoSrc}"
         title="${P.name} demo" allow="accelerometer;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>
     </div></section>` : '';
 

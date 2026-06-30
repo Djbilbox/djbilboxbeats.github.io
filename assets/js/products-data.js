@@ -45,7 +45,7 @@ window.PRODUCTS = {
     note:"Code ORIENTAL50 · Until Jul 31, 2026",
     buy:"oriental-instrument-djbilbox-beats/ORIENTAL50",
     demo:"oriental-instrument-demo-free-Download",
-    video:"PLbtcZhy947NUC6PqUplrygUgHJSTvS61u",
+    video:"m7jGEmFAMHM",
     tags:["Oriental","Arabic","Win · Mac","Rompler"],
     about:[
       "ORIENTAL INSTRUMENT puts the heart of the Middle East under your fingertips. Multi-sampled oud, qanun, ney, saz, oriental strings and live percussion — recorded and tuned for trap, afro, raï'n'b and cinematic productions.",
