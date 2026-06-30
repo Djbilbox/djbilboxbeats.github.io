@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact — DJBILBOX BEATS</title>
+<meta name="description" content="Contactez DJBILBOX BEATS — Mix, mastering, vidéos, web dev, branding. Réponse rapide.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/chat.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+.contact-wrap { max-width: 600px; margin: 60px auto; padding: 0 24px; }
+.contact-h1 { font-family: var(--font-a); font-size: 2.4rem; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
+.contact-sub { color: var(--text-3); font-size: 1.02rem; margin-bottom: 40px; }
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.contact-input, .contact-textarea {
+  background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+  padding: 12px 14px; border-radius: 9px; font-family: var(--font); font-size: 0.95rem;
+  outline: none; transition: .18s;
+}
+.contact-input:focus, .contact-textarea:focus {
+  border-color: var(--accent); background: var(--surface);
+}
+.contact-textarea { resize: none; min-height: 120px; }
+.contact-btn {
+  background: linear-gradient(135deg, #FFE34D 0%, var(--accent) 50%, #B8960F 100%);
+  color: #141414; border: none; padding: 14px 24px; border-radius: 9px;
+  font-family: var(--font-a); font-weight: 700; text-transform: uppercase; font-size: 0.9rem;
+  cursor: pointer; transition: .18s; box-shadow: 0 8px 24px rgba(212,175,55,.35);
+}
+.contact-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(212,175,55,.5); }
+.contact-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.contact-status { text-align: center; padding: 16px; border-radius: 9px; display: none; margin-top: 16px; }
+.contact-status.success { background: rgba(29,185,84,.2); color: var(--green); display: block; }
+.contact-status.error { background: rgba(212,175,55,.2); color: var(--accent); display: block; }
+</style>
+</head>
+<body data-page="services">
+
+<main class="contact-wrap">
+  <h1 class="contact-h1">Contact <span style="color:var(--accent)">rapide</span></h1>
+  <p class="contact-sub">Dites-nous ce que vous cherchez. Réponse sous 24h.</p>
+
+  <form class="contact-form" id="contactForm" onsubmit="submitContactForm(event)">
+    <input type="text" class="contact-input" name="name" placeholder="Votre nom *" required>
+    <input type="email" class="contact-input" name="email" placeholder="Votre email *" required>
+    <input type="tel" class="contact-input" name="phone" placeholder="Votre téléphone (optionnel)">
+    <textarea class="contact-textarea" name="message" placeholder="Votre demande... *" required></textarea>
+    <button type="submit" class="contact-btn" id="submitBtn">Envoyer ma demande</button>
+    <div class="contact-status" id="contactStatus"></div>
+  </form>
+</main>
+
+<script src="assets/js/site.js"></script>
+<script src="assets/js/chat.js"></script>
+
+<script>
+function submitContactForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('submitBtn');
+  const status = document.getElementById('contactStatus');
+
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+
+  const formData = new FormData(form);
+  formData.append('_subject', `Nouvelle demande de contact — ${formData.get('name')}`);
+  formData.append('_captcha', 'false');
+  formData.append('_next', location.href);
+
+  fetch('https://formspree.io/f/mjvzgyeo', {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).then(res => {
+    if (res.ok) {
+      status.className = 'contact-status success';
+      status.innerHTML = `<i class="fa-solid fa-circle-check"></i> <strong>Merci!</strong> On vous contactera rapidement à <strong>${formData.get('email')}</strong>`;
+      form.reset();
+      btn.textContent = 'Envoyer ma demande';
+      btn.disabled = false;
+    } else {
+      throw new Error('Erreur');
+    }
+  }).catch(err => {
+    status.className = 'contact-status error';
+    status.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Erreur. Contactez <strong>djbilboxbeats@gmail.com</strong> directement.`;
+    btn.textContent = 'Envoyer ma demande';
+    btn.disabled = false;
+  });
+}
+</script>
+</body>
+</html>

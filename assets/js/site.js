@@ -13,6 +13,7 @@ const NAV = [
   { key:'vst',         label:'VST',         href:'vst.html',            icon:'fa-sliders' },
   { key:'drumkits',    label:'Drum Kits',   href:'drum-kits.html',      icon:'fa-drum' },
   { key:'services',    label:'Services',    href:'services.html',       icon:'fa-headphones' },
+  { key:'contact',     label:'Contact',     href:'contact.html',        icon:'fa-envelope' },
   { key:'reviews',     label:'Reviews',     href:'reviews.html',        icon:'fa-star' },
   { key:'license',     label:'License',     href:'license.html',        icon:'fa-id-card' },
   { key:'discography', label:'Discography', href:'discography.html',    icon:'fa-record-vinyl' },
