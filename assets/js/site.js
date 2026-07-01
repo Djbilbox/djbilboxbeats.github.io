@@ -201,11 +201,38 @@ function renderCartItems(){
   const t=Cart.total();
   const tEl=document.getElementById('cartTotal'); if(tEl) tEl.textContent = t>0?('€'+t.toFixed(2)):'FREE';
 }
+/* Load Gumroad's overlay once. When several Gumroad product links exist on the
+   same page, the overlay auto-bundles them into ONE payment (Bundle Buy). */
+function loadGumroadOverlay(cb){
+  if(window.__grLoaded){ cb&&cb(); return; }
+  const s=document.createElement('script');
+  s.src='https://gumroad.com/js/gumroad.js';
+  s.onload=()=>{ window.__grLoaded=true; cb&&cb(); };
+  s.onerror=()=>{ cb&&cb(); };
+  document.head.appendChild(s);
+}
+
 function checkout(){
-  const items=Cart.get();
+  const items=Cart.get().filter(it=>it.buy);
   if(!items.length){ openCart(); return; }
-  // Open each product on Gumroad (Gumroad keeps them in its own cart for a single payment).
-  items.forEach(it=>window.open(gumroadUrl(it.buy),'_blank','noopener'));
+
+  // Put a Gumroad overlay link for every cart item into the page so Gumroad
+  // bundles them together, then open the overlay on the first one.
+  let box=document.getElementById('grBundle');
+  if(!box){ box=document.createElement('div'); box.id='grBundle';
+            box.style.cssText='position:absolute;left:-9999px;top:-9999px'; document.body.appendChild(box); }
+  box.innerHTML=items.map(it=>
+    `<a class="gumroad-button" href="${gumroadUrl(it.buy)}" data-gumroad-overlay-checkout="true">Buy</a>`
+  ).join('');
+
+  loadGumroadOverlay(()=>{
+    // give the script a tick to attach handlers to the freshly-added links
+    setTimeout(()=>{
+      const first=box.querySelector('a.gumroad-button');
+      if(first){ first.click(); }
+      else { window.open(GUMROAD_STORE,'_blank','noopener'); }
+    }, 350);
+  });
 }
 
 /* ---------- Gumroad checkout ----------

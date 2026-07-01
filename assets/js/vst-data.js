@@ -17,4 +17,9 @@ window.VSTS = [
     tags:["Synthwave","VST3 · Standalone"], price:"18.45", old:"36.90", badge:"🔥 -50%",
     buy:"ykdzli/VICECITY50", demo:"",
     note:"Code: VICECITY50 · Until Jul 31, 2026" },
+
+  { id:"bigbass", name:"BIGBASS — LA Lowrider Bass", img:"img/vst/bigbass-vst.jpg",
+    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], price:"39", badge:"🆕 New",
+    buy:"xaziro", demo:"",
+    note:"80 presets · 6 real bass modes" },
 ];
