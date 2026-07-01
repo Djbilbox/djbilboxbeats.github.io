@@ -55,13 +55,15 @@ function loadVideoBg(el, src) {
   const esc = s => String(s).replace(/'/g,"\\'");
   const back = P.type==='vst' ? {href:'vst.html', label:'VST Plugins'} : {href:'drum-kits.html', label:'Drum Kits'};
 
-  /* ---- hero background video (muted, looping — video ID or playlist) ---- */
-  const isPlaylist = P.video && P.video.startsWith('PL');
-  const bgSrc = P.video
+  /* ---- hero background video — self-hosted MP4 (no age-gate) OR YouTube ---- */
+  const isMp4 = P.video && /\.mp4($|\?)/i.test(P.video);
+  const isPlaylist = P.video && !isMp4 && P.video.startsWith('PL');
+  const bgSrc = (P.video && !isMp4)
     ? isPlaylist
       ? `https://www.youtube-nocookie.com/embed/videoseries?list=${P.video}&autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&showinfo=0`
       : `https://www.youtube-nocookie.com/embed/${P.video}?autoplay=1&mute=1&controls=0&loop=1&playsinline=1&modestbranding=1&rel=0&disablekb=1&showinfo=0`
     : '';
+  /* MP4: no heavy autoplay hero — the clip plays in the demo section below. */
   const videoBg = bgSrc
     ? `<div class="pd-video-bg" style="opacity:0;pointer-events:none" onclick="loadVideoBg(this,'${bgSrc}')"></div>`
     : '';
@@ -88,12 +90,18 @@ function loadVideoBg(el, src) {
     `<div class="pd-feat"><i class="fa-solid ${f.icon}"></i><h4>${f.t}</h4><p>${f.d}</p></div>`).join('');
   const specsHtml = (P.specs||[]).map(s=>`<tr><td>${s.k}</td><td>${s.v}</td></tr>`).join('');
   const inclHtml  = (P.includes||[]).map(i=>`<li><i class="fa-solid fa-circle-check"></i> ${i}</li>`).join('');
-  const demoSrc = P.video
+  const demoSrc = (P.video && !isMp4)
     ? isPlaylist
       ? `https://www.youtube-nocookie.com/embed/videoseries?list=${P.video}&rel=0&modestbranding=1`
       : `https://www.youtube-nocookie.com/embed/${P.video}?rel=0&modestbranding=1`
     : '';
-  const demoHtml = demoSrc ? `
+  const demoHtml = isMp4 ? `
+    <section class="pd-section"><div class="pd-wrap">
+      <h2 class="pd-h2">Hear it <span>in action</span></h2>
+      <p class="pd-lead">Full demo walkthrough — plays right here, no age restriction.</p>
+      <div class="pd-demo-embed"><video src="${P.video}" controls playsinline preload="none"
+        ${P.poster?`poster="${P.poster}"`:''} style="width:100%;height:100%;object-fit:cover;background:#000"></video></div>
+    </div></section>` : demoSrc ? `
     <section class="pd-section"><div class="pd-wrap">
       <h2 class="pd-h2">Hear it <span>in action</span></h2>
       <p class="pd-lead">${isPlaylist ? 'Demos & walkthroughs straight from the DJBILBOX BEATS YouTube channel.' : 'Full demo walkthrough.'}</p>

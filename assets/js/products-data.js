@@ -7,6 +7,40 @@
 window.PRODUCTS = {
 
   /* ===================== VST PLUGINS ===================== */
+  "bigbass": {
+    type:"vst", name:"BIGBASS", sub:"LA Lowrider Bass Synthesizer",
+    tagline:"West-Coast lowrider bass in one plug-in — 6 real bass engines, 80 presets, VST3 & Standalone for Win & Mac.",
+    cover:"img/vst/bigbass-vst.jpg", accent:"#ffcf33", accent2:"#7b2ff7",
+    price:"39", badge:"🆕 New",
+    note:"80 presets · 6 real bass modes · Win & Mac",
+    buy:"xaziro", demo:"",
+    video:"media/bigbass-promo.mp4", poster:"img/vst/bigbass-vst.jpg",
+    tags:["Lowrider Bass","G-Funk","VST3","Standalone","Win · Mac"],
+    about:[
+      "BIGBASS is a Los Angeles lowrider bass synthesizer built for trap, G-funk, drill and West-Coast producers. Behind its chrome-and-gold Pioneer-style faceplate sits a serious sound engine: six real, pitch-detected bass sources — SUB, SLAM, PUNCH, GROWL, SCREAM and DOOM — so every preset hits with its own character instead of the same tired 808.",
+      "Eighty factory presets are organised around an LA theme — Los Santos, Lakers and Los Angeles — each one ready to drop into a beat. Shape the sound with glide, a 24 dB filter with envelope, full ADSR, drive and an FX chain (reverb, delay, distortion), all driven by animated chrome lowrider-spinner knobs. Play a note and the candy-purple Cadillac on screen hits the hydraulics.",
+      "Ships as a 64-bit VST3 plug-in and a standalone app for both Windows and macOS. Instant download, unlocked with your personal serial key."
+    ],
+    features:[
+      {icon:"fa-wave-square", t:"6 real bass engines", d:"SUB, SLAM, PUNCH, GROWL, SCREAM & DOOM — real pitch-detected bass sources, not one recycled 808."},
+      {icon:"fa-list", t:"80 LA presets", d:"Los Santos, Lakers & LA themed presets — instantly playable, sorted by vibe."},
+      {icon:"fa-sliders", t:"Full synth control", d:"Glide, 24 dB filter + envelope, ADSR, drive and an FX chain (reverb, delay, distortion)."},
+      {icon:"fa-gem", t:"Lowrider interface", d:"Chrome/gold spinner knobs, backlit Pioneer-style screen, animated spectrum and hydraulic car."},
+      {icon:"fa-desktop", t:"Win & Mac", d:"64-bit VST3 + Standalone for Windows and macOS (universal Intel + Apple Silicon)."},
+      {icon:"fa-bolt", t:"Punchy & clean", d:"Tuned across the keyboard with smooth saturation — big low end without the fizz."}
+    ],
+    specs:[
+      {k:"Formats", v:"VST3 · Standalone"},
+      {k:"Platform", v:"Windows 10/11 & macOS (64-bit)"},
+      {k:"Polyphony", v:"Up to 8 voices"},
+      {k:"Engine", v:"6 sampled bass modes + filter, ADSR, FX chain"},
+      {k:"Presets", v:"80 factory presets (Los Santos / Lakers / LA)"},
+      {k:"Install", v:"Instant download · serial-key activation"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["BIGBASS VST3 (64-bit)","BIGBASS Standalone app","80 factory presets","Windows installer + macOS DMG","User manual (PDF)"]
+  },
+
   "vice-city": {
     type:"vst", name:"Vice City", sub:"Virtual Polyphonic Synthesizer",
     tagline:"Neon-soaked 80s synthwave in a single plug-in — VST3 & Standalone.",
@@ -45,7 +79,7 @@ window.PRODUCTS = {
     note:"Code ORIENTAL50 · Until Jul 31, 2026",
     buy:"oriental-instrument-djbilbox-beats/ORIENTAL50",
     demo:"oriental-instrument-demo-free-Download",
-    video:"m7jGEmFAMHM",
+    video:"media/oriental-demo.mp4", poster:"media/oriental-poster.jpg",
     tags:["Oriental","Arabic","Win · Mac","Rompler"],
     about:[
       "ORIENTAL INSTRUMENT puts the heart of the Middle East under your fingertips. Multi-sampled oud, qanun, ney, saz, oriental strings and live percussion — recorded and tuned for trap, afro, raï'n'b and cinematic productions.",

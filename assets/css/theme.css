@@ -310,3 +310,10 @@ img{display:block;max-width:100%}
 .cart-clear:hover{color:var(--accent)}
 .cart-note{font-size:.66rem;color:var(--text-4);line-height:1.5;text-align:center;margin:0}
 @media(max-width:560px){ .cart-drawer{width:100%} }
+
+/* ── Google Translate — hide the ugly injected bar/branding ───────────────── */
+.goog-te-banner-frame,.goog-te-banner-frame.skiptranslate,iframe.skiptranslate{display:none!important;visibility:hidden!important;height:0!important}
+body{top:0!important;position:static!important}
+.lang-wrap{display:none!important}          /* hide the "Sélectionner une langue / Fourni par Google" bar */
+#goog-gt-tt,.goog-te-balloon-frame,.goog-tooltip{display:none!important}
+.goog-text-highlight{background:none!important;box-shadow:none!important;color:inherit!important}

@@ -117,17 +117,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     mountAiChat();
     mountPromo();
   }
-  /* Google Translate widget */
-  window.googleTranslateElementInit = function(){
-    new google.translate.TranslateElement(
-      {pageLanguage:'en',includedLanguages:'en,fr,es,de,it,pt,ar'},
-      'google_translate_element'
-    );
-  };
-  const s=document.createElement('script');
-  s.src='//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-  s.async=true;
-  document.head.appendChild(s);
+  /* Google Translate widget disabled — the injected bar/branding looked ugly.
+     (Widget hidden via CSS and the script no longer loaded.) */
 });
 
 /* ---------- Sticky promo dismiss ---------- */
