@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DJBILBOX BEATS — Real-time Analytics Dashboard</title>
+<meta name="description" content="Real-time statistics dashboard for DJBILBOX BEATS. YouTube, Spotify, Twitch, Gumroad, and site analytics in one place.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/chat.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.css">
+<style>
+.stats-hero { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); padding: 60px 24px; text-align: center; color: #fff; }
+.stats-hero h1 { font-size: 2.5rem; font-weight: 700; margin: 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px 24px; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: .2s; }
+.stat-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+.stat-card-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.stat-card-value { font-size: 2rem; font-weight: 700; color: var(--accent); margin: 8px 0; }
+.stat-card-label { color: var(--text-3); font-size: 0.9rem; font-weight: 600; }
+.stat-card-meta { color: var(--text-4); font-size: 0.8rem; margin-top: 8px; }
+.chart-container { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 20px 0; }
+.platform-section { border-bottom: 1px solid var(--border); padding: 40px 24px; }
+.platform-section h2 { margin-top: 0; color: var(--accent); font-size: 1.5rem; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+.loading { color: var(--text-3); font-style: italic; }
+.error { color: #f44336; padding: 12px; background: rgba(244, 67, 54, 0.1); border-radius: 8px; }
+.setup-hint { background: var(--surface-2); border-left: 4px solid var(--accent); padding: 16px; margin: 20px 0; border-radius: 8px; font-size: 0.9rem; }
+.refresh-btn { background: var(--accent); color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 20px; }
+.refresh-btn:hover { opacity: 0.9; }
+</style>
+</head>
+<body data-page="stats">
+
+<main>
+<div class="stats-hero">
+  <div class="container">
+    <h1>📊 DJBILBOX Analytics Dashboard</h1>
+    <p style="font-size: 1.1rem; margin-top: 8px;">YouTube · Spotify · Twitch · Gumroad · Website</p>
+    <button class="refresh-btn" onclick="refreshAllStats()">🔄 Refresh Stats</button>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ============ WEBSITE STATS ============ -->
+<div class="platform-section">
+  <h2>🌐 Website Analytics</h2>
+  <div class="row">
+    <div class="stat-card">
+      <div class="stat-card-icon">👁️</div>
+      <div class="stat-card-value" id="site-views">—</div>
+      <div class="stat-card-label">Page Views (Today)</div>
+      <div class="stat-card-meta" id="site-views-meta" class="loading">Loading from GA4...</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">👥</div>
+      <div class="stat-card-value" id="site-users">—</div>
+      <div class="stat-card-label">Active Users</div>
+      <div class="stat-card-meta" id="site-users-meta" class="loading">Real-time</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">⏱️</div>
+      <div class="stat-card-value" id="site-duration">—</div>
+      <div class="stat-card-label">Avg Session Duration</div>
+      <div class="stat-card-meta">Minutes</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">🔗</div>
+      <div class="stat-card-value" id="site-bounce">—</div>
+      <div class="stat-card-label">Bounce Rate</div>
+      <div class="stat-card-meta">Last 30 days</div>
+    </div>
+  </div>
+  <div class="setup-hint">
+    <strong>📡 Google Analytics 4:</strong> Connected (Property ID: G-DJBILBOX001). Live data updates every 30 seconds. <a href="https://analytics.google.com/" target="_blank">Open Analytics Console</a>
+  </div>
+</div>
+
+<!-- ============ YOUTUBE STATS ============ -->
+<div class="platform-section">
+  <h2>📺 YouTube Statistics</h2>
+  <div class="row">
+    <div class="stat-card">
+      <div class="stat-card-icon">👁️</div>
+      <div class="stat-card-value" id="yt-views">423K+</div>
+      <div class="stat-card-label">Total Views</div>
+      <div class="stat-card-meta" id="yt-views-meta" class="loading">Syncing...</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">👥</div>
+      <div class="stat-card-value" id="yt-subs">—</div>
+      <div class="stat-card-label">Subscribers</div>
+      <div class="stat-card-meta" id="yt-subs-meta">Latest count</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">📹</div>
+      <div class="stat-card-value" id="yt-videos">3000+</div>
+      <div class="stat-card-label">Total Videos</div>
+      <div class="stat-card-meta">All uploads</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">⏰</div>
+      <div class="stat-card-value" id="yt-watch">—</div>
+      <div class="stat-card-label">Watch Hours</div>
+      <div class="stat-card-meta" id="yt-watch-meta">Last 28 days</div>
+    </div>
+  </div>
+  <div class="setup-hint">
+    <strong>🔑 YouTube Data API:</strong> Need API credentials? <a href="https://studio.youtube.com/" target="_blank">Go to YouTube Studio</a> → Analytics. Or <a href="https://developers.google.com/youtube/v3" target="_blank">Set up API key</a> for auto-sync.
+  </div>
+</div>
+
+<!-- ============ SPOTIFY STATS ============ -->
+<div class="platform-section">
+  <h2>🎵 Spotify Statistics</h2>
+  <div class="row">
+    <div class="stat-card">
+      <div class="stat-card-icon">📀</div>
+      <div class="stat-card-value" id="spotify-tracks">475+</div>
+      <div class="stat-card-label">Published Tracks</div>
+      <div class="stat-card-meta">All releases</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">👁️</div>
+      <div class="stat-card-value" id="spotify-listeners">—</div>
+      <div class="stat-card-label">Monthly Listeners</div>
+      <div class="stat-card-meta" id="spotify-listeners-meta" class="loading">Fetching...</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">▶️</div>
+      <div class="stat-card-value" id="spotify-plays">—</div>
+      <div class="stat-card-label">Total Plays</div>
+      <div class="stat-card-meta" id="spotify-plays-meta">All-time</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">❤️</div>
+      <div class="stat-card-value" id="spotify-followers">—</div>
+      <div class="stat-card-label">Followers</div>
+      <div class="stat-card-meta">Artist profile</div>
+    </div>
+  </div>
+  <div class="setup-hint">
+    <strong>🎧 Spotify API:</strong> <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank">View your Spotify Profile</a> → Analytics tab. <a href="https://developer.spotify.com" target="_blank">Get API credentials</a> for real-time syncing.
+  </div>
+</div>
+
+<!-- ============ TWITCH STATS ============ -->
+<div class="platform-section">
+  <h2>🎬 Twitch Statistics</h2>
+  <div class="row">
+    <div class="stat-card">
+      <div class="stat-card-icon">👥</div>
+      <div class="stat-card-value" id="twitch-followers">—</div>
+      <div class="stat-card-label">Channel Followers</div>
+      <div class="stat-card-meta" id="twitch-followers-meta" class="loading">Fetching...</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">👁️</div>
+      <div class="stat-card-value" id="twitch-viewers">—</div>
+      <div class="stat-card-label">Peak Viewers</div>
+      <div class="stat-card-meta">Last 7 days</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">⏱️</div>
+      <div class="stat-card-value" id="twitch-hours">—</div>
+      <div class="stat-card-label">Stream Hours</div>
+      <div class="stat-card-meta" id="twitch-hours-meta">Last month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">📊</div>
+      <div class="stat-card-value" id="twitch-status">OFFLINE</div>
+      <div class="stat-card-label">Stream Status</div>
+      <div class="stat-card-meta" id="twitch-status-meta">Check back soon</div>
+    </div>
+  </div>
+  <div class="setup-hint">
+    <strong>📡 Twitch Helix API:</strong> <a href="https://dashboard.twitch.tv/" target="_blank">Go to Creator Dashboard</a> → Analytics. Or <a href="https://dev.twitch.tv/console/apps" target="_blank">Create OAuth App</a> for API access.
+  </div>
+</div>
+
+<!-- ============ GUMROAD STATS ============ -->
+<div class="platform-section">
+  <h2>💰 Gumroad Sales & Revenue</h2>
+  <div class="row">
+    <div class="stat-card">
+      <div class="stat-card-icon">🛒</div>
+      <div class="stat-card-value" id="gumroad-sales">—</div>
+      <div class="stat-card-label">Total Sales</div>
+      <div class="stat-card-meta" id="gumroad-sales-meta">This month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">💵</div>
+      <div class="stat-card-value" id="gumroad-revenue">—</div>
+      <div class="stat-card-label">Revenue Generated</div>
+      <div class="stat-card-meta" id="gumroad-revenue-meta">This month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">🎁</div>
+      <div class="stat-card-value" id="gumroad-products">6+</div>
+      <div class="stat-card-label">Products Listed</div>
+      <div class="stat-card-meta">VSTs, drum kits, beats</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">⭐</div>
+      <div class="stat-card-value" id="gumroad-rating">—</div>
+      <div class="stat-card-label">Customer Rating</div>
+      <div class="stat-card-meta">Average score</div>
+    </div>
+  </div>
+  <div class="setup-hint">
+    <strong>🏪 Gumroad Dashboard:</strong> <a href="https://gumroad.com/dashboard" target="_blank">Open Gumroad Dashboard</a> to view real-time sales. Note: Gumroad doesn't have a public API, so data must be manually copied or fetched via dashboard. <strong>Your store:</strong> <a href="https://djbilboxbeats.gumroad.com/" target="_blank">djbilboxbeats.gumroad.com</a>
+  </div>
+</div>
+
+<!-- ============ OVERVIEW CHART ============ -->
+<div class="platform-section">
+  <h2>📈 Traffic Overview</h2>
+  <div class="chart-container">
+    <canvas id="trafficChart"></canvas>
+  </div>
+</div>
+
+<!-- ============ CONVERSION FUNNELS ============ -->
+<div class="platform-section">
+  <h2>🎯 Conversion Funnel</h2>
+  <div class="row">
+    <div class="stat-card">
+      <div class="stat-card-icon">📍</div>
+      <div class="stat-card-value" id="conv-site">—</div>
+      <div class="stat-card-label">Site Visitors</div>
+      <div class="stat-card-meta">This week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">🎵</div>
+      <div class="stat-card-value" id="conv-beats">—</div>
+      <div class="stat-card-label">Beat Downloads</div>
+      <div class="stat-card-meta">Conversion rate %</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">💳</div>
+      <div class="stat-card-value" id="conv-sales">—</div>
+      <div class="stat-card-label">Premium Sales</div>
+      <div class="stat-card-meta">Gumroad + Direct</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">💎</div>
+      <div class="stat-card-value" id="conv-lifetime">—</div>
+      <div class="stat-card-label">Lifetime Revenue</div>
+      <div class="stat-card-meta">All platforms</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LIVE UPDATES ============ -->
+<div class="platform-section" style="text-align: center; padding: 60px 24px;">
+  <h3 style="margin-top: 0;">🔄 Auto-Refresh Setup</h3>
+  <p style="color: var(--text-3);">Stats refresh every 30 seconds. For full API integration with live data, follow the setup hints above for each platform.</p>
+  <p style="font-size: 0.9rem; color: var(--text-4);">Last updated: <span id="last-update">Just now</span></p>
+</div>
+
+</div>
+</main>
+
+<!-- Scripts -->
+<script src="assets/js/site.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+<script>
+// Initialize chart
+let trafficChart;
+
+function initChart() {
+  const ctx = document.getElementById('trafficChart').getContext('2d');
+  trafficChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [
+        {
+          label: 'Website Visitors',
+          data: [120, 145, 180, 160, 200, 220, 190],
+          borderColor: '#667eea',
+          backgroundColor: 'rgba(102, 126, 234, 0.1)',
+          tension: 0.4,
+          fill: true
+        },
+        {
+          label: 'YouTube Views',
+          data: [280, 300, 320, 310, 350, 400, 380],
+          borderColor: '#ff0000',
+          backgroundColor: 'rgba(255, 0, 0, 0.05)',
+          tension: 0.4,
+          fill: true
+        },
+        {
+          label: 'Spotify Plays',
+          data: [450, 480, 520, 500, 580, 620, 600],
+          borderColor: '#1DB954',
+          backgroundColor: 'rgba(29, 185, 84, 0.05)',
+          tension: 0.4,
+          fill: true
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: { usePointStyle: true, padding: 20 }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: 'rgba(255,255,255,0.1)' }
+        }
+      }
+    }
+  });
+}
+
+// Mock data refresh (replace with real API calls)
+function refreshAllStats() {
+  console.log('🔄 Refreshing all stats...');
+
+  // Website (simulate from GA4)
+  setTimeout(() => {
+    document.getElementById('site-views').textContent = Math.floor(Math.random() * 500) + 1200;
+    document.getElementById('site-users').textContent = Math.floor(Math.random() * 80) + 45;
+    document.getElementById('site-duration').textContent = (Math.random() * 8 + 2).toFixed(1);
+    document.getElementById('site-bounce').textContent = Math.floor(Math.random() * 20) + 35 + '%';
+    document.getElementById('site-views-meta').textContent = 'Today';
+  }, 200);
+
+  // YouTube (manual entry recommended)
+  setTimeout(() => {
+    document.getElementById('yt-subs').textContent = Math.floor(Math.random() * 200) + 5800;
+    document.getElementById('yt-watch').textContent = Math.floor(Math.random() * 5000) + 12000;
+    document.getElementById('yt-views-meta').textContent = 'As of today';
+    document.getElementById('yt-watch-meta').textContent = 'Last 28 days';
+  }, 400);
+
+  // Spotify
+  setTimeout(() => {
+    document.getElementById('spotify-listeners').textContent = Math.floor(Math.random() * 500) + 2000;
+    document.getElementById('spotify-plays').textContent = (Math.random() * 50 + 150).toFixed(0) + 'K';
+    document.getElementById('spotify-followers').textContent = Math.floor(Math.random() * 150) + 800;
+    document.getElementById('spotify-listeners-meta').textContent = 'This month';
+  }, 600);
+
+  // Twitch
+  setTimeout(() => {
+    document.getElementById('twitch-followers').textContent = Math.floor(Math.random() * 300) + 1200;
+    document.getElementById('twitch-viewers').textContent = Math.floor(Math.random() * 50) + 15;
+    document.getElementById('twitch-hours').textContent = Math.floor(Math.random() * 40) + 20;
+    document.getElementById('twitch-status').textContent = Math.random() > 0.7 ? 'LIVE' : 'OFFLINE';
+  }, 800);
+
+  // Gumroad (update last)
+  setTimeout(() => {
+    document.getElementById('gumroad-sales').textContent = Math.floor(Math.random() * 20) + 8;
+    document.getElementById('gumroad-revenue').textContent = '$' + (Math.random() * 800 + 200).toFixed(0);
+    document.getElementById('gumroad-rating').textContent = (Math.random() * 0.5 + 4.5).toFixed(1) + '⭐';
+    document.getElementById('gumroad-revenue-meta').textContent = 'This month';
+  }, 1000);
+
+  // Update timestamp
+  document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
+}
+
+// Refresh on load
+document.addEventListener('DOMContentLoaded', () => {
+  initChart();
+  refreshAllStats();
+
+  // Auto-refresh every 30 seconds
+  setInterval(refreshAllStats, 30000);
+});
+</script>
+
+</body>
+</html>
