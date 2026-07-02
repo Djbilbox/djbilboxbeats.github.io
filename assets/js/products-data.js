@@ -269,6 +269,286 @@ window.PRODUCTS = {
       {k:"License", v:"Free for profit"}
     ],
     includes:["Ziploc Blue Pack WAV collection","Mixed genre loops","Layerable one-shots","Full genre documentation"]
+  },
+
+  /* ===================== PREMIUM KITS (2026) ===================== */
+  "tone-vault": {
+    type:"kit", name:"TONE VAULT", sub:"Ultimate Instrument One-Shot Kit",
+    tagline:"A vault of pro instrument one-shots — keys, plucks, bells, brass, strings & synths, ready to compose.",
+    cover:"img/packs/tone-vault.jpg", accent:"#d4a017", accent2:"#7b2ff7",
+    price:"15", badge:"🆕 New",
+    note:"Instant download · royalty-free",
+    buy:"yrkzl",
+    video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
+    tags:["One-Shots","Instruments","Melody","WAV"],
+    about:[
+      "TONE VAULT is the instrument one-shot library every melody-maker needs on their shelf. Instead of loops that box you into someone else's progression, you get clean, individually-tuned single hits — keys, plucks, bells, mallets, brass, strings, guitars and signature synths — so every melody you write is 100% your own.",
+      "Each sample is key-labeled, trimmed and mixed to sit in a modern beat with zero cleanup. Load them into your sampler, chop them, layer them and build harmonies that cut through the mix — from emotional trap and R&B to drill, afro and pop.",
+      "One purchase, unlimited melodies. Fully royalty-free for your commercial releases."
+    ],
+    features:[
+      {icon:"fa-piano-keyboard", t:"Multi-instrument vault", d:"Keys, plucks, bells, brass, strings, guitars and synth one-shots in one kit."},
+      {icon:"fa-key", t:"Key-labeled & tuned", d:"Every hit tagged with its note so you build chords and melodies instantly."},
+      {icon:"fa-layer-group", t:"Layer & chop ready", d:"Clean transients and tails — perfect for sampler chopping and stacking."},
+      {icon:"fa-unlock", t:"Royalty-free", d:"Use in commercial releases on every platform, no clearance needed."}
+    ],
+    specs:[
+      {k:"Content", v:"Instrument one-shots (multi-category)"},
+      {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
+      {k:"Labeling", v:"Key-tagged filenames"},
+      {k:"Use", v:"Melodies, chords, layering, sound design"},
+      {k:"Price", v:"€15"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["TONE VAULT one-shot library","Key-labeled WAV samples","Multi-instrument categories","Works in all DAWs & samplers"]
+  },
+
+  "void-signals": {
+    type:"kit", name:"VOID SIGNALS", sub:"19GB SFX & Cinematic Sound Design Suite",
+    tagline:"A massive 19GB cinematic arsenal — risers, impacts, drones, textures & FX (feat. Boom Library).",
+    cover:"img/packs/void-signals.jpg", accent:"#37e1ff", accent2:"#7b5cff",
+    price:"30", badge:"🔊 19GB",
+    note:"19GB · feat. Boom Library · royalty-free",
+    buy:"mkijdn",
+    video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
+    tags:["SFX","Cinematic","Sound Design","19GB"],
+    about:[
+      "VOID SIGNALS is a professional-grade, 19GB sound design suite built for producers, film composers, trailer editors and beatmakers who want cinematic weight. Featuring content from the industry-standard Boom Library, it delivers risers, downshifters, braams, impacts, whooshes, drones, atmospheres, glitches and organic textures — the exact toolkit used on modern trailers and games.",
+      "Whether you're scoring a short film, designing transitions for a beat, or adding tension to a drop, VOID SIGNALS gives you broadcast-quality sources that instantly raise your production value. Everything is recorded and mastered at high resolution for maximum flexibility.",
+      "A serious library at an unbeatable price — 19GB of cinematic power, royalty-free."
+    ],
+    features:[
+      {icon:"fa-clapperboard", t:"Cinematic arsenal", d:"Risers, impacts, braams, whooshes, drones, atmospheres and textures."},
+      {icon:"fa-industry", t:"Feat. Boom Library", d:"Content from the industry-standard sound-design house used on films & games."},
+      {icon:"fa-database", t:"19GB of content", d:"A massive collection covering trailers, transitions, tension and ambience."},
+      {icon:"fa-unlock", t:"Royalty-free", d:"Cleared for commercial music, film, video and game projects."}
+    ],
+    specs:[
+      {k:"Content", v:"Cinematic SFX & sound-design suite"},
+      {k:"Size", v:"19 GB"},
+      {k:"Format", v:"High-resolution WAV"},
+      {k:"Sources", v:"Featuring Boom Library"},
+      {k:"Price", v:"€30"},
+      {k:"License", v:"Royalty-free for music, film & games"}
+    ],
+    includes:["19GB cinematic SFX suite","Risers, impacts, drones & textures","Boom Library-sourced content","Trailer & game-ready sound design"]
+  },
+
+  "ghost-voice": {
+    type:"kit", name:"GHOST VOICE", sub:"Premium Vocal Hooks, Chops & Acapellas",
+    tagline:"Studio-recorded vocal hooks, chops, adlibs & acapellas — drop them in and instantly humanize your beats.",
+    cover:"img/packs/ghost-voice.jpg", accent:"#ff3ca6", accent2:"#7b5cff",
+    price:"20", badge:"🆕 New",
+    note:"Dry & wet · key & BPM labeled · royalty-free",
+    buy:"fnpdxf",
+    video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
+    tags:["Vocals","Acapellas","Hooks","Chops"],
+    about:[
+      "GHOST VOICE is a premium vocal toolkit that instantly adds a human, radio-ready top line to your instrumentals. Inside you'll find full hooks, catchy phrases, chopped syllables, adlibs and clean acapellas — professionally recorded, tuned and mixed to sit on top of any beat.",
+      "Perfect for trap, R&B, afro, drill, house and pop, the vocals are labeled by key and BPM so they lock to your project in seconds. Chop them, pitch them, reverse them or run them through your FX chain to create hooks and vocal textures nobody else has.",
+      "Turn instrumentals into finished songs — royalty-free, no features to clear."
+    ],
+    features:[
+      {icon:"fa-microphone-lines", t:"Hooks, chops & adlibs", d:"Full phrases, syllable chops and adlibs to build catchy top lines."},
+      {icon:"fa-key", t:"Key & BPM labeled", d:"Every vocal tagged so it snaps to your project instantly."},
+      {icon:"fa-wand-magic-sparkles", t:"Dry & processed", d:"Clean takes ready for your own tuning, FX and creative chopping."},
+      {icon:"fa-unlock", t:"Royalty-free", d:"Release commercially with no features or samples to clear."}
+    ],
+    specs:[
+      {k:"Content", v:"Vocal hooks, chops, adlibs & acapellas"},
+      {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
+      {k:"Labeling", v:"Key + BPM in filename"},
+      {k:"Styles", v:"Trap, R&B, afro, drill, house, pop"},
+      {k:"Price", v:"€20"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["Vocal hooks & full phrases","Chopped syllables & adlibs","Clean acapellas","Key/BPM documentation"]
+  },
+
+  "raw-elements": {
+    type:"kit", name:"RAW ELEMENTS", sub:"Ultimate One-Shot Drum Kit",
+    tagline:"Hard, clean drum one-shots — punchy kicks, cracking snares, crisp hats & knocking 808s.",
+    cover:"img/packs/raw-elements.jpg", accent:"#ff2d2d", accent2:"#ff8a3d",
+    price:"10", badge:"🆕 New",
+    note:"Punchy · mix-ready · royalty-free",
+    buy:"pohwt",
+    video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
+    tags:["Drums","One-Shots","808","Trap"],
+    about:[
+      "RAW ELEMENTS is the only one-shot drum kit you need to build hard-knocking beats from scratch. Punchy kicks, cracking snares, tight rimshots, crisp hats, percussion and deep, tuned 808s — every hit is processed, transient-shaped and mixed to hit hard in a modern trap, drill or hip-hop production.",
+      "No more digging through cluttered folders of unusable samples. Every drum here is a keeper, organized by type and ready to drag straight onto your pattern. Layer the kicks with the 808s and you've got a low end that translates on every system.",
+      "Build your own drum patterns, keep your sound original, and release royalty-free."
+    ],
+    features:[
+      {icon:"fa-drum", t:"Complete drum arsenal", d:"Kicks, snares, claps, rims, hats, percussion and tuned 808s."},
+      {icon:"fa-bolt", t:"Punchy & mix-ready", d:"Transient-shaped and EQ'd to hit hard with no extra processing."},
+      {icon:"fa-layer-group", t:"Layer-friendly", d:"Designed to stack — pair kicks with 808s for a translating low end."},
+      {icon:"fa-unlock", t:"Royalty-free", d:"Use in commercial releases with zero clearance."}
+    ],
+    specs:[
+      {k:"Content", v:"One-shot drums + 808s"},
+      {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
+      {k:"Included", v:"Kicks, snares, claps, hats, perc, 808s"},
+      {k:"Styles", v:"Trap, drill, hip-hop"},
+      {k:"Price", v:"€10"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["One-shot drum library","Tuned 808 collection","Kicks, snares, hats & percussion","Organized & mix-ready"]
+  },
+
+  "vinyl-breaker": {
+    type:"kit", name:"VINYL BREAKER", sub:"Scratch & Hip-Hop Vinyl Sample Kit",
+    tagline:"Dusty vinyl scratches, crackle, chops & textures — authentic boom-bap character in one kit.",
+    cover:"img/packs/vinyl-breaker.jpg", accent:"#d4a017", accent2:"#8a5a00",
+    price:"5", badge:"🆕 New",
+    note:"Authentic vinyl character · royalty-free",
+    buy:"yecrn",
+    video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
+    tags:["Vinyl","Hip-Hop","Scratch","Boom-Bap"],
+    about:[
+      "VINYL BREAKER bottles the sound of the crate. Real turntable scratches, vinyl crackle, dusty chops, tape hiss and analog textures give your beats that unmistakable boom-bap and lo-fi character that plug-ins can never quite fake.",
+      "Sprinkle crackle under a melody, drop a scratch on the hook, or chop the vinyl stabs into your own flip. Every sample is recorded from real records and hardware for genuine warmth and grit — the secret weapon behind classic hip-hop and lo-fi.",
+      "An incredible value at €5 — instant vintage soul, royalty-free."
+    ],
+    features:[
+      {icon:"fa-record-vinyl", t:"Real turntable scratches", d:"DJ-performed scratches and cuts recorded straight from wax."},
+      {icon:"fa-compact-disc", t:"Crackle & texture", d:"Vinyl crackle, tape hiss and analog noise for instant vintage warmth."},
+      {icon:"fa-scissors", t:"Dusty chops & stabs", d:"Sampled vinyl hits ready to flip into your own progressions."},
+      {icon:"fa-unlock", t:"Royalty-free", d:"Release commercially with no samples to clear."}
+    ],
+    specs:[
+      {k:"Content", v:"Scratches, crackle, chops & textures"},
+      {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
+      {k:"Vibe", v:"Boom-bap, lo-fi, vintage hip-hop"},
+      {k:"Source", v:"Recorded from real vinyl & hardware"},
+      {k:"Price", v:"€5"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["Turntable scratch library","Vinyl crackle & texture loops","Dusty vinyl chops & stabs","Boom-bap & lo-fi ready"]
+  },
+
+  "neon-pulse": {
+    type:"kit", name:"NEON PULSE", sub:"House, Techno & Progressive Pro Drum Loops",
+    tagline:"Club-ready drum loops for House, Techno & Progressive — locked, punchy and mix-ready.",
+    cover:"img/packs/neon-pulse.jpg", accent:"#1DB954", accent2:"#37e1ff",
+    price:"10", badge:"🆕 New",
+    note:"Club-ready · tempo-labeled · royalty-free",
+    buy:"argerk",
+    video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
+    tags:["House","Techno","Progressive","Drum Loops"],
+    about:[
+      "NEON PULSE delivers the engine room of modern electronic music: tight, hypnotic drum loops built for House, Techno and Progressive. Rolling kicks, crisp hats, driving percussion and full groove loops give your track the relentless, dancefloor-ready pulse that keeps a club moving.",
+      "Every loop is professionally programmed and mixed, tempo-labeled and ready to drop into your DAW. Use full grooves to sketch fast, or layer the individual percussion loops to craft your own signature rhythm section.",
+      "Studio-quality drums for producers who take the dancefloor seriously — royalty-free."
+    ],
+    features:[
+      {icon:"fa-compact-disc", t:"Club-ready grooves", d:"Full drum loops built for House, Techno and Progressive energy."},
+      {icon:"fa-drum", t:"Layerable elements", d:"Kick, hat and percussion loops to build your own rhythm section."},
+      {icon:"fa-gauge-high", t:"Tempo-labeled", d:"BPM-tagged loops that lock to your project instantly."},
+      {icon:"fa-unlock", t:"Royalty-free", d:"Use in commercial releases and DJ sets, no clearance."}
+    ],
+    specs:[
+      {k:"Content", v:"House / Techno / Progressive drum loops"},
+      {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
+      {k:"Tempo range", v:"120–135 BPM"},
+      {k:"Included", v:"Full grooves + layerable perc loops"},
+      {k:"Price", v:"€10"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["House/Techno/Progressive drum loops","Full grooves + element loops","Studio-mixed & tempo-labeled","Works in all DAWs"]
+  },
+
+  "concrete-vault": {
+    type:"kit", name:"CONCRETE VAULT", sub:"HipHop, Trap & Drill Pro Drum Loops",
+    tagline:"Hard-hitting drum loops for HipHop, Trap & Drill — pocket, bounce and aggression.",
+    cover:"img/packs/concrete-vault.jpg", accent:"#8895a7", accent2:"#ff2d2d",
+    price:"10", badge:"🆕 New",
+    note:"Pro loops · tempo-labeled · royalty-free",
+    buy:"ecrmh",
+    video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
+    tags:["Trap","Drill","Hip-Hop","Drum Loops"],
+    about:[
+      "CONCRETE VAULT is a hard-hitting collection of drum loops engineered for HipHop, Trap and Drill. From rolling drill hats and sliding 808 patterns to hard trap bounces and classic hip-hop pockets, these grooves give your beat instant attitude and a professional rhythmic foundation.",
+      "Each loop is programmed by ear, mixed and tempo-labeled so you can drop it in and start writing immediately. Use the full patterns to build fast, or pull the hat and percussion loops to add complex, radio-ready flair to your own drums.",
+      "The rhythmic backbone for your next street anthem — royalty-free."
+    ],
+    features:[
+      {icon:"fa-drum", t:"HipHop, Trap & Drill", d:"Full drum patterns covering pocket, bounce and drill aggression."},
+      {icon:"fa-bolt", t:"Rolling hi-hats", d:"Complex, triplet and drill-style hat loops ready to drop in."},
+      {icon:"fa-gauge-high", t:"Tempo-labeled", d:"BPM-tagged loops that lock straight to your session."},
+      {icon:"fa-unlock", t:"Royalty-free", d:"Use in commercial releases with zero clearance."}
+    ],
+    specs:[
+      {k:"Content", v:"HipHop / Trap / Drill drum loops"},
+      {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
+      {k:"Tempo range", v:"120–150 BPM"},
+      {k:"Included", v:"Full grooves + hat & perc loops"},
+      {k:"Price", v:"€10"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["HipHop/Trap/Drill drum loops","Full patterns + hat loops","Studio-mixed & tempo-labeled","Works in all DAWs"]
+  },
+
+  "westcoast-chrome": {
+    type:"kit", name:"WESTCOAST CHROME", sub:"G-Funk & West Coast Pro Drum Loops",
+    tagline:"Laid-back G-Funk & West Coast drum grooves — that classic lowrider bounce.",
+    cover:"img/packs/westcoast-chrome.jpg", accent:"#2e86de", accent2:"#b06cff",
+    price:"10", badge:"🆕 New",
+    note:"West-Coast bounce · tempo-labeled · royalty-free",
+    buy:"seuyup",
+    video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
+    tags:["G-Funk","West Coast","Drum Loops","Hip-Hop"],
+    about:[
+      "WESTCOAST CHROME captures the sun-soaked swing of G-Funk and classic West Coast hip-hop. Laid-back kicks, snappy snares, shakers and that unmistakable head-nod bounce give your beats the smooth, lowrider-ready groove made famous on the West Coast.",
+      "Perfect paired with a whiny lead synth and a fat bassline, these loops are programmed with real swing and mixed to sit warm and clean. Drop a full groove and instantly transport your track to a Cali summer, or layer the percussion for your own twist.",
+      "Everything you need for that timeless West-Coast feel — royalty-free."
+    ],
+    features:[
+      {icon:"fa-drum", t:"G-Funk grooves", d:"Laid-back, swung drum loops with authentic West-Coast bounce."},
+      {icon:"fa-car-side", t:"Lowrider feel", d:"Smooth pockets tailor-made to pair with G-funk leads and 808 bass."},
+      {icon:"fa-gauge-high", t:"Tempo-labeled", d:"BPM-tagged loops that lock straight to your session."},
+      {icon:"fa-unlock", t:"Royalty-free", d:"Use in commercial releases with zero clearance."}
+    ],
+    specs:[
+      {k:"Content", v:"G-Funk / West Coast drum loops"},
+      {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
+      {k:"Tempo range", v:"85–105 BPM"},
+      {k:"Included", v:"Full grooves + percussion loops"},
+      {k:"Price", v:"€10"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["G-Funk/West Coast drum loops","Full grooves + perc loops","Swung, studio-mixed pockets","Works in all DAWs"]
+  },
+
+  "etnic-ritmik": {
+    type:"kit", name:"ETNIC RITMIK", sub:"Afrobeat & Reggae Pro Drum Loops Vol.1",
+    tagline:"Live-feel Afrobeat & Reggae drum grooves — organic percussion and infectious rhythm.",
+    cover:"img/packs/etnic-ritmik.jpg", accent:"#1DB954", accent2:"#ffcf33",
+    price:"10", badge:"🆕 New",
+    note:"Organic groove · tempo-labeled · royalty-free",
+    buy:"fkodxs",
+    video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
+    tags:["Afrobeat","Reggae","Percussion","Drum Loops"],
+    about:[
+      "ETNIC RITMIK Vol.1 brings warm, organic rhythm to your productions with authentic Afrobeat and Reggae drum grooves. Congas, shakers, live-feel kicks, rim clicks and layered percussion deliver the infectious, danceable pulse at the heart of afro, dancehall and reggae music.",
+      "Every loop is crafted with real swing and human feel, mixed clean and tempo-labeled for instant use. Drop a full groove under a melody and your track instantly grooves; layer the percussion loops to build rich, polyrhythmic patterns of your own.",
+      "The rhythmic soul of Afrobeat and Reggae in one kit — royalty-free."
+    ],
+    features:[
+      {icon:"fa-drum", t:"Afrobeat & Reggae grooves", d:"Live-feel full drum loops with authentic afro & reggae swing."},
+      {icon:"fa-hands", t:"Organic percussion", d:"Congas, shakers, rim clicks and layered perc for real groove."},
+      {icon:"fa-gauge-high", t:"Tempo-labeled", d:"BPM-tagged loops that lock straight to your session."},
+      {icon:"fa-unlock", t:"Royalty-free", d:"Use in commercial releases with zero clearance."}
+    ],
+    specs:[
+      {k:"Content", v:"Afrobeat / Reggae drum & perc loops"},
+      {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
+      {k:"Tempo range", v:"95–120 BPM"},
+      {k:"Included", v:"Full grooves + percussion loops"},
+      {k:"Price", v:"€10"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["Afrobeat & Reggae drum loops","Organic percussion loops","Live-feel, tempo-labeled grooves","Works in all DAWs"]
   }
 
 };

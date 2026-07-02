@@ -2,10 +2,48 @@
    DJBILBOX BEATS — Sample packs / Drum kits catalog
    Real products (covers in img/packs/), wired to Gumroad.
    `buy`  : Gumroad product slug (the part after /l/).
-   `price`: "FREE" = name-your-price (€0+) on Gumroad.
-   All packs are currently FREE download on djbilboxbeats.gumroad.com.
+   `price`: "FREE" = name-your-price (€0+) on Gumroad, or a number in €.
+   Mix of premium (paid) kits and free name-your-price packs.
    ============================================================ */
 window.PACKS = [
+  /* ---------- Premium kits (2026) ---------- */
+  { id:"tone-vault", name:"TONE VAULT — Ultimate Instrument One-Shots", img:"img/packs/tone-vault.jpg",
+    genre:"One-Shots", tags:["One-Shots","Instruments"], price:"15", badge:"🆕 New",
+    buy:"yrkzl" },
+
+  { id:"void-signals", name:"VOID SIGNALS — 19GB SFX & Cinematic Suite", img:"img/packs/void-signals.jpg",
+    genre:"SFX", tags:["SFX","Cinematic"], price:"30", badge:"🔊 19GB",
+    buy:"mkijdn" },
+
+  { id:"ghost-voice", name:"GHOST VOICE — Vocal Hooks & Acapellas", img:"img/packs/ghost-voice.jpg",
+    genre:"Vocals", tags:["Vocals","Acapellas"], price:"20", badge:"🆕 New",
+    buy:"fnpdxf" },
+
+  { id:"raw-elements", name:"RAW ELEMENTS — Ultimate One-Shot Drum Kit", img:"img/packs/raw-elements.jpg",
+    genre:"One-Shots", tags:["Drums","One-Shots"], price:"10", badge:"🆕 New",
+    buy:"pohwt" },
+
+  { id:"vinyl-breaker", name:"VINYL BREAKER — Scratch & Vinyl Sample Kit", img:"img/packs/vinyl-breaker.jpg",
+    genre:"Hip-Hop", tags:["Vinyl","Hip-Hop"], price:"5", badge:"🆕 New",
+    buy:"yecrn" },
+
+  { id:"neon-pulse", name:"NEON PULSE — House & Techno Drum Loops", img:"img/packs/neon-pulse.jpg",
+    genre:"House", tags:["House","Techno"], price:"10", badge:"🆕 New",
+    buy:"argerk" },
+
+  { id:"concrete-vault", name:"CONCRETE VAULT — Trap & Drill Drum Loops", img:"img/packs/concrete-vault.jpg",
+    genre:"Trap", tags:["Trap","Drill"], price:"10", badge:"🆕 New",
+    buy:"ecrmh" },
+
+  { id:"westcoast-chrome", name:"WESTCOAST CHROME — G-Funk Drum Loops", img:"img/packs/westcoast-chrome.jpg",
+    genre:"G-Funk", tags:["G-Funk","West Coast"], price:"10", badge:"🆕 New",
+    buy:"seuyup" },
+
+  { id:"etnic-ritmik", name:"ETNIC RITMIK — Afrobeat & Reggae Loops Vol.1", img:"img/packs/etnic-ritmik.jpg",
+    genre:"Afro", tags:["Afrobeat","Reggae"], price:"10", badge:"🆕 New",
+    buy:"fkodxs" },
+
+  /* ---------- Free name-your-price packs ---------- */
   { id:"oriental-vol1", name:"Oriental — Loop Melody Vol.1", img:"img/packs/oriental-vol1.jpg",
     genre:"Oriental", tags:["Oriental","Melody Loops"], price:"FREE", badge:"FREE",
     buy:"oceljx" },
