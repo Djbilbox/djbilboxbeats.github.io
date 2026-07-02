@@ -6,13 +6,13 @@
 
 window.CHAT = {
   responses: {
-    'bonjour|salut|hello|hey|coucou|yo|bonsoir|hi ': {
+    'bonjour|salut|hello|hey|coucou|yo|bonsoir|hi|ça va|ca va|cv|quoi|comment ça|comment ca': {
       intent: 'greeting',
-      reply: '👋 Bonjour et bienvenue chez <strong>DJBILBOX BEATS</strong> ! Je peux vous renseigner sur nos VST, nos sample packs, les prix, les codes promo, les licences ou vous mettre en relation avec l\'équipe. Que cherchez-vous ?',
+      reply: '👋 Yo ! Bienvenue chez <strong>DJBILBOX BEATS</strong> ! 🎵\n\nJe suis là pour vous aider — que ce soit pour trouver le VST parfait (BIGBASS, Vice City, Oriental), nos sample packs gratuits, les tarifs, les codes promo, ou pour nous contacter. Dites-moi ce que vous cherchez !',
       actions: [
-        { text: '🎛️ Voir les VST', href: 'vst.html' },
+        { text: '🎛️ VST plugins', href: 'vst.html' },
         { text: '🥁 Kits gratuits', href: 'drum-kits.html' },
-        { text: '📧 Nous contacter', href: 'contact.html' }
+        { text: '💰 Tous les tarifs', href: 'vst.html' }
       ]
     },
     'bigbass|big bass|lowrider|808|basse|low rider': {
@@ -142,11 +142,11 @@ window.CHAT = {
     }
     return {
       intent: 'unknown',
-      reply: '🤔 Je n\'ai pas toutes les infos pour ça, mais je peux vous orienter :\n\n🔊 <strong>VST plugins</strong> — BIGBASS, Vice City, Oriental\n🥁 <strong>Sample packs</strong> gratuits\n🎟️ <strong>Codes promo</strong> & prix\n📧 <strong>Contact direct</strong> : djbilboxbeats@gmail.com\n\nDites-m\'en un peu plus, ou laissez vos coordonnées et l\'équipe DJBILBOX vous répond sous 24h.',
+      reply: '🎵 Je vois pas tout, mais je peux vous orienter vers ce qu\'il y a sur DJBILBOX BEATS :\n\n🎛️ <strong>3 VST plugins</strong> — BIGBASS ($19.50), Vice City ($18.45), Oriental ($24.50)\n🥁 <strong>9 sample packs premium</strong> + 6 gratuits — drums, synths, vocals, SFX...\n🎟️ <strong>Codes promo -50%</strong> en ce moment\n💰 <strong>Tout gratuit ou payant</strong> — à vous de choisir\n\nOu écrivez directement à <strong>djbilboxbeats@gmail.com</strong> — l\'équipe répond sous 24h.',
       actions: [
-        { text: 'Voir les VST', href: 'vst.html' },
-        { text: 'Kits gratuits', href: 'drum-kits.html' },
-        { text: 'Laisser un message', onclick: 'showContactForm()' }
+        { text: 'Tous les produits', href: 'index.html' },
+        { text: 'VST & Kits', href: 'vst.html' },
+        { text: 'Me contacter', onclick: 'showContactForm()' }
       ]
     };
   }
