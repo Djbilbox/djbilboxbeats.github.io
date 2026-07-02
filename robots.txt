@@ -1,3 +1,15 @@
 User-agent: *
 Allow: /
+Allow: /beats-generator.html
+Allow: /vst.html
+Allow: /drum-kits.html
+Allow: /product.html
+Allow: /assets/
+Allow: /img/
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /.claude/
+Disallow: /worker/
+
 Sitemap: https://djbilboxbeats.com/sitemap.xml
+Crawl-delay: 1

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blog - DJBILBOX BEATS Music Production Tips & Tutorials</title>
+<meta name="description" content="Beat making tips, VST tutorials, music production guides. Learn from DJBILBOX BEATS - free beats, plugins, and sound design.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/chat.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+.blog-hero { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); padding: 60px 24px; text-align: center; color: #fff; }
+.blog-hero h1 { font-size: 2.8rem; font-weight: 700; margin: 0; font-family: var(--font-a); }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; padding: 40px 24px; }
+.blog-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: .2s; }
+.blog-card:hover { transform: translateY(-6px); border-color: var(--accent); }
+.blog-thumb { width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+.blog-content { padding: 20px; }
+.blog-date { color: var(--accent); font-size: 0.85rem; font-weight: 600; }
+.blog-title { font-size: 1.1rem; font-weight: 700; margin: 8px 0; }
+.blog-desc { color: var(--text-3); font-size: 0.9rem; line-height: 1.5; margin: 0; }
+.blog-link { display: inline-block; margin-top: 12px; color: var(--accent); font-weight: 600; text-decoration: none; }
+.blog-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body data-page="blog">
+
+<main>
+<div class="blog-hero">
+  <div class="container">
+    <h1>DJBILBOX BEATS Blog</h1>
+    <p style="font-size: 1.1rem; margin-top: 8px;">Beat Making • VST Tips • Production Guides</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="blog-grid" id="blogGrid"></div>
+</div>
+</main>
+
+<script src="assets/js/seo-data.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/chat.js"></script>
+<script>
+const articles = [
+  {
+    title: 'How to Make Trap Beats Like DJBILBOX BEATS',
+    desc: 'Learn the secrets behind professional trap production. Master 808s, hi-hats, and sound design.',
+    date: 'Jun 28, 2026',
+    tags: 'Trap • Production',
+    icon: '🎵'
+  },
+  {
+    title: 'Best VST Plugins for 2026 - Reviewed',
+    desc: 'Complete guide to BIGBASS, Oriental Instrument, and Vice City VST. Compare features and pricing.',
+    date: 'Jun 25, 2026',
+    tags: 'VST • Reviews',
+    icon: '🎛️'
+  },
+  {
+    title: 'Free Sample Packs - Ultimate Guide',
+    desc: 'Download 500+ royalty-free samples. How to use premium kits in your productions.',
+    date: 'Jun 20, 2026',
+    tags: 'Samples • Free',
+    icon: '🥁'
+  },
+  {
+    title: 'YouTube Monetization Music Strategy',
+    desc: 'Use royalty-free beats to monetize YouTube without copyright strikes. Complete walkthrough.',
+    date: 'Jun 18, 2026',
+    tags: 'YouTube • Monetization',
+    icon: '📺'
+  },
+  {
+    title: 'Synthwave Production Masterclass',
+    desc: 'Create 80s neon sounds with Vice City VST. Includes presets, effects chains, and arrangements.',
+    date: 'Jun 15, 2026',
+    tags: 'Synthwave • Tutorial',
+    icon: '🌆'
+  },
+  {
+    title: 'Oriental Instruments in Modern Beats',
+    desc: 'Blend traditional Middle Eastern sounds with trap & drill. Step-by-step mixing tutorial.',
+    date: 'Jun 12, 2026',
+    tags: 'Oriental • Mixing',
+    icon: '🎹'
+  },
+  {
+    title: 'Mixing & Mastering for Streaming',
+    desc: 'Optimize your beats for Spotify, Apple Music, YouTube. Meet platform audio standards.',
+    date: 'Jun 10, 2026',
+    tags: 'Mixing • Mastering',
+    icon: '🎚️'
+  },
+  {
+    title: 'G-Funk Revival - 2026 Guide',
+    desc: 'The West Coast sound is back. How to produce authentic G-Funk beats.',
+    date: 'Jun 5, 2026',
+    tags: 'G-Funk • Beats',
+    icon: '🚗'
+  },
+];
+
+const grid = document.getElementById('blogGrid');
+articles.forEach(art => {
+  const card = document.createElement('a');
+  card.href = '#';
+  card.className = 'blog-card';
+  card.style.textDecoration = 'none';
+  card.style.color = 'inherit';
+  card.innerHTML = `
+    <div class="blog-thumb">${art.icon}</div>
+    <div class="blog-content">
+      <div class="blog-date">${art.tags}</div>
+      <h3 class="blog-title">${art.title}</h3>
+      <p class="blog-desc">${art.desc}</p>
+      <span class="blog-link">Read more →</span>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+
+// Schema markup for blog
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'DJBILBOX BEATS Blog',
+  description: 'Music production tips, VST tutorials, beat making guides',
+  url: 'https://djbilboxbeats.com/blog.html',
+  author: { '@type': 'Organization', name: 'DJBILBOX BEATS' }
+};
+
+const script = document.createElement('script');
+script.type = 'application/ld+json';
+script.textContent = JSON.stringify(schema);
+document.head.appendChild(script);
+</script>
+</body>
+</html>

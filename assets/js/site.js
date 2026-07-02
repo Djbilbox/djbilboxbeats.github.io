@@ -27,7 +27,8 @@ function mountSidebar(active){
   const links = NAV.map(n=>
     `<a href="${n.href}"${n.key===active?' class="active"':''}><i class="fa-solid ${n.icon}"></i> ${n.label}</a>`
   ).join('') +
-    `<a href="#" onclick="document.getElementById('aiChat')?.classList.toggle('open');return false;"><i class="fa-solid fa-robot"></i> AI Chat</a>`;
+    `<a href="#" onclick="document.getElementById('aiChat')?.classList.toggle('open');return false;"><i class="fa-solid fa-robot"></i> AI Chat</a>` +
+    `<a href="blog.html"><i class="fa-solid fa-newspaper"></i> Blog</a>`;
 
   const sidebar = document.createElement('aside');
   sidebar.className='sidebar';

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beats by [Region] - DJBILBOX BEATS</title>
+<meta name="description" content="Browse beats from DJBILBOX BEATS. Free-for-profit, instant download, royalty-free music production.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/chat.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+.beats-hero { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); padding: 60px 0; text-align: center; color: #fff; }
+.beats-hero h1 { font-size: 3rem; font-weight: 700; margin: 0; font-family: var(--font-a); text-transform: uppercase; }
+.beats-hero .sub { font-size: 1.1rem; margin-top: 8px; opacity: 0.95; }
+.beats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 40px 24px; }
+.beat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; cursor: pointer; transition: .2s; }
+.beat-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.beat-card h3 { margin: 0 0 6px; font-size: 0.95rem; }
+.beat-card p { color: var(--text-3); font-size: 0.85rem; margin: 0; }
+.beat-btn { background: var(--accent); color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; margin-top: 12px; width: 100%; }
+.beat-btn:hover { opacity: 0.9; }
+</style>
+</head>
+<body data-page="beats">
+
+<main>
+<div class="beats-hero">
+  <div class="container">
+    <h1 id="hero-title">Beats</h1>
+    <p class="sub" id="hero-sub">Professional production-ready beats</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="beats-grid" id="beatsGrid"></div>
+</div>
+</main>
+
+<script src="assets/js/seo-data.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/chat.js"></script>
+<script>
+(function() {
+  const params = new URLSearchParams(location.search);
+  const region = params.get('region') || 'Paris';
+  const genre = params.get('genre') || 'Trap';
+  const mood = params.get('mood') || 'Aggressive';
+  const useCase = params.get('use') || 'YouTube';
+
+  document.title = `${genre} Beats for ${region} - ${mood} - DJBILBOX BEATS`;
+  document.querySelector('meta[name=description]').content = `Browse free-for-profit ${genre} beats from ${region}. ${mood}, ${useCase} ready. Instant download, royalty-free.`;
+
+  document.getElementById('hero-title').textContent = `${genre} Beats for ${region}`;
+  document.getElementById('hero-sub').textContent = `${mood} beats ready for ${useCase}`;
+
+  // Generate 12 beat samples for this region/genre/mood combo
+  const grid = document.getElementById('beatsGrid');
+  for (let i = 1; i <= 12; i++) {
+    const bpm = 85 + (i * 5);
+    const keys = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+    const key = keys[Math.floor(Math.random() * keys.length)];
+
+    const card = document.createElement('div');
+    card.className = 'beat-card';
+    card.innerHTML = `
+      <h3>${genre} Beat ${i}</h3>
+      <p><strong>${key}</strong> • ${bpm} BPM</p>
+      <p>${mood} • ${useCase}</p>
+      <p style="color: var(--green); font-weight: 600; margin-top: 8px;">🆓 FREE</p>
+      <button class="beat-btn" onclick="alert('Beat added to cart')">Add to Cart</button>
+    `;
+    grid.appendChild(card);
+  }
+
+  // JSON-LD Schema for SEO
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: `${genre} Beats for ${region}`,
+    description: `Free-for-profit ${genre} beats from ${region}. ${mood}, ${useCase} ready.`,
+    url: location.href,
+    provider: {
+      '@type': 'Organization',
+      name: 'DJBILBOX BEATS',
+      url: 'https://djbilboxbeats.com'
+    }
+  };
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(schema);
+  document.head.appendChild(script);
+})();
+</script>
+</body>
+</html>
