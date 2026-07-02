@@ -34,6 +34,20 @@
 .contact-status { text-align: center; padding: 16px; border-radius: 9px; display: none; margin-top: 16px; }
 .contact-status.success { background: rgba(29,185,84,.2); color: var(--green); display: block; }
 .contact-status.error { background: rgba(212,175,55,.2); color: var(--accent); display: block; }
+.contact-direct { margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--border); }
+.contact-direct h2 { font-family: var(--font-a); text-transform: uppercase; font-size: 1.1rem; letter-spacing: .04em; margin-bottom: 6px; }
+.contact-direct p { color: var(--text-3); font-size: .92rem; margin-bottom: 18px; }
+.contact-methods { display: flex; flex-direction: column; gap: 12px; }
+.contact-method {
+  display: flex; align-items: center; gap: 14px; text-decoration: none;
+  background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+  padding: 14px 16px; border-radius: 11px; transition: .18s;
+}
+.contact-method:hover { border-color: var(--accent); background: var(--surface); transform: translateY(-2px); }
+.contact-method i { font-size: 1.25rem; width: 26px; text-align: center; color: var(--accent); }
+.contact-method .cm-t { font-weight: 700; font-size: .95rem; }
+.contact-method .cm-d { color: var(--text-3); font-size: .82rem; }
+.contact-method .cm-txt { display: flex; flex-direction: column; }
 </style>
 </head>
 <body data-page="services">
@@ -50,6 +64,29 @@
     <button type="submit" class="contact-btn" id="submitBtn">Envoyer ma demande</button>
     <div class="contact-status" id="contactStatus"></div>
   </form>
+
+  <section class="contact-direct">
+    <h2>Ou contactez-nous directement</h2>
+    <p>Réponse rapide — choisissez le canal qui vous convient.</p>
+    <div class="contact-methods">
+      <a class="contact-method" href="mailto:djbilboxbeats@gmail.com">
+        <i class="fa-solid fa-envelope"></i>
+        <span class="cm-txt"><span class="cm-t">Email</span><span class="cm-d">djbilboxbeats@gmail.com</span></span>
+      </a>
+      <a class="contact-method" href="https://www.youtube.com/@djbilboxbeats" target="_blank" rel="noopener">
+        <i class="fa-brands fa-youtube"></i>
+        <span class="cm-txt"><span class="cm-t">YouTube</span><span class="cm-d">@djbilboxbeats</span></span>
+      </a>
+      <a class="contact-method" href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" rel="noopener">
+        <i class="fa-brands fa-spotify"></i>
+        <span class="cm-txt"><span class="cm-t">Spotify</span><span class="cm-d">DJBILBOX BEATS</span></span>
+      </a>
+      <a class="contact-method" href="https://djbilboxbeats.gumroad.com" target="_blank" rel="noopener">
+        <i class="fa-solid fa-store"></i>
+        <span class="cm-txt"><span class="cm-t">Boutique Gumroad</span><span class="cm-d">VST & sample packs</span></span>
+      </a>
+    </div>
+  </section>
 </main>
 
 <script src="assets/js/site.js"></script>

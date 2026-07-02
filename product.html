@@ -124,12 +124,6 @@ function loadVideoBg(el, src) {
       <div class="pd-wrap pd-hero-inner">
         <div class="pd-cover">
           <img src="${P.cover}" alt="${P.name}">
-          ${(()=>{
-            const mascots=['img/mascot-dromedary-1.jpg','img/mascot-dromedary-2.jpg','img/mascot-dromedary-3.jpg'];
-            const hash=id.split('').reduce((a,c)=>((a<<5)-a)+c.charCodeAt(0)|0,0);
-            const idx=Math.abs(hash)%3;
-            return `<img class="pd-mascot" src="${mascots[idx]}" alt="DJBILBOX mascot">`;
-          })()}
         </div>
         <div class="pd-info">
           <div class="pd-eyebrow"><i class="fa-solid ${P.type==='vst'?'fa-sliders':'fa-compact-disc'}"></i> ${P.type==='vst'?'VST Plugin':'Sample Kit'} · DJBILBOX BEATS</div>

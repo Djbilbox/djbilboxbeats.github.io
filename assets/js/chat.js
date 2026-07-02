@@ -6,6 +6,23 @@
 
 window.CHAT = {
   responses: {
+    'bonjour|salut|hello|hey|coucou|yo|bonsoir|hi ': {
+      intent: 'greeting',
+      reply: '👋 Bonjour et bienvenue chez <strong>DJBILBOX BEATS</strong> ! Je peux vous renseigner sur nos VST, nos sample packs, les prix, les codes promo, les licences ou vous mettre en relation avec l\'équipe. Que cherchez-vous ?',
+      actions: [
+        { text: '🎛️ Voir les VST', href: 'vst.html' },
+        { text: '🥁 Kits gratuits', href: 'drum-kits.html' },
+        { text: '📧 Nous contacter', href: 'contact.html' }
+      ]
+    },
+    'bigbass|big bass|lowrider|808|basse|low rider': {
+      intent: 'product',
+      reply: '🔊 <strong>BIGBASS</strong> — notre synthé de basse lowrider de Los Angeles : 6 vrais moteurs de basse (SUB, SLAM, PUNCH, GROWL, SCREAM, DOOM), 80 presets, VST3 & Standalone pour Windows & Mac.\n\n💰 <strong>€19.50</strong> au lieu de €39 avec le code <strong>BIGBASS50</strong> (offre de lancement -50%).',
+      actions: [
+        { text: 'Voir la fiche', href: 'product.html?id=bigbass' },
+        { text: 'Acheter -50%', onclick: 'addToCart("BIGBASS — LA Lowrider Bass","19.50","xaziro/BIGBASS50")' }
+      ]
+    },
     oriental: {
       intent: 'product',
       reply: '🎹 Vous vous intéressez à l\'<strong>Oriental Instrument</strong> ? C\'est notre rompler Arabic & Oriental avec oud, qanun, ney authentiques.\n\n💰 Actuellement à <strong>€24.50</strong> (50% off) avec le code <strong>ORIENTAL50</strong> jusqu\'au 31 juillet 2026.',
@@ -22,9 +39,9 @@ window.CHAT = {
         { text: 'Acheter maintenant', onclick: 'addToCart("Vice City — VST Plugin","18.45","ykdzli/VICECITY50")' }
       ]
     },
-    'vst|plugin|synthé': {
+    'vst|plugin|synthé|synth|instrument': {
       intent: 'category',
-      reply: '🎛️ Vous cherchez un <strong>VST plugin</strong> ? Nous en avons 2 :\n\n🌙 <strong>Oriental Instrument</strong> — oud, qanun, percussions orientales\n🌆 <strong>Vice City</strong> — synthé 80s Synthwave',
+      reply: '🎛️ Vous cherchez un <strong>VST plugin</strong> ? Nous en avons 3 :\n\n🔊 <strong>BIGBASS</strong> — basse lowrider LA (€19.50, code BIGBASS50)\n🌆 <strong>Vice City</strong> — synthé 80s Synthwave (€18.45, code VICECITY50)\n🌙 <strong>Oriental Instrument</strong> — oud, qanun, percussions (€24.50, code ORIENTAL50)',
       actions: [
         { text: 'Voir tous les VST', href: 'vst.html' },
         { text: 'Drum Kits gratuits', href: 'drum-kits.html' }
@@ -38,12 +55,48 @@ window.CHAT = {
         { text: 'Voir tous les produits', href: 'index.html' }
       ]
     },
-    'prix|price|cost|gratuit|free': {
+    'prix|price|cost|combien|tarif|gratuit|free': {
       intent: 'info',
-      reply: '💰 <strong>Nos tarifs :</strong>\n\n✅ <strong>Tous les sample packs</strong> — GRATUIT (name-your-price)\n✅ <strong>Démos VST</strong> — GRATUIT\n💵 <strong>VST complets</strong> — à partir de €18.45 (50% off jusqu\'au 31 juil 2026)',
+      reply: '💰 <strong>Nos tarifs :</strong>\n\n✅ <strong>Tous les sample packs</strong> — GRATUIT (name-your-price)\n✅ <strong>Démos VST</strong> — GRATUIT\n💵 <strong>BIGBASS</strong> — €19.50 (code BIGBASS50)\n💵 <strong>Vice City</strong> — €18.45 (code VICECITY50)\n💵 <strong>Oriental Instrument</strong> — €24.50 (code ORIENTAL50)',
       actions: [
         { text: 'Voir les VST', href: 'vst.html' },
         { text: 'Télécharger les kits gratuits', href: 'drum-kits.html' }
+      ]
+    },
+    'code|promo|réduction|reduction|discount|coupon|offre|deal': {
+      intent: 'info',
+      reply: '🎟️ <strong>Codes promo actifs (-50%) :</strong>\n\n🔊 <strong>BIGBASS50</strong> → BIGBASS à €19.50\n🌆 <strong>VICECITY50</strong> → Vice City à €18.45\n🌙 <strong>ORIENTAL50</strong> → Oriental Instrument à €24.50\n\nLe code s\'applique automatiquement en cliquant sur « Acheter ».',
+      actions: [
+        { text: 'Voir tous les VST', href: 'vst.html' }
+      ]
+    },
+    'acheter|achat|commander|commande|order|buy|payer|panier|cart': {
+      intent: 'action',
+      reply: '🛒 Pour commander : ajoutez le produit au panier puis validez — le paiement se fait de façon sécurisée via Gumroad (carte ou PayPal). Le téléchargement est <strong>instantané</strong> après l\'achat, avec votre clé de licence.',
+      actions: [
+        { text: 'Voir les VST', href: 'vst.html' },
+        { text: 'Voir mon panier', onclick: 'openCart()' }
+      ]
+    },
+    'télécharger|telecharger|download|installer|install|installation|activer|licence key|serial': {
+      intent: 'info',
+      reply: '⬇️ <strong>Téléchargement & installation :</strong>\n\n1. Après l\'achat sur Gumroad, vous recevez un lien de téléchargement instantané + votre clé de licence par email.\n2. Lancez l\'installateur Windows (.exe) ou le DMG macOS.\n3. Ouvrez votre DAW, chargez le VST3 et activez avec votre clé.\n\nUn souci ? Écrivez-nous, on vous aide.',
+      actions: [
+        { text: 'Nous contacter', href: 'contact.html' }
+      ]
+    },
+    'windows|mac|macos|compatib|format|vst3|standalone|daw|fl studio|ableton|logic|cubase|reaper': {
+      intent: 'info',
+      reply: '💻 <strong>Compatibilité :</strong>\n\n✅ <strong>Windows 10/11</strong> & <strong>macOS</strong> (64-bit, Intel + Apple Silicon)\n✅ Formats <strong>VST3</strong> et <strong>Standalone</strong>\n✅ Fonctionne dans FL Studio, Ableton, Logic, Cubase, Reaper et tous les DAW compatibles VST3.',
+      actions: [
+        { text: 'Voir les VST', href: 'vst.html' }
+      ]
+    },
+    'paiement|payment|paypal|carte|securisé|sécurisé|remboursement|refund|facture': {
+      intent: 'info',
+      reply: '🔒 <strong>Paiement & sécurité :</strong>\n\nLes paiements sont traités par <strong>Gumroad</strong> (carte bancaire ou PayPal), 100% sécurisé. Vous recevez une facture par email. Pour toute question sur une commande ou un remboursement, contactez-nous directement.',
+      actions: [
+        { text: 'Nous contacter', href: 'contact.html' }
       ]
     },
     'licence|license|royalties|droit': {
@@ -89,10 +142,11 @@ window.CHAT = {
     }
     return {
       intent: 'unknown',
-      reply: '🤔 Je ne suis pas sûr de comprendre votre demande. Je vous mets en relation avec la secrétaire de DJBILBOX qui pourra mieux vous aider.',
+      reply: '🤔 Je n\'ai pas toutes les infos pour ça, mais je peux vous orienter :\n\n🔊 <strong>VST plugins</strong> — BIGBASS, Vice City, Oriental\n🥁 <strong>Sample packs</strong> gratuits\n🎟️ <strong>Codes promo</strong> & prix\n📧 <strong>Contact direct</strong> : djbilboxbeats@gmail.com\n\nDites-m\'en un peu plus, ou laissez vos coordonnées et l\'équipe DJBILBOX vous répond sous 24h.',
       actions: [
-        { text: 'Parler à la secrétaire', onclick: 'showContactForm()' },
-        { text: 'Explorer le site', href: 'index.html' }
+        { text: 'Voir les VST', href: 'vst.html' },
+        { text: 'Kits gratuits', href: 'drum-kits.html' },
+        { text: 'Laisser un message', onclick: 'showContactForm()' }
       ]
     };
   }

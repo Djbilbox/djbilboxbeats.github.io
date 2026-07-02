@@ -9,9 +9,9 @@
 /* Order = newest release first: BIGBASS → Vice City → Oriental Instrument */
 window.VSTS = [
   { id:"bigbass", name:"BIGBASS — LA Lowrider Bass", img:"img/vst/bigbass-vst.jpg",
-    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], price:"39", badge:"🆕 New",
-    buy:"xaziro", demo:"",
-    note:"80 presets · 6 real bass modes" },
+    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], price:"19.50", old:"39", badge:"🔥 -50%",
+    buy:"xaziro/BIGBASS50", demo:"",
+    note:"Code: BIGBASS50 · Offre de lancement -50%" },
 
   { id:"vice-city", name:"Vice City — VST Plugin", img:"img/vst/vice-city-vst.jpg",
     tags:["Synthwave","VST3 · Standalone"], price:"18.45", old:"36.90", badge:"🔥 -50%",

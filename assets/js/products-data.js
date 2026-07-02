@@ -11,9 +11,9 @@ window.PRODUCTS = {
     type:"vst", name:"BIGBASS", sub:"LA Lowrider Bass Synthesizer",
     tagline:"West-Coast lowrider bass in one plug-in — 6 real bass engines, 80 presets, VST3 & Standalone for Win & Mac.",
     cover:"img/vst/bigbass-vst.jpg", accent:"#ffcf33", accent2:"#7b2ff7",
-    price:"39", badge:"🆕 New",
-    note:"80 presets · 6 real bass modes · Win & Mac",
-    buy:"xaziro", demo:"",
+    price:"19.50", old:"39", badge:"-50%", code:"BIGBASS50",
+    note:"Code BIGBASS50 · Offre de lancement -50%",
+    buy:"xaziro/BIGBASS50", demo:"",
     video:"media/bigbass-promo.mp4", poster:"img/vst/bigbass-vst.jpg",
     tags:["Lowrider Bass","G-Funk","VST3","Standalone","Win · Mac"],
     about:[

@@ -224,6 +224,38 @@
   transform: scale(1.05);
 }
 
+/* Floating launcher button (bottom-right on every page) */
+#aiChatFab {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  z-index: 1201;
+  color: #141414;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #FFE34D 0%, var(--accent) 55%, #B8960F 100%);
+  box-shadow: 0 10px 28px rgba(212, 175, 55, .45);
+  transition: transform .18s, box-shadow .18s;
+}
+
+#aiChatFab:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 34px rgba(212, 175, 55, .6);
+}
+
+/* When the chat is open, lift the launcher out of the way */
+#aiChat.open ~ #aiChatFab {
+  opacity: 0;
+  pointer-events: none;
+}
+
 @media (max-width: 480px) {
   #aiChat {
     width: 100%;

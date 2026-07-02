@@ -87,16 +87,24 @@ function mountFooter(){
   document.body.appendChild(f);
 }
 
-/* Shared AI-chat placeholder — injected if missing */
+/* Shared AI-chat — an empty shell chat.js fills in via initChat().
+   Styling (incl. hidden/open display) lives in chat.css — do NOT set an
+   inline display here or the .open toggle can never override it. */
 function mountAiChat(){
   if(document.getElementById('aiChat')) return;
   const d=document.createElement('div');
   d.id='aiChat';
-  d.style.cssText='position:fixed;right:18px;bottom:62px;width:320px;max-width:90vw;background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;z-index:1200;display:none';
-  d.innerHTML=`<strong style="font-family:var(--font-a);text-transform:uppercase">AI Chat</strong>
-    <p style="color:var(--text-3);font-size:.8rem;margin-top:8px">Ask me about beats, packs, licenses or services.</p>`;
   document.body.appendChild(d);
-  const st=document.createElement('style');st.textContent='#aiChat.open{display:block}';document.head.appendChild(st);
+  /* Floating launcher so the assistant is reachable on every page (esp. mobile) */
+  if(!document.getElementById('aiChatFab')){
+    const b=document.createElement('button');
+    b.id='aiChatFab';
+    b.type='button';
+    b.setAttribute('aria-label','Ouvrir l\'assistant DJBILBOX');
+    b.innerHTML='<i class="fa-solid fa-robot"></i>';
+    b.onclick=()=>document.getElementById('aiChat')?.classList.toggle('open');
+    document.body.appendChild(b);
+  }
 }
 
 /* Default promo (BIG PACK) — injected if the page has no .promo-bar */
