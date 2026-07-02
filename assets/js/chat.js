@@ -17,7 +17,7 @@ window.CHAT = {
     },
     'bigbass|big bass|lowrider|808|basse|low rider': {
       intent: 'product',
-      reply: '🔊 <strong>BIGBASS</strong> — notre synthé de basse lowrider de Los Angeles : 6 vrais moteurs de basse (SUB, SLAM, PUNCH, GROWL, SCREAM, DOOM), 80 presets, VST3 & Standalone pour Windows & Mac.\n\n💰 <strong>€19.50</strong> au lieu de €39 avec le code <strong>BIGBASS50</strong> (offre de lancement -50%).',
+      reply: '🔊 <strong>BIGBASS</strong> — notre synthé de basse lowrider de Los Angeles : 6 vrais moteurs de basse (SUB, SLAM, PUNCH, GROWL, SCREAM, DOOM), 80 presets, VST3 & Standalone pour Windows & Mac.\n\n💰 <strong>$19.50</strong> au lieu de $39 avec le code <strong>BIGBASS50</strong> (offre de lancement -50%).',
       actions: [
         { text: 'Voir la fiche', href: 'product.html?id=bigbass' },
         { text: 'Acheter -50%', onclick: 'addToCart("BIGBASS — LA Lowrider Bass","19.50","xaziro/BIGBASS50")' }
@@ -25,7 +25,7 @@ window.CHAT = {
     },
     oriental: {
       intent: 'product',
-      reply: '🎹 Vous vous intéressez à l\'<strong>Oriental Instrument</strong> ? C\'est notre rompler Arabic & Oriental avec oud, qanun, ney authentiques.\n\n💰 Actuellement à <strong>€24.50</strong> (50% off) avec le code <strong>ORIENTAL50</strong> jusqu\'au 31 juillet 2026.',
+      reply: '🎹 Vous vous intéressez à l\'<strong>Oriental Instrument</strong> ? C\'est notre rompler Arabic & Oriental avec oud, qanun, ney authentiques.\n\n💰 Actuellement à <strong>$24.50</strong> (50% off) avec le code <strong>ORIENTAL50</strong> jusqu\'au 31 juillet 2026.',
       actions: [
         { text: 'Voir la fiche', href: 'product.html?id=oriental-instrument' },
         { text: 'Télécharger la démo', onclick: 'buy("oriental-instrument-demo-free-Download")' }
@@ -33,7 +33,7 @@ window.CHAT = {
     },
     'vice-city': {
       intent: 'product',
-      reply: '🌆 Vous cherchez <strong>Vice City</strong> ? Notre synthé Synthwave VST3 & Standalone — 80s neon pur.\n\n💰 <strong>€18.45</strong> (50% off) avec le code <strong>VICECITY50</strong> jusqu\'au 31 juillet 2026.',
+      reply: '🌆 Vous cherchez <strong>Vice City</strong> ? Notre synthé Synthwave VST3 & Standalone — 80s neon pur.\n\n💰 <strong>$18.45</strong> (50% off) avec le code <strong>VICECITY50</strong> jusqu\'au 31 juillet 2026.',
       actions: [
         { text: 'Voir la fiche', href: 'product.html?id=vice-city' },
         { text: 'Acheter maintenant', onclick: 'addToCart("Vice City — VST Plugin","18.45","ykdzli/VICECITY50")' }
@@ -41,7 +41,7 @@ window.CHAT = {
     },
     'vst|plugin|synthé|synth|instrument': {
       intent: 'category',
-      reply: '🎛️ Vous cherchez un <strong>VST plugin</strong> ? Nous en avons 3 :\n\n🔊 <strong>BIGBASS</strong> — basse lowrider LA (€19.50, code BIGBASS50)\n🌆 <strong>Vice City</strong> — synthé 80s Synthwave (€18.45, code VICECITY50)\n🌙 <strong>Oriental Instrument</strong> — oud, qanun, percussions (€24.50, code ORIENTAL50)',
+      reply: '🎛️ Vous cherchez un <strong>VST plugin</strong> ? Nous en avons 3 :\n\n🔊 <strong>BIGBASS</strong> — basse lowrider LA ($19.50, code BIGBASS50)\n🌆 <strong>Vice City</strong> — synthé 80s Synthwave ($18.45, code VICECITY50)\n🌙 <strong>Oriental Instrument</strong> — oud, qanun, percussions ($24.50, code ORIENTAL50)',
       actions: [
         { text: 'Voir tous les VST', href: 'vst.html' },
         { text: 'Drum Kits gratuits', href: 'drum-kits.html' }
@@ -49,7 +49,7 @@ window.CHAT = {
     },
     'kit|drum|sample|boucle|loop|808|vocal|acapella|sfx|scratch|vinyl|one-shot|one shot': {
       intent: 'category',
-      reply: '🥁 Nous avons une grosse bibliothèque de <strong>sample packs</strong> :\n\n💎 <strong>Kits premium :</strong> TONE VAULT (€15), VOID SIGNALS 19GB SFX (€30), GHOST VOICE vocals (€20), RAW ELEMENTS drums (€10), VINYL BREAKER (€5), NEON PULSE, CONCRETE VAULT, WESTCOAST CHROME, ETNIC RITMIK (€10)\n\n🆓 <strong>Packs gratuits :</strong> Oriental, Vice City, Futur, Drums Loop, Break Ya Neck, Ziploc',
+      reply: '🥁 Nous avons une grosse bibliothèque de <strong>sample packs</strong> :\n\n💎 <strong>Kits premium :</strong> TONE VAULT ($15), VOID SIGNALS 19GB SFX ($30), GHOST VOICE vocals ($20), RAW ELEMENTS drums ($10), VINYL BREAKER ($5), NEON PULSE, CONCRETE VAULT, WESTCOAST CHROME, ETNIC RITMIK ($10)\n\n🆓 <strong>Packs gratuits :</strong> Oriental, Vice City, Futur, Drums Loop, Break Ya Neck, Ziploc',
       actions: [
         { text: 'Explorer tous les kits', href: 'drum-kits.html' },
         { text: 'Kits gratuits', href: 'drum-kits.html' }
@@ -57,7 +57,7 @@ window.CHAT = {
     },
     'prix|price|cost|combien|tarif|gratuit|free': {
       intent: 'info',
-      reply: '💰 <strong>Nos tarifs :</strong>\n\n✅ <strong>Tous les sample packs</strong> — GRATUIT (name-your-price)\n✅ <strong>Démos VST</strong> — GRATUIT\n💵 <strong>BIGBASS</strong> — €19.50 (code BIGBASS50)\n💵 <strong>Vice City</strong> — €18.45 (code VICECITY50)\n💵 <strong>Oriental Instrument</strong> — €24.50 (code ORIENTAL50)',
+      reply: '💰 <strong>Nos tarifs :</strong>\n\n✅ <strong>Tous les sample packs</strong> — GRATUIT (name-your-price)\n✅ <strong>Démos VST</strong> — GRATUIT\n💵 <strong>BIGBASS</strong> — $19.50 (code BIGBASS50)\n💵 <strong>Vice City</strong> — $18.45 (code VICECITY50)\n💵 <strong>Oriental Instrument</strong> — $24.50 (code ORIENTAL50)',
       actions: [
         { text: 'Voir les VST', href: 'vst.html' },
         { text: 'Télécharger les kits gratuits', href: 'drum-kits.html' }
@@ -65,7 +65,7 @@ window.CHAT = {
     },
     'code|promo|réduction|reduction|discount|coupon|offre|deal': {
       intent: 'info',
-      reply: '🎟️ <strong>Codes promo actifs (-50%) :</strong>\n\n🔊 <strong>BIGBASS50</strong> → BIGBASS à €19.50\n🌆 <strong>VICECITY50</strong> → Vice City à €18.45\n🌙 <strong>ORIENTAL50</strong> → Oriental Instrument à €24.50\n\nLe code s\'applique automatiquement en cliquant sur « Acheter ».',
+      reply: '🎟️ <strong>Codes promo actifs (-50%) :</strong>\n\n🔊 <strong>BIGBASS50</strong> → BIGBASS à $19.50\n🌆 <strong>VICECITY50</strong> → Vice City à $18.45\n🌙 <strong>ORIENTAL50</strong> → Oriental Instrument à $24.50\n\nLe code s\'applique automatiquement en cliquant sur « Acheter ».',
       actions: [
         { text: 'Voir tous les VST', href: 'vst.html' }
       ]

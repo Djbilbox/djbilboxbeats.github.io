@@ -196,9 +196,9 @@ const REVIEWS=[
 function productCard(p){
   const badge=p.badge? (p.badge==='free'?`<span class="card-badge free">Free</span>`:`<span class="card-badge">${p.badge}</span>`):'';
   const media=p.img?`<div class="card-media">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"></div>`:'';
-  const oldP=p.old?`<span class="old">€${p.old}</span>`:'';
+  const oldP=p.old?`<span class="old">$${p.old}</span>`:'';
   const isFree=String(p.price).toUpperCase()==='FREE';
-  const nowP=isFree?`<span class="now free">FREE</span>`:(isNaN(p.price)?`<span class="now" style="font-size:.85rem">${p.price}</span>`:`<span class="now">€${p.price}</span>`);
+  const nowP=isFree?`<span class="now free">FREE</span>`:(isNaN(p.price)?`<span class="now" style="font-size:.85rem">${p.price}</span>`:`<span class="now">$${p.price}</span>`);
   return `<article class="card">${media}<div class="card-body">
     <h3 class="card-title">${p.name}</h3>
     ${p.desc?`<p style="color:var(--text-3);font-size:.72rem">${p.desc}</p>`:''}

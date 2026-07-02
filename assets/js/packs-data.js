@@ -2,7 +2,7 @@
    DJBILBOX BEATS — Sample packs / Drum kits catalog
    Real products (covers in img/packs/), wired to Gumroad.
    `buy`  : Gumroad product slug (the part after /l/).
-   `price`: "FREE" = name-your-price (€0+) on Gumroad, or a number in €.
+   `price`: "FREE" = name-your-price ($0+) on Gumroad, or a number in $.
    Mix of premium (paid) kits and free name-your-price packs.
    ============================================================ */
 window.PACKS = [

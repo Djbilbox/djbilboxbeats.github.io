@@ -71,7 +71,7 @@ function loadVideoBg(el, src) {
   /* ---- price + actions ---- */
   const priceHtml = isFree
     ? `<span class="now free">FREE</span>`
-    : `<span class="now">€${P.price}</span>${P.old?`<span class="old">€${P.old}</span>`:''}${P.badge?`<span class="pd-badge">${P.badge}</span>`:''}`;
+    : `<span class="now">$${P.price}</span>${P.old?`<span class="old">$${P.old}</span>`:''}${P.badge?`<span class="pd-badge">${P.badge}</span>`:''}`;
 
   let actions;
   if(isFree){
@@ -115,7 +115,7 @@ function loadVideoBg(el, src) {
     return `<a class="pd-rel" href="product.html?id=${k}">
       <img loading="lazy" src="${p.cover}" alt="${p.name}">
       <div class="pd-rel-b"><h4>${p.name}</h4>
-        <div class="pd-rel-p${f?' free':''}">${f?'FREE':'€'+p.price}</div></div></a>`;
+        <div class="pd-rel-p${f?' free':''}">${f?'FREE':'$'+p.price}</div></div></a>`;
   }).join('');
 
   root.innerHTML = `

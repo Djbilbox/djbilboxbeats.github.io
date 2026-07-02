@@ -297,7 +297,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Labeling", v:"Key-tagged filenames"},
       {k:"Use", v:"Melodies, chords, layering, sound design"},
-      {k:"Price", v:"€15"},
+      {k:"Price", v:"$15"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["TONE VAULT one-shot library","Key-labeled WAV samples","Multi-instrument categories","Works in all DAWs & samplers"]
@@ -328,7 +328,7 @@ window.PRODUCTS = {
       {k:"Size", v:"19 GB"},
       {k:"Format", v:"High-resolution WAV"},
       {k:"Sources", v:"Featuring Boom Library"},
-      {k:"Price", v:"€30"},
+      {k:"Price", v:"$30"},
       {k:"License", v:"Royalty-free for music, film & games"}
     ],
     includes:["19GB cinematic SFX suite","Risers, impacts, drones & textures","Boom Library-sourced content","Trailer & game-ready sound design"]
@@ -359,7 +359,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Labeling", v:"Key + BPM in filename"},
       {k:"Styles", v:"Trap, R&B, afro, drill, house, pop"},
-      {k:"Price", v:"€20"},
+      {k:"Price", v:"$20"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["Vocal hooks & full phrases","Chopped syllables & adlibs","Clean acapellas","Key/BPM documentation"]
@@ -390,7 +390,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Included", v:"Kicks, snares, claps, hats, perc, 808s"},
       {k:"Styles", v:"Trap, drill, hip-hop"},
-      {k:"Price", v:"€10"},
+      {k:"Price", v:"$10"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["One-shot drum library","Tuned 808 collection","Kicks, snares, hats & percussion","Organized & mix-ready"]
@@ -408,7 +408,7 @@ window.PRODUCTS = {
     about:[
       "VINYL BREAKER bottles the sound of the crate. Real turntable scratches, vinyl crackle, dusty chops, tape hiss and analog textures give your beats that unmistakable boom-bap and lo-fi character that plug-ins can never quite fake.",
       "Sprinkle crackle under a melody, drop a scratch on the hook, or chop the vinyl stabs into your own flip. Every sample is recorded from real records and hardware for genuine warmth and grit — the secret weapon behind classic hip-hop and lo-fi.",
-      "An incredible value at €5 — instant vintage soul, royalty-free."
+      "An incredible value at $5 — instant vintage soul, royalty-free."
     ],
     features:[
       {icon:"fa-record-vinyl", t:"Real turntable scratches", d:"DJ-performed scratches and cuts recorded straight from wax."},
@@ -421,7 +421,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Vibe", v:"Boom-bap, lo-fi, vintage hip-hop"},
       {k:"Source", v:"Recorded from real vinyl & hardware"},
-      {k:"Price", v:"€5"},
+      {k:"Price", v:"$5"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["Turntable scratch library","Vinyl crackle & texture loops","Dusty vinyl chops & stabs","Boom-bap & lo-fi ready"]
@@ -452,7 +452,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"120–135 BPM"},
       {k:"Included", v:"Full grooves + layerable perc loops"},
-      {k:"Price", v:"€10"},
+      {k:"Price", v:"$10"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["House/Techno/Progressive drum loops","Full grooves + element loops","Studio-mixed & tempo-labeled","Works in all DAWs"]
@@ -483,7 +483,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"120–150 BPM"},
       {k:"Included", v:"Full grooves + hat & perc loops"},
-      {k:"Price", v:"€10"},
+      {k:"Price", v:"$10"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["HipHop/Trap/Drill drum loops","Full patterns + hat loops","Studio-mixed & tempo-labeled","Works in all DAWs"]
@@ -514,7 +514,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"85–105 BPM"},
       {k:"Included", v:"Full grooves + percussion loops"},
-      {k:"Price", v:"€10"},
+      {k:"Price", v:"$10"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["G-Funk/West Coast drum loops","Full grooves + perc loops","Swung, studio-mixed pockets","Works in all DAWs"]
@@ -545,7 +545,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"95–120 BPM"},
       {k:"Included", v:"Full grooves + percussion loops"},
-      {k:"Price", v:"€10"},
+      {k:"Price", v:"$10"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["Afrobeat & Reggae drum loops","Organic percussion loops","Live-feel, tempo-labeled grooves","Works in all DAWs"]

@@ -891,7 +891,7 @@ body{top:0!important;position:static!important}
 <div class="mc" id="mc">
     <div class="mc-h"><h3><i class="fa-solid fa-bag-shopping"></i> Cart</h3><button class="mc-x" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button></div>
     <div class="mc-list" id="mcList"><p style="text-align:center;color:var(--text-4);padding:2rem">Your cart is empty</p></div>
-    <div class="mc-foot"><div class="mc-total"><span>Total</span><span id="mcTot">0€</span></div><button class="btn-full" onclick="openModal()"><i class="fa-solid fa-file-pdf"></i> Download License (0€)</button></div>
+    <div class="mc-foot"><div class="mc-total"><span>Total</span><span id="mcTot">0$</span></div><button class="btn-full" onclick="openModal()"><i class="fa-solid fa-file-pdf"></i> Download License (0$)</button></div>
 </div>
 
 <!-- LICENCE MODAL -->
@@ -1494,7 +1494,7 @@ function updCart(){
     document.getElementById('cBadge').textContent=cart.length;
     const el=document.getElementById('mcList');
     el.innerHTML=cart.length?cart.map((c,i)=>`<div class="mc-item"><div><h4>${c.title}</h4><p>${c.type}</p></div><button class="mc-rm" onclick="rmCart(${i})"><i class="fa-solid fa-trash"></i></button></div>`).join(''):'<p style="text-align:center;color:var(--text-4);padding:2rem">Your cart is empty</p>';
-    document.getElementById('mcTot').textContent=cart.length?'0€ (Free)':'0€';
+    document.getElementById('mcTot').textContent=cart.length?'0$ (Free)':'0$';
 }
 function toggleCart(){document.getElementById('mc').classList.toggle('open')}
 function toggleNav(){document.querySelector('.hdr-nav').classList.toggle('open')}
