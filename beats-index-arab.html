@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>موسيقى تصويرية - جميع دول العالم العربي | DJBILBOX BEATS</title>
+<meta name="description" content="تصفح 12,000+ موسيقى تصويرية مجانية من جميع المدن العربية. القاهرة، دبي، الرياض، بيروت، الدار البيضاء وغيرها. تنزيل فوري، بدون حقوق ملكية.">
+<meta name="keywords" content="موسيقى تصويرية عربية، beats عربي، موسيقى إنتاج، beats مجاني، trap beats، hip-hop beats">
+<link rel="canonical" href="https://djbilboxbeats.com/beats-index-arab.html">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/chat.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+.index-hero { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); padding: 60px 24px; text-align: center; color: #fff; }
+.index-hero h1 { font-size: 3rem; font-weight: 700; margin: 0; font-family: var(--font-a); }
+.index-hero p { font-size: 1.2rem; margin-top: 12px; }
+.index-section { padding: 40px 24px; border-bottom: 1px solid var(--border); }
+.index-section h2 { font-size: 1.8rem; font-weight: 700; margin-top: 0; color: var(--accent); }
+.index-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+.index-link { background: var(--surface); border: 1px solid var(--border); padding: 12px; text-align: center; border-radius: 8px; color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: .15s; }
+.index-link:hover { border-color: var(--accent); transform: translateY(-2px); }
+.language-note { background: var(--surface-2); border-left: 4px solid var(--accent); padding: 20px; margin: 40px 0; border-radius: 8px; }
+</style>
+</head>
+<body data-page="beats">
+
+<main>
+<div class="index-hero">
+  <div class="container">
+    <h1>🕌 12,000+ موسيقى تصويرية عربية</h1>
+    <p>موسيقى مجانية من جميع المدن العربية • تنزيل فوري • بدون حقوق ملكية</p>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="language-note">
+  <h3 style="margin-top: 0;">🌍 العالم العربي كاملاً</h3>
+  <p>هذه الصفحة توفر وصولاً لـ 12,000+ موسيقى تصويرية من 110 مدينة عربية في 20+ دولة عربية. جميع الموسيقى مجانية للاستخدام التجاري (Free for profit).</p>
+</div>
+
+<!-- ARAB CITIES SECTION -->
+<div class="index-section">
+  <h2>🏙️ الموسيقى حسب المدينة العربية</h2>
+  <p>ابحث عن موسيقى من مدينتك أو البلد العربي الذي تختاره.</p>
+  <div class="index-grid" id="citiesGrid"></div>
+</div>
+
+<!-- GENRES SECTION -->
+<div class="index-section">
+  <h2>🎵 الموسيقى حسب النوع</h2>
+  <p>أنواع موسيقية عديدة منها Trap, Hip-Hop, Synthwave, Oriental, وغيرها.</p>
+  <div class="index-grid" id="genresGrid"></div>
+</div>
+
+<!-- USE CASES SECTION -->
+<div class="index-section">
+  <h2>📱 الموسيقى حسب المنصة</h2>
+  <p>موسيقى مخصصة لـ YouTube, TikTok, Twitch, والمزيد.</p>
+  <div class="index-grid" id="useCasesGrid"></div>
+</div>
+
+</div>
+</main>
+
+<script src="assets/js/seo-data.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/chat.js"></script>
+
+<script>
+// Arab cities + genres + use cases
+const ARAB_CITIES = ['Cairo', 'Dubai', 'Riyadh', 'Beirut', 'Casablanca', 'Baghdad', 'Amman', 'Damascus', 'Algiers', 'Tunis', 'Kuwait', 'Doha', 'Muscat', 'Sana\'a', 'Jerusalem', 'Ramallah', 'Jeddah', 'Abu Dhabi', 'Sharjah', 'Fez'];
+
+const ARAB_GENRES = ['Trap', 'Hip-Hop', 'Synthwave', 'Oriental', 'Khaliji', 'Reggaeton', 'Lo-Fi', 'Afrobeat', 'Arabic Trap', 'Arabic Hip-Hop', 'House', 'Techno', 'Ambient'];
+
+const USE_CASES = ['YouTube', 'TikTok', 'Twitch', 'Gaming', 'Film', 'Podcast', 'Instagram', 'Commercial'];
+
+function slugify(str) {
+  return str.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+}
+
+// Cities grid
+const citiesGrid = document.getElementById('citiesGrid');
+ARAB_CITIES.forEach(city => {
+  const link = document.createElement('a');
+  link.href = `/beats/${slugify('trap')}-${slugify(city)}-${slugify('epic')}.html`;
+  link.className = 'index-link';
+  link.textContent = city;
+  citiesGrid.appendChild(link);
+});
+
+// Genres grid
+const genresGrid = document.getElementById('genresGrid');
+ARAB_GENRES.forEach(genre => {
+  const link = document.createElement('a');
+  link.href = `/beats/${slugify(genre)}-${slugify('Cairo')}-${slugify('chill')}.html`;
+  link.className = 'index-link';
+  link.textContent = genre;
+  genresGrid.appendChild(link);
+});
+
+// Use cases grid
+const useCasesGrid = document.getElementById('useCasesGrid');
+USE_CASES.forEach(useCase => {
+  const link = document.createElement('a');
+  link.href = `/beats-generator.html?use=${encodeURIComponent(useCase)}`;
+  link.className = 'index-link';
+  link.textContent = useCase;
+  useCasesGrid.appendChild(link);
+});
+
+// Schema markup
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  'name': 'موسيقى تصويرية عربية - DJBILBOX BEATS',
+  'description': '12,000+ موسيقى تصويرية مجانية من جميع المدن العربية',
+  'url': 'https://djbilboxbeats.com/beats-index-arab.html',
+  'inLanguage': 'ar',
+  'provider': {
+    '@type': 'Organization',
+    'name': 'DJBILBOX BEATS',
+    'url': 'https://djbilboxbeats.com'
+  }
+};
+
+const scriptTag = document.createElement('script');
+scriptTag.type = 'application/ld+json';
+scriptTag.textContent = JSON.stringify(schema);
+document.head.appendChild(scriptTag);
+</script>
+</body>
+</html>
