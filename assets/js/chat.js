@@ -47,12 +47,12 @@ window.CHAT = {
         { text: 'Drum Kits gratuits', href: 'drum-kits.html' }
       ]
     },
-    'kit|drum|sample|boucle': {
+    'kit|drum|sample|boucle|loop|808|vocal|acapella|sfx|scratch|vinyl|one-shot|one shot': {
       intent: 'category',
-      reply: '🥁 Vous cherchez des <strong>sample packs</strong> ou <strong>drum kits</strong> ? Nous avons 6 packs gratuits :\n\n• Oriental Vol.1 • Vice City Vol.4 • Futur Melody\n• Drums Loop • Break Ya Neck • Ziploc Blue Pack',
+      reply: '🥁 Nous avons une grosse bibliothèque de <strong>sample packs</strong> :\n\n💎 <strong>Kits premium :</strong> TONE VAULT (€15), VOID SIGNALS 19GB SFX (€30), GHOST VOICE vocals (€20), RAW ELEMENTS drums (€10), VINYL BREAKER (€5), NEON PULSE, CONCRETE VAULT, WESTCOAST CHROME, ETNIC RITMIK (€10)\n\n🆓 <strong>Packs gratuits :</strong> Oriental, Vice City, Futur, Drums Loop, Break Ya Neck, Ziploc',
       actions: [
-        { text: 'Explorer les kits', href: 'drum-kits.html' },
-        { text: 'Voir tous les produits', href: 'index.html' }
+        { text: 'Explorer tous les kits', href: 'drum-kits.html' },
+        { text: 'Kits gratuits', href: 'drum-kits.html' }
       ]
     },
     'prix|price|cost|combien|tarif|gratuit|free': {
