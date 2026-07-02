@@ -1,0 +1,10 @@
+# Netlify redirects - Convert pretty URLs to dynamic pages
+# Pattern: /beats/[genre]-[region]-[mood].html -> beats-generator.html?genre=X&region=Y&mood=Z
+
+/beats/:genre-:region-:mood.html  /beats-generator.html?region=:region&genre=:genre&mood=:mood  200
+/beats/youtube-* /youtube-beats.html  200
+/beats/tiktok-* /tiktok-beats.html  200
+/beats/twitch-* /twitch-beats.html  200
+
+# Ensure www redirect
+https://www.djbilboxbeats.com/* https://djbilboxbeats.com/:splat 301!
