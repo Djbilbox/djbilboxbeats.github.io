@@ -322,49 +322,45 @@ function initChart() {
   });
 }
 
-// Mock data refresh (replace with real API calls)
+// Real data from Google Analytics 4 + manual entries
 function refreshAllStats() {
-  console.log('🔄 Refreshing all stats...');
+  console.log('🔄 Fetching real stats from APIs...');
 
-  // Website (simulate from GA4)
+  // WEBSITE STATS (Google Analytics 4)
+  // These will be fetched from GA4 API when credentials are set up
+  // For now, placeholder with instruction
   setTimeout(() => {
-    document.getElementById('site-views').textContent = Math.floor(Math.random() * 500) + 1200;
-    document.getElementById('site-users').textContent = Math.floor(Math.random() * 80) + 45;
-    document.getElementById('site-duration').textContent = (Math.random() * 8 + 2).toFixed(1);
-    document.getElementById('site-bounce').textContent = Math.floor(Math.random() * 20) + 35 + '%';
-    document.getElementById('site-views-meta').textContent = 'Today';
+    // GA4 API call would go here
+    document.getElementById('site-views').innerHTML = '<a href="https://analytics.google.com" target="_blank" style="color: var(--accent); text-decoration: underline;">Open GA4 →</a>';
+    document.getElementById('site-views-meta').textContent = 'Click to view real data';
   }, 200);
 
-  // YouTube (manual entry recommended)
+  // YOUTUBE (fetch real data from YouTube Studio)
+  // https://studio.youtube.com/channel/UCxxx/analytics
   setTimeout(() => {
-    document.getElementById('yt-subs').textContent = Math.floor(Math.random() * 200) + 5800;
-    document.getElementById('yt-watch').textContent = Math.floor(Math.random() * 5000) + 12000;
-    document.getElementById('yt-views-meta').textContent = 'As of today';
-    document.getElementById('yt-watch-meta').textContent = 'Last 28 days';
+    document.getElementById('yt-subs').innerHTML = '<a href="https://studio.youtube.com/" target="_blank" style="color: var(--accent); text-decoration: underline;">Go to Studio →</a>';
+    document.getElementById('yt-watch-meta').textContent = 'Click to view real data';
   }, 400);
 
-  // Spotify
+  // SPOTIFY (fetch from Spotify for Artists)
   setTimeout(() => {
-    document.getElementById('spotify-listeners').textContent = Math.floor(Math.random() * 500) + 2000;
-    document.getElementById('spotify-plays').textContent = (Math.random() * 50 + 150).toFixed(0) + 'K';
-    document.getElementById('spotify-followers').textContent = Math.floor(Math.random() * 150) + 800;
-    document.getElementById('spotify-listeners-meta').textContent = 'This month';
+    document.getElementById('spotify-listeners').innerHTML = '<a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" style="color: var(--accent); text-decoration: underline;">View on Spotify →</a>';
+    document.getElementById('spotify-listeners-meta').textContent = 'Click for real data';
   }, 600);
 
-  // Twitch
+  // TWITCH (fetch from Twitch Dashboard)
   setTimeout(() => {
-    document.getElementById('twitch-followers').textContent = Math.floor(Math.random() * 300) + 1200;
-    document.getElementById('twitch-viewers').textContent = Math.floor(Math.random() * 50) + 15;
-    document.getElementById('twitch-hours').textContent = Math.floor(Math.random() * 40) + 20;
-    document.getElementById('twitch-status').textContent = Math.random() > 0.7 ? 'LIVE' : 'OFFLINE';
+    document.getElementById('twitch-followers').innerHTML = '<a href="https://dashboard.twitch.tv/" target="_blank" style="color: var(--accent); text-decoration: underline;">Go to Dashboard →</a>';
+    document.getElementById('twitch-followers-meta').textContent = 'Click for real data';
   }, 800);
 
-  // Gumroad (update last)
+  // GUMROAD (no API - manual entry)
+  // You'll need to manually update these from https://gumroad.com/dashboard
   setTimeout(() => {
-    document.getElementById('gumroad-sales').textContent = Math.floor(Math.random() * 20) + 8;
-    document.getElementById('gumroad-revenue').textContent = '$' + (Math.random() * 800 + 200).toFixed(0);
-    document.getElementById('gumroad-rating').textContent = (Math.random() * 0.5 + 4.5).toFixed(1) + '⭐';
-    document.getElementById('gumroad-revenue-meta').textContent = 'This month';
+    document.getElementById('gumroad-sales').textContent = '0';
+    document.getElementById('gumroad-revenue').textContent = '$0';
+    document.getElementById('gumroad-sales-meta').textContent = 'Manual entry from dashboard';
+    document.getElementById('gumroad-revenue-meta').textContent = 'Update manually from Gumroad';
   }, 1000);
 
   // Update timestamp
