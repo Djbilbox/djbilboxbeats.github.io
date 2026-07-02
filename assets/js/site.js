@@ -119,6 +119,26 @@ function mountPromo(){
   document.body.appendChild(p);
 }
 
+/* Add Google Analytics 4 to all pages */
+function injectGA4(){
+  if(document.querySelector('script[src*="googletagmanager"]')) return;
+  const s1=document.createElement('script');
+  s1.async=true;
+  s1.src='https://www.googletagmanager.com/gtag/js?id=G-DJBILBOX001';
+  document.head.appendChild(s1);
+  const s2=document.createElement('script');
+  s2.textContent=`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-DJBILBOX001',{'page_path':location.pathname,'page_title':document.title});`;
+  document.head.appendChild(s2);
+}
+
+/* Add language switcher script */
+function injectLanguageSwitcher(){
+  if(document.getElementById('lang-switcher')) return;
+  const s=document.createElement('script');
+  s.src='assets/js/language-switcher.js';
+  document.head.appendChild(s);
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   if(document.body.dataset.page!==undefined){
     mountSidebar(document.body.dataset.page);
@@ -126,6 +146,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     mountAiChat();
     mountPromo();
   }
+  injectGA4();
+  injectLanguageSwitcher();
   /* Google Translate widget disabled — the injected bar/branding looked ugly.
      (Widget hidden via CSS and the script no longer loaded.) */
 });
