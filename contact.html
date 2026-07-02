@@ -104,22 +104,22 @@ function submitContactForm(e) {
 
   const formData = new FormData(form);
   formData.append('_subject', `Nouvelle demande de contact — ${formData.get('name')}`);
+  formData.append('_template', 'table');
   formData.append('_captcha', 'false');
-  formData.append('_next', location.href);
 
-  fetch('https://formspree.io/f/mjvzgyeo', {
+  fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com', {
     method: 'POST',
     body: formData,
     headers: { 'Accept': 'application/json' }
-  }).then(res => {
-    if (res.ok) {
+  }).then(res => res.json()).then(data => {
+    if (String(data.success) === 'true') {
       status.className = 'contact-status success';
       status.innerHTML = `<i class="fa-solid fa-circle-check"></i> <strong>Merci!</strong> On vous contactera rapidement à <strong>${formData.get('email')}</strong>`;
       form.reset();
       btn.textContent = 'Envoyer ma demande';
       btn.disabled = false;
     } else {
-      throw new Error('Erreur');
+      throw new Error(data.message || 'Erreur');
     }
   }).catch(err => {
     status.className = 'contact-status error';

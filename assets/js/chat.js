@@ -267,28 +267,35 @@ function submitContact(e) {
 
   // Send via FormSubmit
   const formData = new FormData();
-  formData.append('_subject', `Nouvelle demande de contact — ${name}`);
+  formData.append('_subject', `Nouveau message du chat — ${name}`);
+  formData.append('_template', 'table');
   formData.append('_captcha', 'false');
   formData.append('name', name);
   formData.append('email', email);
   formData.append('message', message);
-  formData.append('_next', location.href);
 
-  fetch('https://formspree.io/f/mjvzgyeo', {
+  fetch('https://formsubmit.co/ajax/djbilboxbeats@gmail.com', {
     method: 'POST',
     body: formData,
     headers: { 'Accept': 'application/json' }
-  }).then(res => {
-    if (res.ok) {
-      const messagesDiv = document.getElementById('chatMessages');
-      const successMsg = document.createElement('div');
-      successMsg.className = 'chat-msg bot';
-      successMsg.innerHTML = `<p>✅ <strong>Message envoyé !</strong></p>
-        <p style="font-size:.85rem;color:var(--text-3)">La secrétaire de DJBILBOX vous contactera très bientôt à <strong>${email}</strong></p>`;
-      messagesDiv.appendChild(successMsg);
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-  }).catch(err => console.error('Chat form error:', err));
+  }).then(res => res.json()).then(data => {
+    if (String(data.success) !== 'true') throw new Error(data.message || 'send failed');
+    const messagesDiv = document.getElementById('chatMessages');
+    const successMsg = document.createElement('div');
+    successMsg.className = 'chat-msg bot';
+    successMsg.innerHTML = `<p>✅ <strong>Message envoyé !</strong></p>
+      <p style="font-size:.85rem;color:var(--text-3)">L'équipe DJBILBOX vous contactera très bientôt à <strong>${email}</strong></p>`;
+    messagesDiv.appendChild(successMsg);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }).catch(err => {
+    console.error('Chat form error:', err);
+    const messagesDiv = document.getElementById('chatMessages');
+    const errMsg = document.createElement('div');
+    errMsg.className = 'chat-msg bot';
+    errMsg.innerHTML = `<p>⚠️ L'envoi a échoué. Écrivez-nous directement à <strong>djbilboxbeats@gmail.com</strong>.</p>`;
+    messagesDiv.appendChild(errMsg);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  });
 }
 
 function openContactForm() {
