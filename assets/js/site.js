@@ -9,18 +9,19 @@
    Each page sets <body data-page="KEY"> to highlight its link.
    ============================================================ */
 const NAV = [
-  { key:'beats',       label:'Beats',       href:'beats-redesign.html', icon:'fa-music' },
-  { key:'vst',         label:'VST',         href:'vst.html',            icon:'fa-sliders' },
-  { key:'drumkits',    label:'Drum Kits',   href:'drum-kits.html',      icon:'fa-drum' },
-  { key:'services',    label:'Services',    href:'services.html',       icon:'fa-headphones' },
-  { key:'contact',     label:'Contact',     href:'contact.html',        icon:'fa-envelope' },
-  { key:'account',     label:'My Account',  href:'account.html',        icon:'fa-user' },
-  { key:'reviews',     label:'Reviews',     href:'reviews.html',        icon:'fa-star' },
-  { key:'license',     label:'License',     href:'license.html',        icon:'fa-id-card' },
-  { key:'discography', label:'Discography', href:'discography.html',    icon:'fa-record-vinyl' },
-  { key:'playlists',   label:'Playlists',   href:'playlists.html',      icon:'fa-list-ul' },
-  { key:'stats',       label:'Analytics',   href:'stats.html',          icon:'fa-chart-line' },
-  { key:'news',        label:'News',        href:'news.html',           icon:'fa-newspaper' },
+  { key:'beats',       label:'Beats',       href:'/beats-redesign.html', icon:'fa-music' },
+  { key:'vst',         label:'VST',         href:'/vst.html',            icon:'fa-sliders' },
+  { key:'drumkits',    label:'Drum Kits',   href:'/drum-kits.html',      icon:'fa-drum' },
+  { key:'services',    label:'Services',    href:'/services.html',       icon:'fa-headphones' },
+  { key:'contact',     label:'Contact',     href:'/contact.html',        icon:'fa-envelope' },
+  { key:'account',     label:'My Account',  href:'/account.html',        icon:'fa-user' },
+  { key:'reviews',     label:'Reviews',     href:'/reviews.html',        icon:'fa-star' },
+  { key:'license',     label:'License',     href:'/license.html',        icon:'fa-id-card' },
+  { key:'discography', label:'Discography', href:'/discography.html',    icon:'fa-record-vinyl' },
+  { key:'playlists',   label:'Playlists',   href:'/playlists.html',      icon:'fa-list-ul' },
+  { key:'stats',       label:'Analytics',   href:'/stats.html',          icon:'fa-chart-line' },
+  { key:'cities',      label:'Cities',      href:'/locations/index.html', icon:'fa-earth-americas' },
+  { key:'news',        label:'News',        href:'/news.html',           icon:'fa-newspaper' },
 ];
 
 function mountSidebar(active){
@@ -29,12 +30,12 @@ function mountSidebar(active){
     `<a href="${n.href}"${n.key===active?' class="active"':''}><i class="fa-solid ${n.icon}"></i> ${n.label}</a>`
   ).join('') +
     `<a href="#" onclick="document.getElementById('aiChat')?.classList.toggle('open');return false;"><i class="fa-solid fa-robot"></i> AI Chat</a>` +
-    `<a href="blog.html"><i class="fa-solid fa-newspaper"></i> Blog</a>`;
+    `<a href="/blog.html"><i class="fa-solid fa-newspaper"></i> Blog</a>`;
 
   const sidebar = document.createElement('aside');
   sidebar.className='sidebar';
   sidebar.innerHTML = `
-    <a href="index.html" class="brand">DJBILBOX <span>BEATS</span></a>
+    <a href="/index.html" class="brand">DJBILBOX <span>BEATS</span></a>
     <nav class="side-nav">${links}</nav>
     <div class="side-foot">
       <div class="side-social">
@@ -53,7 +54,7 @@ function mountSidebar(active){
   mtop.className='mtop';
   mtop.innerHTML = `
     <button class="nav-burger" onclick="toggleNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
-    <a href="index.html" class="brand">DJBILBOX <span>BEATS</span></a>`;
+    <a href="/index.html" class="brand">DJBILBOX <span>BEATS</span></a>`;
 
   const overlay = document.createElement('div');
   overlay.className='side-overlay';
@@ -75,9 +76,9 @@ function mountFooter(){
   f.className='footer';
   f.innerHTML=`<div class="container">
     <div class="footer-inner">
-      <a href="index.html" class="brand">DJBILBOX <span>BEATS</span></a>
+      <a href="/index.html" class="brand">DJBILBOX <span>BEATS</span></a>
       <div class="footer-links">
-        <a href="license.html">License</a><a href="services.html">Contact</a><a href="news.html">Newsletter</a>
+        <a href="/license.html">License</a><a href="/services.html">Contact</a><a href="/news.html">Newsletter</a>
       </div>
       <div class="footer-social">
         <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
@@ -136,7 +137,7 @@ function injectGA4(){
 function injectLanguageSwitcher(){
   if(document.getElementById('lang-switcher')) return;
   const s=document.createElement('script');
-  s.src='assets/js/language-switcher.js';
+  s.src='/assets/js/language-switcher.js';
   document.head.appendChild(s);
 }
 
