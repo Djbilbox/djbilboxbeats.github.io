@@ -19,7 +19,6 @@ const NAV = [
   { key:'license',     label:'License',     href:'/license.html',        icon:'fa-id-card' },
   { key:'discography', label:'Discography', href:'/discography.html',    icon:'fa-record-vinyl' },
   { key:'playlists',   label:'Playlists',   href:'/playlists.html',      icon:'fa-list-ul' },
-  { key:'stats',       label:'Analytics',   href:'/stats.html',          icon:'fa-chart-line' },
   { key:'cities',      label:'Cities',      href:'/locations/index.html', icon:'fa-earth-americas' },
   { key:'news',        label:'News',        href:'/news.html',           icon:'fa-newspaper' },
 ];
