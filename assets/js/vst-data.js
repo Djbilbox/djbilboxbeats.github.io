@@ -18,9 +18,9 @@ window.VSTS = [
     buy:"ykdzli/VICECITY50", demo:"",
     note:"Code: VICECITY50 · Until Jul 31, 2026" },
 
-  { id:"oriental-instrument", name:"Oriental Instrument", img:"img/vst/oriental-instrument-box.jpg",
-    tags:["Oriental","Win · Mac"], price:"24.50", old:"49", badge:"🔥 -50%",
+  { id:"oriental-instrument", name:"Oriental Instrument — 280+ Instruments", img:"img/vst/oriental-instrument-box.jpg",
+    tags:["280+ Instruments","Oriental","Win · Mac"], price:"24.50", old:"49", badge:"🔥 -50%",
     buy:"oriental-instrument-djbilbox-beats/ORIENTAL50",
     demo:"oriental-instrument-demo-free-Download",
-    note:"Code: ORIENTAL50 · Until Jul 31, 2026" },
+    note:"Code: ORIENTAL50 · 280+ instruments orientaux · prix accessible" },
 ];

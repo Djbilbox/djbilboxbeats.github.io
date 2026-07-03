@@ -72,21 +72,22 @@ window.PRODUCTS = {
   },
 
   "oriental-instrument": {
-    type:"vst", name:"Oriental Instrument", sub:"Arabic & Oriental Rompler",
-    tagline:"Authentic oud, qanun, ney, strings & percussion — one pro instrument.",
+    type:"vst", name:"Oriental Instrument", sub:"Arabic & Oriental Rompler — 280+ Instruments",
+    tagline:"280+ authentic oriental instruments & sounds in one pro plug-in — oud, qanun, ney, saz, strings & percussion.",
     cover:"img/vst/oriental-instrument-box.jpg", accent:"#e8a33d", accent2:"#c0392b",
     price:"24.50", old:"49", badge:"-50%", code:"ORIENTAL50",
     note:"Code ORIENTAL50 · Until Jul 31, 2026",
     buy:"oriental-instrument-djbilbox-beats/ORIENTAL50",
     demo:"oriental-instrument-demo-free-Download",
     video:"media/oriental-demo.mp4", poster:"media/oriental-poster.jpg",
-    tags:["Oriental","Arabic","Win · Mac","Rompler"],
+    tags:["Oriental","Arabic","280+ Instruments","Win · Mac","Rompler"],
     about:[
-      "ORIENTAL INSTRUMENT puts the heart of the Middle East under your fingertips. Multi-sampled oud, qanun, ney, saz, oriental strings and live percussion — recorded and tuned for trap, afro, raï'n'b and cinematic productions.",
-      "Browse instruments and phrases from a clean, organised interface, drop a melody in seconds, and bend notes with built-in quarter-tone-friendly articulations for that genuine oriental feel."
+      "ORIENTAL INSTRUMENT puts 280+ authentic oriental instruments and sounds under your fingertips — oud, qanun, ney, saz, oriental strings, brass and live percussion, all multi-sampled and tuned for trap, afro, raï'n'b and cinematic productions. One plug-in, one window, the whole colour of the Middle East.",
+      "Browse instruments and phrases from a clean, organised interface, drop a melody in seconds, and bend notes with built-in quarter-tone-friendly articulations for that genuine oriental feel.",
+      "Built by DJBILBOX BEATS to be genuinely accessible — a complete 280+ instrument library at a fair price, because a pro oriental sound shouldn't be locked behind a pro budget. Free demo available: try it before you buy."
     ],
     features:[
-      {icon:"fa-layer-group", t:"Multi-instrument library", d:"Oud, qanun, ney, saz, strings, brass and percussion — switch between them from one plug-in window."},
+      {icon:"fa-layer-group", t:"280+ instruments & sounds", d:"A complete oriental library — oud, qanun, ney, saz, strings, brass and percussion — all in a single plug-in window."},
       {icon:"fa-wand-magic-sparkles", t:"Real articulations", d:"Slides, ornaments and quarter-tone bends captured from real players for authentic phrasing."},
       {icon:"fa-folder-open", t:"Loop & melody browser", d:"Hundreds of ready melodic phrases you can audition and drag straight into your beat."},
       {icon:"fa-desktop", t:"Win & Mac", d:"Cross-platform bundle — install on your Windows or macOS studio and go."}
@@ -94,12 +95,12 @@ window.PRODUCTS = {
     specs:[
       {k:"Formats", v:"VST3 · AU · Standalone"},
       {k:"Platform", v:"Windows 10/11 & macOS (64-bit)"},
-      {k:"Content", v:"Multi-sampled oriental instruments + phrases"},
+      {k:"Content", v:"280+ oriental instruments & sounds"},
       {k:"Articulations", v:"Slides, ornaments, quarter-tone bends"},
       {k:"Install", v:"Instant download after purchase"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
-    includes:["Oriental Instrument (Win + Mac bundle)","Multi-sampled instrument library","Melodic phrase browser","Free demo available"]
+    includes:["Oriental Instrument (Win + Mac bundle) — 280+ instruments & sounds","Multi-sampled instrument library","Melodic phrase browser","Free demo available"]
   },
 
   /* ===================== SAMPLE KITS ===================== */
