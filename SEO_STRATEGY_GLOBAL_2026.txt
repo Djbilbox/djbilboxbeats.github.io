@@ -744,7 +744,7 @@ Service Page Optimization
 APPROCHE SCALABLE & SAFE:
 ═════════════════════════
 
-TIER 1: Major Cities (190+ pages) — UNIQUE content each
+TIER 1: Major Cities (330+ pages) — UNIQUE content each
 ═══════════════════════════════════════════════════════
 
 Strategy: Each city gets:
@@ -757,7 +757,7 @@ Strategy: Each city gets:
   * Local producer spotlights
   * Community engagement ideas
 
-CITIES (190+ total):
+CITIES (330+ total):
 
 🇦🇱 ALGERIA (15 pages) — PRIMARY FOCUS
   ✓ Alger (capital)
@@ -793,36 +793,155 @@ CITIES (190+ total):
   ✓ Saint-Étienne
   ✓ Toulon
 
-🇬🇧 UK (12 pages)
+🇬🇧 UK (65 pages) — FULL VIRAL COVERAGE
+  England (45):
   ✓ London
   ✓ Manchester
   ✓ Birmingham
   ✓ Leeds
-  ✓ Glasgow
   ✓ Liverpool
   ✓ Newcastle
   ✓ Sheffield
   ✓ Bristol
-  ✓ Edinburgh
   ✓ Southampton
   ✓ Nottingham
+  ✓ Peterborough
+  ✓ Leicester
+  ✓ Coventry
+  ✓ Bradford
+  ✓ Stoke-on-Trent
+  ✓ Wolverhampton
+  ✓ Plymouth
+  ✓ Derby
+  ✓ Reading
+  ✓ Kingston upon Hull
+  ✓ Preston
+  ✓ Milton Keynes
+  ✓ Northampton
+  ✓ Norwich
+  ✓ Luton
+  ✓ York
+  ✓ Portsmouth
+  ✓ Middlesbrough
+  ✓ Sunderland
+  ✓ Blackpool
+  ✓ Oxford
+  ✓ Cambridge
+  ✓ Ipswich
+  ✓ Slough
+  ✓ Gloucester
+  ✓ Watford
+  ✓ Bolton
+  ✓ Blackburn
+  ✓ Exeter
+  ✓ Colchester
+  ✓ Chelmsford
+  ✓ Bournemouth
+  ✓ Swindon
+  ✓ Huddersfield
+  ✓ Warrington
+  ✓ Wigan
 
-🇺🇸 USA (15 pages)
+  Scotland (8):
+  ✓ Glasgow
+  ✓ Edinburgh
+  ✓ Aberdeen
+  ✓ Dundee
+  ✓ Inverness
+  ✓ Stirling
+  ✓ Paisley
+  ✓ Dunfermline
+
+  Wales (7):
+  ✓ Cardiff
+  ✓ Swansea
+  ✓ Newport
+  ✓ Wrexham
+  ✓ Bangor (Wales)
+  ✓ St Davids
+  ✓ Merthyr Tydfil
+
+  Northern Ireland (5):
+  ✓ Belfast
+  ✓ Derry/Londonderry
+  ✓ Lisburn
+  ✓ Newry
+  ✓ Bangor (NI)
+
+🇺🇸 USA (60 pages) — FULL VIRAL COVERAGE (ALL REGIONS)
+  Northeast (10):
   ✓ New York
-  ✓ Los Angeles
-  ✓ Chicago
-  ✓ Houston
-  ✓ Phoenix
   ✓ Philadelphia
-  ✓ San Antonio
-  ✓ San Diego
-  ✓ Dallas
-  ✓ San Jose
-  ✓ Austin
-  ✓ Nashville
+  ✓ Boston
+  ✓ Pittsburgh
+  ✓ Newark
+  ✓ Jersey City
+  ✓ Buffalo
+  ✓ Rochester
+  ✓ Providence
+  ✓ Hartford
+
+  Mid-Atlantic / DC (5):
+  ✓ Washington DC
+  ✓ Baltimore
+  ✓ Richmond
+  ✓ Virginia Beach
+  ✓ Norfolk
+
+  Southeast (12):
   ✓ Miami
   ✓ Atlanta
+  ✓ Orlando
+  ✓ Tampa
+  ✓ Jacksonville
+  ✓ Charlotte
+  ✓ Raleigh
+  ✓ Nashville
+  ✓ Memphis
+  ✓ New Orleans
+  ✓ Charleston
+  ✓ Louisville
+
+  Midwest (12):
+  ✓ Chicago
+  ✓ Detroit
+  ✓ Columbus
+  ✓ Indianapolis
+  ✓ Milwaukee
+  ✓ Minneapolis
+  ✓ St. Louis
+  ✓ Kansas City
+  ✓ Cincinnati
+  ✓ Cleveland
+  ✓ Omaha
+  ✓ Des Moines
+
+  Texas & South (8):
+  ✓ Houston
+  ✓ San Antonio
+  ✓ Dallas
+  ✓ Austin
+  ✓ Fort Worth
+  ✓ El Paso
+  ✓ Oklahoma City
+  ✓ Tulsa
+
+  West Coast & Southwest (8):
+  ✓ Los Angeles
+  ✓ San Diego
+  ✓ San Francisco
+  ✓ San Jose
+  ✓ Sacramento
+  ✓ Las Vegas
+  ✓ Phoenix
+  ✓ Tucson
+
+  Pacific Northwest / Mountain (5):
+  ✓ Seattle
+  ✓ Portland
   ✓ Denver
+  ✓ Salt Lake City
+  ✓ Boise
 
 🇦🇪 Middle East / Gulf (12 pages)
   ✓ Dubai
@@ -928,16 +1047,79 @@ CITIES (190+ total):
   ✓ 6th of October City
   ✓ New Cairo
 
-+ Others: Canada (5), Australia (5), India (5), Nigeria (8), Kenya (3), South Africa (3), Germany (3), Spain (3), Italy (3)
+🇮🇪 IRELAND (25 pages)
+  ✓ Dublin (capital)
+  ✓ Cork
+  ✓ Limerick
+  ✓ Galway
+  ✓ Waterford
+  ✓ Drogheda
+  ✓ Dundalk
+  ✓ Swords
+  ✓ Bray
+  ✓ Navan
+  ✓ Ennis
+  ✓ Kilkenny
+  ✓ Carlow
+  ✓ Tralee
+  ✓ Newbridge
+  ✓ Portlaoise
+  ✓ Naas
+  ✓ Athlone
+  ✓ Mullingar
+  ✓ Letterkenny
+  ✓ Sligo
+  ✓ Clonmel
+  ✓ Malahide
+  ✓ Leixlip
+  ✓ Killarney
+
+🇨🇦 CANADA (25 pages)
+  ✓ Toronto
+  ✓ Montreal
+  ✓ Vancouver
+  ✓ Calgary
+  ✓ Edmonton
+  ✓ Ottawa
+  ✓ Winnipeg
+  ✓ Quebec City
+  ✓ Hamilton
+  ✓ Kitchener
+  ✓ London (Ontario)
+  ✓ Victoria
+  ✓ Halifax
+  ✓ Oshawa
+  ✓ Windsor
+  ✓ Saskatoon
+  ✓ Regina
+  ✓ St. John's
+  ✓ Barrie
+  ✓ Kelowna
+  ✓ Sudbury
+  ✓ Kingston
+  ✓ Sherbrooke
+  ✓ Guelph
+  ✓ Moncton
+
++ Others: Australia (5), India (5), Nigeria (8), Kenya (3), South Africa (3), Germany (3), Spain (3), Italy (3)
 
 📌 PRIORITÉ MAGHREB: Maroc + Tunisie + Algérie = 69 villes couvertes.
    → Marché francophone/arabophone en forte croissance pour Trap/Oriental/Drill.
    → Concurrence locale FAIBLE (2-3/10 difficulté) = quick wins garantis.
    → Contenu bilingue FR/AR recommandé pour ces 3 pays (voir hreflang Partie 7).
 
+📌 PRIORITÉ ANGLOPHONE: UK + USA + Ireland + Canada = 175 villes couvertes.
+   → Marché anglophone = plus gros volume de recherche mondial (voir Tier 1 EN).
+   → Concurrence FORTE dans les grandes villes (London, NYC, LA, Toronto) mais
+     FAIBLE dans les villes moyennes (Peterborough, Boise, Sudbury, Waterford).
+   → Stratégie: attaquer d'abord les villes moyennes (quick wins), puis remonter
+     vers les mégapoles une fois l'autorité de domaine établie (mois 4-6).
+   → UK slang à intégrer dans le contenu Drill/Grime (Newcastle, Manchester,
+     Liverpool = fort marché UK Drill/Garage).
+
 ═════════════════════════════════════════════════════════════════════════════
 
-TIER 2: Genre Pages by Region (200 pages)
+TIER 2: Genre Pages by Region (280+ pages)
 ═══════════════════════════════════════════
 
 URL structure: /beats/[genre]-[region].html
@@ -946,13 +1128,21 @@ Examples:
   ✓ /beats/trap-alger.html — "Free Trap Beats in Alger"
   ✓ /beats/oriental-paris.html — "Oriental Beats in Paris"
   ✓ /beats/drill-london.html — "UK Drill Beats in London"
+  ✓ /beats/drill-newcastle.html — "UK Drill Beats in Newcastle"
+  ✓ /beats/drill-manchester.html — "Manchester Drill Instrumentals"
+  ✓ /beats/drill-liverpool.html — "Liverpool Drill Beats Free"
+  ✓ /beats/trap-peterborough.html — "Free Trap Beats Peterborough"
   ✓ /beats/afrotrap-dubai.html — "Afrotrap for Dubai Producers"
+  ✓ /beats/trap-toronto.html — "Toronto Trap Beats Free Download"
+  ✓ /beats/drill-dublin.html — "Dublin Drill & Grime Beats"
+  ✓ /beats/gfunk-losangeles.html — "G-Funk Beats Los Angeles"
+  ✓ /beats/oriental-casablanca.html — "Oriental Beats Casablanca"
 
 Content: 400+ unique words + local producer spotlights
 
 ═════════════════════════════════════════════════════════════════════════════
 
-TIER 3: Long-Tail Location Pages (150 pages)
+TIER 3: Long-Tail Location Pages (200+ pages)
 ═════════════════════════════════════════════
 
 URL: /beats/[genre]-beats-[city-neighborhood].html
@@ -961,6 +1151,10 @@ Examples:
   ✓ /beats/trap-beats-algiers-kouba.html
   ✓ /beats/oriental-beats-paris-marais.html
   ✓ /beats/drill-beats-london-brixton.html
+  ✓ /beats/drill-beats-newcastle-westgate.html
+  ✓ /beats/drill-beats-manchester-moss-side.html
+  ✓ /beats/trap-beats-toronto-scarborough.html
+  ✓ /beats/drill-beats-dublin-tallaght.html
 
 Content: 250+ unique words, hyper-local relevance
 
@@ -1261,8 +1455,8 @@ MONTH 4-6: Domination Phase
 ├─ Content: 15 YouTube videos total, 8+ blog posts
 ├─ Backlinks: 300-500 accumulated
 ├─ YouTube subscribers: 3000-5000
-├─ Location pages: 300-450 indexed (incl. Maroc/Tunisie/Égypte)
-├─ Expected organic traffic: 8000-15000 visits/month
+├─ Location pages: 400-650 indexed (incl. Maroc/Tunisie/Égypte/UK/USA/Ireland/Canada)
+├─ Expected organic traffic: 10000-20000 visits/month
 ├─ Ranking positions: Position 1 for 15+ keywords
 └─ Conversion: 20-40 paid licenses/month
 
