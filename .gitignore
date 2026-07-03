@@ -6,3 +6,7 @@ proof*.html
 # dev / preview artifacts (local only)
 .serve.js
 .claude/
+
+# stratégie interne — NE PAS publier sur le site (local only)
+SEO_STRATEGY_GLOBAL_2026.txt
+STRATEGIE_PROMO_VST.txt
