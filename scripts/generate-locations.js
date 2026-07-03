@@ -312,7 +312,7 @@ fs.writeFileSync(path.join(OUT_DIR, 'index.html'), indexHtml, 'utf8');
 const staticPages = [
   'index.html', 'beats-redesign.html', 'drum-kits.html', 'vst.html', 'services.html',
   'discography.html', 'license.html', 'reviews.html', 'news.html', 'contact.html',
-  'studio-setup.html', 'locations/index.html'
+  'studio-setup.html', 'locations/index.html', 'game/index.html'
 ];
 const today = new Date().toISOString().slice(0, 10);
 let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
