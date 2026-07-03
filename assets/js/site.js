@@ -5,6 +5,23 @@
    ============================================================ */
 
 /* ============================================================
+   Google Analytics 4 (GA4) — loaded site-wide from here so EVERY
+   page (incl. /locations/*) is tracked from one place.
+   Real measurement ID: G-QB74GVD5RT
+   ============================================================ */
+(function(){
+  var GA_ID = 'G-QB74GVD5RT';
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', GA_ID);
+})();
+
+/* ============================================================
    SIDEBAR — shared left navigation, injected on every page.
    Each page sets <body data-page="KEY"> to highlight its link.
    ============================================================ */
