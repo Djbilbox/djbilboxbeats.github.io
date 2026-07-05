@@ -1,0 +1,79 @@
+═══════════════════════════════════════════════════════════════════════════════
+🎯 PLUGIN BOUTIQUE + SPLICE — LISTER LES 3 VST (MARKETPLACES)
+═══════════════════════════════════════════════════════════════════════════════
+
+───────────────────────────────────────────────────────────────────────────────
+PLUGIN BOUTIQUE (pluginboutique.com) — 2ème plus grande marketplace VST
+───────────────────────────────────────────────────────────────────────────────
+LIEN D'INSCRIPTION : pluginboutique.com/sell-with-us
+
+COMMISSIONS : ~30% (mais audience de 200K+ monthly users)
+
+Pour chacun des 3 plugins, remplir :
+
+PLUGIN NAME : [Oriental Instrument | BIGBASS | Vice City]
+DEVELOPER : DJBILBOX BEATS
+CATEGORY : [Instruments / Synthesizers / Keyboards] (voir par plugin)
+OS : Windows & macOS
+FORMATS : VST3, Standalone (AU optionnel si disponible)
+PRICE : [€49 / €39 / €36.90] + 50% discount code active
+DESCRIPTION : [Copier depuis KVR_LISTING_GUIDE.txt — texte court de 150-200 mots]
+DEMO VIDEO : [Lien YouTube si disponible, sinon laisse vide]
+ARTWORK : [Utilise img/vst/[plugin-name].jpg]
+
+TEMPS AVANT PUBLICATION : 3-7 jours (vérification manuelle par Plugin Boutique)
+
+───────────────────────────────────────────────────────────────────────────────
+SPLICE (splice.com/shop) — Marketplace + Distribution à la fois
+───────────────────────────────────────────────────────────────────────────────
+LIEN D'INSCRIPTION : splice.com/creators (clic "Sell your sounds")
+
+COMMISSIONS : ~35% (mais accès direct aux 100K+ producteurs Splice)
+
+Splice accepte :
+• Plugins VST (oui)
+• Sample packs (oui)
+• Presets (oui)
+
+POUR LES VST (les 3 plugins) :
+1. Upload binary (le .dll / .exe du plugin)
+2. Product details (nom, description, tags, catégorie)
+3. Pricing & distribution
+4. Attendre approbation (3-5 jours)
+
+POUR LES SAMPLE PACKS (les 15 packs) :
+1. Upload WAV files (par pack)
+2. Metadata (BPM, key, duration)
+3. Description
+4. Tags (genre, mood, instruments)
+5. Pricing (free ou paid)
+6. Attendre approbation
+
+TEMPLATE SPLICE FICHE PRODUIT :
+
+TITLE : [Plugin/Pack name]
+DESCRIPTION : [150-200 mots, copier depuis KVR/autres]
+CATEGORY : VST Plugins / Sample Packs / Presets
+TAGS : [5-10 tags hyper-spécifiques : "vst3", "trap", "oriental", etc.]
+PRICE : [USD equivalents: €49=~$53, €39=~$42, €36.90=~$40]
+BPM (si sample pack) : [voir packs-data.js]
+KEY (si sample pack) : [taggé dans les fiches]
+
+═══════════════════════════════════════════════════════════════════════════════
+PRIORITY ORDER — LANCER DANS CET ORDRE
+═══════════════════════════════════════════════════════════════════════════════
+
+SEMAINE 1 :
+☐ KVR Audio (3 VST) — 30 min, impact immédiat
+☐ Plugin Boutique (3 VST) — 30 min, approval 3-7j
+☐ Splice (3 VST) — 15 min + upload, approval 3-5j
+
+SEMAINE 2 (dès retour KVR) :
+☐ Splice (15 sample packs) — batch upload, approval 3-5j
+
+RÉSULTAT ATTENDU :
+• 50-100 VST visitors/week KVR (direct traffic)
+• 20-50 visitors/week Plugin Boutique (once approved)
+• 30-80 visitors/week Splice (depends on collection popularity)
+
+═══════════════════════════════════════════════════════════════════════════════

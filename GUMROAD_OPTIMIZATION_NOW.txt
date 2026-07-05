@@ -1,0 +1,122 @@
+═══════════════════════════════════════════════════════════════════════════════
+⚡ GUMROAD — OPTIMISATION IMMÉDIATE (30 MIN)
+Copie-colle les tags + descriptions dans tes produits existants
+═══════════════════════════════════════════════════════════════════════════════
+
+Pour CHAQUE produit Gumroad, aller dans "Edit product" et mettre à jour :
+1. TITLE (garder comme est, mais améliorer si possible)
+2. DESCRIPTION (copier le texte court dessous)
+3. TAGS (copier les tags spécifiques)
+
+───────────────────────────────────────────────────────────────────────────────
+🎛️ BIGBASS (xaziro)
+───────────────────────────────────────────────────────────────────────────────
+NOUVEAU TITRE (optionnel) :
+BIGBASS — LA Lowrider 808 Bass VST3 · 6 Engines, 80 Presets, Windows & Mac
+
+DESCRIPTION À COPIER (remplacer l'actuelle) :
+West-Coast lowrider bass synthesizer with 6 real pitch-detected bass engines
+(SUB, SLAM, PUNCH, GROWL, SCREAM, DOOM) + 80 LA-themed presets. Full synth
+control: 24dB filter, ADSR, drive, FX chain (reverb/delay/distortion). Chrome
+and gold Pioneer-style interface with animated lowrider knobs. VST3 + Standalone,
+Windows & Mac. Royalty-free for trap, G-funk, drill, West-Coast.
+
+TAGS À COPIER (remplacer les anciens) :
+vst, 808, bass, synth, lowrider, g-funk, trap, drill, west coast, la, vst3,
+djbilbox, djbilboxbeats, plugin, windows, mac, fl studio, ableton, logic
+
+───────────────────────────────────────────────────────────────────────────────
+🌆 VICE CITY (ykdzli)
+───────────────────────────────────────────────────────────────────────────────
+NOUVEAU TITRE (optionnel) :
+Vice City — Synthwave VST3 · Neon 80s Retrowave Synth, Windows & Mac
+
+DESCRIPTION À COPIER :
+Polyphonic synthwave engine for neon-soaked Miami 80s sounds. Dual detunable
+analog-modeled oscillators with sub, PWM, unison. Built-in FX chain: gated
+reverb, tape chorus, analog delay, drive. Curated preset library (leads, pads,
+basses, arps). Low-CPU design. VST3 + Standalone, Windows & Mac. Perfect for
+synthwave, retrowave, dreamwave, vaporwave, 80s electronic music.
+
+TAGS À COPIER :
+vst, synthwave, retrowave, synth, 80s, neon, dreamwave, vaporwave, miami,
+polyphonic, vst3, djbilbox, djbilboxbeats, plugin, windows, mac, fl studio,
+ableton, logic, keys, synthesizer
+
+───────────────────────────────────────────────────────────────────────────────
+🎵 ORIENTAL INSTRUMENT (oriental-instrument-djbilbox-beats)
+───────────────────────────────────────────────────────────────────────────────
+NOUVEAU TITRE (optionnel) :
+Oriental Instrument — 280+ Instruments VST3 · Oud, Qanun, Ney, Saz, Strings
+
+DESCRIPTION À COPIER :
+280+ authentic oriental instruments & sounds in one VST3 plugin. Oud, qanun, ney,
+saz, oriental strings, brass, percussion — multi-sampled, professionally recorded.
+Real articulations: slides, ornaments, quarter-tone bends for authentic phrasing.
+Melodic phrase browser. VST3 + AU + Standalone, Windows & Mac. Royalty-free for
+trap, afrobeat, world music, cinematic production. Free demo available.
+
+TAGS À COPIER :
+vst, oriental, arabic, instrument, oud, qanun, ney, saz, strings, percussion,
+trap, afrobeat, world, cinematic, vst3, djbilbox, djbilboxbeats, plugin,
+windows, mac, demo, free
+
+───────────────────────────────────────────────────────────────────────────────
+📦 TONE VAULT (yrkzl)
+───────────────────────────────────────────────────────────────────────────────
+DESCRIPTION À COPIER :
+Vault of pro instrument one-shots — keys, plucks, bells, brass, strings, guitars,
+synths. Key-labeled & tuned for instant melody-writing. Layer, chop, build chords.
+Royalty-free for trap, R&B, drill, afro, pop. One purchase, unlimited melodies.
+
+TAGS À COPIER :
+sample pack, one-shots, instruments, keys, piano, bells, brass, strings, guitar,
+synth, melody, trap, r&b, drill, afro, pop, djbilbox, royalty-free, wav
+
+───────────────────────────────────────────────────────────────────────────────
+📦 VOID SIGNALS (mkijdn)
+───────────────────────────────────────────────────────────────────────────────
+DESCRIPTION À COPIER :
+19GB cinematic arsenal — risers, impacts, braams, whooshes, drones, atmospheres,
+glitches, textures. Industry-standard Boom Library content. Broadcast-quality for
+trailers, transitions, tension, ambience. Royalty-free for music, film, games.
+
+TAGS À COPIER :
+sample pack, sfx, cinematic, sound design, risers, impacts, braams, whooshes,
+trailer, film, game, audio, djbilbox, royalty-free, boom library
+
+───────────────────────────────────────────────────────────────────────────────
+📦 GHOST VOICE (fnpdxf)
+───────────────────────────────────────────────────────────────────────────────
+DESCRIPTION À COPIER :
+Studio-recorded vocal hooks, chops, adlibs & acapellas. Key & BPM labeled.
+Drop on beats to add human, radio-ready top line. Perfect for trap, R&B, afro,
+drill, house, pop. Dry & processed. Royalty-free, no features to clear.
+
+TAGS À COPIER :
+sample pack, vocals, hooks, chops, acapella, adlibs, key labeled, bpm labeled,
+trap, r&b, afro, drill, house, pop, djbilbox, royalty-free, wav
+
+[MÊME STRUCTURE POUR TOUS LES AUTRES 10 PACKS — voir packs-data.js pour descriptions]
+
+───────────────────────────────────────────────────────────────────────────────
+✅ CHECKLIST — GUMROAD EN 30 MIN
+───────────────────────────────────────────────────────────────────────────────
+☐ BIGBASS — nouveau titre + description + tags
+☐ VICE CITY — nouveau titre + description + tags
+☐ ORIENTAL INSTRUMENT — nouveau titre + description + tags
+☐ TONE VAULT — description + tags
+☐ VOID SIGNALS — description + tags
+☐ GHOST VOICE — description + tags
+☐ RAW ELEMENTS — description + tags [utiliser modèle packs-data.js]
+☐ VINYL BREAKER — description + tags
+☐ NEON PULSE — description + tags
+☐ CONCRETE VAULT — description + tags
+☐ WESTCOAST CHROME — description + tags
+☐ ETNIC RITMIK — description + tags
+☐ [Tous les autres 15 packs FREE — description + tags]
+
+RÉSULTAT : Gumroad Discover commence à classer tes produits + backlinks vers
+KVR/Plugin Boutique/Splice = plus de visibilité croisée.
+
+═══════════════════════════════════════════════════════════════════════════════

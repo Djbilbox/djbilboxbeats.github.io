@@ -1,0 +1,75 @@
+═══════════════════════════════════════════════════════════════════════════════
+📋 INDEX COMPLET — TOUS LES FICHIERS DE VENTE GÉNÉRÉS
+═══════════════════════════════════════════════════════════════════════════════
+
+📁 FICHIERS LOCAUX (C:\Claude\djbilboxbeats.github.io\) :
+───────────────────────────────────────────────────────────────────────────────
+
+1️⃣ ACTION_PLAN_FINAL.txt ⭐ (COMMENCER ICI)
+   → Roadmap complète 7 jours
+   → Ordre de priorité
+   → Liens directs vers tous les sites
+   → Temps estimé par étape
+
+2️⃣ GUMROAD_OPTIMIZATION_NOW.txt (JOUR 1 — 30 min)
+   → Copy-paste IMMÉDIAT des tags + descriptions
+   → 18 produits : 3 VST + 15 packs
+   → Gumroad.com/djbilboxbeats
+
+3️⃣ FICHES_VENTE_COMPLETE.txt (JOURS 4-5)
+   → eBay (titre + description + prix)
+   → Amazon (même format)
+   → Fnac (même format)
+   → Gumroad (variante USB Vault)
+   → KVR (brut de coffre)
+
+4️⃣ KVR_LISTING_GUIDE.txt (JOUR 2 — 30 min)
+   → Template kvraudio.com
+   → 3 VST : Oriental / BIGBASS / Vice City
+   → Copy-paste direct : nom, catégorie, description, tags, lien
+
+5️⃣ PLUGIN_BOUTIQUE_SPLICE_GUIDE.txt (JOURS 2-3)
+   → Plugin Boutique : template + upload
+   → Splice : template + upload
+   → Commisssion, audience, timeline
+
+6️⃣ PLAN_MARKETPLACES_PHYSIQUE.txt (ANCIEN — CONTEXTE)
+   → Stratégie USB Vault (clé USB brandée)
+   → Coûts de revient
+   → Variantes (USB / carte-code / vinyl)
+   → À consulter si tu veux lancer la version PHYSIQUE
+
+📁 IMAGES GÉNÉRÉES :
+───────────────────────────────────────────────────────────────────────────────
+✓ usb-mockup-800.png — Image mockup USB (800x800, marketplace)
+✓ usb-mockup-1200.png — Image mockup USB (1200x1200, desktop)
+✓ icon-192.png — Icone DJBILBOX Zombies (PWA)
+✓ icon-512.png — Icone DJBILBOX Zombies (PWA)
+
+═══════════════════════════════════════════════════════════════════════════════
+🚀 ÉTAPE SUIVANTE — TROIS OPTIONS
+═══════════════════════════════════════════════════════════════════════════════
+
+OPTION A : Je gère Gumroad MAINTENANT (30 min)
+   Dis : "go gumroad"
+   → Je me connecte et optimise tes 18 produits (si j'ai accès)
+
+OPTION B : Je gère KVR MAINTENANT (30 min)
+   Dis : "go kvr"
+   → Je crée les 3 listings KVR (si possible via navigateur)
+
+OPTION C : Tu commences toi-même avec les fiches
+   Dis : "toi-même"
+   → Tu ouvres Gumroad, eBay, Amazon, etc.
+   → Je te guide via chat si tu bloques
+
+═══════════════════════════════════════════════════════════════════════════════
+💬 PROCHAINE ACTION — DIS-MOI :
+═══════════════════════════════════════════════════════════════════════════════
+
+"go gumroad" → Je publie les 18 produits optimisés sur Gumroad
+"go kvr" → Je crée les 3 listings sur KVR Audio
+"go all" → Je fais Gumroad + KVR + tente Plugin Boutique
+"toi-même" → Tu gères avec les fiches, je t'assiste
+
+═══════════════════════════════════════════════════════════════════════════════

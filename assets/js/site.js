@@ -519,12 +519,40 @@ function vstCard(p){
   return el;
 }
 function renderVsts(list, containerId){
-  const grid=document.getElementById(containerId);
-  if(!grid) return;
-  grid.innerHTML='';
+  const container=document.getElementById(containerId);
+  if(!container) return;
+  container.innerHTML='';
+
+  const effects=(list||[]).filter(p=>p.category==='effect');
+  const instruments=(list||[]).filter(p=>p.category==='instrument'||!p.category);
+
   const frag=document.createDocumentFragment();
-  (list||[]).forEach(p=>frag.appendChild(vstCard(p)));
-  grid.appendChild(frag);
+
+  // EFFECTS section
+  if(effects.length>0){
+    const h=document.createElement('h2');
+    h.style.fontSize='1.8rem';
+    h.style.margin='40px 0 24px 0';
+    h.style.color='#ffd24a';
+    h.style.gridColumn='1 / -1';
+    h.textContent='⚙️ AUDIO EFFECTS';
+    frag.appendChild(h);
+    effects.forEach(p=>frag.appendChild(vstCard(p)));
+  }
+
+  // INSTRUMENTS section
+  if(instruments.length>0){
+    const h=document.createElement('h2');
+    h.style.fontSize='1.8rem';
+    h.style.margin='40px 0 24px 0';
+    h.style.color='#39ff5a';
+    h.style.gridColumn='1 / -1';
+    h.textContent='🎹 INSTRUMENTS';
+    frag.appendChild(h);
+    instruments.forEach(p=>frag.appendChild(vstCard(p)));
+  }
+
+  container.appendChild(frag);
 }
 
 /* Build the genre filter pills based on what's actually in the data */
