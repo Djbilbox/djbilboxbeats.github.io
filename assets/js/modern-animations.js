@@ -1,228 +1,166 @@
 /* ============================================================
-   DJBILBOX BEATS — Modern Animations Engine
-   Scroll effects, particles, progress bar, scroll indicators
+   DJBILBOX BEATS — Premium Motion Engine
+   Gold starscape · scroll reveals (GSAP w/ IO fallback) ·
+   count-up stats · parallax orbs · scroll progress bar.
    ============================================================ */
+(function(){
+  'use strict';
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ---- Progress Bar ----
-function initProgressBar() {
-  const progressBar = document.createElement('div');
-  progressBar.className = 'progress-bar';
-  document.body.appendChild(progressBar);
-
-  window.addEventListener('scroll', () => {
-    const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    progressBar.style.width = scrollPercent + '%';
-  });
-}
-
-// ---- Ambient Particles Background ----
-function createAmbientParticles() {
-  const bg = document.createElement('div');
-  bg.className = 'particles-bg';
-  document.body.insertBefore(bg, document.body.firstChild);
-
-  const particleCount = Math.min(Math.floor(window.innerWidth / 100), 30);
-
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-
-    const size = Math.random() * 3 + 1;
-    const delay = Math.random() * 5;
-    const duration = Math.random() * 8 + 10;
-    const x = Math.random() * 100;
-    const y = Math.random() * 100;
-
-    particle.style.width = size + 'px';
-    particle.style.height = size + 'px';
-    particle.style.left = x + '%';
-    particle.style.top = y + '%';
-    particle.style.animationDuration = duration + 's';
-    particle.style.animationDelay = delay + 's';
-    particle.style.opacity = Math.random() * 0.5 + 0.3;
-
-    bg.appendChild(particle);
+  /* ---------- 1. Scroll progress bar ---------- */
+  function progressBar(){
+    const bar = document.createElement('div');
+    bar.className = 'progress-bar';
+    document.body.appendChild(bar);
+    const onScroll = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
   }
-}
 
-// ---- Scroll Indicators ----
-function initScrollIndicators() {
-  const sections = document.querySelectorAll('section');
-  if (sections.length === 0) return;
+  /* ---------- 2. Gold / platinum starscape ---------- */
+  function starscape(){
+    if (reduce) return;
+    const canvas = document.createElement('canvas');
+    canvas.id = 'starscape';
+    document.body.insertBefore(canvas, document.body.firstChild);
+    const ctx = canvas.getContext('2d');
+    let w, h, stars, dpr = window.devicePixelRatio || 1;
+    const COLORS = ['255,255,255', '212,175,55', '229,228,226'];
 
-  const indicatorsContainer = document.createElement('div');
-  indicatorsContainer.className = 'scroll-indicators';
-
-  sections.forEach((_, index) => {
-    const indicator = document.createElement('div');
-    indicator.className = 'scroll-indicator';
-    if (index === 0) indicator.classList.add('active');
-
-    indicator.addEventListener('click', () => {
-      sections[index].scrollIntoView({ behavior: 'smooth' });
-    });
-
-    indicatorsContainer.appendChild(indicator);
-  });
-
-  document.body.appendChild(indicatorsContainer);
-
-  // Update active indicator on scroll
-  window.addEventListener('scroll', () => {
-    let current = 0;
-    sections.forEach((section, index) => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= window.innerHeight / 2) {
-        current = index;
+    function resize(){
+      w = window.innerWidth; h = window.innerHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.min(140, Math.floor(w * h / 14000));
+      stars = Array.from({ length: count }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        r: Math.random() * 1.3 + 0.3,
+        base: Math.random() * 0.5 + 0.2,
+        dx: (Math.random() - 0.5) * 0.05,
+        dy: (Math.random() - 0.5) * 0.04,
+        tw: Math.random() * 0.004 + 0.001,
+        ph: Math.random() * Math.PI * 2,
+        c: COLORS[Math.floor(Math.random() * COLORS.length)]
+      }));
+    }
+    function frame(){
+      ctx.clearRect(0, 0, w, h);
+      const t = Date.now();
+      for (const s of stars){
+        s.x += s.dx; s.y += s.dy;
+        if (s.x < 0) s.x = w; if (s.x > w) s.x = 0;
+        if (s.y < 0) s.y = h; if (s.y > h) s.y = 0;
+        const o = Math.max(0, s.base + Math.sin(t * s.tw + s.ph) * 0.3);
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${s.c},${o})`;
+        ctx.fill();
       }
+      requestAnimationFrame(frame);
+    }
+    window.addEventListener('resize', resize);
+    resize(); frame();
+  }
+
+  /* ---------- 3. Hero orbs + grid overlay (injected) ---------- */
+  function heroDecor(){
+    const hero = document.querySelector('.hero');
+    if (!hero || hero.querySelector('.orb')) return;
+    const frag = document.createDocumentFragment();
+    ['orb orb-1', 'orb orb-2', 'orb orb-3', 'grid-overlay'].forEach(cls => {
+      const d = document.createElement('div');
+      d.className = cls;
+      frag.appendChild(d);
     });
+    hero.insertBefore(frag, hero.firstChild);
+  }
 
-    document.querySelectorAll('.scroll-indicator').forEach((ind, index) => {
-      ind.classList.toggle('active', index === current);
-    });
-  });
-}
+  /* ---------- 4. Count-up on stats ---------- */
+  function parseStat(txt){
+    const m = String(txt).match(/^([\d.,]+)(.*)$/);
+    if (!m) return null;
+    const target = parseFloat(m[1].replace(/,/g, ''));
+    return isNaN(target) ? null : { target, suffix: m[2] || '' };
+  }
+  function easeOutExpo(t){ return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+  function countUp(el, target, suffix){
+    const dur = 1800, start = performance.now();
+    const isInt = target % 1 === 0;
+    el.classList.add('counting');
+    (function step(now){
+      const p = Math.min((now - start) / dur, 1);
+      const val = easeOutExpo(p) * target;
+      el.textContent = (isInt ? Math.floor(val) : val.toFixed(1)) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else { el.textContent = (isInt ? target : target.toFixed(1)) + suffix; el.classList.remove('counting'); }
+    })(start);
+  }
+  function initCounters(){
+    const nums = document.querySelectorAll('.stat .num');
+    if (!nums.length) return;
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target, parsed = parseStat(el.textContent);
+        if (parsed && !reduce) countUp(el, parsed.target, parsed.suffix);
+        obs.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    nums.forEach(n => io.observe(n));
+  }
 
-// ---- Observe Elements for Scroll Animations ----
-function initScrollAnimations() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
+  /* ---------- 5. Scroll reveals ---------- */
+  function initReveals(){
+    // Tag elements to reveal
+    const targets = [];
+    document.querySelectorAll('.home-card, .card, .promo-block, .newsletter, .section-head, .blog-card')
+      .forEach(el => { el.classList.add('reveal'); targets.push(el); });
+    document.querySelectorAll('.section-head h2').forEach(h => targets.push(h));
 
-  // Observe cards
-  document.querySelectorAll('.card').forEach((card) => {
-    observer.observe(card);
-  });
+    if (window.gsap && window.ScrollTrigger && !reduce){
+      gsap.registerPlugin(ScrollTrigger);
+      // Reveal groups with a subtle stagger per section
+      gsap.utils.toArray('.reveal').forEach(el => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+      });
+      // Underline sweep on H2s
+      gsap.utils.toArray('.section-head h2').forEach(h => {
+        ScrollTrigger.create({ trigger: h, start: 'top 85%', once: true,
+          onEnter: () => h.classList.add('in') });
+      });
+      // Parallax on hero orbs
+      gsap.utils.toArray('.hero .orb').forEach((orb, i) => {
+        gsap.to(orb, { yPercent: (i + 1) * 12, ease: 'none',
+          scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+      });
+    } else {
+      // Fallback: IntersectionObserver
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal, .section-head h2').forEach(el => io.observe(el));
+    }
+  }
 
-  // Observe sections
-  document.querySelectorAll('section').forEach((section) => {
-    observer.observe(section);
-  });
-
-  // Observe promo blocks
-  document.querySelectorAll('.promo-block').forEach((block) => {
-    observer.observe(block);
-  });
-}
-
-// ---- Parallax Effect on Scroll ----
-function initParallax() {
-  const parallaxElements = document.querySelectorAll('[data-parallax]');
-
-  window.addEventListener('scroll', () => {
-    parallaxElements.forEach((el) => {
-      const speed = el.dataset.parallax || 0.5;
-      const yPos = window.scrollY * speed;
-      el.style.transform = `translateY(${yPos}px)`;
-    });
-  });
-}
-
-// ---- Enhanced Hover Effects on Cards ----
-function enhanceCardHovers() {
-  const cards = document.querySelectorAll('.card');
-
-  cards.forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = (y - centerY) / 20;
-      const rotateY = (centerX - x) / 20;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'translateY(-8px)';
-    });
-  });
-}
-
-// ---- Glow Effect Following Mouse ----
-function initMouseGlow() {
-  const glow = document.createElement('div');
-  glow.style.cssText = `
-    position: fixed;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255, 215, 74, 0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-    filter: blur(40px);
-  `;
-  document.body.appendChild(glow);
-
-  document.addEventListener('mousemove', (e) => {
-    glow.style.left = (e.clientX - 150) + 'px';
-    glow.style.top = (e.clientY - 150) + 'px';
-  });
-}
-
-// ---- Smooth Scroll Behavior ----
-function initSmoothScroll() {
-  document.documentElement.style.scrollBehavior = 'smooth';
-}
-
-// ---- Add CSS to Hero H1 for Split Text Effect ----
-function enhanceHeroText() {
-  const heroH1 = document.querySelector('.hero h1');
-  if (!heroH1) return;
-
-  const text = heroH1.innerText;
-  heroH1.innerHTML = text
-    .split('')
-    .map((char, i) => `<span style="animation-delay: ${i * 0.02}s">${char}</span>`)
-    .join('');
-}
-
-// ---- Initialize All Modern Effects ----
-document.addEventListener('DOMContentLoaded', () => {
-  initProgressBar();
-  createAmbientParticles();
-  initScrollIndicators();
-  initScrollAnimations();
-  initParallax();
-  enhanceCardHovers();
-  initMouseGlow();
-  initSmoothScroll();
-  enhanceHeroText();
-
-  // Trigger initial animations
-  document.querySelectorAll('section').forEach((section) => {
-    section.style.opacity = '1';
-  });
-
-  // Re-observe elements after DOM loaded
-  setTimeout(() => {
-    document.querySelectorAll('.card').forEach((card) => {
-      card.style.opacity = '1';
-      card.style.transform = 'translateY(0)';
-    });
-  }, 100);
-});
-
-// ---- Cleanup on Page Unload ----
-window.addEventListener('beforeunload', () => {
-  const particlesBg = document.querySelector('.particles-bg');
-  if (particlesBg) particlesBg.remove();
-
-  const indicators = document.querySelector('.scroll-indicators');
-  if (indicators) indicators.remove();
-
-  const progressBar = document.querySelector('.progress-bar');
-  if (progressBar) progressBar.remove();
-});
+  /* ---------- boot ---------- */
+  function boot(){
+    document.documentElement.classList.add('js-reveal');
+    heroDecor();
+    progressBar();
+    starscape();
+    initCounters();
+    initReveals();
+  }
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();

@@ -7,6 +7,40 @@
 window.PRODUCTS = {
 
   /* ===================== VST PLUGINS ===================== */
+  "machina": {
+    type:"vst", name:"MACHINA", sub:"Creative Multi-Effect — Energy Drink for Your Sound",
+    tagline:"A VST3 audio effect wrapped in a fully-animated energy-drink vending machine — distortion, delay & filter with six flavour presets.",
+    cover:"img/vst/machina-vst.jpg", accent:"#39ff5a", accent2:"#ff8a3d",
+    price:"29", old:"", badge:"🆕 NEW",
+    note:"New release · Creative multi-effect with playable vending-machine UI",
+    buy:"lbceu", demo:"",
+    video:"", poster:"img/vst/machina-vst.jpg",
+    tags:["Audio Effect","Distortion","Delay","Filter","VST3","AU","Win · Mac"],
+    about:[
+      "MACHINA is a VST3 audio effect plugin wrapped in the most playful interface you've ever seen — a fully animated energy-drink vending machine that makes sound design feel like a game. Drop a coin, grab a can, transform your audio.",
+      "Under the hood is a three-stage DSP chain that goes places: DISTORTION brings warm saturation with tone shaping and DC blocking, DELAY adds lush stereo echo with damped feedback up to one second, and FILTER delivers resonant low/high/band-pass character. All three work together as one cohesive signal flow, fully automatable in your DAW.",
+      "Six flavours, six personalities: FIZZ DRIVE, COLD DELAY, TURBO BRIGHT, SLUSH SPACE, FROST CLEAN and MELTDOWN — each preset a complete effect character ready to inspire. The mascot on the left responds to the machine, and the whole UI resizes fluidly from compact to ultrawide. Ships as VST3 (Windows & macOS) and AU (macOS)."
+    ],
+    features:[
+      {icon:"fa-fire", t:"Distortion stage", d:"Warm saturation with tone shaping and DC blocking for grit that sits right in the mix."},
+      {icon:"fa-clock", t:"Stereo delay", d:"Lush stereo echo with damped feedback up to one second — spacious and musical."},
+      {icon:"fa-filter", t:"Resonant filter", d:"Low / high / band-pass filtering with character and resonance control."},
+      {icon:"fa-wand-magic-sparkles", t:"6 flavour presets", d:"FIZZ DRIVE, COLD DELAY, TURBO BRIGHT, SLUSH SPACE, FROST CLEAN & MELTDOWN."},
+      {icon:"fa-expand", t:"Resizable UI", d:"Drag any corner — everything scales fluidly from compact to ultrawide, never breaks."},
+      {icon:"fa-user-pen", t:"Custom mascot", d:"Drop your own PNG character on your Desktop and MACHINA loads it instantly."}
+    ],
+    specs:[
+      {k:"Format", v:"VST3 (Windows & macOS) · AU (macOS)"},
+      {k:"Type", v:"Creative Multi-Effect"},
+      {k:"Parameters", v:"10 fully automatable controls"},
+      {k:"Processing", v:"True stereo (independent L/R)"},
+      {k:"Latency", v:"Minimal — optimized for live use"},
+      {k:"Price", v:"€29"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["MACHINA VST3 (64-bit)","MACHINA AU (macOS)","6 flavour presets","Custom mascot loader","User manual (PDF)"]
+  },
+
   "bigbass": {
     type:"vst", name:"BIGBASS", sub:"LA Lowrider Bass Synthesizer",
     tagline:"West-Coast lowrider bass in one plug-in — 6 real bass engines, 80 presets, VST3 & Standalone for Win & Mac.",

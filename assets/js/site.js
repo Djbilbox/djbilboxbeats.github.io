@@ -528,27 +528,25 @@ function renderVsts(list, containerId){
 
   const frag=document.createDocumentFragment();
 
+  const mkHead = (label) => {
+    const h=document.createElement('h2');
+    h.className='vst-cat-head';
+    h.style.cssText='grid-column:1 / -1;font-family:var(--font-a,sans-serif);font-weight:700;'
+      +'font-size:1.5rem;text-transform:uppercase;letter-spacing:.06em;margin:44px 0 20px;'
+      +'color:var(--accent-bright,#FFD700);display:flex;align-items:center;gap:12px';
+    h.innerHTML=label+'<span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(212,175,55,.5),transparent)"></span>';
+    return h;
+  };
+
   // EFFECTS section
   if(effects.length>0){
-    const h=document.createElement('h2');
-    h.style.fontSize='1.8rem';
-    h.style.margin='40px 0 24px 0';
-    h.style.color='#ffd24a';
-    h.style.gridColumn='1 / -1';
-    h.textContent='⚙️ AUDIO EFFECTS';
-    frag.appendChild(h);
+    frag.appendChild(mkHead('⚙️ Audio Effects'));
     effects.forEach(p=>frag.appendChild(vstCard(p)));
   }
 
   // INSTRUMENTS section
   if(instruments.length>0){
-    const h=document.createElement('h2');
-    h.style.fontSize='1.8rem';
-    h.style.margin='40px 0 24px 0';
-    h.style.color='#39ff5a';
-    h.style.gridColumn='1 / -1';
-    h.textContent='🎹 INSTRUMENTS';
-    frag.appendChild(h);
+    frag.appendChild(mkHead('🎹 Instruments'));
     instruments.forEach(p=>frag.appendChild(vstCard(p)));
   }
 

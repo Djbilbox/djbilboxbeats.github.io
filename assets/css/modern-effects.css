@@ -1,314 +1,205 @@
 /* ============================================================
-   DJBILBOX BEATS — Modern Animations & Effects
-   Scroll animations, glass morphism, parallax, neon glow effects
+   DJBILBOX BEATS — Premium Motion Layer
+   Gold & platinum luxury effects: floating orbs, glass cards,
+   animated gradient headline, GSAP-driven scroll reveals.
+   Palette matches theme.css (--accent gold #D4AF37).
    ============================================================ */
 
-/* ---- Scroll Animation Base ---- */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+:root{
+  --gold:#D4AF37; --gold-bright:#FFD700; --plat:#E5E4E2; --chrome:#C0C0C0;
+  --gold-rgb:212,175,55;
 }
 
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-30px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Respect reduced-motion users everywhere */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important; transition:none !important}
 }
 
-@keyframes glowPulse {
-  0%, 100% { text-shadow: 0 0 10px rgba(255,215,74,0.3), 0 0 20px rgba(255,45,142,0.2); }
-  50% { text-shadow: 0 0 20px rgba(255,215,74,0.6), 0 0 40px rgba(255,45,142,0.4); }
+/* ---------------------------------------------------------
+   1. HERO — floating gold orbs + grid + animated headline
+   --------------------------------------------------------- */
+.hero{ isolation:isolate; }
+
+/* Big blurred gold orbs drifting behind the hero */
+.hero .orb{
+  position:absolute; border-radius:50%; filter:blur(90px);
+  pointer-events:none; z-index:-1; will-change:transform;
+}
+.hero .orb-1{ width:520px;height:520px; top:-180px; right:-120px;
+  background:radial-gradient(circle,rgba(212,175,55,.35),transparent 70%);
+  animation:orbFloat 14s ease-in-out infinite; }
+.hero .orb-2{ width:440px;height:440px; bottom:-160px; left:-100px;
+  background:radial-gradient(circle,rgba(229,228,226,.18),transparent 70%);
+  animation:orbFloat 18s ease-in-out infinite reverse; }
+.hero .orb-3{ width:340px;height:340px; top:20%; left:40%;
+  background:radial-gradient(circle,rgba(255,215,0,.14),transparent 70%);
+  animation:orbFloat 22s ease-in-out infinite; }
+
+@keyframes orbFloat{
+  0%,100%{ transform:translate(0,0) scale(1); }
+  33%{ transform:translate(40px,-30px) scale(1.08); }
+  66%{ transform:translate(-30px,25px) scale(.95); }
 }
 
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-40px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -1000px 0; }
-  100% { background-position: 1000px 0; }
-}
-
-@keyframes particleFloat {
-  0% { opacity: 0; transform: translateY(20px) scale(0); }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-100vh) scale(1); }
-}
-
-/* ---- Ambient Particles Background ---- */
-.particles-bg {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: radial-gradient(circle, rgba(255,215,74,0.8), rgba(255,45,142,0.4));
-  border-radius: 50%;
-  filter: blur(0.5px);
-  animation: particleFloat linear infinite;
-}
-
-/* ---- Section Reveals ---- */
-section {
-  position: relative;
-  z-index: 1;
-}
-
-.section {
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.section:nth-child(1) { animation-delay: 0s; }
-.section:nth-child(2) { animation-delay: 0.1s; }
-.section:nth-child(3) { animation-delay: 0.2s; }
-.section:nth-child(4) { animation-delay: 0.3s; }
-.section:nth-child(5) { animation-delay: 0.4s; }
-.section:nth-child(6) { animation-delay: 0.5s; }
-
-/* ---- Hero Section Enhancements ---- */
-.hero {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg,
-    rgba(255,215,74,0.05) 0%,
-    rgba(255,45,142,0.03) 50%,
-    rgba(122,60,255,0.05) 100%);
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 50%, rgba(255,45,142,0.15) 0%, transparent 50%),
-              radial-gradient(circle at 80% 80%, rgba(122,60,255,0.1) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero .container {
-  position: relative;
-  z-index: 1;
-}
-
-.hero h1 {
-  animation: glowPulse 3s ease-in-out infinite;
-  background: linear-gradient(135deg, #ffd24a, #ff2f8e, #7a3cff, #39ff5a);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: clamp(2rem, 6vw, 4rem);
-}
-
-.hero .sub {
-  animation: fadeInUp 1s ease-out 0.3s both;
-}
-
-.hero-cta {
-  animation: slideInUp 1s ease-out 0.6s both;
-}
-
-/* ---- Card Glass Morphism ---- */
-.card {
-  background: rgba(20, 20, 24, 0.6) !important;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,215,74,0.1) 0%, transparent 50%, rgba(122,60,255,0.1) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.card:hover::before {
-  opacity: 1;
-}
-
-.card:hover {
-  border-color: rgba(255, 45, 142, 0.5) !important;
-  box-shadow: 0 8px 32px rgba(255, 45, 142, 0.15),
-              0 0 20px rgba(122, 60, 255, 0.1) !important;
-  transform: translateY(-8px) !important;
-}
-
-/* ---- Staggered Card Reveals ---- */
-.grid .card {
-  animation: fadeInUp 0.6s ease-out forwards;
-  opacity: 0;
-}
-
-.grid .card:nth-child(1) { animation-delay: 0.05s; }
-.grid .card:nth-child(2) { animation-delay: 0.1s; }
-.grid .card:nth-child(3) { animation-delay: 0.15s; }
-.grid .card:nth-child(4) { animation-delay: 0.2s; }
-.grid .card:nth-child(5) { animation-delay: 0.25s; }
-.grid .card:nth-child(6) { animation-delay: 0.3s; }
-.grid .card:nth-child(n+7) { animation-delay: 0.35s; }
-
-/* ---- Promo Block Enhancement ---- */
-.promo-block {
-  background: linear-gradient(135deg,
-    rgba(255, 215, 74, 0.1) 0%,
-    rgba(122, 60, 255, 0.1) 100%) !important;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  border-radius: 16px;
-  position: relative;
-  overflow: hidden;
-}
-
-.promo-block::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 100% 0%, rgba(255,45,142,0.2) 0%, transparent 70%),
-              radial-gradient(circle at 0% 100%, rgba(57,255,90,0.1) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.promo-block > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* ---- Button Enhancements ---- */
-.btn, .btn-cta {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.btn::before, .btn-cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transform: translateX(-100%);
-}
-
-.btn:hover::before, .btn-cta:hover::before {
-  animation: shimmer 0.6s ease-in-out;
-}
-
-.btn.primary:hover, .btn-cta:hover {
-  box-shadow: 0 0 20px rgba(255, 215, 74, 0.4),
-              0 0 40px rgba(255, 45, 142, 0.2);
-  transform: translateY(-2px) scale(1.02);
-}
-
-/* ---- Text Animation - Letter Split ---- */
-h1, h2, h3 {
-  letter-spacing: -0.01em;
-}
-
-.animate-text {
-  display: inline-block;
-  overflow: hidden;
-}
-
-.animate-text span {
-  display: inline-block;
-  animation: fadeInUp 0.5s ease-out backwards;
-}
-
-/* ---- Parallax Scroll Effect ---- */
-.parallax {
-  position: relative;
-}
-
-.parallax-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  transform: translateZ(0);
-}
-
-/* ---- Navigation Dot Indicators ---- */
-.scroll-indicators {
-  position: fixed;
-  right: 32px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 100;
-}
-
-.scroll-indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-.scroll-indicator.active {
-  background: #ffd24a;
-  box-shadow: 0 0 20px rgba(255, 215, 74, 0.5);
-  transform: scale(1.4);
-}
-
-/* ---- Progress Bar ---- */
-.progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #ffd24a, #ff2f8e, #7a3cff, #39ff5a);
-  width: 0%;
-  z-index: 999;
-  transition: width 0.1s ease;
-  box-shadow: 0 0 10px rgba(255, 215, 74, 0.5);
-}
-
-/* ---- Responsive Adjustments ---- */
-@media (max-width: 768px) {
-  .scroll-indicators {
-    display: none;
-  }
-
-  .card {
-    animation-delay: 0 !important;
-  }
-
-  .hero h1 {
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
-  }
-}
-
-/* ---- Film Grain Overlay ---- */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
+/* Fine grid overlay for depth */
+.hero .grid-overlay{
+  position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.5;
   background-image:
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="2"/><feColorMatrix type="saturate" values="0.3"/></filter><rect width="100" height="100" fill="white" filter="url(%23noise)" opacity="0.02"/></svg>');
-  pointer-events: none;
-  z-index: 1;
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse at 50% 40%,#000 30%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 30%,transparent 75%);
+}
+
+/* Animated shimmering gold headline */
+.hero h1{
+  background:linear-gradient(100deg,
+    var(--plat) 0%, var(--gold-bright) 25%, var(--gold) 45%,
+    #fff 55%, var(--gold) 65%, var(--gold-bright) 80%, var(--plat) 100%);
+  background-size:220% auto;
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+  animation:goldShine 6s linear infinite;
+  filter:drop-shadow(0 2px 20px rgba(212,175,55,.25));
+}
+.hero h1 span{ -webkit-text-fill-color:transparent; }
+@keyframes goldShine{
+  0%{ background-position:0% center; }
+  100%{ background-position:220% center; }
+}
+
+/* Hero entrance choreography */
+.hero .eyebrow{ animation:riseIn .7s cubic-bezier(.16,1,.3,1) both; }
+.hero h1{ animation:goldShine 6s linear infinite, riseIn .8s cubic-bezier(.16,1,.3,1) .05s both; }
+.hero .sub{ animation:riseIn .8s cubic-bezier(.16,1,.3,1) .18s both; }
+.hero-cta{ animation:riseIn .8s cubic-bezier(.16,1,.3,1) .3s both; }
+.stats{ animation:riseIn .8s cubic-bezier(.16,1,.3,1) .42s both; }
+
+@keyframes riseIn{
+  from{ opacity:0; transform:translateY(28px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+/* Stat number glow while counting (toggled by JS) */
+.stat .num{ transition:text-shadow .3s ease; }
+.stat .num.counting{ text-shadow:0 0 24px rgba(212,175,55,.55); }
+
+/* ---------------------------------------------------------
+   2. GLASS-MORPHISM CARDS — refined, gold accents
+   --------------------------------------------------------- */
+.card{
+  background:rgba(20,20,24,.55) !important;
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.08) !important;
+  transition:transform .4s cubic-bezier(.16,1,.3,1),
+             border-color .3s ease, box-shadow .4s ease !important;
+}
+.card::after{
+  content:""; position:absolute; inset:0; border-radius:inherit;
+  background:linear-gradient(135deg,rgba(212,175,55,.10),transparent 45%,rgba(229,228,226,.06));
+  opacity:0; transition:opacity .35s ease; pointer-events:none;
+}
+.card:hover{
+  transform:translateY(-8px) !important;
+  border-color:rgba(212,175,55,.45) !important;
+  box-shadow:0 18px 44px rgba(0,0,0,.45),
+             0 0 26px rgba(212,175,55,.14) !important;
+}
+.card:hover::after{ opacity:1; }
+
+/* ---------------------------------------------------------
+   3. HOME CATALOG CARDS — premium hover
+   --------------------------------------------------------- */
+.home-card{
+  transition:transform .35s cubic-bezier(.16,1,.3,1),
+             border-color .3s ease, background .3s ease, box-shadow .35s ease !important;
+  position:relative; overflow:hidden;
+}
+.home-card::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:linear-gradient(180deg,var(--gold-bright),var(--gold));
+  transform:scaleY(0); transform-origin:top; transition:transform .35s ease;
+}
+.home-card:hover{
+  transform:translateX(6px) !important;
+  border-color:rgba(212,175,55,.4) !important;
+  box-shadow:-6px 0 24px rgba(212,175,55,.10);
+}
+.home-card:hover::before{ transform:scaleY(1); }
+.home-card:hover .home-card-icon{
+  background:linear-gradient(135deg,var(--gold),var(--gold-bright));
+  color:#0a0a0c; box-shadow:0 0 18px rgba(212,175,55,.35);
+}
+.home-card-icon{ transition:.35s ease; }
+
+/* ---------------------------------------------------------
+   4. PROMO BLOCKS — glass + gold glow
+   --------------------------------------------------------- */
+.promo-block{
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  position:relative; overflow:hidden;
+  transition:transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s ease;
+}
+.promo-block:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 50px rgba(0,0,0,.4), 0 0 30px rgba(212,175,55,.12);
+}
+
+/* ---------------------------------------------------------
+   5. BUTTONS — gold shimmer + lift
+   --------------------------------------------------------- */
+.btn, .btn-cta{ position:relative; overflow:hidden;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease, background .2s ease; }
+.btn::before, .btn-cta::before{
+  content:""; position:absolute; top:0; left:-120%; width:70%; height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-20deg); transition:none;
+}
+.btn:hover::before, .btn-cta:hover::before{ animation:sweep .7s ease; }
+@keyframes sweep{ to{ left:130%; } }
+.btn.primary:hover, .btn-cta:hover{
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 10px 30px rgba(212,175,55,.35), 0 0 20px rgba(212,175,55,.25);
+}
+
+/* ---------------------------------------------------------
+   6. SCROLL PROGRESS BAR (top)
+   --------------------------------------------------------- */
+.progress-bar{
+  position:fixed; top:0; left:0; height:3px; width:0%;
+  background:linear-gradient(90deg,var(--gold),var(--gold-bright),var(--plat));
+  z-index:9999; box-shadow:0 0 12px rgba(212,175,55,.6);
+  transition:width .1s linear;
+}
+
+/* ---------------------------------------------------------
+   7. STARSCAPE canvas (behind everything)
+   --------------------------------------------------------- */
+#starscape{
+  position:fixed; inset:0; width:100%; height:100%;
+  z-index:-2; pointer-events:none; opacity:.55;
+}
+
+/* ---------------------------------------------------------
+   8. GSAP reveal base state — set by JS, animated on scroll.
+   Guarded by .js-reveal so no-JS users still see content.
+   --------------------------------------------------------- */
+.js-reveal .reveal{ opacity:0; transform:translateY(40px); }
+.js-reveal .reveal.in{ opacity:1; transform:translateY(0); }
+
+/* ---------------------------------------------------------
+   9. SECTION HEADINGS — subtle gold underline accent
+   --------------------------------------------------------- */
+.section-head h2{ position:relative; display:inline-block; }
+.section-head h2::after{
+  content:""; position:absolute; left:0; bottom:-8px; height:3px; width:0;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  transition:width .6s cubic-bezier(.16,1,.3,1);
+}
+.section-head h2.in::after{ width:70%; }
+
+@media (max-width:768px){
+  .hero .orb{ filter:blur(60px); opacity:.7; }
+  #starscape{ opacity:.35; }
 }

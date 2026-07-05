@@ -9,10 +9,10 @@
 /* Order = newest release first: MACHINA (Effect) → BIGBASS → Vice City → Oriental Instrument (Instruments) */
 window.VSTS = [
   /* ========== EFFECTS ========== */
-  { id:"machina", name:"MACHINA — Audio Effect", img:"img/vst/machina-vst.svg", category:"effect",
-    tags:["Distortion · Delay · Filter","VST3 · Standalone · Win/Mac"], price:"[à compléter]", old:"", badge:"🆕 NEW",
-    buy:"[à compléter]", demo:"",
-    note:"Vending machine UI · Creative distortion & FX" },
+  { id:"machina", name:"MACHINA — Audio Effect", img:"img/vst/machina-vst.jpg", category:"effect",
+    tags:["Distortion · Delay · Filter","VST3 · AU · Win/Mac"], price:"29", old:"", badge:"🆕 NEW",
+    buy:"lbceu", demo:"",
+    note:"Vending machine UI · Creative multi-effect" },
 
   /* ========== INSTRUMENTS ========== */
   { id:"bigbass", name:"BIGBASS — LA Lowrider Bass", img:"img/vst/bigbass-vst.jpg", category:"instrument",
