@@ -10,7 +10,7 @@ window.PRODUCTS = {
   "machina": {
     type:"vst", name:"MACHINA", sub:"Creative Multi-Effect — Energy Drink for Your Sound",
     tagline:"A VST3 audio effect wrapped in a fully-animated energy-drink vending machine — distortion, delay & filter with six flavour presets.",
-    cover:"img/vst/machina-vst.jpg", accent:"#39ff5a", accent2:"#ff8a3d",
+    cover:"img/vst/machina-vst.jpg", accent:"#b44dff", accent2:"#FFD700",
     price:"29", old:"", badge:"🆕 NEW",
     note:"New release · Creative multi-effect with playable vending-machine UI",
     buy:"lbceu", demo:"",
