@@ -6,20 +6,33 @@
    `note` : Short promo line shown on the card (🎟️ added automatically)
    `old`  : struck-through original price
    ============================================================ */
+/* Order = newest release first: MATRIX MODULAR (Effect) → MACHINA (Effect) → BIGBASS → Vice City → Oriental Instrument */
 window.VSTS = [
-  { id:"oriental-instrument", name:"Oriental Instrument", img:"img/vst/oriental-instrument-box.jpg",
-    tags:["Oriental","Win · Mac"], price:"24.50", old:"49", badge:"🔥 -50%",
-    buy:"oriental-instrument-djbilbox-beats/ORIENTAL50",
-    demo:"oriental-instrument-demo-free-Download",
-    note:"Code: ORIENTAL50 · Until Jul 31, 2026" },
+  /* ========== EFFECTS ========== */
+  { id:"matrix-modular", name:"MATRIX MODULAR — Auto-Pan FX", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
+    tags:["Modulation · Auto-Pan","VST3 · Standalone"], price:"22.90", badge:"🆕 NEW",
+    buy:"ocpoej", demo:"",
+    note:"Cyberpunk auto-pan effect · Digital rain UI" },
 
-  { id:"vice-city", name:"Vice City — VST Plugin", img:"img/vst/vice-city-vst.jpg",
+  { id:"machina", name:"MACHINA — Audio Effect", img:"img/vst/machina-vst.jpg", category:"effect",
+    tags:["Distortion · Delay · Filter","VST3 · AU · Win/Mac"], price:"29", old:"", badge:"🔥 POPULAR",
+    buy:"lbceu", demo:"",
+    note:"Vending machine UI · Creative multi-effect" },
+
+  /* ========== INSTRUMENTS ========== */
+  { id:"bigbass", name:"BIGBASS — LA Lowrider Bass", img:"img/vst/bigbass-vst.jpg", category:"instrument",
+    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], price:"19.50", old:"39", badge:"🔥 -50%",
+    buy:"xaziro/BIGBASS50", demo:"",
+    note:"Code: BIGBASS50 · Offre de lancement -50%" },
+
+  { id:"vice-city", name:"Vice City — VST Plugin", img:"img/vst/vice-city-vst.jpg", category:"instrument",
     tags:["Synthwave","VST3 · Standalone"], price:"18.45", old:"36.90", badge:"🔥 -50%",
     buy:"ykdzli/VICECITY50", demo:"",
     note:"Code: VICECITY50 · Until Jul 31, 2026" },
 
-  { id:"matrix-modular", name:"MATRIX MODULAR — Auto-Pan FX", img:"img/vst/matrix-modular-cover.jpg",
-    tags:["Modulation","VST3 · Standalone"], price:"22.90", badge:"🆕 New",
-    buy:"ocpoej", demo:"",
-    note:"Cyberpunk auto-pan effect · Digital rain UI" },
+  { id:"oriental-instrument", name:"Oriental Instrument — 280+ Instruments", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
+    tags:["280+ Instruments","Oriental","Win · Mac"], price:"24.50", old:"49", badge:"🔥 -50%",
+    buy:"oriental-instrument-djbilbox-beats/ORIENTAL50",
+    demo:"oriental-instrument-demo-free-Download",
+    note:"Code: ORIENTAL50 · 280+ instruments orientaux · prix accessible" },
 ];
