@@ -26,6 +26,7 @@
    Each page sets <body data-page="KEY"> to highlight its link.
    ============================================================ */
 const NAV = [
+  { key:'city',        label:'City',        href:'/city.html',           icon:'fa-city' },
   { key:'beats',       label:'Beats',       href:'/beats-redesign.html', icon:'fa-music' },
   { key:'vst',         label:'VST',         href:'/vst.html',            icon:'fa-sliders' },
   { key:'drumkits',    label:'Drum Kits',   href:'/drum-kits.html',      icon:'fa-drum' },
