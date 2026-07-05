@@ -7,10 +7,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap');
 
 :root{
-  /* ---- DARK THEME — Luxe Gold & Platinum ---- */
-  --bg:#0a0a0c; --surface:#141418; --surface-2:#1b1b21; --surface-3:#26262e;
-  --accent:#D4AF37; --accent-h:#B8960F; --accent-glow:rgba(212,175,55,.16);
-  --accent-bright:#FFD700; --accent-plat:#E5E4E2; --accent-chrome:#C0C0C0;
+  /* ---- DARK THEME — VICE CITY (GTA 6): hot pink & sunset yellow ---- */
+  --bg:#0c0714; --surface:#151022; --surface-2:#1d1530; --surface-3:#2a1f42;
+  --accent:#FF2E97; --accent-h:#d61e7d; --accent-glow:rgba(255,46,151,.16);
+  --accent-bright:#FFD54A; --accent-plat:#E5E4E2; --accent-chrome:#C0C0C0;
   --green:#1DB954; --text:#f4f4f7; --text-2:#c6c6d2; --text-3:#9595a4; --text-4:#646471;
   --border:rgba(255,255,255,.1);
   --r:8px; --rl:14px;

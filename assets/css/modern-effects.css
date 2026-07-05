@@ -1,13 +1,15 @@
 /* ============================================================
-   DJBILBOX BEATS — Premium Motion Layer
-   Gold & platinum luxury effects: floating orbs, glass cards,
-   animated gradient headline, GSAP-driven scroll reveals.
-   Palette matches theme.css (--accent gold #D4AF37).
+   DJBILBOX BEATS — VICE CITY Motion Layer (GTA 6 edition)
+   Hot pink & sunset yellow, palm trees, Pricedown GTA typography.
+   Palette matches theme.css (--accent vice pink #FF2E97).
    ============================================================ */
+@import url('https://fonts.cdnfonts.com/css/pricedown');
 
 :root{
-  --gold:#D4AF37; --gold-bright:#FFD700; --plat:#E5E4E2; --chrome:#C0C0C0;
-  --gold-rgb:212,175,55;
+  --gold:#FF2E97; --gold-bright:#FFD54A; --plat:#E5E4E2; --chrome:#C0C0C0;
+  --gold-rgb:255,46,151;
+  --vice-pink:#FF2E97; --vice-yellow:#FFD54A; --vice-orange:#FF7A2F; --vice-purple:#B44DFF;
+  --font-gta:'Pricedown Bl','Pricedown',var(--font-a,sans-serif);
 }
 
 /* Respect reduced-motion users everywhere */
@@ -26,13 +28,13 @@
   pointer-events:none; z-index:-1; will-change:transform;
 }
 .hero .orb-1{ width:520px;height:520px; top:-180px; right:-120px;
-  background:radial-gradient(circle,rgba(212,175,55,.35),transparent 70%);
+  background:radial-gradient(circle,rgba(255,46,151,.35),transparent 70%);
   animation:orbFloat 14s ease-in-out infinite; }
 .hero .orb-2{ width:440px;height:440px; bottom:-160px; left:-100px;
-  background:radial-gradient(circle,rgba(229,228,226,.18),transparent 70%);
+  background:radial-gradient(circle,rgba(180,77,255,.22),transparent 70%);
   animation:orbFloat 18s ease-in-out infinite reverse; }
 .hero .orb-3{ width:340px;height:340px; top:20%; left:40%;
-  background:radial-gradient(circle,rgba(255,215,0,.14),transparent 70%);
+  background:radial-gradient(circle,rgba(255,213,74,.14),transparent 70%);
   animation:orbFloat 22s ease-in-out infinite; }
 
 @keyframes orbFloat{
@@ -52,21 +54,49 @@
   -webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 30%,transparent 75%);
 }
 
-/* Animated shimmering gold headline */
+/* GTA 6 headline — Pricedown font + sunset gradient (yellow→orange→pink→purple) */
 .hero h1{
-  background:linear-gradient(100deg,
-    var(--plat) 0%, var(--gold-bright) 25%, var(--gold) 45%,
-    #fff 55%, var(--gold) 65%, var(--gold-bright) 80%, var(--plat) 100%);
+  font-family:var(--font-gta) !important;
+  font-weight:400; letter-spacing:.02em;
+  background:linear-gradient(115deg,
+    var(--vice-yellow) 0%, var(--vice-orange) 22%, var(--vice-pink) 48%,
+    var(--vice-purple) 72%, var(--vice-pink) 88%, var(--vice-yellow) 100%);
   background-size:220% auto;
   -webkit-background-clip:text; background-clip:text;
   -webkit-text-fill-color:transparent; color:transparent;
-  animation:goldShine 6s linear infinite;
-  filter:drop-shadow(0 2px 20px rgba(212,175,55,.25));
+  animation:goldShine 7s linear infinite;
+  filter:drop-shadow(0 3px 0 rgba(0,0,0,.55)) drop-shadow(0 6px 26px rgba(255,46,151,.35));
 }
 .hero h1 span{ -webkit-text-fill-color:transparent; }
 @keyframes goldShine{
   0%{ background-position:0% center; }
   100%{ background-position:220% center; }
+}
+
+/* GTA typography everywhere it counts */
+.brand, .section-head h2, .lux-marquee span{
+  font-family:var(--font-gta) !important;
+  font-weight:400 !important; letter-spacing:.03em;
+}
+.brand span{ color:var(--vice-pink); }
+
+/* ---- VICE CITY: palm silhouettes + Miami sunset in the hero ---- */
+.hero{ position:relative; overflow:hidden; }
+.hero::after{
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 320'%3E%3Cg fill='%23120722'%3E%3Cpath d='M118 320c2-62 5-118 14-166l-11-2c-10 46-11 104-11 168z'/%3E%3Cpath d='M128 152C98 120 52 108 18 118c36-22 86-12 110 20-10-38-44-64-80-70 42-6 74 28 84 68 4-40 26-72 64-82-30 24-46 56-50 88 26-26 64-34 92-26-32 6-66 22-88 42 20 0 46 12 60 32-22-12-50-18-70-16-20 2-28-8-12-22z'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 320'%3E%3Cg fill='%23120722' transform='translate(240,0) scale(-1,1)'%3E%3Cpath d='M118 320c2-62 5-118 14-166l-11-2c-10 46-11 104-11 168z'/%3E%3Cpath d='M128 152C98 120 52 108 18 118c36-22 86-12 110 20-10-38-44-64-80-70 42-6 74 28 84 68 4-40 26-72 64-82-30 24-46 56-50 88 26-26 64-34 92-26-32 6-66 22-88 42 20 0 46 12 60 32-22-12-50-18-70-16-20 2-28-8-12-22z'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(ellipse 90% 55% at 50% 108%,
+      rgba(255,122,47,.28) 0%, rgba(255,46,151,.18) 38%,
+      rgba(180,77,255,.10) 62%, transparent 80%);
+  background-repeat:no-repeat;
+  background-position:right -30px bottom -18px, left -30px bottom -18px, center bottom;
+  background-size:clamp(170px,24vw,300px) auto, clamp(130px,18vw,230px) auto, 100% 100%;
+  filter:drop-shadow(0 0 24px rgba(255,46,151,.15));
+}
+@media (max-width:768px){
+  .hero::after{ background-size:150px auto, 0 0, 100% 100%; }
 }
 
 /* Hero entrance choreography */
@@ -83,7 +113,7 @@
 
 /* Stat number glow while counting (toggled by JS) */
 .stat .num{ transition:text-shadow .3s ease; }
-.stat .num.counting{ text-shadow:0 0 24px rgba(212,175,55,.55); }
+.stat .num.counting{ text-shadow:0 0 24px rgba(255,46,151,.55); }
 
 /* ---------------------------------------------------------
    2. GLASS-MORPHISM CARDS — refined, gold accents
@@ -97,14 +127,14 @@
 }
 .card::after{
   content:""; position:absolute; inset:0; border-radius:inherit;
-  background:linear-gradient(135deg,rgba(212,175,55,.10),transparent 45%,rgba(229,228,226,.06));
+  background:linear-gradient(135deg,rgba(255,46,151,.10),transparent 45%,rgba(229,228,226,.06));
   opacity:0; transition:opacity .35s ease; pointer-events:none;
 }
 .card:hover{
   transform:translateY(-8px) !important;
-  border-color:rgba(212,175,55,.45) !important;
+  border-color:rgba(255,46,151,.45) !important;
   box-shadow:0 18px 44px rgba(0,0,0,.45),
-             0 0 26px rgba(212,175,55,.14) !important;
+             0 0 26px rgba(255,46,151,.14) !important;
 }
 .card:hover::after{ opacity:1; }
 
@@ -123,13 +153,13 @@
 }
 .home-card:hover{
   transform:translateX(6px) !important;
-  border-color:rgba(212,175,55,.4) !important;
-  box-shadow:-6px 0 24px rgba(212,175,55,.10);
+  border-color:rgba(255,46,151,.4) !important;
+  box-shadow:-6px 0 24px rgba(255,46,151,.10);
 }
 .home-card:hover::before{ transform:scaleY(1); }
 .home-card:hover .home-card-icon{
   background:linear-gradient(135deg,var(--gold),var(--gold-bright));
-  color:#0a0a0c; box-shadow:0 0 18px rgba(212,175,55,.35);
+  color:#0a0a0c; box-shadow:0 0 18px rgba(255,46,151,.35);
 }
 .home-card-icon{ transition:.35s ease; }
 
@@ -143,7 +173,7 @@
 }
 .promo-block:hover{
   transform:translateY(-4px);
-  box-shadow:0 20px 50px rgba(0,0,0,.4), 0 0 30px rgba(212,175,55,.12);
+  box-shadow:0 20px 50px rgba(0,0,0,.4), 0 0 30px rgba(255,46,151,.12);
 }
 
 /* ---------------------------------------------------------
@@ -160,7 +190,7 @@
 @keyframes sweep{ to{ left:130%; } }
 .btn.primary:hover, .btn-cta:hover{
   transform:translateY(-2px) scale(1.02);
-  box-shadow:0 10px 30px rgba(212,175,55,.35), 0 0 20px rgba(212,175,55,.25);
+  box-shadow:0 10px 30px rgba(255,46,151,.35), 0 0 20px rgba(255,46,151,.25);
 }
 
 /* ---------------------------------------------------------
@@ -169,7 +199,7 @@
 .progress-bar{
   position:fixed; top:0; left:0; height:3px; width:0%;
   background:linear-gradient(90deg,var(--gold),var(--gold-bright),var(--plat));
-  z-index:9999; box-shadow:0 0 12px rgba(212,175,55,.6);
+  z-index:9999; box-shadow:0 0 12px rgba(255,46,151,.6);
   transition:width .1s linear;
 }
 
@@ -210,32 +240,32 @@
 
 /* ---- Gold primary buttons (Apple-store-level CTA) ---- */
 .btn.primary, .btn-cta{
-  background:linear-gradient(135deg,var(--gold-bright) 0%,var(--gold) 55%,#b8960f 100%) !important;
+  background:linear-gradient(135deg,var(--gold-bright) 0%,var(--gold) 55%,#ff6b1a 100%) !important;
   color:#0b0b0d !important;
   border:none !important;
   text-shadow:none;
-  box-shadow:0 6px 22px rgba(212,175,55,.30), inset 0 1px 0 rgba(255,255,255,.35);
+  box-shadow:0 6px 22px rgba(255,46,151,.30), inset 0 1px 0 rgba(255,255,255,.35);
 }
 .btn.primary:hover, .btn-cta:hover{
-  box-shadow:0 12px 34px rgba(212,175,55,.45), 0 0 24px rgba(255,215,0,.30),
+  box-shadow:0 12px 34px rgba(255,46,151,.45), 0 0 24px rgba(255,213,74,.30),
              inset 0 1px 0 rgba(255,255,255,.45);
 }
 .btn.ghost{
-  border-color:rgba(212,175,55,.35) !important;
+  border-color:rgba(255,46,151,.35) !important;
   transition:.25s ease;
 }
 .btn.ghost:hover{
   border-color:var(--gold) !important; color:var(--gold-bright) !important;
-  background:rgba(212,175,55,.06) !important;
-  box-shadow:0 0 18px rgba(212,175,55,.15);
+  background:rgba(255,46,151,.06) !important;
+  box-shadow:0 0 18px rgba(255,46,151,.15);
 }
 
 /* ---- LUX MARQUEE — outlined gold ribbon (echoes MACHINA box art) ---- */
 .lux-marquee{
   overflow:hidden; padding:20px 0;
-  border-top:1px solid rgba(212,175,55,.22);
-  border-bottom:1px solid rgba(212,175,55,.22);
-  background:linear-gradient(180deg,rgba(212,175,55,.045),rgba(212,175,55,.015));
+  border-top:1px solid rgba(255,46,151,.22);
+  border-bottom:1px solid rgba(255,46,151,.22);
+  background:linear-gradient(180deg,rgba(255,46,151,.045),rgba(255,46,151,.015));
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
 }
@@ -246,11 +276,11 @@
 .lux-marquee span{
   font-family:var(--font-a,sans-serif); font-weight:700; white-space:nowrap;
   font-size:clamp(1.1rem,2.6vw,1.7rem); text-transform:uppercase; letter-spacing:.14em;
-  color:transparent; -webkit-text-stroke:1px rgba(212,175,55,.55);
+  color:transparent; -webkit-text-stroke:1px rgba(255,46,151,.55);
 }
 .lux-marquee span.solid{
   color:var(--gold-bright); -webkit-text-stroke:0;
-  text-shadow:0 0 18px rgba(255,215,0,.25);
+  text-shadow:0 0 18px rgba(255,213,74,.25);
 }
 @keyframes luxMarquee{ to{ transform:translateX(-50%); } }
 .lux-marquee:hover .lux-marquee-track{ animation-play-state:paused; }
@@ -258,7 +288,7 @@
 /* ---- Scroll hint (hero bottom) ---- */
 .scroll-hint{
   width:26px; height:42px; margin:38px auto 0;
-  border:2px solid rgba(212,175,55,.5); border-radius:16px;
+  border:2px solid rgba(255,46,151,.5); border-radius:16px;
   display:flex; justify-content:center; padding-top:7px;
   animation:riseIn .8s cubic-bezier(.16,1,.3,1) .55s both;
 }
@@ -275,10 +305,10 @@
 
 /* ---- MACHINA feature block ---- */
 .machina-feature{
-  border:1px solid rgba(212,175,55,.35) !important;
+  border:1px solid rgba(255,46,151,.35) !important;
   background:
     radial-gradient(circle at 0% 0%,rgba(180,77,255,.10),transparent 55%),
-    radial-gradient(circle at 100% 100%,rgba(212,175,55,.10),transparent 55%),
+    radial-gradient(circle at 100% 100%,rgba(255,46,151,.10),transparent 55%),
     rgba(16,16,20,.72) !important;
 }
 .machina-feature img{
@@ -290,29 +320,29 @@
 
 /* ---- ZOMBIES feature block (brand-matched) ---- */
 .zombies-feature{
-  border:1px solid rgba(212,175,55,.3) !important;
+  border:1px solid rgba(255,46,151,.3) !important;
   background:
     radial-gradient(circle at 100% 0%,rgba(29,185,84,.08),transparent 55%),
-    radial-gradient(circle at 0% 100%,rgba(212,175,55,.08),transparent 55%),
+    radial-gradient(circle at 0% 100%,rgba(255,46,151,.08),transparent 55%),
     rgba(16,16,20,.72) !important;
 }
 
 /* ---- Newsletter — glass jewel box ---- */
 .newsletter{
   background:
-    radial-gradient(circle at 50% 0%,rgba(212,175,55,.10),transparent 60%),
+    radial-gradient(circle at 50% 0%,rgba(255,46,151,.10),transparent 60%),
     rgba(18,18,22,.7) !important;
-  border:1px solid rgba(212,175,55,.28) !important;
+  border:1px solid rgba(255,46,151,.28) !important;
   backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
   box-shadow:0 24px 60px rgba(0,0,0,.35);
 }
 .newsletter input{
-  border-color:rgba(212,175,55,.3) !important;
+  border-color:rgba(255,46,151,.3) !important;
   transition:.25s ease;
 }
 .newsletter input:focus{
   border-color:var(--gold) !important;
-  box-shadow:0 0 0 3px rgba(212,175,55,.18);
+  box-shadow:0 0 0 3px rgba(255,46,151,.18);
   outline:none;
 }
 
@@ -325,8 +355,8 @@ body::after{
 
 /* ---- Footer gold divider ---- */
 .footer{
-  border-top:1px solid rgba(212,175,55,.22) !important;
-  background:linear-gradient(180deg,rgba(212,175,55,.03),transparent 40%);
+  border-top:1px solid rgba(255,46,151,.22) !important;
+  background:linear-gradient(180deg,rgba(255,46,151,.03),transparent 40%);
 }
 
 @media (max-width:768px){

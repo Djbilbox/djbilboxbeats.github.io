@@ -28,7 +28,7 @@
     document.body.insertBefore(canvas, document.body.firstChild);
     const ctx = canvas.getContext('2d');
     let w, h, stars, dpr = window.devicePixelRatio || 1;
-    const COLORS = ['255,255,255', '212,175,55', '229,228,226'];
+    const COLORS = ['255,255,255', '255,46,151', '255,213,74'];
 
     function resize(){
       w = window.innerWidth; h = window.innerHeight;
