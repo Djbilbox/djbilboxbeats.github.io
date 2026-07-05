@@ -9,10 +9,10 @@
 /* Order = newest release first: MATRIX MODULAR (Effect) → MACHINA (Effect) → BIGBASS → Vice City → Oriental Instrument */
 window.VSTS = [
   /* ========== EFFECTS ========== */
-  { id:"matrix-modular", name:"MATRIX MODULAR — Auto-Pan FX", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
-    tags:["Modulation · Auto-Pan","VST3 · Standalone"], price:"22.90", badge:"🆕 NEW",
+  { id:"matrix-modular", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
+    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"9.91", badge:"🆕 NEW",
     buy:"ocpoej", demo:"",
-    note:"Cyberpunk auto-pan effect · Digital rain UI" },
+    note:"Professional stereo field modulation · The Matrix inspired UI" },
 
   { id:"machina", name:"MACHINA — Audio Effect", img:"img/vst/machina-vst.jpg", category:"effect",
     tags:["Distortion · Delay · Filter","VST3 · AU · Win/Mac"], price:"29", old:"", badge:"🔥 POPULAR",
