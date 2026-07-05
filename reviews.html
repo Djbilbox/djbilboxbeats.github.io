@@ -3,31 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Reviews — DJBILBOX BEATS</title>
-<meta name="description" content="What artists say about DJBILBOX BEATS beats, packs and services.">
+<title>Reviews & Real Proof — DJBILBOX BEATS</title>
+<meta name="description" content="No fake testimonials — real DJBILBOX BEATS videos, real view counts, real streams. Watch the catalog and judge the sound for yourself.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26070515">
+<link rel="stylesheet" href="assets/css/theme.css?v=26070516">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26070516">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body data-page="reviews">
 <main class="container" style="padding-top:30px">
+
   <div class="section-head" style="margin-top:10px">
-    <div><div class="eyebrow">What artists say</div><h2>Reviews</h2></div>
+    <div>
+      <div class="eyebrow">Real proof · No fake testimonials</div>
+      <h2>See &amp; Hear For Yourself</h2>
+    </div>
   </div>
-  <div class="grid" id="reviewsGrid" style="margin-bottom:60px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))"></div>
+
+  <p style="color:var(--text-2);font-size:.92rem;line-height:1.6;max-width:720px;margin:-6px 0 26px">
+    We don't post made-up quotes. The best proof is the music itself — here's the
+    <strong>real DJBILBOX BEATS catalog</strong>: genuine YouTube videos with their real view counts,
+    plus the full Spotify discography. Press play and judge the sound.
+  </p>
+
+  <!-- real, verifiable numbers -->
+  <div class="proof-stats">
+    <div class="proof-stat"><div class="num">1000+</div><div class="lbl">YouTube videos</div></div>
+    <div class="proof-stat"><div class="num">423K+</div><div class="lbl">YouTube views</div></div>
+    <div class="proof-stat"><div class="num">475+</div><div class="lbl">Spotify tracks</div></div>
+    <div class="proof-stat"><div class="num">100%</div><div class="lbl">Free for profit</div></div>
+  </div>
+
+  <!-- real Spotify catalog -->
+  <div style="margin:6px 0 34px">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+      <i class="fa-brands fa-spotify" style="color:var(--green);font-size:1.1rem"></i>
+      <span style="font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-2)">Stream the full catalog on Spotify</span>
+    </div>
+    <iframe style="border-radius:14px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0"
+      width="100%" height="352" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
+  </div>
+
+  <!-- real YouTube videos -->
+  <div class="section-head" style="margin-top:8px">
+    <div>
+      <div class="eyebrow"><i class="fa-brands fa-youtube" style="color:#ff0033"></i> Straight from the channel</div>
+      <h2>Latest on YouTube</h2>
+    </div>
+    <span style="font-size:.78rem;color:var(--text-3)" id="ytCount">…</span>
+  </div>
+  <div class="yt-grid" id="ytGrid"></div>
+  <div style="text-align:center;margin:26px 0 20px">
+    <button id="ytMore" class="btn ghost" style="display:none" onclick="ytShowMore('')">
+      <i class="fa-solid fa-plus"></i> Show more videos
+    </button>
+  </div>
+  <p style="text-align:center;color:var(--text-3);font-size:.85rem;margin:0 0 60px">
+    Every video links to the real comment section on
+    <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" style="color:var(--accent);font-weight:600">youtube.com/@djbilboxbeats ↗</a>
+  </p>
 </main>
-<script src="assets/js/site.js?v=26070515"></script>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="brand">DJBILBOX <span>BEATS</span></a>
+      <div class="footer-links">
+        <a href="license.html">License</a>
+        <a href="contact.html">Contact</a>
+        <a href="news.html">Newsletter</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 DJBILBOX BEATS — All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="assets/js/youtube-data.js?v=26070516"></script>
+<script src="assets/js/site.js?v=26070516"></script>
 <script src="assets/js/chat.js"></script>
-<script>
-renderReviews([
-  {name:'★★★★★ — MC Rida',  txt:'"Oriental vibes are unmatched. Downloaded 3 packs already, all free for profit. Insane value."'},
-  {name:'★★★★★ — Lyna B',   txt:'"Cleanest trap drums I found this year. Instant download, instant fire."'},
-  {name:'★★★★★ — K-Drill',  txt:'"The mix & master service blew my mind. Pro-level sound, fast turnaround."'},
-  {name:'★★★★★ — Sami P',   txt:'"475+ beats on Spotify and the BIG PACK is a goldmine. Respect."'},
-  {name:'★★★★★ — Nora.wav', txt:'"Oriental Instrument VST is now my go-to for melodies. Worth every euro."'},
-  {name:'★★★★★ — Brahim',   txt:'"From beats to branding, DJBILBOX delivers. One-stop shop for my project."'},
-],'reviewsGrid');
-</script>
+<script>renderYT('');</script>
 </body>
 </html>

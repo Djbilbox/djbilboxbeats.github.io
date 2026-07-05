@@ -6,7 +6,8 @@
 <title>Beats — DJBILBOX BEATS</title>
 <meta name="description" content="Browse 475+ DJBILBOX beats — Oriental, Trap, Drill, House, G-Funk. Free for profit & premium licenses.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26070515">
+<link rel="stylesheet" href="assets/css/theme.css?v=26070516">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26070516">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -57,7 +58,29 @@
   <style>#miniPlayer.show{display:block}</style>
 
   <!-- BEATS GRID -->
-  <div class="grid" id="beatsGrid" style="margin-bottom:60px"></div>
+  <div class="grid" id="beatsGrid" style="margin-bottom:48px"></div>
+
+  <!-- ============ YOUTUBE CATALOG ============ -->
+  <div class="section-head" style="margin-top:8px">
+    <div>
+      <div class="eyebrow"><i class="fa-brands fa-youtube" style="color:#ff0033"></i> Full video catalog</div>
+      <h2>Watch on YouTube</h2>
+    </div>
+    <span style="font-size:.78rem;color:var(--text-3)" id="ytCount">…</span>
+  </div>
+  <p style="color:var(--text-3);font-size:.85rem;margin:-8px 0 20px">
+    Every DJBILBOX BEATS video — instrumentals, type beats, VST demos & more. Use the search box above to find any track.
+  </p>
+  <div class="yt-grid" id="ytGrid"></div>
+  <p id="ytEmpty" style="display:none;color:var(--text-3);text-align:center;padding:30px">
+    No video matches your search — try another keyword, or
+    <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" style="color:var(--accent);font-weight:600">browse the channel ↗</a>.
+  </p>
+  <div style="text-align:center;margin:26px 0 60px">
+    <button id="ytMore" class="btn ghost" style="display:none" onclick="ytShowMore(searchQuery)">
+      <i class="fa-solid fa-plus"></i> Show more videos
+    </button>
+  </div>
 </main>
 
 <!-- ============ FOOTER ============ -->
@@ -89,10 +112,12 @@
 
 <!-- ============ SCRIPTS ============ -->
 <script src="assets/js/beats-data.js"></script>
-<script src="assets/js/site.js?v=26070515"></script>
+<script src="assets/js/youtube-data.js?v=26070516"></script>
+<script src="assets/js/site.js?v=26070516"></script>
 <script src="assets/js/chat.js"></script>
 <script>
   renderBeats(window.BEATS,'beatsGrid');         // render all 475 beats (genre pills removed)
+  renderYT('');                                  // real YouTube catalog (1000+ videos)
 </script>
 </body>
 </html>

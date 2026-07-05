@@ -365,6 +365,73 @@ function setGenre(genre, el, containerId){
 function searchBeats(val, containerId){
   searchQuery=val.toLowerCase().trim();
   applyFilters(containerId);
+  renderYT(searchQuery);   // mirror the search into the YouTube catalog
+}
+
+/* ============================================================
+   YOUTUBE CATALOG — real @djbilboxbeats videos (window.YT_VIDEOS)
+   Searchable alongside the Spotify beats; plays inline in a modal.
+   ============================================================ */
+let ytShown = 24;
+function ytCard(v){
+  const a=document.createElement('button');
+  a.className='yt-card';
+  a.type='button';
+  a.onclick=()=>playYT(v.id, v.title);
+  a.innerHTML=`
+    <span class="yt-thumb">
+      <img loading="lazy" src="https://i.ytimg.com/vi/${v.id}/mqdefault.jpg" alt="${(v.title||'').replace(/"/g,'&quot;')}">
+      <span class="yt-play"><i class="fa-solid fa-play"></i></span>
+    </span>
+    <span class="yt-meta">
+      <span class="yt-title">${v.title||''}</span>
+      ${v.views?`<span class="yt-views"><i class="fa-brands fa-youtube"></i> ${v.views}</span>`:''}
+    </span>`;
+  return a;
+}
+function renderYT(query){
+  const grid=document.getElementById('ytGrid');
+  if(!grid||!window.YT_VIDEOS) return;
+  const q=(query||'').toLowerCase().trim();
+  const all=window.YT_VIDEOS;
+  const matched = q ? all.filter(v=>v.title.toLowerCase().includes(q)) : all;
+  const list = matched.slice(0, ytShown);
+  grid.innerHTML='';
+  const frag=document.createDocumentFragment();
+  list.forEach(v=>frag.appendChild(ytCard(v)));
+  grid.appendChild(frag);
+  const cnt=document.getElementById('ytCount');
+  if(cnt) cnt.textContent = matched.length+' video'+(matched.length===1?'':'s');
+  const more=document.getElementById('ytMore');
+  if(more) more.style.display = matched.length>list.length ? 'inline-flex' : 'none';
+  const empty=document.getElementById('ytEmpty');
+  if(empty) empty.style.display = matched.length===0 ? 'block' : 'none';
+}
+function ytShowMore(query){ ytShown+=24; renderYT(query); }
+function playYT(id, title){
+  let modal=document.getElementById('ytModal');
+  if(!modal){
+    modal=document.createElement('div');
+    modal.id='ytModal';
+    modal.innerHTML=`<div class="yt-modal-inner">
+      <button class="yt-modal-close" aria-label="Close" onclick="closeYT()">✕</button>
+      <div class="yt-modal-frame"><iframe id="ytModalFrame" allow="autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe></div>
+      <div class="yt-modal-title" id="ytModalTitle"></div>
+    </div>`;
+    modal.addEventListener('click',e=>{ if(e.target===modal) closeYT(); });
+    document.body.appendChild(modal);
+  }
+  document.getElementById('ytModalFrame').src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+  document.getElementById('ytModalTitle').textContent=title||'';
+  modal.classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeYT(){
+  const modal=document.getElementById('ytModal');
+  if(!modal) return;
+  document.getElementById('ytModalFrame').src='';
+  modal.classList.remove('show');
+  document.body.style.overflow='';
 }
 
 /* Spotify embed player (shared mini-player if present) */
@@ -423,17 +490,28 @@ function renderPacks(packs, containerId){
   const count=document.getElementById('packCount');
   if(count) count.textContent = packs.length+' packs';
 }
-let activePackGenre='All';
+let activePackGenre='All', packFreeOnly=false, packSort='featured', packGridId='packsGrid';
+function packPriceVal(p){ return (String(p.price).toUpperCase()==='FREE'||p.price==='0') ? 0 : (parseFloat(p.price)||0); }
+function applyPackFilters(){
+  let data=(window.PACKS||[]).filter(p=>activePackGenre==='All'||p.genre===activePackGenre);
+  if(packFreeOnly) data=data.filter(p=>packPriceVal(p)===0);
+  if(packSort==='price-asc')  data=[...data].sort((a,b)=>packPriceVal(a)-packPriceVal(b));
+  else if(packSort==='price-desc') data=[...data].sort((a,b)=>packPriceVal(b)-packPriceVal(a));
+  else if(packSort==='free-first') data=[...data].sort((a,b)=>packPriceVal(a)-packPriceVal(b));
+  renderPacks(data, packGridId);
+}
 function setPackGenre(genre, el, containerId){
-  activePackGenre=genre;
+  activePackGenre=genre; if(containerId) packGridId=containerId;
   document.querySelectorAll('#packPills .pill').forEach(p=>p.classList.remove('active'));
   el?.classList.add('active');
-  const data=(window.PACKS||[]).filter(p=>activePackGenre==='All'||p.genre===activePackGenre);
-  renderPacks(data, containerId);
+  applyPackFilters();
 }
+function setPackSort(val){ packSort=val; applyPackFilters(); }
+function togglePackFree(el){ packFreeOnly=!packFreeOnly; el?.classList.toggle('active',packFreeOnly); applyPackFilters(); }
 function buildPackPills(containerId, gridId){
   const bar=document.getElementById(containerId);
   if(!bar||!window.PACKS) return;
+  packGridId=gridId||'packsGrid';
   const genres=[...new Set(window.PACKS.map(p=>p.genre))];
   bar.innerHTML='';
   const mk=(label,genre,active)=>{
@@ -444,6 +522,26 @@ function buildPackPills(containerId, gridId){
   };
   mk(`All (${window.PACKS.length})`,'All',true);
   genres.forEach(g=>mk(g,g,false));
+}
+/* Build the sort/FREE toolbar for the drum-kits page */
+function buildPackToolbar(containerId, gridId){
+  const bar=document.getElementById(containerId);
+  if(!bar) return;
+  packGridId=gridId||'packsGrid';
+  const freeCount=(window.PACKS||[]).filter(p=>packPriceVal(p)===0).length;
+  bar.innerHTML=`
+    <button class="pill pack-free-toggle" onclick="togglePackFree(this)">
+      <i class="fa-solid fa-gift"></i> FREE only (${freeCount})
+    </button>
+    <div class="pack-sort">
+      <i class="fa-solid fa-arrow-down-short-wide"></i>
+      <select onchange="setPackSort(this.value)" aria-label="Sort packs">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: Low → High</option>
+        <option value="price-desc">Price: High → Low</option>
+        <option value="free-first">Free first</option>
+      </select>
+    </div>`;
 }
 
 /* ============================================================

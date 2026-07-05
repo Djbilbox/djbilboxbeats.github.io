@@ -1,0 +1,114 @@
+#!/usr/bin/env node
+/**
+ * youtube-catalog-fetch.mjs — DJBILBOX BEATS
+ * Récupère TOUTES les vidéos (id + titre + vues) de @djbilboxbeats via
+ * l'API interne innertube (aucune clé requise) et écrit
+ * assets/js/youtube-data.js  ->  window.YT_VIDEOS = [{id,title,views}]
+ * Puis dump aussi les commentaires bruts en JSON pour inspection.
+ */
+import { writeFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+
+const HANDLE = "@djbilboxbeats";
+const __dir = dirname(fileURLToPath(import.meta.url));
+const OUT = join(__dir, "..", "assets", "js", "youtube-data.js");
+const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36";
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+let API_KEY = null, CLIENT_VERSION = "2.20240101.00.00";
+const ctx = () => ({ client: { hl: "en", gl: "US", clientName: "WEB", clientVersion: CLIENT_VERSION } });
+
+async function getPage(url) {
+  const res = await fetch(url, { headers: { "User-Agent": UA, "Accept-Language": "en-US,en;q=0.9" } });
+  return res.text();
+}
+function extractJson(html, marker) {
+  const i = html.indexOf(marker); if (i < 0) return null;
+  const start = html.indexOf("{", i);
+  let depth = 0, inStr = false, esc = false;
+  for (let j = start; j < html.length; j++) {
+    const c = html[j];
+    if (inStr) { if (esc) esc = false; else if (c === "\\") esc = true; else if (c === '"') inStr = false; }
+    else { if (c === '"') inStr = true; else if (c === "{") depth++; else if (c === "}") { depth--; if (depth === 0) return JSON.parse(html.slice(start, j + 1)); } }
+  }
+  return null;
+}
+function deepFind(obj, key, out = []) {
+  if (!obj || typeof obj !== "object") return out;
+  for (const k of Object.keys(obj)) {
+    if (k === key) out.push(obj[k]);
+    else if (typeof obj[k] === "object") deepFind(obj[k], key, out);
+  }
+  return out;
+}
+async function browse(token) {
+  const res = await fetch(`https://www.youtube.com/youtubei/v1/browse?key=${API_KEY}&prettyPrint=false`, {
+    method: "POST", headers: { "Content-Type": "application/json", "User-Agent": UA },
+    body: JSON.stringify({ context: ctx(), continuation: token }),
+  });
+  if (!res.ok) throw new Error(`browse ${res.status}`);
+  return res.json();
+}
+// Récupère les vidéos — nouveau format lockupViewModel + ancien videoRenderer
+function harvestVideos(root, map) {
+  // nouveau format (2024+): lockupViewModel
+  for (const lv of deepFind(root, "lockupViewModel")) {
+    const id = lv.contentId;
+    const meta = lv?.metadata?.lockupMetadataViewModel || {};
+    const title = meta?.title?.content || "";
+    // les "content" string sous metadata contiennent titre · vues · date
+    const rows = deepFind(meta, "content").filter(x => typeof x === "string");
+    const views = rows.find(s => /view/i.test(s)) || "";
+    if (id && title && id.length === 11 && !map.has(id)) map.set(id, { id, title, views });
+  }
+  // ancien format: videoRenderer
+  for (const vr of deepFind(root, "videoRenderer")) {
+    const id = vr.videoId;
+    const title = (vr.title?.runs || []).map(r => r.text).join("") || vr.title?.simpleText || "";
+    const views = vr.viewCountText?.simpleText || vr.shortViewCountText?.simpleText || "";
+    if (id && title && !map.has(id)) map.set(id, { id, title, views });
+  }
+}
+function firstToken(root) {
+  for (const c of deepFind(root, "continuationItemRenderer")) {
+    const t = c?.continuationEndpoint?.continuationCommand?.token;
+    if (t) return t;
+  }
+  return null;
+}
+
+(async () => {
+  console.log("→ Chargement de la chaîne…");
+  const html = await getPage(`https://www.youtube.com/${HANDLE}/videos`);
+  API_KEY = (html.match(/"INNERTUBE_API_KEY":"([^"]+)"/) || [])[1];
+  CLIENT_VERSION = (html.match(/"INNERTUBE_CONTEXT_CLIENT_VERSION":"([^"]+)"/) || [])[1] || CLIENT_VERSION;
+  if (!API_KEY) { console.error("[ÉCHEC] pas d'API_KEY"); process.exit(1); }
+  const data = extractJson(html, "var ytInitialData =") || extractJson(html, "ytInitialData =");
+  const map = new Map();
+  harvestVideos(data || {}, map);
+  let token = firstToken(data || {});
+  let guard = 0;
+  while (token && guard++ < 40) {
+    try {
+      const j = await browse(token);
+      const before = map.size;
+      harvestVideos(j, map);
+      token = firstToken(j);
+      if (map.size === before && !token) break;
+      await sleep(120);
+    } catch (e) { console.error("  pagination stop:", e.message); break; }
+  }
+  const videos = [...map.values()];
+  console.log(`  ${videos.length} vidéos récupérées.`);
+  if (!videos.length) { console.error("[ÉCHEC] 0 vidéo"); process.exit(1); }
+
+  const esc = s => String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\r?\n/g, " ").trim();
+  const lines = videos.map(v => `  {id:"${esc(v.id)}",title:"${esc(v.title)}",views:"${esc(v.views)}"}`);
+  const out = `/* AUTO-GENERATED by tools/youtube-catalog-fetch.mjs — real @djbilboxbeats catalog.\n`
+    + `   ${videos.length} videos. Do not hand-edit; re-run the script to refresh. */\n`
+    + `window.YT_VIDEOS = [\n${lines.join(",\n")}\n];\n`;
+  writeFileSync(OUT, out, "utf8");
+  console.log(`✓ Écrit ${OUT} (${videos.length} vidéos).`);
+  console.log("Exemples:");
+  for (const v of videos.slice(0, 8)) console.log(`   • ${v.title}  [${v.views}]`);
+})().catch(e => { console.error("[ÉCHEC]", e); process.exit(1); });
