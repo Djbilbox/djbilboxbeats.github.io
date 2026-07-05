@@ -54,6 +54,14 @@
 <script>
 const articles = [
   {
+    title: 'Introducing DJBILBOX ZOMBIES — Free 16-Bit Action Game',
+    desc: 'Play our new beat\'em up game featuring 10 cities, boss battles, and the DJBILBOX soundtrack. Free to play in your browser.',
+    date: 'Jul 5, 2026',
+    tags: 'Game • Entertainment',
+    icon: '🧟',
+    link: 'game/index.html'
+  },
+  {
     title: 'How to Make Trap Beats Like DJBILBOX BEATS',
     desc: 'Learn the secrets behind professional trap production. Master 808s, hi-hats, and sound design.',
     date: 'Jun 28, 2026',
@@ -114,7 +122,7 @@ const articles = [
 const grid = document.getElementById('blogGrid');
 articles.forEach(art => {
   const card = document.createElement('a');
-  card.href = '#';
+  card.href = art.link || '#';
   card.className = 'blog-card';
   card.style.textDecoration = 'none';
   card.style.color = 'inherit';
