@@ -101,7 +101,7 @@ function mountFooter(){
         <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
       </div>
     </div>
-    <div class="footer-copy">© 2026 DJBILBOX BEATS — All rights reserved.</div>
+    <div class="footer-copy">DJBILBOX BEATS — Bilel Abdelkader Attalah · 4 rue Virginia Woolf, 31200 Toulouse, France<br>© 2026 DJBILBOX BEATS — All rights reserved.</div>
   </div>`;
   document.body.appendChild(f);
 }

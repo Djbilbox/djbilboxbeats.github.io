@@ -6,8 +6,8 @@
 <title>Beats — DJBILBOX BEATS</title>
 <meta name="description" content="Browse 475+ DJBILBOX beats — Oriental, Trap, Drill, House, G-Funk. Free for profit & premium licenses.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26070516">
-<link rel="stylesheet" href="assets/css/modern-effects.css?v=26070516">
+<link rel="stylesheet" href="assets/css/theme.css?v=26070517">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26070517">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -33,15 +33,49 @@
     </div>
   </div>
 
-  <!-- full Spotify catalog player -->
-  <div style="margin:4px 0 24px">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-      <i class="fa-brands fa-spotify" style="color:var(--green);font-size:1.1rem"></i>
-      <span style="font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-2)">Stream the full catalog on Spotify</span>
+  <!-- ============ DUAL PLAYER: Spotify + YouTube (red) ============ -->
+  <div class="dual-player">
+    <div class="dp-col dp-spotify">
+      <div class="dp-head"><i class="fa-brands fa-spotify"></i> <span>Spotify — full catalog</span></div>
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0"
+        width="100%" height="380" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
     </div>
-    <iframe style="border-radius:14px" src="https://open.spotify.com/embed/artist/2wP5nwScAUiXF6Esc4x0hG?utm_source=generator&theme=0"
-      width="100%" height="352" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
+    <div class="dp-col dp-youtube">
+      <div class="dp-head red"><i class="fa-brands fa-youtube"></i> <span>YouTube — by genre</span></div>
+      <div class="dp-pills" id="ytPlPills"></div>
+      <iframe id="ytPlFrame" style="border-radius:12px" width="100%" height="330" frameborder="0"
+        src="https://www.youtube.com/embed/videoseries?list=PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th"
+        allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
   </div>
+  <script>
+    window.YT_PLAYLISTS=[
+      {id:'PLbtcZhy947NUG4ukai3ZNcw3Gvz5dd8Th',label:'All Beats'},
+      {id:'PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg',label:'Hip-Hop / Trap / Drill'},
+      {id:'PLbtcZhy947NUC6PqUplrygUgHJSTvS61u',label:'Oriental / Arabic'},
+      {id:'PLbtcZhy947NW5vq7XI-R0nB5rnSMesR8B',label:'Funk / G-Funk'},
+      {id:'PLbtcZhy947NUF9V0rVWzY_-gl1Cy8vw5r',label:'Deep House / DnB'},
+      {id:'PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_',label:'Afrotrap'},
+      {id:'PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-',label:'Remixes'},
+      {id:'PLbtcZhy947NVJHvg8cFVbSLvHfIb_vatw',label:'DJ Set'},
+      {id:'PLbtcZhy947NV5MzDssQ511txw0IHAp0pZ',label:'FL Studio Tutorials'},
+      {id:'PLbtcZhy947NWbPbX4VepMkY3lIzvm681V',label:'AI Visuals'}
+    ];
+    (function(){
+      var bar=document.getElementById('ytPlPills'), frame=document.getElementById('ytPlFrame');
+      if(!bar) return;
+      window.YT_PLAYLISTS.forEach(function(p,i){
+        var b=document.createElement('button');
+        b.className='pill'+(i===0?' active':''); b.textContent=p.label;
+        b.onclick=function(){
+          bar.querySelectorAll('.pill').forEach(function(x){x.classList.remove('active');});
+          b.classList.add('active');
+          frame.src='https://www.youtube.com/embed/videoseries?list='+p.id;
+        };
+        bar.appendChild(b);
+      });
+    })();
+  </script>
 
   <!-- mini sticky player -->
   <div id="miniPlayer" style="position:sticky;top:0;z-index:800;
@@ -98,7 +132,7 @@
         <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
       </div>
     </div>
-    <div class="footer-copy">© 2026 DJBILBOX BEATS — All rights reserved.</div>
+    <div class="footer-copy">DJBILBOX BEATS — Bilel Abdelkader Attalah · 4 rue Virginia Woolf, 31200 Toulouse, France<br>© 2026 DJBILBOX BEATS — All rights reserved.</div>
   </div>
 </footer>
 
@@ -112,8 +146,8 @@
 
 <!-- ============ SCRIPTS ============ -->
 <script src="assets/js/beats-data.js"></script>
-<script src="assets/js/youtube-data.js?v=26070516"></script>
-<script src="assets/js/site.js?v=26070516"></script>
+<script src="assets/js/youtube-data.js?v=26070517"></script>
+<script src="assets/js/site.js?v=26070517"></script>
 <script src="assets/js/chat.js"></script>
 <script>
   renderBeats(window.BEATS,'beatsGrid');         // render all 475 beats (genre pills removed)

@@ -312,11 +312,13 @@
     rgba(16,16,20,.72) !important;
 }
 .machina-feature img{
-  width:min(400px,100%); border-radius:14px;
+  width:min(420px,100%) !important; height:auto !important;
+  aspect-ratio:1/1; object-fit:contain !important;
+  border-radius:14px; background:#0a0710;
   box-shadow:0 24px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06);
   transition:transform .5s cubic-bezier(.16,1,.3,1);
 }
-.machina-feature:hover img{ transform:scale(1.025) rotate(-.4deg); }
+.machina-feature:hover img{ transform:scale(1.02); }
 
 /* ---- ZOMBIES feature block (brand-matched) ---- */
 .zombies-feature{
@@ -394,6 +396,35 @@ body::after{
   .pack-sort select{ flex:1; }
 }
 
+/* ---- Dual player (Spotify + YouTube) ---- */
+.dual-player{
+  display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:4px 0 30px;
+}
+.dp-col{
+  background:rgba(20,20,24,.55); border:1px solid rgba(255,255,255,.08);
+  border-radius:16px; padding:16px;
+}
+.dp-spotify{ border-color:rgba(29,185,84,.28); }
+.dp-youtube{ border-color:rgba(255,0,51,.3); }
+.dp-head{
+  display:flex; align-items:center; gap:8px; margin-bottom:12px;
+  font-size:.78rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--text-2);
+}
+.dp-head i{ font-size:1.15rem; color:#1DB954; }
+.dp-head.red i{ color:#ff0033; }
+.dp-pills{
+  display:flex; gap:7px; overflow-x:auto; padding-bottom:10px; margin-bottom:12px;
+  scrollbar-width:thin;
+}
+.dp-pills::-webkit-scrollbar{ height:5px; }
+.dp-pills::-webkit-scrollbar-thumb{ background:rgba(255,0,51,.4); border-radius:3px; }
+.dp-pills .pill{ flex:0 0 auto; }
+.dp-youtube .pill.active{
+  background:#ff0033 !important; border-color:#ff0033 !important; color:#fff !important;
+  box-shadow:0 0 0 3px rgba(255,0,51,.18);
+}
+@media (max-width:820px){ .dual-player{ grid-template-columns:1fr; } }
+
 /* ---- YouTube catalog grid ---- */
 .yt-grid{
   display:grid; gap:18px;
@@ -431,6 +462,56 @@ body::after{
 }
 .yt-views{ font-size:.68rem; color:var(--text-3); display:flex; align-items:center; gap:6px; }
 .yt-views i{ color:#ff0033; }
+
+/* ---- Hero follow bar ---- */
+.hero-social{
+  display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap;
+  margin-top:26px; animation:riseIn .8s cubic-bezier(.16,1,.3,1) .5s both;
+}
+.hero-social-label{ color:var(--text-3); font-size:.8rem; font-weight:600; letter-spacing:.03em; }
+.hs-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:9px 18px; border-radius:30px; font-weight:700; font-size:.82rem;
+  border:1px solid rgba(255,255,255,.14); color:var(--text);
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease, border-color .25s ease;
+}
+.hs-btn i{ font-size:1rem; }
+.hs-btn.spotify i{ color:#1DB954; }
+.hs-btn.youtube i{ color:#ff0033; }
+.hs-btn.gumroad i{ color:var(--vice-pink); }
+.hs-btn:hover{ transform:translateY(-2px); border-color:var(--vice-pink);
+  box-shadow:0 8px 22px rgba(255,46,151,.2); }
+
+/* ---- Buy 1 Get 2 mega-deal band ---- */
+.bogo-band{
+  display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+  padding:18px 24px; border-radius:16px; margin:8px 0 4px;
+  background:linear-gradient(100deg,var(--vice-pink),var(--vice-orange) 55%,var(--vice-yellow));
+  color:#12010a; position:relative; overflow:hidden;
+  box-shadow:0 12px 40px rgba(255,46,151,.3);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.bogo-band:hover{ transform:translateY(-2px); box-shadow:0 16px 50px rgba(255,46,151,.42); }
+.bogo-band::after{
+  content:""; position:absolute; top:0; left:-60%; width:40%; height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);
+  transform:skewX(-20deg); animation:bogoShine 3.5s ease-in-out infinite;
+}
+@keyframes bogoShine{ 0%,60%{ left:-60%; } 100%{ left:130%; } }
+.bogo-badge{
+  font-family:var(--font-gta); font-size:1.1rem; letter-spacing:.02em;
+  background:#12010a; color:var(--vice-yellow); padding:8px 16px; border-radius:10px;
+  white-space:nowrap; position:relative; z-index:1;
+}
+.bogo-text{ flex:1; min-width:220px; position:relative; z-index:1; display:flex; flex-direction:column; gap:2px; }
+.bogo-text strong{ font-family:var(--font-gta); font-size:clamp(1.2rem,3vw,1.7rem); letter-spacing:.02em; }
+.bogo-text span{ font-size:.82rem; font-weight:600; opacity:.85; }
+.bogo-cta{
+  font-weight:800; font-size:.9rem; white-space:nowrap; position:relative; z-index:1;
+  display:inline-flex; align-items:center; gap:8px; padding:10px 20px;
+  background:#12010a; color:#fff; border-radius:30px;
+}
+@media (max-width:640px){ .bogo-band{ justify-content:center; text-align:center; } }
 
 /* ---- Reviews / real-proof stat row ---- */
 .proof-stats{
