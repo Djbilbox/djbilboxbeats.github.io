@@ -229,7 +229,7 @@ function rectHit(a,b){ return Math.abs(a.x-b.x)<(a.w+b.w)/2 && Math.abs(a.y-b.y)
 
 const player = {
   x:60,y:GROUND,w:20,h:38,vx:0,vy:0,onGround:true,face:1,
-  hp:100,maxhp:100,lives:3,
+  hp:150,maxhp:150,lives:3,
   atk:0,atkType:null,atkTimer:0,cool:0,hurt:0,walk:0,shootCD:0,
   reset(){ this.x=60;this.y=GROUND;this.vx=0;this.vy=0;this.hp=this.maxhp;this.atk=0;this.cool=0;this.hurt=0; }
 };
@@ -239,7 +239,7 @@ function spawnZombie(x,isBoss){ const L=LEVELS[G.level];
   const hp = isBoss ? (170 + G.level*70) : (26 + G.level*11);
   zombies.push({ x, y:GROUND, w:isBoss?34:20, h:isBoss?58:36, vx:0, vy:0, onGround:true,
     hp, maxhp:hp, face:-1, boss:!!isBoss, hurt:0, atkCD:0, walk:Math.random()*6,
-    spd:(isBoss?0.55:0.4+G.level*0.045)+Math.random()*0.15, dmg:(isBoss?14:5+G.level*1.2),
+    spd:(isBoss?0.48:0.35+G.level*0.03)+Math.random()*0.12, dmg:(isBoss?12:3+G.level*0.9),
     tint:isBoss?L.neon:['#6fae4a','#7aba55','#5c9e42'][Math.floor(Math.random()*3)] });
 }
 function addPart(x,y,col,n){ for(let i=0;i<(n||8);i++) parts.push({x,y,vx:(Math.random()-.5)*4,vy:-Math.random()*3-1,life:24,col}); }
@@ -260,9 +260,9 @@ function introLevel(){ G.state='intro'; const L=LEVELS[G.level], w=WEAPONS[G.lev
   show('scLevel'); }
 function beginLevel(){ show(null); G.state='play'; G.cam=0; G.combo=0;
   zombies=[];bullets=[];parts=[];floats=[]; player.reset();
-  G.need = 5 + G.level*2; G.spawned=0; G.bossAlive=false;
+  G.need = 4 + G.level*1.5; G.spawned=0; G.bossAlive=false;
   // spread starting horde across the level
-  const first=Math.min(4,G.need);
+  const first=Math.min(3,G.need);
   for(let i=0;i<first;i++){ spawnZombie(260+i*180+Math.random()*80,false); G.spawned++; }
 }
 function nextLevel(){ G.level++; if(G.level>=LEVELS.length){ victory(); } else introLevel(); }
