@@ -10,7 +10,12 @@ const ROOT = path.join(__dirname, '..');
 const staticPages = [
   'index.html', 'beats-redesign.html', 'drum-kits.html', 'vst.html', 'services.html',
   'discography.html', 'license.html', 'reviews.html', 'news.html', 'contact.html',
-  'studio-setup.html', 'blog.html', 'locations/index.html', 'game/index.html'
+  'studio-setup.html', 'blog.html', 'playlists.html', 'twitch.html', 'locations/index.html', 'game/index.html',
+  'blog/articles/how-to-make-trap-beats.html',
+  'blog/articles/best-vst-plugins-2026.html',
+  'blog/articles/free-sample-packs-guide.html',
+  'blog/articles/mixing-and-mastering-for-streaming.html',
+  'blog/articles/oriental-instruments-in-modern-beats.html'
 ];
 
 const getAllFiles = (dir) => {
