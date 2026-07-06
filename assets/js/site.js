@@ -30,6 +30,7 @@ const NAV = [
   { key:'beats',       label:'Beats',       href:'/beats-redesign.html', icon:'fa-music' },
   { key:'vst',         label:'VST',         href:'/vst.html',            icon:'fa-sliders' },
   { key:'drumkits',    label:'Drum Kits',   href:'/drum-kits.html',      icon:'fa-drum' },
+  { key:'formations',  label:'Academy',     href:'/formations.html',     icon:'fa-graduation-cap' },
   { key:'services',    label:'Services',    href:'/services.html',       icon:'fa-headphones' },
   { key:'contact',     label:'Contact',     href:'/contact.html',        icon:'fa-envelope' },
   { key:'account',     label:'My Account',  href:'/account.html',        icon:'fa-user' },

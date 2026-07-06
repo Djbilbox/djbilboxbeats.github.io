@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Academy — Training Programs | DJBILBOX BEATS</title>
+<meta name="description" content="DJBILBOX BEATS Academy — pro training programs for creators: AI Images &amp; Video, Beatmaking &amp; Music Production (FL Studio), and Twitch Streaming. Sign up, ask questions and join live sessions through Discord.">
+<meta name="keywords" content="DJBILBOX BEATS academy, AI training, image generation course, video AI, beatmaking course, FL Studio training, music production course, Twitch streamer training, OBS setup, online course, Discord community">
+<meta name="author" content="Bilel Abdelkader Attalah — DJBILBOX BEATS">
+<link rel="canonical" href="https://djbilboxbeats.com/formations.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DJBILBOX BEATS">
+<meta property="og:title" content="DJBILBOX BEATS Academy — AI, Beatmaking &amp; Twitch Training">
+<meta property="og:description" content="Three pro training programs: AI Images &amp; Video, Beatmaking (FL Studio), Twitch Streaming. All access &amp; live coaching through Discord.">
+<meta property="og:url" content="https://djbilboxbeats.com/formations.html">
+<meta property="og:image" content="https://djbilboxbeats.com/img/vst/machina-vst.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DJBILBOX BEATS Academy — Training Programs">
+<meta name="twitter:description" content="AI · Beatmaking · Twitch. Learn from a working producer. Join the Discord to enroll.">
+<link rel="icon" href="favicon.png">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"EducationalOrganization",
+      "name":"DJBILBOX BEATS Academy",
+      "url":"https://djbilboxbeats.com/formations.html",
+      "logo":"https://djbilboxbeats.com/favicon.png",
+      "sameAs":[
+        "https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG",
+        "https://www.youtube.com/@djbilboxbeats"
+      ]
+    },
+    {
+      "@type":"ItemList",
+      "name":"DJBILBOX BEATS — Training Programs",
+      "itemListElement":[
+        {"@type":"Course","position":1,"name":"AI Creative Training — Images & Video","description":"Master AI tools to produce professional visuals and videos for a brand: Midjourney, DALL·E, Krea, Pika, Runway.","provider":{"@type":"Organization","name":"DJBILBOX BEATS Academy"}},
+        {"@type":"Course","position":2,"name":"Beatmaking Training — FL Studio & Music Production","description":"Compose, arrange, mix and finish professional beats in FL Studio across Hip-Hop, Afrotrap, Deep House and G-Funk.","provider":{"@type":"Organization","name":"DJBILBOX BEATS Academy"}},
+        {"@type":"Course","position":3,"name":"Twitch Streamer Training — Live, Setup & Branding","description":"Launch and structure a professional Twitch stream: OBS setup, scenes, overlays, community and VOD management.","provider":{"@type":"Organization","name":"DJBILBOX BEATS Academy"}}
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="assets/css/theme.css?v=26070519">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26070519">
+<link rel="stylesheet" href="assets/css/chat.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- ==========================================================
+     Page-scoped styles — training cards, objective lists,
+     recap table & Discord block. Built on the shared theme
+     tokens so it inherits the Vice-City look automatically.
+     ========================================================== -->
+<style>
+  .fx-hero{padding:74px 0 40px;text-align:center;position:relative;overflow:hidden}
+  .fx-hero .eyebrow{color:var(--accent);font-weight:700;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase}
+  .fx-hero h1{font-family:var(--font-a);font-weight:700;font-size:clamp(2.4rem,7vw,4.6rem);
+    text-transform:uppercase;letter-spacing:.02em;line-height:1;margin-top:14px}
+  .fx-hero h1 span{color:var(--accent)}
+  .fx-hero .sub{color:var(--text-2);font-size:1.02rem;margin:18px auto 0;max-width:640px}
+  .fx-hero .fx-tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  .fx-tag{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    padding:8px 16px;border-radius:30px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-2)}
+  .fx-tag i{color:var(--accent);margin-right:6px}
+
+  /* card grid */
+  .fx-grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-bottom:8px}
+  .fx-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);
+    padding:28px 26px;display:flex;flex-direction:column;transition:.22s ease;position:relative;overflow:hidden}
+  .fx-card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-bright))}
+  .fx-card:hover{transform:translateY(-4px);border-color:rgba(255,46,151,.45);
+    box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 0 1px var(--accent-glow)}
+  .fx-num{font-family:var(--font-a);font-weight:700;font-size:.78rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .fx-ico{width:46px;height:46px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    font-size:1.2rem;color:#12010a;background:linear-gradient(135deg,var(--accent-bright),var(--accent))}
+  .fx-card h3{font-family:var(--font-a);font-weight:700;font-size:1.18rem;line-height:1.2;
+    text-transform:uppercase;letter-spacing:.02em;margin:14px 0 10px}
+  .fx-lead{color:var(--text-2);font-size:.92rem;line-height:1.55;margin-bottom:18px}
+  .fx-sub-label{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px}
+  .fx-obj{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
+  .fx-obj li{display:flex;gap:10px;font-size:.88rem;color:var(--text);line-height:1.45}
+  .fx-obj li i{color:var(--accent-bright);margin-top:3px;font-size:.8rem}
+  .fx-who{font-size:.82rem;color:var(--text-3);line-height:1.5;margin-bottom:22px;
+    padding:12px 14px;background:var(--surface-2);border-radius:10px;border:1px solid var(--border)}
+  .fx-who b{color:var(--text-2)}
+  .fx-card .btn{margin-top:auto;justify-content:center}
+
+  /* recap table */
+  .fx-table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--rl);background:var(--surface)}
+  table.fx-table{width:100%;border-collapse:collapse;min-width:640px}
+  table.fx-table th,table.fx-table td{padding:15px 18px;text-align:left;border-bottom:1px solid var(--border);
+    font-size:.86rem;vertical-align:top}
+  table.fx-table thead th{font-family:var(--font-a);text-transform:uppercase;letter-spacing:.06em;
+    font-size:.74rem;color:var(--accent);background:var(--surface-2)}
+  table.fx-table tbody tr:last-child td{border-bottom:none}
+  table.fx-table td b{color:var(--text)}
+  table.fx-table td span{color:var(--text-3)}
+  table.fx-table tbody tr:hover{background:var(--surface-2)}
+
+  /* Discord CTA block */
+  .fx-discord{background:linear-gradient(135deg,rgba(88,101,242,.18),rgba(255,46,151,.10));
+    border:1px solid rgba(88,101,242,.5);border-radius:var(--rl);padding:44px 34px;text-align:center;position:relative;overflow:hidden}
+  .fx-discord .disc-ico{width:64px;height:64px;border-radius:16px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;
+    font-size:1.7rem;color:#fff;background:#5865F2;box-shadow:0 10px 30px rgba(88,101,242,.45)}
+  .fx-discord h2{font-family:var(--font-a);text-transform:uppercase;font-size:1.7rem;letter-spacing:.02em;margin-bottom:12px}
+  .fx-discord p{color:var(--text-2);font-size:.95rem;max-width:620px;margin:0 auto 14px}
+  .fx-perks{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:20px 0 26px}
+  .fx-perks span{font-size:.8rem;color:var(--text-2);background:var(--surface);border:1px solid var(--border);
+    padding:8px 14px;border-radius:30px}
+  .fx-perks span i{color:#5865F2;margin-right:7px}
+  .btn.discord{background:#5865F2;border-color:#5865F2;color:#fff;font-size:.9rem;padding:14px 28px}
+  .btn.discord:hover{background:#4752c4;border-color:#4752c4;transform:translateY(-2px)}
+  .fx-note{color:var(--text-4);font-size:.76rem;margin-top:16px}
+</style>
+</head>
+<body data-page="formations">
+
+<!-- ============ HERO ============ -->
+<section class="fx-hero">
+  <div class="container">
+    <div class="eyebrow">Training Programs · Live Coaching · Real Results</div>
+    <h1>DJBILBOX <span>ACADEMY</span></h1>
+    <p class="sub">Learn from a working producer, sound designer and content creator. Three focused programs — AI visuals, beatmaking and Twitch streaming — built to get you from beginner to publishing pro work.</p>
+    <div class="fx-tags">
+      <span class="fx-tag"><i class="fa-solid fa-wand-magic-sparkles"></i>AI Images &amp; Video</span>
+      <span class="fx-tag"><i class="fa-solid fa-sliders"></i>Beatmaking</span>
+      <span class="fx-tag"><i class="fa-brands fa-twitch"></i>Twitch Streaming</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTRO / SECTION HEAD ============ -->
+<section class="section" style="padding:20px 0 8px">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:24px">
+      <div>
+        <div class="eyebrow">DJBILBOX BEATS Academy</div>
+        <h2>Choose your program</h2>
+      </div>
+      <a href="#discord" class="see-all">Enroll via Discord →</a>
+    </div>
+
+    <!-- ============ COURSE CARDS ============ -->
+    <div class="fx-grid">
+
+      <!-- 1 · AI -->
+      <article class="fx-card">
+        <div class="fx-num"><span class="fx-ico"><i class="fa-solid fa-wand-magic-sparkles"></i></span> Program 01</div>
+        <h3>AI Creative Training — Images &amp; Video</h3>
+        <p class="fx-lead">Master today's AI tools to create professional visuals and videos — Midjourney, DALL·E, Krea, Pika and Runway — and turn them into content for your brand and your releases.</p>
+
+        <div class="fx-sub-label">What you'll learn</div>
+        <ul class="fx-obj">
+          <li><i class="fa-solid fa-check"></i> Understand the leading AI image &amp; video tools and when to use each.</li>
+          <li><i class="fa-solid fa-check"></i> Generate consistent, on-brand visuals — not random one-offs.</li>
+          <li><i class="fa-solid fa-check"></i> Produce clips, teasers and social-media assets with AI.</li>
+        </ul>
+
+        <div class="fx-who"><b>Who it's for:</b> beatmakers, creators, streamers and freelancers who want to add AI to their workflow and ship visuals faster.</div>
+
+        <a href="#discord" class="btn primary"><i class="fa-brands fa-discord"></i> Join the AI Training on Discord</a>
+      </article>
+
+      <!-- 2 · BEATMAKING -->
+      <article class="fx-card">
+        <div class="fx-num"><span class="fx-ico"><i class="fa-solid fa-sliders"></i></span> Program 02</div>
+        <h3>Beatmaking Training — FL Studio &amp; Production</h3>
+        <p class="fx-lead">Learn to compose, arrange, mix and finish professional beats in FL Studio — across Hip-Hop, Afrotrap, Deep House and G-Funk — with a workflow you can repeat every session.</p>
+
+        <div class="fx-sub-label">What you'll learn</div>
+        <ul class="fx-obj">
+          <li><i class="fa-solid fa-check"></i> Master FL Studio: interface, routing, patterns and arrangement.</li>
+          <li><i class="fa-solid fa-check"></i> Build original instrumentals in Hip-Hop, Afrotrap, Deep House &amp; G-Funk.</li>
+          <li><i class="fa-solid fa-check"></i> Mixing fundamentals: EQ, compression, saturation and balance.</li>
+        </ul>
+
+        <div class="fx-who"><b>Who it's for:</b> motivated beginners and intermediate beatmakers who want to professionalize their workflow and finish tracks.</div>
+
+        <a href="#discord" class="btn primary"><i class="fa-brands fa-discord"></i> Join the Beatmaking Training on Discord</a>
+      </article>
+
+      <!-- 3 · TWITCH -->
+      <article class="fx-card">
+        <div class="fx-num"><span class="fx-ico"><i class="fa-brands fa-twitch"></i></span> Program 03</div>
+        <h3>Twitch Streamer Training — Live, Setup &amp; Branding</h3>
+        <p class="fx-lead">Learn to launch and structure a professional Twitch stream — technical setup, OBS scenes, overlays, interaction and branding — so your channel looks and runs like a pro from day one.</p>
+
+        <div class="fx-sub-label">What you'll learn</div>
+        <ul class="fx-obj">
+          <li><i class="fa-solid fa-check"></i> Install and configure OBS and your streaming tools.</li>
+          <li><i class="fa-solid fa-check"></i> Structure a live: scenes, transitions, alerts and overlays.</li>
+          <li><i class="fa-solid fa-check"></i> Manage your community, chat, VODs and reruns.</li>
+        </ul>
+
+        <div class="fx-who"><b>Who it's for:</b> creators who want to use Twitch for beatmaking, gaming or any creative live content.</div>
+
+        <a href="#discord" class="btn primary"><i class="fa-brands fa-discord"></i> Join the Twitch Streamer Training on Discord</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECAP TABLE ============ -->
+<section class="section" style="padding:24px 0">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:20px">
+      <div><div class="eyebrow">At a glance</div><h2>The 3 programs</h2></div>
+    </div>
+    <div class="fx-table-wrap">
+      <table class="fx-table">
+        <thead>
+          <tr>
+            <th>Program</th>
+            <th>Level</th>
+            <th>Core focus</th>
+            <th>For whom</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>AI — Images &amp; Video</b><br><span>Midjourney · DALL·E · Krea · Pika · Runway</span></td>
+            <td>Beginner → Intermediate</td>
+            <td>Generate pro, on-brand visuals &amp; video for content and releases.</td>
+            <td>Creators, streamers, freelancers</td>
+          </tr>
+          <tr>
+            <td><b>Beatmaking</b><br><span>FL Studio · Hip-Hop · Afrotrap · Deep House · G-Funk</span></td>
+            <td>Beginner → Intermediate</td>
+            <td>Compose, arrange, mix &amp; finish original instrumentals.</td>
+            <td>Aspiring &amp; improving beatmakers</td>
+          </tr>
+          <tr>
+            <td><b>Twitch Streaming</b><br><span>OBS · Overlays · Branding · Community</span></td>
+            <td>Beginner → Intermediate</td>
+            <td>Launch, structure &amp; brand a professional live channel.</td>
+            <td>Music, gaming &amp; creative streamers</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DISCORD CTA ============ -->
+<section class="section" id="discord" style="padding:24px 0 72px">
+  <div class="container">
+    <!-- NOTE: replace the Discord invite URL below if your permanent invite differs -->
+    <div class="fx-discord">
+      <div class="disc-ico"><i class="fa-brands fa-discord"></i></div>
+      <h2>Access to Training &amp; Community</h2>
+      <p>Every program runs through my Discord — it's the single place to enroll, ask questions and follow all the updates. Join, introduce yourself, and get everything you need to start.</p>
+      <div class="fx-perks">
+        <span><i class="fa-solid fa-circle-info"></i> Practical info: dates, formats &amp; pricing</span>
+        <span><i class="fa-solid fa-headset"></i> Live sessions, coaching &amp; feedback</span>
+        <span><i class="fa-solid fa-bullhorn"></i> Announcements for upcoming sessions</span>
+      </div>
+      <a href="https://discord.gg/djbilbox" target="_blank" rel="noopener" class="btn discord"><i class="fa-brands fa-discord"></i> Join the Discord for Training</a>
+      <p class="fx-note">Free to join · Choose your program once you're in · Questions welcome anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="assets/js/site.js?v=26070519"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/modern-animations.js?v=26070519" defer></script>
+<script src="assets/js/chat.js"></script>
+</body>
+</html>
