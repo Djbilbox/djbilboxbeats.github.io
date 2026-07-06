@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DJBILBOX BEATS on Twitch — Live Beats, Production Streams & Tutorials</title>
+<meta name="description" content="Watch DJBILBOX BEATS live on Twitch. Live beat production, VST plugin demos, sample pack breakdowns, music production tutorials. Trap, Afrotrap, Oriental, Deep House.">
+<meta name="keywords" content="DJBILBOX BEATS Twitch, live beats, production stream, beat making tutorial, VST demo, trap beats live, music production Twitch">
+<link rel="canonical" href="https://djbilboxbeats.com/twitch.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DJBILBOX BEATS">
+<meta property="og:title" content="DJBILBOX BEATS on Twitch — Live Production Streams">
+<meta property="og:description" content="Watch live beat production, VST demos, and music production tutorials. Trap, Afrotrap, Oriental beats.">
+<meta property="og:url" content="https://djbilboxbeats.com/twitch.html">
+<meta property="og:image" content="https://djbilboxbeats.com/img/twitch-banner.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DJBILBOX BEATS Twitch — Live Production Streams">
+<meta name="twitter:description" content="Watch live beat production and music production tutorials on Twitch.">
+<meta name="twitter:image" content="https://djbilboxbeats.com/img/twitch-banner.jpg">
+
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css?v=26070519">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26070519">
+<link rel="stylesheet" href="assets/css/chat.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "DJBILBOX BEATS — Twitch Live Streams",
+  "description": "Live beat production, VST plugin demonstrations, and music production tutorials",
+  "thumbnailUrl": "https://djbilboxbeats.com/img/twitch-banner.jpg",
+  "creator": {
+    "@type": "MusicGroup",
+    "name": "DJBILBOX BEATS"
+  },
+  "uploadDate": "2026-01-01"
+}
+</script>
+
+<style>
+.twitch-hero {
+  background: linear-gradient(135deg, #9146ff 0%, #5c16c5 100%);
+  color: white;
+  padding: 80px 24px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+.twitch-hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.twitch-hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.95;
+}
+.twitch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: white;
+  color: #9146ff;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+.twitch-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(145, 70, 255, 0.4);
+}
+.twitch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 60px;
+}
+.twitch-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.twitch-card:hover {
+  border-color: #9146ff;
+  box-shadow: 0 8px 24px rgba(145, 70, 255, 0.2);
+  transform: translateY(-4px);
+}
+.twitch-card-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+.twitch-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.twitch-card p {
+  color: var(--text-3);
+  line-height: 1.6;
+}
+.stream-schedule {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 60px;
+}
+.stream-schedule h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.schedule-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.schedule-item:last-child {
+  border-bottom: none;
+}
+.schedule-day {
+  font-weight: 700;
+  color: #9146ff;
+  min-width: 100px;
+}
+.schedule-time {
+  color: var(--text-3);
+  font-size: 0.9rem;
+}
+.schedule-topic {
+  color: var(--text-2);
+  font-size: 0.95rem;
+}
+.vod-section {
+  margin-bottom: 60px;
+}
+.vod-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+.vod-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+.vod-card {
+  background: var(--surface-2);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.vod-card:hover {
+  transform: scale(1.05);
+}
+.vod-thumbnail {
+  width: 100%;
+  height: 120px;
+  background: #9146ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+}
+.vod-info {
+  padding: 15px;
+}
+.vod-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+.vod-date {
+  font-size: 0.85rem;
+  color: var(--text-3);
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+</style>
+</head>
+<body data-page="twitch">
+
+<!-- TWITCH HERO -->
+<section class="twitch-hero">
+  <div class="container">
+    <h1><i class="fa-brands fa-twitch"></i> DJBILBOX BEATS</h1>
+    <p>Live Beat Production · VST Demos · Music Production Tutorials</p>
+    <a href="https://twitch.tv/djbilbox" target="_blank" class="twitch-btn">
+      <i class="fa-brands fa-twitch"></i> Watch on Twitch
+    </a>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="container">
+  <!-- WHAT TO EXPECT -->
+  <section style="margin-bottom: 60px;">
+    <h2 style="font-size: 1.8rem; margin-bottom: 30px; font-weight: 700;">What to Expect</h2>
+    <div class="twitch-grid">
+      <div class="twitch-card">
+        <div class="twitch-card-icon">🎹</div>
+        <h3>Live Beat Production</h3>
+        <p>Watch me create beats in real-time. Trap, Afrotrap, Oriental, Deep House — from scratch to final mix.</p>
+      </div>
+      <div class="twitch-card">
+        <div class="twitch-card-icon">🔌</div>
+        <h3>VST Plugin Demos</h3>
+        <p>Deep dives into BIGBASS, Vice City, Oriental Instrument, MACHINA, and more. Tips & tricks included.</p>
+      </div>
+      <div class="twitch-card">
+        <div class="twitch-card-icon">📦</div>
+        <h3>Sample Pack Breakdowns</h3>
+        <p>Explore every sample, loop, and one-shot from my drum kits. See them in action in live productions.</p>
+      </div>
+      <div class="twitch-card">
+        <div class="twitch-card-icon">🎓</div>
+        <h3>Production Tutorials</h3>
+        <p>Learn music production techniques: mixing, mastering, sound design, and arrangement strategies.</p>
+      </div>
+      <div class="twitch-card">
+        <div class="twitch-card-icon">🌍</div>
+        <h3>World-Class Beats</h3>
+        <p>Oriental, Afrotrap, G-Funk, Drill — production techniques from multiple music cultures and genres.</p>
+      </div>
+      <div class="twitch-card">
+        <div class="twitch-card-icon">💬</div>
+        <h3>Live Chat & Questions</h3>
+        <p>Interact with the community. Ask questions, request beats, and learn from fellow producers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STREAM SCHEDULE -->
+  <section class="stream-schedule">
+    <h2>Stream Schedule</h2>
+    <div class="schedule-item">
+      <div class="schedule-day">Monday</div>
+      <div class="schedule-time">8:00 PM CET</div>
+      <div class="schedule-topic">Live Beat Production — Trap & Afrotrap</div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-day">Wednesday</div>
+      <div class="schedule-time">8:00 PM CET</div>
+      <div class="schedule-topic">VST Plugin Deep Dive & Sample Pack Breakdown</div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-day">Friday</div>
+      <div class="schedule-time">8:00 PM CET</div>
+      <div class="schedule-topic">Oriental & Deep House Production</div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-day">Sunday</div>
+      <div class="schedule-time">4:00 PM CET</div>
+      <div class="schedule-topic">Community Session — Requests & Tutorials</div>
+    </div>
+    <p style="margin-top: 20px; color: var(--text-3); font-size: 0.9rem;">Schedule subject to change. Follow on Twitch for notifications when streams go live.</p>
+  </section>
+
+  <!-- RECENT VODs -->
+  <section class="vod-section">
+    <h2>Recent VODs</h2>
+    <div class="vod-grid">
+      <a href="https://twitch.tv/djbilbox/videos" target="_blank" class="vod-card" style="text-decoration: none;">
+        <div class="vod-thumbnail">📹</div>
+        <div class="vod-info">
+          <div class="vod-title">Deep House Session 01</div>
+          <div class="vod-date">Latest VOD</div>
+        </div>
+      </a>
+      <a href="https://twitch.tv/djbilbox/videos" target="_blank" class="vod-card" style="text-decoration: none;">
+        <div class="vod-thumbnail">🎛️</div>
+        <div class="vod-info">
+          <div class="vod-title">Oriental Instrument Tutorial</div>
+          <div class="vod-date">Recorded live</div>
+        </div>
+      </a>
+      <a href="https://twitch.tv/djbilbox/videos" target="_blank" class="vod-card" style="text-decoration: none;">
+        <div class="vod-thumbnail">🔊</div>
+        <div class="vod-info">
+          <div class="vod-title">BIGBASS VST Walkthrough</div>
+          <div class="vod-date">Recorded live</div>
+        </div>
+      </a>
+      <a href="https://twitch.tv/djbilbox/videos" target="_blank" class="vod-card" style="text-decoration: none;">
+        <div class="vod-thumbnail">🎵</div>
+        <div class="vod-info">
+          <div class="vod-title">Trap Beat Marathon</div>
+          <div class="vod-date">Recorded live</div>
+        </div>
+      </a>
+    </div>
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="https://twitch.tv/djbilbox/videos" target="_blank" class="btn primary" style="display: inline-flex; gap: 10px; align-items: center;">
+        <i class="fa-brands fa-twitch"></i> View All VODs on Twitch
+      </a>
+    </div>
+  </section>
+
+  <!-- RESOURCES & LINKS -->
+  <section style="margin-bottom: 60px; padding: 40px; background: var(--surface-2); border-radius: 12px; border: 1px solid var(--border);">
+    <h2 style="font-size: 1.5rem; margin-bottom: 20px; font-weight: 700;">Related Resources</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+      <a href="/beats-redesign.html" class="btn ghost" style="display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;">
+        <i class="fa-solid fa-play"></i> Browse Beats
+      </a>
+      <a href="/vst.html" class="btn ghost" style="display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;">
+        <i class="fa-solid fa-sliders"></i> VST Plugins
+      </a>
+      <a href="/drum-kits.html" class="btn ghost" style="display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;">
+        <i class="fa-solid fa-drum"></i> Sample Packs
+      </a>
+      <a href="/services.html" class="btn ghost" style="display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;">
+        <i class="fa-solid fa-microphone"></i> Services
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<script src="assets/js/site.js"></script>
+<script src="assets/js/chat.js"></script>
+</body>
+</html>
