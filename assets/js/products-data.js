@@ -6,6 +6,46 @@
    ============================================================ */
 window.PRODUCTS = {
 
+  /* ===================== BUNDLE ===================== */
+  "free-bundle": {
+    type:"bundle", name:"FREE BUNDLE", sub:"All 5 Free VSTs + Oriental Demo",
+    tagline:"Download all free VST plugins in one convenient pack — the perfect starter collection.",
+    cover:"img/vst/free-bundle.jpg", accent:"#27ae60", accent2:"#2ecc71",
+    price:"0", old:"", badge:"🎁 FREE",
+    note:"✅ Free download · 5 VSTs + Oriental Demo included",
+    buy:"djbilbox-free-bundle", demo:"",
+    video:"", poster:"img/vst/free-bundle.jpg",
+    tags:["5 Free VSTs","Effects + Instruments","Oriental Demo","Starter Pack"],
+    about:[
+      "Get all our free VST plugins in one download — your complete starter collection. Perfect for producers exploring new sounds or getting started with DJBILBOX BEATS plugins.",
+      "This bundle includes the full MATRIX MODULAR stereo effect, MACHINA audio processor, BIGBASS lowrider bass instrument, Vice City synthwave instrument, plus the FREE Oriental Instrument demo with 50+ instruments."
+    ],
+    features:[
+      {icon:"fa-gift", t:"5 Complete VSTs", d:"All free VST plugins bundled together for convenience."},
+      {icon:"fa-music", t:"Effects & Instruments", d:"Stereo modulation, distortion/delay, bass, synth & 50+ oriental instruments."},
+      {icon:"fa-download", t:"One-Click Download", d:"Download everything at once — no separate purchases needed."},
+      {icon:"fa-star", t:"Professional Quality", d:"Same quality as individually purchased plugins — nothing watered down."},
+      {icon:"fa-heart", t:"100% Free Forever", d:"No strings attached — royalty-free for your productions."}
+    ],
+    specs:[
+      {k:"Bundle Contents", v:"5 complete VST plugins + Oriental Demo"},
+      {k:"Formats", v:"VST3, Standalone (Windows & macOS)"},
+      {k:"Size", v:"Compact download — optimized"},
+      {k:"License", v:"Royalty-free for commercial use"},
+      {k:"Support", v:"Full documentation + user manuals included"}
+    ],
+    includes:[
+      "MATRIX MODULAR VST3 + Standalone",
+      "MACHINA VST3 + Standalone",
+      "BIGBASS VST3 + Standalone",
+      "Vice City VST3 + Standalone",
+      "Oriental Instrument DEMO (50+ instruments)",
+      "All factory presets",
+      "Complete user manuals (PDF)",
+      "Royalty-free license for all productions"
+    ]
+  },
+
   /* ===================== VST PLUGINS ===================== */
   "matrix-modular": {
     type:"vst", name:"MATRIX MODULAR", sub:"Westcoast Oriental VST Effect",

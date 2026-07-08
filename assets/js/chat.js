@@ -55,11 +55,20 @@ window.CHAT = {
         { text: 'Télécharger gratuitement', href: 'drum-kits.html' }
       ]
     },
+    'bundle|gratuit|free|tout gratuit|all free': {
+      intent: 'product',
+      reply: '🎁 <strong>FREE BUNDLE</strong> — Téléchargez tous les produits gratuits en un seul pack !\n\n✅ <strong>5 VSTs complets :</strong> BIGBASS, Vice City, MATRIX MODULAR, MACHINA + Oriental Instrument DEMO (50+ instruments)\n✅ <strong>100% GRATUIT</strong> — Téléchargement instantané\n✅ Tous les presets et manuals inclus',
+      actions: [
+        { text: 'Voir le Bundle', href: 'product.html?id=free-bundle' },
+        { text: 'Télécharger', onclick: 'buy("djbilbox-free-bundle")' }
+      ]
+    },
     'prix|price|cost|combien|tarif|gratuit|free': {
       intent: 'info',
-      reply: '💰 <strong>Nos tarifs :</strong>\n\n✅ <strong>BIGBASS, Vice City, MATRIX MODULAR, MACHINA</strong> — GRATUIT\n✅ <strong>Tous les sample packs</strong> — GRATUIT (15 packs)\n✅ <strong>Démos VST</strong> — GRATUIT\n💵 <strong>Oriental Instrument</strong> — $24.50 (280+ instruments, démo gratuite)',
+      reply: '💰 <strong>Nos tarifs :</strong>\n\n✅ <strong>BIGBASS, Vice City, MATRIX MODULAR, MACHINA</strong> — GRATUIT\n✅ <strong>Tous les sample packs</strong> — GRATUIT (15 packs)\n✅ <strong>Démos VST</strong> — GRATUIT\n✅ <strong>FREE BUNDLE</strong> — Télécharge tous les produits gratuits à la fois !\n💵 <strong>Oriental Instrument</strong> — $24.50 (280+ instruments, démo gratuite)',
       actions: [
-        { text: 'Voir les VST', href: 'vst.html' },
+        { text: 'Voir le FREE BUNDLE', href: 'product.html?id=free-bundle' },
+        { text: 'Voir tous les VST', href: 'vst.html' },
         { text: 'Télécharger les kits gratuits', href: 'drum-kits.html' }
       ]
     },

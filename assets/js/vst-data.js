@@ -8,6 +8,12 @@
    ============================================================ */
 /* Order = newest release first: MATRIX MODULAR (Effect) → MACHINA (Effect) → BIGBASS → Vice City → Oriental Instrument */
 window.VSTS = [
+  /* ========== BUNDLE ========== */
+  { id:"free-bundle", name:"🎁 FREE BUNDLE — All Free VSTs + Demo", img:"img/vst/free-bundle.jpg", category:"bundle",
+    tags:["5 Free VSTs","Oriental Demo · Effects · Instruments","Complete Starter Pack"], price:"0", old:"", badge:"🎁 FREE",
+    buy:"djbilbox-free-bundle", demo:"",
+    note:"✅ FREE · Download all 5 free VSTs + Oriental Demo in one pack" },
+
   /* ========== EFFECTS ========== */
   { id:"matrix-modular", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
     tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"0", badge:"FREE",
