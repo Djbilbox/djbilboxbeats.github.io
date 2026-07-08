@@ -25,7 +25,7 @@ window.CHAT = {
     },
     oriental: {
       intent: 'product',
-      reply: '🎹 Vous vous intéressez à l\'<strong>Oriental Instrument</strong> ? C\'est notre rompler Arabic & Oriental avec oud, qanun, ney authentiques.\n\n✅ <strong>GRATUIT</strong> — 280+ instruments orientaux authentiques.',
+      reply: '🎹 Vous vous intéressez à l\'<strong>Oriental Instrument</strong> ? C\'est notre rompler Arabic & Oriental avec oud, qanun, ney authentiques.\n\n💰 <strong>$24.50</strong> — Accès illimité à 280+ instruments orientaux authentiques. Démo gratuite disponible.',
       actions: [
         { text: 'Voir la fiche', href: 'product.html?id=oriental-instrument' },
         { text: 'Télécharger la démo', onclick: 'buy("oriental-instrument-demo-free-Download")' }
@@ -41,7 +41,7 @@ window.CHAT = {
     },
     'vst|plugin|synthé|synth|instrument': {
       intent: 'category',
-      reply: '🎛️ Vous cherchez un <strong>VST plugin</strong> ? Tous sont GRATUITS !\n\n🔊 <strong>BIGBASS</strong> — basse lowrider LA (0€)\n🌆 <strong>Vice City</strong> — synthé 80s Synthwave (0€)\n🌙 <strong>Oriental Instrument</strong> — oud, qanun, percussions (0€)\n🎹 <strong>MATRIX MODULAR</strong> — modulation stéréo (0€)\n⚡ <strong>MACHINA</strong> — multi-effet créatif (0€)',
+      reply: '🎛️ Vous cherchez un <strong>VST plugin</strong> ?\n\n🔊 <strong>BIGBASS</strong> — basse lowrider LA (GRATUIT)\n🌆 <strong>Vice City</strong> — synthé 80s Synthwave (GRATUIT)\n🎹 <strong>MATRIX MODULAR</strong> — modulation stéréo (GRATUIT)\n⚡ <strong>MACHINA</strong> — multi-effet créatif (GRATUIT)\n🌙 <strong>Oriental Instrument</strong> — oud, qanun, percussions ($24.50, démo gratuite)',
       actions: [
         { text: 'Voir tous les VST', href: 'vst.html' },
         { text: 'Drum Kits gratuits', href: 'drum-kits.html' }
@@ -57,7 +57,7 @@ window.CHAT = {
     },
     'prix|price|cost|combien|tarif|gratuit|free': {
       intent: 'info',
-      reply: '💰 <strong>TOUS LES PRODUITS SONT GRATUITS !</strong>\n\n✅ <strong>Tous les VST plugins</strong> — 0€ (BIGBASS, Vice City, Oriental Instrument, MATRIX MODULAR, MACHINA)\n✅ <strong>Tous les sample packs</strong> — 0€ (15 packs gratuits)\n✅ <strong>Démos VST</strong> — GRATUIT\n\n🎉 Offre spéciale — accès complet à tous les produits sans frais !',
+      reply: '💰 <strong>Nos tarifs :</strong>\n\n✅ <strong>BIGBASS, Vice City, MATRIX MODULAR, MACHINA</strong> — GRATUIT\n✅ <strong>Tous les sample packs</strong> — GRATUIT (15 packs)\n✅ <strong>Démos VST</strong> — GRATUIT\n💵 <strong>Oriental Instrument</strong> — $24.50 (280+ instruments, démo gratuite)',
       actions: [
         { text: 'Voir les VST', href: 'vst.html' },
         { text: 'Télécharger les kits gratuits', href: 'drum-kits.html' }
@@ -65,7 +65,7 @@ window.CHAT = {
     },
     'code|promo|réduction|reduction|discount|coupon|offre|deal': {
       intent: 'info',
-      reply: '🎁 <strong>Offre SPÉCIALE - TOUS LES PRODUITS GRATUITS !</strong>\n\nZéro euros pour :\n✅ 5 VST plugins (BIGBASS, Vice City, Oriental Instrument, MATRIX MODULAR, MACHINA)\n✅ 15 Sample packs premium & gratuits\n✅ Toutes les démos\n\nC\'est un accès COMPLET, 100% GRATUIT ! 🎉',
+      reply: '🎁 <strong>Offre spéciale :</strong>\n\n✅ <strong>4 VST gratuits</strong> — BIGBASS, Vice City, MATRIX MODULAR, MACHINA\n✅ <strong>15 Sample packs gratuits</strong> — Tous les styles\n💵 <strong>Oriental Instrument</strong> — $24.50 (code ORIENTAL50 pour -50%)\n\n🎉 C\'est une offre très généreuse !',
       actions: [
         { text: 'Voir tous les VST', href: 'vst.html' }
       ]
@@ -142,7 +142,7 @@ window.CHAT = {
     }
     return {
       intent: 'unknown',
-      reply: '🎵 Je vois pas tout, mais je peux vous orienter vers ce qu\'il y a sur DJBILBOX BEATS :\n\n🎛️ <strong>5 VST plugins</strong> — Tous 0€ (BIGBASS, Vice City, Oriental, MATRIX MODULAR, MACHINA)\n🥁 <strong>15 Sample packs</strong> — Tous 0€ (Drums, Vocals, SFX, Loops...)\n🎁 <strong>OFFRE COMPLÈTE GRATUITE</strong> — Accès illimité à tous les produits !\n\nOu écrivez directement à <strong>djbilboxbeats@gmail.com</strong> — l\'équipe répond sous 24h.',
+      reply: '🎵 Je vois pas tout, mais je peux vous orienter vers ce qu\'il y a sur DJBILBOX BEATS :\n\n🎛️ <strong>4 VST gratuits</strong> — BIGBASS, Vice City, MATRIX MODULAR, MACHINA\n🎛️ <strong>Oriental Instrument</strong> — $24.50 (280+ instruments, démo gratuite)\n🥁 <strong>15 Sample packs</strong> — Tous gratuits\n🎁 <strong>Offre très généreuse</strong> — Beaucoup de contenu gratuit !\n\nOu écrivez directement à <strong>djbilboxbeats@gmail.com</strong> — l\'équipe répond sous 24h.',
       actions: [
         { text: 'Tous les produits', href: 'index.html' },
         { text: 'VST & Kits', href: 'vst.html' },

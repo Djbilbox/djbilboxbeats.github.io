@@ -139,11 +139,11 @@ window.PRODUCTS = {
 
   "oriental-instrument": {
     type:"vst", name:"Oriental Instrument", sub:"Arabic & Oriental Rompler — 280+ Instruments",
-    tagline:"280+ authentic oriental instruments & sounds in one pro plug-in — oud, qanun, ney, saz, strings & percussion. NOW FREE!",
+    tagline:"280+ authentic oriental instruments & sounds in one pro plug-in — oud, qanun, ney, saz, strings & percussion.",
     cover:"img/vst/oriental-instrument-box.jpg", accent:"#e8a33d", accent2:"#c0392b",
-    price:"0", old:"", badge:"FREE", code:"",
-    note:"Now free · 280+ authentic oriental instruments",
-    buy:"oriental-instrument-djbilbox-beats",
+    price:"24.50", old:"49", badge:"🔥 -50%", code:"ORIENTAL50",
+    note:"Code ORIENTAL50 · 280+ authentic oriental instruments",
+    buy:"oriental-instrument-djbilbox-beats/ORIENTAL50",
     demo:"oriental-instrument-demo-free-Download",
     video:"media/oriental-demo.mp4", poster:"media/oriental-poster.jpg",
     tags:["Oriental","Arabic","280+ Instruments","Win · Mac","Rompler"],
