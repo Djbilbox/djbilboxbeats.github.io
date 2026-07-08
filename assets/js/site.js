@@ -30,6 +30,7 @@ const NAV = [
   { key:'beats',       label:'Beats',       href:'/beats-redesign.html', icon:'fa-music' },
   { key:'vst',         label:'VST',         href:'/vst.html',            icon:'fa-sliders' },
   { key:'drumkits',    label:'Drum Kits',   href:'/drum-kits.html',      icon:'fa-drum' },
+  { key:'twitch',      label:'Twitch',      href:'/twitch.html',         icon:'fa-brands fa-twitch' },
   { key:'formations',  label:'Academy',     href:'/formations.html',     icon:'fa-graduation-cap' },
   { key:'services',    label:'Services',    href:'/services.html',       icon:'fa-headphones' },
   { key:'contact',     label:'Contact',     href:'/contact.html',        icon:'fa-envelope' },
@@ -59,6 +60,7 @@ function mountSidebar(active){
       <div class="side-social">
         <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.twitch.tv/djbilbox" target="_blank" title="Twitch"><i class="fa-brands fa-twitch"></i></a>
       </div>
       <div class="side-actions">
         <button class="icon-btn" onclick="openCart()" title="Cart">
@@ -101,6 +103,7 @@ function mountFooter(){
       <div class="footer-social">
         <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.twitch.tv/djbilbox" target="_blank"><i class="fa-brands fa-twitch"></i></a>
       </div>
     </div>
     <div class="footer-copy">DJBILBOX BEATS — Bilel Abdelkader Attalah · 4 rue Virginia Woolf, 31200 Toulouse, France<br>© 2026 DJBILBOX BEATS — All rights reserved.</div>
