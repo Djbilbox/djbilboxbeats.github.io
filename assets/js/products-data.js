@@ -7,12 +7,44 @@
 window.PRODUCTS = {
 
   /* ===================== VST PLUGINS ===================== */
+  "matrix-modular": {
+    type:"vst", name:"MATRIX MODULAR", sub:"Westcoast Oriental VST Effect",
+    tagline:"Stereo modulation & auto-pan effect inspired by analog matrix mixers — lush, dimensional, and endlessly tweakable.",
+    cover:"img/vst/matrix-modular-cover.jpg", accent:"#1abc9c", accent2:"#16a085",
+    price:"0", old:"", badge:"FREE",
+    note:"Now free · Professional stereo field modulation",
+    buy:"ocpoej", demo:"",
+    video:"", poster:"img/vst/matrix-modular-cover.jpg",
+    tags:["Stereo Modulation","Auto-Pan","VST3","Standalone"],
+    about:[
+      "MATRIX MODULAR is a stereo modulation effect inspired by vintage Buchla and Serge modular synthesizers — specifically the matrix mixer architectures that defined the Westcoast sound. It brings that dimensional, organic character to any source: guitars, drums, synths, vocals — even entire stereo mixes.",
+      "The effect uses analog-modelled modulation sources (sine, triangle, saw, noise) to create dynamic stereo panning, width modulation, and cross-channel movement. Perfect for adding life and movement to static tracks, creating psychoacoustic effects, or building evolving ambient textures.",
+      "Fully automatable with minimal CPU footprint. Ships as VST3 (Windows & macOS) and Standalone. A modern take on classic analog matrix mixing, now in plugin form."
+    ],
+    features:[
+      {icon:"fa-wave-square", t:"Analog-modelled modulation", d:"Sine, triangle, sawtooth and noise LFO sources with smooth parameters for organic motion."},
+      {icon:"fa-arrows-left-right", t:"Stereo auto-pan", d:"Dynamic left-right panning with depth and rate control for dimensional width."},
+      {icon:"fa-link", t:"Cross-channel routing", d:"Matrix-style mixing lets you route modulation across stereo channels independently."},
+      {icon:"fa-sliders", t:"Full automation", d:"Every parameter automatable in your DAW — draw complex modulation curves in real time."},
+      {icon:"fa-feather", t:"Low CPU", d:"Optimized DSP keeps sessions responsive even with many instances."}
+    ],
+    specs:[
+      {k:"Format", v:"VST3 (Windows & macOS) · Standalone"},
+      {k:"Type", v:"Stereo Modulation Effect"},
+      {k:"LFO Types", v:"Sine, Triangle, Sawtooth, Noise"},
+      {k:"Processing", v:"True stereo with independent L/R routing"},
+      {k:"Latency", v:"Minimal — optimized for real-time use"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["MATRIX MODULAR VST3 (64-bit)","MATRIX MODULAR Standalone","Factory presets","User manual (PDF)"]
+  },
+
   "machina": {
     type:"vst", name:"MACHINA", sub:"Creative Multi-Effect — Energy Drink for Your Sound",
     tagline:"A VST3 audio effect wrapped in a fully-animated energy-drink vending machine — distortion, delay & filter with six flavour presets.",
     cover:"img/vst/machina-vst.jpg", accent:"#b44dff", accent2:"#FFD700",
-    price:"29", old:"", badge:"🆕 NEW",
-    note:"New release · Creative multi-effect with playable vending-machine UI",
+    price:"0", old:"", badge:"FREE",
+    note:"Now free · Creative multi-effect with playable vending-machine UI",
     buy:"lbceu", demo:"",
     video:"", poster:"img/vst/machina-vst.jpg",
     tags:["Audio Effect","Distortion","Delay","Filter","VST3","AU","Win · Mac"],
@@ -45,9 +77,9 @@ window.PRODUCTS = {
     type:"vst", name:"BIGBASS", sub:"LA Lowrider Bass Synthesizer",
     tagline:"West-Coast lowrider bass in one plug-in — 6 real bass engines, 80 presets, VST3 & Standalone for Win & Mac.",
     cover:"img/vst/bigbass-vst.jpg", accent:"#ffcf33", accent2:"#7b2ff7",
-    price:"19.50", old:"39", badge:"-50%", code:"BIGBASS50",
-    note:"Code BIGBASS50 · Offre de lancement -50%",
-    buy:"xaziro/BIGBASS50", demo:"",
+    price:"0", old:"", badge:"FREE", code:"",
+    note:"Now free · LA lowrider bass synthesizer",
+    buy:"xaziro", demo:"",
     video:"media/bigbass-promo.mp4", poster:"img/vst/bigbass-vst.jpg",
     tags:["Lowrider Bass","G-Funk","VST3","Standalone","Win · Mac"],
     about:[
@@ -79,9 +111,9 @@ window.PRODUCTS = {
     type:"vst", name:"Vice City", sub:"Virtual Polyphonic Synthesizer",
     tagline:"Neon-soaked 80s synthwave in a single plug-in — VST3 & Standalone.",
     cover:"img/vst/vice-city-vst.jpg", accent:"#ff3ca6", accent2:"#37e1ff",
-    price:"18.45", old:"36.90", badge:"-50%", code:"VICECITY50",
-    note:"Code VICECITY50 · Until Jul 31, 2026",
-    buy:"ykdzli/VICECITY50", demo:"",
+    price:"0", old:"", badge:"FREE", code:"",
+    note:"Now free · Synthwave synthesizer",
+    buy:"ykdzli", demo:"",
     video:"0dEw1R8ze4I",
     tags:["Synthwave","Retrowave","VST3","Standalone"],
     about:[
