@@ -10,14 +10,14 @@
 window.VSTS = [
   /* ========== EFFECTS ========== */
   { id:"matrix-modular", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
-    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"9.91", badge:"🆕 NEW",
+    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"0", badge:"FREE",
     buy:"ocpoej", demo:"",
-    note:"Professional stereo field modulation · The Matrix inspired UI" },
+    note:"Now FREE · Limited time offer" },
 
   { id:"machina", name:"MACHINA — Audio Effect", img:"img/vst/machina-vst.jpg", category:"effect",
-    tags:["Distortion · Delay · Filter","VST3 · AU · Win/Mac"], price:"29", old:"", badge:"🔥 POPULAR",
+    tags:["Distortion · Delay · Filter","VST3 · AU · Win/Mac"], price:"0", old:"", badge:"FREE",
     buy:"lbceu", demo:"",
-    note:"Vending machine UI · Creative multi-effect" },
+    note:"Now FREE · Limited time offer" },
 
   /* ========== INSTRUMENTS ========== */
   { id:"bigbass", name:"BIGBASS — LA Lowrider Bass", img:"img/vst/bigbass-vst.jpg", category:"instrument",
