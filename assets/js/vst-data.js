@@ -30,9 +30,14 @@ window.VSTS = [
     buy:"ykdzli", demo:"",
     note:"Now FREE · Limited time offer" },
 
-  { id:"oriental-instrument", name:"Oriental Instrument — 280+ Instruments", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
+  { id:"oriental-instrument-demo", name:"Oriental Instrument — DEMO (Free)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
+    tags:["280+ Instruments Demo","Oriental","Win · Mac"], price:"0", old:"", badge:"FREE DEMO",
+    buy:"oriental-instrument-demo-free-Download", demo:"",
+    note:"Free demo · Try 50+ instruments · Full version available" },
+
+  { id:"oriental-instrument", name:"Oriental Instrument — Full Version (280+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
     tags:["280+ Instruments","Oriental","Win · Mac"], price:"24.50", old:"49", badge:"🔥 -50%",
     buy:"oriental-instrument-djbilbox-beats/ORIENTAL50",
     demo:"oriental-instrument-demo-free-Download",
-    note:"Code: ORIENTAL50 · 280+ instruments orientaux · -50%" },
+    note:"Code: ORIENTAL50 · Full 280+ instruments · -50% launch offer" },
 ];

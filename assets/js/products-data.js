@@ -137,12 +137,43 @@ window.PRODUCTS = {
     includes:["Vice City VST3 (64-bit)","Vice City Standalone app","Factory preset library","Quick-start PDF"]
   },
 
+  "oriental-instrument-demo": {
+    type:"vst", name:"Oriental Instrument — DEMO", sub:"Free 50+ Instruments Sample",
+    tagline:"Try Oriental Instrument FREE. 50+ authentic oriental instruments, oud, qanun, ney & saz samples.",
+    cover:"img/vst/oriental-instrument-box.jpg", accent:"#e8a33d", accent2:"#c0392b",
+    price:"0", old:"", badge:"FREE", code:"",
+    note:"Free demo · Try before you buy · 50+ instruments",
+    buy:"oriental-instrument-demo-free-Download", demo:"",
+    video:"", poster:"img/vst/oriental-instrument-box.jpg",
+    tags:["Oriental","Demo","Free","Win · Mac","Rompler"],
+    about:[
+      "Get a taste of ORIENTAL INSTRUMENT completely free. This demo includes 50+ authentic oriental instruments including oud, qanun, ney, and saz sounds.",
+      "Perfect for testing compatibility, learning the interface, and hearing the quality of our instrument library before purchasing the full version.",
+      "No restrictions, no limitations — just pure oriental sound design. Download and start creating with authentic Middle Eastern instruments today."
+    ],
+    features:[
+      {icon:"fa-layer-group", t:"50+ instruments included", d:"A generous selection of authentic oud, qanun, ney, saz, strings and percussion samples to explore."},
+      {icon:"fa-wand-magic-sparkles", t:"Real articulations", d:"Slides, ornaments and quarter-tone bends captured from real players for authentic phrasing."},
+      {icon:"fa-desktop", t:"Win & Mac", d:"Cross-platform demo — install on your Windows or macOS studio and go."},
+      {icon:"fa-tag", t:"No strings attached", d:"Completely free. Try it risk-free before deciding to upgrade to the full 280+ instrument version."}
+    ],
+    specs:[
+      {k:"Formats", v:"VST3 · AU · Standalone"},
+      {k:"Platform", v:"Windows 10/11 & macOS (64-bit)"},
+      {k:"Content", v:"50+ oriental instruments & sounds (demo)"},
+      {k:"Articulations", v:"Slides, ornaments, quarter-tone bends"},
+      {k:"Install", v:"Instant download · no registration needed"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["Oriental Instrument Demo (Win + Mac bundle)","50+ instrument samples","Melodic phrase browser (limited)","User manual (PDF)"]
+  },
+
   "oriental-instrument": {
-    type:"vst", name:"Oriental Instrument", sub:"Arabic & Oriental Rompler — 280+ Instruments",
-    tagline:"280+ authentic oriental instruments & sounds in one pro plug-in — oud, qanun, ney, saz, strings & percussion.",
+    type:"vst", name:"Oriental Instrument — Full Version", sub:"Arabic & Oriental Rompler — 280+ Instruments",
+    tagline:"280+ authentic oriental instruments & sounds in one pro plug-in — oud, qanun, ney, saz, strings & percussion. Full library.",
     cover:"img/vst/oriental-instrument-box.jpg", accent:"#e8a33d", accent2:"#c0392b",
     price:"24.50", old:"49", badge:"🔥 -50%", code:"ORIENTAL50",
-    note:"Code ORIENTAL50 · 280+ authentic oriental instruments",
+    note:"Code ORIENTAL50 · Full 280+ instruments · -50% launch offer",
     buy:"oriental-instrument-djbilbox-beats/ORIENTAL50",
     demo:"oriental-instrument-demo-free-Download",
     video:"media/oriental-demo.mp4", poster:"media/oriental-poster.jpg",
