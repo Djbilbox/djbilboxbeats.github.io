@@ -65,11 +65,11 @@ window.CHAT = {
     },
     'prix|price|cost|combien|tarif|gratuit|free': {
       intent: 'info',
-      reply: '💰 <strong>Nos tarifs :</strong>\n\n✅ <strong>BIGBASS, Vice City, MATRIX MODULAR, MACHINA</strong> — GRATUIT\n✅ <strong>Tous les sample packs</strong> — GRATUIT (15 packs)\n✅ <strong>Démos VST</strong> — GRATUIT\n✅ <strong>FREE BUNDLE</strong> — Télécharge tous les produits gratuits à la fois !\n💵 <strong>Oriental Instrument</strong> — $24.50 (280+ instruments, démo gratuite)',
+      reply: '💰 <strong>Pricing :</strong>\n\n✅ <strong>ALL VSTs FREE</strong> — BIGBASS, Vice City, MATRIX MODULAR, MACHINA\n✅ <strong>ALL Sample Packs FREE</strong> — 15+ packs, all genres\n✅ <strong>FREE BUNDLE</strong> — Download all free products at once!\n✅ <strong>Oriental Instrument DEMO</strong> — FREE (50+ instruments)\n💵 <strong>Oriental Instrument FULL</strong> — $24.50 (280+ instruments, -50% ORIENTAL50)',
       actions: [
-        { text: 'Voir le FREE BUNDLE', href: 'product.html?id=free-bundle' },
-        { text: 'Voir tous les VST', href: 'vst.html' },
-        { text: 'Télécharger les kits gratuits', href: 'drum-kits.html' }
+        { text: 'See FREE BUNDLE', href: 'product.html?id=free-bundle' },
+        { text: 'Download all VSTs', href: 'vst.html' },
+        { text: 'Get sample packs', href: 'drum-kits.html' }
       ]
     },
     'code|promo|réduction|reduction|discount|coupon|offre|deal': {
