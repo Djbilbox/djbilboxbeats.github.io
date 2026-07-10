@@ -190,6 +190,9 @@ window.PRODUCTS = {
     note:"Free demo · Try before you buy · 50+ instruments",
     buy:"oriental-instrument-demo-free-Download", demo:"",
     video:"", poster:"img/vst/oriental-instrument-box.jpg",
+    gallery:["assets/products/oriental-instrument/oriental-instrument-poster.jpg",
+             "assets/products/oriental-instrument/oriental-instrument-1.jpg",
+             "assets/products/oriental-instrument/oriental-instrument-2.jpg"],
     tags:["Oriental","Demo","Free","Win · Mac","Rompler"],
     about:[
       "Get a taste of ORIENTAL INSTRUMENT completely free. This demo includes 50+ authentic oriental instruments including oud, qanun, ney, and saz sounds.",
