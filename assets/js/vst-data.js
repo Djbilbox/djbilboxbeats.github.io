@@ -34,6 +34,8 @@ window.VSTS = [
   { id:"vice-city", name:"Vice City — VST Plugin", img:"img/vst/vice-city-vst.jpg", category:"instrument",
     tags:["Synthwave","VST3 · Standalone"], price:"0", old:"", badge:"FREE",
     buy:"ykdzli", demo:"",
+    thumb:"assets/products/vice-city/vice-city-card.jpg",
+    preview:"assets/products/vice-city/vice-city-card.mp4",
     note:"✅ 100% FREE · Download now" },
 
   { id:"oriental-instrument-demo", name:"Oriental Instrument — DEMO (Free)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
@@ -45,5 +47,6 @@ window.VSTS = [
     tags:["280+ Instruments","Oriental","Win · Mac"], price:"24.50", old:"49", badge:"🔥 -50%",
     buy:"oriental-instrument-djbilbox-beats/ORIENTAL50",
     demo:"oriental-instrument-demo-free-Download",
+    thumb:"assets/products/oriental-instrument/oriental-instrument-card.jpg",
     note:"Code: ORIENTAL50 · Full 280+ instruments · -50% launch offer" },
 ];

@@ -155,6 +155,11 @@ window.PRODUCTS = {
     note:"Now free · Synthwave synthesizer",
     buy:"ykdzli", demo:"",
     video:"0dEw1R8ze4I",
+    gallery:["assets/products/vice-city/vice-city-poster.jpg",
+             "assets/products/vice-city/vice-city-1.jpg",
+             "assets/products/vice-city/vice-city-2.jpg"],
+    preview:"assets/products/vice-city/vice-city-preview.mp4",
+    previewPoster:"assets/products/vice-city/vice-city-poster.jpg",
     tags:["Synthwave","Retrowave","VST3","Standalone"],
     about:[
       "VICE CITY is a polyphonic synthwave engine built for producers chasing that sun-drenched, palm-tree-and-chrome Miami sound. Pads, leads, basses and arps — every patch drips with neon nostalgia and modern punch.",
@@ -217,6 +222,9 @@ window.PRODUCTS = {
     buy:"oriental-instrument-djbilbox-beats/ORIENTAL50",
     demo:"oriental-instrument-demo-free-Download",
     video:"media/oriental-demo.mp4", poster:"media/oriental-poster.jpg",
+    gallery:["assets/products/oriental-instrument/oriental-instrument-poster.jpg",
+             "assets/products/oriental-instrument/oriental-instrument-1.jpg",
+             "assets/products/oriental-instrument/oriental-instrument-2.jpg"],
     tags:["Oriental","Arabic","280+ Instruments","Win · Mac","Rompler"],
     about:[
       "ORIENTAL INSTRUMENT puts 280+ authentic oriental instruments and sounds under your fingertips — oud, qanun, ney, saz, oriental strings, brass and live percussion, all multi-sampled and tuned for trap, afro, raï'n'b and cinematic productions. One plug-in, one window, the whole colour of the Middle East.",

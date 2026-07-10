@@ -6,7 +6,7 @@
 <title>Product — DJBILBOX BEATS</title>
 <meta name="description" content="DJBILBOX BEATS — VST plugins & sample kits. Pro instruments, free demos, instant download.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26070519">
+<link rel="stylesheet" href="assets/css/theme.css?v=26070520">
 <link rel="stylesheet" href="assets/css/product.css">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -16,7 +16,7 @@
 <main id="pd"></main>
 
 <!-- scripts -->
-<script src="assets/js/products-data.js?v=26070519"></script>
+<script src="assets/js/products-data.js?v=26070520"></script>
 <script>
 /* Load video on click (bypasses YouTube age-restriction) */
 function loadVideoBg(el, src) {
@@ -95,6 +95,23 @@ function loadVideoBg(el, src) {
       ? `https://www.youtube-nocookie.com/embed/videoseries?list=${P.video}&rel=0&modestbranding=1`
       : `https://www.youtube-nocookie.com/embed/${P.video}?rel=0&modestbranding=1`
     : '';
+  /* ---- optional product gallery + self-hosted looping preview (opt-in via data) ---- */
+  const galleryHtml = (P.gallery||[]).length ? `
+    <section class="pd-section"><div class="pd-wrap">
+      <h2 class="pd-h2">Product <span>visuals</span></h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+        ${P.gallery.map(img=>`<img loading="lazy" src="${img}" alt="${P.name}"
+          style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid var(--border);background:var(--surface-2)">`).join('')}
+      </div>
+    </div></section>` : '';
+  const previewHtml = P.preview ? `
+    <section class="pd-section"><div class="pd-wrap">
+      <h2 class="pd-h2">See it <span>in action</span></h2>
+      <p class="pd-lead">A look inside ${P.name} — plays muted, on loop.</p>
+      <div class="pd-demo-embed"><video src="${P.preview}" autoplay muted loop playsinline controls preload="metadata"
+        ${P.previewPoster?`poster="${P.previewPoster}"`:''} style="width:100%;height:100%;object-fit:cover;background:#000"></video></div>
+    </div></section>` : '';
+
   const demoHtml = isMp4 ? `
     <section class="pd-section"><div class="pd-wrap">
       <h2 class="pd-h2">Hear it <span>in action</span></h2>
@@ -145,6 +162,9 @@ function loadVideoBg(el, src) {
       ${aboutHtml}
     </div></section>
 
+    ${galleryHtml}
+    ${previewHtml}
+
     <section class="pd-section"><div class="pd-wrap">
       <h2 class="pd-h2">Key <span>features</span></h2>
       <div class="pd-feats">${featsHtml}</div>
@@ -173,7 +193,7 @@ function loadVideoBg(el, src) {
     </div>`;
 })();
 </script>
-<script src="assets/js/site.js?v=26070519"></script>
+<script src="assets/js/site.js?v=26070520"></script>
 <script src="assets/js/chat.js"></script>
 </body>
 </html>

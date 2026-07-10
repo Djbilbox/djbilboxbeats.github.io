@@ -604,9 +604,15 @@ function vstCard(p){
   const el=document.createElement('article');
   el.className='card';
   const dHref = p.id ? `product.html?id=${p.id}` : null;
+  const thumb = p.thumb || p.img;
+  /* optional muted loop clip revealed on hover, layered over the poster */
+  const preview = p.preview
+    ? `<video class="card-preview" src="${p.preview}" muted loop playsinline preload="none" aria-hidden="true"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .25s ease;pointer-events:none"></video>`
+    : '';
   const media = dHref
-    ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"><span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
-    : `<div class="card-media">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"></div>`;
+    ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}<span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
+    : `<div class="card-media">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}</div>`;
   const titleHtml = dHref ? `<a href="${dHref}"><h3 class="card-title">${p.name}</h3></a>` : `<h3 class="card-title">${p.name}</h3>`;
   el.innerHTML = `
     ${media}
@@ -619,6 +625,12 @@ function vstCard(p){
         <div style="display:flex;gap:6px">${soon?'':demo}${mainBtn}</div>
       </div>
     </div>`;
+  if(p.preview){
+    const box = el.querySelector('.card-media');
+    const vid = el.querySelector('.card-preview');
+    box.addEventListener('mouseenter', ()=>{ vid.style.opacity='1'; vid.play().catch(()=>{}); });
+    box.addEventListener('mouseleave', ()=>{ vid.style.opacity='0'; vid.pause(); });
+  }
   return el;
 }
 function renderVsts(list, containerId){
