@@ -599,10 +599,7 @@ function vstCard(p){
   const demo = p.demo ? `<button class="btn-cta ghost" onclick="buy('${p.demo.replace(/'/g,"\\'")}')"><i class="fa-solid fa-download"></i> Demo</button>` : '';
   const mainBtn = soon
     ? `<button class="btn-cta ghost" onclick="window.open(GUMROAD_STORE,'_blank')"><i class="fa-solid fa-bell"></i> Notify</button>`
-    : p.category==='bundle'
-      /* the bundle has no Gumroad product of its own — its page lists each free download */
-      ? `<button class="btn-cta" onclick="location.href='product.html?id=${p.id}'"><i class="fa-solid fa-download"></i> Get it</button>`
-      : `<button class="btn-cta" onclick="addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
+    : `<button class="btn-cta" onclick="addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
   const noteHtml = p.note ? `<div style="background:var(--accent-glow);border:1px solid rgba(255,45,45,.3);border-radius:5px;padding:5px 9px;font-size:.64rem;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-top:2px">🎟️ ${p.note}</div>` : '';
   const el=document.createElement('article');
   el.className='card';

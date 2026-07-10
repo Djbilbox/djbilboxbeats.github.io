@@ -16,7 +16,7 @@
 <main id="pd"></main>
 
 <!-- scripts -->
-<script src="assets/js/products-data.js?v=26070522"></script>
+<script src="assets/js/products-data.js?v=26070523"></script>
 <script>
 /* Load video on click (bypasses YouTube age-restriction) */
 function loadVideoBg(el, src) {
@@ -74,10 +74,7 @@ function loadVideoBg(el, src) {
     : `<span class="now">$${P.price}</span>${P.old?`<span class="old">$${P.old}</span>`:''}${P.badge?`<span class="pd-badge">${P.badge}</span>`:''}`;
 
   let actions;
-  if((P.bundleItems||[]).length){
-    /* Bundle: no single Gumroad product, so send the buyer to the per-plugin download list. */
-    actions = `<button class="pd-btn primary" onclick="document.getElementById('bundle-downloads').scrollIntoView({behavior:'smooth',block:'start'})"><i class="fa-solid fa-download"></i> Get the ${P.bundleItems.length} plugins</button>`;
-  } else if(isFree){
+  if(isFree){
     actions = `<button class="pd-btn primary" onclick="buy('${esc(P.buy)}')"><i class="fa-solid fa-download"></i> Download free</button>
       <button class="pd-btn ghost" onclick="addToCart('${esc(P.name)}','${esc(P.price)}','${esc(P.buy)}')"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>`;
   } else {
@@ -216,7 +213,7 @@ function loadVideoBg(el, src) {
     </div>`;
 })();
 </script>
-<script src="assets/js/site.js?v=26070522"></script>
+<script src="assets/js/site.js?v=26070523"></script>
 <script src="assets/js/chat.js"></script>
 </body>
 </html>

@@ -60,7 +60,7 @@ window.CHAT = {
       reply: '🎁 <strong>FREE BUNDLE</strong> — Téléchargez tous les produits gratuits en un seul pack !\n\n✅ <strong>5 VSTs complets :</strong> BIGBASS, Vice City, MATRIX MODULAR, MACHINA + Oriental Instrument DEMO (50+ instruments)\n✅ <strong>100% GRATUIT</strong> — Téléchargement instantané\n✅ Tous les presets et manuals inclus',
       actions: [
         { text: 'Voir le Bundle', href: 'product.html?id=free-bundle' },
-        { text: 'Télécharger', href: 'product.html?id=free-bundle#bundle-downloads' }
+        { text: 'Télécharger', onclick: 'buy("djbilbox-free-bundle")' }
       ]
     },
     'prix|price|cost|combien|tarif|gratuit|free': {

@@ -11,7 +11,7 @@ window.VSTS = [
   /* ========== BUNDLE ========== */
   { id:"free-bundle", name:"🎁 FREE BUNDLE — All Free VSTs + Demo", img:"img/vst/free-bundle.jpg", category:"bundle",
     tags:["5 Free VSTs","Oriental Demo · Effects · Instruments","Complete Starter Pack"], price:"0", old:"", badge:"🎁 FREE",
-    buy:"", demo:"",
+    buy:"djbilbox-free-bundle", demo:"",
     note:"✅ FREE · Download all 5 free VSTs + Oriental Demo in one pack" },
 
   /* ========== EFFECTS ========== */
