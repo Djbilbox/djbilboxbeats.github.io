@@ -16,7 +16,7 @@
 <main id="pd"></main>
 
 <!-- scripts -->
-<script src="assets/js/products-data.js?v=26070521"></script>
+<script src="assets/js/products-data.js?v=26070522"></script>
 <script>
 /* Load video on click (bypasses YouTube age-restriction) */
 function loadVideoBg(el, src) {
@@ -74,7 +74,10 @@ function loadVideoBg(el, src) {
     : `<span class="now">$${P.price}</span>${P.old?`<span class="old">$${P.old}</span>`:''}${P.badge?`<span class="pd-badge">${P.badge}</span>`:''}`;
 
   let actions;
-  if(isFree){
+  if((P.bundleItems||[]).length){
+    /* Bundle: no single Gumroad product, so send the buyer to the per-plugin download list. */
+    actions = `<button class="pd-btn primary" onclick="document.getElementById('bundle-downloads').scrollIntoView({behavior:'smooth',block:'start'})"><i class="fa-solid fa-download"></i> Get the ${P.bundleItems.length} plugins</button>`;
+  } else if(isFree){
     actions = `<button class="pd-btn primary" onclick="buy('${esc(P.buy)}')"><i class="fa-solid fa-download"></i> Download free</button>
       <button class="pd-btn ghost" onclick="addToCart('${esc(P.name)}','${esc(P.price)}','${esc(P.buy)}')"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>`;
   } else {
@@ -104,6 +107,25 @@ function loadVideoBg(el, src) {
           style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid var(--border);background:var(--surface-2)">`).join('')}
       </div>
     </div></section>` : '';
+  /* ---- bundle: one download button per included plugin ---- */
+  const bundleHtml = (P.bundleItems||[]).length ? `
+    <section class="pd-section" id="bundle-downloads"><div class="pd-wrap">
+      <h2 class="pd-h2">Download the <span>${P.bundleItems.length} plugins</span></h2>
+      <p class="pd-lead">Every plugin below is 100% free — grab them one by one, no purchase needed.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px">
+        ${P.bundleItems.map(it=>`
+          <div style="display:flex;align-items:center;gap:13px;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--surface-2)">
+            <img loading="lazy" src="${it.img}" alt="${esc(it.name)}" style="width:64px;height:64px;object-fit:cover;border-radius:7px;flex:none">
+            <div style="min-width:0;flex:1">
+              <h4 style="margin:0 0 2px;font-size:.86rem;font-weight:800">${it.name}</h4>
+              <div style="font-size:.7rem;color:var(--text-3)">${it.sub}</div>
+            </div>
+            <button class="pd-btn primary" style="flex:none;padding:8px 13px;font-size:.72rem" onclick="buy('${esc(it.buy)}')">
+              <i class="fa-solid fa-download"></i> Free</button>
+          </div>`).join('')}
+      </div>
+    </div></section>` : '';
+
   const previewHtml = P.preview ? `
     <section class="pd-section"><div class="pd-wrap">
       <h2 class="pd-h2">See it <span>in action</span></h2>
@@ -162,6 +184,7 @@ function loadVideoBg(el, src) {
       ${aboutHtml}
     </div></section>
 
+    ${bundleHtml}
     ${galleryHtml}
     ${previewHtml}
 
@@ -193,7 +216,7 @@ function loadVideoBg(el, src) {
     </div>`;
 })();
 </script>
-<script src="assets/js/site.js?v=26070521"></script>
+<script src="assets/js/site.js?v=26070522"></script>
 <script src="assets/js/chat.js"></script>
 </body>
 </html>

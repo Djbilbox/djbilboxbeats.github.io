@@ -13,8 +13,16 @@ window.PRODUCTS = {
     cover:"img/vst/free-bundle.jpg", accent:"#27ae60", accent2:"#2ecc71",
     price:"0", old:"", badge:"🎁 FREE",
     note:"✅ Free download · 5 VSTs + Oriental Demo included",
-    buy:"djbilbox-free-bundle", demo:"",
+    buy:"", demo:"",
     video:"", poster:"img/vst/free-bundle.jpg",
+    /* No single Gumroad bundle product exists — each plugin is downloaded from its own page. */
+    bundleItems:[
+      {name:"MATRIX MODULAR", sub:"Stereo Modulation · Auto-Pan", img:"img/vst/matrix-modular-cover.jpg", buy:"ocpoej"},
+      {name:"MACHINA",        sub:"Distortion · Delay · Filter",  img:"img/vst/machina-vst.jpg",          buy:"lbceu"},
+      {name:"BIGBASS",        sub:"LA Lowrider 808 / Sub-Bass",   img:"img/vst/bigbass-vst.jpg",          buy:"xaziro"},
+      {name:"Vice City",      sub:"Synthwave / Miami Synth",      img:"img/vst/vice-city-vst.jpg",        buy:"ykdzli"},
+      {name:"Oriental Instrument — DEMO", sub:"50+ Oriental Instruments", img:"img/vst/oriental-instrument-box.jpg", buy:"oriental-instrument-demo-free-Download"}
+    ],
     tags:["5 Free VSTs","Effects + Instruments","Oriental Demo","Starter Pack"],
     about:[
       "Get all our free VST plugins in one download — your complete starter collection. Perfect for producers exploring new sounds or getting started with DJBILBOX BEATS plugins.",
