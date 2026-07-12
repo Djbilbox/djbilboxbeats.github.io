@@ -6,6 +6,11 @@
    Mix of premium (paid) kits and free name-your-price packs.
    ============================================================ */
 window.PACKS = [
+  /* ---------- New release (2026) ---------- */
+  { id:"west-side", name:"WEST SIDE DRUM KIT — 2Pac, Snoop Dogg & The Game", img:"img/packs/west-side.jpg",
+    genre:"West Coast", tags:["West Coast","G-Funk","Hip-Hop","MIDI"], price:"FREE", badge:"NEW",
+    buy:"west-side-drum-kit" },
+
   /* ---------- Premium kits (2026) ---------- */
   { id:"tone-vault", name:"TONE VAULT — Ultimate Instrument One-Shots", img:"img/packs/tone-vault.jpg",
     genre:"One-Shots", tags:["One-Shots","Instruments"], price:"FREE", badge:"FREE",

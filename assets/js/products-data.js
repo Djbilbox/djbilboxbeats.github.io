@@ -6,6 +6,40 @@
    ============================================================ */
 window.PRODUCTS = {
 
+  /* ===================== NEW RELEASE ===================== */
+  "west-side": {
+    type:"kit", name:"WEST SIDE DRUM KIT", sub:"2Pac × Snoop Dogg × The Game — West Coast Drum Kit",
+    tagline:"The ultimate West Coast drum kit — one-shots, MIDI patterns & full stems from 8 legendary G-Funk records.",
+    cover:"img/packs/west-side.jpg", accent:"#e8a33d", accent2:"#2e6fd6",
+    price:"FREE", badge:"🆕 New",
+    note:"37 one-shots · 36 MIDI · full stems · royalty-free",
+    buy:"west-side-drum-kit",
+    preview:"media/west-side-kit-preview.mp4",
+    gallery:["img/packs/west-side-a.jpg","img/packs/west-side-b.jpg"],
+    tags:["West Coast","G-Funk","Hip-Hop","MIDI","One-Shots"],
+    about:[
+      "WEST SIDE DRUM KIT is a full West Coast production toolkit inspired by the golden era of G-Funk and California hip-hop. Every sound is built from 8 legendary records by 2Pac, Snoop Dogg and The Game — recreated one-shot by one-shot, with matching MIDI drum patterns and full WAV stems so you can rebuild these classic grooves or flip them into something new.",
+      "Inside you'll find 37 punchy drum one-shots — kicks, snares, claps, hi-hats, cymbals, shakers, triangle and scratch/FX — plus 36 MIDI drum patterns mapped track by track. Drag the MIDI onto your own sounds, load the one-shots in your sampler, or study the stems to hear exactly how these timeless beats were made.",
+      "From Hail Mary to How We Do, load up your lowrider and ride down the West Side. Name your price and download it 100% royalty-free."
+    ],
+    features:[
+      {icon:"fa-drum", t:"37 drum one-shots", d:"Kicks, snares, claps, hats, cymbals, shakers, triangle & scratch/FX."},
+      {icon:"fa-music", t:"36 MIDI patterns", d:"The exact grooves mapped track by track — drop them on any sound."},
+      {icon:"fa-layer-group", t:"Full WAV stems", d:"Stems for all 8 legendary West Coast records."},
+      {icon:"fa-unlock", t:"Royalty-free", d:"Name-your-price — use in your own beats with zero clearance."}
+    ],
+    specs:[
+      {k:"Content", v:"West Coast / G-Funk drum kit — one-shots, MIDI & stems"},
+      {k:"Format", v:"WAV + MIDI"},
+      {k:"One-shots", v:"37 (drums, perc, scratch/FX)"},
+      {k:"MIDI", v:"36 drum patterns (8 tracks)"},
+      {k:"Tempo range", v:"82–99 BPM"},
+      {k:"Price", v:"Name your price (free)"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["37 drum one-shots (WAV)","36 MIDI drum patterns","Full WAV stems — 8 tracks","2Pac · Snoop Dogg · The Game grooves","Works in all DAWs (FL, Ableton, Logic…)"]
+  },
+
   /* ===================== BUNDLE ===================== */
   "free-bundle": {
     type:"bundle", name:"FREE BUNDLE", sub:"All 5 Free VSTs + Oriental Demo",
