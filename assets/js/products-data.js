@@ -14,7 +14,7 @@ window.PRODUCTS = {
     price:"FREE", badge:"🆕 New",
     note:"37 one-shots · 36 MIDI · full stems · royalty-free",
     buy:"west-side-drum-kit",
-    preview:"media/west-side-kit-preview.mp4",
+    video:"nD2CfT4Ortw",
     gallery:["img/packs/west-side-a.jpg","img/packs/west-side-b.jpg"],
     tags:["West Coast","G-Funk","Hip-Hop","MIDI","One-Shots"],
     about:[
