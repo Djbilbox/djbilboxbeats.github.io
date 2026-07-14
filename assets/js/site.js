@@ -234,7 +234,7 @@ function renderCartItems(){
   }else{
     box.innerHTML=items.map((it,i)=>{
       const free=String(it.price).toUpperCase()==='FREE';
-      const priceTxt=free?'FREE':(isNaN(parseFloat(it.price))?it.price:'$'+it.price);
+      const priceTxt=free?'FREE':(isNaN(parseFloat(it.price))?it.price:'€'+it.price);
       return `<div class="cart-item">
         <div class="ci-info"><div class="ci-name">${it.title}</div>
           <div class="ci-price${free?' free':''}">${priceTxt}</div></div>
@@ -244,7 +244,7 @@ function renderCartItems(){
     }).join('');
   }
   const t=Cart.total();
-  const tEl=document.getElementById('cartTotal'); if(tEl) tEl.textContent = t>0?('$'+t.toFixed(2)):'FREE';
+  const tEl=document.getElementById('cartTotal'); if(tEl) tEl.textContent = t>0?('€'+t.toFixed(2)):'FREE';
 }
 /* Load Gumroad's overlay once. When several Gumroad product links exist on the
    same page, the overlay auto-bundles them into ONE payment (Bundle Buy). */
@@ -460,8 +460,8 @@ function packCard(p){
   const badgeTxt = p.badge || (isFree?'FREE':'');
   const badge = badgeTxt ? `<span class="card-badge${isFree?' free':''}">${badgeTxt}</span>` : '';
   const tags = (p.tags||[]).slice(0,2).map(t=>`<span class="tag">${t}</span>`).join('');
-  const old = p.old ? `<span class="old">$${p.old}</span>` : '';
-  const priceHtml = isFree ? `<span class="now free">FREE</span>` : `<span class="now">$${p.price}</span>${old}`;
+  const old = p.old ? `<span class="old">€${p.old}</span>` : '';
+  const priceHtml = isFree ? `<span class="now free">FREE</span>` : `<span class="now">€${p.price}</span>${old}`;
   const el = document.createElement('article');
   el.className='card';
   el.dataset.genre = p.genre || '';
@@ -558,10 +558,10 @@ function genericCard(p){
   const isContact=p.contact!==undefined;
   const badge=p.badge? `<span class="card-badge${isFree||p.badge==='free'?' free':''}">${p.badge==='free'?'Free':p.badge}</span>`:'';
   const media=p.img? `<div class="card-media">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"></div>`:'';
-  const old=p.old? `<span class="old">$${p.old}</span>`:'';
+  const old=p.old? `<span class="old">€${p.old}</span>`:'';
   const now=isFree? `<span class="now free">FREE</span>`
             : isContact? `<span class="now" style="font-size:.85rem;color:var(--text-2)">On request</span>`
-            : (isNaN(p.price)? `<span class="now" style="font-size:.85rem">${p.price}</span>` : `<span class="now">$${p.price}</span>`);
+            : (isNaN(p.price)? `<span class="now" style="font-size:.85rem">${p.price}</span>` : `<span class="now">€${p.price}</span>`);
   let btn;
   if(isContact){
     const subj=encodeURIComponent(p.subject||(p.name+' — request'));
@@ -592,10 +592,10 @@ function renderReviews(arr, id){
 function vstCard(p){
   const badge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
   const tags = (p.tags||[]).slice(0,2).map(t=>`<span class="tag">${t}</span>`).join('');
-  const old = p.old ? `<span class="old">$${p.old}</span>` : '';
+  const old = p.old ? `<span class="old">€${p.old}</span>` : '';
   const soon = String(p.price).toUpperCase()==='SOON';
   const priceHtml = soon ? `<span class="now" style="font-size:.82rem;color:var(--text-3)">Coming soon</span>`
-                         : `<span class="now">$${p.price}</span>${old}`;
+                         : `<span class="now">€${p.price}</span>${old}`;
   const demo = p.demo ? `<button class="btn-cta ghost" onclick="buy('${p.demo.replace(/'/g,"\\'")}')"><i class="fa-solid fa-download"></i> Demo</button>` : '';
   const mainBtn = soon
     ? `<button class="btn-cta ghost" onclick="window.open(GUMROAD_STORE,'_blank')"><i class="fa-solid fa-bell"></i> Notify</button>`
