@@ -1,0 +1,57 @@
+{
+  "version": "2.0",
+  "currency": "EUR",
+  "generated": "2026-07-14",
+  "promos": [
+    {"name":"Nouvel An","start":"2026-01-01","end":"2026-01-10","discount":70},
+    {"name":"Soldes hiver","start":"2026-01-07","end":"2026-02-03","discount":80},
+    {"name":"Saint-Valentin","start":"2026-02-10","end":"2026-02-15","discount":40},
+    {"name":"Ramadan","start":"2026-03-01","end":"2026-03-30","discount":50},
+    {"name":"Aid al-Fitr","start":"2026-03-31","end":"2026-03-31","discount":60},
+    {"name":"Paques","start":"2026-04-09","end":"2026-04-13","discount":35},
+    {"name":"French Days printemps","start":"2026-04-29","end":"2026-05-05","discount":65},
+    {"name":"Aid al-Adha","start":"2026-06-07","end":"2026-06-08","discount":55},
+    {"name":"Prime Day","start":"2026-06-23","end":"2026-06-26","discount":60},
+    {"name":"Soldes ete","start":"2026-06-24","end":"2026-07-28","discount":80,"current":true},
+    {"name":"Rentree scolaire","start":"2026-09-01","end":"2026-09-15","discount":45},
+    {"name":"French Days automne","start":"2026-09-22","end":"2026-09-28","discount":65},
+    {"name":"Black Friday","start":"2026-11-27","end":"2026-11-27","discount":75},
+    {"name":"Cyber Monday","start":"2026-11-30","end":"2026-11-30","discount":75},
+    {"name":"Noel prep","start":"2026-12-01","end":"2026-12-20","discount":50},
+    {"name":"Noel fin annee","start":"2026-12-20","end":"2026-12-31","discount":70}
+  ],
+  "products": {
+    "vst_bundles": [
+      {"id":"all-vst-bundle","name":"ALL VST PACK","type":"bundle","price":49,"promo_code":"ALLVST80","description":"MACHINA + Oriental Full"},
+      {"id":"free-bundle","name":"FREE BUNDLE","type":"bundle","price":0,"free":true}
+    ],
+    "vst_effects": [
+      {"id":"machina","name":"MACHINA EFFECT","price":18,"promo_code":"SOLDES80"},
+      {"id":"matrix","name":"MATRIX MODULAR","price":0,"free":true}
+    ],
+    "vst_instruments": [
+      {"id":"oriental-full","name":"Oriental Instrument Full","price":69,"promo_code":"SOLDES80"},
+      {"id":"oriental-demo","name":"Oriental Instrument Demo","price":0,"free":true},
+      {"id":"bigbass","name":"BIGBASS","price":0,"free":true},
+      {"id":"vice-city-vst","name":"Vice City VST","price":0,"free":true}
+    ],
+    "drum_kits": [
+      {"id":"west-side","name":"WEST SIDE DRUM KIT","price":19},
+      {"id":"tone-vault","name":"TONE VAULT","price":16},
+      {"id":"void-signals","name":"VOID SIGNALS","price":34},
+      {"id":"raw-elements","name":"RAW ELEMENTS","price":17},
+      {"id":"ghost-voice","name":"GHOST VOICE","price":15},
+      {"id":"vinyl-breaker","name":"VINYL BREAKER","price":13},
+      {"id":"neon-pulse","name":"NEON PULSE","price":12},
+      {"id":"concrete-vault","name":"CONCRETE VAULT","price":12},
+      {"id":"westcoast-chrome","name":"WESTCOAST CHROME","price":13},
+      {"id":"etnic-ritmik","name":"ETNIC RITMIK","price":14},
+      {"id":"vice-city-vol4","name":"Vice City Loop Vol.4","price":10},
+      {"id":"break-ya-neck","name":"Break Ya Neck Vol.2","price":11},
+      {"id":"ziploc","name":"Ziploc Blue Pack Vol.3","price":12},
+      {"id":"oriental-melody","name":"Oriental Loop Melody Vol.1","price":7},
+      {"id":"futur-melody","name":"Futur Melody","price":8},
+      {"id":"drums-loop-vol1","name":"Drums Loop Vol.1","price":6}
+    ]
+  }
+}
