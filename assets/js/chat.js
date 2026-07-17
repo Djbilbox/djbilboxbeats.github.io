@@ -8,73 +8,70 @@ window.CHAT = {
   responses: {
     'bonjour|salut|hello|hey|coucou|yo|bonsoir|hi|ça va|ca va|cv|quoi|comment ça|comment ca': {
       intent: 'greeting',
-      reply: '👋 Yo ! Bienvenue chez <strong>DJBILBOX BEATS</strong> ! 🎵\n\nJe suis là pour vous aider — que ce soit pour trouver le VST parfait (BIGBASS, Vice City, Oriental), nos sample packs gratuits, les tarifs, ou pour nous contacter. Dites-moi ce que vous cherchez !',
+      reply: '👋 Yo ! Bienvenue chez <strong>DJBILBOX BEATS</strong> ! 🎵\n\nJe suis là pour vous aider — que ce soit pour trouver le VST parfait (BIGBASS, Vice City, Oriental), nos sample packs pro, les tarifs, ou pour nous contacter. 🔥 -80% Summer Sale en cours (code SOLDES80) !',
       actions: [
         { text: '🎛️ VST plugins', href: 'vst.html' },
-        { text: '🥁 Kits gratuits', href: 'drum-kits.html' },
+        { text: '🥁 Drum Kits', href: 'drum-kits.html' },
         { text: '💰 Tous les tarifs', href: 'vst.html' }
       ]
     },
     'bigbass|big bass|lowrider|808|basse|low rider': {
       intent: 'product',
-      reply: '🔊 <strong>BIGBASS</strong> — notre synthé de basse lowrider de Los Angeles : 6 vrais moteurs de basse (SUB, SLAM, PUNCH, GROWL, SCREAM, DOOM), 80 presets, VST3 & Standalone pour Windows & Mac.\n\n✅ <strong>GRATUIT</strong> — Pour un temps limité !',
+      reply: '🔊 <strong>BIGBASS</strong> — notre synthé de basse lowrider de Los Angeles : 6 vrais moteurs de basse (SUB, SLAM, PUNCH, GROWL, SCREAM, DOOM), 80 presets, VST3 & Standalone pour Windows & Mac.\n\n🔥 <strong>$5.80</strong> (au lieu de $29, code SOLDES80 -80%)',
       actions: [
         { text: 'Voir la fiche', href: 'product.html?id=bigbass' },
-        { text: 'Télécharger', onclick: 'addToCart("BIGBASS — LA Lowrider Bass","0","xaziro")' }
+        { text: 'Acheter', onclick: 'addToCart("BIGBASS — LA Lowrider Bass","5.80","xaziro")' }
       ]
     },
     oriental: {
       intent: 'product',
-      reply: '🎹 Vous vous intéressez à l\'<strong>Oriental Instrument</strong> ? C\'est notre rompler Arabic & Oriental avec oud, qanun, ney authentiques.\n\n💰 <strong>$24.50</strong> — Accès illimité à 280+ instruments orientaux authentiques. Démo gratuite disponible.',
+      reply: '🎹 Vous vous intéressez à l\'<strong>Oriental Instrument</strong> ? C\'est notre rompler Arabic & Oriental avec oud, qanun, ney authentiques — 280+ instruments.\n\n🔥 <strong>$13.80</strong> (au lieu de $69, code SOLDES80 -80%)',
       actions: [
         { text: 'Voir la fiche', href: 'product.html?id=oriental-instrument' },
-        { text: 'Télécharger la démo', onclick: 'buy("oriental-instrument-demo-free-Download")' }
+        { text: 'Acheter', onclick: 'buy("oriental-instrument-djbilbox-beats/SOLDES80")' }
       ]
     },
     'vice-city': {
       intent: 'product',
-      reply: '🌆 Vous cherchez <strong>Vice City</strong> ? Notre synthé Synthwave VST3 & Standalone — 80s neon pur.\n\n✅ <strong>GRATUIT</strong> — Pour un temps limité !',
+      reply: '🌆 Vous cherchez <strong>Vice City</strong> ? Notre synthé Synthwave VST3 & Standalone — 80s neon pur, 70 presets.\n\n🔥 <strong>$7.80</strong> (au lieu de $39, code SOLDES80 -80%)',
       actions: [
         { text: 'Voir la fiche', href: 'product.html?id=vice-city' },
-        { text: 'Télécharger', onclick: 'addToCart("Vice City — VST Plugin","0","ykdzli")' }
+        { text: 'Acheter', onclick: 'addToCart("Vice City — VST Plugin","7.80","ykdzli")' }
       ]
     },
     'vst|plugin|synthé|synth|instrument': {
       intent: 'category',
-      reply: '🎛️ Vous cherchez un <strong>VST plugin</strong> ?\n\n🔊 <strong>BIGBASS</strong> — basse lowrider LA (GRATUIT)\n🌆 <strong>Vice City</strong> — synthé 80s Synthwave (GRATUIT)\n🎹 <strong>MATRIX MODULAR</strong> — modulation stéréo (GRATUIT)\n⚡ <strong>MACHINA</strong> — multi-effet créatif (GRATUIT)\n🌙 <strong>Oriental Instrument</strong> — oud, qanun, percussions ($24.50, démo gratuite)',
+      reply: '🎛️ Vous cherchez un <strong>VST plugin</strong> ? 🔥 -80% Summer Sale (code SOLDES80)\n\n🔊 <strong>BIGBASS</strong> — basse lowrider LA ($5.80)\n🌆 <strong>Vice City</strong> — synthé 80s Synthwave ($7.80)\n🎹 <strong>MATRIX MODULAR</strong> — modulation stéréo ($3.60)\n⚡ <strong>MACHINA</strong> — multi-effet créatif ($3.60)\n🌙 <strong>Oriental Instrument</strong> — oud, qanun, percussions ($13.80, 280+ instruments)',
       actions: [
         { text: 'Voir tous les VST', href: 'vst.html' },
-        { text: 'Drum Kits gratuits', href: 'drum-kits.html' }
+        { text: 'Voir les Drum Kits', href: 'drum-kits.html' }
       ]
     },
     'kit|drum|sample|boucle|loop|808|vocal|acapella|sfx|scratch|vinyl|one-shot|one shot': {
       intent: 'category',
-      reply: '🥁 Nous avons une grosse bibliothèque de <strong>sample packs</strong> — tous gratuits !\n\n🎁 TONE VAULT, VOID SIGNALS 19GB, GHOST VOICE, RAW ELEMENTS, VINYL BREAKER, NEON PULSE, CONCRETE VAULT, WESTCOAST CHROME, ETNIC RITMIK et 6 autres packs gratuits.',
+      reply: '🥁 Nous avons une grosse bibliothèque de <strong>sample packs</strong> pro — à partir de $5 !\n\n🎁 TONE VAULT, VOID SIGNALS 19GB, GHOST VOICE, RAW ELEMENTS, VINYL BREAKER, NEON PULSE, CONCRETE VAULT, WESTCOAST CHROME, ETNIC RITMIK et plus.',
       actions: [
-        { text: 'Explorer tous les kits', href: 'drum-kits.html' },
-        { text: 'Télécharger gratuitement', href: 'drum-kits.html' }
+        { text: 'Explorer tous les kits', href: 'drum-kits.html' }
       ]
     },
-    'bundle|gratuit|free|tout gratuit|all free': {
+    'bundle|pack complet|all vst|tout': {
       intent: 'product',
-      reply: '🎁 <strong>FREE BUNDLE</strong> — Téléchargez tous les produits gratuits en un seul pack !\n\n✅ <strong>5 VSTs complets :</strong> BIGBASS, Vice City, MATRIX MODULAR, MACHINA + Oriental Instrument DEMO (50+ instruments)\n✅ <strong>100% GRATUIT</strong> — Téléchargement instantané\n✅ Tous les presets et manuals inclus',
+      reply: '🎁 <strong>ALL VST PACK</strong> — Tous les 5 VST en un seul pack !\n\n✅ <strong>5 VSTs complets :</strong> BIGBASS, Vice City, MATRIX MODULAR, MACHINA + Oriental Instrument\n🔥 <strong>$9.80</strong> au lieu de $49 (code SOLDES80, -80%)\n✅ Tous les presets et manuals inclus',
       actions: [
-        { text: 'Voir le Bundle', href: 'product.html?id=free-bundle' },
-        { text: 'Télécharger', onclick: 'buy("djbilbox-free-bundle")' }
+        { text: 'Voir tous les VST', href: 'vst.html' }
       ]
     },
-    'prix|price|cost|combien|tarif|gratuit|free': {
+    'prix|price|cost|combien|tarif': {
       intent: 'info',
-      reply: '💰 <strong>Pricing :</strong>\n\n✅ <strong>ALL VSTs FREE</strong> — BIGBASS, Vice City, MATRIX MODULAR, MACHINA\n✅ <strong>ALL Sample Packs FREE</strong> — 15+ packs, all genres\n✅ <strong>FREE BUNDLE</strong> — Download all free products at once!\n✅ <strong>Oriental Instrument DEMO</strong> — FREE (50+ instruments)\n💵 <strong>Oriental Instrument FULL</strong> — $24.50 (280+ instruments, -50% ORIENTAL50)',
+      reply: '💰 <strong>Prix (🔥 -80% Summer Sale · code SOLDES80) :</strong>\n\n⚡ <strong>MACHINA</strong> — $3.60\n🎹 <strong>MATRIX MODULAR</strong> — $3.60\n🔊 <strong>BIGBASS</strong> — $5.80\n🌆 <strong>Vice City</strong> — $7.80\n🌙 <strong>Oriental Instrument</strong> — $13.80 (280+ instruments)\n🎁 <strong>ALL VST PACK</strong> — $9.80 (les 5 VST)\n🥁 <strong>Sample packs</strong> — à partir de $5',
       actions: [
-        { text: 'See FREE BUNDLE', href: 'product.html?id=free-bundle' },
-        { text: 'Download all VSTs', href: 'vst.html' },
-        { text: 'Get sample packs', href: 'drum-kits.html' }
+        { text: 'Voir tous les VST', href: 'vst.html' },
+        { text: 'Voir les sample packs', href: 'drum-kits.html' }
       ]
     },
-    'code|promo|réduction|reduction|discount|coupon|offre|deal': {
+    'code|promo|réduction|reduction|discount|coupon|offre|deal|solde': {
       intent: 'info',
-      reply: '🎁 <strong>Offre spéciale :</strong>\n\n✅ <strong>4 VST gratuits</strong> — BIGBASS, Vice City, MATRIX MODULAR, MACHINA\n✅ <strong>15 Sample packs gratuits</strong> — Tous les styles\n💵 <strong>Oriental Instrument</strong> — $24.50 (code ORIENTAL50 pour -50%)\n\n🎉 C\'est une offre très généreuse !',
+      reply: '🔥 <strong>Summer Sale -80% :</strong>\n\n🎟️ Utilisez le code <strong>SOLDES80</strong> au checkout pour -80% sur tous les VST !\n\n🎁 <strong>ALL VST PACK</strong> — les 5 VST pour $9.80 (au lieu de $49)\n💵 <strong>Oriental Instrument</strong> — $13.80 (280+ instruments)',
       actions: [
         { text: 'Voir tous les VST', href: 'vst.html' }
       ]
@@ -125,10 +122,10 @@ window.CHAT = {
     },
     'démo|demo|essayer|try': {
       intent: 'action',
-      reply: '🎵 Voulez-vous tester nos produits ?\n\n✅ <strong>Oriental Instrument</strong> — démo gratuite\n✅ <strong>Vice City</strong> — démo gratuite\n✅ <strong>Sample packs</strong> — tout gratuit',
+      reply: '🎵 Tous nos produits sont en 🔥 -80% Summer Sale (code SOLDES80) !\n\n🎁 <strong>ALL VST PACK</strong> — les 5 VST pour $9.80\n🌙 <strong>Oriental Instrument</strong> — $13.80 (280+ instruments)\n🥁 <strong>Sample packs</strong> — à partir de $5',
       actions: [
-        { text: 'Télécharger Oriental démo', onclick: 'buy("oriental-instrument-demo-free-Download")' },
-        { text: 'Voir tous les produits', href: 'vst.html' }
+        { text: 'Voir tous les VST', href: 'vst.html' },
+        { text: 'Voir les sample packs', href: 'drum-kits.html' }
       ]
     }
   },
@@ -151,7 +148,7 @@ window.CHAT = {
     }
     return {
       intent: 'unknown',
-      reply: '🎵 Je vois pas tout, mais je peux vous orienter vers ce qu\'il y a sur DJBILBOX BEATS :\n\n🎛️ <strong>4 VST gratuits</strong> — BIGBASS, Vice City, MATRIX MODULAR, MACHINA\n🎛️ <strong>Oriental Instrument</strong> — $24.50 (280+ instruments, démo gratuite)\n🥁 <strong>15 Sample packs</strong> — Tous gratuits\n🎁 <strong>Offre très généreuse</strong> — Beaucoup de contenu gratuit !\n\nOu écrivez directement à <strong>djbilboxbeats@gmail.com</strong> — l\'équipe répond sous 24h.',
+      reply: '🎵 Je vois pas tout, mais je peux vous orienter vers ce qu\'il y a sur DJBILBOX BEATS :\n\n🎛️ <strong>4 VST</strong> — BIGBASS ($5.80), Vice City ($7.80), MATRIX ($3.60), MACHINA ($3.60)\n🌙 <strong>Oriental Instrument</strong> — $13.80 (280+ instruments)\n🥁 <strong>Sample packs</strong> — à partir de $5\n🔥 <strong>-80% Summer Sale</strong> — code SOLDES80 !\n\nOu écrivez directement à <strong>djbilboxbeats@gmail.com</strong> — l\'équipe répond sous 24h.',
       actions: [
         { text: 'Tous les produits', href: 'index.html' },
         { text: 'VST & Kits', href: 'vst.html' },
