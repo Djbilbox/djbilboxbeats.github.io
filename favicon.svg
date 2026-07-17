@@ -1,0 +1,114 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&display=swap');
+
+      .background { fill: #0a0a0a; }
+      .glow-filter { filter: drop-shadow(0 0 20px rgba(255, 51, 51, 0.8)); }
+      .inner-glow { filter: drop-shadow(0 0 10px rgba(255, 100, 100, 0.6)); }
+      .text-style { font-family: 'Poppins', sans-serif; font-weight: 900; fill: #ffffff; }
+      .text-accent { fill: #ff3333; }
+    </style>
+
+    <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#e8e8e8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b0b0b0;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff5555;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ff3333;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#cc0000;stop-opacity:1" />
+    </linearGradient>
+
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.6" flood-color="#000000"/>
+    </filter>
+
+    <filter id="innerShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect class="background" width="512" height="512"/>
+
+  <!-- 3D Relief Effect - Background Shadow -->
+  <ellipse cx="256" cy="520" rx="180" ry="40" fill="#000000" opacity="0.2"/>
+
+  <!-- Main 3D Hexagon Border (Metal) -->
+  <g class="glow-filter">
+    <!-- Outer metal ring for 3D effect -->
+    <circle cx="256" cy="256" r="240" fill="url(#metalGradient)" opacity="0.95"/>
+    <circle cx="256" cy="256" r="235" fill="#1a1a1a"/>
+
+    <!-- Inner decorative rings -->
+    <circle cx="256" cy="256" r="225" stroke="url(#redGradient)" stroke-width="3" fill="none" opacity="0.8"/>
+    <circle cx="256" cy="256" r="210" stroke="#333333" stroke-width="1" fill="none" opacity="0.5"/>
+  </g>
+
+  <!-- Microphone/Headphone Icon (Piano Keys Style) - Center Focus -->
+  <g class="inner-glow" filter="url(#shadow)">
+    <!-- Headphone arc - metal band -->
+    <path d="M 180 200 Q 180 150 256 150 Q 332 150 332 200"
+          stroke="url(#metalGradient)" stroke-width="12" fill="none"
+          stroke-linecap="round" opacity="0.95"/>
+
+    <!-- Left ear cup -->
+    <circle cx="180" cy="240" r="28" fill="url(#redGradient)" opacity="0.9"/>
+    <circle cx="180" cy="240" r="24" fill="#1a1a1a"/>
+    <rect x="175" y="235" width="10" height="10" fill="#333333" rx="1" opacity="0.6"/>
+
+    <!-- Right ear cup -->
+    <circle cx="332" cy="240" r="28" fill="url(#redGradient)" opacity="0.9"/>
+    <circle cx="332" cy="240" r="24" fill="#1a1a1a"/>
+    <rect x="327" y="235" width="10" height="10" fill="#333333" rx="1" opacity="0.6"/>
+
+    <!-- Center microphone boom -->
+    <path d="M 256 210 L 256 320" stroke="url(#metalGradient)" stroke-width="10"
+          stroke-linecap="round" opacity="0.9"/>
+
+    <!-- Microphone capsule -->
+    <circle cx="256" cy="340" r="22" fill="url(#redGradient)" opacity="0.95"/>
+    <circle cx="256" cy="340" r="18" fill="#1a1a1a"/>
+    <circle cx="256" cy="340" r="14" fill="#333333" opacity="0.7"/>
+
+    <!-- Mic grille details -->
+    <line x1="250" y1="335" x2="262" y2="335" stroke="#666" stroke-width="1" opacity="0.5"/>
+    <line x1="250" y1="340" x2="262" y2="340" stroke="#666" stroke-width="1" opacity="0.5"/>
+    <line x1="250" y1="345" x2="262" y2="345" stroke="#666" stroke-width="1" opacity="0.5"/>
+  </g>
+
+  <!-- Decorative corner accents -->
+  <g opacity="0.6">
+    <circle cx="120" cy="120" r="8" fill="#ff3333"/>
+    <circle cx="392" cy="120" r="8" fill="#ff3333"/>
+    <circle cx="120" cy="392" r="8" fill="#ff3333"/>
+    <circle cx="392" cy="392" r="8" fill="#ff3333"/>
+  </g>
+
+  <!-- Center red line accent -->
+  <line x1="256" y1="380" x2="256" y2="420" stroke="#ff3333" stroke-width="4"
+        stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Pulse animation dots -->
+  <circle cx="256" cy="440" r="3" fill="#ff3333" opacity="0.8">
+    <animate attributeName="r" values="3;6;3" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Text: "DJBILBOX" (Top) -->
+  <text x="256" y="90" text-anchor="middle" class="text-style" font-size="28" letter-spacing="2">
+    DJBILBOX
+  </text>
+
+  <!-- Text: "BEATS" (Bottom) -->
+  <text x="256" y="485" text-anchor="middle" class="text-style" font-size="24" letter-spacing="2">
+    <tspan class="text-accent">▶</tspan>BEATS
+  </text>
+
+  <!-- Outer border glow -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="#ff3333" stroke-width="2" opacity="0.4"/>
+  <circle cx="256" cy="256" r="242" fill="none" stroke="#ff3333" stroke-width="1" opacity="0.2"/>
+</svg>
