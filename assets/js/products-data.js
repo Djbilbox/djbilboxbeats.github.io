@@ -42,8 +42,8 @@ window.PRODUCTS = {
 
   /* ===================== BUNDLE ===================== */
   "free-bundle": {
-    type:"bundle", name:"FREE BUNDLE", sub:"All 5 Free VSTs + Oriental Demo",
-    tagline:"Download all free VST plugins in one convenient pack — the perfect starter collection.",
+    type:"bundle", name:"ALL VST PACK", sub:"All 5 VSTs in One Bundle",
+    tagline:"Get all 5 DJBILBOX VST plugins in one pack — the complete collection at -80%.",
     cover:"img/vst/free-bundle.jpg", accent:"#27ae60", accent2:"#2ecc71",
     price:"9.80", old:"49", badge:"🔥 -80%",
     note:"Code SOLDES80 · All 5 VSTs · Best deal",
