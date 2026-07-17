@@ -656,7 +656,7 @@ function renderVsts(list, containerId){
 
   // BUNDLE section
   if(bundles.length>0){
-    frag.appendChild(mkHead('🎁 Free Bundle'));
+    frag.appendChild(mkHead('🎁 VST Bundle'));
     bundles.forEach(p=>frag.appendChild(vstCard(p)));
   }
 
