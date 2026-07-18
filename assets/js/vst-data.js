@@ -76,10 +76,10 @@ window.VSTS = [
     note:"Free demo — the real thing, unlimited" },
 
   { name:"APESHYT RAMPAGE — Unleash The Beast", img:"img/vst/apeshyt-rampage.png", category:"partner",
-    tags:["Aggressive Synth","+ Rebellion Melody Loops"], price:"~$67", badge:"🤝 Partner", detail:"apeshyt-rampage.html",
-    url:"https://apeshyt808.com/rampages/",
+    tags:["Aggressive Synth","+ Rebellion Melody Loops"], price:"0", free:true, badge:"✅ FREE", detail:"apeshyt-rampage.html",
+    url:"https://apeshyt808.com/browse/free-plugin/",
     desc:"A sonic weapon that smashes through ordinary sound — an aggressive synth for beats that hit hard. Includes the Rebellion Melody Loops pack.",
-    note:"Official partner · bonus melody loops" },
+    note:"Free plugin from Apeshyt · bonus melody loops" },
 
   /* Free plugins are listed individually on the Info page (studio-setup.html). */
 ];
