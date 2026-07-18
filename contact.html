@@ -6,7 +6,7 @@
 <title>Contact — DJBILBOX BEATS</title>
 <meta name="description" content="Contactez DJBILBOX BEATS — Mix, mastering, vidéos, web dev, branding. Réponse rapide.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26071802">
+<link rel="stylesheet" href="assets/css/theme.css?v=26071811">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -24,12 +24,12 @@
 }
 .contact-textarea { resize: none; min-height: 120px; }
 .contact-btn {
-  background: linear-gradient(135deg, #FFE34D 0%, var(--accent) 50%, #B8960F 100%);
-  color: #141414; border: none; padding: 14px 24px; border-radius: 9px;
+  background: var(--accent);
+  color: #fff; border: none; padding: 14px 24px; border-radius: 9px;
   font-family: var(--font-a); font-weight: 700; text-transform: uppercase; font-size: 0.9rem;
-  cursor: pointer; transition: .18s; box-shadow: 0 8px 24px rgba(212,175,55,.35);
+  cursor: pointer; transition: .18s; box-shadow: 0 8px 24px rgba(230,0,0,.35);
 }
-.contact-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(212,175,55,.5); }
+.contact-btn:hover { background: var(--accent-h); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(230,0,0,.5); }
 .contact-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 .contact-status { text-align: center; padding: 16px; border-radius: 9px; display: none; margin-top: 16px; }
 .contact-status.success { background: rgba(29,185,84,.2); color: var(--green); display: block; }
@@ -54,7 +54,15 @@
 
 <main class="contact-wrap">
   <h1 class="contact-h1">Contact <span style="color:var(--accent)">rapide</span></h1>
-  <p class="contact-sub">Dites-nous ce que vous cherchez. Réponse sous 24h.</p>
+  <p class="contact-sub">Le plus rapide : rejoins mon Discord. Réponse sous 24h.</p>
+
+  <a href="https://discord.gg/djbilbox" target="_blank" rel="noopener"
+     style="display:flex;align-items:center;justify-content:center;gap:10px;background:#5865F2;color:#fff;
+     font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:.9rem;padding:15px 20px;
+     border-radius:11px;margin-bottom:26px;transition:.18s;box-shadow:0 8px 24px rgba(88,101,242,.35)"
+     onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+    <i class="fa-brands fa-discord" style="font-size:1.3rem"></i> Rejoindre le Discord
+  </a>
 
   <form class="contact-form" id="contactForm" onsubmit="submitContactForm(event)">
     <input type="text" class="contact-input" name="name" placeholder="Votre nom *" required>
@@ -69,6 +77,10 @@
     <h2>Ou contactez-nous directement</h2>
     <p>Réponse rapide — choisissez le canal qui vous convient.</p>
     <div class="contact-methods">
+      <a class="contact-method" href="https://discord.gg/djbilbox" target="_blank" rel="noopener" style="border-color:#5865F2">
+        <i class="fa-brands fa-discord" style="color:#5865F2"></i>
+        <span class="cm-txt"><span class="cm-t">Discord</span><span class="cm-d">Le canal le plus rapide — rejoins la communauté</span></span>
+      </a>
       <a class="contact-method" href="mailto:djbilboxbeats@gmail.com">
         <i class="fa-solid fa-envelope"></i>
         <span class="cm-txt"><span class="cm-t">Email</span><span class="cm-d">djbilboxbeats@gmail.com</span></span>
@@ -89,7 +101,7 @@
   </section>
 </main>
 
-<script src="assets/js/site.js?v=26071804"></script>
+<script src="assets/js/site.js?v=26071811"></script>
 <script src="assets/js/chat.js"></script>
 
 <script>

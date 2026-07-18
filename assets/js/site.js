@@ -4,6 +4,9 @@
    Reusable across pages. Load AFTER beats-data.js where needed.
    ============================================================ */
 
+/* Community + contact hub — every "Contact" CTA routes here. */
+const DISCORD_URL = 'https://discord.gg/djbilbox';
+
 /* ============================================================
    Google Analytics 4 (GA4) — loaded site-wide from here so EVERY
    page (incl. /locations/*) is tracked from one place.
@@ -28,7 +31,7 @@
 const NAV = [
   { key:'beats',       label:'Beats',       href:'/beats-redesign.html', icon:'fa-music' },
   { key:'shop',        label:'Shop',        href:'/shop.html',           icon:'fa-store' },
-  { key:'setup',       label:'My Setup',    href:'/studio-setup.html',   icon:'fa-sliders' },
+  { key:'setup',       label:'Info',        href:'/studio-setup.html',   icon:'fa-circle-info' },
   { key:'twitch',      label:'Twitch',      href:'/twitch.html',         icon:'fa-brands fa-twitch' },
   { key:'formations',  label:'Academy',     href:'/formations.html',     icon:'fa-graduation-cap' },
   { key:'services',    label:'Services',    href:'/services.html',       icon:'fa-headphones' },
@@ -56,6 +59,7 @@ function mountSidebar(active){
     <nav class="side-nav">${links}</nav>
     <div class="side-foot">
       <div class="side-social">
+        <a href="https://discord.gg/djbilbox" target="_blank" title="Discord"><i class="fa-brands fa-discord"></i></a>
         <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
         <a href="https://www.twitch.tv/djbilbox" target="_blank" title="Twitch"><i class="fa-brands fa-twitch"></i></a>
@@ -562,8 +566,8 @@ function genericCard(p){
             : (isNaN(p.price)? `<span class="now" style="font-size:.85rem">${p.price}</span>` : `<span class="now">€${p.price}</span>`);
   let btn;
   if(isContact){
-    const subj=encodeURIComponent(p.subject||(p.name+' — request'));
-    btn=`<a class="btn-cta" href="mailto:${p.contact}?subject=${subj}"><i class="fa-solid fa-envelope"></i> Contact</a>`;
+    /* All contact CTAs route to Discord (community + DMs) instead of email. */
+    btn=`<a class="btn-cta" href="${DISCORD_URL}" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Discord</a>`;
   }else{
     const onclick=p.buy!==undefined? `addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')` : `addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}')`;
     btn=`<button class="btn-cta" onclick="${onclick}"><i class="fa-solid fa-cart-plus"></i> Add</button>`;

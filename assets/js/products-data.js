@@ -45,8 +45,8 @@ window.PRODUCTS = {
     type:"bundle", name:"ALL VST PACK", sub:"All 5 VSTs in One Bundle",
     tagline:"Get all 5 DJBILBOX VST plugins in one pack — the complete collection at -80%.",
     cover:"img/vst/all-vst-pack.jpg", accent:"#27ae60", accent2:"#2ecc71",
-    price:"9.80", old:"49", badge:"🔥 -80%",
-    note:"Code SOLDES80 · All 5 VSTs · Best deal",
+    price:"34.60", old:"173", badge:"🔥 -80%",
+    note:"Code SOLDES80 · All 5 VSTs (total value €173) · Best deal",
     buy:"djbilbox-free-bundle", demo:"",
     video:"", poster:"img/vst/all-vst-pack.jpg",
     /* Listed below the fold so buyers can also grab any single plugin on its own. */
@@ -67,7 +67,7 @@ window.PRODUCTS = {
       {icon:"fa-music", t:"Effects & Instruments", d:"Stereo modulation, distortion/delay, bass, synth & 280+ oriental instruments."},
       {icon:"fa-download", t:"One-Click Download", d:"Download everything at once — no separate purchases needed."},
       {icon:"fa-star", t:"Professional Quality", d:"Same quality as individually purchased plugins — nothing watered down."},
-      {icon:"fa-percent", t:"-80% Best Deal", d:"All 5 VSTs (value €87) for €9.80 with code SOLDES80."}
+      {icon:"fa-percent", t:"-80% Best Deal", d:"All 5 VSTs (total value €173) for €34.60 with code SOLDES80."}
     ],
     specs:[
       {k:"Bundle Contents", v:"5 complete VST plugins + Oriental Demo"},
