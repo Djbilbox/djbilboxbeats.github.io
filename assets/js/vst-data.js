@@ -44,4 +44,31 @@ window.VSTS = [
     thumb:"assets/products/vice-city/vice-city-card.jpg",
     preview:"assets/products/vice-city/vice-city-card.mp4",
     note:"Code SOLDES80 · 70 presets · -80% Summer Sale" },
+
+  /* ========== PARTNER / AFFILIATE (external checkout) ========== */
+  { name:"🦍 APESHYT RAMPAGE — Unleash The Beast", img:"img/vst/apeshyt-rampage.svg", category:"instrument",
+    tags:["Aggressive Synth","+ Rebellion Melody Loops ($39)"], price:"~$", badge:"🤝 Partner",
+    url:"https://apeshyt808.com/ape-rampage/",
+    note:"Official partner · BONUS: Rebellion Melody Loops Pack included" },
+
+  { name:"🍊 FL STUDIO — Producer Edition", img:"img/vst/fl-studio.svg", category:"instrument",
+    tags:["The DAW I use","Lifetime free updates"], price:"~€", badge:"🤝 Partner",
+    url:"https://www.image-line.com/fl-studio/",
+    note:"Code DJBILBOX · The DAW behind every DJBILBOX beat" },
+
+  { name:"🎛️ SERUM 2 & Premium Plugins", img:"img/vst/free-effects.svg", category:"instrument",
+    tags:["Serum 2 · Auto-Tune · more","Best deals via ProducerSources"], price:"~€", badge:"🤝 Partner",
+    url:"https://producersources.com",
+    note:"Code DJBILBOX · Premium plugins at partner prices" },
+
+  /* ========== FREE DOWNLOADS ========== */
+  { name:"🎁 FREE VST INSTRUMENTS PACK", img:"img/vst/free-instruments.svg", category:"instrument",
+    tags:["Vital · Zebralette · MG-1","Drum8 · 4 free synths"], price:"0", free:true, badge:"✅ FREE",
+    url:"studio-setup.html#free",
+    note:"Vital, Zebralette, Surrealistic MG-1 Plus & Drum8 — 100% free" },
+
+  { name:"🎁 FREE FX EFFECTS PACK", img:"img/vst/free-effects.svg", category:"effect",
+    tags:["OTT · CamelCrusher · Valhalla","Graillon · MAutoPitch · 11 free FX"], price:"0", free:true, badge:"✅ FREE",
+    url:"studio-setup.html#free",
+    note:"OTT, CamelCrusher, Valhalla, Graillon 3 & more — 100% free" },
 ];

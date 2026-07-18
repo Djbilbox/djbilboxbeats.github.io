@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="flBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a1a1f"/>
+      <stop offset="1" stop-color="#0a0a0c"/>
+    </linearGradient>
+    <linearGradient id="flOrange" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff8a3d"/>
+      <stop offset="1" stop-color="#f26a1b"/>
+    </linearGradient>
+    <filter id="flShadow"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.6"/></filter>
+  </defs>
+  <rect width="400" height="400" fill="url(#flBg)"/>
+  <!-- fruit body -->
+  <ellipse cx="200" cy="200" rx="86" ry="96" fill="url(#flOrange)" filter="url(#flShadow)"/>
+  <ellipse cx="200" cy="200" rx="60" ry="70" fill="#2a2a30" opacity="0.25"/>
+  <!-- leaf -->
+  <path d="M200 108 Q235 78 268 92 Q245 118 210 120 Z" fill="#8bc34a"/>
+  <path d="M200 108 Q182 82 158 96 Q180 118 200 118 Z" fill="#7cb342"/>
+  <!-- top text -->
+  <text x="200" y="60" font-family="Arial Black, sans-serif" font-weight="900" font-size="40" fill="url(#flOrange)" text-anchor="middle" filter="url(#flShadow)">FL STUDIO</text>
+  <!-- bottom bar -->
+  <rect x="60" y="330" width="280" height="44" rx="6" fill="url(#flOrange)"/>
+  <text x="200" y="360" font-family="Arial Black, sans-serif" font-weight="900" font-size="22" fill="#0a0a0c" text-anchor="middle">PRODUCER EDITION</text>
+</svg>

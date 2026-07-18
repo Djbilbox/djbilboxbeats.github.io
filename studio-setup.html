@@ -6,7 +6,8 @@
 <title>Studio Setup — DJBILBOX BEATS</title>
 <meta name="description" content="My professional studio setup — keyboards, audio interface, DAW, VST plugins, streaming & recording gear.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26070519">
+<link rel="stylesheet" href="assets/css/theme.css?v=26071802">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26071802">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -37,6 +38,35 @@
 .specs-item:last-child { border-bottom: none; }
 .specs-label { color: var(--text-3); font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
 .specs-value { font-weight: 600; color: var(--accent); }
+
+/* --- VST / Effects showcase --- */
+.vst-section-title{font-family:var(--font-a);font-size:1.6rem;font-weight:700;text-transform:uppercase;margin:10px 0 6px;padding-bottom:10px;border-bottom:2px solid var(--accent);letter-spacing:.03em}
+.vst-section-sub{color:var(--text-3);font-size:.9rem;margin-bottom:24px}
+.vst-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.vfilter{padding:8px 16px;border-radius:999px;background:var(--surface-2);color:var(--text-2);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;transition:.18s;border:1px solid var(--border)}
+.vfilter.active,.vfilter:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.vst-sub-title{color:var(--accent);font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em;margin:24px 0 12px;display:flex;align-items:center;gap:8px}
+.vst-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));margin-bottom:8px}
+.vst-card{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px;transition:.18s;position:relative;display:flex;flex-direction:column;gap:5px}
+.vst-card:hover{border-color:var(--accent);transform:translateY(-3px);background:var(--surface)}
+.vst-name{font-weight:700;font-size:.86rem;line-height:1.2}
+.vst-type{font-size:.64rem;color:var(--text-3);text-transform:uppercase;letter-spacing:.06em}
+.badge-free{position:absolute;top:11px;right:11px;background:var(--green);color:#fff;font-size:.54rem;font-weight:800;padding:2px 6px;border-radius:5px;letter-spacing:.04em}
+.badge-mine{position:absolute;top:11px;right:11px;background:var(--accent);color:#fff;font-size:.54rem;font-weight:800;padding:2px 6px;border-radius:5px;letter-spacing:.04em}
+.vst-btn{margin-top:5px;padding:7px 11px;border-radius:6px;background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:5px}
+.vst-btn:hover{background:var(--accent-h)}
+.vst-btn.dl{background:var(--surface-3);color:var(--accent);border:1px solid var(--accent)}
+.vst-btn.dl:hover{background:var(--accent);color:#fff}
+.promo-banner{background:linear-gradient(135deg,rgba(230,0,0,.14),rgba(0,0,0,0));border:1px solid var(--accent);border-radius:14px;padding:30px;text-align:center;margin:50px 0 20px}
+.promo-banner h3{font-family:var(--font-a);font-size:1.4rem;text-transform:uppercase;margin-bottom:10px}
+.promo-banner p{color:var(--text-2);font-size:.88rem;max-width:520px;margin:0 auto 16px}
+.promo-code-box{display:inline-flex;align-items:center;gap:10px;background:var(--surface-3);border:2px dashed var(--accent);padding:11px 22px;border-radius:10px;font-family:var(--font-a);font-weight:700;font-size:1.2rem;color:var(--accent);letter-spacing:.1em}
+.promo-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.promo-links a{padding:11px 20px;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;font-size:.74rem;text-transform:uppercase;letter-spacing:.04em;transition:.18s;display:inline-flex;align-items:center;gap:8px}
+.promo-links a:hover{background:var(--accent-h);transform:translateY(-2px)}
+.promo-links a.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+.promo-links a.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.aff-note{font-size:.68rem;color:var(--text-4);text-align:center;margin-top:12px}
 </style>
 </head>
 <body data-page="studio">
@@ -188,10 +218,170 @@
     </div>
   </div>
 
+  <!-- ==================== VST INSTRUMENTS ==================== -->
+  <div class="vst-section-title">🎹 VST Instruments &amp; Synths</div>
+  <div class="vst-section-sub">Every instrument I use — 60+ synths, romplers &amp; drum machines. <span style="color:var(--green)">Green = free download</span>, <span style="color:var(--accent)">Red = my own plugin</span>.</div>
+
+  <div class="vst-filters">
+    <div class="vfilter active" data-filter="all">All</div>
+    <div class="vfilter" data-filter="instrument">Instruments</div>
+    <div class="vfilter" data-filter="effect">Effects</div>
+    <div class="vfilter" data-filter="free">Free Only</div>
+    <div class="vfilter" data-filter="mine">My Plugins</div>
+  </div>
+
+  <div class="vst-sub-title"><i class="fa-solid fa-sun"></i> Westside G-Funk</div>
+  <div class="vst-grid">
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Infiniti Player</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Jura</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">LOWRIDAH</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Lowrider Instrument</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Mini V3</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Mood Vst</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument free"><span class="badge-free">FREE</span><div class="vst-name">Surrealistic MG-1 Plus</div><div class="vst-type">Moog Emulation</div><a href="https://cherryaudio.com/products/mg-1-plus" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">West Coast Grammy</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">West Coast Grammy 2</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">ZENOLOGY</div><div class="vst-type">Synth</div></div>
+  </div>
+
+  <div class="vst-sub-title"><i class="fa-solid fa-wave-square"></i> 808 &amp; Bass</div>
+  <div class="vst-grid">
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">BassDrum</div><div class="vst-type">808 Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Blackhole</div><div class="vst-type">Bass Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Trick Or Treat S</div><div class="vst-type">Bass Synth</div></div>
+  </div>
+
+  <div class="vst-sub-title"><i class="fa-solid fa-fire"></i> Best4Ever</div>
+  <div class="vst-grid">
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Apeshyt Rampage</div><div class="vst-type">Synth · Beast Mode</div><a href="https://apeshyt808.com/ape-rampage/" target="_blank" rel="noopener" class="vst-btn"><i class="fa-solid fa-cart-shopping"></i> Shop</a></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">DRILLER</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">FLEX</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Serum 2</div><div class="vst-type">Wavetable Synth</div><a href="https://producersources.com" target="_blank" rel="noopener" class="vst-btn"><i class="fa-solid fa-cart-shopping"></i> Shop</a></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">SOLO</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument free"><span class="badge-free">FREE</span><div class="vst-name">Zebralette</div><div class="vst-type">u-he Mini Synth</div><a href="https://u-he.com/products/zebralette/" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+  </div>
+
+  <div class="vst-sub-title"><i class="fa-solid fa-star"></i> DJBILBOX Originals</div>
+  <div class="vst-grid">
+    <div class="vst-card" data-cat="instrument mine"><span class="badge-mine">MINE</span><div class="vst-name">BIGBASS</div><div class="vst-type">808 VST</div><a href="/shop.html" class="vst-btn"><i class="fa-solid fa-store"></i> Get</a></div>
+    <div class="vst-card" data-cat="instrument mine"><span class="badge-mine">MINE</span><div class="vst-name">NEON SYNTH 80s</div><div class="vst-type">Synthwave VST</div><a href="/shop.html" class="vst-btn"><i class="fa-solid fa-store"></i> Get</a></div>
+    <div class="vst-card" data-cat="instrument mine"><span class="badge-mine">MINE</span><div class="vst-name">Oriental Instrument</div><div class="vst-type">800+ Sounds</div><a href="/shop.html" class="vst-btn"><i class="fa-solid fa-store"></i> Get</a></div>
+  </div>
+
+  <div class="vst-sub-title"><i class="fa-solid fa-drum"></i> Drums &amp; Percussion</div>
+  <div class="vst-grid">
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">BM-HYPE</div><div class="vst-type">Drums</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">BM-KANDY</div><div class="vst-type">Drums</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Clap Lab 64</div><div class="vst-type">Claps</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">DRUM KINGZ</div><div class="vst-type">Drums</div></div>
+    <div class="vst-card" data-cat="instrument free"><span class="badge-free">FREE</span><div class="vst-name">Drum8</div><div class="vst-type">Hip-Hop Rompler</div><a href="https://www.audiolatry.com/plugins/drum8" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Drumaxx</div><div class="vst-type">Drum Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">FPC</div><div class="vst-type">Sampler</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Pop Drummer</div><div class="vst-type">Drums</div></div>
+  </div>
+
+  <div class="vst-sub-title"><i class="fa-solid fa-keyboard"></i> Best4Life (FL Stock &amp; Free)</div>
+  <div class="vst-grid">
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Harmor</div><div class="vst-type">Additive Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Sytrus</div><div class="vst-type">FM Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Harmless</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">PoiZone</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">3x Osc</div><div class="vst-type">Synth</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Morphine</div><div class="vst-type">Additive Synth</div></div>
+    <div class="vst-card" data-cat="instrument free"><span class="badge-free">FREE</span><div class="vst-name">Vital</div><div class="vst-type">Spectral Synth</div><a href="https://vital.audio/" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">FL Keys</div><div class="vst-type">Piano</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Xpand!2</div><div class="vst-type">Rompler</div></div>
+    <div class="vst-card" data-cat="instrument"><div class="vst-name">Sakura</div><div class="vst-type">String Synth</div></div>
+  </div>
+
+  <!-- ==================== EFFECTS ==================== -->
+  <div class="vst-section-title" style="margin-top:50px">⚙️ Effects &amp; Processing</div>
+  <div class="vst-section-sub">80+ effects for mixing, mastering &amp; sound design. Start with the free essentials below.</div>
+
+  <div class="vst-sub-title" id="free"><i class="fa-solid fa-gift"></i> Free Essentials — Get These First</div>
+  <div class="vst-grid">
+    <div class="vst-card" data-cat="effect free"><span class="badge-free">FREE</span><div class="vst-name">OTT</div><div class="vst-type">Multiband Comp</div><a href="https://xferrecords.com/freeware" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="effect free"><span class="badge-free">FREE</span><div class="vst-name">CamelCrusher</div><div class="vst-type">Distortion</div><a href="https://www.kvraudio.com/product/camelcrusher-by-camel-audio" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="effect free"><span class="badge-free">FREE</span><div class="vst-name">ValhallaSupermassive</div><div class="vst-type">Reverb / Delay</div><a href="https://valhalladsp.com/shop/reverb/valhalla-supermassive/" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="effect free"><span class="badge-free">FREE</span><div class="vst-name">ValhallaFreqEcho</div><div class="vst-type">Freq Delay</div><a href="https://valhalladsp.com/shop/delay/valhalla-freq-echo/" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="effect free"><span class="badge-free">FREE</span><div class="vst-name">ValhallaSpaceModulator</div><div class="vst-type">Flanger</div><a href="https://valhalladsp.com/shop/modulation/valhalla-space-modulator/" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="effect free"><span class="badge-free">FREE</span><div class="vst-name">Graillon 3</div><div class="vst-type">Auto-Tune</div><a href="https://www.auburnsounds.com/products/Graillon.html" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="effect free"><span class="badge-free">FREE</span><div class="vst-name">MAutoPitch</div><div class="vst-type">Pitch Correct</div><a href="https://www.meldaproduction.com/MAutoPitch" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="effect free"><span class="badge-free">FREE</span><div class="vst-name">TAL-Vocoder-2</div><div class="vst-type">Vocoder</div><a href="https://tal-software.com/products/tal-vocoder" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="effect free"><span class="badge-free">FREE</span><div class="vst-name">T-De-Esser 2</div><div class="vst-type">De-Esser</div><a href="https://techivation.com/t-de-esser/" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="effect free"><span class="badge-free">FREE</span><div class="vst-name">Surge XT Effects</div><div class="vst-type">FX Rack</div><a href="https://surge-synthesizer.github.io/" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+    <div class="vst-card" data-cat="effect free"><span class="badge-free">FREE</span><div class="vst-name">NeuralQ</div><div class="vst-type">EQ / Saturation</div><a href="https://analogobsession.com/" target="_blank" rel="noopener" class="vst-btn dl"><i class="fa-solid fa-download"></i> Free</a></div>
+  </div>
+
+  <div class="vst-sub-title"><i class="fa-solid fa-mountain"></i> Valhalla Suite</div>
+  <div class="vst-grid">
+    <div class="vst-card" data-cat="effect"><div class="vst-name">ValhallaDelay</div><div class="vst-type">Delay</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">ValhallaPlate</div><div class="vst-type">Plate Reverb</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">ValhallaVintageVerb</div><div class="vst-type">Reverb</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">ValhallaRoom</div><div class="vst-type">Reverb</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">ValhallaShimmer</div><div class="vst-type">Reverb</div></div>
+  </div>
+
+  <div class="vst-sub-title"><i class="fa-solid fa-sliders"></i> EQ · Dynamics · Mastering</div>
+  <div class="vst-grid">
+    <div class="vst-card" data-cat="effect mine"><span class="badge-mine">MINE</span><div class="vst-name">MACHINA</div><div class="vst-type">Effect</div></div>
+    <div class="vst-card" data-cat="effect mine"><span class="badge-mine">MINE</span><div class="vst-name">MASTERING</div><div class="vst-type">Limiter</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">Oxford EQ Native</div><div class="vst-type">EQ</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">Oxford Limiter Native</div><div class="vst-type">Limiter</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">Oxford Inflator</div><div class="vst-type">Loudness</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">Fruity Parametric EQ 2</div><div class="vst-type">EQ</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">Maximus</div><div class="vst-type">Multiband Max</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">Soundgoodizer</div><div class="vst-type">Enhancer</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">ShaperBox 3</div><div class="vst-type">Multi-FX</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">Fruity Limiter</div><div class="vst-type">Limiter</div></div>
+  </div>
+
+  <div class="vst-sub-title"><i class="fa-solid fa-microphone"></i> Vocals · Talkbox · Vocoder</div>
+  <div class="vst-grid">
+    <div class="vst-card" data-cat="effect"><div class="vst-name">Auto-Tune Pro</div><div class="vst-type">Pitch Correct</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">AVOX Throat</div><div class="vst-type">Vocal Designer</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">The T-Pain Effect</div><div class="vst-type">Auto-Tune</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">Vocodex</div><div class="vst-type">Vocoder</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">Fruity Vocoder</div><div class="vst-type">Vocoder</div></div>
+    <div class="vst-card" data-cat="effect"><div class="vst-name">Mic Mod</div><div class="vst-type">Mic Modeler</div></div>
+  </div>
+
+  <!-- ==================== PROMO / AFFILIATE ==================== -->
+  <div class="promo-banner">
+    <h3>🔥 Get FL Studio &amp; Premium Plugins</h3>
+    <p>The tools I actually use. Grab FL Studio and premium VSTs through my partners — use my code at checkout for the best deals.</p>
+    <div class="promo-code-box"><i class="fa-solid fa-tag"></i> DJBILBOX</div>
+    <div class="promo-links">
+      <a href="https://www.image-line.com/fl-studio/" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> FL Studio</a>
+      <a href="https://producersources.com" target="_blank" rel="noopener"><i class="fa-solid fa-store"></i> ProducerSources</a>
+      <a href="https://apeshyt808.com/ape-rampage/" target="_blank" rel="noopener"><i class="fa-solid fa-fire"></i> Apeshyt Rampage</a>
+      <a href="/shop.html" class="ghost"><i class="fa-solid fa-star"></i> My VST Plugins</a>
+    </div>
+    <p class="aff-note">Some links are affiliate/partner links. I only recommend gear I use myself.</p>
+  </div>
+
 </main>
 
-<script src="assets/js/site.js?v=26071804"></script>
+<script src="assets/js/site.js?v=26071805"></script>
 <script src="assets/js/chat.js"></script>
+<script>
+document.addEventListener('click',e=>{
+  const f=e.target.closest('.vfilter'); if(!f) return;
+  document.querySelectorAll('.vfilter').forEach(x=>x.classList.remove('active'));
+  f.classList.add('active');
+  const val=f.dataset.filter;
+  document.querySelectorAll('.vst-card').forEach(c=>{
+    const cats=(c.dataset.cat||'');
+    c.style.display=(val==='all'||cats.includes(val))?'':'none';
+  });
+  document.querySelectorAll('.vst-grid').forEach(g=>{
+    const anyVisible=[...g.querySelectorAll('.vst-card')].some(c=>c.style.display!=='none');
+    g.style.display=anyVisible?'':'none';
+    const prev=g.previousElementSibling;
+    if(prev&&prev.classList.contains('vst-sub-title')) prev.style.display=anyVisible?'':'none';
+  });
+});
+</script>
 
 </body>
 </html>

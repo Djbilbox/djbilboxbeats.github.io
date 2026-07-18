@@ -26,9 +26,9 @@
    Each page sets <body data-page="KEY"> to highlight its link.
    ============================================================ */
 const NAV = [
-  { key:'city',        label:'City',        href:'/city.html',           icon:'fa-city' },
   { key:'beats',       label:'Beats',       href:'/beats-redesign.html', icon:'fa-music' },
   { key:'shop',        label:'Shop',        href:'/shop.html',           icon:'fa-store' },
+  { key:'setup',       label:'My Setup',    href:'/studio-setup.html',   icon:'fa-sliders' },
   { key:'twitch',      label:'Twitch',      href:'/twitch.html',         icon:'fa-brands fa-twitch' },
   { key:'formations',  label:'Academy',     href:'/formations.html',     icon:'fa-graduation-cap' },
   { key:'services',    label:'Services',    href:'/services.html',       icon:'fa-headphones' },
@@ -38,7 +38,6 @@ const NAV = [
   { key:'license',     label:'License',     href:'/license.html',        icon:'fa-id-card' },
   { key:'discography', label:'Discography', href:'/discography.html',    icon:'fa-record-vinyl' },
   { key:'playlists',   label:'Playlists',   href:'/playlists.html',      icon:'fa-list-ul' },
-  { key:'cities',      label:'Cities',      href:'/locations/index.html', icon:'fa-earth-americas' },
   { key:'news',        label:'News',        href:'/news.html',           icon:'fa-newspaper' },
 ];
 
@@ -594,11 +593,22 @@ function vstCard(p){
   const old = p.old ? `<span class="old">€${p.old}</span>` : '';
   const soon = String(p.price).toUpperCase()==='SOON';
   const priceHtml = soon ? `<span class="now" style="font-size:.82rem;color:var(--text-3)">Coming soon</span>`
-                         : `<span class="now">€${p.price}</span>${old}`;
+                   : p.free ? `<span class="now" style="color:var(--green)">FREE</span>`
+                   : String(p.price).startsWith('~') ? `<span class="now" style="font-size:.86rem">${p.price}</span>`
+                   : `<span class="now">€${p.price}</span>${old}`;
   const demo = p.demo ? `<button class="btn-cta ghost" onclick="buy('${p.demo.replace(/'/g,"\\'")}')"><i class="fa-solid fa-download"></i> Demo</button>` : '';
-  const mainBtn = soon
-    ? `<button class="btn-cta ghost" onclick="window.open(GUMROAD_STORE,'_blank')"><i class="fa-solid fa-bell"></i> Notify</button>`
-    : `<button class="btn-cta" onclick="addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
+  /* External / partner products: link straight out instead of the Gumroad cart.
+     `p.url` = full external URL. `p.free` = free download (green "Get Free" button). */
+  let mainBtn;
+  if(p.url){
+    const label = p.free ? '<i class="fa-solid fa-download"></i> Get Free' : '<i class="fa-solid fa-arrow-up-right-from-square"></i> Get';
+    const style = p.free ? ' style="background:var(--green)"' : '';
+    mainBtn = `<a class="btn-cta" href="${p.url}" target="_blank" rel="noopener"${style}>${label}</a>`;
+  } else if(soon){
+    mainBtn = `<button class="btn-cta ghost" onclick="window.open(GUMROAD_STORE,'_blank')"><i class="fa-solid fa-bell"></i> Notify</button>`;
+  } else {
+    mainBtn = `<button class="btn-cta" onclick="addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
+  }
   const noteHtml = p.note ? `<div style="background:var(--accent-glow);border:1px solid rgba(255,45,45,.3);border-radius:5px;padding:5px 9px;font-size:.64rem;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-top:2px">🎟️ ${p.note}</div>` : '';
   const el=document.createElement('article');
   el.className='card';
