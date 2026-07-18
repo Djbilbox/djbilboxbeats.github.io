@@ -48,6 +48,11 @@ img{display:block;max-width:100%}
 .brand{font-family:var(--font-a);font-weight:700;font-size:1.15rem;letter-spacing:.06em;
   text-transform:uppercase;white-space:nowrap}
 .brand span{color:var(--accent)}
+/* Logo image brand (sidebar + mobile top bar) */
+.brand-logo{display:block;line-height:0}
+.brand-logo img{width:150px;height:auto;display:block;margin:0 auto;
+  filter:drop-shadow(0 4px 14px rgba(230,0,0,.35))}
+.mtop-logo img{width:auto;height:40px}
 
 .sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--side-w);z-index:1000;
   background:var(--bg);border-right:1px solid var(--border);

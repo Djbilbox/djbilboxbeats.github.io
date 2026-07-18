@@ -52,7 +52,7 @@ function mountSidebar(active){
   const sidebar = document.createElement('aside');
   sidebar.className='sidebar';
   sidebar.innerHTML = `
-    <a href="/index.html" class="brand">DJBILBOX <span>BEATS</span></a>
+    <a href="/index.html" class="brand brand-logo"><img src="/img/djbilbox-logo.png" alt="DJBILBOX BEATS"></a>
     <nav class="side-nav">${links}</nav>
     <div class="side-foot">
       <div class="side-social">
@@ -73,7 +73,7 @@ function mountSidebar(active){
   mtop.className='mtop';
   mtop.innerHTML = `
     <button class="nav-burger" onclick="toggleNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
-    <a href="/index.html" class="brand">DJBILBOX <span>BEATS</span></a>`;
+    <a href="/index.html" class="brand brand-logo mtop-logo"><img src="/img/djbilbox-logo.png" alt="DJBILBOX BEATS"></a>`;
 
   const overlay = document.createElement('div');
   overlay.className='side-overlay';
