@@ -28,11 +28,11 @@
 <body data-page="shop">
 
 <!-- ============ HERO ============ -->
-<section class="hero" style="padding-bottom:24px">
+<section class="hero" style="padding-top:46px;padding-bottom:14px;min-height:auto">
   <div class="container">
     <div class="eyebrow">🔥 -80% Summer Sale · Code SOLDES80 · Instant download</div>
-    <h1>Producer <span>Shop</span></h1>
-    <p class="sub">Premium VST plugins &amp; drum kits to level up your production game.</p>
+    <h1 style="font-size:clamp(2.2rem,5vw,3.4rem);margin:.2em 0">Producer <span>Shop</span></h1>
+    <p class="sub" style="margin-top:.3em">Premium VST plugins &amp; drum kits to level up your production game.</p>
   </div>
 </section>
 
@@ -100,16 +100,20 @@
 </div>
 
 <!-- ============ SCRIPTS ============ -->
-<script src="assets/js/vst-data.js?v=26071803"></script>
-<script src="assets/js/packs-data.js?v=26071803"></script>
-<script src="assets/js/site.js?v=26071803"></script>
+<script src="assets/js/vst-data.js?v=26071804"></script>
+<script src="assets/js/packs-data.js?v=26071804"></script>
+<script src="assets/js/site.js?v=26071804"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/modern-animations.js?v=26071803" defer></script>
 <script src="assets/js/chat.js"></script>
 <script>
-  // Render both catalogs into the unified Shop
-  renderVsts(window.VSTS, 'vstGrid');
+  // Render both catalogs into the unified Shop — FLAT grids (no sub-headers)
+  // so several products show per row, like a real producer shop.
+  (function(){
+    const vg = document.getElementById('vstGrid');
+    (window.VSTS || []).forEach(function(v){ vg.appendChild(vstCard(v)); });
+  })();
   renderPacks(window.PACKS, 'packsGrid');
 
   // Tab switcher: All / VST / Drum Kits

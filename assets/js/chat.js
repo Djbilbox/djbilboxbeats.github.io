@@ -17,7 +17,7 @@ window.CHAT = {
     },
     'bigbass|big bass|lowrider|808|basse|low rider': {
       intent: 'product',
-      reply: '🔊 <strong>BIGBASS</strong> — notre synthé de basse lowrider de Los Angeles : 6 vrais moteurs de basse (SUB, SLAM, PUNCH, GROWL, SCREAM, DOOM), 80 presets, VST3 & Standalone pour Windows & Mac.\n\n🔥 <strong>$5.80</strong> (au lieu de $29, code SOLDES80 -80%)',
+      reply: '🔊 <strong>BIGBASS</strong> — notre synthé de basse lowrider de Los Angeles : 3 moteurs de basse, 80 presets, VST3 & Standalone pour Windows & Mac.\n\n🔥 <strong>$5.80</strong> (au lieu de $29, code SOLDES80 -80%)',
       actions: [
         { text: 'Voir la fiche', href: 'product.html?id=bigbass' },
         { text: 'Acheter', onclick: 'addToCart("BIGBASS — LA Lowrider Bass","5.80","xaziro")' }

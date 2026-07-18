@@ -36,7 +36,7 @@ window.VSTS = [
   { id:"bigbass", name:"BIGBASS — LA Lowrider Bass", img:"img/vst/bigbass-vst.jpg", category:"instrument",
     tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], price:"5.80", old:"29", badge:"🔥 -80%",
     buy:"xaziro/SOLDES80", demo:"",
-    note:"Code SOLDES80 · 808 · 6 bass modes · -80% Summer Sale" },
+    note:"Code SOLDES80 · 808 · 3 bass modes · -80% Summer Sale" },
 
   { id:"vice-city", name:"Vice City — VST Synthesizer", img:"img/vst/vice-city-vst.jpg", category:"instrument",
     tags:["Synthwave","VST3 · Standalone"], price:"7.80", old:"39", badge:"🔥 -80%",
