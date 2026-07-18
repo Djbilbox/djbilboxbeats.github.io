@@ -5,7 +5,7 @@
    ============================================================ */
 
 /* Community + contact hub — every "Contact" CTA routes here. */
-const DISCORD_URL = 'https://discord.gg/djbilbox';
+const DISCORD_URL = 'https://discord.gg/7HeMSvbN';
 
 /* ============================================================
    Google Analytics 4 (GA4) — loaded site-wide from here so EVERY
@@ -29,7 +29,7 @@ const DISCORD_URL = 'https://discord.gg/djbilbox';
    Each page sets <body data-page="KEY"> to highlight its link.
    ============================================================ */
 const NAV = [
-  { key:'beats',       label:'Beats',       href:'/beats-redesign.html', icon:'fa-music' },
+  { key:'music',       label:'Music',       href:'/beats-redesign.html', icon:'fa-music' },
   { key:'shop',        label:'Shop',        href:'/shop.html',           icon:'fa-store' },
   { key:'setup',       label:'Info',        href:'/studio-setup.html',   icon:'fa-circle-info' },
   { key:'twitch',      label:'Twitch',      href:'/twitch.html',         icon:'fa-brands fa-twitch' },
@@ -39,8 +39,6 @@ const NAV = [
   { key:'account',     label:'My Account',  href:'/account.html',        icon:'fa-user' },
   { key:'reviews',     label:'Reviews',     href:'/reviews.html',        icon:'fa-star' },
   { key:'license',     label:'License',     href:'/license.html',        icon:'fa-id-card' },
-  { key:'discography', label:'Discography', href:'/discography.html',    icon:'fa-record-vinyl' },
-  { key:'playlists',   label:'Playlists',   href:'/playlists.html',      icon:'fa-list-ul' },
   { key:'news',        label:'News',        href:'/news.html',           icon:'fa-newspaper' },
 ];
 
@@ -59,7 +57,7 @@ function mountSidebar(active){
     <nav class="side-nav">${links}</nav>
     <div class="side-foot">
       <div class="side-social">
-        <a href="https://discord.gg/djbilbox" target="_blank" title="Discord"><i class="fa-brands fa-discord"></i></a>
+        <a href="https://discord.gg/7HeMSvbN" target="_blank" title="Discord"><i class="fa-brands fa-discord"></i></a>
         <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
         <a href="https://www.twitch.tv/djbilbox" target="_blank" title="Twitch"><i class="fa-brands fa-twitch"></i></a>
