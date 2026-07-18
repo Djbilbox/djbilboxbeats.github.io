@@ -20,8 +20,8 @@
 <meta name="twitter:image" content="https://djbilboxbeats.com/img/vst/all-vst-pack.jpg">
 
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26071811">
-<link rel="stylesheet" href="assets/css/modern-effects.css?v=26071812">
+<link rel="stylesheet" href="assets/css/theme.css?v=26071815">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26071815">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -42,6 +42,7 @@
     <button class="pill active" data-target="all">🛍️ All</button>
     <button class="pill" data-target="vst">🎛️ VST Plugins</button>
     <button class="pill" data-target="kits">🥁 Drum Kits</button>
+    <button class="pill" data-target="partner">🤝 Other (Gear I use)</button>
   </div>
 </div>
 
@@ -68,7 +69,18 @@
       </div>
       <a href="drum-kits.html" class="see-all">View all →</a>
     </div>
-    <div class="grid" id="packsGrid" style="margin-bottom:60px;grid-template-columns:repeat(auto-fill,minmax(178px,1fr))"></div>
+    <div class="grid" id="packsGrid" style="margin-bottom:36px;grid-template-columns:repeat(auto-fill,minmax(178px,1fr))"></div>
+  </section>
+
+  <!-- ===== OTHER / PARTNER GEAR (not my products) ===== -->
+  <section class="shop-block" data-block="partner" style="margin-top:36px">
+    <div class="section-head" style="margin:16px 0 20px">
+      <div>
+        <div class="eyebrow">Not mine — gear I use &amp; recommend</div>
+        <h2>Other · Gear I Use</h2>
+      </div>
+    </div>
+    <div class="grid" id="partnerGrid" style="margin-bottom:60px;grid-template-columns:repeat(auto-fill,minmax(178px,1fr))"></div>
   </section>
 
 </main>
@@ -100,9 +112,9 @@
 </div>
 
 <!-- ============ SCRIPTS ============ -->
-<script src="assets/js/vst-data.js?v=26071814"></script>
+<script src="assets/js/vst-data.js?v=26071815"></script>
 <script src="assets/js/packs-data.js?v=26071804"></script>
-<script src="assets/js/site.js?v=26071814"></script>
+<script src="assets/js/site.js?v=26071815"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/modern-animations.js?v=26071803" defer></script>
@@ -112,7 +124,11 @@
   // so several products show per row, like a real producer shop.
   (function(){
     const vg = document.getElementById('vstGrid');
-    (window.VSTS || []).forEach(function(v){ vg.appendChild(vstCard(v)); });
+    const pg = document.getElementById('partnerGrid');
+    (window.VSTS || []).forEach(function(v){
+      // Keep partner gear (FL Studio, Apeshyt…) out of my own catalog
+      (v.category === 'partner' ? pg : vg).appendChild(vstCard(v));
+    });
   })();
   renderPacks(window.PACKS, 'packsGrid');
 

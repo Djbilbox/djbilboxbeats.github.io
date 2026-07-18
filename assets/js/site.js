@@ -613,7 +613,7 @@ function vstCard(p){
   const noteHtml = p.note ? `<div style="background:var(--accent-glow);border:1px solid rgba(255,45,45,.3);border-radius:5px;padding:5px 9px;font-size:.64rem;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-top:2px">🎟️ ${p.note}</div>` : '';
   const el=document.createElement('article');
   el.className='card';
-  const dHref = p.id ? `product.html?id=${p.id}` : null;
+  const dHref = p.detail ? p.detail : (p.id ? `product.html?id=${p.id}` : null);
   const thumb = p.thumb || p.img;
   /* optional muted loop clip revealed on hover, layered over the poster */
   const preview = p.preview
