@@ -7,10 +7,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap');
 
 :root{
-  /* ---- DARK THEME — VICE CITY (GTA 6): hot pink & sunset yellow ---- */
+  /* ---- DARK THEME — JOKA BEATS: bold red & orange ---- */
   --bg:#0c0714; --surface:#151022; --surface-2:#1d1530; --surface-3:#2a1f42;
-  --accent:#FF2E97; --accent-h:#d61e7d; --accent-glow:rgba(255,46,151,.16);
-  --accent-bright:#FFD54A; --accent-plat:#E5E4E2; --accent-chrome:#C0C0C0;
+  --accent:#E60000; --accent-h:#B30000; --accent-glow:rgba(230,0,0,.16);
+  --accent-bright:#FF6633; --accent-plat:#E5E4E2; --accent-chrome:#C0C0C0;
   --green:#1DB954; --text:#f4f4f7; --text-2:#c6c6d2; --text-3:#9595a4; --text-4:#646471;
   --border:rgba(255,255,255,.1);
   --r:8px; --rl:14px;
@@ -31,11 +31,11 @@ img{display:block;max-width:100%}
 ::selection{background:var(--accent);color:#fff}
 
 /* ---------- containers ---------- */
-.container{max-width:1320px;margin:0 auto;padding:0 24px}
-.section{padding:64px 0}
+.container{max-width:1320px;margin:0 auto;padding:0 20px}
+.section{padding:50px 0}
 .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px;flex-wrap:wrap}
 .section-head h2{
-  font-family:var(--font-a);font-weight:700;font-size:clamp(1.4rem,3vw,2.1rem);
+  font-family:var(--font-a);font-weight:700;font-size:clamp(1.2rem,2.8vw,1.8rem);
   text-transform:uppercase;letter-spacing:.04em;line-height:1
 }
 .section-head .eyebrow{color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
@@ -102,8 +102,8 @@ img{display:block;max-width:100%}
 /* ============================================================
    CARD GRID — products / beats / VST
    ============================================================ */
-.grid{display:grid;gap:20px;
-  grid-template-columns:repeat(auto-fill,minmax(248px,1fr))}
+.grid{display:grid;gap:16px;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);
   overflow:hidden;display:flex;flex-direction:column;transition:.22s ease;position:relative}
 .card:hover{transform:translateY(-4px);border-color:rgba(255,45,45,.4);
@@ -146,8 +146,8 @@ img{display:block;max-width:100%}
 .btn-cta.ghost:hover{border-color:var(--accent);color:var(--accent);background:transparent}
 
 /* ---------- buttons (generic) ---------- */
-.btn{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:700;
-  text-transform:uppercase;letter-spacing:.04em;padding:13px 22px;border-radius:9px;cursor:pointer;
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;padding:11px 18px;border-radius:9px;cursor:pointer;
   border:1px solid transparent;transition:.18s}
 .btn.primary{
   background:linear-gradient(135deg,var(--accent-bright) 0%,var(--accent) 50%,var(--accent-h) 100%);
@@ -165,12 +165,12 @@ img{display:block;max-width:100%}
 /* ============================================================
    HERO (homepage)
    ============================================================ */
-.hero{position:relative;padding:80px 0 70px;text-align:center;overflow:hidden}
+.hero{position:relative;padding:62px 0 50px;text-align:center;overflow:hidden}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;
   background:radial-gradient(ellipse at 50% 0%,rgba(255,45,45,.14),transparent 55%)}
 .hero .eyebrow{color:var(--accent);font-weight:700;font-size:.74rem;letter-spacing:.22em;
   text-transform:uppercase;margin-bottom:18px}
-.hero h1{font-family:var(--font-a);font-weight:700;font-size:clamp(2.6rem,8vw,5.6rem);
+.hero h1{font-family:var(--font-a);font-weight:700;font-size:clamp(2.2rem,7.5vw,4.8rem);
   line-height:.95;text-transform:uppercase;letter-spacing:.01em}
 .hero h1 span{color:var(--accent)}
 .hero .sub{color:var(--text-2);font-size:1rem;margin-top:16px}
