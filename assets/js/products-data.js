@@ -44,30 +44,30 @@ window.PRODUCTS = {
   "free-bundle": {
     type:"bundle", name:"ALL VST PACK", sub:"All 5 VSTs in One Bundle",
     tagline:"Get all 5 DJBILBOX VST plugins in one pack — the complete collection at -80%.",
-    cover:"img/vst/free-bundle.jpg", accent:"#27ae60", accent2:"#2ecc71",
+    cover:"img/vst/all-vst-pack.jpg", accent:"#27ae60", accent2:"#2ecc71",
     price:"9.80", old:"49", badge:"🔥 -80%",
     note:"Code SOLDES80 · All 5 VSTs · Best deal",
     buy:"djbilbox-free-bundle", demo:"",
-    video:"", poster:"img/vst/free-bundle.jpg",
+    video:"", poster:"img/vst/all-vst-pack.jpg",
     /* Listed below the fold so buyers can also grab any single plugin on its own. */
     bundleItems:[
       {name:"MATRIX MODULAR", sub:"Stereo Modulation · Auto-Pan", img:"img/vst/matrix-modular-cover.jpg", buy:"ocpoej"},
       {name:"MACHINA",        sub:"Distortion · Delay · Filter",  img:"img/vst/machina-vst.jpg",          buy:"lbceu"},
       {name:"BIGBASS",        sub:"LA Lowrider 808 / Sub-Bass",   img:"img/vst/bigbass-vst.jpg",          buy:"xaziro"},
       {name:"Vice City",      sub:"Synthwave / Miami Synth",      img:"img/vst/vice-city-vst.jpg",        buy:"ykdzli"},
-      {name:"Oriental Instrument — DEMO", sub:"50+ Oriental Instruments", img:"img/vst/oriental-instrument-box.jpg", buy:"oriental-instrument-demo-free-Download"}
+      {name:"Oriental Instrument", sub:"280+ Oriental Instruments", img:"img/vst/oriental-instrument-box.jpg", buy:"oriental-instrument-djbilbox-beats"}
     ],
-    tags:["5 Free VSTs","Effects + Instruments","Oriental Demo","Starter Pack"],
+    tags:["5 VST Plugins","Effects + Instruments","Complete Pack","Best Deal"],
     about:[
-      "Get all our free VST plugins in one download — your complete starter collection. Perfect for producers exploring new sounds or getting started with DJBILBOX BEATS plugins.",
-      "This bundle includes the full MATRIX MODULAR stereo effect, MACHINA audio processor, BIGBASS lowrider bass instrument, Vice City synthwave instrument, plus the FREE Oriental Instrument demo with 50+ instruments."
+      "Get all 5 DJBILBOX VST plugins in one download — the complete collection at -80% with code SOLDES80. Perfect for producers who want the full DJBILBOX sound in one purchase.",
+      "This bundle includes the full MATRIX MODULAR stereo effect, MACHINA audio processor, BIGBASS lowrider bass instrument, Vice City synthwave instrument, plus the Oriental Instrument with 280+ sounds."
     ],
     features:[
-      {icon:"fa-gift", t:"5 Complete VSTs", d:"All free VST plugins bundled together for convenience."},
-      {icon:"fa-music", t:"Effects & Instruments", d:"Stereo modulation, distortion/delay, bass, synth & 50+ oriental instruments."},
+      {icon:"fa-gift", t:"5 Complete VSTs", d:"All DJBILBOX VST plugins bundled together for the best price."},
+      {icon:"fa-music", t:"Effects & Instruments", d:"Stereo modulation, distortion/delay, bass, synth & 280+ oriental instruments."},
       {icon:"fa-download", t:"One-Click Download", d:"Download everything at once — no separate purchases needed."},
       {icon:"fa-star", t:"Professional Quality", d:"Same quality as individually purchased plugins — nothing watered down."},
-      {icon:"fa-heart", t:"100% Free Forever", d:"No strings attached — royalty-free for your productions."}
+      {icon:"fa-percent", t:"-80% Best Deal", d:"All 5 VSTs (value €87) for €9.80 with code SOLDES80."}
     ],
     specs:[
       {k:"Bundle Contents", v:"5 complete VST plugins + Oriental Demo"},
@@ -81,7 +81,7 @@ window.PRODUCTS = {
       "MACHINA VST3 + Standalone",
       "BIGBASS VST3 + Standalone",
       "Vice City VST3 + Standalone",
-      "Oriental Instrument DEMO (50+ instruments)",
+      "Oriental Instrument (280+ instruments)",
       "All factory presets",
       "Complete user manuals (PDF)",
       "Royalty-free license for all productions"

@@ -9,7 +9,7 @@
    ============================================================ */
 window.VSTS = [
   /* ========== BUNDLE ========== */
-  { id:"all-vst-pack", name:"🎁 ALL VST PACK — Every VST in One", img:"img/vst/free-bundle.jpg", category:"bundle",
+  { id:"all-vst-pack", name:"🎁 ALL VST PACK — Every VST in One", img:"img/vst/all-vst-pack.jpg", category:"bundle",
     tags:["Oriental Instrument · Machina","Matrix · BigBass · Vice City","5 VSTs in 1 pack"], price:"9.80", old:"49", badge:"🔥 -80%",
     buy:"", demo:"",
     note:"Code SOLDES80 · All 5 VSTs (value €87) · Best deal" },
