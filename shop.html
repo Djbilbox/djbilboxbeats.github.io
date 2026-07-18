@@ -1,577 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DJBILBOX BEATS Shop — VST Plugins & Drum Kits</title>
-    <meta name="description" content="Premium VST plugins and drum kits by DJBILBOX BEATS. Buy directly on Gumroad.">
-    <link rel="icon" href="favicon.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shop — VST Plugins & Drum Kits | DJBILBOX BEATS</title>
+<meta name="description" content="DJBILBOX BEATS Producer Shop — premium VST plugins (MACHINA, BIGBASS, Vice City, MATRIX, Oriental) and drum kits / sample packs. Trap, Drill, G-Funk, Oriental. Instant download on Gumroad. -80% Summer Sale.">
+<meta name="keywords" content="producer shop, VST plugins, drum kits, sample packs, MACHINA, BIGBASS, Vice City, Oriental Instrument, MATRIX, trap, drill, g-funk, DJBILBOX BEATS">
+<link rel="canonical" href="https://djbilboxbeats.com/shop.html">
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            min-height: 100vh;
-        }
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DJBILBOX BEATS">
+<meta property="og:title" content="Producer Shop — VST Plugins & Drum Kits | DJBILBOX BEATS">
+<meta property="og:description" content="Premium VST plugins & drum kits to level up your production. Instant download on Gumroad. -80% Summer Sale.">
+<meta property="og:url" content="https://djbilboxbeats.com/shop.html">
+<meta property="og:image" content="https://djbilboxbeats.com/img/vst/all-vst-pack.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Producer Shop — DJBILBOX BEATS">
+<meta name="twitter:description" content="Premium VST plugins & drum kits. -80% Summer Sale. Instant download.">
+<meta name="twitter:image" content="https://djbilboxbeats.com/img/vst/all-vst-pack.jpg">
 
-        /* ========== SIDEBAR NAVIGATION ========== */
-        .sidebar {
-            background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
-            border-right: 2px solid #ff00ff;
-            padding: 2rem 0;
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 250px;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        .logo-section {
-            padding: 0 1.5rem 2rem;
-            border-bottom: 1px solid #333;
-            margin-bottom: 1.5rem;
-        }
-
-        .logo-text {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #ff00ff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .nav-menu {
-            list-style: none;
-        }
-
-        .nav-item {
-            padding: 0;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.75rem 1.5rem;
-            color: #a0a0a0;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-left: 3px solid transparent;
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: #ff00ff;
-            border-left-color: #ff00ff;
-            background: rgba(255, 0, 255, 0.1);
-            padding-left: 1.2rem;
-        }
-
-        .nav-link i {
-            width: 20px;
-            text-align: center;
-        }
-
-        /* ========== MAIN CONTENT ========== */
-        .main {
-            grid-column: 2;
-            padding: 3rem 2rem;
-            background: #0a0a0a;
-        }
-
-        .header {
-            margin-bottom: 3rem;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #ff00ff, #00ff00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header-subtitle {
-            color: #888;
-            font-size: 1rem;
-        }
-
-        /* ========== PRODUCT GRID ========== */
-        .products-section {
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: #fff;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #ff00ff;
-            display: inline-block;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .products-grid.drums {
-            grid-template-columns: repeat(6, 1fr);
-        }
-
-        /* AI Mastering Section */
-        .ai-mastering-section {
-            background: linear-gradient(135deg, #1a1a2a 0%, #0d0d1a 100%);
-            border: 2px solid #00ff00;
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .ai-mastering-title {
-            font-size: 1.5rem;
-            color: #00ff00;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .ai-mastering-desc {
-            color: #888;
-            margin-bottom: 1.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .ai-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .feature {
-            background: rgba(0, 255, 0, 0.05);
-            padding: 1rem;
-            border-radius: 4px;
-            border: 1px solid #00ff00;
-            font-size: 0.9rem;
-            color: #00ff00;
-        }
-
-        .btn-mastering {
-            background: #00ff00;
-            color: #000;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-mastering:hover {
-            background: #00ff00;
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-        }
-
-        .product-card {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-            border: 1px solid #333;
-            border-radius: 6px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-card:hover {
-            border-color: #ff00ff;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
-            transform: translateY(-3px);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 180px;
-            background: linear-gradient(135deg, #2a1a3a 0%, #1a0a2a 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            color: #ff00ff;
-            border-bottom: 1px solid #333;
-        }
-
-        .product-info {
-            padding: 1.2rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-category {
-            font-size: 0.7rem;
-            color: #00ff00;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .product-name {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-
-        .product-desc {
-            font-size: 0.8rem;
-            color: #888;
-            margin-bottom: 1rem;
-            flex: 1;
-            line-height: 1.4;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #333;
-            padding-top: 1rem;
-            margin-top: 1rem;
-        }
-
-        .product-price {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #ff00ff;
-        }
-
-        .btn-buy {
-            background: #ff00ff;
-            color: #000;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .btn-buy:hover {
-            background: #ff00ff;
-            transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
-        }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 1200px) {
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-                border-right: none;
-                border-bottom: 2px solid #ff00ff;
-                margin-bottom: 2rem;
-            }
-
-            .main {
-                grid-column: 1;
-                padding: 1.5rem 1rem;
-            }
-
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css?v=26071803">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26071803">
+<link rel="stylesheet" href="assets/css/chat.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body>
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <div class="logo-section">
-            <div class="logo-text">🎵 DJBILBOX BEATS</div>
-        </div>
+<body data-page="shop">
 
-        <ul class="nav-menu">
-            <li class="nav-item">
-                <a href="index.html" class="nav-link">
-                    <i class="fas fa-home"></i> HOME
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="beats-redesign.html" class="nav-link">
-                    <i class="fas fa-music"></i> BEATS
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="shop.html" class="nav-link active">
-                    <i class="fas fa-layer-group"></i> VST
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="drum-kits.html" class="nav-link">
-                    <i class="fas fa-drum"></i> DRUM KITS
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="https://www.twitch.tv/djbilbox" class="nav-link" target="_blank">
-                    <i class="fab fa-twitch"></i> TWITCH
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="blog.html" class="nav-link">
-                    <i class="fas fa-newspaper"></i> ACADEMY
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="services.html" class="nav-link">
-                    <i class="fas fa-cogs"></i> SERVICES
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="contact.html" class="nav-link">
-                    <i class="fas fa-envelope"></i> CONTACT
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="account.html" class="nav-link">
-                    <i class="fas fa-user"></i> MY ACCOUNT
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="reviews.html" class="nav-link">
-                    <i class="fas fa-star"></i> REVIEWS
-                </a>
-            </li>
-        </ul>
-    </aside>
+<!-- ============ HERO ============ -->
+<section class="hero" style="padding-bottom:24px">
+  <div class="container">
+    <div class="eyebrow">🔥 -80% Summer Sale · Code SOLDES80 · Instant download</div>
+    <h1>Producer <span>Shop</span></h1>
+    <p class="sub">Premium VST plugins &amp; drum kits to level up your production game.</p>
+  </div>
+</section>
 
-    <!-- MAIN CONTENT -->
-    <main class="main">
-        <div class="header">
-            <h1>🎛️ VST PLUGINS & MASTERING</h1>
-            <p class="header-subtitle">Professional tools for your production</p>
-        </div>
+<!-- ============ SHOP TAB SWITCHER ============ -->
+<div class="subnav">
+  <div class="subnav-inner" id="shopTabs">
+    <button class="pill active" data-target="all">🛍️ All</button>
+    <button class="pill" data-target="vst">🎛️ VST Plugins</button>
+    <button class="pill" data-target="kits">🥁 Drum Kits</button>
+  </div>
+</div>
 
-        <!-- AI MASTERING SECTION -->
-        <div class="ai-mastering-section">
-            <div class="ai-mastering-title">🎚️ AI MASTERING</div>
-            <p class="ai-mastering-desc">Professional studio-quality mixing and mastering. Upload your beat and get instant professional results powered by AI technology.</p>
+<main class="container" style="padding-top:8px">
 
-            <div class="ai-features">
-                <div class="feature">✨ Studio Quality</div>
-                <div class="feature">⚡ Instant Results</div>
-                <div class="feature">🔊 Loudness Optimization</div>
-                <div class="feature">🎵 EQ Balancing</div>
-                <div class="feature">📊 Analytics</div>
-            </div>
+  <!-- ===== VST PLUGINS ===== -->
+  <section class="shop-block" data-block="vst">
+    <div class="section-head" style="margin:16px 0 20px">
+      <div>
+        <div class="eyebrow">Studio-grade instruments &amp; effects</div>
+        <h2>VST Plugins</h2>
+      </div>
+      <a href="vst.html" class="see-all">View all →</a>
+    </div>
+    <div class="grid" id="vstGrid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))"></div>
+  </section>
 
-            <a href="https://djbilboxbeats.gumroad.com/l/ai-mastering" class="btn-mastering" target="_blank">
-                🎚️ START MASTERING NOW
-            </a>
-        </div>
+  <!-- ===== DRUM KITS ===== -->
+  <section class="shop-block" data-block="kits" style="margin-top:36px">
+    <div class="section-head" style="margin:16px 0 20px">
+      <div>
+        <div class="eyebrow">Loop &amp; drum samples · WAV</div>
+        <h2>Drum Kits &amp; Sample Packs</h2>
+      </div>
+      <a href="drum-kits.html" class="see-all">View all →</a>
+    </div>
+    <div class="grid" id="packsGrid" style="margin-bottom:60px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))"></div>
+  </section>
 
-        <div class="products-section">
-            <div class="section-title">VST Plugins</div>
-            <div class="products-grid">
-                <!-- MACHINA VST -->
-                <div class="product-card">
-                    <div class="product-image">🎛️</div>
-                    <div class="product-info">
-                        <span class="product-category">VST Plugin</span>
-                        <h3 class="product-name">MACHINA</h3>
-                        <p class="product-desc">Creative multi-effect plugin — distortion, delay & filter</p>
-                        <div class="product-footer">
-                            <span class="product-price">$29.99</span>
-                            <a href="https://djbilboxbeats.gumroad.com/l/machina-vst" class="btn-buy" target="_blank">
-                                🛒 BUY
-                            </a>
-                        </div>
-                    </div>
-                </div>
+</main>
 
-                <!-- MATRIX -->
-                <div class="product-card">
-                    <div class="product-image">🎼</div>
-                    <div class="product-info">
-                        <span class="product-category">VST Plugin</span>
-                        <h3 class="product-name">MATRIX</h3>
-                        <p class="product-desc">West Coast modular synthesizer — VST3 & Standalone</p>
-                        <div class="product-footer">
-                            <span class="product-price">$24.99</span>
-                            <a href="https://djbilboxbeats.gumroad.com/l/matrix" class="btn-buy" target="_blank">
-                                🛒 BUY
-                            </a>
-                        </div>
-                    </div>
-                </div>
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="brand">DJBILBOX <span>BEATS</span></a>
+      <div class="footer-links">
+        <a href="index.html#license">License</a>
+        <a href="index.html#services">Contact</a>
+        <a href="index.html#news">Newsletter</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-copy">DJBILBOX BEATS — Bilel Abdelkader Attalah · 4 rue Virginia Woolf, 31200 Toulouse, France<br>© 2026 DJBILBOX BEATS — All rights reserved.</div>
+  </div>
+</footer>
 
-                <!-- VICE CITY -->
-                <div class="product-card">
-                    <div class="product-image">🌃</div>
-                    <div class="product-info">
-                        <span class="product-category">VST Plugin</span>
-                        <h3 class="product-name">VICE CITY</h3>
-                        <p class="product-desc">Synthwave polyphonic synthesizer — VST3 & Standalone</p>
-                        <div class="product-footer">
-                            <span class="product-price">$19.99</span>
-                            <a href="https://djbilboxbeats.gumroad.com/l/vice-city" class="btn-buy" target="_blank">
-                                🛒 BUY
-                            </a>
-                        </div>
-                    </div>
-                </div>
+<!-- ============ STICKY PROMO ============ -->
+<div class="promo-bar" id="promo">
+  <strong>🔥 -80% Summer Sale</strong> — All VST plugins &amp; sample packs · Code SOLDES80 at checkout.
+  <a href="https://djbilboxbeats.gumroad.com" target="_blank" class="promo-cta">Visit store</a>
+  <button class="promo-close" onclick="closePromo()" aria-label="Close">✕</button>
+</div>
 
-                <!-- BIGBASS 808 -->
-                <div class="product-card">
-                    <div class="product-image">🔊</div>
-                    <div class="product-info">
-                        <span class="product-category">VST Plugin</span>
-                        <h3 class="product-name">BIGBASS</h3>
-                        <p class="product-desc">LA Lowrider bass — VST3 & Standalone · Win/Mac</p>
-                        <div class="product-footer">
-                            <span class="product-price">$14.99</span>
-                            <a href="https://djbilboxbeats.gumroad.com/l/bigbass" class="btn-buy" target="_blank">
-                                🛒 BUY
-                            </a>
-                        </div>
-                    </div>
-                </div>
+<!-- ============ SCRIPTS ============ -->
+<script src="assets/js/vst-data.js?v=26071803"></script>
+<script src="assets/js/packs-data.js?v=26071803"></script>
+<script src="assets/js/site.js?v=26071803"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/modern-animations.js?v=26071803" defer></script>
+<script src="assets/js/chat.js"></script>
+<script>
+  // Render both catalogs into the unified Shop
+  renderVsts(window.VSTS, 'vstGrid');
+  renderPacks(window.PACKS, 'packsGrid');
 
-                <!-- ORIENTAL INSTRUMENT -->
-                <div class="product-card">
-                    <div class="product-image">🕌</div>
-                    <div class="product-info">
-                        <span class="product-category">VST Plugin</span>
-                        <h3 class="product-name">ORIENTAL INSTRUMENT</h3>
-                        <p class="product-desc">280+ instruments · Maqam engine — Full Version</p>
-                        <div class="product-footer">
-                            <span class="product-price">$19.99</span>
-                            <a href="https://djbilboxbeats.gumroad.com/l/oriental-instrument" class="btn-buy" target="_blank">
-                                🛒 BUY
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="products-section">
-            <div class="section-title">🥁 DRUM KITS & SAMPLES</div>
-            <div class="products-grid drums">
-                <!-- WESTCOAST CHROME -->
-                <div class="product-card">
-                    <div class="product-image">🌴</div>
-                    <div class="product-info">
-                        <span class="product-category">Drum Loops</span>
-                        <h3 class="product-name">WESTCOAST CHROME</h3>
-                        <p class="product-desc">G-Funk & West Coast Pro Drum Loops</p>
-                        <div class="product-footer">
-                            <span class="product-price">$13</span>
-                            <a href="https://djbilboxbeats.gumroad.com/l/westcoast-chrome" class="btn-buy" target="_blank">
-                                🛒 BUY
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ETNIC RITMIK -->
-                <div class="product-card">
-                    <div class="product-image">🪘</div>
-                    <div class="product-info">
-                        <span class="product-category">Drum Loops</span>
-                        <h3 class="product-name">ETNIC RITMIK</h3>
-                        <p class="product-desc">Afrobeat & Reggae Pro Drum Loops Vol.1</p>
-                        <div class="product-footer">
-                            <span class="product-price">$14</span>
-                            <a href="https://djbilboxbeats.gumroad.com/l/etnic-ritmik" class="btn-buy" target="_blank">
-                                🛒 BUY
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VOL.1 DRUMS LOOP -->
-                <div class="product-card">
-                    <div class="product-image">🥁</div>
-                    <div class="product-info">
-                        <span class="product-category">Sample Pack</span>
-                        <h3 class="product-name">VOL.1 DRUMS LOOP</h3>
-                        <p class="product-desc">Drums Loop Sample Pack</p>
-                        <div class="product-footer">
-                            <span class="product-price">$6</span>
-                            <a href="https://djbilboxbeats.gumroad.com/l/vol1-drums-loop" class="btn-buy" target="_blank">
-                                🛒 BUY
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FUTUR MELODY -->
-                <div class="product-card">
-                    <div class="product-image">🎹</div>
-                    <div class="product-info">
-                        <span class="product-category">Sample Pack</span>
-                        <h3 class="product-name">FUTUR MELODY</h3>
-                        <p class="product-desc">23 New Melody Sample Pack</p>
-                        <div class="product-footer">
-                            <span class="product-price">$8</span>
-                            <a href="https://djbilboxbeats.gumroad.com/l/futur-melody" class="btn-buy" target="_blank">
-                                🛒 BUY
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </main>
+  // Tab switcher: All / VST / Drum Kits
+  (function(){
+    const tabs = document.getElementById('shopTabs');
+    const blocks = document.querySelectorAll('.shop-block');
+    tabs.addEventListener('click', function(e){
+      const btn = e.target.closest('.pill');
+      if(!btn) return;
+      tabs.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      const t = btn.dataset.target;
+      blocks.forEach(b=>{
+        b.style.display = (t==='all' || b.dataset.block===t) ? '' : 'none';
+      });
+    });
+  })();
+</script>
 </body>
 </html>

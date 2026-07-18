@@ -28,8 +28,7 @@
 const NAV = [
   { key:'city',        label:'City',        href:'/city.html',           icon:'fa-city' },
   { key:'beats',       label:'Beats',       href:'/beats-redesign.html', icon:'fa-music' },
-  { key:'vst',         label:'VST',         href:'/vst.html',            icon:'fa-sliders' },
-  { key:'drumkits',    label:'Drum Kits',   href:'/drum-kits.html',      icon:'fa-drum' },
+  { key:'shop',        label:'Shop',        href:'/shop.html',           icon:'fa-store' },
   { key:'twitch',      label:'Twitch',      href:'/twitch.html',         icon:'fa-brands fa-twitch' },
   { key:'formations',  label:'Academy',     href:'/formations.html',     icon:'fa-graduation-cap' },
   { key:'services',    label:'Services',    href:'/services.html',       icon:'fa-headphones' },
