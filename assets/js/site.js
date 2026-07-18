@@ -33,7 +33,6 @@ const NAV = [
   { key:'shop',        label:'Shop',        href:'/shop.html',           icon:'fa-store' },
   { key:'setup',       label:'Info',        href:'/studio-setup.html',   icon:'fa-circle-info' },
   { key:'twitch',      label:'Twitch',      href:'/twitch.html',         icon:'fa-brands fa-twitch' },
-  { key:'formations',  label:'Academy',     href:'/formations.html',     icon:'fa-graduation-cap' },
   { key:'services',    label:'Services',    href:'/services.html',       icon:'fa-headphones' },
   { key:'contact',     label:'Contact',     href:'/contact.html',        icon:'fa-envelope' },
   { key:'account',     label:'My Account',  href:'/account.html',        icon:'fa-user' },
@@ -625,11 +624,13 @@ function vstCard(p){
     ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}<span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
     : `<div class="card-media">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}</div>`;
   const titleHtml = dHref ? `<a href="${dHref}"><h3 class="card-title">${p.name}</h3></a>` : `<h3 class="card-title">${p.name}</h3>`;
+  const descHtml = p.desc ? `<p class="card-desc" style="color:var(--text-3);font-size:.72rem;line-height:1.45;margin:2px 0 0">${p.desc}</p>` : '';
   el.innerHTML = `
     ${media}
     <div class="card-body">
       ${titleHtml}
       <div class="card-tags">${tags}</div>
+      ${descHtml}
       ${noteHtml}
       <div class="card-foot">
         <div class="price">${priceHtml}</div>
