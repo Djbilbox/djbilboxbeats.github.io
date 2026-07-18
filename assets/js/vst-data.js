@@ -75,7 +75,7 @@ window.VSTS = [
     desc:"Try the full FL Studio free with no time limit — you just can't re-open saved projects until you buy a licence.",
     note:"Free demo — the real thing, unlimited" },
 
-  { name:"APESHYT RAMPAGE — Unleash The Beast", img:"img/vst/apeshyt-rampage.svg", category:"partner",
+  { name:"APESHYT RAMPAGE — Unleash The Beast", img:"img/vst/apeshyt-rampage.png", category:"partner",
     tags:["Aggressive Synth","+ Rebellion Melody Loops"], price:"~$67", badge:"🤝 Partner", detail:"apeshyt-rampage.html",
     url:"https://apeshyt808.com/rampages/",
     desc:"A sonic weapon that smashes through ordinary sound — an aggressive synth for beats that hit hard. Includes the Rebellion Melody Loops pack.",
