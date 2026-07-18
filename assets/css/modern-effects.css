@@ -427,8 +427,8 @@ body::after{
 
 /* ---- YouTube catalog grid ---- */
 .yt-grid{
-  display:grid; gap:18px;
-  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  display:grid; gap:12px;
+  grid-template-columns:repeat(auto-fill,minmax(185px,1fr));
 }
 .yt-card{
   display:flex; flex-direction:column; gap:0; text-align:left;
