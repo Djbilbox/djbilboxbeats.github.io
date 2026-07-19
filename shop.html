@@ -33,7 +33,6 @@
   <div class="subnav-inner" id="shopTabs">
     <button class="pill active" data-target="all">🛍️ All</button>
     <button class="pill" data-target="vst">🎛️ VST Plugins</button>
-    <button class="pill" data-target="free">🎁 Free VST</button>
     <button class="pill" data-target="kits">🥁 Drum Kits</button>
     <button class="pill" data-target="partner">🤝 Other (Gear I use)</button>
   </div>
@@ -53,31 +52,6 @@
     <div class="grid" id="vstGrid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr))"></div>
   </section>
 
-  <!-- ===== FREE VST PLUGINS ===== -->
-  <section class="shop-block" data-block="free" style="margin-top:36px">
-    <div class="section-head" style="margin:16px 0 20px">
-      <div>
-        <div class="eyebrow">🎁 Free essentials · recommended by DJBILBOX</div>
-        <h2>Free VST Plugins</h2>
-      </div>
-      <a href="studio-setup.html#free" class="see-all">All free tools →</a>
-    </div>
-
-    <!-- Synths & Instruments -->
-    <h3 style="font-family:var(--font-a);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;margin:8px 0 14px;display:flex;align-items:center;gap:10px;color:var(--text)">
-      🎹 Synths &amp; Instruments
-      <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)"></span>
-    </h3>
-    <div class="grid" id="freeInstGrid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr));margin-bottom:32px"></div>
-
-    <!-- Effects -->
-    <h3 style="font-family:var(--font-a);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;margin:8px 0 14px;display:flex;align-items:center;gap:10px;color:var(--text)">
-      🎚️ Effects
-      <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)"></span>
-    </h3>
-    <div class="grid" id="freeFxGrid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr))"></div>
-  </section>
-
   <!-- ===== DRUM KITS ===== -->
   <section class="shop-block" data-block="kits" style="margin-top:36px">
     <div class="section-head" style="margin:16px 0 20px">
@@ -90,15 +64,35 @@
     <div class="grid" id="packsGrid" style="margin-bottom:36px;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))"></div>
   </section>
 
-  <!-- ===== OTHER / PARTNER GEAR (not my products) ===== -->
+  <!-- ===== OTHER / PARTNER GEAR + FREE VST (not my products) ===== -->
   <section class="shop-block" data-block="partner" style="margin-top:36px">
     <div class="section-head" style="margin:16px 0 20px">
       <div>
-        <div class="eyebrow">Not mine — gear I use &amp; recommend</div>
+        <div class="eyebrow">Not mine — gear &amp; free plugins I use &amp; recommend</div>
         <h2>Other · Gear I Use</h2>
       </div>
     </div>
-    <div class="grid" id="partnerGrid" style="margin-bottom:60px;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))"></div>
+
+    <!-- DAWs, hardware & partner gear -->
+    <h3 style="font-family:var(--font-a);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;margin:8px 0 14px;display:flex;align-items:center;gap:10px;color:var(--text)">
+      🎛️ DAWs &amp; Gear
+      <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)"></span>
+    </h3>
+    <div class="grid" id="partnerGrid" style="margin-bottom:32px;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))"></div>
+
+    <!-- Free synths & instruments -->
+    <h3 style="font-family:var(--font-a);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;margin:8px 0 14px;display:flex;align-items:center;gap:10px;color:var(--text)">
+      🎹 Free Synths &amp; Instruments
+      <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)"></span>
+    </h3>
+    <div class="grid" id="freeInstGrid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr));margin-bottom:32px"></div>
+
+    <!-- Free effects -->
+    <h3 style="font-family:var(--font-a);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;margin:8px 0 14px;display:flex;align-items:center;gap:10px;color:var(--text)">
+      🎚️ Free Effects
+      <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)"></span>
+    </h3>
+    <div class="grid" id="freeFxGrid" style="margin-bottom:60px;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))"></div>
   </section>
 
 </main>
