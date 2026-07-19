@@ -69,13 +69,13 @@ window.VSTS = [
     desc:"Signature Bundle plus every Image-Line native plugin — Harmor, Sytrus, Toxic Biohazard, Sakura, Morphine, PoiZone and the whole collection.",
     note:"Lifetime free updates" },
 
-  { name:"FL STUDIO — Free Trial", img:"img/vst/fl-fruity.jpg", category:"partner",
+  { name:"FL STUDIO — Free Trial", img:"img/vst/fl-fruity.jpg", category:"free", sub:"instrument",
     tags:["Full version · no time limit","Try before you buy"], price:"0", free:true, badge:"✅ FREE", detail:"fl-studio.html",
     url:"https://www.image-line.com/fl-studio-download/",
     desc:"Try the full FL Studio free with no time limit — you just can't re-open saved projects until you buy a licence.",
     note:"Free demo — the real thing, unlimited" },
 
-  { name:"APESHYT RAMPAGE — Unleash The Beast", img:"img/vst/apeshyt-rampage.png", category:"partner",
+  { name:"APESHYT RAMPAGE — Unleash The Beast", img:"img/vst/apeshyt-rampage.png", category:"free", sub:"instrument",
     tags:["Aggressive Synth","+ Rebellion Melody Loops"], price:"0", free:true, badge:"✅ FREE", detail:"apeshyt-rampage.html",
     url:"https://apeshyt808.com/browse/free-plugin/",
     desc:"A sonic weapon that smashes through ordinary sound — an aggressive synth for beats that hit hard. Includes the Rebellion Melody Loops pack.",
