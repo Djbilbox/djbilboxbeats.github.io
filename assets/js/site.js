@@ -43,11 +43,19 @@ const NAV = [
 
 function mountSidebar(active){
   if(document.querySelector('.sidebar')) return;
-  const links = NAV.map(n=>
-    `<a href="${n.href}"${n.key===active?' class="active"':''}><i class="fa-solid ${n.icon}"></i> ${n.label}</a>`
-  ).join('') +
+  const browseItems = NAV.slice(0, 6);
+  const libraryItems = NAV.slice(6);
+  const links =
+    `<div class="side-section-label">Browse</div>` +
+    browseItems.map(n=>
+      `<a href="${n.href}"${n.key===active?' class="active"':''}><i class="fa-solid ${n.icon}"></i> ${n.label}</a>`
+    ).join('') +
     `<a href="#" onclick="document.getElementById('aiChat')?.classList.toggle('open');return false;"><i class="fa-solid fa-robot"></i> AI Chat</a>` +
-    `<a href="/blog.html"><i class="fa-solid fa-newspaper"></i> Blog</a>`;
+    `<a href="/blog.html"><i class="fa-solid fa-newspaper"></i> Blog</a>` +
+    `<div class="side-section-label">Library</div>` +
+    libraryItems.map(n=>
+      `<a href="${n.href}"${n.key===active?' class="active"':''}><i class="fa-solid ${n.icon}"></i> ${n.label}</a>`
+    ).join('');
 
   const sidebar = document.createElement('aside');
   sidebar.className='sidebar';
