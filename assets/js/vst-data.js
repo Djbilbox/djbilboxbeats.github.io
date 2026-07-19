@@ -81,15 +81,15 @@ window.VSTS = [
     desc:"A sonic weapon that smashes through ordinary sound — an aggressive synth for beats that hit hard. Includes the Rebellion Melody Loops pack.",
     note:"Free plugin from Apeshyt · bonus melody loops" },
 
-  { name:"VIRTUAL DJ — Free (Home)", img:"img/vst/virtualdj-icon.png", category:"partner",
+  { name:"VIRTUAL DJ — Free (Home)", img:"img/vst/virtualdj-pro.jpg", category:"partner",
     tags:["DJ software · free for home","Auto BPM · stems · video"], price:"0", free:true, badge:"✅ FREE",
-    url:"https://www.virtualdj.com/download/",
+    url:"https://fr.virtualdj.com/download/",
     desc:"The world's most popular DJ software, free for home use — mix music, video and karaoke with automatic BPM sync, real-time stems separation and a massive controller list.",
     note:"Free demo · full app for home use" },
 
-  { name:"VIRTUAL DJ — PRO", img:"img/vst/virtualdj-icon.png", category:"partner",
+  { name:"VIRTUAL DJ — PRO", img:"img/vst/virtualdj-pro.jpg", category:"partner",
     tags:["Pro · gigging DJs","All features unlocked"], price:"~€19/mo", badge:"🤝 Partner",
-    url:"https://www.virtualdj.com/buy/",
+    url:"https://fr.virtualdj.com/buy/",
     desc:"The full professional VirtualDJ for performing, streaming and commercial use — unlocks every feature and all hardware. Monthly subscription or a Pro Infinity lifetime licence.",
     note:"Pro version · subscription or Pro Infinity" },
 

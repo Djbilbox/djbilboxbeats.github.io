@@ -624,7 +624,7 @@ function vstCard(p){
     ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}<span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
     : `<div class="card-media">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}</div>`;
   const titleHtml = dHref ? `<a href="${dHref}"><h3 class="card-title">${p.name}</h3></a>` : `<h3 class="card-title">${p.name}</h3>`;
-  const descHtml = p.desc ? `<p class="card-desc" style="color:var(--text-3);font-size:.72rem;line-height:1.45;margin:2px 0 0">${p.desc}</p>` : '';
+  const descHtml = p.desc ? `<p class="card-desc" style="color:var(--text-3);font-size:.68rem;line-height:1.4;margin:2px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${p.desc}</p>` : '';
   el.innerHTML = `
     ${media}
     <div class="card-body">
