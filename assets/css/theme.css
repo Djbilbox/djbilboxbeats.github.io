@@ -31,9 +31,9 @@ img{display:block;max-width:100%}
 ::selection{background:var(--accent);color:#fff}
 
 /* ---------- containers ---------- */
-.container{max-width:1320px;margin:0 auto;padding:0 20px}
-.section{padding:36px 0}
-.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.container{max-width:1320px;margin:0 auto;padding:0 16px}
+.section{padding:24px 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
 .section-head h2{
   font-family:var(--font-a);font-weight:700;font-size:clamp(1.05rem,2.4vw,1.5rem);
   text-transform:uppercase;letter-spacing:.04em;line-height:1
@@ -107,8 +107,8 @@ img{display:block;max-width:100%}
 /* ============================================================
    CARD GRID — products / beats / VST
    ============================================================ */
-.grid{display:grid;gap:12px;
-  grid-template-columns:repeat(auto-fill,minmax(172px,1fr))}
+.grid{display:grid;gap:10px;
+  grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);
   overflow:hidden;display:flex;flex-direction:column;transition:.22s ease;position:relative}
 .card:hover{transform:translateY(-4px);border-color:rgba(255,45,45,.4);
@@ -131,7 +131,7 @@ img{display:block;max-width:100%}
 .card-play i{width:54px;height:54px;border-radius:50%;background:var(--accent);color:#fff;
   display:flex;align-items:center;justify-content:center;font-size:1.1rem;
   box-shadow:0 6px 20px rgba(255,45,45,.5)}
-.card-body{padding:11px 12px 13px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card-body{padding:9px 10px 11px;display:flex;flex-direction:column;gap:5px;flex:1}
 .card-title{font-size:.82rem;font-weight:700;line-height:1.25;
   display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 .card-tags{display:flex;flex-wrap:wrap;gap:4px}
@@ -170,7 +170,7 @@ img{display:block;max-width:100%}
 /* ============================================================
    HERO (homepage)
    ============================================================ */
-.hero{position:relative;padding:42px 0 32px;text-align:center;overflow:hidden}
+.hero{position:relative;padding:28px 0 20px;text-align:center;overflow:hidden}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;
   background:radial-gradient(ellipse at 50% 0%,rgba(255,45,45,.14),transparent 55%)}
 .hero .eyebrow{color:var(--accent);font-weight:700;font-size:.74rem;letter-spacing:.22em;
@@ -193,7 +193,7 @@ img{display:block;max-width:100%}
 /* ============================================================
    FOOTER (minimal)
    ============================================================ */
-.footer{border-top:1px solid var(--border);padding:40px 0 30px;margin-top:40px}
+.footer{border-top:1px solid var(--border);padding:28px 0 20px;margin-top:28px}
 .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .footer-links{display:flex;gap:22px}
 .footer-links a{font-size:.78rem;color:var(--text-3);transition:.18s;text-transform:uppercase;letter-spacing:.05em}
