@@ -152,7 +152,7 @@ window.VSTS = [
     desc:"Flanger / effet de spatialisation gratuit de chez Valhalla — modulation extrême et effets stéréo.",
     note:"Free download · by Valhalla DSP" },
 
-  { name:"Graillon 3 — Auto-Tune", img:"img/vst/free/graillon-real.jpg", category:"free", id:"graillon3", detail:"free-vst.html?id=graillon3", sub:"effect",
+  { name:"Graillon 3 — Auto-Tune", img:"img/vst/free/graillon-real.jpg", category:"free", id:"graillon3", detail:"free-vst.html?id=graillon3", sub:"vocal",
     tags:["Pitch correction","Auburn Sounds · real-time"], price:"0", free:true, badge:"✅ FREE",
     url:"https://www.auburnsounds.com/products/Graillon.html",
     desc:"La version gratuite de Graillon par Auburn Sounds offre un excellent pitch correction / auto-tune en temps réel.",
@@ -164,7 +164,7 @@ window.VSTS = [
     desc:"L'effet de correction de pitch et d'auto-tune gratuit ultra-complet de MeldaProduction.",
     note:"Free download · by MeldaProduction" },
 
-  { name:"TAL-Vocoder-2 — Vintage Vocoder", img:"img/vst/free/talvocoder-real.jpg", category:"free", id:"talvocoder", detail:"free-vst.html?id=talvocoder", sub:"effect",
+  { name:"TAL-Vocoder-2 — Vintage Vocoder", img:"img/vst/free/talvocoder-real.jpg", category:"free", id:"talvocoder", detail:"free-vst.html?id=talvocoder", sub:"vocal",
     tags:["Vintage vocoder","TAL Software · 80s"], price:"0", free:true, badge:"✅ FREE",
     url:"https://tal-software.com/products/tal-vocoder",
     desc:"Émulation de vocodeur vintage analogique des années 80 par TAL Software — voix robotiques classiques.",

@@ -69,7 +69,9 @@
   var esc = function(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); };
   var name = base.name.split('—')[0].trim();
   var subtitle = (base.name.split('—')[1]||'').trim();
-  var kind = base.sub === 'instrument' ? 'Synthé / Instrument gratuit' : 'Effet gratuit';
+  var kind = base.sub === 'instrument' ? 'Synthé / Instrument gratuit'
+           : base.sub === 'vocal'      ? 'Vocoder / Talkbox gratuit'
+           : 'Effet gratuit';
 
   var tags = (base.tags||[]).map(function(t){ return '<span class="pi-tag">'+esc(t)+'</span>'; }).join('');
   var feats = (info.feats||[]).map(function(f){

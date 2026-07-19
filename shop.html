@@ -87,6 +87,13 @@
     </h3>
     <div class="grid" id="freeInstGrid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr));margin-bottom:32px"></div>
 
+    <!-- Free vocoder / talkbox / vocal -->
+    <h3 style="font-family:var(--font-a);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;margin:8px 0 14px;display:flex;align-items:center;gap:10px;color:var(--text)">
+      🎤 Vocoder / Talkbox
+      <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)"></span>
+    </h3>
+    <div class="grid" id="freeVocalGrid" style="margin-bottom:32px;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))"></div>
+
     <!-- Free effects -->
     <h3 style="font-family:var(--font-a);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;margin:8px 0 14px;display:flex;align-items:center;gap:10px;color:var(--text)">
       🎚️ Free Effects
@@ -124,7 +131,7 @@
 </div>
 
 <!-- ============ SCRIPTS ============ -->
-<script src="assets/js/vst-data.js?v=26071909"></script>
+<script src="assets/js/vst-data.js?v=26071910"></script>
 <script src="assets/js/packs-data.js?v=26071804"></script>
 <script src="assets/js/site.js?v=26071905"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -138,15 +145,19 @@
     const vg  = document.getElementById('vstGrid');
     const pg  = document.getElementById('partnerGrid');
     const fiG = document.getElementById('freeInstGrid');
+    const fvG = document.getElementById('freeVocalGrid');
     const ffG = document.getElementById('freeFxGrid');
     (window.VSTS || []).forEach(function(v){
       // Route each product to the right grid:
-      //  - free synths/instruments → free instruments grid
-      //  - free effects            → free effects grid
-      //  - partner gear (FL, VDJ…) → partner grid
+      //  - free synths/instruments   → free instruments grid
+      //  - free vocoder/talkbox/vocal → free vocal grid
+      //  - free effects              → free effects grid
+      //  - partner gear (FL, VDJ…)   → partner grid
       //  - everything else (my paid VSTs) → premium grid
       let target;
-      if(v.category === 'free')      target = (v.sub === 'instrument') ? fiG : ffG;
+      if(v.category === 'free')      target = (v.sub === 'instrument') ? fiG
+                                            : (v.sub === 'vocal')      ? fvG
+                                            : ffG;
       else if(v.category === 'partner') target = pg;
       else                            target = vg;
       target.appendChild(vstCard(v));
