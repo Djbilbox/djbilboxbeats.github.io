@@ -140,7 +140,7 @@ window.VSTS = [
     desc:"Un des meilleurs plug-ins gratuits au monde pour les reverbes géantes et les delays massifs.",
     note:"Free download · by Valhalla DSP" },
 
-  { name:"ValhallaFreqEcho — Freq Delay", img:"img/vst/free/freqecho.svg", category:"free", sub:"effect",
+  { name:"ValhallaFreqEcho — Freq Delay", img:"img/vst/free/freqecho-real.png", category:"free", sub:"effect",
     tags:["Frequency-shift delay","Valhalla DSP"], price:"0", free:true, badge:"✅ FREE",
     url:"https://valhalladsp.com/shop/delay/valhalla-freq-echo/",
     desc:"Un delay à décalage de fréquence parfait pour les effets psychédéliques et le sound design.",
