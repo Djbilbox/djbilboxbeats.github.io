@@ -46,22 +46,6 @@
   </div>
 </div>
 
-<!-- ============ SEARCH & SORT ============ -->
-<div class="filter-bar">
-  <div class="container">
-    <div class="filter-controls">
-      <input type="text" id="searchInput" class="search-box" placeholder="Search products..." />
-      <select id="sortSelect" class="sort-select">
-        <option value="featured">Featured</option>
-        <option value="price-asc">Price: Low to High</option>
-        <option value="price-desc">Price: High to Low</option>
-        <option value="name-asc">Name: A-Z</option>
-        <option value="name-desc">Name: Z-A</option>
-      </select>
-    </div>
-  </div>
-</div>
-
 <main class="container" style="padding-top:8px">
 
   <!-- ===== VST PLUGINS ===== -->
@@ -136,108 +120,17 @@
 <script src="assets/js/modern-animations.js?v=26071803" defer></script>
 <script src="assets/js/chat.js"></script>
 <script>
-  // Store original data
-  let allVsts = (window.VSTS || []);
-  let allPacks = (window.PACKS || []);
-  let filteredVsts = allVsts;
-  let filteredPacks = allPacks;
-  let sortMode = 'featured';
-  let searchTerm = '';
-
-  function parsePrice(p){
-    if(!p || p.free) return 0;
-    if(String(p).startsWith('~')) return parseFloat(String(p).replace(/[^0-9.]/g,'')) || 0;
-    return parseFloat(String(p).replace(/[^0-9.]/g,'')) || 0;
-  }
-
-  function applyFilter(){
-    filteredVsts = allVsts.filter(v=>{
-      const match = searchTerm==='' || v.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    (v.tags || []).some(t=>t.toLowerCase().includes(searchTerm.toLowerCase()));
-      return match;
-    });
-    filteredPacks = allPacks.filter(p=>{
-      const match = searchTerm==='' || p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    (p.tags || []).some(t=>t.toLowerCase().includes(searchTerm.toLowerCase()));
-      return match;
-    });
-    applySort();
-  }
-
-  function applySort(){
-    const sortFn = (a,b)=>{
-      if(sortMode==='price-asc') return parsePrice(a.price) - parsePrice(b.price);
-      if(sortMode==='price-desc') return parsePrice(b.price) - parsePrice(a.price);
-      if(sortMode==='name-asc') return a.name.localeCompare(b.name);
-      if(sortMode==='name-desc') return b.name.localeCompare(a.name);
-      return 0;
-    };
-    filteredVsts.sort(sortFn);
-    filteredPacks.sort(sortFn);
-    renderGrids();
-  }
-
-  function renderGrids(){
-    const vg = document.getElementById('vstGrid');
-    const pg = document.getElementById('partnerGrid');
-    const kg = document.getElementById('packsGrid');
-
-    vg.innerHTML = '';
-    pg.innerHTML = '';
-    kg.innerHTML = '';
-
-    filteredVsts.forEach(v=>{
-      (v.category === 'partner' ? pg : vg).appendChild(vstCard(v));
-    });
-    filteredPacks.forEach(p=>kg.appendChild(productCard(p)));
-  }
-
-  function productCard(p){
-    const badge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
-    const tags = (p.tags||[]).slice(0,2).map(t=>`<span class="tag">${t}</span>`).join('');
-    const old = p.old ? `<span class="old">€${p.old}</span>` : '';
-    const soon = String(p.price).toUpperCase()==='SOON';
-    const priceHtml = soon ? `<span class="now" style="font-size:.82rem;color:var(--text-3)">Coming soon</span>`
-                     : p.free ? `<span class="now" style="color:var(--green)">FREE</span>`
-                     : String(p.price).startsWith('~') ? `<span class="now" style="font-size:.86rem">${p.price}</span>`
-                     : `<span class="now">€${p.price}</span>${old}`;
-    const el=document.createElement('article');
-    el.className='card';
-    const thumb = p.thumb || p.img;
-    const media = `<div class="card-media">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}"></div>`;
-    el.innerHTML = `
-      ${media}
-      <div class="card-body">
-        <h3 class="card-title">${p.name}</h3>
-        <div class="card-tags">${tags}</div>
-        <div class="card-foot">
-          <div class="price">${priceHtml}</div>
-          <button class="btn-cta" onclick="addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-cart-plus"></i> Add</button>
-        </div>
-      </div>`;
-    return el;
-  }
-
-  // Initial render
+  // Render both catalogs into the unified Shop — FLAT grids (no sub-headers)
+  // so several products show per row, like a real producer shop.
   (function(){
     const vg = document.getElementById('vstGrid');
     const pg = document.getElementById('partnerGrid');
-    allVsts.forEach(function(v){
+    (window.VSTS || []).forEach(function(v){
+      // Keep partner gear (FL Studio, Apeshyt…) out of my own catalog
       (v.category === 'partner' ? pg : vg).appendChild(vstCard(v));
     });
   })();
   renderPacks(window.PACKS, 'packsGrid');
-
-  // Search and sort handlers
-  document.getElementById('searchInput').addEventListener('input', function(e){
-    searchTerm = e.target.value;
-    applyFilter();
-  });
-
-  document.getElementById('sortSelect').addEventListener('change', function(e){
-    sortMode = e.target.value;
-    applySort();
-  });
 
   // Tab switcher: All / VST / Drum Kits
   (function(){
