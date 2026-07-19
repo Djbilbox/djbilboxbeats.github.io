@@ -6,8 +6,8 @@
 <title>Beats — DJBILBOX BEATS</title>
 <meta name="description" content="Browse 475+ DJBILBOX beats — Oriental, Trap, Drill, House, G-Funk. Free for profit & premium licenses.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26071818">
-<link rel="stylesheet" href="assets/css/modern-effects.css?v=26071818">
+<link rel="stylesheet" href="assets/css/theme.css?v=26071902">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26071902">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -17,18 +17,46 @@
 <!-- ============ PAGE ============ -->
 <main class="container" style="padding-top:24px">
 
-  <!-- page heading + search -->
-  <div class="section-head" style="margin-top:16px">
-    <div>
-      <div class="eyebrow">Free for profit · Instant licenses</div>
-      <h2>All Beats</h2>
+  <!-- PAGE HERO -->
+  <div style="margin-bottom:40px">
+    <div class="section-head" style="margin-top:16px;margin-bottom:20px">
+      <div>
+        <div class="eyebrow">🎵 Free for Profit · Instant Licenses</div>
+        <h1 style="font-size:2.2rem;font-weight:700;text-transform:uppercase;margin:.3em 0">All Beats</h1>
+        <p style="color:var(--text-2);margin-top:.5em;font-size:1.02rem">475+ original beats across Trap, Drill, Oriental, G-Funk, House and more</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <span style="font-size:.78rem;color:var(--text-3)" id="beatCount">…</span>
+        <div style="position:relative">
+          <i class="fa-solid fa-magnifying-glass" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-4);font-size:.8rem"></i>
+          <input type="text" placeholder="Search a beat…" oninput="searchBeats(this.value,'beatsGrid')"
+            style="background:var(--surface-2);border:1px solid var(--border);border-radius:9px;padding:10px 14px 10px 34px;color:var(--text);font-size:.82rem;width:220px">
+        </div>
+      </div>
     </div>
-    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-      <span style="font-size:.78rem;color:var(--text-3)" id="beatCount">…</span>
-      <div style="position:relative">
-        <i class="fa-solid fa-magnifying-glass" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-4);font-size:.8rem"></i>
-        <input type="text" placeholder="Search a beat…" oninput="searchBeats(this.value,'beatsGrid')"
-          style="background:var(--surface-2);border:1px solid var(--border);border-radius:9px;padding:10px 14px 10px 34px;color:var(--text);font-size:.82rem;width:220px">
+
+    <!-- BROWSE BY GENRE -->
+    <div style="margin-bottom:40px">
+      <h2 style="font-family:var(--font-a);font-size:1.3rem;font-weight:700;text-transform:uppercase;margin-bottom:16px;letter-spacing:.04em">🎯 Browse By Genre</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px">
+        <a href="https://www.youtube.com/playlist?list=PLbtcZhy947NWPo2By2t2H61RhRnFFLYpg" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);transition:.2s;font-weight:600;font-size:.85rem;text-align:center">
+          <i class="fa-solid fa-microphone" style="font-size:1.8rem;color:var(--accent)"></i>Hip-Hop / Trap / Drill
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLbtcZhy947NUC6PqUplrygUgHJSTvS61u" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);transition:.2s;font-weight:600;font-size:.85rem;text-align:center">
+          <i class="fa-solid fa-music" style="font-size:1.8rem;color:var(--accent)"></i>Oriental / Arabic
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLbtcZhy947NW5vq7XI-R0nB5rnSMesR8B" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);transition:.2s;font-weight:600;font-size:.85rem;text-align:center">
+          <i class="fa-solid fa-guitar" style="font-size:1.8rem;color:var(--accent)"></i>Funk / G-Funk
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLbtcZhy947NUF9V0rVWzY_-gl1Cy8vw5r" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);transition:.2s;font-weight:600;font-size:.85rem;text-align:center">
+          <i class="fa-solid fa-spa" style="font-size:1.8rem;color:var(--accent)"></i>Deep House / DnB
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLbtcZhy947NWiDl_Pn4FBpUl71dzhOnj_" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);transition:.2s;font-weight:600;font-size:.85rem;text-align:center">
+          <i class="fa-solid fa-drum" style="font-size:1.8rem;color:var(--accent)"></i>Afrotrap
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLbtcZhy947NUiD1Em2SVzcvNiDaGG8u9-" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);transition:.2s;font-weight:600;font-size:.85rem;text-align:center">
+          <i class="fa-solid fa-waveform-lines" style="font-size:1.8rem;color:var(--accent)"></i>Remixes
+        </a>
       </div>
     </div>
   </div>
@@ -147,7 +175,7 @@
 <!-- ============ SCRIPTS ============ -->
 <script src="assets/js/beats-data.js"></script>
 <script src="assets/js/youtube-data.js?v=26070519"></script>
-<script src="assets/js/site.js?v=26071901"></script>
+<script src="assets/js/site.js?v=26071902"></script>
 <script src="assets/js/chat.js"></script>
 <script>
   renderBeats(window.BEATS,'beatsGrid');         // render all 475 beats (genre pills removed)
