@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free VST — DJBILBOX BEATS</title>
-<meta name="description" content="Fiche d'information d'un VST gratuit recommandé par DJBILBOX BEATS — description, points forts et lien de téléchargement officiel.">
+<meta name="description" content="Info page for a free VST recommended by DJBILBOX BEATS — description, highlights and official download link.">
 <link rel="icon" href="favicon.png">
 <link rel="stylesheet" href="assets/css/theme.css?v=26071908">
 <link rel="stylesheet" href="assets/css/modern-effects.css?v=26071908">
@@ -41,12 +41,12 @@
 <body data-page="shop">
 
 <main class="pi-wrap" id="piWrap">
-  <a href="shop.html" class="pi-back"><i class="fa-solid fa-arrow-left"></i> Retour au shop</a>
+  <a href="shop.html" class="pi-back"><i class="fa-solid fa-arrow-left"></i> Back to shop</a>
   <div id="piContent"></div>
 </main>
 
-<script src="assets/js/vst-data.js?v=26071908"></script>
-<script src="assets/js/free-vst-info.js?v=26071908"></script>
+<script src="assets/js/vst-data.js?v=26071911"></script>
+<script src="assets/js/free-vst-info.js?v=26071911"></script>
 <script src="assets/js/site.js?v=26071901"></script>
 <script src="assets/js/chat.js"></script>
 <script>
@@ -58,9 +58,9 @@
   var box = document.getElementById('piContent');
 
   if(!base || !info){
-    box.innerHTML = '<h1 class="pi-title">Plugin introuvable</h1>'+
-      '<p class="pi-lead">Ce VST gratuit n\'existe pas ou n\'a pas encore de fiche. '+
-      '<a href="shop.html" style="color:var(--accent);font-weight:700">Retour au shop</a>.</p>';
+    box.innerHTML = '<h1 class="pi-title">Plugin not found</h1>'+
+      '<p class="pi-lead">This free VST does not exist or has no page yet. '+
+      '<a href="shop.html" style="color:var(--accent);font-weight:700">Back to shop</a>.</p>';
     return;
   }
 
@@ -69,9 +69,9 @@
   var esc = function(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); };
   var name = base.name.split('—')[0].trim();
   var subtitle = (base.name.split('—')[1]||'').trim();
-  var kind = base.sub === 'instrument' ? 'Synthé / Instrument gratuit'
-           : base.sub === 'vocal'      ? 'Vocoder / Talkbox gratuit'
-           : 'Effet gratuit';
+  var kind = base.sub === 'instrument' ? 'Free synth / instrument'
+           : base.sub === 'vocal'      ? 'Free vocoder / talkbox'
+           : 'Free effect';
 
   var tags = (base.tags||[]).map(function(t){ return '<span class="pi-tag">'+esc(t)+'</span>'; }).join('');
   var feats = (info.feats||[]).map(function(f){
@@ -82,21 +82,21 @@
     '<div class="pi-hero">'+
       '<img src="'+base.img+'" alt="'+esc(name)+' VST plugin">'+
       '<div>'+
-        '<div class="pi-eyebrow">'+kind+' · recommandé par DJBILBOX</div>'+
+        '<div class="pi-eyebrow">'+kind+' · recommended by DJBILBOX</div>'+
         '<h1 class="pi-title">'+esc(name)+'</h1>'+
         (subtitle ? '<div class="pi-tags">'+tags+'</div>' : '<div class="pi-tags">'+tags+'</div>')+
         '<p class="pi-lead">'+esc(info.long)+'</p>'+
-        '<div class="pi-price">GRATUIT</div>'+
-        '<a class="pi-cta" href="'+base.url+'" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> Télécharger gratuitement</a>'+
+        '<div class="pi-price">FREE</div>'+
+        '<a class="pi-cta" href="'+base.url+'" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> Download for free</a>'+
       '</div>'+
     '</div>'+
-    '<h2 class="pi-h2">Points forts</h2>'+
+    '<h2 class="pi-h2">Highlights</h2>'+
     '<div class="feat-grid">'+feats+'</div>'+
     '<div class="pi-more">'+
-      '<a href="'+base.url+'" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Site officiel '+esc(info.dev)+'</a>'+
+      '<a href="'+base.url+'" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Official site — '+esc(info.dev)+'</a>'+
     '</div>'+
-    '<p class="pi-note">'+esc(name)+' est un plugin tiers développé par '+esc(info.dev)+', que j\'utilise et recommande. '+
-      'Le téléchargement se fait sur le site officiel de l\'éditeur.</p>';
+    '<p class="pi-note">'+esc(name)+' is a third-party plugin by '+esc(info.dev)+', which I use and recommend. '+
+      'Download it from the developer\'s official website.</p>';
 })();
 </script>
 </body>
