@@ -33,25 +33,20 @@ const NAV = [
   { key:'shop',        label:'Shop',        href:'/shop.html',           icon:'fa-store' },
   { key:'setup',       label:'Info',        href:'/studio-setup.html',   icon:'fa-circle-info' },
   { key:'twitch',      label:'Twitch',      href:'/twitch.html',         icon:'fa-brands fa-twitch' },
-  { key:'services',    label:'Services',    href:'/services.html',       icon:'fa-headphones' },
   { key:'contact',     label:'Contact',     href:'/contact.html',        icon:'fa-envelope' },
   { key:'account',     label:'My Account',  href:'/account.html',        icon:'fa-user' },
-  { key:'reviews',     label:'Reviews',     href:'/reviews.html',        icon:'fa-star' },
   { key:'license',     label:'License',     href:'/license.html',        icon:'fa-id-card' },
-  { key:'news',        label:'News',        href:'/news.html',           icon:'fa-newspaper' },
 ];
 
 function mountSidebar(active){
   if(document.querySelector('.sidebar')) return;
-  const browseItems = NAV.slice(0, 6);
-  const libraryItems = NAV.slice(6);
+  const browseItems = NAV.slice(0, 4);
+  const libraryItems = NAV.slice(4);
   const links =
     `<div class="side-section-label">Browse</div>` +
     browseItems.map(n=>
       `<a href="${n.href}"${n.key===active?' class="active"':''}><i class="fa-solid ${n.icon}"></i> ${n.label}</a>`
     ).join('') +
-    `<a href="#" onclick="document.getElementById('aiChat')?.classList.toggle('open');return false;"><i class="fa-solid fa-robot"></i> AI Chat</a>` +
-    `<a href="/blog.html"><i class="fa-solid fa-newspaper"></i> Blog</a>` +
     `<div class="side-section-label">Library</div>` +
     libraryItems.map(n=>
       `<a href="${n.href}"${n.key===active?' class="active"':''}><i class="fa-solid ${n.icon}"></i> ${n.label}</a>`
