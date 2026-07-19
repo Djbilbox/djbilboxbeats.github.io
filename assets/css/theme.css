@@ -108,7 +108,7 @@ img{display:block;max-width:100%}
    CARD GRID — products / beats / VST
    ============================================================ */
 .grid{display:grid;gap:8px;
-  grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+  grid-template-columns:repeat(auto-fill,minmax(95px,1fr))}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);
   overflow:hidden;display:flex;flex-direction:column;transition:.22s ease;position:relative}
 .card:hover{transform:translateY(-4px);border-color:rgba(255,45,45,.4);
