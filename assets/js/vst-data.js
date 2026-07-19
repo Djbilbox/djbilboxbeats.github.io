@@ -93,5 +93,94 @@ window.VSTS = [
     desc:"The full professional VirtualDJ for performing, streaming and commercial use — unlocks every feature and all hardware. Monthly subscription or a Pro Infinity lifetime licence.",
     note:"Pro version · subscription or Pro Infinity" },
 
-  /* Free plugins are listed individually on the Info page (studio-setup.html). */
+  /* ========== FREE VST — recommended free plugins (not mine, external downloads) ========== */
+  { name:"Vital — Spectral Synth", img:"img/vst/free/vital.svg", category:"free",
+    tags:["Spectral Wavetable Synth","VST3 · AU · Win/Mac"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://vital.audio/",
+    desc:"Synthétiseur spectral haut de gamme — la version gratuite complète est l'un des meilleurs synthés wavetable disponibles.",
+    note:"Free download · version gratuite complète" },
+
+  { name:"Zebralette — Mini Synth (u-he)", img:"img/vst/free/zebralette.svg", category:"free",
+    tags:["Mini modular synth","u-he · Zebra oscillator"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://u-he.com/products/zebralette/",
+    desc:"Le mini synthé modulaire d'u-he basé sur un oscillateur de Zebra — parfait pour débuter avec la synthèse u-he.",
+    note:"Free download · by u-he" },
+
+  { name:"Surrealistic MG-1 Plus — Moog Emulation", img:"img/vst/free/mg1.svg", category:"free",
+    tags:["Moog emulation","Cherry Audio · analog"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://cherryaudio.com/products/mg-1-plus",
+    desc:"Émulation gratuite du célèbre synthétiseur analogique Moog Realistic par Cherry Audio — basses et leads chauds.",
+    note:"Free download · by Cherry Audio" },
+
+  { name:"Drum8 — Hip-Hop Drum Rompler", img:"img/vst/free/drum8.svg", category:"free",
+    tags:["Drum rompler","Hip-Hop · Trap kits"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://www.audiolatry.com/plugins/drum8",
+    desc:"Rompler de batterie virtuel contenant de nombreux kits hip-hop et trap prêts à l'emploi, par Audiolatry.",
+    note:"Free download · by Audiolatry" },
+
+  { name:"OTT — Multiband Compressor", img:"img/vst/free/ott.svg", category:"free",
+    tags:["Multiband compressor","Xfer Records"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://xferrecords.com/freeware",
+    desc:"Le célèbre compresseur multiband par Xfer Records — indispensable pour obtenir le gros son moderne.",
+    note:"Free download · by Xfer Records" },
+
+  { name:"CamelCrusher — Distortion", img:"img/vst/free/camelcrusher.svg", category:"free",
+    tags:["Distortion · Compressor","Legendary 'fat' tone"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://www.kvraudio.com/product/camelcrusher-by-camel-audio",
+    desc:"Distorsion / compresseur légendaire au son \"fat\", disponible gratuitement en version legacy.",
+    note:"Free download · legacy version" },
+
+  { name:"ValhallaSupermassive — Reverb / Delay", img:"img/vst/free/supermassive.svg", category:"free",
+    tags:["Giant reverb & delay","Valhalla DSP"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://valhalladsp.com/shop/reverb/valhalla-supermassive/",
+    desc:"Un des meilleurs plug-ins gratuits au monde pour les reverbes géantes et les delays massifs.",
+    note:"Free download · by Valhalla DSP" },
+
+  { name:"ValhallaFreqEcho — Freq Delay", img:"img/vst/free/freqecho.svg", category:"free",
+    tags:["Frequency-shift delay","Valhalla DSP"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://valhalladsp.com/shop/delay/valhalla-freq-echo/",
+    desc:"Un delay à décalage de fréquence parfait pour les effets psychédéliques et le sound design.",
+    note:"Free download · by Valhalla DSP" },
+
+  { name:"ValhallaSpaceModulator — Flanger", img:"img/vst/free/spacemodulator.svg", category:"free",
+    tags:["Flanger · spatialisation","Valhalla DSP"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://valhalladsp.com/shop/modulation/valhalla-space-modulator/",
+    desc:"Flanger / effet de spatialisation gratuit de chez Valhalla — modulation extrême et effets stéréo.",
+    note:"Free download · by Valhalla DSP" },
+
+  { name:"Graillon 3 — Auto-Tune", img:"img/vst/free/graillon.svg", category:"free",
+    tags:["Pitch correction","Auburn Sounds · real-time"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://www.auburnsounds.com/products/Graillon.html",
+    desc:"La version gratuite de Graillon par Auburn Sounds offre un excellent pitch correction / auto-tune en temps réel.",
+    note:"Free download · by Auburn Sounds" },
+
+  { name:"MAutoPitch — Pitch Correction", img:"img/vst/free/mautopitch.svg", category:"free",
+    tags:["Pitch correct · auto-tune","MeldaProduction"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://www.meldaproduction.com/MAutoPitch",
+    desc:"L'effet de correction de pitch et d'auto-tune gratuit ultra-complet de MeldaProduction.",
+    note:"Free download · by MeldaProduction" },
+
+  { name:"TAL-Vocoder-2 — Vintage Vocoder", img:"img/vst/free/talvocoder.svg", category:"free",
+    tags:["Vintage vocoder","TAL Software · 80s"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://tal-software.com/products/tal-vocoder",
+    desc:"Émulation de vocodeur vintage analogique des années 80 par TAL Software — voix robotiques classiques.",
+    note:"Free download · by TAL Software" },
+
+  { name:"T-De-Esser 2 — De-Esser", img:"img/vst/free/tdeesser.svg", category:"free",
+    tags:["De-esser · vocals","Techivation"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://techivation.com/t-de-esser/",
+    desc:"Un de-esser moderne, simple et transparent créé par Techivation — contrôle les sifflantes en un clic.",
+    note:"Free download · by Techivation" },
+
+  { name:"Surge XT Effects — FX Rack", img:"img/vst/free/surgext.svg", category:"free",
+    tags:["Full FX rack","Open-source synth"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://surge-synthesizer.github.io/",
+    desc:"Le rack d'effets complet issu du synthétiseur open-source Surge XT — reverbs, delays, distortions et plus.",
+    note:"Free download · open-source" },
+
+  { name:"NeuralQ — EQ / Saturation", img:"img/vst/free/neuralq.svg", category:"free",
+    tags:["EQ · saturation","Analog Obsession · neural"], price:"0", free:true, badge:"✅ FREE",
+    url:"https://analogobsession.com/",
+    desc:"Égaliseur et saturateur basé sur un modèle de réseau de neurones par Analog Obsession — chaleur analogique.",
+    note:"Free download · by Analog Obsession" },
 ];
