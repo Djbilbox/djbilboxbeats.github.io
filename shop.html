@@ -62,7 +62,20 @@
       </div>
       <a href="studio-setup.html#free" class="see-all">All free tools →</a>
     </div>
-    <div class="grid" id="freeGrid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr))"></div>
+
+    <!-- Synths & Instruments -->
+    <h3 style="font-family:var(--font-a);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;margin:8px 0 14px;display:flex;align-items:center;gap:10px;color:var(--text)">
+      🎹 Synths &amp; Instruments
+      <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)"></span>
+    </h3>
+    <div class="grid" id="freeInstGrid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr));margin-bottom:32px"></div>
+
+    <!-- Effects -->
+    <h3 style="font-family:var(--font-a);font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;margin:8px 0 14px;display:flex;align-items:center;gap:10px;color:var(--text)">
+      🎚️ Effects
+      <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)"></span>
+    </h3>
+    <div class="grid" id="freeFxGrid" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr))"></div>
   </section>
 
   <!-- ===== DRUM KITS ===== -->
@@ -117,7 +130,7 @@
 </div>
 
 <!-- ============ SCRIPTS ============ -->
-<script src="assets/js/vst-data.js?v=26071905"></script>
+<script src="assets/js/vst-data.js?v=26071906"></script>
 <script src="assets/js/packs-data.js?v=26071804"></script>
 <script src="assets/js/site.js?v=26071905"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -128,15 +141,20 @@
   // Render both catalogs into the unified Shop — FLAT grids (no sub-headers)
   // so several products show per row, like a real producer shop.
   (function(){
-    const vg = document.getElementById('vstGrid');
-    const pg = document.getElementById('partnerGrid');
-    const fg = document.getElementById('freeGrid');
+    const vg  = document.getElementById('vstGrid');
+    const pg  = document.getElementById('partnerGrid');
+    const fiG = document.getElementById('freeInstGrid');
+    const ffG = document.getElementById('freeFxGrid');
     (window.VSTS || []).forEach(function(v){
-      // Route each product: free VSTs → free grid, partner gear → partner grid,
-      // everything else (my own paid VSTs) → the premium grid.
-      const target = v.category === 'free' ? fg
-                   : v.category === 'partner' ? pg
-                   : vg;
+      // Route each product to the right grid:
+      //  - free synths/instruments → free instruments grid
+      //  - free effects            → free effects grid
+      //  - partner gear (FL, VDJ…) → partner grid
+      //  - everything else (my paid VSTs) → premium grid
+      let target;
+      if(v.category === 'free')      target = (v.sub === 'instrument') ? fiG : ffG;
+      else if(v.category === 'partner') target = pg;
+      else                            target = vg;
       target.appendChild(vstCard(v));
     });
   })();
