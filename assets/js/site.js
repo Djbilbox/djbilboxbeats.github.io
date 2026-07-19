@@ -32,7 +32,6 @@ const NAV = [
   { key:'music',       label:'Music',       href:'/beats-redesign.html', icon:'fa-music' },
   { key:'shop',        label:'Shop',        href:'/shop.html',           icon:'fa-store' },
   { key:'setup',       label:'Info',        href:'/studio-setup.html',   icon:'fa-circle-info' },
-  { key:'twitch',      label:'Twitch',      href:'/twitch.html',         icon:'fa-brands fa-twitch' },
   { key:'contact',     label:'Contact',     href:'/contact.html',        icon:'fa-envelope' },
   { key:'account',     label:'My Account',  href:'/account.html',        icon:'fa-user' },
   { key:'license',     label:'License',     href:'/license.html',        icon:'fa-id-card' },
@@ -40,8 +39,8 @@ const NAV = [
 
 function mountSidebar(active){
   if(document.querySelector('.sidebar')) return;
-  const browseItems = NAV.slice(0, 4);
-  const libraryItems = NAV.slice(4);
+  const browseItems = NAV.slice(0, 3);
+  const libraryItems = NAV.slice(3);
   const links =
     `<div class="side-section-label">Browse</div>` +
     browseItems.map(n=>
