@@ -740,6 +740,70 @@ window.PRODUCTS = {
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["Afrobeat & Reggae drum loops","Organic percussion loops","Live-feel, tempo-labeled grooves","Works in all DAWs"]
+  },
+
+  "neon-synth-80s": {
+    type:"vst", name:"NEON SYNTH 80s", sub:"Synthwave Polysynth — 6 Presets",
+    tagline:"Neon-soaked synthwave polysynth inspired by the golden age of 80s synth culture — lush leads, evolving pads, and pure nostalgic vibes.",
+    cover:"img/vst/neon-synth-80s.jpg", accent:"#ff1493", accent2:"#00ffff",
+    price:"0", badge:"🆕 FREE",
+    note:"Completely free · 6 presets · VST3 + Standalone",
+    buy:"neon-synth-80s-free",
+    video:"", poster:"img/vst/neon-synth-80s.jpg",
+    gallery:["img/vst/neon-synth-80s-ui.jpg","img/vst/neon-synth-80s-interface.jpg"],
+    tags:["Synthwave","Synth","Free","VST3","80s"],
+    about:[
+      "NEON SYNTH 80s is a synthwave powerhouse wrapped in authentic 80s neon aesthetics. Built from scratch with a dual-oscillator engine and a full effects chain, it delivers lush, evolving pads, haunting leads, and that unmistakable warm analog glow of vintage synthesizers.",
+      "Six factory presets capture the essence of synthwave: NEON LEAD, OUTRUN BASS, DREAM PAD, RETRO PLUCK, MIAMI BRASS, and INIT. Drop it into your DAW and you're already in a sun-drenched cityscape at midnight.",
+      "Completely free. No limitations. Pure synthwave inspiration."
+    ],
+    features:[
+      {icon:"fa-wave-square", t:"Dual-oscillator engine", d:"Detunable analog-modelled oscillators with rich harmonic control."},
+      {icon:"fa-sliders", t:"FX chain built-in", d:"Reverb, delay, chorus and drive — the full synthwave arsenal."},
+      {icon:"fa-music", t:"6 factory presets", d:"NEON LEAD, OUTRUN BASS, DREAM PAD, RETRO PLUCK, MIAMI BRASS, INIT."},
+      {icon:"fa-gauge-high", t:"Lightweight & fast", d:"Optimised DSP keeps your CPU cool even with multiple instances."}
+    ],
+    specs:[
+      {k:"Formats", v:"VST3 · Standalone"},
+      {k:"Platform", v:"Windows 10/11 (64-bit)"},
+      {k:"Polyphony", v:"Up to 16 voices"},
+      {k:"Presets", v:"6 factory presets included"},
+      {k:"Engine", v:"Dual oscillator + full FX chain"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["NEON SYNTH 80s VST3 (64-bit)","NEON SYNTH 80s Standalone app","6 factory presets","Quick-start PDF guide"]
+  },
+
+  "mastering": {
+    type:"vst", name:"MASTERING", sub:"Professional VST3 Mastering Limiter",
+    tagline:"Oxford-inspired mastering limiter for transparent peak control and loudness maximization — studio-quality mastering in one plugin.",
+    cover:"img/vst/mastering.jpg", accent:"#8b4513", accent2:"#d2b48c",
+    price:"10", badge:"🆕 New",
+    note:"Professional mastering · €10",
+    buy:"mastering-vst3-limiter",
+    video:"", poster:"img/vst/mastering.jpg",
+    gallery:["img/vst/mastering-ui.jpg","img/vst/mastering-interface.jpg"],
+    tags:["Mastering","Limiter","Effect","VST3"],
+    about:[
+      "MASTERING is a professional-grade mastering limiter plugin inspired by the legendary Oxford Limiter. Delivering powerful peak limiting and loudness maximization for your master bus, it features an analog-modeled circuit with transparent sound shaping and true professional-grade metering.",
+      "Perfect for mixing engineers, mastering professionals, and music producers seeking pristine master sound. Whether working on electronic, pop, hip-hop, or any genre, MASTERING ensures your tracks translate perfectly across all playback systems.",
+      "Get studio-quality mastering in a single plugin."
+    ],
+    features:[
+      {icon:"fa-sliders", t:"Transparent adaptive limiting", d:"Precise peak control with natural, musical sound shaping."},
+      {icon:"fa-eye", t:"Adjustable lookahead", d:"Perfect transient control and zero distortion on peaks."},
+      {icon:"fa-chart-line", t:"Integrated metering", d:"Real-time gain reduction visualization for surgical precision."},
+      {icon:"fa-gauge-high", t:"Low-latency processing", d:"Perfect for real-time monitoring and mastering workflows."}
+    ],
+    specs:[
+      {k:"Formats", v:"VST3 · Standalone"},
+      {k:"Platform", v:"Windows 10/11 (64-bit)"},
+      {k:"Type", v:"Mastering Limiter"},
+      {k:"Metering", v:"Real-time gain reduction display"},
+      {k:"Install", v:"Instant download · drag & drop VST3"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["MASTERING VST3 (64-bit)","MASTERING Standalone app","Full documentation (PDF)","User manual & quick-start guide"]
   }
 
 };
