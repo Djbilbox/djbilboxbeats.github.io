@@ -25,6 +25,11 @@ window.VSTS = [
     buy:"ocpoej/SOLDES80", demo:"",
     note:"Code SOLDES80 · -80% Summer Sale" },
 
+  { id:"mastering", name:"MASTERING — Oxford-Style VST3 Limiter", img:"img/vst/mastering.jpg", category:"effect",
+    tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], price:"10", badge:"🆕 New",
+    buy:"mastering", demo:"",
+    note:"Transparent Oxford-style mastering limiter · studio-quality peak control" },
+
   /* ========== INSTRUMENTS ========== */
   { id:"oriental-instrument", name:"Oriental Instrument — Full Version (280+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
     tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"13.80", old:"69", badge:"🔥 -80%",
@@ -43,6 +48,11 @@ window.VSTS = [
     buy:"ykdzli/SOLDES80", demo:"",
     preview:"assets/products/vice-city/vice-city-card.mp4",
     note:"Code SOLDES80 · 70 presets · -80% Summer Sale" },
+
+  { id:"neon-synth-80s", name:"NEON SYNTH 80s — Synthwave Polysynth", img:"img/vst/neon-synth-80s.jpg", category:"instrument",
+    tags:["Synthwave · 80s","6 Presets","VST3 · Standalone"], price:"0", free:true, badge:"✅ FREE",
+    buy:"neon-synth-80s", demo:"",
+    note:"100% FREE · dual-oscillator synth · 6 synthwave presets" },
 
   /* ========== PARTNER GEAR — FL Studio & Apeshyt (separate from my own products) ========== */
   { name:"FL STUDIO 26 — Fruity Edition", img:"img/vst/fl-fruity.jpg", category:"partner",
