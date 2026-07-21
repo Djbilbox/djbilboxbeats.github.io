@@ -43,11 +43,11 @@ window.PRODUCTS = {
   /* ===================== BUNDLE ===================== */
   "free-bundle": {
     type:"bundle", name:"ALL VST PACK", sub:"All 5 VSTs in One Bundle",
-    tagline:"Get all 5 DJBILBOX VST plugins in one pack — the complete collection at -80%.",
+    tagline:"Get all 5 DJBILBOX VST plugins in one pack — the complete collection (€173 value) for €49.",
     cover:"img/vst/all-vst-pack.jpg", accent:"#27ae60", accent2:"#2ecc71",
-    price:"34.60", old:"173", badge:"🔥 -80%",
-    note:"Code SOLDES80 · All 5 VSTs (total value €173) · Best deal",
-    buy:"djbilbox-free-bundle", demo:"",
+    price:"49", old:"173", badge:"🔥 -72%",
+    note:"All 5 VSTs (total value €173) in one pack · Best deal",
+    buy:"zufkrv", demo:"",
     video:"", poster:"img/vst/all-vst-pack.jpg",
     /* Listed below the fold so buyers can also grab any single plugin on its own. */
     bundleItems:[
@@ -59,7 +59,7 @@ window.PRODUCTS = {
     ],
     tags:["5 VST Plugins","Effects + Instruments","Complete Pack","Best Deal"],
     about:[
-      "Get all 5 DJBILBOX VST plugins in one download — the complete collection at -80% with code SOLDES80. Perfect for producers who want the full DJBILBOX sound in one purchase.",
+      "Get all 5 DJBILBOX VST plugins in one download — the complete collection (€173 value) for €49. Perfect for producers who want the full DJBILBOX sound in one purchase.",
       "This bundle includes the full MATRIX MODULAR stereo effect, MACHINA audio processor, BIGBASS lowrider bass instrument, Vice City synthwave instrument, plus the Oriental Instrument with 280+ sounds."
     ],
     features:[
@@ -67,7 +67,7 @@ window.PRODUCTS = {
       {icon:"fa-music", t:"Effects & Instruments", d:"Stereo modulation, distortion/delay, bass, synth & 280+ oriental instruments."},
       {icon:"fa-download", t:"One-Click Download", d:"Download everything at once — no separate purchases needed."},
       {icon:"fa-star", t:"Professional Quality", d:"Same quality as individually purchased plugins — nothing watered down."},
-      {icon:"fa-percent", t:"-80% Best Deal", d:"All 5 VSTs (total value €173) for €34.60 with code SOLDES80."}
+      {icon:"fa-percent", t:"Bundle Deal", d:"All 5 VSTs — total value €173 — bundled together for €49."}
     ],
     specs:[
       {k:"Bundle Contents", v:"5 complete VST plugins + Oriental Demo"},

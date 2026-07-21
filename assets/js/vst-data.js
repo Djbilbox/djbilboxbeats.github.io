@@ -10,9 +10,9 @@
 window.VSTS = [
   /* ========== BUNDLE ========== */
   { id:"all-vst-pack", name:"🎁 ALL VST PACK — Every VST in One", img:"img/vst/all-vst-pack.jpg", category:"bundle",
-    tags:["Oriental Instrument · Machina","Matrix · BigBass · Vice City","5 VSTs in 1 pack"], price:"34.60", old:"173", badge:"🔥 -80%",
-    buy:"zufkrv/SOLDES80", demo:"",
-    note:"Code SOLDES80 · All 5 VSTs (total value €173) · Best deal" },
+    tags:["Oriental Instrument · Machina","Matrix · BigBass · Vice City","5 VSTs in 1 pack"], price:"49", old:"173", badge:"🔥 -72%",
+    buy:"zufkrv", demo:"",
+    note:"All 5 VSTs (total value €173) in one pack · Best deal" },
 
   /* ========== EFFECTS ========== */
   { id:"machina", name:"MACHINA EFFECT — Energy Drink for Your Sound", img:"img/vst/machina-vst.jpg", category:"effect",
