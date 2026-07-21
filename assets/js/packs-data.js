@@ -68,7 +68,7 @@ window.PACKS = [
 
   { id:"break-ya-neck-vol2", name:"Break Ya Neck — Hip-Hop Vol.2", img:"img/packs/break-ya-neck-vol2.jpg",
     genre:"Hip-Hop", tags:["Hip-Hop","Drum Loops"], price:"2.20", old:"11", badge:"🔥 -80%",
-    buy:"ntscu/SOLDES80" },
+    buy:"break-ya-neck-vol2/SOLDES80" },
 
   { id:"ziploc-vol3", name:"Ziploc — Blue Pack Vol.3", img:"img/packs/ziploc-vol3.jpg",
     genre:"Afrotrap", tags:["Afrotrap","Hip-Hop","Trap"], price:"2.40", old:"12", badge:"🔥 -80%",
