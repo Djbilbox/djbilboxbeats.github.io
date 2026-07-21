@@ -139,29 +139,45 @@
 <script src="assets/js/modern-animations.js?v=26071803" defer></script>
 <script src="assets/js/chat.js?v=26071911"></script>
 <script>
-  // Render both catalogs into the unified Shop — FLAT grids (no sub-headers)
-  // so several products show per row, like a real producer shop.
+  // Render both catalogs into the unified Shop.
+  // Free + partner gear → their own grids. My paid VSTs → premium grid,
+  // split into EFFECTS vs SYNTHS & INSTRUMENTS sub-sections, kept in release order
+  // (array order in vst-data.js = oldest → newest).
   (function(){
     const vg  = document.getElementById('vstGrid');
     const pg  = document.getElementById('partnerGrid');
     const fiG = document.getElementById('freeInstGrid');
     const fvG = document.getElementById('freeVocalGrid');
     const ffG = document.getElementById('freeFxGrid');
+
+    // 1) Free + partner gear go to their dedicated grids
     (window.VSTS || []).forEach(function(v){
-      // Route each product to the right grid:
-      //  - free synths/instruments   → free instruments grid
-      //  - free vocoder/talkbox/vocal → free vocal grid
-      //  - free effects              → free effects grid
-      //  - partner gear (FL, VDJ…)   → partner grid
-      //  - everything else (my paid VSTs) → premium grid
-      let target;
-      if(v.category === 'free')      target = (v.sub === 'instrument') ? fiG
-                                            : (v.sub === 'vocal')      ? fvG
-                                            : ffG;
-      else if(v.category === 'partner') target = pg;
-      else                            target = vg;
-      target.appendChild(vstCard(v));
+      if(v.category === 'free'){
+        const target = (v.sub === 'instrument') ? fiG : (v.sub === 'vocal') ? fvG : ffG;
+        target.appendChild(vstCard(v));
+      } else if(v.category === 'partner'){
+        pg.appendChild(vstCard(v));
+      }
     });
+
+    // 2) My paid VSTs → premium grid, grouped by type (release order preserved)
+    const paid        = (window.VSTS || []).filter(v => v.category !== 'free' && v.category !== 'partner');
+    const bundles     = paid.filter(v => v.category === 'bundle');
+    const effects     = paid.filter(v => v.category === 'effect');
+    const instruments = paid.filter(v => v.category === 'instrument' || !v.category);
+
+    function subHead(label){
+      const h = document.createElement('h3');
+      h.style.cssText = 'grid-column:1/-1;margin:6px 0 2px;font-family:var(--font-a,sans-serif);'
+        + 'font-weight:800;font-size:1.05rem;text-transform:uppercase;letter-spacing:.06em;'
+        + 'color:var(--accent-bright,#FF6633);display:flex;align-items:center;gap:10px';
+      h.innerHTML = label + '<span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(230,0,0,.45),transparent)"></span>';
+      vg.appendChild(h);
+    }
+
+    if(bundles.length)    { subHead('🎁 Bundle');               bundles.forEach(v=>vg.appendChild(vstCard(v))); }
+    if(effects.length)    { subHead('⚙️ Effects');              effects.forEach(v=>vg.appendChild(vstCard(v))); }
+    if(instruments.length){ subHead('🎹 Synths &amp; Instruments'); instruments.forEach(v=>vg.appendChild(vstCard(v))); }
   })();
   renderPacks(window.PACKS, 'packsGrid');
 
