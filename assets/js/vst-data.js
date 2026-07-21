@@ -25,10 +25,10 @@ window.VSTS = [
     buy:"ocpoej/SOLDES80", demo:"",
     note:"Code SOLDES80 · -80% Summer Sale" },
 
-  { id:"mastering", name:"MASTERING — Oxford-Style VST3 Limiter", img:"img/vst/mastering.jpg", category:"effect",
+  { id:"mastering", name:"MASTERING — Pro VST3 Mastering Limiter", img:"img/vst/mastering.jpg", category:"effect",
     tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], price:"10", badge:"🆕 New",
     buy:"mastering", demo:"",
-    note:"Transparent Oxford-style mastering limiter · studio-quality peak control" },
+    note:"Transparent mastering limiter · studio-quality peak control" },
 
   /* ========== INSTRUMENTS ========== */
   { id:"oriental-instrument", name:"Oriental Instrument — Full Version (280+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",

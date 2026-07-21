@@ -776,7 +776,7 @@ window.PRODUCTS = {
 
   "mastering": {
     type:"vst", name:"MASTERING", sub:"Professional VST3 Mastering Limiter",
-    tagline:"Oxford-inspired mastering limiter for transparent peak control and loudness maximization — studio-quality mastering in one plugin.",
+    tagline:"Professional mastering limiter for transparent peak control and loudness maximization — studio-quality mastering in one plugin.",
     cover:"img/vst/mastering.jpg", accent:"#8b4513", accent2:"#d2b48c",
     price:"10", badge:"🆕 New",
     note:"Professional mastering · €10",
@@ -785,7 +785,7 @@ window.PRODUCTS = {
     gallery:["img/vst/mastering-ui.jpg","img/vst/mastering-interface.jpg"],
     tags:["Mastering","Limiter","Effect","VST3"],
     about:[
-      "MASTERING is a professional-grade mastering limiter plugin inspired by the legendary Oxford Limiter. Delivering powerful peak limiting and loudness maximization for your master bus, it features an analog-modeled circuit with transparent sound shaping and true professional-grade metering.",
+      "MASTERING is a professional-grade mastering limiter plugin built for producers who want a loud, clean master. Delivering powerful peak limiting and loudness maximization for your master bus, it features an analog-modeled circuit with transparent sound shaping and true professional-grade metering.",
       "Perfect for mixing engineers, mastering professionals, and music producers seeking pristine master sound. Whether working on electronic, pop, hip-hop, or any genre, MASTERING ensures your tracks translate perfectly across all playback systems.",
       "Get studio-quality mastering in a single plugin."
     ],
