@@ -10,41 +10,41 @@
 window.VSTS = [
   /* ========== BUNDLE ========== */
   { id:"all-vst-pack", name:"🎁 ALL VST PACK — Every VST in One", img:"img/vst/all-vst-pack.jpg", category:"bundle",
-    tags:["Oriental Instrument · Machina","Matrix · BigBass · Vice City","5 VSTs in 1 pack"], price:"49", old:"173", badge:"🔥 -72%",
+    tags:["Oriental Instrument · Machina","Matrix · BigBass · Vice City","5 VSTs in 1 pack"], price:"53.90", old:"190.30", badge:"🔥 -72%",
     buy:"zufkrv", demo:"",
-    note:"All 5 VSTs (total value €173) in one pack · Best deal" },
+    note:"All 5 VSTs (total value $190.30) in one pack · Best deal" },
 
   /* ========== EFFECTS ========== */
   { id:"machina", name:"MACHINA EFFECT — Energy Drink for Your Sound", img:"img/vst/machina-vst.jpg", category:"effect",
-    tags:["Distortion · Delay · Filter","VST3 · AU · Win/Mac"], price:"3.60", old:"18", badge:"🔥 -80%",
+    tags:["Distortion · Delay · Filter","VST3 · AU · Win/Mac"], price:"3.96", old:"19.80", badge:"🔥 -80%",
     buy:"lbceu/SOLDES80", demo:"",
     note:"Code SOLDES80 · -80% Summer Sale" },
 
   { id:"matrix-modular", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
-    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"3.60", old:"18", badge:"🔥 -80%",
+    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"3.96", old:"19.80", badge:"🔥 -80%",
     buy:"ocpoej/SOLDES80", demo:"",
     note:"Code SOLDES80 · -80% Summer Sale" },
 
   { id:"mastering", name:"MASTERING — Pro VST3 Mastering Limiter", img:"img/vst/mastering.jpg", category:"effect",
-    tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], price:"10", badge:"🆕 New",
+    tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], price:"11", badge:"🆕 New",
     buy:"mastering", demo:"",
     note:"Transparent mastering limiter · studio-quality peak control" },
 
   /* ========== INSTRUMENTS ========== */
   { id:"oriental-instrument", name:"Oriental Instrument — Full Version (280+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
-    tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"13.80", old:"69", badge:"🔥 -80%",
+    tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"15.18", old:"75.90", badge:"🔥 -80%",
     buy:"oriental-instrument-djbilbox-beats/SOLDES80",
     demo:"oriental-instrument-demo-free-Download",
     thumb:"assets/products/oriental-instrument/oriental-instrument-card.jpg",
     note:"Code SOLDES80 · Full 280+ instruments · -80% Summer Sale" },
 
   { id:"bigbass", name:"BIGBASS — LA Lowrider Bass", img:"img/vst/bigbass-vst.jpg", category:"instrument",
-    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], price:"5.80", old:"29", badge:"🔥 -80%",
+    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], price:"6.38", old:"31.90", badge:"🔥 -80%",
     buy:"xaziro/SOLDES80", demo:"",
     note:"Code SOLDES80 · 808 · 3 bass modes · -80% Summer Sale" },
 
   { id:"vice-city", name:"Vice City — VST Synthesizer", img:"img/vst/vice-city-vst.jpg", category:"instrument",
-    tags:["Synthwave","VST3 · Standalone"], price:"7.80", old:"39", badge:"🔥 -80%",
+    tags:["Synthwave","VST3 · Standalone"], price:"8.58", old:"42.90", badge:"🔥 -80%",
     buy:"ykdzli/SOLDES80", demo:"",
     preview:"assets/products/vice-city/vice-city-card.mp4",
     note:"Code SOLDES80 · 70 presets · -80% Summer Sale" },
@@ -56,25 +56,25 @@ window.VSTS = [
 
   /* ========== PARTNER GEAR — FL Studio & Apeshyt (separate from my own products) ========== */
   { name:"FL STUDIO 26 — Fruity Edition", img:"img/vst/fl-fruity.jpg", category:"partner",
-    tags:["Entry DAW","Sequencer · Piano roll"], price:"~€89", badge:"🍊 FL Studio", detail:"fl-studio.html",
+    tags:["Entry DAW","Sequencer · Piano roll"], price:"~$97.90", badge:"🍊 FL Studio", detail:"fl-studio.html",
     url:"https://www.image-line.com/fl-studio/",
     desc:"Compose with the playlist, piano roll, step sequencer and automation, plus the core instruments & effects. Built for beat-making — note it can't record or edit audio tracks.",
     note:"The DAW I use · lifetime free updates" },
 
   { name:"FL STUDIO 26 — Producer Edition", img:"img/vst/fl-producer.jpg", category:"partner",
-    tags:["Most popular","Audio recording + automation"], price:"~€189", badge:"⭐ Most Popular", detail:"fl-studio.html",
+    tags:["Most popular","Audio recording + automation"], price:"~$207.90", badge:"⭐ Most Popular", detail:"fl-studio.html",
     url:"https://www.image-line.com/fl-studio/",
     desc:"Everything in Fruity plus full audio recording & editing, the Edison editor and the complete mixer with sidechain. The full toolkit I make every DJBILBOX beat on.",
     note:"My main edition · lifetime free updates" },
 
   { name:"FL STUDIO 26 — Signature Bundle", img:"img/vst/fl-signature.jpg", category:"partner",
-    tags:["Producer + signature plugins","Gross Beat · Harmless · Newtone"], price:"~€289", badge:"🍊 FL Studio", detail:"fl-studio.html",
+    tags:["Producer + signature plugins","Gross Beat · Harmless · Newtone"], price:"~$317.90", badge:"🍊 FL Studio", detail:"fl-studio.html",
     url:"https://www.image-line.com/fl-studio/",
     desc:"Producer Edition plus premium plugins: Harmless, Gross Beat, NewTone, Pitcher, DirectWave, Hardcore and more.",
     note:"Lifetime free updates" },
 
   { name:"FL STUDIO 26 — All Plugins Edition", img:"img/vst/fl-all-plugins.jpg", category:"partner",
-    tags:["The ultimate setup","Every Image-Line plugin"], price:"~€499", badge:"🍊 FL Studio", detail:"fl-studio.html",
+    tags:["The ultimate setup","Every Image-Line plugin"], price:"~$548.90", badge:"🍊 FL Studio", detail:"fl-studio.html",
     url:"https://www.image-line.com/fl-studio/",
     desc:"Signature Bundle plus every Image-Line native plugin — Harmor, Sytrus, Toxic Biohazard, Sakura, Morphine, PoiZone and the whole collection.",
     note:"Lifetime free updates" },
@@ -98,7 +98,7 @@ window.VSTS = [
     note:"Free demo · full app for home use" },
 
   { name:"VIRTUAL DJ — PRO", img:"img/vst/virtualdj-pro.jpg", category:"partner",
-    tags:["Pro · gigging DJs","All features unlocked"], price:"~€19/mo", badge:"🤝 Partner",
+    tags:["Pro · gigging DJs","All features unlocked"], price:"~$20.90/mo", badge:"🤝 Partner",
     url:"https://fr.virtualdj.com/buy/",
     desc:"The full professional VirtualDJ for performing, streaming and commercial use — unlocks every feature and all hardware. Monthly subscription or a Pro Infinity lifetime licence.",
     note:"Pro version · subscription or Pro Infinity" },
