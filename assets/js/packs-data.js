@@ -8,6 +8,10 @@
    ============================================================ */
 window.PACKS = [
   /* ---------- New release (2026) ---------- */
+  { id:"kit-drum-funk", name:"KIT DRUM FUNK — Professional Drum Kit", img:"img/packs/kit-drum-funk.jpg",
+    genre:"Funk", tags:["Funk","Drum Kit","MIDI","One-Shots"], price:"1.00", old:"5", badge:"🔥 -80%",
+    buy:"homeme/SOLDES80" },
+
   { id:"west-side", name:"WEST SIDE DRUM KIT — 2Pac, Snoop Dogg & The Game", img:"img/packs/west-side.jpg",
     genre:"West Coast", tags:["West Coast","G-Funk","Hip-Hop","MIDI"], price:"3.80", old:"19", badge:"🔥 -80%",
     buy:"west-side-drum-kit/SOLDES80" },
