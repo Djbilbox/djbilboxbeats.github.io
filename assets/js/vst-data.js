@@ -54,6 +54,11 @@ window.VSTS = [
     buy:"neon-synth-80s", demo:"",
     note:"100% FREE · dual-oscillator synth · 6 synthwave presets" },
 
+  { id:"oriental-instrument-free", name:"Oriental Instrument — Free Demo (50+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"free", sub:"instrument",
+    tags:["50+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"0", free:true, badge:"✅ FREE",
+    buy:"oriental-instrument-demo-free-Download", demo:"",
+    note:"100% FREE · Try 50+ instruments · Full version available" },
+
   /* ========== PARTNER GEAR — FL Studio & Apeshyt (separate from my own products) ========== */
   { name:"FL STUDIO 26 — Fruity Edition", img:"img/vst/fl-fruity.jpg", category:"partner",
     tags:["Entry DAW","Sequencer · Piano roll"], price:"~$97.90", badge:"🍊 FL Studio", detail:"fl-studio.html",
