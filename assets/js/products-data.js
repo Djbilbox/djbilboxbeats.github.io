@@ -15,7 +15,6 @@ window.PRODUCTS = {
     note:"37 one-shots · 36 MIDI · full stems · royalty-free",
     buy:"west-side-drum-kit",
     video:"nD2CfT4Ortw",
-    gallery:["img/packs/west-side-a.jpg","img/packs/west-side-b.jpg"],
     tags:["West Coast","G-Funk","Hip-Hop","MIDI","One-Shots"],
     about:[
       "WEST SIDE DRUM KIT is a full West Coast production toolkit inspired by the golden era of G-Funk and California hip-hop. Every sound is built from 8 legendary records by 2Pac, Snoop Dogg and The Game — recreated one-shot by one-shot, with matching MIDI drum patterns and full WAV stems so you can rebuild these classic grooves or flip them into something new.",
@@ -197,11 +196,6 @@ window.PRODUCTS = {
     note:"Code SOLDES80 · 70 presets · -80% Summer Sale",
     buy:"ykdzli", demo:"",
     video:"0dEw1R8ze4I",
-    gallery:["assets/products/vice-city/vice-city-poster.jpg",
-             "assets/products/vice-city/vice-city-1.jpg",
-             "assets/products/vice-city/vice-city-2.jpg"],
-    preview:"assets/products/vice-city/vice-city-preview.mp4",
-    previewPoster:"assets/products/vice-city/vice-city-poster.jpg",
     tags:["Synthwave","Retrowave","VST3","Standalone"],
     about:[
       "VICE CITY is a polyphonic synthwave engine built for producers chasing that sun-drenched, palm-tree-and-chrome Miami sound. Pads, leads, basses and arps — every patch drips with neon nostalgia and modern punch.",
@@ -232,9 +226,6 @@ window.PRODUCTS = {
     note:"50+ instruments sample · Full 280+ version available",
     buy:"oriental-instrument-demo-free-Download", demo:"",
     video:"", poster:"img/vst/oriental-instrument-box.jpg",
-    gallery:["assets/products/oriental-instrument/oriental-instrument-poster.jpg",
-             "assets/products/oriental-instrument/oriental-instrument-1.jpg",
-             "assets/products/oriental-instrument/oriental-instrument-2.jpg"],
     tags:["Oriental","Demo","Free","Win · Mac","Rompler"],
     about:[
       "Get a taste of ORIENTAL INSTRUMENT completely free. This demo includes 50+ authentic oriental instruments including oud, qanun, ney, and saz sounds.",
@@ -267,9 +258,6 @@ window.PRODUCTS = {
     buy:"oriental-instrument-djbilbox-beats/ORIENTAL50",
     demo:"oriental-instrument-demo-free-Download",
     video:"media/oriental-demo.mp4", poster:"media/oriental-poster.jpg",
-    gallery:["assets/products/oriental-instrument/oriental-instrument-poster.jpg",
-             "assets/products/oriental-instrument/oriental-instrument-1.jpg",
-             "assets/products/oriental-instrument/oriental-instrument-2.jpg"],
     tags:["Oriental","Arabic","280+ Instruments","Win · Mac","Rompler"],
     about:[
       "ORIENTAL INSTRUMENT puts 280+ authentic oriental instruments and sounds under your fingertips — oud, qanun, ney, saz, oriental strings, brass and live percussion, all multi-sampled and tuned for trap, afro, raï'n'b and cinematic productions. One plug-in, one window, the whole colour of the Middle East.",
@@ -750,7 +738,6 @@ window.PRODUCTS = {
     note:"Completely free · 6 presets · VST3 + Standalone",
     buy:"neon-synth-80s",
     video:"", poster:"img/vst/neon-synth-80s.jpg",
-    gallery:["img/vst/neon-synth-80s-ui.jpg","img/vst/neon-synth-80s-interface.jpg"],
     tags:["Synthwave","Synth","Free","VST3","80s"],
     about:[
       "NEON SYNTH 80s is a synthwave powerhouse wrapped in authentic 80s neon aesthetics. Built from scratch with a dual-oscillator engine and a full effects chain, it delivers lush, evolving pads, haunting leads, and that unmistakable warm analog glow of vintage synthesizers.",
@@ -782,7 +769,6 @@ window.PRODUCTS = {
     note:"Professional mastering · €10",
     buy:"mastering",
     video:"", poster:"img/vst/mastering.jpg",
-    gallery:["img/vst/mastering-ui.jpg","img/vst/mastering-interface.jpg"],
     tags:["Mastering","Limiter","Effect","VST3"],
     about:[
       "MASTERING is a professional-grade mastering limiter plugin built for producers who want a loud, clean master. Delivering powerful peak limiting and loudness maximization for your master bus, it features an analog-modeled circuit with transparent sound shaping and true professional-grade metering.",
