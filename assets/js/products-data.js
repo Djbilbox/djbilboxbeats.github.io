@@ -738,6 +738,7 @@ window.PRODUCTS = {
     note:"Completely free · 6 presets · VST3 + Standalone",
     buy:"neon-synth-80s",
     video:"", poster:"img/vst/neon-synth-80s.jpg",
+    gallery:["img/vst/neon-synth-80s-ui.jpg","img/vst/neon-synth-80s.jpg"],
     tags:["Synthwave","Synth","Free","VST3","80s"],
     about:[
       "NEON SYNTH 80s is a synthwave powerhouse wrapped in authentic 80s neon aesthetics. Built from scratch with a dual-oscillator engine and a full effects chain, it delivers lush, evolving pads, haunting leads, and that unmistakable warm analog glow of vintage synthesizers.",
