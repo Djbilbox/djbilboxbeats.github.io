@@ -159,7 +159,7 @@ function injectGA4(){
 function injectLanguageSwitcher(){
   if(document.getElementById('lang-switcher')) return;
   const s=document.createElement('script');
-  s.src='/assets/js/language-switcher.js';
+  s.src='/assets/js/language-switcher.js?v=26072416';
   document.head.appendChild(s);
 }
 

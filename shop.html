@@ -38,6 +38,22 @@
   </div>
 </div>
 
+<!-- ============ SEARCH & SORT ============ -->
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-controls">
+      <input type="text" id="searchInput" class="search-box" placeholder="Search products..." />
+      <select id="sortSelect" class="sort-select">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name-asc">Name: A-Z</option>
+        <option value="name-desc">Name: Z-A</option>
+      </select>
+    </div>
+  </div>
+</div>
+
 <main class="container" style="padding-top:8px">
 
   <!-- ===== VST PLUGINS (PAID) ===== -->
@@ -131,27 +147,63 @@
 </div>
 
 <!-- ============ SCRIPTS ============ -->
-<script src="assets/js/vst-data.js?v=26072013"></script>
-<script src="assets/js/packs-data.js?v=26072012"></script>
-<script src="assets/js/site.js?v=26071905"></script>
+<script src="assets/js/vst-data.js?v=26072416"></script>
+<script src="assets/js/packs-data.js?v=26072416"></script>
+<script src="assets/js/site.js?v=26072416"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/modern-animations.js?v=26071803" defer></script>
 <script src="assets/js/chat.js?v=26071911"></script>
 <script>
-  // Render both catalogs into the unified Shop.
-  // Free + partner gear → their own grids. My paid VSTs → premium grid,
-  // split into EFFECTS vs SYNTHS & INSTRUMENTS sub-sections, kept in release order
-  // (array order in vst-data.js = oldest → newest).
-  (function(){
-    const vg  = document.getElementById('vstGrid');
-    const pg  = document.getElementById('partnerGrid');
-    const fiG = document.getElementById('freeInstGrid');
-    const fvG = document.getElementById('freeVocalGrid');
-    const ffG = document.getElementById('freeFxGrid');
+  // ============================================================
+  // Unified Shop render with SEARCH + SORT.
+  // Featured (default) keeps release order & the Bundle/Effects/
+  // Synths sub-headers. Any price/name sort flattens the premium
+  // grid into one sorted list. Search filters every grid live.
+  // ============================================================
+  const vg  = document.getElementById('vstGrid');
+  const pg  = document.getElementById('partnerGrid');
+  const kg  = document.getElementById('packsGrid');
+  const fiG = document.getElementById('freeInstGrid');
+  const fvG = document.getElementById('freeVocalGrid');
+  const ffG = document.getElementById('freeFxGrid');
 
-    // 1) Free + partner gear go to their dedicated grids
-    (window.VSTS || []).forEach(function(v){
+  let sortMode = 'featured';
+  let searchTerm = '';
+
+  function parsePrice(v){
+    if(v && (v.free || String(v.price).toUpperCase()==='FREE')) return 0;
+    return parseFloat(String(v.price).replace(/[^0-9.]/g,'')) || 0;
+  }
+  function matchSearch(item){
+    if(searchTerm === '') return true;
+    const q = searchTerm.toLowerCase();
+    return (item.name||'').toLowerCase().includes(q)
+        || (item.tags||[]).some(t=>t.toLowerCase().includes(q));
+  }
+  function sortFn(a,b){
+    if(sortMode==='price-asc')  return parsePrice(a) - parsePrice(b);
+    if(sortMode==='price-desc') return parsePrice(b) - parsePrice(a);
+    if(sortMode==='name-asc')   return (a.name||'').localeCompare(b.name||'');
+    if(sortMode==='name-desc')  return (b.name||'').localeCompare(a.name||'');
+    return 0;
+  }
+  function subHead(label){
+    const h = document.createElement('h3');
+    h.style.cssText = 'grid-column:1/-1;margin:6px 0 2px;font-family:var(--font-a,sans-serif);'
+      + 'font-weight:800;font-size:1.05rem;text-transform:uppercase;letter-spacing:.06em;'
+      + 'color:var(--accent-bright,#FF6633);display:flex;align-items:center;gap:10px';
+    h.innerHTML = label + '<span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(230,0,0,.45),transparent)"></span>';
+    vg.appendChild(h);
+  }
+
+  function renderShop(){
+    [vg,pg,kg,fiG,fvG,ffG].forEach(g=>{ if(g) g.innerHTML=''; });
+    const vsts = (window.VSTS || []).filter(matchSearch);
+
+    // Free + partner gear → their dedicated grids (sorted when a sort is active)
+    const freeAndPartner = (sortMode==='featured') ? vsts : vsts.slice().sort(sortFn);
+    freeAndPartner.forEach(function(v){
       if(v.category === 'free'){
         const target = (v.sub === 'instrument') ? fiG : (v.sub === 'vocal') ? fvG : ffG;
         target.appendChild(vstCard(v));
@@ -160,26 +212,33 @@
       }
     });
 
-    // 2) My paid VSTs → premium grid, grouped by type (release order preserved)
-    const paid        = (window.VSTS || []).filter(v => v.category !== 'free' && v.category !== 'partner');
-    const bundles     = paid.filter(v => v.category === 'bundle');
-    const effects     = paid.filter(v => v.category === 'effect');
-    const instruments = paid.filter(v => v.category === 'instrument' || !v.category);
-
-    function subHead(label){
-      const h = document.createElement('h3');
-      h.style.cssText = 'grid-column:1/-1;margin:6px 0 2px;font-family:var(--font-a,sans-serif);'
-        + 'font-weight:800;font-size:1.05rem;text-transform:uppercase;letter-spacing:.06em;'
-        + 'color:var(--accent-bright,#FF6633);display:flex;align-items:center;gap:10px';
-      h.innerHTML = label + '<span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(230,0,0,.45),transparent)"></span>';
-      vg.appendChild(h);
+    // My paid + free-but-mine VSTs → premium grid
+    const mine = vsts.filter(v => v.category !== 'free' && v.category !== 'partner');
+    if(sortMode==='featured'){
+      const bundles     = mine.filter(v => v.category === 'bundle');
+      const effects     = mine.filter(v => v.category === 'effect');
+      const instruments = mine.filter(v => v.category === 'instrument' || !v.category);
+      if(bundles.length)    { subHead('🎁 Bundle');                bundles.forEach(v=>vg.appendChild(vstCard(v))); }
+      if(effects.length)    { subHead('⚙️ Effects');               effects.forEach(v=>vg.appendChild(vstCard(v))); }
+      if(instruments.length){ subHead('🎹 Synths &amp; Instruments'); instruments.forEach(v=>vg.appendChild(vstCard(v))); }
+    } else {
+      mine.slice().sort(sortFn).forEach(v=>vg.appendChild(vstCard(v)));
     }
 
-    if(bundles.length)    { subHead('🎁 Bundle');               bundles.forEach(v=>vg.appendChild(vstCard(v))); }
-    if(effects.length)    { subHead('⚙️ Effects');              effects.forEach(v=>vg.appendChild(vstCard(v))); }
-    if(instruments.length){ subHead('🎹 Synths &amp; Instruments'); instruments.forEach(v=>vg.appendChild(vstCard(v))); }
-  })();
-  renderPacks(window.PACKS, 'packsGrid');
+    // Drum kits
+    let packs = (window.PACKS || []).filter(matchSearch);
+    if(sortMode!=='featured') packs = packs.slice().sort(sortFn);
+    renderPacks(packs, 'packsGrid');
+  }
+
+  renderShop();
+
+  document.getElementById('searchInput').addEventListener('input', function(e){
+    searchTerm = e.target.value; renderShop();
+  });
+  document.getElementById('sortSelect').addEventListener('change', function(e){
+    sortMode = e.target.value; renderShop();
+  });
 
   // Tab switcher: All / VST / Drum Kits
   (function(){

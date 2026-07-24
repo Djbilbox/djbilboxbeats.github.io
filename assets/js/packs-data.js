@@ -12,7 +12,7 @@ window.PACKS = [
     genre:"Funk", tags:["Funk","Drum Kit","MIDI","One-Shots"], price:"1.10", old:"5.50", badge:"🔥 -80%",
     buy:"homeme/SOLDES80" },
 
-  { id:"west-side", name:"WEST SIDE DRUM KIT — 2Pac, Snoop Dogg & The Game", img:"img/packs/west-side.jpg",
+  { id:"west-side", name:"KIT DRUM WEST SIDE — 2Pac, Snoop Dogg & The Game", img:"img/packs/west-side.jpg",
     genre:"West Coast", tags:["West Coast","G-Funk","Hip-Hop","MIDI"], price:"4.18", old:"20.90", badge:"🔥 -80%",
     buy:"west-side-drum-kit/SOLDES80" },
 

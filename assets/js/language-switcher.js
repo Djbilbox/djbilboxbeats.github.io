@@ -4,9 +4,9 @@
    Google banner is hidden; the choice persists via the googtrans cookie.
    ============================================================ */
 (function () {
-  const langs = ['en', 'fr', 'ar', 'ja', 'ru'];
-  const flags = { en: '🇬🇧', fr: '🇫🇷', ar: '🇸🇦', ja: '🇯🇵', ru: '🇷🇺' };
-  const names = { en: 'English', fr: 'Français', ar: 'العربية', ja: '日本語', ru: 'Русский' };
+  const langs = ['en', 'fr', 'es', 'pt', 'ar', 'ja', 'ru'];
+  const flags = { en: '🇬🇧', fr: '🇫🇷', es: '🇪🇸', pt: '🇵🇹', ar: '🇸🇦', ja: '🇯🇵', ru: '🇷🇺' };
+  const names = { en: 'English', fr: 'Français', es: 'Español', pt: 'Português', ar: 'العربية', ja: '日本語', ru: 'Русский' };
 
   function currentLang() {
     const m = document.cookie.match(/googtrans=\/[^/]+\/([a-z]{2})/);

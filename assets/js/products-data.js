@@ -8,7 +8,7 @@ window.PRODUCTS = {
 
   /* ===================== NEW RELEASE ===================== */
   "west-side": {
-    type:"kit", name:"WEST SIDE DRUM KIT", sub:"2Pac × Snoop Dogg × The Game — West Coast Drum Kit",
+    type:"kit", name:"KIT DRUM WEST SIDE", sub:"2Pac × Snoop Dogg × The Game — West Coast Drum Kit",
     tagline:"The ultimate West Coast drum kit — one-shots, MIDI patterns & full stems from 8 legendary G-Funk records.",
     cover:"img/packs/west-side.jpg", accent:"#e8a33d", accent2:"#2e6fd6",
     price:"8", badge:"🆕 New",
@@ -17,7 +17,7 @@ window.PRODUCTS = {
     video:"nD2CfT4Ortw",
     tags:["West Coast","G-Funk","Hip-Hop","MIDI","One-Shots"],
     about:[
-      "WEST SIDE DRUM KIT is a full West Coast production toolkit inspired by the golden era of G-Funk and California hip-hop. Every sound is built from 8 legendary records by 2Pac, Snoop Dogg and The Game — recreated one-shot by one-shot, with matching MIDI drum patterns and full WAV stems so you can rebuild these classic grooves or flip them into something new.",
+      "KIT DRUM WEST SIDE is a full West Coast production toolkit inspired by the golden era of G-Funk and California hip-hop. Every sound is built from 8 legendary records by 2Pac, Snoop Dogg and The Game — recreated one-shot by one-shot, with matching MIDI drum patterns and full WAV stems so you can rebuild these classic grooves or flip them into something new.",
       "Inside you'll find 37 punchy drum one-shots — kicks, snares, claps, hi-hats, cymbals, shakers, triangle and scratch/FX — plus 36 MIDI drum patterns mapped track by track. Drag the MIDI onto your own sounds, load the one-shots in your sampler, or study the stems to hear exactly how these timeless beats were made.",
       "From Hail Mary to How We Do, load up your lowrider and ride down the West Side. Name your price and download it 100% royalty-free."
     ],
