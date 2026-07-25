@@ -32,7 +32,7 @@ window.VSTS = [
 
   /* ========== INSTRUMENTS ========== */
   { id:"oriental-instrument", name:"Oriental Instrument — Full Version (280+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
-    tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"15.18", old:"75.90", badge:"🔥 -80%",
+    tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"13.80", old:"69", badge:"🔥 -80%",
     buy:"oriental-instrument-djbilbox-beats/SOLDES80",
     demo:"oriental-instrument-demo-free-Download",
     thumb:"assets/products/oriental-instrument/oriental-instrument-card.jpg",

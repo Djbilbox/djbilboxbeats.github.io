@@ -15,7 +15,7 @@ Audio Plugin Formats : VST3, AU, Standalone
 Plugin Type : Instrument/Sampler
 License : Commercial
 Evaluation Version : Yes (free demo)
-Price (approx) : EUR 49 (currently -50% = €24.50)
+Price (approx) : EUR 69 (currently -80% = €13.80 with code SOLDES80)
 
 Product Description :
 280+ authentic oriental instruments & sounds in one professional VST3 plugin.

@@ -35,7 +35,7 @@ const vstProducts = [
     slug: 'oriental-instrument',
     title: 'Oriental Instrument — 280+ Sounds',
     desc: '280+ authentic oriental instruments & sounds. Oud, qanun, ney, saz.',
-    price: '24.50',
+    price: '13.80',
     gumroad: 'https://djbilboxbeats.gumroad.com/l/oriental-instrument-djbilbox-beats',
     icon: '🎺'
   },
