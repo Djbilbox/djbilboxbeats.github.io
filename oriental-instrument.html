@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://djbilboxbeats.com/oriental-instrument.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26072630">
+<link rel="stylesheet" href="assets/css/theme.css?v=26072640">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script type="application/ld+json">
@@ -103,10 +103,58 @@
   background:radial-gradient(ellipse at 50% 0%,rgba(232,181,77,.22),transparent 70%);
   filter:blur(26px);pointer-events:none
 }
+/* ---------- ENTRANCE ANIMATIONS ----------
+   Elements start shifted + transparent and are released by an
+   IntersectionObserver adding .in. Staggering is done with a
+   --d custom property so the markup stays clean.            */
+.rv{opacity:0;transform:translateY(34px);
+  transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);
+  transition-delay:var(--d,0ms)}
+.rv.in{opacity:1;transform:none}
+.rv-l{opacity:0;transform:translateX(-40px);
+  transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);
+  transition-delay:var(--d,0ms)}
+.rv-l.in{opacity:1;transform:none}
+.rv-s{opacity:0;transform:scale(.94);
+  transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);
+  transition-delay:var(--d,0ms)}
+.rv-s.in{opacity:1;transform:none}
+/* Fade only — for .ori-stage, which carries the `perspective` for the
+   3D panel. Any transform on that element disturbs the 3D context, so
+   this variant deliberately animates opacity alone. */
+.rv-f{opacity:0;transition:opacity .8s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0ms)}
+.rv-f.in{opacity:1}
+
+/* headline letters sweep once on load */
+.ori-logo{background-size:220% auto}
+.ori-logo .ori-gold{background-size:220% auto;animation:oriShine 7s linear infinite}
+@keyframes oriShine{0%{background-position:0% center}100%{background-position:220% center}}
+
+/* slow drifting glow behind the hero, nudged by scroll */
+.ori-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0}
+.ori-orb-1{width:560px;height:560px;top:-160px;right:-120px;
+  background:radial-gradient(circle,rgba(232,181,77,.22),transparent 70%);
+  animation:oriDrift 17s ease-in-out infinite}
+.ori-orb-2{width:420px;height:420px;bottom:-140px;left:-90px;
+  background:radial-gradient(circle,rgba(184,90,20,.18),transparent 70%);
+  animation:oriDrift 23s ease-in-out infinite reverse}
+@keyframes oriDrift{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(38px,-26px) scale(1.07)}
+  66%{transform:translate(-26px,22px) scale(.95)}
+}
+.ori-hero > .ori-in{position:relative;z-index:1}
+
+/* the stats band counts up */
+.ori-band-cell b{font-variant-numeric:tabular-nums}
+
 /* respect users who ask for less motion */
 @media(prefers-reduced-motion:reduce){
   .ori-3d{transform:rotateY(calc(var(--dir) * 16deg))!important}
   .ori-3d::after{display:none}
+  .rv,.rv-l,.rv-s,.rv-f{opacity:1!important;transform:none!important;transition:none}
+  .ori-orb{animation:none}
+  .ori-logo .ori-gold{animation:none}
 }
 
 /* ---------- HERO ---------- */
@@ -202,6 +250,8 @@
 
   <!-- ==================== HERO ==================== -->
   <section class="ori-hero">
+    <div class="ori-orb ori-orb-1" aria-hidden="true"></div>
+    <div class="ori-orb ori-orb-2" aria-hidden="true"></div>
     <div class="ori-in ori-hero-grid">
       <div>
         <div class="ori-eyebrow">DJBILBOX BEATS · Flagship plug-in</div>
@@ -406,8 +456,8 @@
 
 </div>
 
-<script src="assets/js/language-switcher.js?v=26072630"></script>
-<script src="assets/js/site.js?v=26072630"></script>
+<script src="assets/js/language-switcher.js?v=26072640"></script>
+<script src="assets/js/site.js?v=26072640"></script>
 <script src="assets/js/chat.js?v=26071911"></script>
 
 <script>
@@ -463,6 +513,127 @@
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll, {passive:true});
   frame();
+})();
+
+/* ============================================================
+   ENTRANCE CHOREOGRAPHY
+   Tags the page's blocks with .rv/.rv-l/.rv-s + a stagger delay,
+   then releases them with an IntersectionObserver. Doing the
+   tagging in JS keeps the markup readable and means the page is
+   fully visible if this script never runs.
+   ============================================================ */
+(function oriReveal(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  /* [selector, class, stagger step in ms] */
+  var groups = [
+    ['.ori-hero .ori-eyebrow, .ori-logo, .ori-tag, .ori-lead, .ori-price, .ori-cta, .ori-hero .ori-compat', 'rv-l', 90],
+    ['.ori-band-cell',   'rv',   80],
+    ['.ori-cat',         'rv-s', 60],
+    ['.ori-preset',      'rv-s', 35],
+    ['.ori-list li',     'rv-l', 70],
+    ['.ori-plan',        'rv',  120],
+    ['.ori-split h2, .ori-split .ori-eyebrow, .ori-split > .ori-in > p', 'rv', 0],
+    ['.ori-final .ori-eyebrow, .ori-final h2, .ori-final .ori-btn', 'rv', 80],
+    ['.ori-stage',       'rv-f', 0]
+  ];
+
+  groups.forEach(function(g){
+    var els = document.querySelectorAll(g[0]);
+    for(var i=0;i<els.length;i++){
+      if(els[i].classList.contains('rv')||els[i].classList.contains('rv-l')
+         ||els[i].classList.contains('rv-s')||els[i].classList.contains('rv-f')) continue;
+      els[i].classList.add(g[1]);
+      if(g[2]) els[i].style.setProperty('--d', Math.min(i*g[2], 480) + 'ms');
+    }
+  });
+
+  var hidden = document.querySelectorAll('.rv,.rv-l,.rv-s,.rv-f');
+
+  function revealAll(){
+    for(var i=0;i<hidden.length;i++) hidden[i].classList.add('in');
+  }
+
+  if(!('IntersectionObserver' in window)){ revealAll(); return; }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+
+  for(var i=0;i<hidden.length;i++) io.observe(hidden[i]);
+
+  /* Hero is already on screen at load — release it straight away
+     so it animates in rather than waiting for a scroll. */
+  requestAnimationFrame(function(){
+    document.querySelectorAll('.ori-hero .rv,.ori-hero .rv-l,.ori-hero .rv-s,.ori-hero .rv-f')
+      .forEach(function(el){ el.classList.add('in'); });
+  });
+
+  /* WATCHDOG — the reveal classes are applied by this script, so if
+     the observer never fires (throttled tab, odd embedded webview,
+     compositing paused) every tagged element would stay at opacity 0
+     and the page would read as blank. Force everything visible after
+     a beat; the animation is a bonus, the content is not optional. */
+  setTimeout(revealAll, 2500);
+})();
+
+/* ============================================================
+   COUNT-UP on the stats band, fired once when it scrolls in.
+   ============================================================ */
+(function oriCounters(){
+  var cells = document.querySelectorAll('.ori-band-cell b');
+  if(!cells.length) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      io.unobserve(e.target);
+
+      var el = e.target;
+      var raw = el.textContent.trim();
+      var target = parseInt(raw.replace(/\D/g,''), 10);
+      if(!target) return;
+      var suffix = raw.replace(/[\d\s]/g,'');   // keeps a trailing "+"
+      var dur = 1100, t0 = null;
+
+      function tick(ts){
+        if(t0 === null) t0 = ts;
+        var p = Math.min((ts - t0) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);     // ease-out cubic
+        el.textContent = Math.round(target * eased) + suffix;
+        if(p < 1) requestAnimationFrame(tick);
+      }
+      el.textContent = '0' + suffix;
+      requestAnimationFrame(tick);
+    });
+  }, {threshold:0.5});
+
+  cells.forEach(function(c){ io.observe(c); });
+})();
+
+/* ============================================================
+   PARALLAX — the hero orbs drift against the scroll, which is
+   what sells the depth on the reference site.
+   ============================================================ */
+(function oriParallax(){
+  var orbs = document.querySelectorAll('.ori-orb');
+  if(!orbs.length) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var ticking = false;
+  function frame(){
+    ticking = false;
+    var y = window.scrollY;
+    if(y > window.innerHeight * 1.4) return;    // hero is long gone
+    orbs[0].style.translate = '0 ' + (y * 0.18).toFixed(1) + 'px';
+    if(orbs[1]) orbs[1].style.translate = '0 ' + (y * -0.10).toFixed(1) + 'px';
+  }
+  window.addEventListener('scroll', function(){
+    if(ticking) return; ticking = true; requestAnimationFrame(frame);
+  }, {passive:true});
 })();
 </script>
 </body>

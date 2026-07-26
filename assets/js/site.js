@@ -153,7 +153,11 @@ const FOOTER_COLS = [
   { t:'For Creators', links:[
     ['Free Beats','/beats-redesign.html'],
     ['Free VST Plugins','/free-vst.html'],
-    ['Free Bundle','/free-bundle.html'],
+    /* free-bundle.html is only a redirect stub to vst.html — link the
+       real free pack instead of bouncing the visitor through it.
+       URL written out: BIG_PACK is declared further down this file, so
+       referencing it here would hit the const temporal dead zone. */
+    ['931 Beats Free Pack', 'https://djbilboxbeats.gumroad.com/l/djbilbox-beats-big-pack-931-beats'],
     ['Academy (Discord)', DISCORD_URL],
     ['Mix & Master','/services.html'],
     ['Global Cities','/locations/index.html'],
