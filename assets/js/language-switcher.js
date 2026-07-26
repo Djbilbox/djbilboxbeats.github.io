@@ -52,16 +52,21 @@
     box.id = 'lang-switcher';
     box.className = 'notranslate';
     box.setAttribute('translate', 'no');
-    box.style.cssText = 'position:fixed;top:16px;right:16px;z-index:2000;background:var(--surface-2);' +
-      'border:1px solid var(--accent);border-radius:10px;padding:6px;display:flex;gap:3px;' +
-      'box-shadow:0 6px 20px rgba(0,0,0,.35)';
+    /* Sits BELOW the fixed top bar — at top:16px it used to overlap
+       the header. Neutral border so it stops shouting. */
+    box.style.cssText = 'position:fixed;top:calc(var(--hdr-h, 68px) + 12px);right:14px;z-index:900;' +
+      'background:rgba(19,19,21,.92);backdrop-filter:blur(10px);' +
+      'border:1px solid var(--border);border-radius:999px;padding:4px;display:flex;gap:2px;' +
+      'box-shadow:0 6px 20px rgba(0,0,0,.4);opacity:.75;transition:opacity .2s';
+    box.onmouseenter = () => { box.style.opacity = '1'; };
+    box.onmouseleave = () => { box.style.opacity = '.75'; };
     langs.forEach(code => {
       const b = document.createElement('button');
       b.dataset.lang = code;
       b.textContent = flags[code];
       b.title = names[code];
-      b.style.cssText = 'background:transparent;border:1px solid transparent;padding:5px 9px;' +
-        'border-radius:6px;cursor:pointer;font-size:.92rem;font-weight:700;color:var(--text-2);transition:.15s';
+      b.style.cssText = 'background:transparent;border:1px solid transparent;padding:4px 8px;' +
+        'border-radius:999px;cursor:pointer;font-size:.76rem;font-weight:700;color:var(--text-3);transition:.15s';
       b.onclick = () => setLang(code);
       box.appendChild(b);
     });

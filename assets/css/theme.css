@@ -7,12 +7,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap');
 
 :root{
-  /* ---- DARK THEME — JOKA BEATS: bold red & orange ---- */
-  --bg:#0c0714; --surface:#151022; --surface-2:#1d1530; --surface-3:#2a1f42;
-  --accent:#E60000; --accent-h:#B30000; --accent-glow:rgba(230,0,0,.16);
-  --accent-bright:#FF6633; --accent-plat:#E5E4E2; --accent-chrome:#C0C0C0;
-  --green:#1DB954; --text:#f4f4f7; --text-2:#c6c6d2; --text-3:#9595a4; --text-4:#646471;
-  --border:rgba(255,255,255,.1);
+  /* ---- DARK THEME — neutral black, white type, one warm accent.
+     The old JOKA red/purple is kept below, commented, so the whole
+     palette can be reverted by swapping the two blocks. ---- */
+  --bg:#0A0A0B; --surface:#131315; --surface-2:#1B1B1E; --surface-3:#26262A;
+  --accent:#F5B921; --accent-h:#D89E0E; --accent-glow:rgba(245,185,33,.14);
+  --accent-bright:#FFD45E; --accent-plat:#E5E4E2; --accent-chrome:#C0C0C0;
+  --green:#1DB954; --text:#FFFFFF; --text-2:#B8B8BD; --text-3:#8A8A92; --text-4:#5F5F67;
+  --border:rgba(255,255,255,.09);
+  /* previous: --bg:#0c0714 --surface:#151022 --accent:#E60000 --accent-bright:#FF6633 */
   --r:8px; --rl:14px;
   --font:'Inter',sans-serif; --font-a:'Rajdhani',sans-serif;
   --hdr-h:68px; --subnav-h:54px; --side-w:0px; --mtop-h:0px;
@@ -33,10 +36,10 @@ img{display:block;max-width:100%}
 /* ============================================================
    HERO v2 (homepage) — product-led split hero.
    ============================================================ */
-.hero2{position:relative;overflow:hidden;padding:66px 0 34px;
+.hero2{position:relative;overflow:hidden;padding:72px 0 40px;
   background:
-    radial-gradient(1000px 560px at 78% 30%,rgba(230,0,0,.13),transparent 62%),
-    radial-gradient(720px 480px at 6% 92%,rgba(255,102,51,.1),transparent 66%),
+    radial-gradient(1000px 560px at 78% 30%,rgba(245,185,33,.09),transparent 62%),
+    radial-gradient(720px 480px at 6% 92%,rgba(255,255,255,.035),transparent 66%),
     var(--bg)}
 .hero2-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
   gap:48px;align-items:center}
@@ -44,7 +47,7 @@ img{display:block;max-width:100%}
   text-transform:uppercase;color:var(--accent);margin-bottom:16px}
 .hero2-title{font-family:var(--font-a);font-weight:700;text-transform:none;
   font-size:clamp(2.1rem,5vw,3.9rem);line-height:1.02;letter-spacing:-.01em;margin-bottom:18px}
-.hero2-title span{background:linear-gradient(100deg,#FF6633,var(--accent));
+.hero2-title span{background:linear-gradient(100deg,var(--accent-bright),var(--accent));
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .hero2-sub{color:var(--text-2);font-size:1.04rem;line-height:1.65;max-width:52ch;margin-bottom:26px}
 .hero2-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
@@ -56,7 +59,7 @@ img{display:block;max-width:100%}
 .hero2-art{perspective:1200px}
 .hero2-art img{width:100%;border-radius:16px;
   transform:rotateY(-7deg) rotateX(2deg);transition:transform .6s cubic-bezier(.2,.7,.2,1);
-  filter:drop-shadow(0 30px 70px rgba(0,0,0,.85)) drop-shadow(0 0 70px rgba(230,0,0,.18))}
+  filter:drop-shadow(0 30px 70px rgba(0,0,0,.85)) drop-shadow(0 0 70px rgba(245,185,33,.14))}
 .hero2-art:hover img{transform:rotateY(-2deg) rotateX(0) scale(1.02)}
 @media(max-width:900px){
   .hero2-grid{grid-template-columns:1fr;gap:30px}
@@ -379,14 +382,17 @@ img{display:block;max-width:100%}
 /* ============================================================
    STICKY PROMO BANNER (bottom)
    ============================================================ */
-.promo-bar{position:fixed;left:var(--side-w);right:0;bottom:0;z-index:1100;
-  background:linear-gradient(90deg,var(--accent),var(--accent-h));color:#fff;
+/* Dark bar, accent used only on the wording — a full-width saturated
+   band was competing with the hero. */
+.promo-bar{position:fixed;left:0;right:0;bottom:0;z-index:1100;
+  background:rgba(16,16,18,.96);backdrop-filter:blur(12px);
+  border-top:1px solid var(--border);color:var(--text-2);
   display:flex;align-items:center;justify-content:center;gap:14px;
-  padding:11px 18px;font-size:.8rem;font-weight:600;text-align:center}
-.promo-bar strong{font-weight:800;text-transform:uppercase;letter-spacing:.03em}
-.promo-bar .promo-cta{background:#000;color:#fff;font-weight:800;font-size:.72rem;text-transform:uppercase;
-  padding:7px 15px;border-radius:6px;letter-spacing:.04em;white-space:nowrap}
-.promo-bar .promo-close{position:absolute;right:14px;background:none;border:none;color:#fff;
+  padding:11px 18px;font-size:.8rem;font-weight:500;text-align:center}
+.promo-bar strong{font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--accent)}
+.promo-bar .promo-cta{background:var(--accent);color:#151109;font-weight:700;font-size:.72rem;
+  text-transform:uppercase;padding:7px 15px;border-radius:999px;letter-spacing:.04em;white-space:nowrap}
+.promo-bar .promo-close{position:absolute;right:14px;background:none;border:none;color:var(--text-3);
   cursor:pointer;font-size:1rem;opacity:.8}
 .promo-bar.hidden{display:none}
 
