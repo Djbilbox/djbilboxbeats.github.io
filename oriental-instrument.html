@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ORIENTAL INSTRUMENT — Best VST for Oriental Sound | DJBILBOX BEATS</title>
+<meta name="description" content="ORIENTAL INSTRUMENT by DJBILBOX BEATS — 280+ authentic oriental instruments, Maqam quarter-tone engine, oud, qanun, ney, saz, darbuka. VST3 & AU for Windows & Mac. Free demo available.">
+<meta name="keywords" content="oriental vst, arabic vst plugin, maqam engine, oud vst, qanun vst, ney vst, darbuka, quarter tone plugin, oriental instrument djbilbox">
+<link rel="canonical" href="https://djbilboxbeats.com/oriental-instrument.html">
+<meta property="og:type" content="product">
+<meta property="og:title" content="ORIENTAL INSTRUMENT — Best VST for Oriental Sound">
+<meta property="og:description" content="280+ authentic oriental instruments · Maqam quarter-tone engine · VST3 & AU · Win/Mac. Free demo available.">
+<meta property="og:image" content="https://djbilboxbeats.com/img/vst/oriental-instrument-box.jpg">
+<meta property="og:url" content="https://djbilboxbeats.com/oriental-instrument.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css?v=26072611">
+<link rel="stylesheet" href="assets/css/chat.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Product",
+  "name":"ORIENTAL INSTRUMENT",
+  "image":"https://djbilboxbeats.com/img/vst/oriental-instrument-box.jpg",
+  "description":"280+ authentic oriental instruments with Maqam quarter-tone engine. VST3 & AU for Windows and Mac.",
+  "brand":{"@type":"Brand","name":"DJBILBOX BEATS"},
+  "offers":{
+    "@type":"Offer",
+    "url":"https://djbilboxbeats.com/oriental-instrument.html",
+    "priceCurrency":"EUR",
+    "price":"13.80",
+    "availability":"https://schema.org/InStock"
+  }
+}
+</script>
+<style>
+/* ============================================================
+   ORIENTAL INSTRUMENT — flagship landing page.
+   Own scoped palette (gold on black) that overrides the site red
+   only inside .ori-* blocks, so the rest of the theme is untouched.
+   ============================================================ */
+.ori{
+  --gold:#E8B54D; --gold-2:#F6D98A; --gold-deep:#B8860B;
+  --ink:#050403; --ink-2:#0d0a07;
+  background:var(--ink); color:#f2ece0; overflow-x:hidden;
+}
+.ori-in{max-width:1320px;margin:0 auto;padding:0 26px}
+
+/* ---------- shared bits ---------- */
+.ori-eyebrow{font-family:var(--font-a);font-size:.72rem;font-weight:700;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.ori h2{font-family:var(--font-a);font-weight:700;text-transform:uppercase;line-height:.98;
+  font-size:clamp(2rem,5.4vw,4.2rem);letter-spacing:.01em}
+.ori h3{font-family:var(--font-a);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:1.05rem}
+.ori p{color:#b9b0a2;line-height:1.65}
+.ori-gold{background:linear-gradient(180deg,#FFF3D0 0%,var(--gold) 45%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+
+.ori-btn{display:inline-flex;align-items:center;gap:9px;padding:15px 30px;border-radius:999px;
+  font-family:var(--font-a);font-weight:700;text-transform:uppercase;letter-spacing:.09em;
+  font-size:.9rem;transition:.22s;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+.ori-btn.buy{background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,var(--gold-deep));
+  color:#1a1200;box-shadow:0 12px 34px rgba(232,181,77,.28)}
+.ori-btn.buy:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(232,181,77,.45)}
+.ori-btn.ghost{background:rgba(255,255,255,.04);border-color:rgba(232,181,77,.4);color:#f2ece0}
+.ori-btn.ghost:hover{border-color:var(--gold);background:rgba(232,181,77,.1)}
+
+.ori-compat{display:flex;align-items:center;gap:14px;color:#8d8577;font-size:.68rem;
+  font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+.ori-compat i{font-size:1.35rem;color:#e8e2d6}
+
+/* ---------- 3D stage: the real plugin screenshot, tilted ----------
+   The rotation is driven by scroll: oriental3D() (bottom of page)
+   writes --rx/--ry/--rz/--sc on every .ori-3d as it crosses the
+   viewport, so the synth turns while you scroll. Values below are
+   the resting pose used before JS runs / if JS is disabled.        */
+.ori-stage{perspective:1600px;perspective-origin:50% 45%}
+.ori-3d{
+  --rx:0deg; --ry:-16deg; --rz:0deg; --sc:1; --dir:-1;
+  transform-style:preserve-3d;
+  transform:rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz)) scale(var(--sc));
+  border-radius:12px;overflow:hidden;
+  border:1px solid rgba(232,181,77,.22);
+  box-shadow:
+    0 2px 0 rgba(255,255,255,.07) inset,
+    -26px 40px 80px rgba(0,0,0,.85),
+    0 0 120px rgba(232,181,77,.16);
+  will-change:transform;
+}
+.ori-3d img{width:100%;height:auto;display:block}
+.ori-3d.flip{--ry:16deg; --dir:1}
+/* moving light sweep across the glass, tied to the same scroll pass */
+.ori-3d::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.13) 50%,transparent 62%);
+  transform:translateX(calc(var(--sheen,0) * 1%));
+}
+/* floor reflection under the tilted panel */
+.ori-reflect{position:relative}
+.ori-reflect::after{
+  content:"";position:absolute;left:8%;right:8%;bottom:-9%;height:22%;
+  background:radial-gradient(ellipse at 50% 0%,rgba(232,181,77,.22),transparent 70%);
+  filter:blur(26px);pointer-events:none
+}
+/* respect users who ask for less motion */
+@media(prefers-reduced-motion:reduce){
+  .ori-3d{transform:rotateY(calc(var(--dir) * 16deg))!important}
+  .ori-3d::after{display:none}
+}
+
+/* ---------- HERO ---------- */
+.ori-hero{position:relative;overflow:hidden;padding:78px 0 92px;
+  background:
+    radial-gradient(1100px 620px at 78% 36%,rgba(232,181,77,.15),transparent 62%),
+    radial-gradient(760px 520px at 10% 88%,rgba(160,60,20,.16),transparent 65%),
+    var(--ink)}
+.ori-hero-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.15fr);
+  gap:52px;align-items:center}
+.ori-logo{font-family:var(--font-a);font-weight:700;text-transform:uppercase;
+  font-size:clamp(2.6rem,7vw,5.4rem);line-height:.9;letter-spacing:-.01em;margin-bottom:10px}
+.ori-tag{font-family:var(--font-a);font-size:clamp(.7rem,1.5vw,.92rem);font-weight:600;
+  letter-spacing:.42em;text-transform:uppercase;color:#cbbfa8;margin-bottom:26px}
+.ori-lead{font-size:1.05rem;max-width:46ch;margin-bottom:28px}
+.ori-price{display:flex;align-items:baseline;gap:12px;margin-bottom:22px;flex-wrap:wrap}
+.ori-price .now{font-family:var(--font-a);font-size:2.6rem;font-weight:700;color:var(--gold)}
+.ori-price .was{font-size:1.1rem;color:#7d7568;text-decoration:line-through}
+.ori-price .off{background:var(--accent);color:#fff;font-size:.66rem;font-weight:800;
+  padding:5px 10px;border-radius:6px;letter-spacing:.08em;text-transform:uppercase}
+.ori-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+
+/* ---------- feature band ---------- */
+.ori-band{border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.015)}
+.ori-band-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.07)}
+.ori-band-cell{background:var(--ink);padding:30px 22px;text-align:center}
+.ori-band-cell b{display:block;font-family:var(--font-a);font-size:2.1rem;font-weight:700;color:var(--gold);line-height:1}
+.ori-band-cell span{display:block;margin-top:7px;font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;color:#8d8577;font-weight:700}
+
+/* ---------- split sections ---------- */
+.ori-split{padding:88px 0}
+.ori-split-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.ori-split.rev .ori-split-grid{direction:rtl}
+.ori-split.rev .ori-split-grid > *{direction:ltr}
+.ori-list{list-style:none;margin:26px 0 0;display:flex;flex-direction:column;gap:2px}
+.ori-list li{font-family:var(--font-a);font-weight:700;text-transform:uppercase;
+  letter-spacing:.14em;font-size:clamp(1rem,2.1vw,1.5rem);color:#e5ddcd;padding:7px 0;
+  border-bottom:1px solid rgba(255,255,255,.06)}
+.ori-list li span{color:var(--gold);font-size:.62em;letter-spacing:.1em;display:block;
+  font-weight:600;color:#8d8577;margin-top:2px}
+
+/* ---------- categories ---------- */
+.ori-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:34px}
+.ori-cat{background:linear-gradient(160deg,rgba(232,181,77,.09),rgba(255,255,255,.02));
+  border:1px solid rgba(232,181,77,.18);border-radius:12px;padding:20px 16px;transition:.2s}
+.ori-cat:hover{border-color:var(--gold);transform:translateY(-3px)}
+.ori-cat i{font-size:1.4rem;color:var(--gold);margin-bottom:10px;display:block}
+.ori-cat b{display:block;font-family:var(--font-a);text-transform:uppercase;letter-spacing:.08em;font-size:.95rem}
+.ori-cat small{color:#8d8577;font-size:.74rem}
+
+/* ---------- presets ---------- */
+.ori-presets{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:32px}
+.ori-preset{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px 14px;transition:.18s}
+.ori-preset:hover{border-color:rgba(232,181,77,.5);background:rgba(232,181,77,.06)}
+.ori-preset .n{font-family:var(--font-a);font-weight:700;color:var(--gold-deep);font-size:.9rem;min-width:22px}
+.ori-preset b{display:block;font-size:.88rem;font-weight:600;color:#efe7d8}
+.ori-preset small{color:#8d8577;font-size:.72rem}
+
+/* ---------- free vs pro ---------- */
+.ori-plans{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:38px}
+.ori-plan{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:34px 30px;
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.005))}
+.ori-plan.pro{border-color:rgba(232,181,77,.45);
+  background:linear-gradient(180deg,rgba(232,181,77,.1),rgba(232,181,77,.02));
+  box-shadow:0 24px 70px rgba(232,181,77,.12)}
+.ori-plan h3{margin-bottom:6px}
+.ori-plan .pp{font-family:var(--font-a);font-size:2.4rem;font-weight:700;margin:12px 0 4px}
+.ori-plan ul{list-style:none;margin:20px 0 26px;display:flex;flex-direction:column;gap:10px}
+.ori-plan li{font-size:.9rem;color:#c3bbac;display:flex;gap:10px;align-items:flex-start}
+.ori-plan li i{color:var(--gold);margin-top:3px;font-size:.8rem}
+.ori-plan li.no{color:#6f6a60}
+.ori-plan li.no i{color:#5a554c}
+
+/* ---------- closing CTA ---------- */
+.ori-final{padding:96px 0;text-align:center;
+  background:radial-gradient(900px 480px at 50% 50%,rgba(232,181,77,.14),transparent 68%),var(--ink-2)}
+
+@media(max-width:980px){
+  .ori-hero-grid,.ori-split-grid,.ori-plans{grid-template-columns:1fr}
+  .ori-split.rev .ori-split-grid{direction:ltr}
+  .ori-band-grid{grid-template-columns:repeat(2,1fr)}
+  .ori-3d,.ori-3d.flip{transform:none}
+  .ori-split{padding:60px 0}
+}
+</style>
+</head>
+<body data-page="oriental">
+
+<div class="ori">
+
+  <!-- ==================== HERO ==================== -->
+  <section class="ori-hero">
+    <div class="ori-in ori-hero-grid">
+      <div>
+        <div class="ori-eyebrow">DJBILBOX BEATS · Flagship plug-in</div>
+        <div class="ori-logo"><span class="ori-gold">ORIENTAL</span><br>INSTRUMENT</div>
+        <div class="ori-tag">Best VST for oriental sound</div>
+        <p class="ori-lead">
+          280+ authentic oriental instruments in one window — oud, qanun, ney, saz, rabab,
+          darbuka and oriental strings. Driven by a real <strong style="color:#e5ddcd">Maqam engine</strong>
+          with quarter-tone tuning, so your melodies actually sound Middle-Eastern, not just "scaled".
+        </p>
+        <div class="ori-price">
+          <span class="now">€13.80</span>
+          <span class="was">€69</span>
+          <span class="off">🔥 -80% · code SOLDES80</span>
+        </div>
+        <div class="ori-cta">
+          <button class="ori-btn buy" onclick="buy('oriental-instrument-djbilbox-beats/SOLDES80')">
+            <i class="fa-solid fa-bolt"></i> Buy now
+          </button>
+          <button class="ori-btn ghost" onclick="buy('oriental-instrument-demo-free-Download')">
+            <i class="fa-solid fa-download"></i> Free demo
+          </button>
+        </div>
+        <div class="ori-compat">
+          <span>Compatible</span>
+          <i class="fa-brands fa-apple"></i>
+          <i class="fa-brands fa-windows"></i>
+          <span style="letter-spacing:.1em">VST3 · AU</span>
+        </div>
+      </div>
+
+      <div class="ori-stage ori-reflect">
+        <div class="ori-3d">
+          <img src="img/vst/ui/oriental-ui.png" alt="ORIENTAL INSTRUMENT plug-in interface — Maqam engine, preset browser, FX chain"
+               onerror="this.onerror=null;this.src='assets/products/oriental-instrument/oriental-instrument-card.jpg'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== STATS BAND ==================== -->
+  <section class="ori-band">
+    <div class="ori-in">
+      <div class="ori-band-grid">
+        <div class="ori-band-cell"><b>280+</b><span>Instruments</span></div>
+        <div class="ori-band-cell"><b>70</b><span>Factory presets</span></div>
+        <div class="ori-band-cell"><b>7</b><span>Categories</span></div>
+        <div class="ori-band-cell"><b>8</b><span>FX chain slots</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 7 CATEGORIES ==================== -->
+  <section class="ori-split">
+    <div class="ori-in ori-split-grid">
+      <div>
+        <div class="ori-eyebrow">The library</div>
+        <h2><span class="ori-gold">7 CATEGORIES</span><br>280+ INSTRUMENTS</h2>
+        <p style="margin-top:18px;max-width:46ch">
+          Every family of the oriental orchestra, multi-sampled and playable from one browser.
+          Search by preset, by city or by key — then drop a melody in seconds.
+        </p>
+        <div class="ori-cats">
+          <div class="ori-cat"><i class="fa-solid fa-guitar"></i><b>OUD</b><small>Arabic lute</small></div>
+          <div class="ori-cat"><i class="fa-solid fa-hand-sparkles"></i><b>QANUN</b><small>Plucked zither</small></div>
+          <div class="ori-cat"><i class="fa-solid fa-wind"></i><b>NEY</b><small>Reed flute</small></div>
+          <div class="ori-cat"><i class="fa-solid fa-drum"></i><b>DARBUKA</b><small>Percussion</small></div>
+          <div class="ori-cat"><i class="fa-solid fa-violin" style="display:none"></i><i class="fa-solid fa-music"></i><b>VIOLIN</b><small>Oriental strings</small></div>
+          <div class="ori-cat"><i class="fa-solid fa-wave-square"></i><b>RABAB</b><small>Bowed strings</small></div>
+          <div class="ori-cat"><i class="fa-solid fa-bell"></i><b>MIZMAR</b><small>Double reed</small></div>
+        </div>
+      </div>
+      <div class="ori-stage ori-reflect">
+        <div class="ori-3d flip">
+          <img src="img/vst/ui/oriental-ui.png" alt="ORIENTAL INSTRUMENT — instrument category browser"
+               onerror="this.onerror=null;this.src='assets/products/oriental-instrument/oriental-instrument-1.jpg'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MAXIMUM CONTROL ==================== -->
+  <section class="ori-split rev" style="background:linear-gradient(180deg,transparent,rgba(255,255,255,.018),transparent)">
+    <div class="ori-in ori-split-grid">
+      <div>
+        <div class="ori-eyebrow">Sound design</div>
+        <h2>MAXIMUM<br><span class="ori-gold">CONTROL</span></h2>
+        <ul class="ori-list">
+          <li>MAQAM ENGINE <span>Quarter-tone tuning · Rast, Hijaz, Bayati, Kurd, Nahawand, Saba, Ajam</span></li>
+          <li>MACRO KNOBS <span>Glide · Space · Filter · Orient · Reso · Depth</span></li>
+          <li>FX CHAIN <span>Reverb · Echo · Chorus · Distort · Comprs · EQ · Phaser · Bitcrsh</span></li>
+          <li>PLAY MODES <span>Poly · Legato · A/B compare · MIDI learn · REC · Panic</span></li>
+        </ul>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px">
+          <button class="ori-btn buy" onclick="buy('oriental-instrument-djbilbox-beats/SOLDES80')">
+            <i class="fa-solid fa-bolt"></i> Get it -80%
+          </button>
+          <a class="ori-btn ghost" href="product.html?id=oriental-instrument">
+            <i class="fa-solid fa-circle-info"></i> Full specs
+          </a>
+        </div>
+      </div>
+      <div class="ori-stage ori-reflect">
+        <div class="ori-3d">
+          <img src="img/vst/ui/oriental-3d.jpg" alt="ORIENTAL INSTRUMENT — macro knobs and FX chain"
+               onerror="this.onerror=null;this.src='assets/products/oriental-instrument/oriental-instrument-2.jpg'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRESETS ==================== -->
+  <section class="ori-split" style="padding-top:20px">
+    <div class="ori-in">
+      <div class="ori-eyebrow">Factory bank</div>
+      <h2>70 PRESETS, <span class="ori-gold">READY TO FLIP</span></h2>
+      <p style="margin-top:16px;max-width:60ch">
+        Each preset is tagged by country and by maqam — pick a mood, not a menu.
+      </p>
+      <div class="ori-presets">
+        <div class="ori-preset"><span class="n">01</span><div><b>Mission Cleopatre</b><small>Cairo · Dm · Rast</small></div></div>
+        <div class="ori-preset"><span class="n">02</span><div><b>Desert Cinema Score</b><small>Egypt · Am · Hijaz</small></div></div>
+        <div class="ori-preset"><span class="n">03</span><div><b>Casablanca Nights</b><small>Morocco · Fm · Saba</small></div></div>
+        <div class="ori-preset"><span class="n">04</span><div><b>Atlas Tears</b><small>Algeria · Bm · Kurd</small></div></div>
+        <div class="ori-preset"><span class="n">05</span><div><b>Beirut Lovers</b><small>Lebanon · Cm · Ajam</small></div></div>
+        <div class="ori-preset"><span class="n">06</span><div><b>Oran Sunset Strings</b><small>Algeria · Em · Nahawand</small></div></div>
+        <div class="ori-preset"><span class="n">07</span><div><b>Chaabi Wedding Strings</b><small>Morocco · Am · Rast</small></div></div>
+        <div class="ori-preset"><span class="n">08</span><div><b>Istanbul Bridge</b><small>Turkey · Bm · Segah</small></div></div>
+        <div class="ori-preset"><span class="n">09</span><div><b>Wadi Rum Sunrise</b><small>Jordan · Am · Rast</small></div></div>
+        <div class="ori-preset"><span class="n">10</span><div><b>Medina Minarets</b><small>Saudi · Am · Saba</small></div></div>
+        <div class="ori-preset"><span class="n">11</span><div><b>Carthage Ruins</b><small>Tunisia · Cm · Bayati</small></div></div>
+        <div class="ori-preset"><span class="n">12</span><div><b>Byblos Ancient</b><small>Lebanon · Dm · Hijaz</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FREE vs PRO ==================== -->
+  <section class="ori-split" style="padding-top:36px">
+    <div class="ori-in">
+      <div class="ori-eyebrow">Start free</div>
+      <h2>TRY IT <span class="ori-gold">BEFORE YOU BUY</span></h2>
+      <div class="ori-plans">
+        <div class="ori-plan">
+          <h3>Free Demo</h3>
+          <p style="font-size:.88rem">Everything you need to test the engine in your DAW.</p>
+          <div class="pp" style="color:var(--green)">FREE</div>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> 50+ oriental instruments</li>
+            <li><i class="fa-solid fa-check"></i> Full Maqam quarter-tone engine</li>
+            <li><i class="fa-solid fa-check"></i> VST3 &amp; AU · Windows + Mac</li>
+            <li class="no"><i class="fa-solid fa-xmark"></i> Limited preset browser</li>
+            <li class="no"><i class="fa-solid fa-xmark"></i> No full 280+ library</li>
+          </ul>
+          <button class="ori-btn ghost" style="width:100%;justify-content:center"
+                  onclick="buy('oriental-instrument-demo-free-Download')">
+            <i class="fa-solid fa-download"></i> Download free
+          </button>
+        </div>
+        <div class="ori-plan pro">
+          <h3><span class="ori-gold">Full Version</span></h3>
+          <p style="font-size:.88rem">The complete library, unlocked forever. One payment.</p>
+          <div class="pp" style="color:var(--gold)">€13.80
+            <small style="font-size:.4em;color:#7d7568;text-decoration:line-through;font-weight:400">€69</small>
+          </div>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> <strong style="color:#efe7d8">280+ instruments &amp; sounds</strong></li>
+            <li><i class="fa-solid fa-check"></i> 70 factory presets, tagged by maqam</li>
+            <li><i class="fa-solid fa-check"></i> Full 8-slot FX chain</li>
+            <li><i class="fa-solid fa-check"></i> Melodic phrase browser</li>
+            <li><i class="fa-solid fa-check"></i> Royalty-free for your productions</li>
+          </ul>
+          <button class="ori-btn buy" style="width:100%;justify-content:center"
+                  onclick="buy('oriental-instrument-djbilbox-beats/SOLDES80')">
+            <i class="fa-solid fa-bolt"></i> Buy now -80%
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FINAL CTA ==================== -->
+  <section class="ori-final">
+    <div class="ori-in">
+      <div class="ori-eyebrow">One plug-in. The whole colour of the Middle East.</div>
+      <h2>READY TO <span class="ori-gold">PLAY THE ORIENT?</span></h2>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px">
+        <button class="ori-btn buy" onclick="buy('oriental-instrument-djbilbox-beats/SOLDES80')">
+          <i class="fa-solid fa-bolt"></i> Buy now — €13.80
+        </button>
+        <button class="ori-btn ghost" onclick="buy('oriental-instrument-demo-free-Download')">
+          <i class="fa-solid fa-download"></i> Get the free demo
+        </button>
+      </div>
+      <div class="ori-compat" style="justify-content:center;margin-top:28px">
+        <span>Compatible</span>
+        <i class="fa-brands fa-apple"></i>
+        <i class="fa-brands fa-windows"></i>
+        <span style="letter-spacing:.1em">VST3 · AU · Standalone</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="assets/js/language-switcher.js?v=26071801"></script>
+<script src="assets/js/site.js?v=26072611"></script>
+<script src="assets/js/chat.js?v=26071911"></script>
+
+<script>
+/* ============================================================
+   SCROLL-DRIVEN 3D — the plug-in panel rotates as it travels
+   through the viewport (Bujaa/ORIENT-style parallax).
+   p = -1 when the panel sits at the bottom edge, 0 at centre,
+   +1 at the top edge. Everything is one rAF-throttled pass.
+   ============================================================ */
+(function oriental3D(){
+  var panels = [].slice.call(document.querySelectorAll('.ori-3d'));
+  if(!panels.length) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var ticking = false;
+
+  function frame(){
+    ticking = false;
+    var vh = window.innerHeight || 1;
+    for(var i=0;i<panels.length;i++){
+      var el = panels[i];
+      var r  = el.getBoundingClientRect();
+      if(r.bottom < -200 || r.top > vh + 200) continue;   // off-screen: skip
+
+      var centre = r.top + r.height/2;
+      var p = (vh/2 - centre) / (vh/2 + r.height/2);       // -1 … +1
+      p = p < -1 ? -1 : (p > 1 ? 1 : p);
+
+      var dir = el.classList.contains('flip') ? 1 : -1;
+
+      /* Y: always keeps a 3/4 tilt (never goes flat), and the angle
+         opens/closes as the panel travels — 30deg on the way in,
+         16deg at centre, almost face-on as it leaves the top.      */
+      var ry = dir * (16 - 14 * p);
+      var rx = 7 * p;                 // tips forward/back
+      var rz = dir * -2 * p;          // slight roll
+      var sc = 1 - 0.04 * Math.abs(p);
+
+      el.style.setProperty('--ry', ry.toFixed(2) + 'deg');
+      el.style.setProperty('--rx', rx.toFixed(2) + 'deg');
+      el.style.setProperty('--rz', rz.toFixed(2) + 'deg');
+      el.style.setProperty('--sc', sc.toFixed(3));
+      el.style.setProperty('--sheen', (p * 120).toFixed(0));
+    }
+  }
+
+  function onScroll(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  frame();
+})();
+</script>
+</body>
+</html>

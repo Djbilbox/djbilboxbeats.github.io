@@ -15,7 +15,7 @@
   --border:rgba(255,255,255,.1);
   --r:8px; --rl:14px;
   --font:'Inter',sans-serif; --font-a:'Rajdhani',sans-serif;
-  --hdr-h:64px; --subnav-h:54px; --side-w:240px; --mtop-h:56px;
+  --hdr-h:68px; --subnav-h:54px; --side-w:0px; --mtop-h:0px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -23,12 +23,61 @@ html{scroll-behavior:smooth}
 body{
   background:var(--bg); color:var(--text); font-family:var(--font);
   -webkit-font-smoothing:antialiased; line-height:1.5;
-  padding-left:var(--side-w);   /* room for fixed left sidebar */
+  padding-top:var(--hdr-h);     /* room for the fixed top bar */
   padding-bottom:48px;          /* room for sticky promo */
 }
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 ::selection{background:var(--accent);color:#fff}
+
+/* ============================================================
+   FLAGSHIP BAND (homepage) — gold hero strip for the lead product.
+   Scoped to .flagship so it never touches the red site theme.
+   ============================================================ */
+.flagship{
+  --g:#E8B54D; --g2:#F6D98A; --g3:#B8860B;
+  padding:64px 0;position:relative;overflow:hidden;
+  background:
+    radial-gradient(900px 480px at 76% 40%,rgba(232,181,77,.16),transparent 62%),
+    radial-gradient(620px 420px at 8% 90%,rgba(160,60,20,.14),transparent 66%),
+    #070505;
+  border-top:1px solid rgba(232,181,77,.16);
+  border-bottom:1px solid rgba(232,181,77,.16);
+}
+.flagship-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.flagship-eyebrow{font-family:var(--font-a);font-size:.7rem;font-weight:700;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--g);margin-bottom:12px}
+.flagship-title{font-family:var(--font-a);font-weight:700;text-transform:uppercase;
+  font-size:clamp(2rem,5.4vw,3.9rem);line-height:.92;letter-spacing:-.005em;margin-bottom:8px}
+.flagship-title span{background:linear-gradient(180deg,#FFF3D0,var(--g) 45%,var(--g3));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.flagship-tag{font-family:var(--font-a);font-size:.8rem;font-weight:600;letter-spacing:.38em;
+  text-transform:uppercase;color:#cbbfa8;margin-bottom:18px}
+.flagship-lead{color:#b9b0a2;max-width:46ch;line-height:1.65;margin-bottom:20px}
+.flagship-price{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;margin-bottom:22px}
+.flagship-price .now{font-family:var(--font-a);font-size:2.2rem;font-weight:700;color:var(--g)}
+.flagship-price .was{color:#7d7568;text-decoration:line-through}
+.flagship-price .off{background:var(--accent);color:#fff;font-size:.64rem;font-weight:800;
+  padding:5px 9px;border-radius:6px;letter-spacing:.06em;text-transform:uppercase}
+.flagship-cta{display:flex;gap:11px;flex-wrap:wrap}
+.flagship-cta .btn.primary{background:linear-gradient(135deg,var(--g2),var(--g) 55%,var(--g3));
+  border-color:transparent;color:#1a1200;box-shadow:0 10px 30px rgba(232,181,77,.28)}
+.flagship-cta .btn.ghost{border-color:rgba(232,181,77,.45);color:#f2ece0}
+.flagship-cta .btn.ghost:hover{border-color:var(--g);background:rgba(232,181,77,.1)}
+.flagship-art{display:block;perspective:1200px}
+.flagship-art img{width:100%;border-radius:14px;
+  transform:rotateY(-9deg) rotateX(3deg);transition:transform .5s cubic-bezier(.2,.7,.2,1);
+  filter:drop-shadow(0 30px 60px rgba(0,0,0,.8)) drop-shadow(0 0 60px rgba(232,181,77,.2))}
+.flagship-art:hover img{transform:rotateY(-3deg) rotateX(1deg) scale(1.02)}
+@media(max-width:900px){
+  .flagship-grid{grid-template-columns:1fr;gap:28px}
+  .flagship-art img{transform:none}
+  .flagship{padding:44px 0}
+}
+
+/* Video Studio band on the homepage */
+.video-studio-block{background:linear-gradient(100deg,rgba(34,211,238,.09),rgba(124,92,255,.11));
+  border:1px solid rgba(34,211,238,.28)}
 
 /* ---------- containers ---------- */
 .container{max-width:1320px;margin:0 auto;padding:0 20px}
@@ -54,28 +103,46 @@ img{display:block;max-width:100%}
   filter:drop-shadow(0 4px 14px rgba(230,0,0,.35))}
 .mtop-logo img{width:auto;height:40px}
 
-.sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--side-w);z-index:1000;
-  background:var(--bg);border-right:1px solid var(--border);
-  display:flex;flex-direction:column;padding:14px 0;overflow-y:auto;scrollbar-width:thin}
-.sidebar::-webkit-scrollbar{width:6px}
-.sidebar::-webkit-scrollbar-thumb{background:var(--surface-3);border-radius:3px}
-.sidebar .brand{padding:0 16px 14px;font-size:1.1rem;line-height:1.1;border-bottom:1px solid var(--border)}
-.side-nav{display:flex;flex-direction:column;gap:0px;padding:10px 8px;flex:1}
-.side-nav a{display:flex;align-items:center;gap:10px;font-size:.75rem;font-weight:600;
-  color:var(--text-2);padding:8px 11px;border-radius:7px;transition:.16s;
-  text-transform:uppercase;letter-spacing:.03em}
-.side-nav a i{width:18px;text-align:center;font-size:.88rem;color:var(--text-3);transition:.16s}
-.side-nav a:hover{background:var(--surface-2);color:var(--text)}
-.side-nav a:hover i{color:var(--accent)}
-.side-nav a.active{background:var(--accent);color:#fff}
-.side-nav a.active i{color:#fff}
-.side-section-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
-  color:var(--accent);padding:8px 11px 4px;margin-top:6px}
-.side-foot{padding:16px 22px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:14px}
-.side-social{display:flex;gap:16px;font-size:1.15rem}
-.side-social a{color:var(--text-3);transition:.16s}
-.side-social a:hover{color:var(--accent)}
-.side-actions{display:flex;align-items:center;gap:16px}
+/* ---------- TOP BAR (replaces the old fixed left sidebar) ---------- */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(8,6,12,.88);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border)}
+.topbar-in{max-width:1320px;margin:0 auto;padding:0 22px;height:var(--hdr-h);
+  display:flex;align-items:center;gap:26px}
+.topbar .brand-logo{flex:0 0 auto}
+.topbar .brand-logo img{width:auto;height:40px;margin:0}
+
+.top-nav{display:flex;align-items:center;gap:6px;flex:1;justify-content:center}
+.top-nav a{font-size:.82rem;font-weight:600;color:var(--text-2);padding:9px 14px;
+  border-radius:8px;transition:.16s;white-space:nowrap}
+.top-nav a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.top-nav a.active{color:#fff;background:var(--accent)}
+
+.top-actions{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.top-btn{font-size:.8rem;font-weight:700;padding:9px 20px;border-radius:999px;
+  transition:.18s;white-space:nowrap;border:1px solid transparent}
+.top-btn.ghost{border-color:rgba(255,255,255,.28);color:var(--text)}
+.top-btn.ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.top-btn.solid{background:#fff;color:#101014}
+.top-btn.solid:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
+
+.nav-burger{display:none;background:none;border:none;color:var(--text);font-size:1.3rem;cursor:pointer}
+
+/* mobile slide-down drawer */
+.top-drawer{display:none;flex-direction:column;padding:10px 16px 18px;gap:2px;
+  background:var(--bg);border-top:1px solid var(--border);max-height:75vh;overflow-y:auto}
+.top-drawer.open{display:flex}
+.top-drawer a{display:flex;align-items:center;gap:11px;font-size:.85rem;font-weight:600;
+  color:var(--text-2);padding:12px 12px;border-radius:8px;transition:.16s}
+.top-drawer a i{width:18px;text-align:center;color:var(--text-3)}
+.top-drawer a:hover{background:var(--surface-2);color:var(--text)}
+.top-drawer a.active{background:var(--accent);color:#fff}
+.top-drawer a.active i{color:#fff}
+.drawer-social{display:flex;gap:20px;font-size:1.2rem;padding:16px 12px 4px;
+  border-top:1px solid var(--border);margin-top:10px}
+.drawer-social a{color:var(--text-3);padding:0}
+.drawer-social a:hover{color:var(--accent)}
+
 .icon-btn{color:var(--text-2);font-size:1rem;transition:.18s;background:none;border:none;cursor:pointer;position:relative}
 .icon-btn:hover{color:var(--text)}
 .icon-btn .badge{position:absolute;top:-7px;right:-9px;background:var(--accent);color:#fff;
@@ -83,13 +150,22 @@ img{display:block;max-width:100%}
   display:flex;align-items:center;justify-content:center;padding:0 3px}
 .lang-wrap{display:flex;align-items:center;gap:5px;font-size:.95rem;color:var(--text-3)}
 
-/* mobile top bar (burger + logo) — hidden on desktop */
-.mtop{display:none;position:fixed;top:0;left:0;right:0;height:56px;z-index:1000;
-  align-items:center;gap:14px;padding:0 16px;background:rgba(10,10,12,.95);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border)}
-.mtop .nav-burger{background:none;border:none;color:var(--text);font-size:1.3rem;cursor:pointer}
 .side-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999}
 .side-overlay.show{display:block}
+
+/* Below 1080px the centre links collapse into the burger drawer. */
+@media(max-width:1080px){
+  .top-nav{display:none}
+  .nav-burger{display:block}
+  .topbar-in{gap:14px;justify-content:space-between}
+  .top-actions{gap:9px}
+  .lang-wrap{display:none}
+}
+@media(max-width:560px){
+  .top-btn.ghost{display:none}
+  .top-btn{padding:8px 14px;font-size:.74rem}
+  .topbar .brand-logo img{height:32px}
+}
 
 /* ============================================================
    SUB-NAV — horizontal filter pills (per page)
@@ -209,11 +285,20 @@ img{display:block;max-width:100%}
 /* ============================================================
    FOOTER (minimal)
    ============================================================ */
-.footer{border-top:1px solid var(--border);padding:40px 0 30px;margin-top:40px}
+.footer{border-top:1px solid var(--border);padding:56px 0 30px;margin-top:40px;background:#08060d}
+.footer-cols{display:grid;grid-template-columns:repeat(5,1fr);gap:34px;align-items:start}
+.fcol{display:flex;flex-direction:column;gap:11px;min-width:0}
+.fcol h4{font-size:.86rem;font-weight:700;color:var(--text);margin-bottom:5px;
+  text-decoration:underline;text-underline-offset:5px}
+.fcol a,.fcol span{font-size:.82rem;color:var(--text-3);transition:.18s;line-height:1.35}
+.fcol a:hover{color:var(--text)}
+.fcol .footer-social{margin-top:12px}
 .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .footer-links{display:flex;gap:22px}
 .footer-links a{font-size:.78rem;color:var(--text-3);transition:.18s;text-transform:uppercase;letter-spacing:.05em}
 .footer-links a:hover{color:var(--text)}
+@media(max-width:1000px){.footer-cols{grid-template-columns:repeat(3,1fr);gap:26px}}
+@media(max-width:620px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:22px}}
 .footer-social{display:flex;gap:16px;font-size:1.1rem}
 .footer-social a{color:var(--text-3);transition:.18s}
 .footer-social a:hover{color:var(--accent)}
@@ -280,14 +365,13 @@ img{display:block;max-width:100%}
    RESPONSIVE
    ============================================================ */
 @media(max-width:980px){
-  body{padding-left:0;padding-top:var(--mtop-h)}
-  .mtop{display:flex}
-  .sidebar{transform:translateX(-100%);transition:transform .28s ease;box-shadow:0 0 40px rgba(0,0,0,.18)}
-  .sidebar.open{transform:translateX(0)}
+  /* The top bar is fixed at every width now, so the body keeps the
+     same offset — no sidebar rules left to undo here. */
   .promo-bar{left:0}
-  .subnav{top:var(--mtop-h)}
   .stats{gap:30px}
 }
+/* the sticky sub-nav sits directly under the fixed top bar */
+.subnav{top:var(--hdr-h)}
 @media(max-width:560px){
   .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px}
   .container{padding:0 16px}

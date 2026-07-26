@@ -28,19 +28,24 @@ const DISCORD_URL = 'https://discord.gg/7HeMSvbN';
    SIDEBAR — shared left navigation, injected on every page.
    Each page sets <body data-page="KEY"> to highlight its link.
    ============================================================ */
+/* First NAV_SPLIT entries render under "Browse", the rest under "Library". */
+const NAV_SPLIT = 6;
 const NAV = [
-  { key:'music',       label:'Music',       href:'/beats-redesign.html', icon:'fa-music' },
-  { key:'shop',        label:'Shop',        href:'/shop.html',           icon:'fa-store' },
-  { key:'setup',       label:'Info',        href:'/studio-setup.html',   icon:'fa-circle-info' },
-  { key:'contact',     label:'Contact',     href:'/contact.html',        icon:'fa-envelope' },
-  { key:'account',     label:'My Account',  href:'/account.html',        icon:'fa-user' },
-  { key:'license',     label:'License',     href:'/license.html',        icon:'fa-id-card' },
+  { key:'music',       label:'Music',        href:'/beats-redesign.html',      icon:'fa-music' },
+  { key:'shop',        label:'Shop',         href:'/shop.html',                icon:'fa-store' },
+  { key:'oriental',    label:'Oriental VST', href:'/oriental-instrument.html', icon:'fa-star' },
+  { key:'mastering',   label:'AI Mastering', href:'/ai-mastering.html',        icon:'fa-sliders' },
+  { key:'video',       label:'Video Studio', href:'/video-studio.html',        icon:'fa-clapperboard' },
+  { key:'setup',       label:'Info',         href:'/studio-setup.html',        icon:'fa-circle-info' },
+  { key:'contact',     label:'Contact',      href:'/contact.html',             icon:'fa-envelope' },
+  { key:'account',     label:'My Account',   href:'/account.html',             icon:'fa-user' },
+  { key:'license',     label:'License',      href:'/license.html',             icon:'fa-id-card' },
 ];
 
 function mountSidebar(active){
   if(document.querySelector('.sidebar')) return;
-  const browseItems = NAV.slice(0, 3);
-  const libraryItems = NAV.slice(3);
+  const browseItems = NAV.slice(0, NAV_SPLIT);
+  const libraryItems = NAV.slice(NAV_SPLIT);
   const links =
     `<div class="side-section-label">Browse</div>` +
     browseItems.map(n=>
@@ -51,63 +56,149 @@ function mountSidebar(active){
       `<a href="${n.href}"${n.key===active?' class="active"':''}><i class="fa-solid ${n.icon}"></i> ${n.label}</a>`
     ).join('');
 
-  const sidebar = document.createElement('aside');
-  sidebar.className='sidebar';
-  sidebar.innerHTML = `
-    <a href="/index.html" class="brand brand-logo"><img src="/img/djbilbox-logo.png" alt="DJBILBOX BEATS"></a>
-    <nav class="side-nav">${links}</nav>
-    <div class="side-foot">
-      <div class="side-social">
-        <a href="https://discord.gg/7HeMSvbN" target="_blank" title="Discord"><i class="fa-brands fa-discord"></i></a>
-        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://www.twitch.tv/djbilbox" target="_blank" title="Twitch"><i class="fa-brands fa-twitch"></i></a>
-      </div>
-      <div class="side-actions">
-        <button class="icon-btn" onclick="openCart()" title="Cart">
+  /* Centre links of the top bar — the primary destinations only.
+     Everything else lives in the footer sitemap.                */
+  const topLinks = NAV.slice(0, NAV_SPLIT).map(n =>
+    `<a href="${n.href}"${n.key===active?' class="active"':''}>${n.label}</a>`
+  ).join('');
+
+  const header = document.createElement('header');
+  header.className='topbar';
+  header.innerHTML = `
+    <div class="topbar-in">
+      <a href="/index.html" class="brand brand-logo"><img src="/img/djbilbox-logo.png" alt="DJBILBOX BEATS"></a>
+
+      <nav class="top-nav">${topLinks}</nav>
+
+      <div class="top-actions">
+        <span class="lang-wrap notranslate" translate="no"><i class="fa-solid fa-globe"></i><div id="google_translate_element"></div></span>
+        <button class="icon-btn" onclick="openCart()" aria-label="Cart">
           <i class="fa-solid fa-bag-shopping"></i><span class="badge" data-cart-badge>0</span>
         </button>
-        <span class="lang-wrap notranslate" translate="no"><i class="fa-solid fa-globe"></i><div id="google_translate_element"></div></span>
+        <a href="/account.html" class="top-btn ghost" data-auth-in>Sign In</a>
+        <a href="/account.html" class="top-btn solid" data-auth-up>Sign Up</a>
+        <button class="nav-burger" onclick="toggleNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
       </div>
-    </div>`;
+    </div>
 
-  const mtop = document.createElement('div');
-  mtop.className='mtop';
-  mtop.innerHTML = `
-    <button class="nav-burger" onclick="toggleNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
-    <a href="/index.html" class="brand brand-logo mtop-logo"><img src="/img/djbilbox-logo.png" alt="DJBILBOX BEATS"></a>`;
+    <nav class="top-drawer" id="topDrawer">
+      ${NAV.map(n=>`<a href="${n.href}"${n.key===active?' class="active"':''}><i class="fa-solid ${n.icon}"></i> ${n.label}</a>`).join('')}
+      <div class="drawer-social">
+        <a href="${DISCORD_URL}" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" rel="noopener" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.twitch.tv/djbilbox" target="_blank" rel="noopener" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+      </div>
+    </nav>`;
 
   const overlay = document.createElement('div');
   overlay.className='side-overlay';
   overlay.onclick=toggleNav;
 
-  document.body.prepend(overlay, mtop, sidebar);
+  document.body.prepend(overlay, header);
+  reflectAuthState();
   Cart.refresh();
 }
 
 function toggleNav(){
-  document.querySelector('.sidebar')?.classList.toggle('open');
+  document.getElementById('topDrawer')?.classList.toggle('open');
   document.querySelector('.side-overlay')?.classList.toggle('show');
 }
 
+/* If a member is already signed in (account.html stores the session),
+   collapse the two auth buttons into a single "My Account" pill. */
+function reflectAuthState(){
+  let s=null;
+  try{ s=JSON.parse(localStorage.getItem('djb_session')); }catch(e){}
+  if(!s) return;
+  const inBtn=document.querySelector('[data-auth-in]');
+  const upBtn=document.querySelector('[data-auth-up]');
+  if(inBtn) inBtn.remove();
+  if(upBtn){
+    upBtn.textContent = (s.name||'My Account').split(' ')[0];
+    upBtn.setAttribute('title','My Account');
+  }
+}
+
 /* Shared footer — injected if the page has no <footer> */
+/* ============================================================
+   FOOTER — multi-column sitemap (Quick links / Legal / Creators /
+   Follow / Contact). Every entry points at a page that exists.
+   ============================================================ */
+const FOOTER_COLS = [
+  { t:'Quick links', links:[
+    ['Home','/index.html'],
+    ['Music','/beats-redesign.html'],
+    ['Shop','/shop.html'],
+    ['ORIENTAL INSTRUMENT','/oriental-instrument.html'],
+    ['AI Mastering','/ai-mastering.html'],
+    ['Video Studio','/video-studio.html'],
+    ['Drum Kits','/drum-kits.html'],
+    ['VST Plugins','/vst.html'],
+    ['Studio Setup','/studio-setup.html'],
+    ['Services','/services.html'],
+    ['Discography','/discography.html'],
+    ['Playlists','/playlists.html'],
+    ['News','/news.html'],
+    ['Reviews','/reviews.html'],
+    ['Blog','/blog.html'],
+    ['DJBILBOX Zombies','/game/index.html'],
+  ]},
+  { t:'Legal', links:[
+    ['Beat Licensing','/license.html'],
+    ['Pricing','/pricing-2026.html'],
+    ['Contact','/contact.html'],
+    ['My Account','/account.html'],
+  ]},
+  { t:'For Creators', links:[
+    ['Free Beats','/beats-redesign.html'],
+    ['Free VST Plugins','/free-vst.html'],
+    ['Free Bundle','/free-bundle.html'],
+    ['Academy (Discord)', DISCORD_URL],
+    ['Mix & Master','/services.html'],
+    ['Global Cities','/locations/index.html'],
+  ]},
+  { t:'Follow DJBILBOX', links:[
+    ['YouTube','https://www.youtube.com/@djbilboxbeats'],
+    ['Spotify','https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG'],
+    ['Twitch','https://www.twitch.tv/djbilbox'],
+    ['Discord', DISCORD_URL],
+    ['Gumroad','https://djbilboxbeats.gumroad.com'],
+  ]},
+];
+
 function mountFooter(){
   if(document.querySelector('.footer')) return;
+  const ext = h => /^https?:/.test(h) ? ' target="_blank" rel="noopener"' : '';
+  const cols = FOOTER_COLS.map(c =>
+    `<div class="fcol"><h4>${c.t}</h4>` +
+    c.links.map(([l,h]) => `<a href="${h}"${ext(h)}>${l}</a>`).join('') +
+    `</div>`
+  ).join('');
+
   const f=document.createElement('footer');
   f.className='footer';
   f.innerHTML=`<div class="container">
-    <div class="footer-inner">
-      <a href="/index.html" class="brand">DJBILBOX <span>BEATS</span></a>
-      <div class="footer-links">
-        <a href="/license.html">License</a><a href="/services.html">Contact</a><a href="/news.html">Newsletter</a>
-      </div>
-      <div class="footer-social">
-        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://www.twitch.tv/djbilbox" target="_blank"><i class="fa-brands fa-twitch"></i></a>
+    <div class="footer-cols">
+      ${cols}
+      <div class="fcol">
+        <h4>Contact</h4>
+        <a href="mailto:djbilboxbeats@gmail.com">djbilboxbeats@gmail.com</a>
+        <span>DJBILBOX BEATS</span>
+        <span>Bilel Abdelkader Attalah</span>
+        <span>Toulouse, France</span>
+        <div class="footer-social">
+          <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" rel="noopener" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+          <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.twitch.tv/djbilbox" target="_blank" rel="noopener" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+          <a href="${DISCORD_URL}" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        </div>
       </div>
     </div>
-    <div class="footer-copy">DJBILBOX BEATS — Bilel Abdelkader Attalah · 4 rue Virginia Woolf, 31200 Toulouse, France<br>© 2026 DJBILBOX BEATS — All rights reserved.</div>
+    <div class="footer-copy">
+      DJBILBOX BEATS — Bilel Abdelkader Attalah · 4 rue Virginia Woolf, 31200 Toulouse, France<br>
+      © 2026 DJBILBOX BEATS — All rights reserved.
+    </div>
   </div>`;
   document.body.appendChild(f);
 }

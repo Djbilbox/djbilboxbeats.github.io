@@ -6,7 +6,7 @@
 <title>My Account — DJBILBOX BEATS</title>
 <meta name="description" content="Join the DJBILBOX BEATS community — free beats, exclusive drops, member perks.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26071818">
+<link rel="stylesheet" href="assets/css/theme.css?v=26072611">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -48,13 +48,28 @@
 .acc-logout{margin-top:18px;background:none;border:1px solid var(--border);color:var(--text-3);padding:11px 18px;
   border-radius:9px;font-weight:600;cursor:pointer;transition:.18s}
 .acc-logout:hover{border-color:#ff5050;color:#ff8a8a}
+/* ---- social sign-in ---- */
+.acc-or{display:flex;align-items:center;gap:12px;margin:20px 0 16px;color:var(--text-4);
+  font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.acc-or::before,.acc-or::after{content:"";flex:1;height:1px;background:var(--border)}
+.acc-social{display:flex;flex-direction:column;gap:10px}
+#gsiButton{display:flex;justify-content:center;min-height:44px}
+.acc-gbtn{display:flex;align-items:center;justify-content:center;gap:11px;width:100%;
+  background:#fff;color:#1f1f1f;border:none;border-radius:9px;padding:13px;cursor:pointer;
+  font-family:var(--font);font-weight:600;font-size:.93rem;transition:.18s}
+.acc-gbtn:hover{background:#f1f1f1;transform:translateY(-1px)}
+.acc-gbtn svg{width:19px;height:19px;flex:0 0 auto}
+.acc-gnote{font-size:.72rem;color:var(--text-4);text-align:center;line-height:1.5}
+.acc-provider{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text-4);
+  margin-top:6px;justify-content:center}
 </style>
 </head>
 <body data-page="account">
 
 <main class="acc-wrap" id="accRoot"></main>
 
-<script src="assets/js/site.js?v=26071901"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="assets/js/site.js?v=26072611"></script>
 <script src="assets/js/chat.js?v=26071911"></script>
 <script>
 /* ============================================================
@@ -65,11 +80,37 @@
 const ACC_KEY='djb_users', SESSION_KEY='djb_session';
 const FORMSPREE='https://formspree.io/f/mjvzgyeo';
 
+/* ============================================================
+   SIGN IN WITH GOOGLE (Google Identity Services)
+   ------------------------------------------------------------
+   Paste the OAuth 2.0 Web client ID below and the official Google
+   button appears automatically. Get one — free — at:
+     console.cloud.google.com → APIs & Services → Credentials
+     → Create credentials → OAuth client ID → Web application
+   Authorised JavaScript origins must list BOTH:
+     https://djbilboxbeats.com
+     https://djbilbox.github.io
+   Leave the string empty and the Google block simply stays hidden,
+   so the email/password signup keeps working on its own.
+
+   Note: this is a static site, so Google identifies the visitor and
+   we store the profile locally — it is not a server-verified login.
+   ============================================================ */
+const GOOGLE_CLIENT_ID = '';   /* <-- paste "....apps.googleusercontent.com" here */
+
 function hash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i)|0;}return 'h'+Math.abs(h);}
 function getUsers(){try{return JSON.parse(localStorage.getItem(ACC_KEY))||{}}catch{return{}}}
 function saveUsers(u){localStorage.setItem(ACC_KEY,JSON.stringify(u));}
 function getSession(){try{return JSON.parse(localStorage.getItem(SESSION_KEY))}catch{return null}}
-function setSession(s){s?localStorage.setItem(SESSION_KEY,JSON.stringify(s)):localStorage.removeItem(SESSION_KEY);render();}
+function setSession(s){
+  if(s){ localStorage.setItem(SESSION_KEY,JSON.stringify(s)); }
+  else{
+    localStorage.removeItem(SESSION_KEY);
+    /* stop Google from silently signing the visitor back in */
+    try{ google.accounts.id.disableAutoSelect(); }catch(e){}
+  }
+  render();
+}
 
 function render(){
   const root=document.getElementById('accRoot');
@@ -77,17 +118,87 @@ function render(){
   if(sess){ root.innerHTML=dashboardHTML(sess); return; }
   root.innerHTML=authHTML();
   wireAuth();
+  mountGoogle();
+}
+
+/* ---------- Google Identity Services ---------- */
+function mountGoogle(){
+  const holder=document.querySelector('.acc-social');
+  if(!holder) return;
+  if(!GOOGLE_CLIENT_ID){ holder.previousElementSibling.style.display='none'; holder.style.display='none'; return; }
+  if(!window.google || !google.accounts || !google.accounts.id){
+    /* library blocked or still loading — show our own button, retry shortly */
+    document.getElementById('gsiFallback').style.display='block';
+    setTimeout(mountGoogle,900);
+    return;
+  }
+  document.getElementById('gsiFallback').style.display='none';
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: onGoogleCredential,
+    ux_mode: 'popup',
+    auto_select: false
+  });
+  google.accounts.id.renderButton(document.getElementById('gsiButton'), {
+    theme:'filled_black', size:'large', shape:'pill', width:380,
+    text:'continue_with', logo_alignment:'left'
+  });
+}
+
+function googleUnavailable(){
+  alert("Google sign-in isn't available right now (the Google script is blocked or still loading). You can create an account with your email just above.");
+}
+
+/* Decode the payload of a Google ID token. Read-only: we are not
+   verifying the signature — a static site has no server to do that. */
+function decodeJwt(token){
+  try{
+    const b=token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');
+    return JSON.parse(decodeURIComponent(escape(atob(b))));
+  }catch(e){ return null; }
+}
+
+function onGoogleCredential(res){
+  const p=decodeJwt(res && res.credential);
+  if(!p || !p.email){ googleUnavailable(); return; }
+  const email=String(p.email).toLowerCase();
+  const name=p.name || p.given_name || email.split('@')[0];
+
+  const users=getUsers();
+  const isNew=!users[email];
+  users[email]=Object.assign({}, users[email], {
+    name, email, provider:'google', picture:p.picture||'',
+    joined:(users[email] && users[email].joined) || new Date().toISOString()
+  });
+  saveUsers(users);
+
+  if(isNew){
+    const fd=new FormData();
+    fd.append('_subject',`New community signup (Google) — ${name}`);
+    fd.append('_captcha','false');
+    fd.append('name',name); fd.append('email',email);
+    fd.append('message','New member joined the DJBILBOX BEATS community via Google sign-in.');
+    fetch(FORMSPREE,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(()=>{});
+  }
+  setSession({name,email,provider:'google',picture:p.picture||''});
 }
 
 function dashboardHTML(u){
   const initial=(u.name||u.email||'D').trim().charAt(0).toUpperCase();
+  const avatar = u.picture
+    ? `<img class="acc-avatar" src="${u.picture}" alt="" referrerpolicy="no-referrer"
+           style="object-fit:cover" onerror="this.outerHTML='<div class=\\'acc-avatar\\'>${initial}</div>'">`
+    : `<div class="acc-avatar">${initial}</div>`;
+  const via = u.provider==='google'
+    ? `<div class="acc-provider"><i class="fa-brands fa-google"></i> Signed in with Google</div>` : '';
   return `
     <h1 class="acc-h1">My <span>Account</span></h1>
     <p class="acc-sub">Welcome back to the DJBILBOX community.</p>
     <div class="acc-dash">
-      <div class="acc-avatar">${initial}</div>
+      ${avatar}
       <div class="acc-welcome">${u.name||'Member'}</div>
       <div class="acc-email">${u.email}</div>
+      ${via}
       <div class="acc-perks">
         <div class="acc-perk"><i class="fa-solid fa-circle-check"></i> Member of the DJBILBOX BEATS community</div>
         <div class="acc-perk"><i class="fa-solid fa-gift"></i> Free access to all sample packs & demos</div>
@@ -125,7 +236,25 @@ function authHTML(){
       <button class="acc-btn" type="submit">Create my account</button>
       <div class="acc-msg" id="signupMsg"></div>
       <p class="acc-note">By joining you'll receive occasional emails about new beats & deals. No spam, unsubscribe anytime.</p>
-    </form>`;
+    </form>
+
+    <div class="acc-or">or</div>
+    <div class="acc-social">
+      <!-- Google renders its official button here once the client ID is set. -->
+      <div id="gsiButton"></div>
+      <div id="gsiFallback" style="display:none">
+        <button class="acc-gbtn" type="button" onclick="googleUnavailable()">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.7 1.22 9.2 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 0 1 9.77 24c0-1.6.27-3.15.76-4.59l-7.98-6.19A23.94 23.94 0 0 0 0 24c0 3.88.93 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.9-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.17 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          Continue with Google
+        </button>
+      </div>
+      <p class="acc-gnote">One click — no password to remember.</p>
+    </div>`;
 }
 
 function wireAuth(){/* listeners attached inline */}

@@ -794,3 +794,22 @@ window.PRODUCTS = {
   }
 
 };
+
+/* ============================================================
+   ID ALIASES — the shop grid (vst-data.js) and older links use
+   slugs that differ from the detail-page keys above. Without these
+   product.html?id=... falls through to "PRODUCT NOT FOUND".
+   ============================================================ */
+(function(){
+  var A = {
+    "oriental-instrument-free" : "oriental-instrument-demo",
+    "oriental-demo"            : "oriental-instrument-demo",
+    "oriental"                 : "oriental-instrument",
+    "oriental-instrument-full" : "oriental-instrument"
+  };
+  Object.keys(A).forEach(function(alias){
+    if(!window.PRODUCTS[alias] && window.PRODUCTS[A[alias]]){
+      window.PRODUCTS[alias] = window.PRODUCTS[A[alias]];
+    }
+  });
+})();

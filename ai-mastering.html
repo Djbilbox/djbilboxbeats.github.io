@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI MASTERING — Get your track loud, clean & release-ready | DJBILBOX BEATS</title>
+<meta name="description" content="AI Mastering by DJBILBOX BEATS — the MASTERING VST3 plugin with auto-gain and auto-compression, plus hand-finished mastering by a real engineer. Streaming-ready loudness for Spotify, YouTube and Apple Music.">
+<meta name="keywords" content="ai mastering, online mastering, mastering vst, mastering plugin, loudness lufs spotify, djbilbox mastering, mix and master">
+<link rel="canonical" href="https://djbilboxbeats.com/ai-mastering.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI MASTERING — DJBILBOX BEATS">
+<meta property="og:description" content="Automatic mastering in your DAW with the MASTERING VST3, or hand-finished by a real engineer.">
+<meta property="og:image" content="https://djbilboxbeats.com/img/vst/mastering.jpg">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css?v=26072611">
+<link rel="stylesheet" href="assets/css/chat.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ============================================================
+   AI MASTERING — scoped block. Cold steel/emerald over the dark base,
+   deliberately different from the Oriental gold and the Video teal.
+   ============================================================ */
+.am{--am1:#34D399;--am2:#38BDF8;--ink:#05080b;background:var(--ink);color:#e9eef2;overflow-x:hidden}
+.am-in{max-width:1320px;margin:0 auto;padding:0 26px}
+.am-eyebrow{font-family:var(--font-a);font-size:.72rem;font-weight:700;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--am1);margin-bottom:14px;display:flex;align-items:center;gap:9px}
+.am-eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--am1);
+  box-shadow:0 0 12px var(--am1)}
+.am h1,.am h2{font-family:var(--font-a);font-weight:700;text-transform:uppercase;line-height:.98}
+.am h1{font-size:clamp(2.2rem,6vw,4.4rem)}
+.am h2{font-size:clamp(1.7rem,4vw,2.9rem)}
+.am h3{font-family:var(--font-a);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:1.02rem}
+.am p{color:#94a3ad;line-height:1.66}
+.am-grad{background:linear-gradient(100deg,var(--am1),var(--am2));-webkit-background-clip:text;
+  background-clip:text;color:transparent}
+
+.am-btn{display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;
+  font-family:var(--font-a);font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  font-size:.88rem;transition:.22s;border:1px solid transparent;cursor:pointer}
+.am-btn.go{background:linear-gradient(100deg,var(--am1),var(--am2));color:#03130d;
+  box-shadow:0 12px 34px rgba(52,211,153,.24)}
+.am-btn.go:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(56,189,248,.4)}
+.am-btn.ghost{background:rgba(255,255,255,.04);border-color:rgba(52,211,153,.35);color:#e9eef2}
+.am-btn.ghost:hover{border-color:var(--am1);background:rgba(52,211,153,.09)}
+
+/* hero + 3D panel */
+.am-hero{padding:78px 0 72px;position:relative;overflow:hidden;
+  background:radial-gradient(940px 560px at 76% 34%,rgba(52,211,153,.16),transparent 62%),
+             radial-gradient(760px 500px at 12% 88%,rgba(56,189,248,.14),transparent 66%),var(--ink)}
+.am-hero-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.1fr);gap:50px;align-items:center}
+.am-lead{font-size:1.05rem;max-width:47ch;margin:20px 0 28px}
+.am-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+
+.am-stage{perspective:1600px;perspective-origin:50% 45%}
+.am-3d{--rx:0deg;--ry:-16deg;--rz:0deg;--sc:1;--dir:-1;
+  transform-style:preserve-3d;
+  transform:rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz)) scale(var(--sc));
+  border-radius:12px;overflow:hidden;border:1px solid rgba(52,211,153,.2);
+  box-shadow:0 2px 0 rgba(255,255,255,.07) inset,-26px 40px 80px rgba(0,0,0,.85),
+             0 0 110px rgba(52,211,153,.14);
+  will-change:transform;position:relative}
+.am-3d img{width:100%;height:auto;display:block}
+.am-3d.flip{--ry:16deg;--dir:1}
+.am-3d::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.12) 50%,transparent 62%);
+  transform:translateX(calc(var(--sheen,0) * 1%))}
+.am-reflect{position:relative}
+.am-reflect::after{content:"";position:absolute;left:8%;right:8%;bottom:-9%;height:22%;
+  background:radial-gradient(ellipse at 50% 0%,rgba(52,211,153,.2),transparent 70%);
+  filter:blur(26px);pointer-events:none}
+@media(prefers-reduced-motion:reduce){
+  .am-3d{transform:rotateY(calc(var(--dir) * 16deg))!important}
+  .am-3d::after{display:none}
+}
+
+/* two routes */
+.am-routes{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:38px}
+.am-route{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:34px 30px;
+  background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.006));
+  display:flex;flex-direction:column}
+.am-route.hot{border-color:rgba(52,211,153,.45);
+  background:linear-gradient(180deg,rgba(52,211,153,.11),rgba(56,189,248,.03));
+  box-shadow:0 24px 70px rgba(52,211,153,.14)}
+.am-route .pp{font-family:var(--font-a);font-size:2.3rem;font-weight:700;margin:12px 0 2px}
+.am-route ul{list-style:none;margin:20px 0 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.am-route li{font-size:.89rem;color:#94a3ad;display:flex;gap:10px;align-items:flex-start}
+.am-route li i{color:var(--am1);margin-top:3px;font-size:.78rem}
+
+/* chain */
+.am-chain{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:34px}
+.am-link{border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:22px;
+  background:linear-gradient(170deg,rgba(255,255,255,.04),rgba(255,255,255,.008));transition:.2s}
+.am-link:hover{border-color:var(--am1);transform:translateY(-3px)}
+.am-link i{font-size:1.4rem;background:linear-gradient(100deg,var(--am1),var(--am2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:11px;display:block}
+.am-link b{display:block;font-family:var(--font-a);text-transform:uppercase;letter-spacing:.06em;
+  font-size:.98rem;margin-bottom:5px}
+.am-link small{color:#7f8b95;font-size:.79rem;line-height:1.5;display:block}
+
+/* loudness targets */
+.am-targets{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;overflow:hidden;margin-top:30px}
+.am-target{background:var(--ink);padding:24px 18px;text-align:center}
+.am-target b{display:block;font-family:var(--font-a);font-size:1.7rem;font-weight:700;color:var(--am1);line-height:1}
+.am-target span{display:block;margin-top:6px;font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:#7f8b95;font-weight:700}
+
+.am-final{padding:88px 0;text-align:center;
+  background:radial-gradient(880px 460px at 50% 50%,rgba(52,211,153,.15),transparent 66%),#040709}
+
+/* ---------- the working tool ---------- */
+.am-tool{border:1px solid rgba(52,211,153,.28);border-radius:20px;padding:30px;
+  background:linear-gradient(180deg,rgba(52,211,153,.07),rgba(255,255,255,.012));margin-top:34px}
+.am-drop{border:2px dashed rgba(52,211,153,.4);border-radius:16px;padding:44px 24px;text-align:center;
+  cursor:pointer;transition:.2s;background:rgba(0,0,0,.25)}
+.am-drop:hover,.am-drop.over{border-color:var(--am1);background:rgba(52,211,153,.09)}
+.am-drop i{font-size:2.4rem;color:var(--am1);margin-bottom:14px;display:block}
+.am-drop b{display:block;font-family:var(--font-a);font-size:1.15rem;text-transform:uppercase;letter-spacing:.05em}
+.am-drop small{color:#7f8b95;font-size:.82rem;display:block;margin-top:6px}
+.am-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:22px}
+.am-opt label{display:block;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:#7f8b95;font-weight:700;margin-bottom:7px}
+.am-opt select,.am-opt input[type=range]{width:100%}
+.am-opt select{background:#0b1116;border:1px solid rgba(255,255,255,.14);color:#e9eef2;
+  padding:11px 12px;border-radius:9px;font-family:var(--font);font-size:.9rem;outline:none}
+.am-opt select:focus{border-color:var(--am1)}
+.am-opt input[type=range]{accent-color:var(--am1);margin-top:9px}
+.am-val{float:right;color:var(--am1);font-weight:700;font-size:.78rem}
+.am-run{margin-top:22px;width:100%;justify-content:center}
+.am-run:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.am-prog{margin-top:18px;display:none}
+.am-prog.on{display:block}
+.am-bar{height:7px;border-radius:99px;background:rgba(255,255,255,.09);overflow:hidden}
+.am-bar i{display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--am1),var(--am2));transition:width .3s}
+.am-prog span{display:block;margin-top:9px;font-size:.8rem;color:#94a3ad}
+.am-res{display:none;margin-top:26px}
+.am-res.on{display:block}
+.am-meters{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:1px;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.09);border-radius:14px;overflow:hidden}
+.am-meter{background:#070c10;padding:18px 12px;text-align:center}
+.am-meter b{display:block;font-family:var(--font-a);font-size:1.45rem;font-weight:700;color:var(--am1);line-height:1}
+.am-meter b.was{color:#6d7a84;font-size:1.05rem}
+.am-meter span{display:block;margin-top:5px;font-size:.63rem;letter-spacing:.1em;
+  text-transform:uppercase;color:#7f8b95;font-weight:700}
+.am-ab{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;align-items:center}
+.am-ab button{flex:1;min-width:130px;justify-content:center}
+.am-note{font-size:.76rem;color:#63707a;margin-top:16px;line-height:1.55}
+.am-err{background:rgba(255,80,80,.12);border:1px solid rgba(255,80,80,.3);color:#ff9a9a;
+  padding:13px 15px;border-radius:10px;font-size:.85rem;margin-top:16px;display:none}
+.am-err.on{display:block}
+
+@media(max-width:980px){
+  .am-hero-grid,.am-routes{grid-template-columns:1fr}
+  .am-hero{padding:56px 0}
+  .am-3d,.am-3d.flip{transform:none}
+  .am-tool{padding:20px}
+}
+</style>
+</head>
+<body data-page="mastering">
+
+<div class="am">
+
+  <!-- ==================== HERO ==================== -->
+  <section class="am-hero">
+    <div class="am-in am-hero-grid">
+      <div>
+        <div class="am-eyebrow">AI Mastering</div>
+        <h1>Loud, clean,<br><span class="am-grad">release-ready.</span></h1>
+        <p class="am-lead">
+          Drop the <strong style="color:#e9eef2">MASTERING</strong> plug-in on your master bus and let
+          <strong style="color:#e9eef2">Auto&nbsp;Gain</strong> and <strong style="color:#e9eef2">Auto&nbsp;Comp</strong>
+          do the heavy lifting — threshold, attack, release and harmonics set themselves from your
+          material. Then push the output where streaming wants it, with a real gain-reduction meter
+          telling you exactly what it's doing.
+        </p>
+        <div class="am-cta">
+          <button class="am-btn go" onclick="buy('mastering')">
+            <i class="fa-solid fa-bolt"></i> Get the plug-in — €10
+          </button>
+          <a class="am-btn ghost" href="contact.html">
+            <i class="fa-solid fa-headphones"></i> Have me master it
+          </a>
+        </div>
+        <p style="font-size:.78rem;color:#63707a">
+          VST3 &amp; Standalone · Windows 64-bit · one payment, no subscription
+        </p>
+      </div>
+
+      <div class="am-stage am-reflect">
+        <div class="am-3d">
+          <img src="img/vst/ui/mastering-ui.png"
+               alt="MASTERING plug-in — input, pre-process and output stages with gain-reduction meter"
+               onerror="this.onerror=null;this.src='img/vst/mastering.jpg'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== THE TOOL (runs in the browser) ==================== -->
+  <section class="am-in" id="tool" style="padding:20px 0 10px">
+    <div class="am-eyebrow">Master it now — free</div>
+    <h2>Drop your track. <span class="am-grad">Get it back mastered.</span></h2>
+    <p style="margin-top:14px;max-width:62ch">
+      Everything runs inside your browser — your audio never leaves your computer,
+      nothing is uploaded anywhere.
+    </p>
+
+    <div class="am-tool">
+      <div class="am-drop" id="amDrop">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <b>Drop a WAV or MP3 here</b>
+        <small>or click to choose a file · stereo or mono · any sample rate</small>
+        <input type="file" id="amFile" accept="audio/*" hidden>
+      </div>
+
+      <div class="am-opts">
+        <div class="am-opt">
+          <label>Target platform</label>
+          <select id="amTarget">
+            <option value="-14">Spotify / YouTube · -14 LUFS</option>
+            <option value="-16">Apple Music · -16 LUFS</option>
+            <option value="-14" selected>Streaming standard · -14 LUFS</option>
+            <option value="-9">Club / loud master · -9 LUFS</option>
+            <option value="-11">SoundCloud / beats · -11 LUFS</option>
+          </select>
+        </div>
+        <div class="am-opt">
+          <label>True-peak ceiling</label>
+          <select id="amCeiling">
+            <option value="-1">-1.0 dBTP (recommended)</option>
+            <option value="-0.3">-0.3 dBTP</option>
+            <option value="-2">-2.0 dBTP (safe for MP3)</option>
+          </select>
+        </div>
+        <div class="am-opt">
+          <label>Harmonics <span class="am-val" id="amHarmVal">20%</span></label>
+          <input type="range" id="amHarm" min="0" max="100" value="20">
+        </div>
+        <div class="am-opt">
+          <label>Low cut <span class="am-val" id="amHpfVal">30 Hz</span></label>
+          <input type="range" id="amHpf" min="10" max="80" value="30">
+        </div>
+        <div class="am-opt">
+          <label>Export format</label>
+          <select id="amBits">
+            <option value="24">WAV 24-bit</option>
+            <option value="16">WAV 16-bit</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="am-btn go am-run" id="amRun" disabled>
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Master my track
+      </button>
+
+      <div class="am-prog" id="amProg">
+        <div class="am-bar"><i id="amBarFill"></i></div>
+        <span id="amStep">Working…</span>
+      </div>
+
+      <div class="am-err" id="amErr"></div>
+
+      <div class="am-res" id="amRes">
+        <div class="am-meters">
+          <div class="am-meter"><b class="was" id="mInLufs">–</b><span>Before · LUFS</span></div>
+          <div class="am-meter"><b id="mOutLufs">–</b><span>After · LUFS</span></div>
+          <div class="am-meter"><b class="was" id="mInTp">–</b><span>Before · dBTP</span></div>
+          <div class="am-meter"><b id="mOutTp">–</b><span>After · dBTP</span></div>
+          <div class="am-meter"><b id="mGain">–</b><span>Gain applied</span></div>
+          <div class="am-meter"><b id="mCrest">–</b><span>Crest factor</span></div>
+        </div>
+
+        <div class="am-ab">
+          <button class="am-btn ghost" id="amPlayA"><i class="fa-solid fa-play"></i> Original</button>
+          <button class="am-btn ghost" id="amPlayB"><i class="fa-solid fa-play"></i> Mastered</button>
+          <button class="am-btn ghost" id="amStop"><i class="fa-solid fa-stop"></i> Stop</button>
+          <button class="am-btn go" id="amDl"><i class="fa-solid fa-download"></i> Download WAV</button>
+        </div>
+
+        <p class="am-note" id="amVerdict"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HOW IT WORKS ==================== -->
+  <section class="am-in" style="padding:74px 0 10px">
+    <div class="am-eyebrow">The chain</div>
+    <h2>What actually <span class="am-grad">happens to your track.</span></h2>
+    <p style="margin-top:14px;max-width:62ch">
+      No black box. Three stages, all of them visible on the interface, all of them yours to override.
+    </p>
+    <div class="am-chain">
+      <div class="am-link">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <b>Input</b>
+        <small>Stereo metering with L/R peak, and an input trim so the processor sees the level it expects.</small>
+      </div>
+      <div class="am-link">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <b>Auto Gain</b>
+        <small>Reads your material and sets the make-up so the loudness lands where it should — the "AI" part of the job.</small>
+      </div>
+      <div class="am-link">
+        <i class="fa-solid fa-compress"></i>
+        <b>Auto Comp</b>
+        <small>Attack, release and threshold adapt to the density of the mix instead of a fixed preset.</small>
+      </div>
+      <div class="am-link">
+        <i class="fa-solid fa-chart-simple"></i>
+        <b>Gain reduction</b>
+        <small>A live meter in dB — you see how hard it's working, so you can back off before it squashes.</small>
+      </div>
+      <div class="am-link">
+        <i class="fa-solid fa-water"></i>
+        <b>Harmonics</b>
+        <small>Adds weight and glue on the way out. Dial it to taste, from transparent to coloured.</small>
+      </div>
+      <div class="am-link">
+        <i class="fa-solid fa-gauge-high"></i>
+        <b>Output &amp; dither</b>
+        <small>True-peak ceiling, peak hold, and 16/24-bit dither for the final bounce.</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TARGETS ==================== -->
+  <section class="am-in" style="padding:60px 0 10px">
+    <div class="am-eyebrow">Targets</div>
+    <h2>Every platform <span class="am-grad">normalises differently.</span></h2>
+    <p style="margin-top:14px;max-width:62ch">
+      Master too hot and streaming turns you back down — with the transients already gone. These are
+      the integrated-loudness targets to aim for.
+    </p>
+    <div class="am-targets">
+      <div class="am-target"><b>-14</b><span>LUFS · Spotify</span></div>
+      <div class="am-target"><b>-14</b><span>LUFS · YouTube</span></div>
+      <div class="am-target"><b>-16</b><span>LUFS · Apple Music</span></div>
+      <div class="am-target"><b>-14</b><span>LUFS · Amazon</span></div>
+      <div class="am-target"><b>-1.0</b><span>dBTP ceiling</span></div>
+    </div>
+  </section>
+
+  <!-- ==================== TWO ROUTES ==================== -->
+  <section class="am-in" style="padding:66px 0 10px">
+    <div class="am-eyebrow">Two ways to do it</div>
+    <h2>Automatic, or <span class="am-grad">by hand.</span></h2>
+    <div class="am-routes">
+      <div class="am-route hot">
+        <h3><span class="am-grad">Do it yourself</span></h3>
+        <p style="font-size:.88rem">The plug-in, in your DAW, on as many tracks as you want. Forever.</p>
+        <div class="pp" style="color:var(--am1)">€10</div>
+        <ul>
+          <li><i class="fa-solid fa-check"></i> Auto Gain + Auto Comp</li>
+          <li><i class="fa-solid fa-check"></i> Live gain-reduction metering</li>
+          <li><i class="fa-solid fa-check"></i> Harmonics &amp; output ceiling</li>
+          <li><i class="fa-solid fa-check"></i> 16/24-bit dither</li>
+          <li><i class="fa-solid fa-check"></i> VST3 + Standalone · unlimited tracks</li>
+        </ul>
+        <button class="am-btn go" style="justify-content:center" onclick="buy('mastering')">
+          <i class="fa-solid fa-bolt"></i> Get the plug-in
+        </button>
+      </div>
+      <div class="am-route">
+        <h3>Have me do it</h3>
+        <p style="font-size:.88rem">You send the mix, I master it myself and send back the release files.</p>
+        <div class="pp">On quote</div>
+        <ul>
+          <li><i class="fa-solid fa-check"></i> Mastered by a human, not a preset</li>
+          <li><i class="fa-solid fa-check"></i> Streaming + distribution versions</li>
+          <li><i class="fa-solid fa-check"></i> Revisions until you're happy</li>
+          <li><i class="fa-solid fa-check"></i> Mix fixes flagged if I hear them</li>
+        </ul>
+        <a class="am-btn ghost" style="justify-content:center" href="contact.html">
+          <i class="fa-solid fa-paper-plane"></i> Send me your mix
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FINAL ==================== -->
+  <section class="am-final" style="margin-top:70px">
+    <div class="am-in">
+      <div class="am-eyebrow" style="justify-content:center">AI Mastering</div>
+      <h2>Stop guessing <span class="am-grad">your loudness.</span></h2>
+      <p style="margin:16px auto 0;max-width:52ch">
+        One plug-in on the master bus, and a meter that tells you the truth.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px">
+        <button class="am-btn go" onclick="buy('mastering')"><i class="fa-solid fa-bolt"></i> Get MASTERING — €10</button>
+        <a class="am-btn ghost" href="product.html?id=mastering"><i class="fa-solid fa-circle-info"></i> Full specs</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="assets/js/language-switcher.js?v=26071801"></script>
+<script src="assets/js/site.js?v=26072611"></script>
+<script src="assets/js/chat.js?v=26071911"></script>
+<script src="assets/js/ai-mastering.js?v=26072611"></script>
+
+<script>
+/* ============================================================
+   AI MASTERING — UI wiring. The DSP itself lives in
+   assets/js/ai-mastering.js (window.AIMastering).
+   ============================================================ */
+(function(){
+  const $ = id => document.getElementById(id);
+  const drop=$('amDrop'), file=$('amFile'), run=$('amRun');
+  const prog=$('amProg'), bar=$('amBarFill'), stepTxt=$('amStep');
+  const res=$('amRes'), err=$('amErr');
+
+  let srcBuffer=null, outBuffer=null, wavBlob=null, playCtx=null, node=null, baseName='master';
+
+  /* ---- option read-outs ---- */
+  $('amHarm').addEventListener('input', e => $('amHarmVal').textContent = e.target.value + '%');
+  $('amHpf').addEventListener('input',  e => $('amHpfVal').textContent  = e.target.value + ' Hz');
+
+  /* ---- file intake ---- */
+  drop.addEventListener('click', () => file.click());
+  ['dragenter','dragover'].forEach(ev =>
+    drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('over'); }));
+  ['dragleave','drop'].forEach(ev =>
+    drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('over'); }));
+  drop.addEventListener('drop', e => { if(e.dataTransfer.files[0]) load(e.dataTransfer.files[0]); });
+  file.addEventListener('change', e => { if(e.target.files[0]) load(e.target.files[0]); });
+
+  function fail(msg){ err.textContent = msg; err.classList.add('on'); prog.classList.remove('on'); }
+
+  async function load(f){
+    err.classList.remove('on');
+    res.classList.remove('on');
+    baseName = f.name.replace(/\.[^.]+$/, '');
+    drop.querySelector('b').textContent = f.name;
+    drop.querySelector('small').textContent =
+      (f.size/1048576).toFixed(1) + ' MB — decoding…';
+    try{
+      const ab  = await f.arrayBuffer();
+      const ctx = new (window.AudioContext||window.webkitAudioContext)();
+      srcBuffer = await ctx.decodeAudioData(ab);
+      ctx.close();
+      const mins = Math.floor(srcBuffer.duration/60), secs = Math.round(srcBuffer.duration%60);
+      drop.querySelector('small').textContent =
+        `${mins}:${String(secs).padStart(2,'0')} · ${srcBuffer.sampleRate} Hz · ` +
+        `${srcBuffer.numberOfChannels===1?'mono':'stereo'} — ready`;
+      run.disabled = false;
+    }catch(e){
+      srcBuffer=null; run.disabled=true;
+      fail("Couldn't decode that file. Try a WAV, MP3, FLAC or M4A.");
+      drop.querySelector('small').textContent='or click to choose a file';
+    }
+  }
+
+  /* ---- run the master ---- */
+  run.addEventListener('click', async () => {
+    if(!srcBuffer) return;
+    err.classList.remove('on');
+    res.classList.remove('on');
+    prog.classList.add('on');
+    run.disabled = true;
+
+    const opts = {
+      targetLufs: parseFloat($('amTarget').value),
+      ceilingDb : parseFloat($('amCeiling').value),
+      harmonics : parseInt($('amHarm').value,10)/100,
+      hpf       : parseInt($('amHpf').value,10)
+    };
+
+    try{
+      const { buffer, report } = await AIMastering.master(srcBuffer, opts, (label, p) => {
+        stepTxt.textContent = label;
+        bar.style.width = Math.round(p*100) + '%';
+      });
+      outBuffer = buffer;
+
+      stepTxt.textContent = 'Encoding WAV…';
+      bar.style.width = '97%';
+      /* let the bar repaint before the encoder blocks the thread */
+      await new Promise(r => setTimeout(r, 30));
+      wavBlob = AIMastering.encodeWav(outBuffer, parseInt($('amBits').value,10));
+
+      bar.style.width='100%';
+      stepTxt.textContent='Done.';
+
+      const f1 = v => (v>0?'+':'') + v.toFixed(1);
+      $('mInLufs').textContent  = report.inLufs.toFixed(1);
+      $('mOutLufs').textContent = report.outLufs.toFixed(1);
+      $('mInTp').textContent    = report.inTp.toFixed(1);
+      $('mOutTp').textContent   = report.outTp.toFixed(1);
+      $('mGain').textContent    = f1(report.gainApplied) + ' dB';
+      $('mCrest').textContent   = report.crest.toFixed(1) + ' dB';
+
+      const missed = Math.abs(report.outLufs - report.targetLufs);
+      $('amVerdict').innerHTML =
+        `Landed at <strong style="color:#34D399">${report.outLufs.toFixed(1)} LUFS</strong> ` +
+        `against a ${report.targetLufs} LUFS target` +
+        (missed > 1
+          ? ` — ${missed.toFixed(1)} LU short, which happens when a mix is already very compressed and the limiter runs out of room.`
+          : `, true peak held at ${report.outTp.toFixed(1)} dBTP.`) +
+        ` Glue compressor set itself to ${report.compRatio.toFixed(1)}:1 at ` +
+        `${report.compThreshold.toFixed(1)} dB from a ${report.crest.toFixed(1)} dB crest factor.`;
+
+      res.classList.add('on');
+      setTimeout(()=>prog.classList.remove('on'), 900);
+    }catch(e){
+      fail('Mastering failed: ' + (e && e.message ? e.message : e));
+    }
+    run.disabled = false;
+  });
+
+  /* ---- A/B monitoring ---- */
+  function play(buf){
+    stop();
+    playCtx = new (window.AudioContext||window.webkitAudioContext)();
+    node = playCtx.createBufferSource();
+    node.buffer = buf;
+    node.connect(playCtx.destination);
+    node.start();
+  }
+  function stop(){
+    if(node){ try{ node.stop(); }catch(e){} node=null; }
+    if(playCtx){ playCtx.close(); playCtx=null; }
+  }
+  $('amPlayA').addEventListener('click', ()=> srcBuffer && play(srcBuffer));
+  $('amPlayB').addEventListener('click', ()=> outBuffer && play(outBuffer));
+  $('amStop').addEventListener('click', stop);
+
+  /* ---- download ---- */
+  $('amDl').addEventListener('click', () => {
+    if(!wavBlob) return;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(wavBlob);
+    a.download = baseName + ' (mastered).wav';
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
+  });
+})();
+</script>
+
+<script>
+/* Same scroll-driven 3D pass as the Oriental page. */
+(function mastering3D(){
+  var panels=[].slice.call(document.querySelectorAll('.am-3d'));
+  if(!panels.length) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var ticking=false;
+  function frame(){
+    ticking=false;
+    var vh=window.innerHeight||1;
+    for(var i=0;i<panels.length;i++){
+      var el=panels[i], r=el.getBoundingClientRect();
+      if(r.bottom<-200||r.top>vh+200) continue;
+      var p=(vh/2-(r.top+r.height/2))/(vh/2+r.height/2);
+      p=p<-1?-1:(p>1?1:p);
+      var dir=el.classList.contains('flip')?1:-1;
+      el.style.setProperty('--ry',(dir*(16-14*p)).toFixed(2)+'deg');
+      el.style.setProperty('--rx',(7*p).toFixed(2)+'deg');
+      el.style.setProperty('--rz',(dir*-2*p).toFixed(2)+'deg');
+      el.style.setProperty('--sc',(1-0.04*Math.abs(p)).toFixed(3));
+      el.style.setProperty('--sheen',(p*120).toFixed(0));
+    }
+  }
+  function onScroll(){ if(ticking) return; ticking=true; requestAnimationFrame(frame); }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  frame();
+})();
+</script>
+</body>
+</html>
