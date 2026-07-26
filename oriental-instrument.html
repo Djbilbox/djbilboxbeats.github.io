@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://djbilboxbeats.com/oriental-instrument.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26072640">
+<link rel="stylesheet" href="assets/css/theme.css?v=26072650">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script type="application/ld+json">
@@ -76,25 +76,85 @@
    viewport, so the synth turns while you scroll. Values below are
    the resting pose used before JS runs / if JS is disabled.        */
 .ori-stage{perspective:1600px;perspective-origin:50% 45%}
+
+/* The slab itself holds NO overflow and NO background — an overflow
+   or a filter here would flatten the 3D context and the side walls
+   would vanish. It is purely the thing that rotates.              */
 .ori-3d{
   --rx:0deg; --ry:-16deg; --rz:0deg; --sc:1; --dir:-1;
+  --depth:30px;                      /* physical thickness of the unit */
+  position:relative;
   transform-style:preserve-3d;
   transform:rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz)) scale(var(--sc));
-  border-radius:12px;overflow:hidden;
-  border:1px solid rgba(232,181,77,.22);
-  box-shadow:
-    0 2px 0 rgba(255,255,255,.07) inset,
-    -26px 40px 80px rgba(0,0,0,.85),
-    0 0 120px rgba(232,181,77,.16);
   will-change:transform;
+  /* NO filter here: a filter forces transform-style back to flat,
+     which would collapse the side walls. The drop shadow lives on
+     the front panel as a box-shadow instead. */
 }
-.ori-3d img{width:100%;height:auto;display:block}
 .ori-3d.flip{--ry:16deg; --dir:1}
+
+/* front panel — the real plug-in screenshot */
+.ori-face{
+  position:relative;
+  border-radius:12px;overflow:hidden;
+  border:1px solid rgba(232,181,77,.28);
+  box-shadow:
+    0 2px 0 rgba(255,255,255,.08) inset,
+    -22px 38px 60px rgba(0,0,0,.8),
+    0 0 100px rgba(232,181,77,.14);
+  backface-visibility:hidden;
+}
+.ori-face img{width:100%;height:auto;display:block}
+
+/* category browser — stacked screenshots, one visible at a time.
+   The first is in flow so it sets the panel height; the rest are
+   absolutely positioned on top of it. */
+.ori-browser .ori-shot{opacity:0;transition:opacity .7s ease}
+.ori-browser .ori-shot:not(:first-child){position:absolute;inset:0;height:100%;object-fit:cover}
+.ori-browser .ori-shot.is-on{opacity:1}
 /* moving light sweep across the glass, tied to the same scroll pass */
-.ori-3d::after{
+.ori-face::after{
   content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.13) 50%,transparent 62%);
   transform:translateX(calc(var(--sheen,0) * 1%));
+}
+
+/* ---- the four walls that give the unit its thickness ----
+   Each is hinged on one edge of the face and folded backwards,
+   so the body extends from z=0 to z=-depth. Which wall you can
+   see follows the rotation: a negative rotateY reveals the right
+   wall, a positive one reveals the left. backface-visibility
+   hides whichever is turned away.                              */
+.ori-edge{position:absolute;backface-visibility:hidden;pointer-events:none}
+
+.ori-edge-r{
+  top:0;left:100%;height:100%;width:var(--depth);
+  transform-origin:left center;transform:rotateY(90deg);
+  background:linear-gradient(90deg,#3a2f1c,#171208 55%,#0b0805);
+  border-radius:0 4px 4px 0;
+}
+.ori-edge-l{
+  top:0;right:100%;height:100%;width:var(--depth);
+  transform-origin:right center;transform:rotateY(-90deg);
+  background:linear-gradient(270deg,#3a2f1c,#171208 55%,#0b0805);
+  border-radius:4px 0 0 4px;
+}
+.ori-edge-b{
+  left:0;top:100%;width:100%;height:var(--depth);
+  transform-origin:top center;transform:rotateX(-90deg);
+  background:linear-gradient(180deg,#2e2617,#120e07 60%,#080604);
+  border-radius:0 0 4px 4px;
+}
+.ori-edge-t{
+  left:0;bottom:100%;width:100%;height:var(--depth);
+  transform-origin:bottom center;transform:rotateX(90deg);
+  background:linear-gradient(0deg,#2a2215,#100d06 60%,#070503);
+  border-radius:4px 4px 0 0;
+}
+/* a thin lit lip where each wall meets the front panel */
+.ori-edge::before{
+  content:"";position:absolute;inset:0;
+  box-shadow:inset 0 0 0 1px rgba(232,181,77,.14);
 }
 /* floor reflection under the tilted panel */
 .ori-reflect{position:relative}
@@ -285,9 +345,15 @@
 
       <div class="ori-stage ori-reflect">
         <div class="ori-3d">
-          <img src="img/vst/ui/oriental-ui.png" alt="ORIENTAL INSTRUMENT plug-in interface — Maqam engine, preset browser, FX chain"
+            <div class="ori-face">
+              <img src="img/vst/ui/oriental-ui.png?v=2" alt="ORIENTAL INSTRUMENT plug-in interface — Maqam engine, preset browser, FX chain"
                onerror="this.onerror=null;this.src='assets/products/oriental-instrument/oriental-instrument-card.jpg'">
-        </div>
+            </div>
+            <span class="ori-edge ori-edge-r"></span>
+            <span class="ori-edge ori-edge-l"></span>
+            <span class="ori-edge ori-edge-b"></span>
+            <span class="ori-edge ori-edge-t"></span>
+          </div>
       </div>
     </div>
   </section>
@@ -296,8 +362,8 @@
   <section class="ori-band">
     <div class="ori-in">
       <div class="ori-band-grid">
-        <div class="ori-band-cell"><b>280+</b><span>Instruments</span></div>
-        <div class="ori-band-cell"><b>70</b><span>Factory presets</span></div>
+        <div class="ori-band-cell"><b>280+</b><span>Presets total</span></div>
+        <div class="ori-band-cell"><b>40</b><span>Per instrument</span></div>
         <div class="ori-band-cell"><b>7</b><span>Categories</span></div>
         <div class="ori-band-cell"><b>8</b><span>FX chain slots</span></div>
       </div>
@@ -326,9 +392,22 @@
       </div>
       <div class="ori-stage ori-reflect">
         <div class="ori-3d flip">
-          <img src="img/vst/ui/oriental-ui.png" alt="ORIENTAL INSTRUMENT — instrument category browser"
-               onerror="this.onerror=null;this.src='assets/products/oriental-instrument/oriental-instrument-1.jpg'">
-        </div>
+            <!-- Category browser: the real in-plug-in screenshots for
+                 OUD / QAN / NEY, cross-faded by oriBrowser() below. -->
+            <div class="ori-face ori-browser">
+              <img class="ori-shot is-on" src="img/vst/ui/oriental-cat-oud.png?v=2"
+                   alt="ORIENTAL INSTRUMENT — OUD presets: Aladin Night Market, Thousand Nights Story, Umm Kulthum Tribute"
+                   onerror="this.onerror=null;this.src='img/vst/ui/oriental-ui.png?v=2'">
+              <img class="ori-shot" src="img/vst/ui/oriental-cat-qan.png?v=2"
+                   alt="ORIENTAL INSTRUMENT — QANUN presets: Alexandria Elegance, Damascus Ornament, Tunis Malouf">
+              <img class="ori-shot" src="img/vst/ui/oriental-cat-ney.png?v=2"
+                   alt="ORIENTAL INSTRUMENT — NEY presets: Desert Wind Whisper, Luxor Temple Wind, Istanbul Bridge">
+            </div>
+            <span class="ori-edge ori-edge-r"></span>
+            <span class="ori-edge ori-edge-l"></span>
+            <span class="ori-edge ori-edge-b"></span>
+            <span class="ori-edge ori-edge-t"></span>
+          </div>
       </div>
     </div>
   </section>
@@ -356,9 +435,15 @@
       </div>
       <div class="ori-stage ori-reflect">
         <div class="ori-3d">
-          <img src="img/vst/ui/oriental-3d.jpg" alt="ORIENTAL INSTRUMENT — macro knobs and FX chain"
+            <div class="ori-face">
+              <img src="img/vst/ui/oriental-3d.jpg?v=2" alt="ORIENTAL INSTRUMENT — macro knobs and FX chain"
                onerror="this.onerror=null;this.src='assets/products/oriental-instrument/oriental-instrument-2.jpg'">
-        </div>
+            </div>
+            <span class="ori-edge ori-edge-r"></span>
+            <span class="ori-edge ori-edge-l"></span>
+            <span class="ori-edge ori-edge-b"></span>
+            <span class="ori-edge ori-edge-t"></span>
+          </div>
       </div>
     </div>
   </section>
@@ -367,7 +452,7 @@
   <section class="ori-split" style="padding-top:20px">
     <div class="ori-in">
       <div class="ori-eyebrow">Factory bank</div>
-      <h2>70 PRESETS, <span class="ori-gold">READY TO FLIP</span></h2>
+      <h2>40 PRESETS <span class="ori-gold">PER INSTRUMENT</span></h2>
       <p style="margin-top:16px;max-width:60ch">
         Each preset is tagged by country and by maqam — pick a mood, not a menu.
       </p>
@@ -418,7 +503,7 @@
           </div>
           <ul>
             <li><i class="fa-solid fa-check"></i> <strong style="color:#efe7d8">280+ instruments &amp; sounds</strong></li>
-            <li><i class="fa-solid fa-check"></i> 70 factory presets, tagged by maqam</li>
+            <li><i class="fa-solid fa-check"></i> 40 presets per instrument, tagged by country &amp; maqam</li>
             <li><i class="fa-solid fa-check"></i> Full 8-slot FX chain</li>
             <li><i class="fa-solid fa-check"></i> Melodic phrase browser</li>
             <li><i class="fa-solid fa-check"></i> Royalty-free for your productions</li>
@@ -456,8 +541,8 @@
 
 </div>
 
-<script src="assets/js/language-switcher.js?v=26072640"></script>
-<script src="assets/js/site.js?v=26072640"></script>
+<script src="assets/js/language-switcher.js?v=26072650"></script>
+<script src="assets/js/site.js?v=26072650"></script>
 <script src="assets/js/chat.js?v=26071911"></script>
 
 <script>
@@ -612,6 +697,43 @@
   }, {threshold:0.5});
 
   cells.forEach(function(c){ io.observe(c); });
+})();
+
+/* ============================================================
+   CATEGORY BROWSER — cross-fades the real OUD / QAN / NEY
+   screenshots so the panel looks like it is being played.
+   Only runs while the panel is on screen.
+   ============================================================ */
+(function oriBrowser(){
+  var wrap = document.querySelector('.ori-browser');
+  if(!wrap) return;
+  var shots = wrap.querySelectorAll('.ori-shot');
+  if(shots.length < 2) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var i = 0, timer = null;
+
+  function step(){
+    shots[i].classList.remove('is-on');
+    i = (i + 1) % shots.length;
+    shots[i].classList.add('is-on');
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        if(!timer) timer = setInterval(step, 2600);
+      } else if(timer){
+        clearInterval(timer); timer = null;
+      }
+    });
+  }, {threshold:0.25});
+  io.observe(wrap);
+
+  /* pause while the tab is hidden so we don't animate in the dark */
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden && timer){ clearInterval(timer); timer = null; }
+  });
 })();
 
 /* ============================================================
