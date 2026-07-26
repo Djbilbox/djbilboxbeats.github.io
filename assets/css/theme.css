@@ -31,6 +31,41 @@ img{display:block;max-width:100%}
 ::selection{background:var(--accent);color:#fff}
 
 /* ============================================================
+   HERO v2 (homepage) — product-led split hero.
+   ============================================================ */
+.hero2{position:relative;overflow:hidden;padding:66px 0 34px;
+  background:
+    radial-gradient(1000px 560px at 78% 30%,rgba(230,0,0,.13),transparent 62%),
+    radial-gradient(720px 480px at 6% 92%,rgba(255,102,51,.1),transparent 66%),
+    var(--bg)}
+.hero2-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:48px;align-items:center}
+.hero2-eyebrow{font-family:var(--font-a);font-size:.72rem;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.hero2-title{font-family:var(--font-a);font-weight:700;text-transform:none;
+  font-size:clamp(2.1rem,5vw,3.9rem);line-height:1.02;letter-spacing:-.01em;margin-bottom:18px}
+.hero2-title span{background:linear-gradient(100deg,#FF6633,var(--accent));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero2-sub{color:var(--text-2);font-size:1.04rem;line-height:1.65;max-width:52ch;margin-bottom:26px}
+.hero2-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.hero2-tags{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:28px}
+.hero2-tags a{border:1px solid var(--border);background:var(--surface);border-radius:999px;
+  padding:9px 16px;font-size:.8rem;font-weight:600;color:var(--text-2);transition:.18s}
+.hero2-tags a:hover{border-color:var(--accent);color:var(--text);transform:translateY(-2px)}
+.hero2 .stats{justify-content:flex-start}
+.hero2-art{perspective:1200px}
+.hero2-art img{width:100%;border-radius:16px;
+  transform:rotateY(-7deg) rotateX(2deg);transition:transform .6s cubic-bezier(.2,.7,.2,1);
+  filter:drop-shadow(0 30px 70px rgba(0,0,0,.85)) drop-shadow(0 0 70px rgba(230,0,0,.18))}
+.hero2-art:hover img{transform:rotateY(-2deg) rotateX(0) scale(1.02)}
+@media(max-width:900px){
+  .hero2-grid{grid-template-columns:1fr;gap:30px}
+  .hero2-art{order:-1}
+  .hero2-art img{transform:none}
+  .hero2{padding:40px 0 26px}
+}
+
+/* ============================================================
    FLAGSHIP BAND (homepage) — gold hero strip for the lead product.
    Scoped to .flagship so it never touches the red site theme.
    ============================================================ */
@@ -73,6 +108,43 @@ img{display:block;max-width:100%}
   .flagship-grid{grid-template-columns:1fr;gap:28px}
   .flagship-art img{transform:none}
   .flagship{padding:44px 0}
+}
+
+/* ============================================================
+   NEON SYNTH 80s band — synthwave magenta/cyan, 3D tilted UI.
+   ============================================================ */
+.neon80{padding:66px 0;position:relative;overflow:hidden;
+  background:
+    radial-gradient(900px 500px at 22% 34%,rgba(236,72,153,.16),transparent 62%),
+    radial-gradient(760px 480px at 82% 78%,rgba(34,211,238,.13),transparent 66%),
+    #0a0616;
+  border-top:1px solid rgba(236,72,153,.18);border-bottom:1px solid rgba(236,72,153,.18)}
+.neon80-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:46px;align-items:center}
+.neon80-eyebrow{display:inline-block;font-family:var(--font-a);font-size:.72rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:#0a0616;background:var(--green);
+  padding:6px 13px;border-radius:999px;margin-bottom:14px}
+.neon80-title{font-family:var(--font-a);font-weight:700;text-transform:uppercase;
+  font-size:clamp(1.9rem,4.6vw,3.3rem);line-height:.98;margin-bottom:14px;color:#f4ecff}
+.neon80-title span{background:linear-gradient(100deg,#EC4899,#22D3EE);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.neon80-lead{color:#b3a8c8;line-height:1.65;max-width:46ch;margin-bottom:24px}
+.neon80-cta{display:flex;gap:11px;flex-wrap:wrap}
+.neon80-cta .btn.primary{background:linear-gradient(100deg,#EC4899,#7C5CFF);
+  border-color:transparent;color:#fff;box-shadow:0 10px 30px rgba(236,72,153,.3)}
+.neon80-cta .btn.ghost{border-color:rgba(34,211,238,.45);color:#e6f6fb}
+.neon80-cta .btn.ghost:hover{border-color:#22D3EE;background:rgba(34,211,238,.1)}
+.neon80-stage{perspective:1500px;perspective-origin:50% 45%}
+.neon80-3d{border-radius:12px;overflow:hidden;border:1px solid rgba(236,72,153,.28);
+  transform:rotateY(9deg) rotateX(3deg);transition:transform .6s cubic-bezier(.2,.7,.2,1);
+  box-shadow:0 2px 0 rgba(255,255,255,.07) inset,26px 40px 80px rgba(0,0,0,.85),
+             0 0 100px rgba(236,72,153,.2)}
+.neon80-stage:hover .neon80-3d{transform:rotateY(3deg) rotateX(1deg) scale(1.01)}
+.neon80-3d img{width:100%;display:block}
+@media(max-width:900px){
+  .neon80-grid{grid-template-columns:1fr;gap:26px}
+  .neon80-3d{transform:none}
+  .neon80{padding:44px 0}
 }
 
 /* Video Studio band on the homepage */
