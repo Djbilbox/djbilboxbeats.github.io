@@ -8,12 +8,12 @@
 
    The 3D layer is additive, never load-bearing.
    ============================================================ */
-import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072724'
-import { ParticleSystem } from './scene/ParticleSystem.js?v=26072724'
-import { Instrument3D }   from './scene/Instrument3D.js?v=26072724'
-import { mountJourney }   from './scene/PanelJourney.js?v=26072724'
-import { AudioReactive }  from './scene/AudioReactive.js?v=26072724'
-import { ScrollController } from './controls/ScrollController.js?v=26072724'
+import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072725'
+import { ParticleSystem } from './scene/ParticleSystem.js?v=26072725'
+import { Instrument3D }   from './scene/Instrument3D.js?v=26072725'
+import { mountJourney }   from './scene/PanelJourney.js?v=26072725'
+import { AudioReactive }  from './scene/AudioReactive.js?v=26072725'
+import { ScrollController } from './controls/ScrollController.js?v=26072725'
 import * as THREE from 'three'
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches

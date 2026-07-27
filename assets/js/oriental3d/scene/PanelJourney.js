@@ -27,8 +27,8 @@
    matters to the anchoring maths.
    ============================================================ */
 import * as THREE from 'three'
-import { loadTexture, radialGlowTexture } from '../utils/loader.js?v=26072724'
-import { makeFrameScrubMaterial } from '../shaders/frameScrub.glsl.js?v=26072724'
+import { loadTexture, radialGlowTexture } from '../utils/loader.js?v=26072725'
+import { makeFrameScrubMaterial } from '../shaders/frameScrub.glsl.js?v=26072725'
 
 const clamp01 = v => v < 0 ? 0 : (v > 1 ? 1 : v)
 const smooth = v => v * v * (3 - 2 * v)
@@ -43,6 +43,11 @@ export class PanelJourney {
       float: 0.035,             // fraction of the panel's own width
       flipDeg: 88,              // how far it turns over between stops
       lift: 0.12,               // how much it rises mid-flight
+      /* Phase 1 — the opening. The unit starts tilted back as if
+         lying on a bench under raking light, then stands up and
+         switches on over the first ~60% of a viewport of scroll. */
+      riseDeg: 58,
+      riseScroll: 0.62,         // fraction of a viewport to complete the rise
       reducedMotion: false
     }, opts)
 
@@ -53,6 +58,9 @@ export class PanelJourney {
     this.pointer = { x: 0, y: 0 }
     this._pointerTarget = { x: 0, y: 0 }
     this.bornAt = null
+    this.loadedAt = null
+    this.rise = 0
+    this.power = 0
 
     /* Overlay, not the main scene: OutputPass tone maps everything it
        touches and re-grading finished artwork is what we avoid. */
@@ -214,6 +222,28 @@ export class PanelJourney {
     if (this.bornAt === null) this.bornAt = t
     const enter = 1 - Math.pow(1 - Math.min((t - this.bornAt) / 1.15, 1), 3)
 
+    /* --- PHASE 1: the rise and the switch-on ---
+       Scroll drives it, but it also plays on its own after a beat.
+       Purely scroll-linked, a visitor who lands and never scrolls
+       would sit staring at a dark, tilted product — which is a
+       cinematic opening for everyone except the person about to buy.
+       Whichever is further along wins, so scrolling always takes
+       over immediately and the animation never runs backwards. */
+    if (this.loadedAt === null) this.loadedAt = t
+    const scrollRise = clamp01(window.scrollY / (vh * this.opts.riseScroll))
+    const autoRise = clamp01((t - this.loadedAt - 1.1) / 1.3)
+    this.rise = Math.max(scrollRise, autoRise)
+    const r = 1 - Math.pow(1 - this.rise, 3)          // ease-out cubic
+
+    /* The unit lights up at the END of the rise, not during it, with
+       a brief overshoot as the backlights strike. The flash window
+       closes before the ramp completes so power settles at exactly
+       1.0 — the shader is an identity there and your render is
+       untouched from then on. */
+    const litT = clamp01((this.rise - 0.5) / 0.38)
+    const flash = Math.max(0, 1 - Math.abs(litT - 0.85) / 0.12)
+    this.power = 0.30 + 0.70 * (1 - Math.pow(1 - litT, 3)) + flash * flash * 0.55
+
     /* --- place it --- */
     const worldW = lerp(A.w, B.w, e)
     this.group.scale.setScalar(worldW * (0.82 + 0.18 * enter))
@@ -239,8 +269,14 @@ export class PanelJourney {
     this.group.rotation.y = D(arc * this.opts.flipDeg * (i % 2 ? -1 : 1))
                           + D((i % 2 ? 1 : -1) * 4 * (1 - arc)) * soft
                           + this.pointer.x * D(5) * soft
-    this.group.rotation.x = -this.pointer.y * D(3.5) * soft
+    /* Tilted back on its base at the top of the page, square to
+       camera once it has stood up. */
+    this.group.rotation.x = D(-this.opts.riseDeg * (1 - r))
+                          - this.pointer.y * D(3.5) * soft
     this.group.rotation.z = D(arc * 2.5 * soft)
+
+    // sits a little lower while it is still lying down
+    this.group.position.y -= (1 - r) * 0.10 * worldW
 
     /* Shapes follow whichever render is showing. */
     this.panel.scale.set(1, 1 / aspect, 1)
@@ -258,9 +294,15 @@ export class PanelJourney {
 
     const u = this.material.uniformsRef
     u.uSheenTime.value = t
-    u.uSheenGain.value = 0.10 * alpha        // barely there, on purpose
+    // no highlight crawling over an unlit unit
+    u.uSheenGain.value = 0.10 * alpha * clamp01(this.power)
     u.uOpacity.value = alpha
-    this.reflectionMat.uniformsRef.uOpacity.value = alpha
+    u.uPower.value = this.power
+
+    /* The reflection arrives as the unit stands up: while it is still
+       tilted back there is no floor beneath it to catch anything. */
+    this.reflectionMat.uniformsRef.uOpacity.value = alpha * r
+    this.reflectionMat.uniformsRef.uPower.value = this.power
 
     /* --- breathing glow ---
        Two sine waves at different rates, so the pulse never settles
@@ -270,7 +312,10 @@ export class PanelJourney {
        at; suppressed mid-flight where the arc is already the motion. */
     const breath = 0.5 + 0.5 * (Math.sin(t * 0.85) * 0.65 + Math.sin(t * 1.37) * 0.35)
     const parked = 1 - arc
-    this.glow.material.opacity = (0.10 + 0.075 * breath * parked) * alpha
+    /* The pool of light is the backlight bleeding onto the surround,
+       so it strikes with the power-on and carries the same flash. */
+    const lit = clamp01(this.power) * (0.55 + 0.45 * Math.min(this.power, 1.6) / 1.6)
+    this.glow.material.opacity = (0.10 + 0.075 * breath * parked) * alpha * lit
     this.glow.scale.multiplyScalar(1 + 0.04 * breath * parked)
   }
 

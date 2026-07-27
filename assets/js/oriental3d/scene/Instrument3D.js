@@ -12,8 +12,8 @@
    over, no other code changes.
    ============================================================ */
 import * as THREE from 'three'
-import { loadGLTF } from '../utils/loader.js?v=26072724'
-import { PALETTE } from './SceneManager.js?v=26072724'
+import { loadGLTF } from '../utils/loader.js?v=26072725'
+import { PALETTE } from './SceneManager.js?v=26072725'
 
 /* ---------- shared materials ---------- */
 const MAT = {

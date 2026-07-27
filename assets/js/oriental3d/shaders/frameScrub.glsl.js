@@ -40,6 +40,7 @@ uniform float uSheenTime;
 uniform float uSheenGain;
 uniform vec3  uSheenColor;
 uniform vec2  uFade;        // alpha multiplier at vUv.y = 0 and 1
+uniform float uPower;       // 0 = unlit, 1 = fully lit, >1 = switch-on flash
 
 varying vec2 vUv;
 
@@ -59,6 +60,19 @@ void main () {
   /* Diagonal highlight travelling over the surface — the one thing a
      flat <img> can never do, and what sells the panel as a physical
      object rather than a picture of one. */
+  /* --- power state ---
+     0 = the unit is dark, as if unplugged: dimmed and drained of
+     colour. 1 = exactly the pixels you authored. Above 1 is the
+     switch-on flash and is allowed to clip on purpose.
+     Every term here is an identity at uPower == 1.0, so a powered
+     unit is still bit-for-bit your render — the dimming is a
+     lighting state, never a permanent alteration of the artwork. */
+  float lit  = clamp(uPower, 0.0, 1.0);
+  float grey = dot(col, vec3(0.299, 0.587, 0.114));
+  col  = mix(vec3(grey), col, mix(0.45, 1.0, lit));
+  col *= mix(0.26, 1.0, lit);
+  col += col * max(uPower - 1.0, 0.0) * 1.6;
+
   float band  = fract((vUv.x * 0.75 + vUv.y * 0.55) - uSheenTime * 0.16);
   float sweep = smoothstep(0.445, 0.5, band) * (1.0 - smoothstep(0.5, 0.555, band));
   col += sweep * smoothstep(0.02, 0.35, alpha) * uSheenGain * uSheenColor;
@@ -83,7 +97,8 @@ export function makeFrameScrubMaterial (textures) {
     uSheenTime:  { value: 0 },
     uSheenGain:  { value: 0.5 },
     uSheenColor: { value: new THREE.Vector3(1.0, 0.80, 0.42) },
-    uFade:       { value: new THREE.Vector2(1, 1) }
+    uFade:       { value: new THREE.Vector2(1, 1) },
+    uPower:      { value: 1 }
   }
 
   const material = new THREE.ShaderMaterial({
