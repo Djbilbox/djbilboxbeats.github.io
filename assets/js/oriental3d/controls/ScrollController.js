@@ -40,11 +40,12 @@ export class ScrollController {
     // dust pushes outward and the room opens up as you descend
     this.particles?.setSpread(p)
 
-    /* Bloom climbs toward the closing CTA. Kept under 1.25 — past
-       that the gold text on the page starts blooming through the
-       canvas and the copy gets hard to read. */
+    /* Bloom now only reaches the dust — the plug-in renders are
+       composited afterwards in the overlay pass. So this is a haze
+       control, and at 0.62-1.2 the haze was hiding the black the
+       product needs to sit on. */
     if (this.sceneManager.bloomPass) {
-      this.sceneManager.bloomPass.strength = 0.62 + 0.58 * this._easeIn(p)
+      this.sceneManager.bloomPass.strength = 0.28 + 0.22 * this._easeIn(p)
     }
 
     this.instruments?.forEach((inst, i) => {

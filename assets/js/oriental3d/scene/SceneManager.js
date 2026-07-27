@@ -135,7 +135,11 @@ export class SceneManager {
 
     this.bloomPass = new UnrealBloomPass(
       new THREE.Vector2(window.innerWidth, window.innerHeight),
-      0.62,   // strength — ScrollController pushes this up near the CTA
+      /* Must match ScrollController's floor. This is the value the
+         hero shows before the first scroll event ever fires, so
+         leaving it at the old 0.62 meant the top of the page loaded
+         hazy and only cleared once you moved. */
+      0.28,   // strength — ScrollController raises it toward the CTA
       0.55,   // radius
       0.72    // threshold
     )

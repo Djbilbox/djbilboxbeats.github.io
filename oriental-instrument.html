@@ -317,10 +317,13 @@
 /* The canvas clears to the same ink the page used as a background,
    so the sections only need to stop painting over it. */
 .ori-3d-on .ori{background:transparent}
+/* Much weaker than the CSS-only version's gradients. Stacked on top
+   of the canvas's own light they turned the hero olive-brown, and a
+   product render needs black around it to read as premium. */
 .ori-3d-on .ori-hero{
   background:
-    radial-gradient(1100px 620px at 78% 36%,rgba(232,181,77,.10),transparent 62%),
-    radial-gradient(760px 520px at 10% 88%,rgba(160,60,20,.12),transparent 65%);
+    radial-gradient(1100px 620px at 78% 36%,rgba(232,181,77,.045),transparent 62%),
+    radial-gradient(760px 520px at 10% 88%,rgba(160,60,20,.05),transparent 65%);
 }
 .ori-3d-on .ori-band{background:rgba(5,4,3,.40);
   backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
@@ -796,6 +799,6 @@
      or the purchase buttons. Everything it needs to fail safely is
      already on the page above it.
      ============================================================ -->
-<script type="module" src="assets/js/oriental3d/main.js?v=26072721"></script>
+<script type="module" src="assets/js/oriental3d/main.js?v=26072723"></script>
 </body>
 </html>

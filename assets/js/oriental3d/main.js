@@ -8,12 +8,12 @@
 
    The 3D layer is additive, never load-bearing.
    ============================================================ */
-import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072721'
-import { ParticleSystem } from './scene/ParticleSystem.js?v=26072721'
-import { Instrument3D }   from './scene/Instrument3D.js?v=26072721'
-import { mountPanels }    from './scene/PluginUI3D.js?v=26072721'
-import { AudioReactive }  from './scene/AudioReactive.js?v=26072721'
-import { ScrollController } from './controls/ScrollController.js?v=26072721'
+import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072723'
+import { ParticleSystem } from './scene/ParticleSystem.js?v=26072723'
+import { Instrument3D }   from './scene/Instrument3D.js?v=26072723'
+import { mountPanels }    from './scene/PluginUI3D.js?v=26072723'
+import { AudioReactive }  from './scene/AudioReactive.js?v=26072723'
+import { ScrollController } from './controls/ScrollController.js?v=26072723'
 import * as THREE from 'three'
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -53,39 +53,29 @@ async function boot () {
   })
 
   /* ---------- content ---------- */
+  /* Fewer, dimmer motes than before. At 4200 the dust read as
+     sensor noise over the copy rather than atmosphere. */
   const particles = new ParticleSystem(sm, {
-    count: window.innerWidth < 900 ? 1500 : 4200,
+    count: window.innerWidth < 900 ? 550 : 1300,
     radius: 13
   })
 
-  /* Instruments live well behind the panel plane (z = 0) and off to
-     the sides, so they are atmosphere around the product rather than
-     clutter across the copy. `anchor` is a fraction of the visible
-     extent at that depth, so they hold the same place in frame on a
-     27" monitor and on a phone. */
-  const instruments = [
-    new Instrument3D(sm, {
-      type: 'oud',
-      position: new THREE.Vector3(0, 0, -6.5),
-      anchor: { x: -0.62, y: 0.12 }, anchorEnd: { x: 0.58, y: 0.62 },
-      rotation: new THREE.Euler(0.18, 0.5, -0.22),
-      scale: 0.62, spin: 0.10, scrollTurns: 1.6, reducedMotion: REDUCED
-    }),
-    new Instrument3D(sm, {
-      type: 'qanun',
-      position: new THREE.Vector3(0, 0, -7.5),
-      anchor: { x: 0.70, y: -0.44 }, anchorEnd: { x: -0.66, y: 0.30 },
-      rotation: new THREE.Euler(-0.5, -0.45, 0.14),
-      scale: 0.9, spin: -0.07, scrollTurns: -1.1, reducedMotion: REDUCED
-    }),
-    new Instrument3D(sm, {
-      type: 'darbuka',
-      position: new THREE.Vector3(0, 0, -5.5),
-      anchor: { x: -0.52, y: -0.68 }, anchorEnd: { x: 0.72, y: -0.30 },
-      rotation: new THREE.Euler(0.12, 0.3, 0.1),
-      scale: 0.85, spin: 0.16, scrollTurns: 2.2, reducedMotion: REDUCED
-    })
-  ]
+  /* NO PROCEDURAL INSTRUMENTS.
+
+     There were three — a lathed oud, a qanun, a darbuka — orbiting
+     the page. They looked like what they were: untextured primitives
+     next to a professionally finished product render. The oud read
+     as a frying pan. Worse, they travelled across the frame and
+     crossed the sales copy while spinning.
+
+     The reference site this is chasing has nothing of the sort. One
+     product, centred, on near-black. The premium feel comes from
+     restraint, not from filling the screen.
+
+     Instrument3D is kept: it takes a `modelUrl` and will load a real
+     GLTF. If a properly modelled oud ever exists, instantiate here.
+     Procedural stand-ins are not worth the page they sit on. */
+  const instruments = []
 
   const panels = mountPanels(sm, { reducedMotion: REDUCED })
 

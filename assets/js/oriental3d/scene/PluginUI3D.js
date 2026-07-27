@@ -7,17 +7,23 @@
    boxes would have thrown away the real artwork and replaced it with
    an approximation.
 
-   What three.js adds is what a flat <img> cannot do:
+   What three.js adds is deliberately restrained: a few degrees of
+   perspective, a slow float, a faint highlight sweep, a faded floor
+   reflection and a soft pool of light. Nothing that competes with
+   the render itself.
 
-   - SCROLL SCRUB. The reference site paints ~230 pre-rendered
-     turntable frames onto a canvas and picks the frame from the
-     scroll position. ORIENTAL has two real angles of the unit — a
-     three-quarter view and a near-frontal one — so scrolling
-     dissolves between them and the box reads as turning. Same
-     mechanism, fewer frames; see shaders/frameScrub.glsl.js for how
-     it scales to a proper turntable.
-   - Real perspective, a light sweep crawling over the surface, an
-     in-scene glow and a floor reflection.
+   It used to add much more — a two-frame cross-fade meant to read as
+   a turntable, a 22deg rotation, a bright sheen, a full mirrored
+   reflection. All of it made the page worse and all of it is gone or
+   dialled down; the individual reasons are noted at each site. The
+   short version: the render is already a finished piece of work, and
+   the job here is to make it feel like an object in a room, not to
+   perform on top of it.
+
+   SCROLL SCRUB is still implemented (shaders/frameScrub.glsl.js) and
+   still the right technique — it is what the reference site does —
+   but it needs a real turntable sequence, not two unrelated angles.
+   See EXTRA_FRAMES at the bottom.
 
    Each panel is anchored to the screen-space rectangle of the <img>
    it replaces. The DOM keeps the layout and the alt text (so the
@@ -26,8 +32,8 @@
    un-rotated — see the note in SceneManager.
    ============================================================ */
 import * as THREE from 'three'
-import { loadTexture, radialGlowTexture } from '../utils/loader.js?v=26072721'
-import { makeFrameScrubMaterial } from '../shaders/frameScrub.glsl.js?v=26072721'
+import { loadTexture, radialGlowTexture } from '../utils/loader.js?v=26072723'
+import { makeFrameScrubMaterial } from '../shaders/frameScrub.glsl.js?v=26072723'
 
 export class PluginUI3D {
   /**
@@ -143,12 +149,18 @@ export class PluginUI3D {
     mat.uniformsRef.uOpacity.value = 0
     /* Mirrored geometry, so vUv.y = 0 is the edge nearest the object
        and has to be the opaque end of the ramp. */
-    mat.uniformsRef.uFade.value.set(0.45, 0.0)
+    mat.uniformsRef.uFade.value.set(0.17, 0.0)
 
+    /* Full-height plane, faded hard. Shortening the plane instead
+       would have to crop the UVs to match or the whole unit gets
+       squashed into the strip; letting alpha do the work keeps the
+       geometry honest. The previous 0.45 left a second, near-legible
+       keyboard under the first that pulled the eye straight off the
+       product — a reflection should suggest a surface, not compete. */
     const h = 1 / this.aspect
     const m = new THREE.Mesh(new THREE.PlaneGeometry(1, h, 1, 1), mat)
     m.scale.y = -1
-    m.position.y = -h * 1.03
+    m.position.y = -h * 1.02
     m.renderOrder = 19
     this.reflection = m
     this.reflectionMat = mat
@@ -197,10 +209,13 @@ export class PluginUI3D {
     this.group.position.set(cx, cy, this.opts.z)
 
     /* --- pose ---
-       A resting three-quarter turn that eases through frontal as the
-       panel crosses the middle of the screen. The object never goes
-       flat and never turns far enough to fight the lighting baked
-       into the render. */
+       Small on purpose. The render already has its own perspective,
+       lighting and vanishing point baked in by whatever produced it.
+       Turning the plane another 22deg stacks a second, disagreeing
+       perspective on top of the first and the unit reads as a skewed
+       photograph rather than an object. A few degrees is enough to
+       make it feel like it occupies space; past that it just looks
+       wrong. */
     const dir = this.opts.flip ? 1 : -1
     const soft = this.opts.reducedMotion ? 0.4 : 1
     const p = this.progress
@@ -214,11 +229,11 @@ export class PluginUI3D {
     const size = worldW
     const floatY = Math.sin(t * 0.62 + (this.opts.flip ? Math.PI : 0)) * this.opts.float * size * soft
 
-    this.group.rotation.y = D(dir * (22 - 18 * p) * soft)
-                          + this.pointer.x * D(14) * soft
-                          + D((1 - enter) * dir * -38)      // entrance swing
-    this.group.rotation.x = D(-6 * p * soft) - this.pointer.y * D(10) * soft
-    this.group.rotation.z = D(dir * 2.4 * p * soft)
+    this.group.rotation.y = D(dir * (5 - 4.5 * p) * soft)
+                          + this.pointer.x * D(5) * soft
+                          + D((1 - enter) * dir * -9)       // entrance swing
+    this.group.rotation.x = D(-1.6 * p * soft) - this.pointer.y * D(3.5) * soft
+    this.group.rotation.z = D(dir * 0.7 * p * soft)
     this.group.position.y += floatY - (this.opts.reducedMotion ? 0 : p * this.opts.drift * size)
 
     /* --- FRAME SCRUB ---
@@ -235,15 +250,19 @@ export class PluginUI3D {
     /* --- shader time --- */
     const u = this.material.uniformsRef
     u.uSheenTime.value = t
-    /* Sweep hardest while the panel is centred: that is when someone
-       is actually looking at it. */
-    u.uSheenGain.value = (0.30 + 0.45 * (1 - Math.min(Math.abs(p), 1))) * enter
+    /* Barely there. At 0.75 the sweep crossed the keyboard as a
+       visible smear that read as a dirty screen, not a highlight.
+       This should be something you notice only if you watch for it. */
+    u.uSheenGain.value = (0.05 + 0.07 * (1 - Math.min(Math.abs(p), 1))) * enter
     u.uOpacity.value = enter
     if (this.reflectionMat) this.reflectionMat.uniformsRef.uOpacity.value = enter
 
     if (this.glow) {
-      this.glow.material.opacity = (0.34 + 0.26 * (1 - Math.min(Math.abs(p), 1))
-        + Math.sin(t * 1.1) * 0.04) * enter
+      /* Was 0.34-0.60. Combined with the hero's own radial gradients
+         it washed the whole area olive-brown and the unit sat in
+         murk instead of on black. */
+      this.glow.material.opacity = (0.10 + 0.09 * (1 - Math.min(Math.abs(p), 1))
+        + Math.sin(t * 1.1) * 0.015) * enter
     }
   }
 
@@ -263,14 +282,22 @@ export class PluginUI3D {
   }
 }
 
-/* Extra angles of the same unit, per slot. The <img>'s own source is
-   always frame 0; these are the frames scrolled through after it.
-   Keyed by a fragment of the filename so re-ordering the page or
-   swapping a render cannot silently mis-pair them. */
-const EXTRA_FRAMES = {
-  'oriental-3d-hero':  ['img/vst/ui/oriental-3d-angle.png?v=4'],
-  'oriental-3d-angle': ['img/vst/ui/oriental-3d-hero.png?v=2']
-}
+/* Extra angles to scrub through, per slot, keyed by a fragment of the
+   filename so re-ordering the page cannot silently mis-pair them.
+
+   DELIBERATELY EMPTY. It was wired to cross-fade oriental-3d-hero
+   into oriental-3d-angle, on the assumption that two views of the
+   same unit would read as a turn. They do not. They are two separate
+   compositions at different framings and scales, not two frames of
+   one turntable, so the dissolve rendered every label twice —
+   "ORIENTAL INSTRUMENT" and every preset name doubled and ghosted.
+   A dissolve only reads as rotation when consecutive frames are a
+   couple of degrees apart.
+
+   The machinery stays: drop a real 60-200 frame turntable in here
+   and the scrub works as intended, with the dissolve between
+   near-identical frames doing what it is supposed to do. */
+const EXTRA_FRAMES = {}
 
 /** Convenience: wrap every `.ori-render img` on the page. */
 export function mountPanels (sceneManager, opts = {}) {
