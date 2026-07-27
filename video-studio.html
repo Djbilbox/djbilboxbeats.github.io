@@ -12,7 +12,7 @@
 <meta property="og:description" content="Music videos, beat visualizers & social promo edits. Edited in Filmora, delivered ready to post.">
 <meta property="og:image" content="https://djbilboxbeats.com/img/vst/machina-vst.jpg">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26072680">
+<link rel="stylesheet" href="assets/css/theme.css?v=26072690">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -59,6 +59,33 @@
 .vs-dot{width:11px;height:11px;border-radius:50%}
 .vs-frame-bar .t{margin-left:12px;font-size:.72rem;color:#6f768a;letter-spacing:.05em}
 .vs-frame video,.vs-frame img{width:100%;display:block;background:#0d0b18}
+
+/* social-proof strip under the hero */
+.vs-proof{border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.015);padding:22px 0}
+.vs-proof-row{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;
+  color:#8189a0;font-size:.95rem}
+.vs-proof-row b{color:#eef1f7;font-weight:700}
+.vs-proof-row i{color:#3d4354;font-style:normal}
+
+/* one artwork, three ratios — the vertical leads, flanked by the other two */
+.vs-ratios{display:flex;align-items:center;justify-content:center;gap:26px;margin-top:40px;flex-wrap:wrap}
+.vs-ratio{margin:0;text-align:center}
+.vs-ratio img{display:block;border-radius:14px;border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 26px 60px rgba(0,0,0,.6);transition:transform .35s cubic-bezier(.2,.7,.2,1),
+  box-shadow .35s ease}
+.vs-ratio:hover img{transform:translateY(-6px);box-shadow:0 34px 70px rgba(0,0,0,.72)}
+.vs-ratio figcaption{margin-top:12px;font-size:.8rem;color:#8189a0;letter-spacing:.04em}
+.vs-ratio figcaption b{color:var(--vs1);font-family:var(--font-a);letter-spacing:.08em;margin-right:5px}
+.vs-ratio.r169 img{width:340px}
+.vs-ratio.r916 img{width:232px;border-color:rgba(34,211,238,.5);
+  box-shadow:0 26px 60px rgba(0,0,0,.6),0 0 46px rgba(34,211,238,.18)}
+.vs-ratio.r11  img{width:250px}
+@media(max-width:760px){
+  .vs-ratio.r169 img{width:280px}
+  .vs-ratio.r916 img{width:190px}
+  .vs-ratio.r11  img{width:200px}
+}
 
 /* formats */
 .vs-formats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:34px}
@@ -142,19 +169,54 @@
           <span class="vs-dot" style="background:#ff5f57"></span>
           <span class="vs-dot" style="background:#febc2e"></span>
           <span class="vs-dot" style="background:#28c840"></span>
-          <span class="t">djbilboxbeats.com — video studio</span>
+          <span class="t">Wondershare Filmora — AMBER · Type Beat clip</span>
         </div>
-        <!-- If the clip is ever missing the poster stays on screen, so no
-             fragile inline onerror string is needed here. -->
-        <video src="clip1.mp4" poster="img/vst/machina-vst.jpg"
-               autoplay muted loop playsinline preload="metadata"></video>
+        <img src="img/video/filmora-timeline.png"
+             alt="The AMBER type-beat video open in Filmora: preview, media bin and a multi-track timeline"
+             loading="eager">
       </div>
+    </div>
+  </section>
+
+  <!-- ==================== SOCIAL PROOF BAR ==================== -->
+  <section class="vs-proof">
+    <div class="vs-in vs-proof-row">
+      <span><b>3000+</b> videos published</span>
+      <i aria-hidden="true">·</i>
+      <span><b>423K+</b> YouTube views</span>
+      <i aria-hidden="true">·</i>
+      <span>Edited in <b>Toulouse, France</b></span>
+    </div>
+  </section>
+
+  <!-- ==================== ONE ARTWORK, EVERY FORMAT ==================== -->
+  <section class="vs-in" style="padding:78px 0 10px">
+    <div class="vs-eyebrow">1 · One artwork, every format</div>
+    <h2>Delivered in <span class="vs-grad">every ratio.</span></h2>
+    <p style="margin-top:14px;max-width:60ch">
+      Same cover, same beat — reframed so nothing important gets cropped on any platform.
+      This is a real delivery: my own <strong style="color:#eef1f7">AMBER</strong> G-Funk type beat.
+    </p>
+
+    <div class="vs-ratios">
+      <figure class="vs-ratio r169">
+        <img src="img/video/amber-16x9.jpg" alt="AMBER cover in 16:9 for YouTube" loading="lazy">
+        <figcaption><b>16:9</b> YouTube</figcaption>
+      </figure>
+      <figure class="vs-ratio r916">
+        <img src="img/video/amber-9x16.jpg" alt="AMBER cover in 9:16 for Reels, Shorts and TikTok" loading="lazy">
+        <figcaption><b>9:16</b> Reels · Shorts · TikTok</figcaption>
+      </figure>
+      <figure class="vs-ratio r11">
+        <img src="img/video/amber-1x1.jpg" alt="AMBER cover in 1:1 for Spotify and playlist covers" loading="lazy">
+        <figcaption><b>1:1</b> Spotify cover</figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- ==================== FORMATS ==================== -->
   <section class="vs-in" style="padding:76px 0 10px">
-    <div class="vs-eyebrow">What I deliver</div>
+    <div class="vs-eyebrow">2 · What I deliver</div>
     <h2>One beat. <span class="vs-grad">Every format.</span></h2>
     <p style="margin-top:14px;max-width:60ch">
       Same session, exported for every platform — no re-cropping, no letterboxing, no rework.
@@ -203,7 +265,7 @@
   <section class="vs-tool" style="margin-top:70px">
     <div class="vs-in vs-tool-grid">
       <div>
-        <div class="vs-eyebrow">The tool I work with</div>
+        <div class="vs-eyebrow">3 · The tool I work with</div>
         <div class="vs-tool-logo">I edit in <span class="vs-grad">FILMORA</span></div>
         <p style="margin-top:20px;max-width:48ch">
           Every DJBILBOX BEATS video is cut in <strong style="color:#eef1f7">Wondershare Filmora</strong>.
@@ -260,7 +322,7 @@
 
   <!-- ==================== PACKS ==================== -->
   <section class="vs-in" style="padding:76px 0 10px">
-    <div class="vs-eyebrow">Packs</div>
+    <div class="vs-eyebrow">4 · Packs</div>
     <h2>Pick your <span class="vs-grad">package.</span></h2>
     <p style="margin-top:14px;max-width:60ch">
       Fixed scope, fixed delivery. Custom projects and bulk catalogue work — just ask.
@@ -320,8 +382,8 @@
 
 </div>
 
-<script src="assets/js/language-switcher.js?v=26072680"></script>
-<script src="assets/js/site.js?v=26072680"></script>
+<script src="assets/js/language-switcher.js?v=26072690"></script>
+<script src="assets/js/site.js?v=26072690"></script>
 <script src="assets/js/chat.js?v=26071911"></script>
 </body>
 </html>
