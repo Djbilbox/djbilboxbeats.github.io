@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://djbilboxbeats.com/oriental-instrument.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26072724">
+<link rel="stylesheet" href="assets/css/theme.css?v=26072726">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -375,6 +375,15 @@
 .ori-3d-on .ori-render::before,
 .ori-3d-on .ori-reflect::after{display:none}
 
+/* The exploded-view slot is a measurement target too. It needs room
+   above and below: the pieces fan outward from the centre, and
+   without the margin they would be clipped by the sections either
+   side of it. */
+.ori-xplode{max-width:940px;margin-left:auto;margin-right:auto;padding:6% 0}
+.ori-xplode img{width:100%;height:auto;display:block;border-radius:10px}
+.ori-3d-on .ori-xplode img{transform:none!important;filter:none!important;
+  transition:opacity .5s ease!important}
+
 /* Reduced motion: the scene keeps running, slower and without any
    scroll-linked or pointer-linked travel (that logic lives in JS).
    Erasing it entirely just makes the page look broken. */
@@ -498,6 +507,29 @@
                  alt="ORIENTAL INSTRUMENT — low-angle view of the copper unit: macro knobs, preset browser and FX chain"
                  onerror="this.onerror=null;this.src='img/vst/ui/oriental-3d-hero.png?v=2'">
           </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXPLODED VIEW ====================
+       The interface comes apart on the Z axis as this section
+       crosses the viewport, then reassembles. Driven by
+       assets/js/oriental3d/scene/ExplodedPlugin.js, which cuts the
+       flat UI capture along the REAL component bounds taken from the
+       plug-in's own source (Constants.h + PluginEditor::resized()).
+       Without WebGL this is simply the interface screenshot, which
+       is a perfectly good thing for the section to show. -->
+  <section class="ori-split" style="padding-top:24px">
+    <div class="ori-in" style="text-align:center">
+      <div class="ori-eyebrow">Under the hood</div>
+      <h2>BUILT <span class="ori-gold">LAYER BY LAYER</span></h2>
+      <p style="margin:16px auto 0;max-width:56ch">
+        Macro column, preset browser, FX chain, keyboard — every module is its own
+        component. Scroll to take the interface apart.
+      </p>
+      <div class="ori-stage ori-xplode" style="margin-top:44px">
+        <img src="img/vst/ui/oriental-ui.png?v=2"
+             alt="ORIENTAL INSTRUMENT — the full interface: macro knobs, preset browser with Maqam tags, FX chain and keyboard">
       </div>
     </div>
   </section>
@@ -820,6 +852,6 @@
      or the purchase buttons. Everything it needs to fail safely is
      already on the page above it.
      ============================================================ -->
-<script type="module" src="assets/js/oriental3d/main.js?v=26072725"></script>
+<script type="module" src="assets/js/oriental3d/main.js?v=26072727"></script>
 </body>
 </html>

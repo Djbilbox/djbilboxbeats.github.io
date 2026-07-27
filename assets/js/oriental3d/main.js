@@ -8,12 +8,13 @@
 
    The 3D layer is additive, never load-bearing.
    ============================================================ */
-import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072725'
-import { ParticleSystem } from './scene/ParticleSystem.js?v=26072725'
-import { Instrument3D }   from './scene/Instrument3D.js?v=26072725'
-import { mountJourney }   from './scene/PanelJourney.js?v=26072725'
-import { AudioReactive }  from './scene/AudioReactive.js?v=26072725'
-import { ScrollController } from './controls/ScrollController.js?v=26072725'
+import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072727'
+import { ParticleSystem } from './scene/ParticleSystem.js?v=26072727'
+import { Instrument3D }   from './scene/Instrument3D.js?v=26072727'
+import { mountJourney }   from './scene/PanelJourney.js?v=26072727'
+import { mountExploded }  from './scene/ExplodedPlugin.js?v=26072727'
+import { AudioReactive }  from './scene/AudioReactive.js?v=26072727'
+import { ScrollController } from './controls/ScrollController.js?v=26072727'
 import * as THREE from 'three'
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -88,6 +89,10 @@ async function boot () {
     return
   }
 
+  /* Phase 2 — the interface comes apart on its real component seams.
+     Optional: returns null if the page has no exploded-view slot. */
+  const exploded = mountExploded(sm, { reducedMotion: REDUCED })
+
   /* ---------- pointer tilt ---------- */
   if (!REDUCED && window.matchMedia('(hover: hover)').matches) {
     journey.imgs.forEach(img => {
@@ -134,6 +139,7 @@ async function boot () {
     particles.update(t)
     for (let i = 0; i < instruments.length; i++) instruments[i].update(t, dt)
     journey.update(t, dt)
+    if (exploded) exploded.update(t, dt)
   })
 
   sm.start()
@@ -145,7 +151,7 @@ async function boot () {
   })
 
   /* Handle for debugging from the console. */
-  window.ORIENTAL3D = { sm, journey, instruments, particles, scroll, audio, THREE, PALETTE, REDUCED }
+  window.ORIENTAL3D = { sm, journey, exploded, instruments, particles, scroll, audio, THREE, PALETTE, REDUCED }
   console.log('%c ORIENTAL 3D ', 'background:#E8B54D;color:#050403;font-weight:700',
     `${journey.imgs.length} stops · ${particles.count} motes · gsap:${!!gsapBundle} · reduced-motion:${REDUCED}`)
 }

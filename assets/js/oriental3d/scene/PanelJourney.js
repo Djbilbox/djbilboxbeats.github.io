@@ -27,8 +27,8 @@
    matters to the anchoring maths.
    ============================================================ */
 import * as THREE from 'three'
-import { loadTexture, radialGlowTexture } from '../utils/loader.js?v=26072725'
-import { makeFrameScrubMaterial } from '../shaders/frameScrub.glsl.js?v=26072725'
+import { loadTexture, radialGlowTexture } from '../utils/loader.js?v=26072727'
+import { makeFrameScrubMaterial } from '../shaders/frameScrub.glsl.js?v=26072727'
 
 const clamp01 = v => v < 0 ? 0 : (v > 1 ? 1 : v)
 const smooth = v => v * v * (3 - 2 * v)
