@@ -218,6 +218,43 @@ window.PRODUCTS = {
     includes:["Vice City VST3 (64-bit)","Vice City Standalone app","Factory preset library","Quick-start PDF"]
   },
 
+  "mpc-2026": {
+    type:"vst", name:"MPC 2026", sub:"Beat Machine — 16 Pads, 50 Kits",
+    tagline:"A 16-pad beat machine that plays the samples already on your computer — 50 kits across 10 styles, sequencer locked to your project tempo.",
+    cover:"img/vst/ui/mpc-2026-hero.png", accent:"#E23A3A", accent2:"#8A1010",
+    price:"20", currency:"$",
+    buy:"mpc-2026", demo:"",
+    video:"", poster:"img/vst/ui/mpc-2026-hero.png",
+    tags:["16 Pads","50 Kits","Sequencer","VST3 · AU","Win · Mac"],
+    desc:[
+      "MPC 2026 is a sixteen-pad beat machine, shipped both as a plug-in for your DAW and as a standalone app. Every control on screen is real: the pads light up as they play, the knobs turn, and the processing actually shapes the sound.",
+      "It ships with no sample bank. Instead it plays the samples already installed on your computer — FL Studio's library in particular — and lays them out across the pads as fifty ready-to-play kits, each with its own groove.",
+      "Ten styles, five variations each: G-Funk, Boom Bap, Trap, Drill, House, Techno, Lo-Fi, Afro, Electro and Reggaeton. The sequencer follows your project tempo and position, and the pads answer MIDI notes 36 to 51 so you can play them from the piano roll or a controller."
+    ],
+    features:[
+      {icon:"fa-grip", t:"16 beat pads", d:"Click to play and light a pad, or trigger them from MIDI notes 36-51 and the computer keyboard."},
+      {icon:"fa-layer-group", t:"50 kits, 10 styles", d:"Five variations per style, each pulling a different set of sounds while keeping every pad's role."},
+      {icon:"fa-sliders", t:"12 pad volumes", d:"Twelve knobs paged across the sixteen pads; the level applies on release, without retriggering the sound."},
+      {icon:"fa-wave-square", t:"Attack · Decay · Reverb", d:"Six knobs — the top row shapes pads 1-8, the bottom row pads 9-16."},
+      {icon:"fa-play", t:"Host-locked sequencer", d:"Follows your project tempo and playhead, so the groove lands on your grid."},
+      {icon:"fa-keyboard", t:"Playable from the keyboard", d:"Pads mapped 1234 / AZER / QSDF / WXCV, spacebar runs the sequencer."}
+    ],
+    specs:[
+      {k:"Formats", v:"VST3 · AU (Mac) · Standalone app"},
+      {k:"Platform", v:"Windows 10/11 64-bit · macOS"},
+      {k:"Pads", v:"16, responding to MIDI notes 36-51"},
+      {k:"Kits", v:"50 (10 styles × 5 variations)"},
+      {k:"Sound bank", v:"None included — plays samples already on your computer"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:[
+      "MPC 2026 VST3 (64-bit)",
+      "MPC 2026 Standalone app",
+      "macOS Audio Unit + VST3",
+      "User manual (PDF, French)"
+    ]
+  },
+
   "oriental-instrument-demo": {
     type:"vst", name:"Oriental Instrument — DEMO", sub:"Free 50+ Instruments Sample",
     tagline:"Try Oriental Instrument FREE. 50+ authentic oriental instruments, oud, qanun, ney & saz samples.",

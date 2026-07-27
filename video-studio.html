@@ -12,7 +12,7 @@
 <meta property="og:description" content="Music videos, beat visualizers & social promo edits. Edited in Filmora, delivered ready to post.">
 <meta property="og:image" content="https://djbilboxbeats.com/img/vst/machina-vst.jpg">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26072700">
+<link rel="stylesheet" href="assets/css/theme.css?v=26072710">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -51,7 +51,20 @@
 .vs-cta{display:flex;gap:12px;flex-wrap:wrap}
 .vs-micro{margin-top:18px;font-size:.76rem;color:#6f768a;letter-spacing:.04em}
 
-/* editor mock frame */
+/* cut-out laptop render — floats, no frame needed */
+.vs-laptop{position:relative;animation:vsFloat 7s ease-in-out infinite}
+.vs-laptop img{width:100%;height:auto;display:block;
+  filter:drop-shadow(0 36px 50px rgba(0,0,0,.7)) drop-shadow(0 0 80px rgba(124,92,255,.22))}
+.vs-laptop::before{content:"";position:absolute;left:14%;right:14%;bottom:-4%;height:24%;
+  background:radial-gradient(ellipse at 50% 50%,rgba(124,92,255,.32),transparent 70%);
+  filter:blur(34px);z-index:-1;pointer-events:none}
+@keyframes vsFloat{0%,100%{translate:0 0}50%{translate:0 -20px}}
+@media(prefers-reduced-motion:reduce){
+  .vs-laptop{animation:vsFloatSoft 15s ease-in-out infinite}
+  @keyframes vsFloatSoft{0%,100%{translate:0 0}50%{translate:0 -7px}}
+}
+
+/* editor mock frame (kept for the fallback screenshot) */
 .vs-frame{border:1px solid rgba(255,255,255,.12);border-radius:14px;overflow:hidden;
   background:#0d0b18;box-shadow:0 40px 90px rgba(0,0,0,.7),0 0 90px rgba(124,92,255,.14)}
 .vs-frame-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:#141127;
@@ -164,16 +177,12 @@
         <div class="vs-micro">3000+ videos published · 423K+ views · Toulouse, France</div>
       </div>
 
-      <div class="vs-frame">
-        <div class="vs-frame-bar">
-          <span class="vs-dot" style="background:#ff5f57"></span>
-          <span class="vs-dot" style="background:#febc2e"></span>
-          <span class="vs-dot" style="background:#28c840"></span>
-          <span class="t">Wondershare Filmora — AMBER · Type Beat clip</span>
-        </div>
-        <img src="img/video/filmora-timeline.png"
-             alt="The AMBER type-beat video open in Filmora: preview, media bin and a multi-track timeline"
-             loading="eager">
+      <!-- The render already contains the laptop, so no chrome around it. -->
+      <div class="vs-laptop">
+        <img src="img/video/filmora-macbook.png"
+             alt="The AMBER type-beat project open in Filmora on a laptop — preview, media bin and multi-track timeline"
+             loading="eager"
+             onerror="this.onerror=null;this.src='img/video/filmora-timeline.png'">
       </div>
     </div>
   </section>
@@ -382,8 +391,8 @@
 
 </div>
 
-<script src="assets/js/language-switcher.js?v=26072700"></script>
-<script src="assets/js/site.js?v=26072700"></script>
+<script src="assets/js/language-switcher.js?v=26072710"></script>
+<script src="assets/js/site.js?v=26072710"></script>
 <script src="assets/js/chat.js?v=26071911"></script>
 </body>
 </html>
