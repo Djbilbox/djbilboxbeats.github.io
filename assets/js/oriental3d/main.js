@@ -8,12 +8,12 @@
 
    The 3D layer is additive, never load-bearing.
    ============================================================ */
-import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072723'
-import { ParticleSystem } from './scene/ParticleSystem.js?v=26072723'
-import { Instrument3D }   from './scene/Instrument3D.js?v=26072723'
-import { mountPanels }    from './scene/PluginUI3D.js?v=26072723'
-import { AudioReactive }  from './scene/AudioReactive.js?v=26072723'
-import { ScrollController } from './controls/ScrollController.js?v=26072723'
+import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072724'
+import { ParticleSystem } from './scene/ParticleSystem.js?v=26072724'
+import { Instrument3D }   from './scene/Instrument3D.js?v=26072724'
+import { mountJourney }   from './scene/PanelJourney.js?v=26072724'
+import { AudioReactive }  from './scene/AudioReactive.js?v=26072724'
+import { ScrollController } from './controls/ScrollController.js?v=26072724'
 import * as THREE from 'three'
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -77,20 +77,29 @@ async function boot () {
      Procedural stand-ins are not worth the page they sit on. */
   const instruments = []
 
-  const panels = mountPanels(sm, { reducedMotion: REDUCED })
+  /* ONE unit that travels between the render slots as you scroll,
+     rather than three that each fade in and out on the spot. The
+     continuity is the effect. */
+  const journey = mountJourney(sm, { reducedMotion: REDUCED })
+  if (!journey) {
+    console.info('[oriental3d] no render slots on this page')
+    canvas.remove()
+    document.documentElement.classList.remove('ori-3d-on')
+    return
+  }
 
-  /* ---------- pointer tilt on each slot ---------- */
+  /* ---------- pointer tilt ---------- */
   if (!REDUCED && window.matchMedia('(hover: hover)').matches) {
-    panels.forEach(panel => {
-      const host = panel.img.closest('.ori-render') || panel.img
+    journey.imgs.forEach(img => {
+      const host = img.closest('.ori-render') || img
       host.addEventListener('mousemove', e => {
         const r = host.getBoundingClientRect()
-        panel.setPointer(
+        journey.setPointer(
           (e.clientX - r.left) / r.width - 0.5,
           (e.clientY - r.top) / r.height - 0.5
         )
       }, { passive: true })
-      host.addEventListener('mouseleave', () => panel.setPointer(0, 0), { passive: true })
+      host.addEventListener('mouseleave', () => journey.setPointer(0, 0), { passive: true })
     })
   }
 
@@ -106,8 +115,11 @@ async function boot () {
     console.info('[oriental3d] GSAP unavailable, using the native scroll pass')
   }
 
+  /* The journey reads window.scrollY itself every frame, so it needs
+     no trigger and cannot desync from a throttled ticker. This is
+     left driving the haze and the bloom only. */
   const scroll = new ScrollController({
-    sceneManager: sm, panels, instruments, particles,
+    sceneManager: sm, instruments, particles,
     reducedMotion: REDUCED, gsap: gsapBundle
   })
 
@@ -121,7 +133,7 @@ async function boot () {
     particles.setAudio(level)
     particles.update(t)
     for (let i = 0; i < instruments.length; i++) instruments[i].update(t, dt)
-    for (let i = 0; i < panels.length; i++) panels[i].update(t, dt)
+    journey.update(t, dt)
   })
 
   sm.start()
@@ -133,9 +145,9 @@ async function boot () {
   })
 
   /* Handle for debugging from the console. */
-  window.ORIENTAL3D = { sm, panels, instruments, particles, scroll, audio, THREE, PALETTE, REDUCED }
+  window.ORIENTAL3D = { sm, journey, instruments, particles, scroll, audio, THREE, PALETTE, REDUCED }
   console.log('%c ORIENTAL 3D ', 'background:#E8B54D;color:#050403;font-weight:700',
-    `${panels.length} panels · ${particles.count} motes · gsap:${!!gsapBundle} · reduced-motion:${REDUCED}`)
+    `${journey.imgs.length} stops · ${particles.count} motes · gsap:${!!gsapBundle} · reduced-motion:${REDUCED}`)
 }
 
 /* Boot after layout has settled — the panels anchor to DOM rects,

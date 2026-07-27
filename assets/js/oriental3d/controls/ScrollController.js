@@ -11,7 +11,6 @@ export class ScrollController {
   /**
    * @param {object} deps
    * @param {SceneManager}  deps.sceneManager
-   * @param {PluginUI3D[]}  deps.panels
    * @param {Instrument3D[]} deps.instruments
    * @param {ParticleSystem} deps.particles
    * @param {boolean}       deps.reducedMotion
@@ -26,12 +25,11 @@ export class ScrollController {
     else this.initFallback()
   }
 
-  /* ---------- shared choreography ---------- */
-
-  /** Panel slot progress: -1 entering from the bottom … +1 leaving at the top. */
-  applyPanel (panel, progress01) {
-    panel.setProgress(progress01 * 2 - 1)
-  }
+  /* ---------- shared choreography ----------
+     The travelling panel is NOT driven from here. PanelJourney reads
+     window.scrollY itself on every frame, which keeps it exact even
+     when GSAP's ticker is throttled, and means the main effect has no
+     dependency on a CDN. This is left owning the haze and the bloom. */
 
   /** Whole-page progress, 0 at the top … 1 at the bottom. */
   applyPage (p) {
@@ -67,15 +65,6 @@ export class ScrollController {
     const { gsap, ScrollTrigger } = this.gsap
     gsap.registerPlugin(ScrollTrigger)
 
-    this.panels.forEach(panel => {
-      this.triggers.push(ScrollTrigger.create({
-        trigger: panel.img,
-        start: 'top bottom',
-        end: 'bottom top',
-        onUpdate: self => this.applyPanel(panel, self.progress)
-      }))
-    })
-
     this.triggers.push(ScrollTrigger.create({
       trigger: document.body,
       start: 'top top',
@@ -93,17 +82,6 @@ export class ScrollController {
     this._frame = () => {
       ticking = false
       const vh = window.innerHeight || 1
-
-      this.panels.forEach(panel => {
-        const r = panel.img.getBoundingClientRect()
-        if (r.height < 1) return
-        // 0 when the top edge touches the bottom of the viewport,
-        // 1 when the bottom edge leaves the top — ScrollTrigger's
-        // 'top bottom' → 'bottom top' window, computed by hand.
-        const span = vh + r.height
-        const p = Math.min(Math.max((vh - r.top) / span, 0), 1)
-        this.applyPanel(panel, p)
-      })
 
       const max = Math.max(document.body.scrollHeight - vh, 1)
       this.applyPage(Math.min(Math.max(window.scrollY / max, 0), 1))

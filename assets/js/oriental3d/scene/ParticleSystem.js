@@ -10,8 +10,8 @@
    Feeding it sRGB values here would wash the whole field out.
    ============================================================ */
 import * as THREE from 'three'
-import { particlesVert, particlesFrag } from '../shaders/particles.glsl.js?v=26072723'
-import { PALETTE } from './SceneManager.js?v=26072723'
+import { particlesVert, particlesFrag } from '../shaders/particles.glsl.js?v=26072724'
+import { PALETTE } from './SceneManager.js?v=26072724'
 
 export class ParticleSystem {
   constructor (sceneManager, opts = {}) {
