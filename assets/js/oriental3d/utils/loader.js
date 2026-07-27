@@ -19,7 +19,15 @@ export function loadTexture (url, opts = {}) {
     texLoader.load(
       url,
       tex => {
-        tex.colorSpace = opts.colorSpace || THREE.SRGBColorSpace
+        /* NOT `opts.colorSpace || SRGBColorSpace`: THREE.NoColorSpace
+           is the empty string, so `||` silently swapped it back to
+           sRGB. The GPU then converted the texture to linear on
+           sample and the raw-output path wrote linear values into an
+           sRGB canvas — the artwork came out roughly half as bright
+           as authored. */
+        tex.colorSpace = opts.colorSpace !== undefined
+          ? opts.colorSpace
+          : THREE.SRGBColorSpace
         tex.anisotropy = opts.anisotropy || 4
         tex.generateMipmaps = true
         tex.minFilter = THREE.LinearMipmapLinearFilter

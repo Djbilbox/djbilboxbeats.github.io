@@ -47,12 +47,16 @@ export class ScrollController {
       this.sceneManager.bloomPass.strength = 0.62 + 0.58 * this._easeIn(p)
     }
 
-    // instruments drift up against the scroll — the parallax layer
-    if (!this.reducedMotion) {
-      this.instruments?.forEach((inst, i) => {
-        inst.setScrollOffset(p * (1.6 + i * 0.9))
-      })
-    }
+    this.instruments?.forEach((inst, i) => {
+      /* The turntable runs even under reduced motion. Scroll-locked
+         rotation is direct manipulation — it moves when the user
+         moves and stops when they stop — not the drifting parallax
+         that the preference actually exists to suppress. */
+      inst.setPageProgress(p)
+
+      // that drifting parallax, on the other hand, is gated
+      if (!this.reducedMotion) inst.setScrollOffset(p * (1.6 + i * 0.9))
+    })
   }
 
   _easeIn (x) { return x * x }

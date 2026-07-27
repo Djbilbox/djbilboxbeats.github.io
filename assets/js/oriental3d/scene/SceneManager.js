@@ -75,7 +75,21 @@ export class SceneManager {
     this.scene = new THREE.Scene()
     this.scene.background = new THREE.Color(PALETTE.ink)
     this.scene.fog = new THREE.FogExp2(PALETTE.ink, 0.028)
+
+    /* Second scene, drawn straight to the canvas AFTER the composer.
+       Everything in the main scene goes through OutputPass, which
+       applies ACES tone mapping to the whole buffer — a material's
+       own `toneMapped:false` cannot opt out of that. The plug-in
+       renders are already colour-graded artwork, so re-grading them
+       is exactly what we do not want. Drawing them in a separate
+       pass is the only way they reach the screen untouched.
+       Trade-off, deliberate: they no longer feed the bloom. Their
+       glow is baked in anyway. */
+    this.overlayScene = new THREE.Scene()
   }
+
+  addOverlay (o) { this.overlayScene.add(o) }
+  removeOverlay (o) { this.overlayScene.remove(o) }
 
   initCamera () {
     this.camera = new THREE.PerspectiveCamera(
@@ -188,7 +202,17 @@ export class SceneManager {
       for (let i = 0; i < this.updates.length; i++) this.updates[i](t, dt)
 
       this.composer.render()
+      this.renderOverlay()
     })
+  }
+
+  /** Composite the untouched artwork on top of the graded scene. */
+  renderOverlay () {
+    if (!this.overlayScene.children.length) return
+    this.renderer.autoClear = false
+    this.renderer.clearDepth()
+    this.renderer.render(this.overlayScene, this.camera)
+    this.renderer.autoClear = true
   }
 
   stop () {

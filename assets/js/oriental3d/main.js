@@ -8,12 +8,12 @@
 
    The 3D layer is additive, never load-bearing.
    ============================================================ */
-import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js'
-import { ParticleSystem } from './scene/ParticleSystem.js'
-import { Instrument3D }   from './scene/Instrument3D.js'
-import { mountPanels }    from './scene/PluginUI3D.js'
-import { AudioReactive }  from './scene/AudioReactive.js'
-import { ScrollController } from './controls/ScrollController.js'
+import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072721'
+import { ParticleSystem } from './scene/ParticleSystem.js?v=26072721'
+import { Instrument3D }   from './scene/Instrument3D.js?v=26072721'
+import { mountPanels }    from './scene/PluginUI3D.js?v=26072721'
+import { AudioReactive }  from './scene/AudioReactive.js?v=26072721'
+import { ScrollController } from './controls/ScrollController.js?v=26072721'
 import * as THREE from 'three'
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -66,21 +66,24 @@ async function boot () {
   const instruments = [
     new Instrument3D(sm, {
       type: 'oud',
-      position: new THREE.Vector3(0, 0, -6.5), anchor: { x: -0.62, y: 0.12 },
+      position: new THREE.Vector3(0, 0, -6.5),
+      anchor: { x: -0.62, y: 0.12 }, anchorEnd: { x: 0.58, y: 0.62 },
       rotation: new THREE.Euler(0.18, 0.5, -0.22),
-      scale: 0.62, spin: 0.10, reducedMotion: REDUCED
+      scale: 0.62, spin: 0.10, scrollTurns: 1.6, reducedMotion: REDUCED
     }),
     new Instrument3D(sm, {
       type: 'qanun',
-      position: new THREE.Vector3(0, 0, -7.5), anchor: { x: 0.70, y: -0.44 },
+      position: new THREE.Vector3(0, 0, -7.5),
+      anchor: { x: 0.70, y: -0.44 }, anchorEnd: { x: -0.66, y: 0.30 },
       rotation: new THREE.Euler(-0.5, -0.45, 0.14),
-      scale: 0.9, spin: -0.07, reducedMotion: REDUCED
+      scale: 0.9, spin: -0.07, scrollTurns: -1.1, reducedMotion: REDUCED
     }),
     new Instrument3D(sm, {
       type: 'darbuka',
-      position: new THREE.Vector3(0, 0, -5.5), anchor: { x: -0.52, y: -0.68 },
+      position: new THREE.Vector3(0, 0, -5.5),
+      anchor: { x: -0.52, y: -0.68 }, anchorEnd: { x: 0.72, y: -0.30 },
       rotation: new THREE.Euler(0.12, 0.3, 0.1),
-      scale: 0.85, spin: 0.16, reducedMotion: REDUCED
+      scale: 0.85, spin: 0.16, scrollTurns: 2.2, reducedMotion: REDUCED
     })
   ]
 

@@ -12,8 +12,8 @@
    over, no other code changes.
    ============================================================ */
 import * as THREE from 'three'
-import { loadGLTF } from '../utils/loader.js'
-import { PALETTE } from './SceneManager.js'
+import { loadGLTF } from '../utils/loader.js?v=26072721'
+import { PALETTE } from './SceneManager.js?v=26072721'
 
 /* ---------- shared materials ---------- */
 const MAT = {
@@ -73,6 +73,12 @@ export class Instrument3D {
          of the world width a desktop does, so the whole atmosphere
          layer silently vanished on mobile. Only `z` is absolute. */
       anchor: null,                      // {x, y} | null → use `position`
+      anchorEnd: null,                   // travels here across the page
+      /* Full turns performed across one page scroll. THIS is the
+         scroll-scrub feel from the reference site: rotation locked
+         to the wheel rather than merely drifting on a timer, so
+         moving the mouse turns the object and stopping stops it. */
+      scrollTurns: 1.2,
       rotation: new THREE.Euler(0, 0, 0),
       scale: 1,
       spin: 0.13,                        // radians / second
@@ -92,6 +98,9 @@ export class Instrument3D {
     this.group.scale.setScalar(this.options.scale)
     this.baseY = this.options.position.y
     this.scrollOffset = 0
+    this.pageProgress = 0
+    this.idleY = 0              // free-running spin, accumulated
+    this.scrollSpin = 0         // scroll-locked spin, absolute
     this.mixer = null
     this._clock = new THREE.Clock()
 
@@ -103,11 +112,19 @@ export class Instrument3D {
   /** Resolve `anchor` against the current viewport. Cheap, so it runs
       every frame and a resize needs no wiring at all. */
   layout () {
-    const a = this.options.anchor
-    if (!a) return
-    const v = this.sm.viewSizeAt(this.options.position.z)
-    this.group.position.x = a.x * v.width / 2
-    this.baseY = a.y * v.height / 2
+    const o = this.options
+    if (!o.anchor) return
+    const v = this.sm.viewSizeAt(o.position.z)
+
+    /* Travel across the page, so the instruments cross the frame as
+       you scroll instead of hovering in one corner for 4000px. */
+    const b = o.anchorEnd || o.anchor
+    const p = this.pageProgress
+    const ax = o.anchor.x + (b.x - o.anchor.x) * p
+    const ay = o.anchor.y + (b.y - o.anchor.y) * p
+
+    this.group.position.x = ax * v.width / 2
+    this.baseY = ay * v.height / 2
   }
 
   async build () {
@@ -292,6 +309,12 @@ export class Instrument3D {
   /* ---------- per-frame ---------- */
   setScrollOffset (v) { this.scrollOffset = v }
 
+  /** 0…1 page scroll — drives both the travel path and the turntable. */
+  setPageProgress (p) {
+    this.pageProgress = p
+    this.scrollSpin = p * Math.PI * 2 * this.options.scrollTurns
+  }
+
   update (t, dt) {
     if (this.mixer) this.mixer.update(dt)
     this.layout()
@@ -304,7 +327,12 @@ export class Instrument3D {
        reduced motion. Damping only the amplitude leaves it twitchy. */
     const amp = o.floatAmp * (o.reducedMotion ? 0.45 : 1)
 
-    this.group.rotation.y += o.spin * dt * slow
+    /* Idle drift and scroll scrub are summed, not blended: the
+       object always turns with the wheel, and keeps breathing when
+       the wheel stops. */
+    this.idleY += o.spin * dt * slow
+    this.group.rotation.y = this.options.rotation.y + this.idleY + this.scrollSpin
+
     this.group.position.y =
       this.baseY +
       Math.sin(t * o.floatSpeed * slow + o.phase) * amp +
