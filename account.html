@@ -6,7 +6,7 @@
 <title>My Account — DJBILBOX BEATS</title>
 <meta name="description" content="Join the DJBILBOX BEATS community — free beats, exclusive drops, member perks.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26072690">
+<link rel="stylesheet" href="assets/css/theme.css?v=26072700">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
@@ -59,6 +59,11 @@
   font-family:var(--font);font-weight:600;font-size:.93rem;transition:.18s}
 .acc-gbtn:hover{background:#f1f1f1;transform:translateY(-1px)}
 .acc-gbtn svg{width:19px;height:19px;flex:0 0 auto}
+.acc-fbtn{display:flex;align-items:center;justify-content:center;gap:11px;width:100%;
+  background:#1877F2;color:#fff;border:none;border-radius:9px;padding:13px;cursor:pointer;
+  font-family:var(--font);font-weight:600;font-size:.93rem;transition:.18s}
+.acc-fbtn:hover{background:#166FE5;transform:translateY(-1px)}
+.acc-fbtn svg{width:19px;height:19px;flex:0 0 auto}
 .acc-gnote{font-size:.72rem;color:var(--text-4);text-align:center;line-height:1.5}
 .acc-provider{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text-4);
   margin-top:6px;justify-content:center}
@@ -69,7 +74,7 @@
 <main class="acc-wrap" id="accRoot"></main>
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="assets/js/site.js?v=26072690"></script>
+<script src="assets/js/site.js?v=26072700"></script>
 <script src="assets/js/chat.js?v=26071911"></script>
 <script>
 /* ============================================================
@@ -81,22 +86,28 @@ const ACC_KEY='djb_users', SESSION_KEY='djb_session';
 const FORMSPREE='https://formspree.io/f/mjvzgyeo';
 
 /* ============================================================
-   SIGN IN WITH GOOGLE (Google Identity Services)
+   👉 SOCIAL SIGN-IN — PASTE YOUR TWO IDs HERE AND NOTHING ELSE
    ------------------------------------------------------------
-   Paste the OAuth 2.0 Web client ID below and the official Google
-   button appears automatically. Get one — free — at:
-     console.cloud.google.com → APIs & Services → Credentials
-     → Create credentials → OAuth client ID → Web application
-   Authorised JavaScript origins must list BOTH:
-     https://djbilboxbeats.com
-     https://djbilbox.github.io
-   Leave the string empty and the Google block simply stays hidden,
-   so the email/password signup keeps working on its own.
+   Both work with PUBLIC ids only, no server and no secret, which
+   is why they run on GitHub Pages. A provider whose id is left
+   empty simply doesn't show its button — visitors never see a
+   dead control.
 
-   Note: this is a static site, so Google identifies the visitor and
-   we store the profile locally — it is not a server-verified login.
+   GOOGLE  (2 min) console.cloud.google.com
+     APIs & Services > Credentials > Create credentials
+     > OAuth client ID > Web application
+     Authorised JavaScript origins — add BOTH:
+       https://djbilboxbeats.com
+       https://djbilbox.github.io
+     Copy the "Client ID" ending in .apps.googleusercontent.com
+
+   FACEBOOK (2 min) developers.facebook.com/apps
+     Create app > Consumer > add "Facebook Login" > Web
+     Site URL: https://djbilboxbeats.com
+     Copy the "App ID" (a number) from Settings > Basic
    ============================================================ */
-const GOOGLE_CLIENT_ID = '';   /* <-- paste "....apps.googleusercontent.com" here */
+const GOOGLE_CLIENT_ID = '';   /* e.g. '1234-abcd.apps.googleusercontent.com' */
+const FACEBOOK_APP_ID  = '';   /* e.g. '1234567890123456'                     */
 
 function hash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i)|0;}return 'h'+Math.abs(h);}
 function getUsers(){try{return JSON.parse(localStorage.getItem(ACC_KEY))||{}}catch{return{}}}
@@ -118,14 +129,83 @@ function render(){
   if(sess){ root.innerHTML=dashboardHTML(sess); return; }
   root.innerHTML=authHTML();
   wireAuth();
-  mountGoogle();
+  mountSocial();
 }
 
 /* ---------- Google Identity Services ---------- */
-function mountGoogle(){
+function mountSocial(){
   const holder=document.querySelector('.acc-social');
   if(!holder) return;
-  if(!GOOGLE_CLIENT_ID){ holder.previousElementSibling.style.display='none'; holder.style.display='none'; return; }
+  /* The whole block only appears if at least one provider is set up,
+     so a visitor never meets a button that cannot work. */
+  const any = GOOGLE_CLIENT_ID || FACEBOOK_APP_ID;
+  holder.previousElementSibling.style.display = any ? '' : 'none';
+  holder.style.display = any ? '' : 'none';
+  if(!any){
+    console.info('[account] Social sign-in hidden: set GOOGLE_CLIENT_ID and/or ' +
+                 'FACEBOOK_APP_ID near the top of account.html to enable it.');
+    return;
+  }
+  mountGoogle();
+  mountFacebook();
+}
+
+/* ---------- Facebook Login (JS SDK, App ID only) ---------- */
+function mountFacebook(){
+  const btn=document.getElementById('fbButton');
+  if(!btn || !FACEBOOK_APP_ID) return;
+  btn.style.display='flex';
+
+  if(!document.getElementById('fb-sdk')){
+    const s=document.createElement('script');
+    s.id='fb-sdk'; s.async=true; s.defer=true;
+    s.src='https://connect.facebook.net/en_US/sdk.js';
+    s.onload=()=>{ try{ FB.init({appId:FACEBOOK_APP_ID, cookie:true, xfbml:false, version:'v21.0'}); }catch(e){} };
+    document.head.appendChild(s);
+  }
+}
+
+function doFacebook(){
+  if(typeof FB==='undefined'){
+    alert("Facebook sign-in isn't ready yet (the Facebook script is blocked or still loading). You can create an account with your email just above.");
+    return;
+  }
+  FB.login(function(res){
+    if(!res.authResponse) return;                 /* user cancelled */
+    FB.api('/me', {fields:'name,email,picture.width(160)'}, function(p){
+      if(!p || p.error){ alert('Facebook did not return your profile. Try the email form above.'); return; }
+      const email = p.email || (p.id + '@facebook.local');
+      const name  = p.name || 'Member';
+      const pic   = (p.picture && p.picture.data && p.picture.data.url) || '';
+      registerSocialUser({name, email, picture:pic, provider:'facebook'});
+    });
+  }, {scope:'public_profile,email'});
+}
+
+/* Shared by both providers: store the member, notify the owner once. */
+function registerSocialUser(u){
+  const email=String(u.email).toLowerCase();
+  const users=getUsers();
+  const isNew=!users[email];
+  users[email]=Object.assign({}, users[email], {
+    name:u.name, email, provider:u.provider, picture:u.picture||'',
+    joined:(users[email] && users[email].joined) || new Date().toISOString()
+  });
+  saveUsers(users);
+  if(isNew){
+    const fd=new FormData();
+    fd.append('_subject',`New community signup (${u.provider}) — ${u.name}`);
+    fd.append('_captcha','false');
+    fd.append('name',u.name); fd.append('email',email);
+    fd.append('message',`New member joined the DJBILBOX BEATS community via ${u.provider} sign-in.`);
+    fetch(FORMSPREE,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(()=>{});
+  }
+  setSession({name:u.name, email, provider:u.provider, picture:u.picture||''});
+}
+
+function mountGoogle(){
+  const holder=document.querySelector('.acc-social');
+  if(!holder || !GOOGLE_CLIENT_ID) return;
   if(!window.google || !google.accounts || !google.accounts.id){
     /* library blocked or still loading — show our own button, retry shortly */
     document.getElementById('gsiFallback').style.display='block';
@@ -162,25 +242,12 @@ function onGoogleCredential(res){
   const p=decodeJwt(res && res.credential);
   if(!p || !p.email){ googleUnavailable(); return; }
   const email=String(p.email).toLowerCase();
-  const name=p.name || p.given_name || email.split('@')[0];
-
-  const users=getUsers();
-  const isNew=!users[email];
-  users[email]=Object.assign({}, users[email], {
-    name, email, provider:'google', picture:p.picture||'',
-    joined:(users[email] && users[email].joined) || new Date().toISOString()
+  registerSocialUser({
+    name: p.name || p.given_name || email.split('@')[0],
+    email,
+    picture: p.picture||'',
+    provider:'google'
   });
-  saveUsers(users);
-
-  if(isNew){
-    const fd=new FormData();
-    fd.append('_subject',`New community signup (Google) — ${name}`);
-    fd.append('_captcha','false');
-    fd.append('name',name); fd.append('email',email);
-    fd.append('message','New member joined the DJBILBOX BEATS community via Google sign-in.');
-    fetch(FORMSPREE,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(()=>{});
-  }
-  setSession({name,email,provider:'google',picture:p.picture||''});
 }
 
 function dashboardHTML(u){
@@ -189,8 +256,9 @@ function dashboardHTML(u){
     ? `<img class="acc-avatar" src="${u.picture}" alt="" referrerpolicy="no-referrer"
            style="object-fit:cover" onerror="this.outerHTML='<div class=\\'acc-avatar\\'>${initial}</div>'">`
     : `<div class="acc-avatar">${initial}</div>`;
-  const via = u.provider==='google'
-    ? `<div class="acc-provider"><i class="fa-brands fa-google"></i> Signed in with Google</div>` : '';
+  const via = u.provider
+    ? `<div class="acc-provider"><i class="fa-brands fa-${u.provider}"></i> ` +
+      `Signed in with ${u.provider.charAt(0).toUpperCase()+u.provider.slice(1)}</div>` : '';
   return `
     <h1 class="acc-h1">My <span>Account</span></h1>
     <p class="acc-sub">Welcome back to the DJBILBOX community.</p>
@@ -240,7 +308,7 @@ function authHTML(){
 
     <div class="acc-or">or</div>
     <div class="acc-social">
-      <!-- Google renders its official button here once the client ID is set. -->
+      <!-- Google swaps its official button in here once the ID is set. -->
       <div id="gsiButton"></div>
       <div id="gsiFallback" style="display:none">
         <button class="acc-gbtn" type="button" onclick="googleUnavailable()">
@@ -253,6 +321,13 @@ function authHTML(){
           Continue with Google
         </button>
       </div>
+
+      <button class="acc-fbtn" type="button" id="fbButton" style="display:none" onclick="doFacebook()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff"
+          d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+        Continue with Facebook
+      </button>
+
       <p class="acc-gnote">One click — no password to remember.</p>
     </div>`;
 }
