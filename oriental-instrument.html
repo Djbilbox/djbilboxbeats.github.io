@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://djbilboxbeats.com/oriental-instrument.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26072660">
+<link rel="stylesheet" href="assets/css/theme.css?v=26072670">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script type="application/ld+json">
@@ -90,21 +90,26 @@
    and tilt, and a glow pooled underneath it.
    ============================================================ */
 .ori-render{
-  --ty:0px; --rot:0deg; --sc:1;
+  --ty:0px; --rot:0deg; --sc:1; --mx:0deg; --my:0deg;
   position:relative;
+  perspective:1100px;
   transform:translateY(var(--ty)) rotate(var(--rot)) scale(var(--sc));
   will-change:transform;
-  animation:oriFloat 9s ease-in-out infinite;
+  animation:oriFloat 6s ease-in-out infinite;
 }
 .ori-render img{
   width:100%;height:auto;display:block;
+  /* pointer tilt lives on the image so it composes with the
+     float/parallax transform on the wrapper instead of clobbering it */
+  transform:rotateX(var(--mx)) rotateY(var(--my));
+  transition:transform .35s cubic-bezier(.2,.7,.2,1);
   filter:drop-shadow(0 34px 46px rgba(0,0,0,.72))
          drop-shadow(0 0 74px rgba(232,181,77,.2));
 }
-.ori-render.flip{animation-delay:-4.5s}
+.ori-render.flip{animation-delay:-3s}
 @keyframes oriFloat{
-  0%,100%{translate:0 0}
-  50%{translate:0 -14px}
+  0%,100%{translate:0 0;    rotate:0deg}
+  50%    {translate:0 -26px; rotate:.6deg}
 }
 /* warm pool of light under the unit */
 .ori-render::before{
@@ -373,8 +378,8 @@
       </div>
       <div class="ori-stage ori-reflect">
         <div class="ori-render">
-            <img src="img/vst/ui/oriental-3d.jpg?v=2"
-                 alt="ORIENTAL INSTRUMENT — macro knobs and FX chain"
+            <img src="img/vst/ui/oriental-3d-angle.jpg?v=3"
+                 alt="ORIENTAL INSTRUMENT — low-angle view of the copper unit: macro knobs, preset browser and FX chain"
                  onerror="this.onerror=null;this.src='img/vst/ui/oriental-3d-hero.png?v=2'">
           </div>
       </div>
@@ -474,8 +479,8 @@
 
 </div>
 
-<script src="assets/js/language-switcher.js?v=26072660"></script>
-<script src="assets/js/site.js?v=26072660"></script>
+<script src="assets/js/language-switcher.js?v=26072670"></script>
+<script src="assets/js/site.js?v=26072670"></script>
 <script src="assets/js/chat.js?v=26071911"></script>
 
 <script>
@@ -506,13 +511,13 @@
 
       var dir = el.classList.contains('flip') ? 1 : -1;
 
-      /* The renders already contain their own perspective, so the
-         motion stays subtle — drift against the scroll, a couple of
-         degrees of roll, and a touch of scale. Rotating them hard in
-         CSS would fight the lighting baked into the image. */
-      var ty  = -26 * p;              // parallax drift
-      var rot = dir * 1.8 * p;        // gentle roll
-      var sc  = 1 - 0.03 * Math.abs(p);
+      /* Amplitudes are deliberately generous: at 26px of drift and
+         under 2deg of roll the movement was there but nobody could
+         see it. This reads as motion without spinning the render far
+         enough to fight the lighting baked into the image. */
+      var ty  = -70 * p;              // parallax drift
+      var rot = dir * 4.5 * p;        // roll
+      var sc  = 1 - 0.06 * Math.abs(p);
 
       el.style.setProperty('--ty',  ty.toFixed(1) + 'px');
       el.style.setProperty('--rot', rot.toFixed(2) + 'deg');
@@ -628,6 +633,35 @@
   }, {threshold:0.5});
 
   cells.forEach(function(c){ io.observe(c); });
+})();
+
+/* ============================================================
+   POINTER TILT — the unit leans toward the cursor. This is the
+   bit that makes it read as a physical object rather than a
+   picture. Skipped on touch, where there is no hover.
+   ============================================================ */
+(function oriTilt(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(!window.matchMedia('(hover: hover)').matches) return;
+
+  var units = [].slice.call(document.querySelectorAll('.ori-render'));
+  if(!units.length) return;
+
+  var MAX = 9;   // degrees
+
+  units.forEach(function(el){
+    el.addEventListener('mousemove', function(e){
+      var r = el.getBoundingClientRect();
+      var nx = (e.clientX - r.left) / r.width  - 0.5;   // -0.5 … +0.5
+      var ny = (e.clientY - r.top)  / r.height - 0.5;
+      el.style.setProperty('--my', ( nx * 2 * MAX).toFixed(2) + 'deg');
+      el.style.setProperty('--mx', (-ny * 2 * MAX).toFixed(2) + 'deg');
+    });
+    el.addEventListener('mouseleave', function(){
+      el.style.setProperty('--my','0deg');
+      el.style.setProperty('--mx','0deg');
+    });
+  });
 })();
 
 /* ============================================================
