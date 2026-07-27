@@ -17,6 +17,27 @@
 <link rel="stylesheet" href="assets/css/theme.css?v=26072710">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+<!-- ============================================================
+     3D SHOWCASE — module resolution.
+     The site is plain GitHub Pages with no bundler, so three.js and
+     GSAP are resolved by a native import map instead of Vite. Same
+     ES modules, same specifiers ('three', 'three/addons/…'), no
+     build step to run before a deploy.
+     Pinned versions on purpose: "latest" on a CDN is a live
+     dependency on someone else's release schedule.
+     ============================================================ -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.min.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/",
+    "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js",
+    "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js"
+  }
+}
+</script>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -277,6 +298,62 @@
   .ori-render{animation-duration:12s}
   .ori-split{padding:60px 0}
 }
+
+/* ============================================================
+   WEBGL TAKEOVER
+   Every rule below is scoped to .ori-3d-on, a class that
+   assets/js/oriental3d/main.js puts on <html> ONLY after a renderer
+   has actually started. No WebGL, JS off, CDN unreachable, texture
+   404 — none of this applies and the page stays exactly the CSS
+   showcase written above. The 3D layer is additive, never
+   load-bearing on a page that has to sell a plug-in.
+   ============================================================ */
+#ori-webgl{
+  position:fixed;inset:0;width:100%;height:100%;
+  z-index:0;display:block;pointer-events:none;background:#050403;
+}
+.ori{position:relative;z-index:1}
+
+/* The canvas clears to the same ink the page used as a background,
+   so the sections only need to stop painting over it. */
+.ori-3d-on .ori{background:transparent}
+.ori-3d-on .ori-hero{
+  background:
+    radial-gradient(1100px 620px at 78% 36%,rgba(232,181,77,.10),transparent 62%),
+    radial-gradient(760px 520px at 10% 88%,rgba(160,60,20,.12),transparent 65%);
+}
+.ori-3d-on .ori-band{background:rgba(5,4,3,.40);
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.ori-3d-on .ori-band-cell{background:rgba(5,4,3,.74)}
+.ori-3d-on .ori-final{
+  background:radial-gradient(900px 480px at 50% 50%,rgba(232,181,77,.12),transparent 68%),
+             rgba(13,10,7,.62)}
+.ori-3d-on .ori-plan,
+.ori-3d-on .ori-preset,
+.ori-3d-on .ori-cat{backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+/* the CSS orbs were standing in for volumetric light; the scene has
+   real accent lamps now, so they only need to hint */
+.ori-3d-on .ori-orb{opacity:.4}
+
+/* ---- the render slots become measurement targets ----
+   Each WebGL panel is anchored to the screen-space rectangle of the
+   <img> it replaces. Any CSS motion left on that box would move the
+   rectangle underneath the panel and the two would visibly
+   disagree, so the slot is pinned dead still. The <img> itself stays
+   in the DOM at opacity 0: it keeps the layout and its alt text, and
+   it comes straight back if the 3D layer is ever torn down. */
+.ori-3d-on .ori-render{
+  animation:none!important;transform:none!important;
+  translate:none!important;rotate:none!important}
+.ori-3d-on .ori-render img{
+  transform:none!important;filter:none!important;
+  transition:opacity .45s ease!important}
+.ori-3d-on .ori-render::before,
+.ori-3d-on .ori-reflect::after{display:none}
+
+/* Reduced motion: the scene keeps running, slower and without any
+   scroll-linked or pointer-linked travel (that logic lives in JS).
+   Erasing it entirely just makes the page look broken. */
 </style>
 </head>
 <body data-page="oriental">
@@ -514,6 +591,12 @@
 
   function frame(){
     ticking = false;
+    /* Once the WebGL showcase is live it owns these slots — the
+       panels are anchored to the <img> rectangles, so writing
+       transforms here would drag the anchor out from under them.
+       (The stylesheet already neutralises the result; this just
+       stops the work.) */
+    if(document.documentElement.classList.contains('ori-3d-on')) return;
     var vh = window.innerHeight || 1;
     for(var i=0;i<units.length;i++){
       var el = units[i];
@@ -670,6 +753,7 @@
 
   units.forEach(function(el){
     el.addEventListener('mousemove', function(e){
+      if(document.documentElement.classList.contains('ori-3d-on')) return;
       var r = el.getBoundingClientRect();
       var nx = (e.clientX - r.left) / r.width  - 0.5;   // -0.5 … +0.5
       var ny = (e.clientY - r.top)  / r.height - 0.5;
@@ -705,5 +789,13 @@
   }, {passive:true});
 })();
 </script>
+
+<!-- ============================================================
+     3D SHOWCASE — three.js scene.
+     Loads last and boots on 'load', so it never delays first paint
+     or the purchase buttons. Everything it needs to fail safely is
+     already on the page above it.
+     ============================================================ -->
+<script type="module" src="assets/js/oriental3d/main.js?v=26072720"></script>
 </body>
 </html>
