@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://djbilboxbeats.com/oriental-instrument.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26072670">
+<link rel="stylesheet" href="assets/css/theme.css?v=26072680">
 <link rel="stylesheet" href="assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script type="application/ld+json">
@@ -170,11 +170,26 @@
 .ori-band-cell b{font-variant-numeric:tabular-nums}
 
 /* respect users who ask for less motion */
+/* ---------- reduced motion ----------
+   Reduce, don't erase. What actually triggers motion sickness is
+   large travel, parallax and anything that tracks the pointer — those
+   are switched off in JS. A slow, small float and plain opacity fades
+   stay, so the page still feels alive instead of dead.
+   Note: on Windows this preference is Settings > Accessibility >
+   Visual effects > Animation effects.                              */
 @media(prefers-reduced-motion:reduce){
-  .ori-render{animation:none;transform:none!important}
-  .rv,.rv-l,.rv-s,.rv-f{opacity:1!important;transform:none!important;transition:none}
-  .ori-orb{animation:none}
-  .ori-logo .ori-gold{animation:none}
+  .ori-render{
+    animation:oriFloatSoft 14s ease-in-out infinite;
+    transform:none!important;              /* no scroll parallax */
+  }
+  @keyframes oriFloatSoft{
+    0%,100%{translate:0 0}
+    50%    {translate:0 -8px}
+  }
+  .ori-render img{transform:none!important} /* no pointer tilt */
+  .ori-orb{animation:oriDrift 46s ease-in-out infinite}
+  /* movement-based reveals collapse to a fade */
+  .rv,.rv-l,.rv-s{transform:none!important}
 }
 
 /* ---------- HERO ---------- */
@@ -479,8 +494,8 @@
 
 </div>
 
-<script src="assets/js/language-switcher.js?v=26072670"></script>
-<script src="assets/js/site.js?v=26072670"></script>
+<script src="assets/js/language-switcher.js?v=26072680"></script>
+<script src="assets/js/site.js?v=26072680"></script>
 <script src="assets/js/chat.js?v=26071911"></script>
 
 <script>
@@ -544,7 +559,10 @@
    fully visible if this script never runs.
    ============================================================ */
 (function oriReveal(){
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  /* Under reduced motion the reveals still run, but everything is
+     tagged fade-only — the content still arrives, it just doesn't
+     travel across the screen. */
+  var soft = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* [selector, class, stagger step in ms] */
   var groups = [
@@ -564,7 +582,7 @@
     for(var i=0;i<els.length;i++){
       if(els[i].classList.contains('rv')||els[i].classList.contains('rv-l')
          ||els[i].classList.contains('rv-s')||els[i].classList.contains('rv-f')) continue;
-      els[i].classList.add(g[1]);
+      els[i].classList.add(soft ? 'rv-f' : g[1]);
       if(g[2]) els[i].style.setProperty('--d', Math.min(i*g[2], 480) + 'ms');
     }
   });
@@ -604,9 +622,10 @@
    COUNT-UP on the stats band, fired once when it scrolls in.
    ============================================================ */
 (function oriCounters(){
+  /* A number ticking up is not vestibular motion, so this one runs
+     even under the reduced-motion preference. */
   var cells = document.querySelectorAll('.ori-band-cell b');
   if(!cells.length) return;
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
