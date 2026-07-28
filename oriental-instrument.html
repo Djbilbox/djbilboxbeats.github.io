@@ -422,7 +422,7 @@
   align-items: center;
   justify-content: center;
   gap: 2.4vh;
-  padding: 4vh 4vw 7vh;
+  padding: 4vh 4vw 6vh;
 }
 .ori-cinema-unit {
   position: relative;
@@ -445,7 +445,12 @@
   display: block;
   width: 100%;
   height: auto;
-  max-height: 70vh;
+  /* Hauteur calculée, pas devinée. La colonne contient aussi le titre,
+     le sous-titre, l'écart et les marges ; à 70vh l'ensemble dépassait
+     de 69 px et, comme .ori-cinema masque le débordement et centre son
+     contenu, c'est le TITRE qui se faisait couper en haut. Ce calcul
+     réserve d'abord la place du texte et donne le reste à l'unité. */
+  max-height: max(180px, calc(88vh - 215px));
   object-fit: contain;
   animation: ori-model-in 2.3s cubic-bezier(0.22, 0.68, 0.24, 1) both;
 }
@@ -1046,6 +1051,14 @@
      or the purchase buttons. Everything it needs to fail safely is
      already on the page above it.
      ============================================================ -->
-<script type="module" src="assets/js/oriental3d/main.js?v=26072890"></script>
+<!-- La couche WebGL (assets/js/oriental3d/main.js) n'est plus chargée ici.
+     PanelJourney peignait une unité en 3D qui VOYAGEAIT entre les deux
+     emplacements de rendu, sur un canvas fixe couvrant tout l'écran —
+     pendant que les <img> DOM restaient à opacity:1. On voyait donc le
+     produit en double, et le panneau flottant dérivait par-dessus les
+     cartes de catégories.
+     Les vraies captures produit, avec le parallaxe CSS d'oriental3D()
+     plus bas, font le travail sans rien dupliquer. Le module reste dans
+     le dépôt pour une éventuelle reprise avec un vrai modèle 3D. -->
 </body>
 </html>
