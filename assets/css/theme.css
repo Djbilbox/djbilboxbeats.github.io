@@ -494,6 +494,19 @@ img{display:block;max-width:100%}
 .cart-note{font-size:.66rem;color:var(--text-4);line-height:1.5;text-align:center;margin:0}
 @media(max-width:560px){ .cart-drawer{width:100%} }
 
+/* ── 3D canvas — fill the viewport behind all content ───────────────── */
+#ori-webgl {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: -1 !important;
+  display: block !important;
+  pointer-events: none;
+}
+body.ori-3d-on { overflow-x: hidden; }
+
 /* ── Google Translate — hide the ugly injected bar/branding ───────────────── */
 .goog-te-banner-frame,.goog-te-banner-frame.skiptranslate,iframe.skiptranslate{display:none!important;visibility:hidden!important;height:0!important}
 body{top:0!important;position:static!important}
