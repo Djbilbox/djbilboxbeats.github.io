@@ -115,6 +115,7 @@ function setSession(s){
   if(s){ localStorage.setItem(SESSION_KEY,JSON.stringify(s)); }
   else{
     localStorage.removeItem(SESSION_KEY);
+    localStorage.removeItem('djbilbox_token');
     /* stop Google from silently signing the visitor back in */
     try{ google.accounts.id.disableAutoSelect(); }catch(e){}
   }
@@ -175,14 +176,29 @@ function doFacebook(){
       const email = p.email || (p.id + '@facebook.local');
       const name  = p.name || 'Member';
       const pic   = (p.picture && p.picture.data && p.picture.data.url) || '';
-      registerSocialUser({name, email, picture:pic, provider:'facebook'});
+      registerSocialUser({name, email, picture:pic, provider:'facebook',
+                          assertion:(res.authResponse && res.authResponse.accessToken)});
     });
   }, {scope:'public_profile,email'});
 }
 
 /* Shared by both providers: store the member, notify the owner once. */
-function registerSocialUser(u){
+async function registerSocialUser(u){
   const email=String(u.email).toLowerCase();
+
+  if(AUTH_API && u.assertion){
+    try{
+      const d = await apiAuth('/social', {provider:u.provider, assertion:u.assertion});
+      localStorage.setItem(TOKEN_KEY, d.token);
+      notifieProprio(d.user.name, d.user.email, u.provider);
+      setSession(d.user);
+      return;
+    }catch(err){
+      alert('Sign-in refused: ' + err.message);
+      return;
+    }
+  }
+
   const users=getUsers();
   const isNew=!users[email];
   users[email]=Object.assign({}, users[email], {
@@ -244,7 +260,11 @@ function onGoogleCredential(res){
     name: p.name || p.given_name || email.split('@')[0],
     email,
     picture: p.picture||'',
-    provider:'google'
+    provider:'google',
+    /* Le jeton signe par Google, verifie cote serveur. Le profil decode
+       ici ne sert qu'a l'affichage : un navigateur peut affirmer
+       n'importe quel e-mail, seule la signature fait foi. */
+    assertion: res && res.credential
   });
 }
 
@@ -339,32 +359,94 @@ function switchTab(which){
   document.getElementById('signupForm').classList.toggle('hidden',login);
 }
 
-function doSignup(e){
+/* ============================================================
+   Comptes serveur.
+
+   AUTH_API pointe vers le worker Cloudflare (worker/auth.js). Tant qu'il
+   est vide, la page retombe sur l'ancien mode local — le formulaire
+   continue de fonctionner, mais le compte ne vit que dans CE navigateur.
+   C'est le seul comportement acceptable avant deploiement : casser
+   l'inscription en attendant serait pire que la limitation.
+
+   Une fois l'URL renseignee, les comptes existent vraiment : le meme
+   client se reconnecte depuis son telephone et son ordinateur, et le
+   mot de passe est hache en PBKDF2 cote serveur, jamais stocke ici.
+   ============================================================ */
+const AUTH_API = '';   /* ex. 'https://djbilbox-auth.<ton-sous-domaine>.workers.dev' */
+const TOKEN_KEY = 'djbilbox_token';
+
+async function apiAuth(route, corps){
+  const r = await fetch(AUTH_API.replace(/\/$/,'') + route, {
+    method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(corps)
+  });
+  const d = await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(d.error || 'Server error');
+  return d;
+}
+
+/* Previent le proprietaire d'une nouvelle inscription. Volontairement
+   non bloquant : un Formspree en panne ne doit pas empecher un client
+   de creer son compte. */
+function notifieProprio(name, email, via){
+  const fd=new FormData();
+  fd.append('_subject',`New community signup${via?' ('+via+')':''} — ${name}`);
+  fd.append('_captcha','false');
+  fd.append('name',name); fd.append('email',email);
+  fd.append('message',`New member joined the DJBILBOX BEATS community${via?' via '+via:''}.`);
+  fetch(FORMSPREE,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(()=>{});
+}
+
+async function doSignup(e){
   e.preventDefault();
   const name=document.getElementById('suName').value.trim();
   const email=document.getElementById('suEmail').value.trim().toLowerCase();
   const pass=document.getElementById('suPass').value;
   const msg=document.getElementById('signupMsg');
+
+  if(AUTH_API){
+    msg.className='acc-msg'; msg.textContent='Creating your account…';
+    try{
+      const d = await apiAuth('/signup', {name, email, password:pass});
+      localStorage.setItem(TOKEN_KEY, d.token);
+      notifieProprio(name, email, '');
+      msg.className='acc-msg ok'; msg.textContent='Account created! Logging you in…';
+      setTimeout(()=>setSession(d.user),600);
+    }catch(err){
+      msg.className='acc-msg err'; msg.textContent=err.message;
+    }
+    return;
+  }
+
+  /* --- repli local (worker pas encore deploye) --- */
   const users=getUsers();
   if(users[email]){ msg.className='acc-msg err'; msg.textContent='An account with this email already exists. Try logging in.'; return; }
   users[email]={name,email,pass:hash(pass),joined:new Date().toISOString()};
   saveUsers(users);
-  /* capture member email for the owner (community mailing list) */
-  const fd=new FormData();
-  fd.append('_subject',`New community signup — ${name}`);
-  fd.append('_captcha','false');
-  fd.append('name',name); fd.append('email',email);
-  fd.append('message',`New member joined the DJBILBOX BEATS community.`);
-  fetch(FORMSPREE,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(()=>{});
+  notifieProprio(name, email, '');
   msg.className='acc-msg ok'; msg.textContent='Account created! Logging you in…';
   setTimeout(()=>setSession({name,email}),700);
 }
 
-function doLogin(e){
+async function doLogin(e){
   e.preventDefault();
   const email=document.getElementById('loginEmail').value.trim().toLowerCase();
   const pass=document.getElementById('loginPass').value;
   const msg=document.getElementById('loginMsg');
+
+  if(AUTH_API){
+    msg.className='acc-msg'; msg.textContent='Signing you in…';
+    try{
+      const d = await apiAuth('/login', {email, password:pass});
+      localStorage.setItem(TOKEN_KEY, d.token);
+      msg.className='acc-msg ok'; msg.textContent='Welcome back!';
+      setTimeout(()=>setSession(d.user),400);
+    }catch(err){
+      msg.className='acc-msg err'; msg.textContent=err.message;
+    }
+    return;
+  }
+
+  /* --- repli local --- */
   const users=getUsers();
   const u=users[email];
   if(!u || u.pass!==hash(pass)){ msg.className='acc-msg err'; msg.textContent='Wrong email or password.'; return; }
@@ -372,8 +454,24 @@ function doLogin(e){
   setTimeout(()=>setSession({name:u.name,email:u.email}),400);
 }
 
+/* Reconnecte le visiteur au chargement si son jeton est encore valable.
+   Sans ca, un compte serveur obligerait a ressaisir le mot de passe a
+   chaque visite — l'inverse de ce qu'on cherche. */
+async function reprendSession(){
+  if(!AUTH_API) return;
+  const t = localStorage.getItem(TOKEN_KEY);
+  if(!t) return;
+  try{
+    const r = await fetch(AUTH_API.replace(/\/$/,'') + '/me', {headers:{Authorization:'Bearer '+t}});
+    if(!r.ok) throw new Error('expire');
+    const d = await r.json();
+    setSession(d.user);
+  }catch(e){ localStorage.removeItem(TOKEN_KEY); }
+}
+
 window.switchTab=switchTab; window.doSignup=doSignup; window.doLogin=doLogin; window.setSession=setSession;
 render();
+reprendSession();
 </script>
 </body>
 </html>
