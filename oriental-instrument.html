@@ -16,6 +16,7 @@
 <link rel="icon" href="favicon.png">
 <link rel="stylesheet" href="assets/css/theme.css?v=26072726">
 <link rel="stylesheet" href="assets/css/chat.css">
+<link rel="stylesheet" href="assets/css/oriental-cine.css?v=26072920">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
@@ -606,59 +607,108 @@
 
 <div class="ori">
 
-  <!-- ==================== CINEMA — étage épinglé, puis il s'efface ====================
-       Le cinéma est collant DANS son propre étage : il reste plein écran
-       le temps que la scène se joue, puis il défile et sort du champ avec
-       l'étage. En fixed il restait soudé à l'écran pour toute la page. -->
-  <section class="ori-cinema-stage">
-    <div class="ori-cinema">
-      <div class="ori-cinema-inner">
-        <div class="ori-cinema-overlay">
-          <h1 class="ori-cinema-title">ORIENTAL</h1>
-          <div class="ori-cinema-subtitle">NEW FREE VST ALGERIEN SOUND</div>
-        </div>
-        <div class="ori-cinema-unit">
-          <img class="ori-cinema-model" src="img/vst/ui/showcase/ori-model.png?v=1"
-               width="1255" height="855"
+  <!-- ==================== CINÉMATIQUE 3 PHASES ====================
+       La section est haute, son contenu est `sticky` : c'est le pinning,
+       obtenu sans le pin de ScrollTrigger et donc sans pin-spacer ni
+       recalculs de layout. GSAP ne fait que scrubber une timeline sur la
+       course de défilement.
+
+       Phase 1  le VST couché au centre se redresse et se cale à GAUCHE,
+                le texte et les CTA arrivent à DROITE
+       Phase 2  recul caméra : l'unité s'éloigne et revient au centre
+       Phase 3  contre-plongée monumentale, specs et presets à côté
+
+       L'unité est le PNG détouré du produit, pas une dalle reconstruite :
+       toute la 3D est du transform CSS sur cette image. -->
+  <section class="ori-cine" id="ori-cine" data-texture="img/vst/ui/oriental-ui.png">
+    <div class="ori-cine-pin">
+
+      <!-- Preloader : bloque le défilement jusqu'à 100 %. Sans lui on
+           défile une scène vide et ScrollTrigger démarre déjà avancé. -->
+      <div class="ori-cine-loader" aria-hidden="true">
+        <div class="ori-cine-load-mark">ORIENTAL</div>
+        <div class="ori-cine-load-bar"><i></i></div>
+        <div class="ori-cine-load-pct">0%</div>
+      </div>
+
+      <!-- Rendu WebGL. Reste vide et invisible tant que .ori-cine-gl
+           n'est pas posée sur <html>, donc un échec ne laisse pas un
+           rectangle noir sur la page. -->
+      <canvas class="ori-cine-canvas" aria-hidden="true"></canvas>
+      <div class="ori-cine-hotspots" aria-hidden="false"></div>
+
+      <!-- Version CSS du produit : c'est ce que voit un visiteur sans
+           WebGL, avec prefers-reduced-motion, ou si le CDN tombe. -->
+      <div class="ori-cine-light" aria-hidden="true">
+        <span class="ori-cine-spot"></span>
+        <span class="ori-cine-haze"></span>
+        <span class="ori-cine-dust"></span>
+      </div>
+
+      <div class="ori-cine-stage">
+        <div class="ori-cine-shadow" aria-hidden="true"></div>
+        <div class="ori-cine-unit">
+          <img class="ori-cine-model" src="img/vst/ui/showcase/ori-model.png?v=2"
+               width="1255" height="855" fetchpriority="high"
                alt="ORIENTAL INSTRUMENT — macro knobs, preset browser, FX chain and keyboard">
-          <span class="ori-cinema-sweep" aria-hidden="true"></span>
+          <span class="ori-cine-sweep" aria-hidden="true"></span>
         </div>
       </div>
-      <div class="ori-cinema-arrow">↓</div>
+
+      <!-- Phase 1 — présentation + CTA, à droite -->
+      <div class="ori-cine-copy ori-cine-copy-a">
+        <div class="ori-eyebrow">DJBILBOX BEATS · Flagship plug-in</div>
+        <h1 class="ori-cine-h1"><span class="ori-gold">ORIENTAL</span><br>INSTRUMENT</h1>
+        <p class="ori-cine-sub">NEW FREE VST ALGERIEN SOUND</p>
+        <p class="ori-lead">
+          280+ authentic oriental instruments in one window — oud, qanun, ney, saz, rabab,
+          darbuka and oriental strings. Driven by a real <strong style="color:#e5ddcd">Maqam engine</strong>
+          with quarter-tone tuning, so your melodies actually sound Middle-Eastern, not just "scaled".
+        </p>
+        <div class="ori-price">
+          <span class="now">€13.80</span>
+          <span class="was">€69</span>
+          <span class="off">🔥 -80% · code SOLDES80</span>
+        </div>
+        <div class="ori-cta">
+          <button class="ori-btn buy" onclick="buy('oriental-instrument-djbilbox-beats/SOLDES80')">
+            <i class="fa-solid fa-bolt"></i> Buy now
+          </button>
+          <button class="ori-btn ghost" onclick="buy('oriental-instrument-demo-free-Download')">
+            <i class="fa-solid fa-download"></i> Free demo
+          </button>
+        </div>
+        <div class="ori-compat">
+          <span>Compatible</span>
+          <i class="fa-brands fa-apple"></i>
+          <i class="fa-brands fa-windows"></i>
+          <span style="letter-spacing:.1em">VST3 · AU</span>
+        </div>
+      </div>
+
+      <!-- Phase 3 — specs et presets, à côté de l'unité en contre-plongée -->
+      <div class="ori-cine-copy ori-cine-copy-b">
+        <div class="ori-eyebrow">Inside the engine</div>
+        <h2 class="ori-cine-h2">BUILT<br><span class="ori-gold">FOR SCORING</span></h2>
+        <ul class="ori-cine-specs">
+          <li><b>MAQAM ENGINE</b><span>Rast · Hijaz · Bayati · Kurd · Nahawand · Saba · Ajam</span></li>
+          <li><b>280+ INSTRUMENTS</b><span>7 categories, 40 presets each, tagged by city &amp; key</span></li>
+          <li><b>8-SLOT FX CHAIN</b><span>Reverb · Echo · Chorus · Distort · Comprs · EQ · Phaser · Bitcrsh</span></li>
+          <li><b>VST3 · AU · STANDALONE</b><span>Windows &amp; Mac · royalty-free for your productions</span></li>
+        </ul>
+        <div class="ori-cine-chips">
+          <span>Mission Cleopatre</span><span>Atlas Tears</span><span>Oran Sunset Strings</span>
+          <span>Beirut Lovers</span><span>Casablanca Nights</span>
+        </div>
+      </div>
+
+      <div class="ori-cine-hint" aria-hidden="true">↓</div>
     </div>
   </section>
 
-  <!-- ==================== HERO CONTENT (défile par-dessus) ==================== -->
-  <div class="ori-cinema-content">
-    <div class="ori-content-hero">
-      <div class="ori-eyebrow">DJBILBOX BEATS · Flagship plug-in</div>
-      <h2><span class="ori-gold">ORIENTAL</span><br>INSTRUMENT</h2>
-      <p class="ori-lead">
-        280+ authentic oriental instruments in one window — oud, qanun, ney, saz, rabab,
-        darbuka and oriental strings. Driven by a real <strong style="color:#e5ddcd">Maqam engine</strong>
-        with quarter-tone tuning, so your melodies actually sound Middle-Eastern, not just "scaled".
-      </p>
-      <div class="ori-price">
-        <span class="now">€13.80</span>
-        <span class="was">€69</span>
-        <span class="off">🔥 -80% · code SOLDES80</span>
-      </div>
-      <div class="ori-cta">
-        <button class="ori-btn buy" onclick="buy('oriental-instrument-djbilbox-beats/SOLDES80')">
-          <i class="fa-solid fa-bolt"></i> Buy now
-        </button>
-        <button class="ori-btn ghost" onclick="buy('oriental-instrument-demo-free-Download')">
-          <i class="fa-solid fa-download"></i> Free demo
-        </button>
-      </div>
-      <div class="ori-compat">
-        <span>Compatible</span>
-        <i class="fa-brands fa-apple"></i>
-        <i class="fa-brands fa-windows"></i>
-        <span style="letter-spacing:.1em">VST3 · AU</span>
-      </div>
-    </div>
-  </div>
+  <!-- Le bloc hero autonome a été absorbé par la phase 1 de la
+       cinématique ci-dessus : le laisser ici affichait deux fois le même
+       titre, le même prix et les mêmes boutons. -->
 
   <!-- ==================== STATS BAND ==================== -->
   <section class="ori-band">
@@ -1060,5 +1110,6 @@
      Les vraies captures produit, avec le parallaxe CSS d'oriental3D()
      plus bas, font le travail sans rien dupliquer. Le module reste dans
      le dépôt pour une éventuelle reprise avec un vrai modèle 3D. -->
+<script type="module" src="assets/js/oriental-cine/index.js?v=26072920"></script>
 </body>
 </html>

@@ -1,0 +1,495 @@
+/* ============================================================
+   ORIENTAL INSTRUMENT — cinématique 3 phases pilotée au scroll.
+
+   Tout ce qui bouge est écrit ici en état de DÉPART. GSAP ne fait que
+   scrubber les transforms par-dessus ; si le JS ne charge pas, la scène
+   reste lisible et le produit est visible de face (voir la classe
+   .ori-cine-fallback posée par le script en cas d'échec, et le bloc
+   prefers-reduced-motion en bas de fichier).
+
+   L'unité est le PNG détouré du produit. Il n'y a pas de géométrie
+   reconstruite : le volume vient de la perspective CSS, de l'ombre au
+   sol qui suit l'inclinaison, et du rim light doré.
+   ============================================================ */
+
+.ori-cine {
+  --gold: #E8B54D;
+  --ink: #050403;
+  /* Hauteur de course : 3 phases + une pause finale. Chaque ~100vh de
+     défilement vaut une phase, ce qui donne un rythme lisible à la
+     molette sans que la section devienne interminable. */
+  height: 360vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Le pinning est du `sticky`, pas le pin de ScrollTrigger : pas de
+   pin-spacer injecté, pas de recalcul de layout au resize, et la section
+   se libère toute seule quand elle est passée. */
+.ori-cine-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% 8%, rgba(232, 181, 77, 0.07), transparent 58%),
+    var(--ink);
+  /* perspective-origin animée par le JS : la faire descendre vers le bas
+     du cadre est ce qui transforme une simple rotation en contre-plongée. */
+  perspective: 1500px;
+  perspective-origin: 50% var(--po, 50%);
+}
+
+/* ---------------- preloader ---------------- */
+
+.ori-cine-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  background: var(--ink);
+}
+.ori-cine-loading .ori-cine-loader { display: flex; }
+.ori-cine-load-mark {
+  font-family: var(--font-a);
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  font-size: clamp(1.1rem, 3vw, 1.9rem);
+  color: var(--gold);
+  text-shadow: 0 0 26px rgba(232, 181, 77, 0.45);
+}
+.ori-cine-load-bar {
+  width: min(280px, 60vw);
+  height: 2px;
+  background: rgba(232, 181, 77, 0.16);
+  overflow: hidden;
+}
+.ori-cine-load-bar > i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), #fff3d0);
+  transition: width 0.25s ease-out;
+}
+.ori-cine-load-pct {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ---------------- rendu WebGL ----------------
+   Le canvas ne s'affiche qu'une fois la scène prête ET la première frame
+   demandée. Sans cette garde, un échec de boot laisserait un rectangle
+   noir en travers du hero. */
+.ori-cine-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 1;
+}
+.ori-cine-gl .ori-cine-canvas { display: block; }
+
+/* Quand WebGL tient la scène, la version CSS s'efface : la garder
+   afficherait le produit en double, exactement le défaut qu'on vient de
+   corriger sur les sections plus bas. */
+.ori-cine-gl .ori-cine-stage,
+.ori-cine-gl .ori-cine-light { display: none; }
+
+/* ---------------- hotspots 3D ----------------
+   Positionnés à chaque frame par projection de points ancrés dans la
+   géométrie : ils suivent donc les rotations sans coordonnée écran
+   codée en dur. */
+.ori-cine-hotspots {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.ori-cine-hotspot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+.ori-cine-hotspot-dot {
+  display: block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 5px rgba(232, 181, 77, 0.18), 0 0 18px rgba(232, 181, 77, 0.7);
+  animation: ori-cine-ping 2.6s ease-out infinite;
+}
+@keyframes ori-cine-ping {
+  0%   { box-shadow: 0 0 0 4px rgba(232, 181, 77, 0.30), 0 0 16px rgba(232, 181, 77, 0.6); }
+  70%  { box-shadow: 0 0 0 16px rgba(232, 181, 77, 0), 0 0 22px rgba(232, 181, 77, 0.5); }
+  100% { box-shadow: 0 0 0 4px rgba(232, 181, 77, 0), 0 0 16px rgba(232, 181, 77, 0.6); }
+}
+.ori-cine-hotspot-card {
+  position: absolute;
+  left: 24px;
+  top: -10px;
+  width: 232px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  text-align: left;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  pointer-events: none;
+  /* Glassmorphism : le panneau laisse voir la 3D derrière lui, ce qui
+     raccroche l'UI à l'objet au lieu de la poser dessus. */
+  background: rgba(20, 16, 11, 0.55);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  border: 1px solid rgba(232, 181, 77, 0.28);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+.ori-cine-hotspot:hover .ori-cine-hotspot-card,
+.ori-cine-hotspot:focus-visible .ori-cine-hotspot-card {
+  opacity: 1;
+  transform: translateX(0);
+}
+.ori-cine-hotspot-card b {
+  display: block;
+  font-family: var(--font-a);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.ori-cine-hotspot-card span { font-size: 0.8rem; line-height: 1.45; color: #c3baab; }
+
+/* ---------------- éclairage ---------------- */
+
+.ori-cine-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Projecteur : un cône net en haut qui s'évase et se dissout. Le
+   clip-path fait la forme, le flou fait la lumière. */
+.ori-cine-spot {
+  position: absolute;
+  left: 50%;
+  top: -12%;
+  width: 120vmin;
+  height: 118%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg,
+    rgba(255, 226, 168, 0.20) 0%,
+    rgba(255, 210, 130, 0.10) 34%,
+    rgba(232, 181, 77, 0.03) 66%,
+    transparent 88%);
+  clip-path: polygon(38% 0%, 62% 0%, 92% 100%, 8% 100%);
+  filter: blur(26px);
+  opacity: 0.65;
+}
+
+/* Halo chaud posé derrière l'unité — c'est lui qui décolle le produit
+   du fond noir avant même que l'ombre n'entre en jeu. */
+.ori-cine-haze {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 96vmin;
+  height: 62vmin;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at 50% 50%,
+    rgba(232, 181, 77, 0.20), rgba(180, 90, 30, 0.07) 45%, transparent 70%);
+  filter: blur(42px);
+  opacity: 0.8;
+}
+
+/* Poussière dans le faisceau : des points en radial-gradient plutôt
+   qu'un canvas ou des centaines de nœuds. Une seule couche qui dérive. */
+.ori-cine-dust {
+  position: absolute;
+  inset: -20% 0;
+  background-image:
+    radial-gradient(1.6px 1.6px at 12% 18%, rgba(255, 231, 186, 0.55), transparent),
+    radial-gradient(1.4px 1.4px at 28% 62%, rgba(255, 231, 186, 0.40), transparent),
+    radial-gradient(1.8px 1.8px at 45% 32%, rgba(255, 231, 186, 0.50), transparent),
+    radial-gradient(1.3px 1.3px at 61% 74%, rgba(255, 231, 186, 0.35), transparent),
+    radial-gradient(1.7px 1.7px at 74% 22%, rgba(255, 231, 186, 0.45), transparent),
+    radial-gradient(1.4px 1.4px at 88% 56%, rgba(255, 231, 186, 0.38), transparent),
+    radial-gradient(1.5px 1.5px at 34% 88%, rgba(255, 231, 186, 0.30), transparent),
+    radial-gradient(1.6px 1.6px at 68% 46%, rgba(255, 231, 186, 0.42), transparent);
+  background-size: 100% 50%;
+  animation: ori-cine-dust-drift 26s linear infinite;
+  opacity: 0.5;
+}
+@keyframes ori-cine-dust-drift {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+/* ---------------- la scène ---------------- */
+
+.ori-cine-stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+  z-index: 1;
+}
+
+.ori-cine-unit {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* État de départ de la phase 1 : couché, vu de dessus. GSAP reprend
+     ces mêmes propriétés, donc rien ne saute au premier scroll. */
+  transform: rotateX(58deg) scale(0.92) translateY(2vh);
+}
+
+.ori-cine-model {
+  display: block;
+  width: min(880px, 74vw);
+  height: auto;
+  /* L'ombre de contact serrée est portée par l'image elle-même : elle
+     suit le détourage au pixel là où l'ellipse au sol ne fait que le
+     volume général. */
+  filter: drop-shadow(0 26px 34px rgba(0, 0, 0, 0.62));
+}
+
+/* Rim light doré : un liseré chaud sur le pourtour, comme une source
+   placée derrière l'objet. Posé en overlay pour ne pas laver l'écran. */
+.ori-cine-unit::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 30px;
+  background: linear-gradient(135deg,
+    rgba(255, 214, 140, 0.55), transparent 34%, transparent 66%, rgba(216, 140, 60, 0.45));
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Balayage spéculaire : une bande claire qui traverse la façade. Le JS
+   la déplace pendant les rotations, où un reflet a une raison d'exister. */
+.ori-cine-sweep {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 26px;
+  pointer-events: none;
+}
+.ori-cine-sweep::after {
+  content: "";
+  position: absolute;
+  top: -35%;
+  left: 0;
+  width: 22%;
+  height: 170%;
+  background: linear-gradient(100deg, transparent, rgba(255, 240, 215, 0.30), transparent);
+  /* Position pilotée par GSAP via --sweep-x pendant les phases 1 et 3. */
+  transform: translateX(var(--sweep-x, -160%)) rotate(12deg);
+}
+
+/* Ombre au sol : ellipse floue distincte de l'unité, pour que le JS
+   puisse l'étirer et l'assombrir selon l'inclinaison. Une ombre qui ne
+   réagit pas à la rotation est ce qui fait « autocollant ». */
+.ori-cine-shadow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(880px, 74vw);
+  height: 15vh;
+  transform: translate(-50%, 190%) scaleY(0.5);
+  background: radial-gradient(ellipse at 50% 50%,
+    rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.32) 48%, transparent 72%);
+  filter: blur(24px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------------- les textes ---------------- */
+
+.ori-cine-copy {
+  position: absolute;
+  z-index: 3;
+  max-width: 42ch;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  /* Verre dépoli : le panneau laisse transparaître la scène 3D derrière
+     lui. C'est ce qui lie la typographie à l'objet — posée en aplat
+     opaque, elle redevient une bannière collée par-dessus un rendu. */
+  padding: 26px 28px;
+  border-radius: 18px;
+  background: rgba(16, 13, 9, 0.42);
+  backdrop-filter: blur(16px) saturate(1.25);
+  -webkit-backdrop-filter: blur(16px) saturate(1.25);
+  border: 1px solid rgba(232, 181, 77, 0.16);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.45);
+}
+/* Les CTA doivent rester cliquables une fois la phase 1 arrivée : le JS
+   pose .is-live sur le bloc visible. */
+.ori-cine-copy.is-live { pointer-events: auto; }
+
+/* Phase 1 : l'unité se cale à gauche, le texte prend la droite. */
+.ori-cine-copy-a { right: 6vw; top: 50%; transform: translateY(-50%); }
+/* Phase 3 : l'unité repart vers la DROITE pour la contre-plongée, donc
+   le panneau specs passe à gauche. À droite il ne restait que 340 px
+   mesurés, et le texte serait passé par-dessus l'instrument. */
+.ori-cine-copy-b {
+  left: 6vw;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 38ch;
+}
+
+.ori-cine-h1 {
+  font-family: var(--font-a);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.96;
+  font-size: clamp(2.1rem, 4.2vw, 3.9rem);
+  letter-spacing: 0.01em;
+  margin: 6px 0 10px;
+}
+.ori-cine-h2 {
+  font-family: var(--font-a);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.98;
+  font-size: clamp(1.9rem, 3.6vw, 3.2rem);
+  margin: 6px 0 18px;
+}
+.ori-cine-sub {
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 16px;
+}
+.ori-cine-copy .ori-lead { font-size: 0.98rem; margin-bottom: 22px; }
+.ori-cine-copy .ori-price { margin-bottom: 18px; }
+.ori-cine-copy .ori-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+
+.ori-cine-specs { list-style: none; padding: 0; margin: 0 0 22px; }
+.ori-cine-specs li {
+  padding: 11px 0;
+  border-top: 1px solid rgba(232, 181, 77, 0.16);
+}
+.ori-cine-specs li:last-child { border-bottom: 1px solid rgba(232, 181, 77, 0.16); }
+.ori-cine-specs b {
+  display: block;
+  font-family: var(--font-a);
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin-bottom: 3px;
+}
+.ori-cine-specs span { font-size: 0.86rem; color: #a9a094; line-height: 1.5; }
+
+.ori-cine-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.ori-cine-chips span {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 181, 77, 0.28);
+  color: #cfc5b4;
+}
+
+.ori-cine-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 26px;
+  text-align: center;
+  font-size: 1.7rem;
+  color: rgba(232, 181, 77, 0.45);
+  z-index: 4;
+  pointer-events: none;
+  animation: ori-cine-hint-bob 2.4s ease-in-out infinite;
+}
+@keyframes ori-cine-hint-bob {
+  0%, 100% { transform: translateY(0); opacity: 0.45; }
+  50%      { transform: translateY(-10px); opacity: 0.9; }
+}
+
+/* ---------------- responsive ----------------
+   Sous 900px il n'y a pas la place d'un produit à gauche et d'une
+   colonne de texte à droite : l'unité passe en haut, le texte en bas, et
+   le JS réduit les amplitudes de déplacement en conséquence. */
+@media (max-width: 900px) {
+  .ori-cine { height: 320vh; }
+  .ori-cine-model { width: 86vw; }
+  .ori-cine-shadow { width: 86vw; height: 11vh; }
+  .ori-cine-copy {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 5vh;
+    width: 88vw;
+    max-width: none;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  .ori-cine-copy .ori-cta,
+  .ori-cine-chips { justify-content: center; }
+  .ori-cine-copy .ori-lead { font-size: 0.9rem; }
+  .ori-cine-specs { text-align: left; }
+  .ori-cine-hint { display: none; }
+}
+
+/* ---------------- accessibilité / repli ----------------
+   Deux cas où la chorégraphie ne doit pas jouer : le visiteur a demandé
+   moins de mouvement, ou GSAP n'a pas pu charger. Dans les deux cas on
+   montre le produit de face et les deux blocs de texte empilés, plutôt
+   qu'une scène figée sur son premier état — un VST couché à 58 degrés. */
+.ori-cine-fallback .ori-cine,
+.ori-cine-static .ori-cine { height: auto; }
+.ori-cine-fallback .ori-cine-pin,
+.ori-cine-static .ori-cine-pin {
+  position: relative;
+  height: auto;
+  padding: 8vh 6vw;
+  display: grid;
+  gap: 5vh;
+  place-items: center;
+}
+.ori-cine-fallback .ori-cine-stage,
+.ori-cine-static .ori-cine-stage { position: relative; inset: auto; }
+.ori-cine-fallback .ori-cine-unit,
+.ori-cine-static .ori-cine-unit { transform: none; }
+.ori-cine-fallback .ori-cine-shadow,
+.ori-cine-static .ori-cine-shadow { display: none; }
+.ori-cine-fallback .ori-cine-copy,
+.ori-cine-static .ori-cine-copy {
+  position: relative;
+  right: auto;
+  left: auto;
+  top: auto;
+  bottom: auto;
+  transform: none;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  max-width: 62ch;
+}
+.ori-cine-fallback .ori-cine-hint,
+.ori-cine-static .ori-cine-hint { display: none; }
+.ori-cine-static .ori-cine-dust { animation: none; }
