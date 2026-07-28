@@ -126,15 +126,15 @@ export function mountFrameScrubber(canvasSelector, framePattern, frameCount, opt
      wheel notch and only stand up at the footer. */
   const distance = () => Math.max(1, window.innerHeight)
 
-  let queued = false
-  const onScroll = () => {
-    if (queued) return
-    queued = true
-    requestAnimationFrame(() => {
-      queued = false
-      scrubber.update(window.scrollY / distance())
-    })
-  }
+  /* Painted straight from the scroll event, with no rAF gate.
+     A `queued` boolean guarding a requestAnimationFrame looks like a
+     sensible throttle and is a latch waiting to jam: any frame callback
+     that never runs — a tab that is not compositing, a stall under load
+     — leaves the flag stuck true and silently drops EVERY later scroll.
+     Scroll events are already coalesced to about one per frame, and
+     paint() returns immediately when the index has not moved, so there
+     is nothing here worth deferring. */
+  const onScroll = () => scrubber.update(window.scrollY / distance())
 
   /* Wired before the preload resolves: scrolling during the download
      still tracks, and each frame paints as soon as it exists. */
