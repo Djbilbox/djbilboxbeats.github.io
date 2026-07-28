@@ -206,25 +206,7 @@ function mountFooter(){
   document.body.appendChild(f);
 }
 
-/* Shared AI-chat — an empty shell chat.js fills in via initChat().
-   Styling (incl. hidden/open display) lives in chat.css — do NOT set an
-   inline display here or the .open toggle can never override it. */
-function mountAiChat(){
-  if(document.getElementById('aiChat')) return;
-  const d=document.createElement('div');
-  d.id='aiChat';
-  document.body.appendChild(d);
-  /* Floating launcher so the assistant is reachable on every page (esp. mobile) */
-  if(!document.getElementById('aiChatFab')){
-    const b=document.createElement('button');
-    b.id='aiChatFab';
-    b.type='button';
-    b.setAttribute('aria-label','Ouvrir l\'assistant DJBILBOX');
-    b.innerHTML='<i class="fa-solid fa-robot"></i>';
-    b.onclick=()=>document.getElementById('aiChat')?.classList.toggle('open');
-    document.body.appendChild(b);
-  }
-}
+/* L'assistant de chat a ete retire du site. */
 
 /* Default promo (BIG PACK) — injected if the page has no .promo-bar */
 function mountPromo(){
@@ -257,7 +239,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(document.body.dataset.page!==undefined){
     mountSidebar(document.body.dataset.page);
     mountFooter();
-    mountAiChat();
     mountPromo();
   }
   injectGA4();

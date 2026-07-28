@@ -186,7 +186,6 @@ countries.forEach(({ country, code, flag, genres, cities }) => {
 <link rel="canonical" href="https://djbilboxbeats.com/locations/${fileName}">
 <link rel="icon" href="../favicon.png">
 <link rel="stylesheet" href="../assets/css/theme.css">
-<link rel="stylesheet" href="../assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 .loc-wrap{max-width:820px;margin:0 auto;padding:50px 24px 80px}
@@ -243,7 +242,6 @@ countries.forEach(({ country, code, flag, genres, cities }) => {
 </main>
 
 <script src="../assets/js/site.js"></script>
-<script src="../assets/js/chat.js"></script>
 </body>
 </html>
 `;
@@ -281,7 +279,6 @@ const indexHtml = `<!DOCTYPE html>
 <link rel="canonical" href="https://djbilboxbeats.com/locations/index.html">
 <link rel="icon" href="../favicon.png">
 <link rel="stylesheet" href="../assets/css/theme.css">
-<link rel="stylesheet" href="../assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 .loc-idx-wrap{max-width:1000px;margin:0 auto;padding:50px 24px 80px}
@@ -302,7 +299,6 @@ const indexHtml = `<!DOCTYPE html>
   ${countryBlocks}
 </main>
 <script src="../assets/js/site.js"></script>
-<script src="../assets/js/chat.js"></script>
 </body>
 </html>
 `;

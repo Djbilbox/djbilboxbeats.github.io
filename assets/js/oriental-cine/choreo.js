@@ -18,6 +18,9 @@ const HOTSPOTS = [
   { x: 0.10, y: -1.18, z: 0.22, titre: '280+ INSTRUMENTS', texte: '7 familles, 40 presets chacune, taggés ville & tonalité' }
 ]
 
+/* Largeur à garder dans le cadre : l'unité fait 4.6, plus une marge. */
+const LARGEUR_CADREE = 5.3
+
 export function mountChoreo ({ gsap, ScrollTrigger, view, section, els }) {
   const { THREE, camera, unit, dust, seed, bloom, bokeh } = view
   const REDUIT = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -132,12 +135,20 @@ export function mountChoreo ({ gsap, ScrollTrigger, view, section, els }) {
     )
     unit.position.set(pose.px, pose.py + souffle, pose.pz)
 
-    camera.position.set(0, pose.camY, pose.camZ)
+    /* Plancher de distance dépendant du format. La chorégraphie raisonne
+       en 16:9 ; sur un téléphone en portrait la caméra voit beaucoup moins
+       large et l'unité, large de 4.6, sortait du cadre des deux côtés.
+       On prend donc toujours la plus grande des deux distances : celle
+       voulue par la timeline, ou celle qui garantit que l'unité tient. */
+    const distMin = (LARGEUR_CADREE / 2) /
+      (Math.tan((pose.fov * Math.PI) / 360) * Math.max(0.2, camera.aspect))
+    camera.position.set(0, pose.camY, Math.max(pose.camZ, distMin))
     camera.lookAt(0, pose.camY * 0.35, 0)
     if (Math.abs(camera.fov - pose.fov) > 0.01) {
       camera.fov = pose.fov
       camera.updateProjectionMatrix()
     }
+    view.ajusteHalo()
 
     /* Le point de netteté suit l'unité : c'est ce qui fait respirer la
        profondeur de champ pendant les mouvements de caméra au lieu de

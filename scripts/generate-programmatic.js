@@ -143,7 +143,6 @@ function buildPage(p) {
 ${noindex ? '<meta name="robots" content="noindex,follow">\n' : ''}<link rel="canonical" href="https://djbilboxbeats.com/catalog/${slug}.html">
 <link rel="icon" href="../favicon.png">
 <link rel="stylesheet" href="../assets/css/theme.css">
-<link rel="stylesheet" href="../assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 .pg-wrap{max-width:820px;margin:0 auto;padding:50px 24px 80px}
@@ -170,7 +169,6 @@ ${noindex ? '<meta name="robots" content="noindex,follow">\n' : ''}<link rel="ca
   </div>
 </main>
 <script src="../assets/js/site.js"></script>
-<script src="../assets/js/chat.js"></script>
 </body>
 </html>
 `;

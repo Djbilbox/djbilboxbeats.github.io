@@ -10,7 +10,6 @@ window.addEventListener('load', () => {
   const prefetchUrls = [
     'assets/js/site.js',
     'assets/css/theme.css',
-    'assets/js/chat.js',
     'beats-generator.html'
   ];
 

@@ -83,12 +83,27 @@ export function createScene ({ canvas, manager, modelUrl, textureUrl }) {
       map: tex, transparent: true, opacity: 0.55,
       depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending
     }))
-    s.scale.set(13, 9, 1)
     s.position.set(0, 0, -2.4)
     return s
   })()
   scene.add(halo)
   const spot = halo
+
+  /* Le halo était dimensionné en dur (13 x 9 unités monde). Sur un écran
+     étroit la caméra voit beaucoup moins large, donc ce même halo couvrait
+     une part bien plus grande du cadre : sur téléphone la scène virait au
+     lavis lumineux et ne ressemblait plus du tout au rendu desktop. Sa
+     taille se déduit maintenant de ce que la caméra voit réellement à sa
+     profondeur, et son intensité baisse en portrait où il occupe
+     forcément plus de place. */
+  function ajusteHalo () {
+    const d = Math.max(0.1, camera.position.z - halo.position.z)
+    const h = 2 * Math.tan((camera.fov * Math.PI) / 360) * d
+    const w = h * camera.aspect
+    halo.scale.set(w * 1.2, h * 1.1, 1)
+    halo.material.opacity = camera.aspect < 1 ? 0.26 : 0.55
+  }
+  ajusteHalo()
 
   /* ---------------- l'unité ---------------- */
   const unit = new THREE.Group()
@@ -208,6 +223,7 @@ export function createScene ({ canvas, manager, modelUrl, textureUrl }) {
     renderer.setSize(w, h)
     composer.setSize(w, h)
     bloom.setSize(w, h)
+    ajusteHalo()
   }
   window.addEventListener('resize', resize, { passive: true })
 
@@ -218,7 +234,7 @@ export function createScene ({ canvas, manager, modelUrl, textureUrl }) {
 
   return {
     THREE, renderer, scene, camera, composer, unit, face, chassis, dust, seed,
-    bloom, bokeh, spot, dispose,
+    bloom, bokeh, spot, halo, ajusteHalo, dispose,
     get hasRealModel () { return hasRealModel }
   }
 }

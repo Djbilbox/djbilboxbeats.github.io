@@ -36,7 +36,6 @@ function generateBeatsPage(region, genre, mood) {
 <link rel="canonical" href="https://djbilboxbeats.com/beats/${slug}.html">
 <link rel="icon" href="../favicon.png">
 <link rel="stylesheet" href="../assets/css/theme.css">
-<link rel="stylesheet" href="../assets/css/chat.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 .beats-hero { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); padding: 60px 0; text-align: center; color: #fff; }
@@ -104,7 +103,6 @@ function generateBeatsPage(region, genre, mood) {
 
 <script src="../assets/js/seo-data.js"></script>
 <script src="../assets/js/site.js"></script>
-<script src="../assets/js/chat.js"></script>
 
 <!-- JSON-LD Schema -->
 <script type="application/ld+json">
