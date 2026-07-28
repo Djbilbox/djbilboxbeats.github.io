@@ -42,25 +42,43 @@ const SY = 1.0181, OY = 22.1        // source px -> image px, vertical
 const UI_W = 980, UI_H = 640
 const HEADER = 50, PIANO_TOP = 492, LEFT_COL = 170, RIGHT_COL_X = 818
 
-/** Source-space rect -> UV rect (v flipped for GL). */
-function uvRect (x, y, w, h) {
-  const u0 = (SX * x + OX) / IMG_W
-  const u1 = (SX * (x + w) + OX) / IMG_W
-  const v1 = 1 - (SY * y + OY) / IMG_H
-  const v0 = 1 - (SY * (y + h) + OY) / IMG_H
-  return { u0, u1, v0, v1 }
+const IMG_ASPECT = IMG_W / IMG_H
+
+/* Source-space rect -> everything needed to place a layer.
+
+   Laid out in IMAGE space, not plug-in space. The capture is scaled
+   NON-uniformly (SX 1.0602 vs SY 1.0181), so a rectangle that is
+   correct in 980x640 proportions is the wrong shape once mapped onto
+   the pixels. Working in image space means each layer lands exactly
+   where it sits in the <img>, which is also the box we anchor to. */
+function layerRect (x, y, w, h) {
+  const px0 = (SX * x + OX) / IMG_W
+  const px1 = (SX * (x + w) + OX) / IMG_W
+  const py0 = (SY * y + OY) / IMG_H
+  const py1 = (SY * (y + h) + OY) / IMG_H
+
+  return {
+    w: px1 - px0,
+    h: (py1 - py0) / IMG_ASPECT,
+    cx: (px0 + px1) / 2 - 0.5,
+    cy: -((py0 + py1) / 2 - 0.5) / IMG_ASPECT,
+    uv: { u0: px0, u1: px1, v0: 1 - py1, v1: 1 - py0 }
+  }
 }
 
 /* Layers, in source coordinates, with the depth each one flies to.
-   Depth is a fraction of the plug-in's width so it scales with the
-   panel. The chassis goes back, the controls come forward — the
-   brief's "châssis en arrière, éléments de surface vers l'écran". */
+   Depth is NOT scaled by the panel — it is an absolute world offset
+   applied AFTER the group's scale, so Z separation is independent of
+   on-screen size. This avoids the trap of depth scaling up with the
+   panel and magnifying the layers. The chassis goes back, the
+   controls come forward — the brief's "châssis en arrière,
+   éléments de surface vers l'écran". */
 const LAYERS = [
-  { name: 'header', x: 0,           y: 0,         w: UI_W,               h: HEADER,            depth:  0.09 },
-  { name: 'macro',  x: 0,           y: HEADER,    w: LEFT_COL,           h: PIANO_TOP - HEADER, depth: 0.34 },
-  { name: 'centre', x: LEFT_COL,    y: HEADER,    w: RIGHT_COL_X - LEFT_COL, h: PIANO_TOP - HEADER, depth: -0.28 },
-  { name: 'fx',     x: RIGHT_COL_X, y: HEADER,    w: UI_W - RIGHT_COL_X, h: PIANO_TOP - HEADER, depth:  0.34 },
-  { name: 'piano',  x: 0,           y: PIANO_TOP, w: UI_W,               h: UI_H - PIANO_TOP,  depth:  0.19 }
+  { name: 'header', x: 0,           y: 0,         w: UI_W,               h: HEADER,            depth:  0.05 },
+  { name: 'macro',  x: 0,           y: HEADER,    w: LEFT_COL,           h: PIANO_TOP - HEADER, depth: 0.16 },
+  { name: 'centre', x: LEFT_COL,    y: HEADER,    w: RIGHT_COL_X - LEFT_COL, h: PIANO_TOP - HEADER, depth: -0.14 },
+  { name: 'fx',     x: RIGHT_COL_X, y: HEADER,    w: UI_W - RIGHT_COL_X, h: PIANO_TOP - HEADER, depth:  0.16 },
+  { name: 'piano',  x: 0,           y: PIANO_TOP, w: UI_W,               h: UI_H - PIANO_TOP,  depth:  0.09 }
 ]
 
 /* Six macro knobs stacked in the left column under a 20px label,
@@ -124,36 +142,32 @@ export class ExplodedPlugin {
       depthTest: false, depthWrite: false, side: THREE.DoubleSide
     })
 
-    /* Layers are laid out in a unit-width space: the whole plug-in is
-       1 wide, so the group's scale alone controls on-screen size. */
-    const aspect = UI_W / UI_H
+    /* Layers are laid out in IMAGE space so the affine scaling is
+       applied correctly — otherwise the captures's non-uniform scale
+       (SX 1.0602 vs SY 1.0181) would distort the shapes. */
     LAYERS.forEach(L => {
-      const w = L.w / UI_W
-      const h = (L.h / UI_H) / aspect
-      const cx = (L.x + L.w / 2) / UI_W - 0.5
-      const cy = -((L.y + L.h / 2) / UI_H - 0.5) / aspect
-
-      const mesh = new THREE.Mesh(planeWithUV(w, h, uvRect(L.x, L.y, L.w, L.h)), mkMat())
-      mesh.position.set(cx, cy, 0)
+      const rect = layerRect(L.x, L.y, L.w, L.h)
+      const mesh = new THREE.Mesh(planeWithUV(rect.w, rect.h, rect.uv), mkMat())
+      mesh.position.set(rect.cx, rect.cy, 0)
       mesh.renderOrder = 30
       this.group.add(mesh)
-      this.layers.push({ mesh, home: new THREE.Vector3(cx, cy, 0), depth: L.depth, name: L.name })
+      this.layers.push({ mesh, home: new THREE.Vector3(rect.cx, rect.cy, 0), depth: L.depth, name: L.name })
     })
 
     /* Knob discs ride in front of the macro and FX layers. A circular
-       alpha mask keeps the crop from showing as a square patch. */
+       alpha mask keeps the crop from showing as a square patch.
+       Layout in image space like the main layers. */
     const mask = discMask()
     knobSpecs().forEach(k => {
-      const w = (k.r * 2) / UI_W
-      const h = ((k.r * 2) / UI_H) / aspect
+      const rect = layerRect(k.cx - k.r, k.cy - k.r, k.r * 2, k.r * 2)
       const m = new THREE.Mesh(
-        planeWithUV(w, h, uvRect(k.cx - k.r, k.cy - k.r, k.r * 2, k.r * 2)),
+        planeWithUV(rect.w, rect.h, rect.uv),
         new THREE.MeshBasicMaterial({
           map: tex, alphaMap: mask, transparent: true, toneMapped: false,
           fog: false, depthTest: false, depthWrite: false
         })
       )
-      m.position.set(k.cx / UI_W - 0.5, -(k.cy / UI_H - 0.5) / aspect, 0)
+      m.position.set(rect.cx, rect.cy, 0)
       m.renderOrder = 31
       this.group.add(m)
       this.knobs.push({ mesh: m, turns: k.turns, home: m.position.clone() })
