@@ -456,6 +456,15 @@
   50% { transform: translateY(-12px); }
 }
 
+/* .ori-cinema est un calque fixe OPAQUE qui couvre tout le viewport.
+   Sans cette règle, chaque section qui suit le hero est peinte SOUS
+   lui et la page paraît vide après le premier écran. Tout ce qui
+   n'est pas le cinéma doit donc passer au-dessus. */
+.ori > *:not(.ori-cinema) {
+  position: relative;
+  z-index: 10;
+}
+
 .ori-cinema-content {
   position: relative;
   z-index: 10;
@@ -936,6 +945,6 @@
      or the purchase buttons. Everything it needs to fail safely is
      already on the page above it.
      ============================================================ -->
-<script type="module" src="assets/js/oriental3d/main.js?v=26072727"></script>
+<script type="module" src="assets/js/oriental3d/main.js?v=26072830"></script>
 </body>
 </html>

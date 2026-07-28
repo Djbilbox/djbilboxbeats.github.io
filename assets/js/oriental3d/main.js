@@ -8,13 +8,13 @@
 
    The 3D layer is additive, never load-bearing.
    ============================================================ */
-import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072727'
-import { ParticleSystem } from './scene/ParticleSystem.js?v=26072727'
-import { Instrument3D }   from './scene/Instrument3D.js?v=26072727'
-import { mountJourney }   from './scene/PanelJourney.js?v=26072727'
-import { mountFrameScrubber } from './scene/FrameScrubber.js?v=26072727'
-import { AudioReactive }  from './scene/AudioReactive.js?v=26072727'
-import { ScrollController } from './controls/ScrollController.js?v=26072727'
+import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072830'
+import { ParticleSystem } from './scene/ParticleSystem.js?v=26072830'
+import { Instrument3D }   from './scene/Instrument3D.js?v=26072830'
+import { mountJourney }   from './scene/PanelJourney.js?v=26072830'
+import { mountFrameScrubber } from './scene/FrameScrubber.js?v=26072830'
+import { AudioReactive }  from './scene/AudioReactive.js?v=26072830'
+import { ScrollController } from './controls/ScrollController.js?v=26072830'
 import * as THREE from 'three'
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -24,7 +24,7 @@ const canvas = document.querySelector('#rise-canvas')
 if (canvas) {
   const scrubber = mountFrameScrubber(
     '#rise-canvas',
-    'img/vst/ui/showcase/rise-',
+    'img/vst/ui/showcase/rise/rise-',
     150,
     { reducedMotion: REDUCED }
   )
