@@ -17,6 +17,10 @@
 
 <!-- scripts -->
 <script src="assets/js/products-data.js?v=26072710"></script>
+<!-- Les cartes de packs pointent vers product.html?id=<pack.id>, mais cette
+     page ne lisait que PRODUCTS. Tout pack sans fiche rédigée à la main
+     tombait donc sur « Product not found ». -->
+<script src="assets/js/packs-data.js?v=26072920"></script>
 <script>
 /* Load video on click (bypasses YouTube age-restriction) */
 function loadVideoBg(el, src) {
@@ -29,7 +33,29 @@ function loadVideoBg(el, src) {
 (function(){
   const params = new URLSearchParams(location.search);
   const id = params.get('id');
-  const P = (window.PRODUCTS||{})[id];
+  /* Une fiche PRODUCTS rédigée à la main l'emporte toujours. À défaut, on
+     en synthétise une depuis le catalogue de packs : le rendu ci-dessous
+     protège déjà chaque champ optionnel (about, features, specs, gallery,
+     tags), donc le minimum suffit. Sans ce repli, ajouter un pack à
+     packs-data.js crée un lien mort tant que personne ne pense à écrire
+     l'entrée PRODUCTS correspondante — c'est exactement ce qui est arrivé
+     à kit-drum-funk. */
+  const packOf = (pid) => {
+    const p = (window.PACKS||[]).find(x => x.id === pid);
+    if (!p) return null;
+    return {
+      type: 'kit',
+      name: p.name,
+      sub: p.genre ? p.genre + ' — sample pack' : '',
+      tagline: p.name + ' — ' + (p.genre || 'sample pack') + ' by DJBILBOX BEATS.',
+      cover: p.img,
+      price: p.price, old: p.old, badge: p.badge,
+      buy: p.buy,
+      tags: p.tags || [],
+      accent: '#e8a33d', accent2: '#b8860b'
+    };
+  };
+  const P = (window.PRODUCTS||{})[id] || packOf(id);
   const root = document.getElementById('pd');
 
   if(!P){

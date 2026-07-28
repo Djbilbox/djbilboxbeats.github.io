@@ -71,7 +71,6 @@ function mountSidebar(active){
       <nav class="top-nav">${topLinks}</nav>
 
       <div class="top-actions">
-        <span class="lang-wrap notranslate" translate="no"><i class="fa-solid fa-globe"></i><div id="google_translate_element"></div></span>
         <button class="icon-btn" onclick="openCart()" aria-label="Cart">
           <i class="fa-solid fa-bag-shopping"></i><span class="badge" data-cart-badge>0</span>
         </button>
@@ -250,13 +249,9 @@ function injectGA4(){
   document.head.appendChild(s2);
 }
 
-/* Add language switcher script */
-function injectLanguageSwitcher(){
-  if(document.getElementById('lang-switcher')) return;
-  const s=document.createElement('script');
-  s.src='/assets/js/language-switcher.js?v=26072416';
-  document.head.appendChild(s);
-}
+/* Le selecteur de langues a ete retire : le site est en anglais.
+   Il montait un widget Google Translate qui reecrivait le DOM apres coup
+   et injectait sa propre barre d'outils par-dessus la mise en page. */
 
 document.addEventListener('DOMContentLoaded',()=>{
   if(document.body.dataset.page!==undefined){
@@ -266,7 +261,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     mountPromo();
   }
   injectGA4();
-  injectLanguageSwitcher();
   /* Google Translate widget disabled — the injected bar/branding looked ugly.
      (Widget hidden via CSS and the script no longer loaded.) */
 });
