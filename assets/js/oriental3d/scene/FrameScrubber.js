@@ -23,18 +23,26 @@ export class FrameScrubber {
     this.loading = false
     this.ready = false
     this.error = null
+
+    /* The usable slice of the render. The Blender pass starts the slab
+       edge-on to the camera, so its opening frames are a zero-thickness
+       line — 47 byte-identical images of nothing. Scrubbing them would
+       spend the first third of the hold on an empty canvas, which reads
+       as a broken page rather than as an entrance. */
+    this.start = Math.max(0, this.opts.startFrame)
+    this.end = Math.min(frameCount - 1, this.opts.endFrame)
+    this.span = Math.max(1, this.end - this.start)
   }
 
-  /** Preload all frames. Returns a promise. */
+  /** Preload the usable frames. Returns a promise. */
   async preload() {
     if (this.loading || this.ready) return
     this.loading = true
 
     const promises = []
-    for (let i = 1; i <= this.frameCount; i++) {
-      const num = String(i).padStart(4, '0')
-      const url = `${this.framePattern}${num}.webp`
-      promises.push(this.loadFrame(i - 1, url))
+    for (let i = this.start; i <= this.end; i++) {
+      const num = String(i + 1).padStart(4, '0')
+      promises.push(this.loadFrame(i, `${this.framePattern}${num}.webp`))
     }
 
     await Promise.all(promises)
@@ -47,11 +55,13 @@ export class FrameScrubber {
        single URL 404s — which is exactly how a wrong path stayed
        invisible for a whole deploy. */
     const got = this.frames.size
-    if (got === this.frameCount) {
-      console.log(`[FrameScrubber] loaded ${got}/${this.frameCount} frames`)
+    const want = this.end - this.start + 1
+    if (got === want) {
+      console.log(`[FrameScrubber] loaded ${got}/${want} frames ` +
+                  `(${this.start + 1}–${this.end + 1} of ${this.frameCount})`)
     } else {
       console.warn(
-        `[FrameScrubber] only ${got}/${this.frameCount} frames loaded — ` +
+        `[FrameScrubber] only ${got}/${want} frames loaded — ` +
         `check the path "${this.framePattern}0001.webp"`
       )
     }
@@ -64,7 +74,7 @@ export class FrameScrubber {
         this.frames.set(index, img)
         /* Paint the first frame the moment it lands so the canvas is
            never a black hole while the rest of the set streams in. */
-        if (this.currentFrame === -1 && index === 0) this.paint(0)
+        if (this.currentFrame === -1 && index === this.start) this.paint(this.start)
         resolve()
       }
       img.onerror = () => {
@@ -78,7 +88,7 @@ export class FrameScrubber {
   /** Paint frame based on scroll progress (0...1). */
   update(scrollProgress) {
     const progress = Math.max(0, Math.min(1, scrollProgress))
-    this.paint(Math.round(progress * (this.frameCount - 1)))
+    this.paint(this.start + Math.round(progress * this.span))
   }
 
   /** Paint one frame by index, skipping redundant repaints. */

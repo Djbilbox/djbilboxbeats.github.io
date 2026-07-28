@@ -8,13 +8,13 @@
 
    The 3D layer is additive, never load-bearing.
    ============================================================ */
-import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072830'
-import { ParticleSystem } from './scene/ParticleSystem.js?v=26072830'
-import { Instrument3D }   from './scene/Instrument3D.js?v=26072830'
-import { mountJourney }   from './scene/PanelJourney.js?v=26072830'
-import { mountFrameScrubber } from './scene/FrameScrubber.js?v=26072830'
-import { AudioReactive }  from './scene/AudioReactive.js?v=26072830'
-import { ScrollController } from './controls/ScrollController.js?v=26072830'
+import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072840'
+import { ParticleSystem } from './scene/ParticleSystem.js?v=26072840'
+import { Instrument3D }   from './scene/Instrument3D.js?v=26072840'
+import { mountJourney }   from './scene/PanelJourney.js?v=26072840'
+import { mountFrameScrubber } from './scene/FrameScrubber.js?v=26072840'
+import { AudioReactive }  from './scene/AudioReactive.js?v=26072840'
+import { ScrollController } from './controls/ScrollController.js?v=26072840'
 import * as THREE from 'three'
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -26,7 +26,10 @@ if (canvas) {
     '#rise-canvas',
     'img/vst/ui/showcase/rise/rise-',
     150,
-    { reducedMotion: REDUCED }
+    /* Frames 1–47 of the Blender pass are byte-identical: the slab
+       starts edge-on and renders as nothing. Entering at 48 puts the
+       product on screen from the first pixel of scroll. */
+    { reducedMotion: REDUCED, startFrame: 47, endFrame: 149 }
   )
   window.ORIENTAL3D = window.ORIENTAL3D || {}
   window.ORIENTAL3D.scrubber = scrubber
@@ -159,7 +162,10 @@ async function boot () {
   })
 
   /* Handle for debugging from the console. */
-  window.ORIENTAL3D = { sm, journey, instruments, particles, scroll, audio, THREE, PALETTE, REDUCED }
+  /* Merge, don't replace: the scrubber registered itself here before
+     boot() ran, and clobbering the object loses the only handle on it. */
+  window.ORIENTAL3D = Object.assign(window.ORIENTAL3D || {},
+    { sm, journey, instruments, particles, scroll, audio, THREE, PALETTE, REDUCED })
   console.log('%c ORIENTAL 3D ', 'background:#E8B54D;color:#050403;font-weight:700',
     `${journey.imgs.length} stops · ${particles.count} motes · gsap:${!!gsapBundle} · reduced-motion:${REDUCED}`)
 }
