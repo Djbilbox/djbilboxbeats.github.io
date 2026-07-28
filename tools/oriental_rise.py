@@ -90,8 +90,13 @@ tex.interpolation = "Cubic"
 tex.extension = "CLIP"
 
 bsdf = nt.nodes.new("ShaderNodeBsdfPrincipled")
-bsdf.inputs["Roughness"].default_value = 0.34
-bsdf.inputs["Metallic"].default_value = 0.15
+# Matte, not glazed. At roughness 0.34 with a touch of metal the face
+# threw a single hard specular sheet across the interface: the unit read
+# as a photograph behind glass rather than as a printed panel, and the
+# glare washed the preset list out. A broad rough response keeps the key
+# light as shading instead of as a reflection.
+bsdf.inputs["Roughness"].default_value = 0.62
+bsdf.inputs["Metallic"].default_value = 0.0
 
 emis = nt.nodes.new("ShaderNodeEmission")
 add = nt.nodes.new("ShaderNodeAddShader")
@@ -180,7 +185,9 @@ def add_light(name, kind, loc, energy, size=3.0, color=(1, 1, 1)):
     return o
 
 
-key = add_light("key", "AREA", (-2.6, -3.2, 3.4), 900, size=4.0,
+# Bigger and softer than pass 2, and dimmer: a large source at lower
+# energy shades the bezel without burning a hotspot into the panel.
+key = add_light("key", "AREA", (-2.6, -3.2, 3.4), 620, size=6.0,
                 color=(1.0, 0.93, 0.82))
 key.rotation_euler = (math.radians(40), 0, math.radians(-34))
 
@@ -230,9 +237,12 @@ if pivot.animation_data and getattr(pivot.animation_data, "action", None):
 EMIS.default_value = 0.0
 EMIS.keyframe_insert("default_value", frame=1)
 EMIS.keyframe_insert("default_value", frame=LIT_START)
-EMIS.default_value = 1.85
+EMIS.default_value = 1.15
 EMIS.keyframe_insert("default_value", frame=LIT_PEAK)
-EMIS.default_value = 1.0
+# Settled well under 1.0: the emission shader adds the texture on top of
+# the lit surface, so anything near full strength doubles the interface
+# onto itself and bleaches the small type off the preset rows.
+EMIS.default_value = 0.6
 EMIS.keyframe_insert("default_value", frame=LIT_SETTLE)
 EMIS.keyframe_insert("default_value", frame=N_FRAMES)
 

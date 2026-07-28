@@ -139,18 +139,48 @@ export function mountFrameScrubber(canvasSelector, framePattern, frameCount, opt
      Scroll events are already coalesced to about one per frame, and
      paint() returns immediately when the index has not moved, so there
      is nothing here worth deferring. */
+  /* The scene plays itself on arrival and scroll takes over from where
+     the intro stopped — it does not restart from frame 1. Mapping scroll
+     across the WHOLE range after an intro that already reached 62% would
+     throw the unit back down flat the instant the wheel moved. */
+  const INTRO_TO = opts.autoplay ? opts.autoplay.to : 0
+  const scrollToTotal = (p) => INTRO_TO + (1 - INTRO_TO) * Math.max(0, Math.min(1, p))
+
+  let intro = null                   // rAF id while the intro is running
+
+  const apply = (total) => {
+    scrubber.update(total)
+    if (opts.onProgress) opts.onProgress(Math.max(0, Math.min(1, total)))
+  }
+
   const onScroll = () => {
+    /* First wheel notch wins: the visitor is driving now. */
+    if (intro !== null) { cancelAnimationFrame(intro); intro = null }
     const { top, len } = range()
-    const p = (window.scrollY - top) / len
-    scrubber.update(p)
-    if (opts.onProgress) opts.onProgress(Math.max(0, Math.min(1, p)))
+    apply(scrollToTotal((window.scrollY - top) / len))
+  }
+
+  const playIntro = () => {
+    if (!opts.autoplay || opts.reducedMotion || window.scrollY > 4) {
+      apply(scrollToTotal(0))
+      return
+    }
+    const dur = opts.autoplay.duration || 2600
+    const t0 = performance.now()
+    const step = (now) => {
+      const t = Math.min(1, (now - t0) / dur)
+      const eased = 1 - Math.pow(1 - t, 3)      // ease-out cubic
+      apply(INTRO_TO * eased)
+      intro = t < 1 ? requestAnimationFrame(step) : null
+    }
+    intro = requestAnimationFrame(step)
   }
 
   /* Wired before the preload resolves: scrolling during the download
      still tracks, and each frame paints as soon as it exists. */
   window.addEventListener('scroll', onScroll, { passive: true })
-  window.addEventListener('resize', onScroll, { passive: true })
-  scrubber.preload().then(onScroll)
+  window.addEventListener('resize', () => { if (intro === null) onScroll() }, { passive: true })
+  scrubber.preload().then(playIntro)
 
   return scrubber
 }
