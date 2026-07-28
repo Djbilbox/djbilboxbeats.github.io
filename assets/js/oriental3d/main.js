@@ -8,13 +8,13 @@
 
    The 3D layer is additive, never load-bearing.
    ============================================================ */
-import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072840'
-import { ParticleSystem } from './scene/ParticleSystem.js?v=26072840'
-import { Instrument3D }   from './scene/Instrument3D.js?v=26072840'
-import { mountJourney }   from './scene/PanelJourney.js?v=26072840'
-import { mountFrameScrubber } from './scene/FrameScrubber.js?v=26072840'
-import { AudioReactive }  from './scene/AudioReactive.js?v=26072840'
-import { ScrollController } from './controls/ScrollController.js?v=26072840'
+import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072850'
+import { ParticleSystem } from './scene/ParticleSystem.js?v=26072850'
+import { Instrument3D }   from './scene/Instrument3D.js?v=26072850'
+import { mountJourney }   from './scene/PanelJourney.js?v=26072850'
+import { mountFrameScrubber } from './scene/FrameScrubber.js?v=26072850'
+import { AudioReactive }  from './scene/AudioReactive.js?v=26072850'
+import { ScrollController } from './controls/ScrollController.js?v=26072850'
 import * as THREE from 'three'
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -26,10 +26,11 @@ if (canvas) {
     '#rise-canvas',
     'img/vst/ui/showcase/rise/rise-',
     150,
-    /* Frames 1–47 of the Blender pass are byte-identical: the slab
-       starts edge-on and renders as nothing. Entering at 48 puts the
-       product on screen from the first pixel of scroll. */
-    { reducedMotion: REDUCED, startFrame: 47, endFrame: 149 }
+    /* The whole set is usable again: the re-render opens with the unit
+       already 81% of the frame wide instead of edge-on and invisible.
+       startFrame/endFrame stay wired for the next time a pass has dead
+       frames at either end. */
+    { reducedMotion: REDUCED, startFrame: 0, endFrame: 149 }
   )
   window.ORIENTAL3D = window.ORIENTAL3D || {}
   window.ORIENTAL3D.scrubber = scrubber
