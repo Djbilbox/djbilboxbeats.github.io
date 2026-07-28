@@ -49,21 +49,22 @@ export class FrameScrubber {
   }
 
   loadFrame(index, url) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const img = new Image()
       img.onload = () => {
         this.frames.set(index, img)
         resolve()
       }
-      img.onerror = () => reject(new Error(`Failed to load frame ${index}: ${url}`))
+      img.onerror = () => {
+        // Frames may not all be ready yet; don't fail, just skip
+        resolve()
+      }
       img.src = url
     })
   }
 
   /** Paint frame based on scroll progress. */
   update(scrollProgress) {
-    if (!this.ready) return
-
     // Clamp and map scroll progress (0...1) to frame index
     const progress = Math.max(0, Math.min(1, scrollProgress))
     const frameIndex = Math.round(progress * (this.frameCount - 1))
@@ -72,11 +73,30 @@ export class FrameScrubber {
 
     this.currentFrame = frameIndex
     const frame = this.frames.get(frameIndex)
-    if (!frame) return
 
-    // Clear and paint
+    // Clear
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-    this.ctx.drawImage(frame, 0, 0)
+
+    if (frame) {
+      // Paint available frame
+      this.ctx.drawImage(frame, 0, 0)
+    } else if (this.ready) {
+      // Ready but frame missing — paint placeholder
+      this.ctx.fillStyle = 'rgba(232, 181, 77, 0.03)'
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+      this.ctx.strokeStyle = 'rgba(232, 181, 77, 0.1)'
+      this.ctx.lineWidth = 2
+      this.ctx.strokeRect(10, 10, this.canvas.width - 20, this.canvas.height - 20)
+    } else {
+      // Still loading
+      this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+      this.ctx.fillStyle = 'rgba(232, 181, 77, 0.4)'
+      this.ctx.font = 'bold 32px Arial'
+      this.ctx.textAlign = 'center'
+      this.ctx.textBaseline = 'middle'
+      this.ctx.fillText('Loading frames...', this.canvas.width / 2, this.canvas.height / 2)
+    }
   }
 
   dispose() {
