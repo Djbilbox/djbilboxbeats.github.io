@@ -12,11 +12,25 @@ import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v
 import { ParticleSystem } from './scene/ParticleSystem.js?v=26072727'
 import { Instrument3D }   from './scene/Instrument3D.js?v=26072727'
 import { mountJourney }   from './scene/PanelJourney.js?v=26072727'
+import { mountFrameScrubber } from './scene/FrameScrubber.js?v=26072727'
 import { AudioReactive }  from './scene/AudioReactive.js?v=26072727'
 import { ScrollController } from './controls/ScrollController.js?v=26072727'
 import * as THREE from 'three'
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+/* Try to mount the frame scrubber on the cinema canvas */
+const canvas = document.querySelector('#rise-canvas')
+if (canvas) {
+  const scrubber = mountFrameScrubber(
+    '#rise-canvas',
+    'img/vst/ui/showcase/rise-',
+    150,
+    { reducedMotion: REDUCED }
+  )
+  window.ORIENTAL3D = window.ORIENTAL3D || {}
+  window.ORIENTAL3D.scrubber = scrubber
+}
 
 async function boot () {
   if (!webglAvailable()) {
