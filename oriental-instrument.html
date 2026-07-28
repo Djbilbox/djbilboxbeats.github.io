@@ -391,37 +391,51 @@
 /* ============================================================
    CINEMA MODE — plein écran avec scrubbing de frames
    ============================================================ */
+/* L'étage donne au cinéma sa durée de vie : un écran épinglé, puis
+   environ un écran de défilement pendant lequel la scène se joue. Passé
+   l'étage, tout remonte et disparaît — la suite de la page reprend le
+   plein écran pour elle seule. */
+.ori-cinema-stage {
+  position: relative;
+  height: 200vh;
+}
 .ori-cinema {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  height: 100vh;
+  overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 40%, rgba(232, 181, 77, 0.08), transparent 50%),
+    radial-gradient(ellipse at 50% 46%, rgba(232, 181, 77, 0.09), transparent 55%),
     #000;
   pointer-events: none;
 }
+/* Le rendu occupe le bas du cadre ; le haut est réservé au titre, sinon
+   l'unité monte dans le texte et les deux deviennent illisibles. */
 .ori-cinema-canvas {
-  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  height: 100%;
+  height: 80%;
   object-fit: contain;
+  object-position: center bottom;
+  transition: none;
 }
 .ori-cinema-overlay {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-top: 4.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   z-index: 2;
   pointer-events: none;
 }
 .ori-cinema-title {
   font-family: var(--font-a);
-  font-size: clamp(3.2rem, 12vw, 8rem);
+  font-size: clamp(2.4rem, 8.5vw, 6rem);
   font-weight: 700;
   letter-spacing: 0.2em;
   color: rgba(232, 181, 77, 0.9);
@@ -440,9 +454,16 @@
   margin-top: 16px;
   animation: ori-cinema-fade-in 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+/* Sorti de l'overlay : celui-ci n'occupe plus que le haut du cadre,
+   alors que la flèche doit rester en bas. Centrée à la main puisqu'elle
+   ne bénéficie plus du flex du parent. */
 .ori-cinema-arrow {
   position: absolute;
-  bottom: 60px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 2;
+  bottom: 34px;
   font-size: 2rem;
   color: rgba(232, 181, 77, 0.4);
   animation: ori-cinema-bounce 2s ease-in-out infinite 3s;
@@ -456,13 +477,16 @@
   50% { transform: translateY(-12px); }
 }
 
-/* .ori-cinema est un calque fixe OPAQUE qui couvre tout le viewport.
-   Sans cette règle, chaque section qui suit le hero est peinte SOUS
-   lui et la page paraît vide après le premier écran. Tout ce qui
-   n'est pas le cinéma doit donc passer au-dessus. */
-.ori > *:not(.ori-cinema) {
+/* Le cinéma est un fond opaque plein écran. Sans ces deux règles, les
+   sections qui suivent sont peintes SOUS lui et la page paraît vide
+   après le premier écran. Tout le contenu passe au-dessus ; l'étage du
+   cinéma reste dessous et se fait recouvrir en fin de course. */
+.ori > * {
   position: relative;
   z-index: 10;
+}
+.ori > .ori-cinema-stage {
+  z-index: 1;
 }
 
 .ori-cinema-content {
@@ -471,7 +495,6 @@
   background:
     radial-gradient(1000px 560px at 78% 30%, rgba(232, 181, 77, 0.06), transparent 62%),
     var(--ink);
-  margin-top: 100vh;
   padding-top: 60px;
   backdrop-filter: blur(0.5px);
 }
@@ -512,15 +535,20 @@
 
 <div class="ori">
 
-  <!-- ==================== CINEMA — plein écran avec scrubbing ==================== -->
-  <div class="ori-cinema">
-    <canvas class="ori-cinema-canvas" id="rise-canvas" width="1600" height="900"></canvas>
-    <div class="ori-cinema-overlay">
-      <h1 class="ori-cinema-title">ORIENTAL</h1>
-      <div class="ori-cinema-subtitle">NEW FREE VST ALGERIEN SOUND</div>
+  <!-- ==================== CINEMA — étage épinglé, puis il s'efface ====================
+       Le cinéma est collant DANS son propre étage : il reste plein écran
+       le temps que la scène se joue, puis il défile et sort du champ avec
+       l'étage. En fixed il restait soudé à l'écran pour toute la page. -->
+  <section class="ori-cinema-stage">
+    <div class="ori-cinema">
+      <canvas class="ori-cinema-canvas" id="rise-canvas" width="1600" height="900"></canvas>
+      <div class="ori-cinema-overlay">
+        <h1 class="ori-cinema-title">ORIENTAL</h1>
+        <div class="ori-cinema-subtitle">NEW FREE VST ALGERIEN SOUND</div>
+      </div>
       <div class="ori-cinema-arrow">↓</div>
     </div>
-  </div>
+  </section>
 
   <!-- ==================== HERO CONTENT (défile par-dessus) ==================== -->
   <div class="ori-cinema-content">
@@ -945,6 +973,6 @@
      or the purchase buttons. Everything it needs to fail safely is
      already on the page above it.
      ============================================================ -->
-<script type="module" src="assets/js/oriental3d/main.js?v=26072860"></script>
+<script type="module" src="assets/js/oriental3d/main.js?v=26072870"></script>
 </body>
 </html>

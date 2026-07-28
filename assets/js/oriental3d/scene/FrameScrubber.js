@@ -119,12 +119,17 @@ export function mountFrameScrubber(canvasSelector, framePattern, frameCount, opt
 
   const scrubber = new FrameScrubber(canvas, framePattern, frameCount, opts)
 
-  /* The rise plays out over the cinema hold — the one viewport of
-     empty scroll that `.ori-cinema-content { margin-top:100vh }`
-     creates — not over the whole document. Spread across the full
-     page height the plug-in would creep up by a third of a frame per
-     wheel notch and only stand up at the footer. */
-  const distance = () => Math.max(1, window.innerHeight)
+  /* The rise is tied to the pinned stage, not to the document. Measured
+     from the element so the choreography follows whatever height the
+     stylesheet gives it: while the sticky cinema is pinned, scroll maps
+     to frames; once the stage is behind you the scene is over and the
+     rest of the page has the screen to itself. */
+  const stage = canvas.closest('.ori-cinema-stage')
+  const range = () => {
+    if (!stage) return { top: 0, len: Math.max(1, window.innerHeight) }
+    const top = stage.getBoundingClientRect().top + window.scrollY
+    return { top, len: Math.max(1, stage.offsetHeight - window.innerHeight) }
+  }
 
   /* Painted straight from the scroll event, with no rAF gate.
      A `queued` boolean guarding a requestAnimationFrame looks like a
@@ -134,7 +139,12 @@ export function mountFrameScrubber(canvasSelector, framePattern, frameCount, opt
      Scroll events are already coalesced to about one per frame, and
      paint() returns immediately when the index has not moved, so there
      is nothing here worth deferring. */
-  const onScroll = () => scrubber.update(window.scrollY / distance())
+  const onScroll = () => {
+    const { top, len } = range()
+    const p = (window.scrollY - top) / len
+    scrubber.update(p)
+    if (opts.onProgress) opts.onProgress(Math.max(0, Math.min(1, p)))
+  }
 
   /* Wired before the preload resolves: scrolling during the download
      still tracks, and each frame paints as soon as it exists. */

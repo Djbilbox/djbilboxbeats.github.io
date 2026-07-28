@@ -8,13 +8,13 @@
 
    The 3D layer is additive, never load-bearing.
    ============================================================ */
-import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072860'
-import { ParticleSystem } from './scene/ParticleSystem.js?v=26072860'
-import { Instrument3D }   from './scene/Instrument3D.js?v=26072860'
-import { mountJourney }   from './scene/PanelJourney.js?v=26072860'
-import { mountFrameScrubber } from './scene/FrameScrubber.js?v=26072860'
-import { AudioReactive }  from './scene/AudioReactive.js?v=26072860'
-import { ScrollController } from './controls/ScrollController.js?v=26072860'
+import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072870'
+import { ParticleSystem } from './scene/ParticleSystem.js?v=26072870'
+import { Instrument3D }   from './scene/Instrument3D.js?v=26072870'
+import { mountJourney }   from './scene/PanelJourney.js?v=26072870'
+import { mountFrameScrubber } from './scene/FrameScrubber.js?v=26072870'
+import { AudioReactive }  from './scene/AudioReactive.js?v=26072870'
+import { ScrollController } from './controls/ScrollController.js?v=26072870'
 import * as THREE from 'three'
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -30,7 +30,21 @@ if (canvas) {
        already 81% of the frame wide instead of edge-on and invisible.
        startFrame/endFrame stay wired for the next time a pass has dead
        frames at either end. */
-    { reducedMotion: REDUCED, startFrame: 0, endFrame: 149 }
+    {
+      reducedMotion: REDUCED,
+      startFrame: 0,
+      endFrame: 149,
+      /* The title is the entrance, the product is the payoff. Fading the
+         copy out across the first third of the rise lets the unit own the
+         frame at full size instead of being kept small enough to duck
+         under a headline it only shares the screen with for a moment. */
+      onProgress (p) {
+        const overlay = document.querySelector('.ori-cinema-overlay')
+        if (!overlay) return
+        const fade = 1 - Math.max(0, Math.min(1, (p - 0.10) / 0.28))
+        overlay.style.opacity = fade.toFixed(3)
+      }
+    }
   )
   window.ORIENTAL3D = window.ORIENTAL3D || {}
   window.ORIENTAL3D.scrubber = scrubber
