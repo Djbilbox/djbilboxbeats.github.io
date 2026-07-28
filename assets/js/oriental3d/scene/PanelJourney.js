@@ -41,7 +41,12 @@ export class PanelJourney {
     this.opts = Object.assign({
       z: 0,
       float: 0.035,             // fraction of the panel's own width
-      flipDeg: 88,              // how far it turns over between stops
+      /* A SWAY, not a turn-over. This was 88deg — the panel went
+         edge-on between stops to hide a hard texture swap, and what
+         you saw for most of the flight was a bright sliver. The unit
+         has to stay readable the whole way down the page; the renders
+         cross-fade now, so nothing needs hiding. */
+      flipDeg: 14,
       lift: 0.12,               // how much it rises mid-flight
       /* Phase 1 — the opening. The unit starts tilted back as if
          lying on a bench under raking light, then stands up and
@@ -196,17 +201,21 @@ export class PanelJourney {
     const A = this.toWorld(marks[i].r, view)
     const B = this.toWorld(marks[j].r, view)
 
-    /* --- the swap ---
-       Second half of the flight shows the next stop's render. The
-       panel is edge-on at exactly that moment, so the change is
-       hidden rather than blended. */
-    const wanted = e < 0.5 ? i : j
-    if (wanted !== this.texIndex) {
-      this.texIndex = wanted
-      this.material.setFrame(wanted)
-      this.reflectionMat.setFrame(wanted)
-    }
-    const aspect = this.stops[this.texIndex].aspect
+    /* --- the dissolve ---
+       The frame index is scrubbed continuously, so the shader
+       cross-fades one render into the next across the whole flight.
+       This used to be a hard swap at the midpoint, hidden by turning
+       the panel edge-on — which cost more than it bought: the object
+       spent the flight as a sliver. The renders are cut-outs of the
+       same unit at similar scale, and the shader mixes them
+       premultiplied, so the dissolve holds together. */
+    this.texIndex = i + e
+    this.material.setFrame(this.texIndex)
+    this.reflectionMat.setFrame(this.texIndex)
+
+    /* Shape follows the dissolve too, or the frame fading IN would be
+       drawn at the outgoing frame's proportions. */
+    const aspect = lerp(this.stops[i].aspect, this.stops[j].aspect, e)
 
     /* --- fade out past the final stop ---
        Otherwise the unit rides along over the presets, the pricing
@@ -263,7 +272,7 @@ export class PanelJourney {
     this.group.position.y += arc * this.opts.lift * worldW * soft
     this.group.position.y += Math.sin(t * 0.62) * this.opts.float * worldW * soft
 
-    /* Turn-over. Only between stops — parked on a stop it sits nearly
+    /* Sway. Only between stops — parked on a stop it sits nearly
        square to camera, because the render already carries its own
        baked perspective and stacking more on top looks wrong. */
     this.group.rotation.y = D(arc * this.opts.flipDeg * (i % 2 ? -1 : 1))
@@ -285,12 +294,11 @@ export class PanelJourney {
     this.glow.scale.set(1.9, (1.9 / aspect) * 1.35, 1)
 
     /* --- opacity ---
-       A narrow dip right at the turn-over. The plane is edge-on there
-       so it is already almost gone; this covers the sliver that
-       perspective leaves when the panel is off to one side. */
-    const nearSwap = Math.max(0, 1 - Math.abs(e - 0.5) / 0.08)
-    const dip = 1 - nearSwap * nearSwap
-    const alpha = enter * tail * dip
+       No dip at the midpoint any more. It existed to cover the
+       texture swap; the dissolve has replaced the swap, and blinking
+       the unit halfway through every move is exactly the stutter
+       that made the journey feel unfinished. */
+    const alpha = enter * tail
 
     const u = this.material.uniformsRef
     u.uSheenTime.value = t
