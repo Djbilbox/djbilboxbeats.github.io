@@ -395,9 +395,12 @@
    environ un écran de défilement pendant lequel la scène se joue. Passé
    l'étage, tout remonte et disparaît — la suite de la page reprend le
    plein écran pour elle seule. */
+/* 150vh au lieu de 200 : la scène n'est plus pilotée par le défilement,
+   donc l'étage n'a plus besoin d'une longue course de scrubbing — juste
+   assez de tenue pour qu'on regarde l'unité avant que la page reprenne. */
 .ori-cinema-stage {
   position: relative;
-  height: 200vh;
+  height: 150vh;
 }
 .ori-cinema {
   position: sticky;
@@ -409,28 +412,91 @@
     #000;
   pointer-events: none;
 }
-/* Le rendu occupe le bas du cadre ; le haut est réservé au titre, sinon
-   l'unité monte dans le texte et les deux deviennent illisibles. */
-.ori-cinema-canvas {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 80%;
-  object-fit: contain;
-  object-position: center bottom;
-  transition: none;
-}
-.ori-cinema-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding-top: 4.5vh;
+/* Plus de dalle 3D reconstruite : c'est le PNG détouré du produit, de
+   face dès la première image. La cinématique ne fait plus pivoter
+   l'unité — elle l'amène, l'allume, puis la laisse respirer. */
+.ori-cinema-inner {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 2;
+  justify-content: center;
+  gap: 2.4vh;
+  padding: 4vh 4vw 7vh;
+}
+.ori-cinema-unit {
+  position: relative;
+  max-width: min(1255px, 90vw);
+  animation: ori-model-float 7.5s ease-in-out 2.7s infinite;
+}
+/* La lueur chaude est posée derrière l'unité, pas dessus : elle monte
+   pendant l'arrivée et donne son assise à l'objet. */
+.ori-cinema-unit::before {
+  content: "";
+  position: absolute;
+  inset: -12% -9%;
+  background: radial-gradient(ellipse at 50% 55%, rgba(232, 181, 77, 0.22), transparent 66%);
+  filter: blur(36px);
+  opacity: 0;
+  z-index: -1;
+  animation: ori-glow-in 2.2s ease-out 0.55s both;
+}
+.ori-cinema-model {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  animation: ori-model-in 2.3s cubic-bezier(0.22, 0.68, 0.24, 1) both;
+}
+/* Un éclat traverse la face une seule fois, juste après l'allumage. */
+.ori-cinema-sweep {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 26px;
+  pointer-events: none;
+}
+.ori-cinema-sweep::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: 0;
+  width: 26%;
+  height: 160%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: ori-model-sweep 2.4s ease-in-out 1.45s both;
+}
+@keyframes ori-model-in {
+  0%   { opacity: 0; transform: translateY(30px) scale(0.93); filter: brightness(0.3) blur(7px); }
+  55%  { opacity: 1; filter: brightness(0.7) blur(0); }
+  74%  { filter: brightness(1.32); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: brightness(1); }
+}
+@keyframes ori-glow-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes ori-model-sweep {
+  from { transform: translateX(-140%) rotate(12deg); }
+  to   { transform: translateX(520%) rotate(12deg); }
+}
+@keyframes ori-model-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+/* Rien ici ne doit clignoter ni glisser pour qui a demandé moins de
+   mouvement : l'unité est simplement là, allumée. */
+@media (prefers-reduced-motion: reduce) {
+  .ori-cinema-unit,
+  .ori-cinema-unit::before,
+  .ori-cinema-model { animation: none; opacity: 1; }
+  .ori-cinema-sweep { display: none; }
+}
+.ori-cinema-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   pointer-events: none;
 }
 .ori-cinema-title {
@@ -541,10 +607,17 @@
        l'étage. En fixed il restait soudé à l'écran pour toute la page. -->
   <section class="ori-cinema-stage">
     <div class="ori-cinema">
-      <canvas class="ori-cinema-canvas" id="rise-canvas" width="1600" height="900"></canvas>
-      <div class="ori-cinema-overlay">
-        <h1 class="ori-cinema-title">ORIENTAL</h1>
-        <div class="ori-cinema-subtitle">NEW FREE VST ALGERIEN SOUND</div>
+      <div class="ori-cinema-inner">
+        <div class="ori-cinema-overlay">
+          <h1 class="ori-cinema-title">ORIENTAL</h1>
+          <div class="ori-cinema-subtitle">NEW FREE VST ALGERIEN SOUND</div>
+        </div>
+        <div class="ori-cinema-unit">
+          <img class="ori-cinema-model" src="img/vst/ui/showcase/ori-model.png?v=1"
+               width="1255" height="855"
+               alt="ORIENTAL INSTRUMENT — macro knobs, preset browser, FX chain and keyboard">
+          <span class="ori-cinema-sweep" aria-hidden="true"></span>
+        </div>
       </div>
       <div class="ori-cinema-arrow">↓</div>
     </div>
@@ -973,6 +1046,6 @@
      or the purchase buttons. Everything it needs to fail safely is
      already on the page above it.
      ============================================================ -->
-<script type="module" src="assets/js/oriental3d/main.js?v=26072880"></script>
+<script type="module" src="assets/js/oriental3d/main.js?v=26072890"></script>
 </body>
 </html>

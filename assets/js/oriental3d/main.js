@@ -8,52 +8,31 @@
 
    The 3D layer is additive, never load-bearing.
    ============================================================ */
-import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072880'
-import { ParticleSystem } from './scene/ParticleSystem.js?v=26072880'
-import { Instrument3D }   from './scene/Instrument3D.js?v=26072880'
-import { mountJourney }   from './scene/PanelJourney.js?v=26072880'
-import { mountFrameScrubber } from './scene/FrameScrubber.js?v=26072880'
-import { AudioReactive }  from './scene/AudioReactive.js?v=26072880'
-import { ScrollController } from './controls/ScrollController.js?v=26072880'
+import { SceneManager, webglAvailable, PALETTE } from './scene/SceneManager.js?v=26072890'
+import { ParticleSystem } from './scene/ParticleSystem.js?v=26072890'
+import { Instrument3D }   from './scene/Instrument3D.js?v=26072890'
+import { mountJourney }   from './scene/PanelJourney.js?v=26072890'
+import { AudioReactive }  from './scene/AudioReactive.js?v=26072890'
+import { ScrollController } from './controls/ScrollController.js?v=26072890'
 import * as THREE from 'three'
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-/* Try to mount the frame scrubber on the cinema canvas */
-const canvas = document.querySelector('#rise-canvas')
-if (canvas) {
-  const scrubber = mountFrameScrubber(
-    '#rise-canvas',
-    'img/vst/ui/showcase/rise/rise-',
-    150,
-    /* The whole set is usable again: the re-render opens with the unit
-       already 81% of the frame wide instead of edge-on and invisible.
-       startFrame/endFrame stay wired for the next time a pass has dead
-       frames at either end. */
-    {
-      reducedMotion: REDUCED,
-      startFrame: 0,
-      endFrame: 149,
-      /* The scene introduces itself. Landing on a still frame and being
-         expected to scroll before anything moves is what made the hero
-         read as a static image. Stops at 0.62 — the end of the rise —
-         and scroll carries the settle from there. */
-      autoplay: { to: 0.62, duration: 3200 },
-      /* The title is the entrance, the product is the payoff. Fading the
-         copy out across the first third of the rise lets the unit own the
-         frame at full size instead of being kept small enough to duck
-         under a headline it only shares the screen with for a moment. */
-      onProgress (p) {
-        const overlay = document.querySelector('.ori-cinema-overlay')
-        if (!overlay) return
-        const fade = 1 - Math.max(0, Math.min(1, (p - 0.28) / 0.30))
-        overlay.style.opacity = fade.toFixed(3)
-      }
-    }
-  )
-  window.ORIENTAL3D = window.ORIENTAL3D || {}
-  window.ORIENTAL3D.scrubber = scrubber
-}
+/* NO FRAME SCRUBBER.
+
+   The hero was 150 pre-rendered WebP frames of a slab rotating up off a
+   surface, indexed by scroll. It was rejected, and the reasons hold up:
+   the unit was a printed plane wearing a fabricated chassis, it opened
+   edge-on so the product was unreadable exactly when the visitor arrived,
+   and nothing moved until you scrolled.
+
+   The hero is now the product's own cut-out PNG, square to the viewer
+   from the first paint, animated by CSS alone — it arrives, powers on,
+   catches one sweep of light, then breathes. No canvas, no 7.6MB of
+   frames, no scroll dependency, and it cannot land on a blank screen.
+
+   FrameScrubber.js is kept: it is correct, and a future pass with a real
+   modelled instrument would want it. It is simply not mounted here. */
 
 async function boot () {
   if (!webglAvailable()) {
