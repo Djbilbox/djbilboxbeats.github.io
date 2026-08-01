@@ -16,7 +16,7 @@ if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true });
 const vstProducts = [
   { name: 'BIGBASS', slug: 'bigbass', title: 'BIGBASS — LA Lowrider Bass', desc: '808 & sub-bass rompler. 6 bass modes + 80 presets.', price: '19.50', gumroad: 'https://djbilboxbeats.gumroad.com/l/xaziro' },
   { name: 'Vice City', slug: 'vice-city', title: 'Vice City — Synthwave VST', desc: 'Retro synthwave synthesizer. 70 presets. Neon interface.', price: '18.45', gumroad: 'https://djbilboxbeats.gumroad.com/l/ykdzli' },
-  { name: 'Oriental Instrument', slug: 'oriental-instrument', title: 'Oriental Instrument — 280+ Sounds', desc: '280+ authentic oriental instruments & sounds.', price: '13.80', gumroad: 'https://djbilboxbeats.gumroad.com/l/oriental-instrument-djbilbox-beats' },
+  { name: 'Oriental Instrument', slug: 'oriental-instrument', title: 'Oriental Instrument — 280+ Sounds', desc: '280+ authentic oriental instruments & sounds.', price: '69', gumroad: 'https://djbilboxbeats.gumroad.com/l/oriental-instrument-djbilbox-beats' },
   { name: 'MACHINA', slug: 'machina', title: 'MACHINA — Effects Processor', desc: 'Audio effects: distortion, delay, filter chain.', price: '15.00', gumroad: 'https://djbilboxbeats.gumroad.com' },
   { name: 'MPC2077', slug: 'mpc2077', title: 'MPC2077 — Cyberpunk Drum Machine', desc: '16 pads + 808/909/707 kits. Neon UI.', price: '22.00', gumroad: 'https://djbilboxbeats.gumroad.com' },
   { name: 'MATRIX MODULAR', slug: 'matrix-modular', title: 'MATRIX MODULAR — Auto-Pan Effect', desc: 'Modular auto-pan synthesizer. Matrix UI.', price: '20.00', gumroad: 'https://djbilboxbeats.gumroad.com' },

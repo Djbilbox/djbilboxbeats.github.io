@@ -1,11 +1,12 @@
 /* ============================================================
    DJBILBOX BEATS — VST plugins catalog
    `buy`  : Gumroad product slug (after /l/) or full URL — paid product.
-            "/SOLDES80" appended = -80% Summer Sale auto-applies at checkout.
    `demo` : Gumroad slug/URL for the free demo (optional)
-   `note` : Short promo line shown on the card (🎟️ added automatically)
-   `old`  : struck-through original price (EUR). `price` = current sale price.
-   Sale valid until 30 July 2026 (code SOLDES80).
+   `note` : Short line shown on the card (🎟️ added automatically)
+   `price`: MUST equal the product's real Gumroad price — no markup, no
+            invented discount. `old` is only for the bundle, where it states
+            the genuine sum of the individual VSTs.
+   No sale running: SOLDES80 expired 30 July 2026 and was removed 1 Aug 2026.
    ============================================================ */
 window.VSTS = [
   /* ========== BUNDLE ========== */
@@ -16,14 +17,14 @@ window.VSTS = [
 
   /* ========== EFFECTS ========== */
   { id:"machina", name:"MACHINA EFFECT — Energy Drink for Your Sound", img:"img/vst/machina-vst.jpg", category:"effect",
-    tags:["Distortion · Delay · Filter","VST3 · AU · Win/Mac"], price:"3.60", old:"18", badge:"🔥 -80%",
-    buy:"lbceu/SOLDES80", demo:"",
-    note:"Code SOLDES80 · -80% Summer Sale" },
+    tags:["Distortion · Delay · Filter","VST3 · AU · Win/Mac"], price:"18",
+    buy:"lbceu", demo:"",
+    note:"Distortion · delay · filter in one aggressive chain" },
 
   { id:"matrix-modular", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
-    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"3.60", old:"18", badge:"🔥 -80%",
-    buy:"ocpoej/SOLDES80", demo:"",
-    note:"Code SOLDES80 · -80% Summer Sale" },
+    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"18",
+    buy:"ocpoej", demo:"",
+    note:"Stereo modulation · auto-pan · westcoast oriental colour" },
 
   { id:"mastering", name:"MASTERING — Pro VST3 Mastering Limiter", img:"img/vst/mastering.jpg", category:"effect",
     tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], price:"10", badge:"🆕 New",
@@ -37,22 +38,22 @@ window.VSTS = [
     note:"Plays the samples already on your machine · 50 kits across 10 styles" },
 
   { id:"oriental-instrument", name:"Oriental Instrument — Full Version (280+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
-    tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"13.80", old:"69", badge:"🔥 -80%",
-    buy:"oriental-instrument-djbilbox-beats/SOLDES80",
+    tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"69",
+    buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
     thumb:"assets/products/oriental-instrument/oriental-instrument-card.jpg",
-    note:"Code SOLDES80 · Full 280+ instruments · -80% Summer Sale" },
+    note:"Full 280+ instruments" },
 
   { id:"bigbass", name:"BIGBASS — LA Lowrider Bass", img:"img/vst/bigbass-vst.jpg", category:"instrument",
-    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], price:"5.80", old:"29", badge:"🔥 -80%",
-    buy:"xaziro/SOLDES80", demo:"",
-    note:"Code SOLDES80 · 808 · 3 bass modes · -80% Summer Sale" },
+    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], price:"29",
+    buy:"xaziro", demo:"",
+    note:"808 · 3 bass modes" },
 
   { id:"vice-city", name:"Vice City — VST Synthesizer", img:"img/vst/vice-city-vst.jpg", category:"instrument",
-    tags:["Synthwave","VST3 · Standalone"], price:"7.80", old:"39", badge:"🔥 -80%",
-    buy:"ykdzli/SOLDES80", demo:"",
+    tags:["Synthwave","VST3 · Standalone"], price:"39",
+    buy:"ykdzli", demo:"",
     preview:"assets/products/vice-city/vice-city-card.mp4",
-    note:"Code SOLDES80 · 70 presets · -80% Summer Sale" },
+    note:"70 presets" },
 
   { id:"neon-synth-80s", name:"NEON SYNTH 80s — Synthwave Polysynth", img:"img/vst/neon-synth-80s.jpg", category:"instrument",
     tags:["Synthwave · 80s","6 Presets","VST3 · Standalone"], price:"0", free:true, badge:"✅ FREE",

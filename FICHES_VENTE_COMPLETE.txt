@@ -125,7 +125,7 @@ CARACTÉRISTIQUES :
 ✓ Navigateur de phrases mélodiques
 ✓ Windows 10/11 & macOS 64-bit
 ✓ Royalty-free pour productions commerciales
-✓ PRIX RÉGULIER : 69 € | PROMO -80% : 13,80 € (code SOLDES80)
+✓ PRIX : 69 €
 ✓ Démo gratuite disponible
 
 MOTS-CLÉS : vst plugin, oriental, arabic, instrument plugin, trap, afrobeat, oud, qanun
@@ -143,7 +143,7 @@ DEVELOPER : DJBILBOX BEATS
 CATEGORY : Virtual Instruments > Keyboards > World
 OS : Windows, macOS
 FORMATS : VST3, AU, Standalone
-PRICE : €69 (currently -80% with code SOLDES80 = €13.80)
+PRICE : €69
 
 ═══════════════════════════════════════════════════════════════════════════════
 💛 PRODUIT #3 : BIGBASS (VST)
