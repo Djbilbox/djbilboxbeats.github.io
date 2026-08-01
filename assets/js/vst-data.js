@@ -8,19 +8,11 @@
             the genuine sum of the individual VSTs.
    No sale running: SOLDES80 expired 30 July 2026 and was removed 1 Aug 2026.
    ============================================================ */
+/* MACHINA EFFECT and the ALL VST PACK bundle were pulled from sale on
+   2026-08-01: the plug-in does not work, and the bundle shipped it as one
+   of its five VSTs. Do not re-add either without a fixed build. */
 window.VSTS = [
-  /* ========== BUNDLE ========== */
-  { id:"all-vst-pack", name:"🎁 ALL VST PACK — Every VST in One", img:"img/vst/all-vst-pack.jpg", category:"bundle",
-    tags:["Oriental Instrument · Machina","Matrix · BigBass · Vice City","5 VSTs in 1 pack"], price:"49", old:"173", badge:"🔥 -72%",
-    buy:"zufkrv", demo:"",
-    note:"All 5 VSTs (total value €173) in one pack · Best deal" },
-
   /* ========== EFFECTS ========== */
-  { id:"machina", name:"MACHINA EFFECT — Energy Drink for Your Sound", img:"img/vst/machina-vst.jpg", category:"effect",
-    tags:["Distortion · Delay · Filter","VST3 · AU · Win/Mac"], price:"18",
-    buy:"lbceu", demo:"",
-    note:"Distortion · delay · filter in one aggressive chain" },
-
   { id:"matrix-modular", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
     tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"18",
     buy:"ocpoej", demo:"",

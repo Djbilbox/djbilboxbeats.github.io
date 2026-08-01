@@ -40,53 +40,6 @@ window.PRODUCTS = {
   },
 
   /* ===================== BUNDLE ===================== */
-  "free-bundle": {
-    type:"bundle", name:"ALL VST PACK", sub:"All 5 VSTs in One Bundle",
-    tagline:"Get all 5 DJBILBOX VST plugins in one pack — the complete collection (€173 value) for €49.",
-    cover:"img/vst/all-vst-pack.jpg", accent:"#27ae60", accent2:"#2ecc71",
-    price:"49", old:"173", badge:"🔥 -72%",
-    note:"All 5 VSTs (total value €173) in one pack · Best deal",
-    buy:"zufkrv", demo:"",
-    video:"", poster:"img/vst/all-vst-pack.jpg",
-    /* Listed below the fold so buyers can also grab any single plugin on its own. */
-    bundleItems:[
-      {name:"MATRIX MODULAR", sub:"Stereo Modulation · Auto-Pan", img:"img/vst/matrix-modular-cover.jpg", buy:"ocpoej"},
-      {name:"MACHINA",        sub:"Distortion · Delay · Filter",  img:"img/vst/machina-vst.jpg",          buy:"lbceu"},
-      {name:"BIGBASS",        sub:"LA Lowrider 808 / Sub-Bass",   img:"img/vst/bigbass-vst.jpg",          buy:"xaziro"},
-      {name:"Vice City",      sub:"Synthwave / Miami Synth",      img:"img/vst/vice-city-vst.jpg",        buy:"ykdzli"},
-      {name:"Oriental Instrument", sub:"280+ Oriental Instruments", img:"img/vst/oriental-instrument-box.jpg", buy:"oriental-instrument-djbilbox-beats"}
-    ],
-    tags:["5 VST Plugins","Effects + Instruments","Complete Pack","Best Deal"],
-    about:[
-      "Get all 5 DJBILBOX VST plugins in one download — the complete collection (€173 value) for €49. Perfect for producers who want the full DJBILBOX sound in one purchase.",
-      "This bundle includes the full MATRIX MODULAR stereo effect, MACHINA audio processor, BIGBASS lowrider bass instrument, Vice City synthwave instrument, plus the Oriental Instrument with 280+ sounds."
-    ],
-    features:[
-      {icon:"fa-gift", t:"5 Complete VSTs", d:"All DJBILBOX VST plugins bundled together for the best price."},
-      {icon:"fa-music", t:"Effects & Instruments", d:"Stereo modulation, distortion/delay, bass, synth & 280+ oriental instruments."},
-      {icon:"fa-download", t:"One-Click Download", d:"Download everything at once — no separate purchases needed."},
-      {icon:"fa-star", t:"Professional Quality", d:"Same quality as individually purchased plugins — nothing watered down."},
-      {icon:"fa-percent", t:"Bundle Deal", d:"All 5 VSTs — total value €173 — bundled together for €49."}
-    ],
-    specs:[
-      {k:"Bundle Contents", v:"5 complete VST plugins + Oriental Demo"},
-      {k:"Formats", v:"VST3, Standalone (Windows & macOS)"},
-      {k:"Size", v:"Compact download — optimized"},
-      {k:"License", v:"Royalty-free for commercial use"},
-      {k:"Support", v:"Full documentation + user manuals included"}
-    ],
-    includes:[
-      "MATRIX MODULAR VST3 + Standalone",
-      "MACHINA VST3 + Standalone",
-      "BIGBASS VST3 + Standalone",
-      "Vice City VST3 + Standalone",
-      "Oriental Instrument (280+ instruments)",
-      "All factory presets",
-      "Complete user manuals (PDF)",
-      "Royalty-free license for all productions"
-    ]
-  },
-
   /* ===================== VST PLUGINS ===================== */
   "matrix-modular": {
     type:"vst", name:"MATRIX MODULAR", sub:"Westcoast Oriental VST Effect",
@@ -118,40 +71,6 @@ window.PRODUCTS = {
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["MATRIX MODULAR VST3 (64-bit)","MATRIX MODULAR Standalone","Factory presets","User manual (PDF)"]
-  },
-
-  "machina": {
-    type:"vst", name:"MACHINA", sub:"Creative Multi-Effect — Energy Drink for Your Sound",
-    tagline:"A VST3 audio effect wrapped in a fully-animated energy-drink vending machine — distortion, delay & filter with six flavour presets.",
-    cover:"img/vst/machina-vst.jpg", accent:"#b44dff", accent2:"#FFD700",
-    price:"18",
-
-    buy:"lbceu", demo:"",
-    video:"", poster:"img/vst/machina-vst.jpg",
-    tags:["Audio Effect","Distortion","Delay","Filter","VST3","AU","Win · Mac"],
-    about:[
-      "MACHINA is a VST3 audio effect plugin wrapped in the most playful interface you've ever seen — a fully animated energy-drink vending machine that makes sound design feel like a game. Drop a coin, grab a can, transform your audio.",
-      "Under the hood is a three-stage DSP chain that goes places: DISTORTION brings warm saturation with tone shaping and DC blocking, DELAY adds lush stereo echo with damped feedback up to one second, and FILTER delivers resonant low/high/band-pass character. All three work together as one cohesive signal flow, fully automatable in your DAW.",
-      "Six flavours, six personalities: FIZZ DRIVE, COLD DELAY, TURBO BRIGHT, SLUSH SPACE, FROST CLEAN and MELTDOWN — each preset a complete effect character ready to inspire. The mascot on the left responds to the machine, and the whole UI resizes fluidly from compact to ultrawide. Ships as VST3 (Windows & macOS) and AU (macOS)."
-    ],
-    features:[
-      {icon:"fa-fire", t:"Distortion stage", d:"Warm saturation with tone shaping and DC blocking for grit that sits right in the mix."},
-      {icon:"fa-clock", t:"Stereo delay", d:"Lush stereo echo with damped feedback up to one second — spacious and musical."},
-      {icon:"fa-filter", t:"Resonant filter", d:"Low / high / band-pass filtering with character and resonance control."},
-      {icon:"fa-wand-magic-sparkles", t:"6 flavour presets", d:"FIZZ DRIVE, COLD DELAY, TURBO BRIGHT, SLUSH SPACE, FROST CLEAN & MELTDOWN."},
-      {icon:"fa-expand", t:"Resizable UI", d:"Drag any corner — everything scales fluidly from compact to ultrawide, never breaks."},
-      {icon:"fa-user-pen", t:"Custom mascot", d:"Drop your own PNG character on your Desktop and MACHINA loads it instantly."}
-    ],
-    specs:[
-      {k:"Format", v:"VST3 (Windows & macOS) · AU (macOS)"},
-      {k:"Type", v:"Creative Multi-Effect"},
-      {k:"Parameters", v:"10 fully automatable controls"},
-      {k:"Processing", v:"True stereo (independent L/R)"},
-      {k:"Latency", v:"Minimal — optimized for live use"},
-      {k:"Price", v:"€29"},
-      {k:"License", v:"Royalty-free for your productions"}
-    ],
-    includes:["MACHINA VST3 (64-bit)","MACHINA AU (macOS)","6 flavour presets","Custom mascot loader","User manual (PDF)"]
   },
 
   "bigbass": {
