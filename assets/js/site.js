@@ -29,9 +29,10 @@ const DISCORD_URL = 'https://discord.gg/7HeMSvbN';
    Each page sets <body data-page="KEY"> to highlight its link.
    ============================================================ */
 /* First NAV_SPLIT entries render under "Browse", the rest under "Library". */
-const NAV_SPLIT = 6;
+const NAV_SPLIT = 7;
 const NAV = [
   { key:'music',       label:'Music',        href:'/beats-redesign.html',      icon:'fa-music' },
+  { key:'beatmaker',   label:'Beatmaker',    href:'/beatmaker.html',           icon:'fa-headphones' },
   { key:'shop',        label:'Shop',         href:'/shop.html',                icon:'fa-store' },
   { key:'oriental',    label:'Oriental VST', href:'/oriental-instrument.html', icon:'fa-star' },
   { key:'mastering',   label:'AI Mastering', href:'/ai-mastering.html',        icon:'fa-sliders' },
