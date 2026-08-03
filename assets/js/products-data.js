@@ -693,7 +693,7 @@ window.PRODUCTS = {
     price:"0", badge:"🆕 FREE",
     note:"Completely free · 6 presets · VST3 + Standalone",
     buy:"neon-synth-80s",
-    video:"", poster:"img/vst/neon-synth-80s.jpg",
+    video:"media/neon-synth-80s-demo.mp4", poster:"img/vst/neon-synth-80s.jpg",
     gallery:["img/vst/neon-synth-80s-ui.jpg","img/vst/neon-synth-80s.jpg"],
     tags:["Synthwave","Synth","Free","VST3","80s"],
     about:[

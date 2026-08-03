@@ -539,6 +539,11 @@ function packCard(p){
   el.dataset.genre = p.genre || '';
   const ref=(p.buy||'').replace(/'/g,"\\'");
   const nm=p.name.replace(/'/g,"\\'");
+  /* Free demo = a $0 tier on the same Gumroad page, so the button just opens
+     the product and the buyer picks the FREE DEMO variant there. */
+  const demo = p.demo
+    ? `<button class="btn-cta ghost" title="Try the free demo on Gumroad" onclick="buy('${p.demo.replace(/'/g,"\\'")}')"><i class="fa-solid fa-download"></i> Free demo</button>`
+    : '';
   const dHref = p.id ? `product.html?id=${p.id}` : null;
   const media = dHref
     ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"><span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
@@ -551,7 +556,7 @@ function packCard(p){
       <div class="card-tags">${tags}</div>
       <div class="card-foot">
         <div class="price">${priceHtml}</div>
-        <button class="btn-cta" onclick="addToCart('${nm}','${p.price}','${ref}')"><i class="fa-solid fa-cart-plus"></i> Add</button>
+        <div style="display:flex;gap:6px">${demo}<button class="btn-cta" onclick="addToCart('${nm}','${p.price}','${ref}')"><i class="fa-solid fa-cart-plus"></i> Add</button></div>
       </div>
     </div>`;
   return el;
