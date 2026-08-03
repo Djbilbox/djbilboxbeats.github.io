@@ -529,11 +529,14 @@ function playBeat(trackId, title){
    ============================================================ */
 function packCard(p){
   const isFree = String(p.price).toUpperCase()==='FREE' || p.price==='0';
-  const badgeTxt = p.badge || (isFree?'FREE':'');
-  const badge = badgeTxt ? `<span class="card-badge${isFree?' free':''}">${badgeTxt}</span>` : '';
+  /* A paid pack that ships a free demo still gets a green FREE badge — the
+     demo is the hook, so it has to be visible on the cover, not buried. */
+  const badgeTxt = p.badge || (isFree ? 'FREE' : p.demo ? 'FREE DEMO' : '');
+  const badge = badgeTxt ? `<span class="card-badge${(isFree||p.demo)?' free':''}">${badgeTxt}</span>` : '';
   const tags = (p.tags||[]).slice(0,2).map(t=>`<span class="tag">${t}</span>`).join('');
   const old = p.old ? `<span class="old">€${p.old}</span>` : '';
-  const priceHtml = isFree ? `<span class="now free">FREE</span>` : `<span class="now">€${p.price}</span>${old}`;
+  const freeNote = (!isFree && p.demo) ? `<span class="pack-free-note">FREE demo available</span>` : '';
+  const priceHtml = isFree ? `<span class="now free">FREE</span>` : `<span class="now">€${p.price}</span>${old}${freeNote}`;
   const el = document.createElement('article');
   el.className='card';
   el.dataset.genre = p.genre || '';

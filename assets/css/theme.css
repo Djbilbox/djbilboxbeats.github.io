@@ -292,6 +292,14 @@ img{display:block;max-width:100%}
   font-size:.6rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
   padding:4px 9px;border-radius:5px;z-index:2}
 .card-badge.free{background:var(--green)}
+/* "FREE demo available" under the price of a paid pack */
+.pack-free-note{display:block;font-size:.56rem;font-weight:800;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--green);margin-top:1px}
+/* Section-level reminder that every pack ships a free demo */
+.free-demo-line{display:inline-flex;align-items:center;gap:7px;margin-top:8px;
+  padding:5px 11px;border-radius:6px;font-size:.72rem;font-weight:600;
+  color:var(--green);background:rgba(29,185,84,.1);border:1px solid rgba(29,185,84,.3)}
+.free-demo-line strong{font-weight:800}
 .card-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   background:rgba(0,0,0,.45);opacity:0;transition:.22s;cursor:pointer}
 .card:hover .card-play{opacity:1}
