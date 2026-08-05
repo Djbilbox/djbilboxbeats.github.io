@@ -167,7 +167,7 @@ vstProducts.forEach(vst => {
         offers: {
           '@type': 'Offer',
           price: vst.price,
-          priceCurrency: 'EUR',
+          priceCurrency: 'USD',
           url: vst.gumroad
         }
       };

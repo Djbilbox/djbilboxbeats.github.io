@@ -13,6 +13,10 @@
    ============================================================ */
 window.PACKS = [
   /* ---------- New release (2026) ---------- */
+  { id:"westcoast-vybes-vol01", name:"WESTCOAST VYBES Vol.01 — G-Funk Melody Loops", img:"img/packs/westcoast-vybes-vol01.jpg",
+    genre:"West Coast", tags:["West Coast","G-Funk","Melody Loops","Hip-Hop"], price:"5",
+    buy:"westcoast-vybes-vol01", demo:"westcoast-vybes-vol01" },
+
   { id:"kit-drum-funk", name:"KIT DRUM FUNK — Professional Drum Kit", img:"img/packs/kit-drum-funk.jpg",
     genre:"Funk", tags:["Funk","Drum Kit","MIDI","One-Shots"], price:"5",
     buy:"ejmwmz", demo:"ejmwmz" },

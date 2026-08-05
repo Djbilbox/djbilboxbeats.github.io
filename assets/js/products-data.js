@@ -7,6 +7,37 @@
 window.PRODUCTS = {
 
   /* ===================== NEW RELEASE ===================== */
+  "westcoast-vybes-vol01": {
+    type:"kit", name:"WESTCOAST VYBES Vol.01", sub:"G-Funk & West Coast Melody Loops",
+    tagline:"17 sun-soaked West Coast melody loops — lowrider leads, warm keys and G-Funk bounce, ready to flip.",
+    cover:"img/packs/westcoast-vybes-vol01.jpg", accent:"#e0a63c", accent2:"#2e86de",
+    price:"5", badge:"🆕 New",
+    note:"17 melody loops · 6 free in the demo · royalty-free",
+    buy:"westcoast-vybes-vol01",
+    demo:"westcoast-vybes-vol01",
+    tags:["West Coast","G-Funk","Melody Loops","Hip-Hop"],
+    about:[
+      "WESTCOAST VYBES Vol.01 bottles the sound of a Cali night drive: whiny G-Funk leads, warm electric pianos, dusty guitars and that lowrider bounce that made the West Coast famous. 17 full melody loops, each one mixed and ready to drop straight under your drums.",
+      "Every loop is tempo-labeled in the filename, so you know the BPM before you even open the folder — from a slow 84 BPM cruise up to a 185 BPM double-time flip. Several loops also ship with their drum bus baked in, so you can audition the full groove and mute what you don't need.",
+      "Not sure yet? The FREE DEMO gives you 6 of the 17 loops, full quality, no strings attached — try them in your session and grab the full pack for $5 when you're convinced."
+    ],
+    features:[
+      {icon:"fa-music", t:"17 melody loops", d:"Complete West Coast / G-Funk melodies, mixed and release-ready."},
+      {icon:"fa-gauge-high", t:"BPM in every filename", d:"84 to 185 BPM, labeled up front — no guessing, no time-stretch surprises."},
+      {icon:"fa-gift", t:"Free demo included", d:"6 full-quality loops for free on the same page — try before you buy."},
+      {icon:"fa-unlock", t:"Royalty-free", d:"Use them in commercial releases with zero clearance."}
+    ],
+    specs:[
+      {k:"Content", v:"17 West Coast / G-Funk melody loops"},
+      {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
+      {k:"Tempo range", v:"84–185 BPM"},
+      {k:"Free demo", v:"6 loops, full quality"},
+      {k:"Price", v:"$5"},
+      {k:"License", v:"Royalty-free for your productions"}
+    ],
+    includes:["17 West Coast melody loops (WAV)","Tempo labeled in every filename","Drum-bus versions on selected loops","Free 6-loop demo on the same page","Works in all DAWs"]
+  },
+
   "west-side": {
     type:"kit", name:"KIT DRUM WEST SIDE", sub:"2Pac × Snoop Dogg × The Game — West Coast Drum Kit",
     tagline:"The ultimate West Coast drum kit — one-shots, MIDI patterns & full stems from 8 legendary G-Funk records.",
@@ -723,7 +754,7 @@ window.PRODUCTS = {
     tagline:"Professional mastering limiter for transparent peak control and loudness maximization — studio-quality mastering in one plugin.",
     cover:"img/vst/mastering.jpg", accent:"#8b4513", accent2:"#d2b48c",
     price:"10", badge:"🆕 New",
-    note:"Professional mastering · €10",
+    note:"Professional mastering · $10",
     buy:"mastering",
     video:"", poster:"img/vst/mastering.jpg",
     tags:["Mastering","Limiter","Effect","VST3"],
