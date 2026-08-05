@@ -4,10 +4,16 @@
    `buy`  : Gumroad product slug (the part after /l/).
    `price`: MUST equal the product's real Gumroad price — no markup, no
             invented discount.
-   `demo` : Gumroad slug of the free demo. Every pack below sells its demo as
+   `demo` : Gumroad slug of the free demo. Most packs below sell their demo as
             a *variant* of the same product, so `demo` repeats `buy` — the
             buyer picks the "FREE DEMO" tier on the Gumroad page. Only set it
             when a free demo variant really exists (TONE VAULT has none).
+            That variant scheme is broken on Gumroad: a variant price can only
+            ADD to the product price, so a paid product's "free" tier still
+            charges full price. WESTCOAST VYBES points `demo` at a separate
+            $0 product instead — the only pack whose demo is really free.
+            Setting the product price to $0 would fix the demo but then the
+            Gumroad storefront advertises the pack itself as $0.
    Prices in USD. No sale running: SOLDES80 expired 30 July 2026 and was
    removed from the site 1 Aug 2026.
    ============================================================ */
@@ -15,7 +21,7 @@ window.PACKS = [
   /* ---------- New release (2026) ---------- */
   { id:"westcoast-vybes-vol01", name:"WESTCOAST VYBES Vol.01 — G-Funk Melody Loops", img:"img/packs/westcoast-vybes-vol01.jpg",
     genre:"West Coast", tags:["West Coast","G-Funk","Melody Loops","Hip-Hop"], price:"5",
-    buy:"westcoast-vybes-vol01", demo:"westcoast-vybes-vol01" },
+    buy:"westcoast-vybes-vol01", demo:"westcoast-vybes-vol01-demo" },
 
   { id:"kit-drum-funk", name:"KIT DRUM FUNK — Professional Drum Kit", img:"img/packs/kit-drum-funk.jpg",
     genre:"Funk", tags:["Funk","Drum Kit","MIDI","One-Shots"], price:"5",

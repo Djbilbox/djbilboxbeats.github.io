@@ -14,17 +14,17 @@ window.PRODUCTS = {
     price:"5", badge:"🆕 New",
     note:"17 melody loops · 6 free in the demo · royalty-free",
     buy:"westcoast-vybes-vol01",
-    demo:"westcoast-vybes-vol01",
+    demo:"westcoast-vybes-vol01-demo",
     tags:["West Coast","G-Funk","Melody Loops","Hip-Hop"],
     about:[
       "WESTCOAST VYBES Vol.01 bottles the sound of a Cali night drive: whiny G-Funk leads, warm electric pianos, dusty guitars and that lowrider bounce that made the West Coast famous. 17 full melody loops, each one mixed and ready to drop straight under your drums.",
       "Every loop is tempo-labeled in the filename, so you know the BPM before you even open the folder — from a slow 84 BPM cruise up to a 185 BPM double-time flip. Several loops also ship with their drum bus baked in, so you can audition the full groove and mute what you don't need.",
-      "Not sure yet? The FREE DEMO gives you 6 of the 17 loops, full quality, no strings attached — try them in your session and grab the full pack for $5 when you're convinced."
+      "Not sure yet? The free demo gives you 6 of the 17 loops, full quality, no strings attached — try them in your session and grab the full pack for $5 when you're convinced."
     ],
     features:[
       {icon:"fa-music", t:"17 melody loops", d:"Complete West Coast / G-Funk melodies, mixed and release-ready."},
       {icon:"fa-gauge-high", t:"BPM in every filename", d:"84 to 185 BPM, labeled up front — no guessing, no time-stretch surprises."},
-      {icon:"fa-gift", t:"Free demo included", d:"6 full-quality loops for free on the same page — try before you buy."},
+      {icon:"fa-gift", t:"Free demo included", d:"6 full-quality loops, free, no email required — try before you buy."},
       {icon:"fa-unlock", t:"Royalty-free", d:"Use them in commercial releases with zero clearance."}
     ],
     specs:[
@@ -35,7 +35,7 @@ window.PRODUCTS = {
       {k:"Price", v:"$5"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
-    includes:["17 West Coast melody loops (WAV)","Tempo labeled in every filename","Drum-bus versions on selected loops","Free 6-loop demo on the same page","Works in all DAWs"]
+    includes:["17 West Coast melody loops (WAV)","Tempo labeled in every filename","Drum-bus versions on selected loops","Separate free 6-loop demo download","Works in all DAWs"]
   },
 
   "west-side": {
