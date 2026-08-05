@@ -80,6 +80,9 @@ window.PRODUCTS = {
 
     buy:"ocpoej", demo:"",
     video:"", poster:"img/vst/matrix-modular-cover.jpg",
+    /* Le 16:9 va dans la section « Product visuals », sous la description :
+       product.html rend `gallery` en cadre 16/9, c'est le bon format pour lui. */
+    gallery:["img/vst/matrix-modular-wide.jpg"],
     tags:["Stereo Modulation","Auto-Pan","VST3","Standalone"],
     about:[
       "MATRIX MODULAR is a stereo modulation effect inspired by vintage Buchla and Serge modular synthesizers — specifically the matrix mixer architectures that defined the Westcoast sound. It brings that dimensional, organic character to any source: guitars, drums, synths, vocals — even entire stereo mixes.",
