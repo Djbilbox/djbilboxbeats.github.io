@@ -1,0 +1,50 @@
+# Publication de djbilboxbeats.com sur GitHub Pages.
+#
+# Pourquoi ce fichier existe : le build « legacy » de Pages recopie les 222 Mo
+# du depot a chaque publication et depasse regulierement sa limite de 10 minutes.
+# Les 5 et 6 aout 2026, cinq builds ont ainsi echoue apres 640 a 3 300 secondes,
+# alors que ceux qui passent tiennent en 43 a 290 secondes. Le site restait bloque
+# sur une version ancienne sans qu'aucune erreur ne dise pourquoi.
+#
+# Le build par Actions n'a pas cette limite. Le depot contient un `.nojekyll`,
+# il n'y a donc rien a compiler : on televerse la racine telle quelle.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Une publication a la fois, sans annuler celle en cours : couper un deploiement
+# a mi-chemin laisserait le site dans un etat partiel.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Recuperer le depot
+        uses: actions/checkout@v4
+
+      - name: Configurer Pages
+        uses: actions/configure-pages@v5
+
+      - name: Televerser le site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deployer
+        id: deployment
+        uses: actions/deploy-pages@v4
