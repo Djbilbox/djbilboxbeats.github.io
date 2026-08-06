@@ -372,7 +372,7 @@ function switchTab(which){
    client se reconnecte depuis son telephone et son ordinateur, et le
    mot de passe est hache en PBKDF2 cote serveur, jamais stocke ici.
    ============================================================ */
-const AUTH_API = '';   /* ex. 'https://djbilbox-auth.<ton-sous-domaine>.workers.dev' */
+const AUTH_API = 'https://djbilbox-auth.djbilbox.workers.dev';
 const TOKEN_KEY = 'djbilbox_token';
 
 async function apiAuth(route, corps){

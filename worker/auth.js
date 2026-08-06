@@ -53,10 +53,15 @@ function memeSignature (a, b) {
   return diff === 0
 }
 
-/* PBKDF2-SHA256, 150 000 iterations, sel aleatoire par utilisateur.
+/* PBKDF2-SHA256, 100 000 iterations, sel aleatoire par utilisateur.
    Remplace un hachage maison de 4 lignes, non cryptographique, qui
    produisait des collisions triviales : deux mots de passe differents
-   pouvaient ouvrir le meme compte. */
+   pouvaient ouvrir le meme compte.
+
+   100 000 est le plafond du runtime Cloudflare : au-dela il refuse
+   l'appel (« iteration counts above 100000 are not supported ») et
+   l'inscription repond 500. Ne pas remonter ce nombre sans verifier
+   que Workers l'accepte encore. */
 async function hachePass (motDePasse, selHex) {
   const sel = selHex
     ? Uint8Array.from(selHex.match(/../g).map(h => parseInt(h, 16)))
@@ -65,7 +70,7 @@ async function hachePass (motDePasse, selHex) {
   const cle = await crypto.subtle.importKey(
     'raw', enc.encode(motDePasse), 'PBKDF2', false, ['deriveBits'])
   const bits = await crypto.subtle.deriveBits(
-    { name: 'PBKDF2', salt: sel, iterations: 150000, hash: 'SHA-256' }, cle, 256)
+    { name: 'PBKDF2', salt: sel, iterations: 100000, hash: 'SHA-256' }, cle, 256)
 
   const hex = a => [...new Uint8Array(a)].map(b => b.toString(16).padStart(2, '0')).join('')
   return { hash: hex(bits), sel: hex(sel) }

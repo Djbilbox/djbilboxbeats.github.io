@@ -101,7 +101,9 @@ ce même worker, mais c'est un chantier à part.
 
 ## Ce que fait le worker, en clair
 
-- Mot de passe haché en **PBKDF2-SHA256, 150 000 itérations**, avec un sel
+- Mot de passe haché en **PBKDF2-SHA256, 100 000 itérations** (le plafond du
+  runtime Cloudflare ; au-delà il refuse l'appel et l'inscription renvoie 500),
+  avec un sel
   aléatoire par utilisateur. Il remplace un hachage maison de 4 lignes,
   non cryptographique, où deux mots de passe différents pouvaient ouvrir le
   même compte. Le mot de passe n'est jamais stocké, ni côté serveur ni côté
