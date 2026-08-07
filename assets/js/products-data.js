@@ -389,7 +389,9 @@ window.PRODUCTS = {
     type:"kit", name:"Break Ya Neck — Hip-Hop Vol.2", sub:"Hip-Hop Drum Loops",
     tagline:"Gritty boom-bap grooves — swung, dusty, head-nod factor.",
     cover:"img/packs/break-ya-neck-vol2.jpg", accent:"#d4a017", accent2:"#8a5a00",
-    price:"5", badge:"🆕 New", buy:"ntscu",
+    /* `ntscu` renvoyait une 404 : le produit vit sous `break-ya-neck-vol2`.
+       Un client qui cliquait « Buy » tombait sur une page Gumroad introuvable. */
+    price:"5", badge:"🆕 New", buy:"break-ya-neck-vol2",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Hip-Hop","Drum Loops","Free"],
     about:[
