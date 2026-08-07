@@ -460,13 +460,25 @@ async function doLogin(e){
 async function reprendSession(){
   if(!AUTH_API) return;
   const t = localStorage.getItem(TOKEN_KEY);
-  if(!t) return;
+
+  /* Une session locale sans jeton serveur est un vestige : soit elle date
+     d'avant le worker, soit le compte n'existe plus. La laisser affichait un
+     tableau de bord fantome — un nom et un e-mail qui n'ouvrent rien, et
+     surtout plus aucun moyen de s'inscrire pour de vrai, puisque le
+     formulaire et le bouton Google ne s'affichent que deconnecte. */
+  if(!t){ if(getSession()) setSession(null); return; }
+
   try{
     const r = await fetch(AUTH_API.replace(/\/$/,'') + '/me', {headers:{Authorization:'Bearer '+t}});
     if(!r.ok) throw new Error('expire');
     const d = await r.json();
     setSession(d.user);
-  }catch(e){ localStorage.removeItem(TOKEN_KEY); }
+  }catch(e){
+    /* Meme raison : un jeton refuse doit deconnecter, pas seulement
+       disparaitre en silence derriere un ecran de compte trompeur. */
+    localStorage.removeItem(TOKEN_KEY);
+    setSession(null);
+  }
 }
 
 window.switchTab=switchTab; window.doSignup=doSignup; window.doLogin=doLogin; window.setSession=setSession;
