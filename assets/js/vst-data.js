@@ -14,7 +14,7 @@
 window.VSTS = [
   /* ========== EFFECTS ========== */
   { id:"matrix-modular", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
-    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"18",
+    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"10",
     buy:"ocpoej", demo:"",
     note:"Stereo modulation · auto-pan · westcoast oriental colour" },
 
@@ -25,24 +25,24 @@ window.VSTS = [
 
   /* ========== INSTRUMENTS ========== */
   { id:"mpc-2026", name:"MPC 2026 — Beat Machine (16 Pads)", img:"img/vst/ui/mpc-2026-hero.png", category:"instrument",
-    tags:["16 pads · 50 kits","Sequencer · MIDI 36-51","VST3 · AU · Win/Mac"], price:"20", badge:"🆕 New",
+    tags:["16 pads · 50 kits","Sequencer · MIDI 36-51","VST3 · AU · Win/Mac"], price:"0", free:true, badge:"✅ FREE",
     buy:"mpc-2026", demo:"",
-    note:"Plays the samples already on your machine · 50 kits across 10 styles" },
+    note:"100% FREE · plays the samples already on your machine · 50 kits across 10 styles" },
 
   { id:"oriental-instrument", name:"Oriental Instrument — Full Version (280+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
-    tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"69",
+    tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"10",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
     thumb:"assets/products/oriental-instrument/oriental-instrument-card.jpg",
     note:"Full 280+ instruments" },
 
   { id:"bigbass", name:"BIGBASS — LA Lowrider Bass", img:"img/vst/bigbass-vst.jpg", category:"instrument",
-    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], price:"29",
+    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], price:"10",
     buy:"xaziro", demo:"",
     note:"808 · 3 bass modes" },
 
   { id:"vice-city", name:"Vice City — VST Synthesizer", img:"img/vst/vice-city-vst.jpg", category:"instrument",
-    tags:["Synthwave","VST3 · Standalone"], price:"39",
+    tags:["Synthwave","VST3 · Standalone"], price:"10",
     buy:"ykdzli", demo:"",
     preview:"assets/products/vice-city/vice-city-card.mp4",
     note:"70 presets" },
