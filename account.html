@@ -285,11 +285,16 @@ function dashboardHTML(u){
       <div class="acc-welcome">${u.name||'Member'}</div>
       <div class="acc-email">${u.email}</div>
       ${via}
+      <!-- Ne promettre que ce que le site tient reellement. Les deux lignes
+           precedentes annonçaient un acces gratuit a *tous* les packs et des
+           codes promo exclusifs : les packs sont payants sur Gumroad et aucun
+           systeme n'envoie de codes. Un membre arrivant sur une page a 5 $
+           apres avoir lu « free access to all sample packs » se sent trompe,
+           et c'est le vendeur qui doit s'en expliquer. -->
       <div class="acc-perks">
         <div class="acc-perk"><i class="fa-solid fa-circle-check"></i> Member of the DJBILBOX BEATS community</div>
-        <div class="acc-perk"><i class="fa-solid fa-gift"></i> Free access to all sample packs & demos</div>
-        <div class="acc-perk"><i class="fa-solid fa-bell"></i> First to know about new drops & deals</div>
-        <div class="acc-perk"><i class="fa-solid fa-percent"></i> Exclusive promo codes for VST plugins</div>
+        <div class="acc-perk"><i class="fa-solid fa-gift"></i> Free downloads &mdash; 931 Beats BIG PACK &amp; Free Bundle</div>
+        <div class="acc-perk"><i class="fa-solid fa-bell"></i> First to know about new drops &amp; deals</div>
       </div>
       <div class="acc-links">
         <a class="acc-link" href="${typeof gumroadUrl==='function'?gumroadUrl(BIG_PACK):'#'}" target="_blank"><i class="fa-solid fa-download"></i> 931 Beats Free</a>
