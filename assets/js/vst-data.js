@@ -25,9 +25,9 @@ window.VSTS = [
 
   /* ========== INSTRUMENTS ========== */
   { id:"mpc-2026", name:"MPC 2026 — Beat Machine (16 Pads)", img:"img/vst/ui/mpc-2026-hero.png", category:"instrument",
-    tags:["16 pads · 50 kits","Sequencer · MIDI 36-51","VST3 · AU · Win/Mac"], price:"0", free:true, badge:"✅ FREE",
+    tags:["16 pads · 50 kits","Sequencer · MIDI 36-51","VST3 · AU · Win/Mac"], price:"10", badge:"🆕 New",
     buy:"mpc-2026", demo:"",
-    note:"100% FREE · plays the samples already on your machine · 50 kits across 10 styles" },
+    note:"Plays the samples already on your machine · 50 kits across 10 styles" },
 
   { id:"oriental-instrument", name:"Oriental Instrument — Full Version (280+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
     tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"10",
