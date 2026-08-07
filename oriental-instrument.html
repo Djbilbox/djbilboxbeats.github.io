@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.png">
 <link rel="stylesheet" href="assets/css/theme.css?v=26072726">
-<link rel="stylesheet" href="assets/css/oriental-cine.css?v=26072920">
+<link rel="stylesheet" href="assets/css/oriental-cine.css?v=26080703">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
@@ -64,7 +64,16 @@
 .ori{
   --gold:#E8B54D; --gold-2:#F6D98A; --gold-deep:#B8860B;
   --ink:#050403; --ink-2:#0d0a07;
-  background:var(--ink); color:#f2ece0; overflow-x:hidden;
+  background:var(--ink); color:#f2ece0;
+  /* Clips the hero's glow, which bleeds ~38px past both edges on a phone.
+     It MUST be `clip`, not `hidden`: with one axis hidden the other
+     computes to `auto`, .ori becomes a scroll container, and
+     `position:sticky` on .ori-cine-pin then anchors to a box that never
+     scrolls — the cinematic hero scrolls away instead of pinning, so its
+     320vh of choreography plays against an empty screen. `hidden` stays
+     first as a fallback for browsers without `clip` (Safari < 16). */
+  overflow-x:hidden;
+  overflow-x:clip;
 }
 .ori-in{max-width:1320px;margin:0 auto;padding:0 26px}
 
@@ -1103,6 +1112,6 @@
      Les vraies captures produit, avec le parallaxe CSS d'oriental3D()
      plus bas, font le travail sans rien dupliquer. Le module reste dans
      le dépôt pour une éventuelle reprise avec un vrai modèle 3D. -->
-<script type="module" src="assets/js/oriental-cine/index.js?v=26072920"></script>
+<script type="module" src="assets/js/oriental-cine/index.js?v=26080703"></script>
 </body>
 </html>
