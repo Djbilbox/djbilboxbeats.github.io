@@ -24,6 +24,20 @@ window.VSTS = [
     note:"Transparent mastering limiter · studio-quality peak control" },
 
   /* ========== INSTRUMENTS ========== */
+  /* STATION SYNTH — added 2026-08-09.
+     Two entries on purpose: the free demo is the entry point, the bundle is
+     the product. `price` matches the real Gumroad price ($0+ and $50). */
+  { id:"station-synth-bundle", name:"STATION SYNTH — Legendary Bundle (4128 presets)", img:"img/vst/station-synth-bundle.jpg", category:"instrument",
+    tags:["4128 presets · 44 wavetables","11 country libraries · 5 skins","VST3 · AU · Standalone · Win/Mac"], price:"50", badge:"🔥 New",
+    buy:"station-synth-legendary-bundle",
+    demo:"station-synth-demo",
+    note:"Wavetable synth · 4128 presets · 11 libraries · Windows & macOS" },
+
+  { id:"station-synth-demo", name:"STATION SYNTH — Free Demo (50 presets)", img:"img/vst/station-synth-demo.jpg", category:"instrument",
+    tags:["50 presets · 14 wavetables","Same engine, nothing crippled","VST3 · AU · Standalone · Win/Mac"], price:"0", free:true, badge:"✅ FREE",
+    buy:"station-synth-demo", demo:"",
+    note:"100% FREE · full engine · 50 presets · upgrade keeps your install" },
+
   { id:"mpc-2026", name:"MPC 2026 — Beat Machine (16 Pads)", img:"img/vst/ui/mpc-2026-hero.png", category:"instrument",
     tags:["16 pads · 50 kits","Sequencer · MIDI 36-51","VST3 · AU · Win/Mac"], price:"0", free:true, badge:"✅ FREE",
     buy:"mpc-2026", demo:"",
