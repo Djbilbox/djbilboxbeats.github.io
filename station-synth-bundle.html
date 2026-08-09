@@ -70,6 +70,10 @@
 .ss-yes{color:var(--green,#1db954);font-weight:700}
 .ss-no{color:var(--text-4)}
 .ss-note{font-size:.76rem;color:var(--text-4);margin-top:30px;line-height:1.65;border-top:1px solid var(--border);padding-top:18px}
+.ss-videos{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.ss-videos video{width:100%;border-radius:12px;border:1px solid var(--border);background:#000;display:block}
+.ss-embed{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#000}
+.ss-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 @media(max-width:760px){.ss-hero{grid-template-columns:1fr}}
 </style>
 </head>
@@ -105,6 +109,26 @@
       </a>
     </div>
   </section>
+
+  <h2 class="ss-h2">Ecoutez-le</h2>
+  <p class="ss-p">
+    Deux extraits pris directement dans le plugin, sans montage : on y voit
+    l'ecran suivre la table, les faders bouger et le rack d'effets travailler.
+  </p>
+  <div class="ss-videos">
+    <video src="assets/products/station-synth/station-synth-demo1.mp4" controls preload="metadata"
+           poster="img/vst/station-synth-bundle.jpg"></video>
+    <video src="assets/products/station-synth/station-synth-demo2.mp4" controls preload="metadata"
+           poster="img/vst/station-synth-bundle.jpg"></video>
+  </div>
+  <div class="ss-videos" style="margin-top:14px">
+    <div class="ss-embed"><iframe src="https://www.youtube-nocookie.com/embed/_YLj6CONTXU?rel=0&modestbranding=1"
+        title="STATION SYNTH — deux editions" loading="lazy" allowfullscreen
+        allow="encrypted-media;picture-in-picture"></iframe></div>
+    <div class="ss-embed"><iframe src="https://www.youtube-nocookie.com/embed/Hd6PJpDXZIQ?rel=0&modestbranding=1"
+        title="STATION SYNTH — annonce" loading="lazy" allowfullscreen
+        allow="encrypted-media;picture-in-picture"></iframe></div>
+  </div>
 
   <h2 class="ss-h2">Des wavetables tirees de vrais instruments</h2>
   <p class="ss-p">

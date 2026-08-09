@@ -13,7 +13,7 @@
    of its five VSTs. Do not re-add either without a fixed build. */
 window.VSTS = [
   /* ========== EFFECTS ========== */
-  { id:"matrix-modular", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
+  { id:"matrix-modular", yt:"DPoCVD-eK3w", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
     tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"10",
     buy:"ocpoej", demo:"",
     note:"Stereo modulation · auto-pan · westcoast oriental colour" },
@@ -27,25 +27,26 @@ window.VSTS = [
   /* STATION SYNTH — added 2026-08-09.
      Two entries on purpose: the free demo is the entry point, the bundle is
      the product. `price` matches the real Gumroad price ($0+ and $50). */
-  { id:"station-synth-bundle", name:"STATION SYNTH — Legendary Bundle (4128 presets)", img:"img/vst/station-synth-bundle.jpg", category:"instrument",
+  { id:"station-synth-bundle", yt:"_YLj6CONTXU", name:"STATION SYNTH — Legendary Bundle (4128 presets)", img:"img/vst/station-synth-bundle.jpg", category:"instrument",
     detail:"station-synth-bundle.html",
+    preview:"assets/products/station-synth/station-synth-card.mp4",
     tags:["4128 presets · 44 wavetables","11 country libraries · 5 skins","VST3 · AU · Standalone · Win/Mac"], price:"50", badge:"🔥 New",
     buy:"station-synth-legendary-bundle",
     demo:"station-synth-demo",
     note:"Wavetable synth · 4128 presets · 11 libraries · Windows & macOS" },
 
-  { id:"station-synth-demo", name:"STATION SYNTH — Free Demo (50 presets)", img:"img/vst/station-synth-demo.jpg", category:"instrument",
+  { id:"station-synth-demo", yt:"Hd6PJpDXZIQ", name:"STATION SYNTH — Free Demo (50 presets)", img:"img/vst/station-synth-demo.jpg", category:"instrument",
     detail:"station-synth-demo.html",
     tags:["50 presets · 14 wavetables","Same engine, nothing crippled","VST3 · AU · Standalone · Win/Mac"], price:"0", free:true, badge:"✅ FREE",
     buy:"station-synth-demo", demo:"",
     note:"100% FREE · full engine · 50 presets · upgrade keeps your install" },
 
-  { id:"mpc-2026", name:"MPC 2026 — Beat Machine (16 Pads)", img:"img/vst/ui/mpc-2026-hero.png", category:"instrument",
+  { id:"mpc-2026", yt:"supwohrB7xg", name:"MPC 2026 — Beat Machine (16 Pads)", img:"img/vst/ui/mpc-2026-hero.png", category:"instrument",
     tags:["16 pads · 50 kits","Sequencer · MIDI 36-51","VST3 · AU · Win/Mac"], price:"0", free:true, badge:"✅ FREE",
     buy:"mpc-2026", demo:"",
     note:"100% FREE · plays the samples already on your machine · 50 kits across 10 styles" },
 
-  { id:"oriental-instrument", name:"Oriental Instrument — Full Version (280+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
+  { id:"oriental-instrument", yt:"F-H8_4urmAo", name:"Oriental Instrument — Full Version (280+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
     tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"20",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
@@ -57,13 +58,13 @@ window.VSTS = [
     buy:"xaziro", demo:"",
     note:"808 · 3 bass modes" },
 
-  { id:"vice-city", name:"Vice City — VST Synthesizer", img:"img/vst/vice-city-vst.jpg", category:"instrument",
+  { id:"vice-city", yt:"oadLL3JJYD0", name:"Vice City — VST Synthesizer", img:"img/vst/vice-city-vst.jpg", category:"instrument",
     tags:["Synthwave","VST3 · Standalone"], price:"10",
     buy:"ykdzli", demo:"",
     preview:"assets/products/vice-city/vice-city-card.mp4",
     note:"70 presets" },
 
-  { id:"neon-synth-80s", name:"NEON SYNTH 80s — Synthwave Polysynth", img:"img/vst/neon-synth-80s.jpg", category:"instrument",
+  { id:"neon-synth-80s", yt:"hU39w6LhcAY", name:"NEON SYNTH 80s — Synthwave Polysynth", img:"img/vst/neon-synth-80s.jpg", category:"instrument",
     tags:["Synthwave · 80s","6 Presets","VST3 · Standalone"], price:"0", free:true, badge:"✅ FREE",
     buy:"neon-synth-80s", demo:"",
     note:"100% FREE · dual-oscillator synth · 6 synthwave presets" },

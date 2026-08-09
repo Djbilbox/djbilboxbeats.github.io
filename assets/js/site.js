@@ -701,9 +701,20 @@ function vstCard(p){
     ? `<video class="card-preview" src="${p.preview}" muted loop playsinline preload="none" aria-hidden="true"
         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .25s ease;pointer-events:none"></video>`
     : '';
+  /* Pastille "demo video" quand le produit a une video YouTube (champ `yt`).
+     Elle ouvre la fenetre YouTube deja utilisee ailleurs sur le site plutot
+     que d'emmener le visiteur hors de la boutique. Purement additive : une
+     fiche sans `yt` s'affiche exactement comme avant. */
+  const ytBadge = p.yt
+    ? `<button type="button" class="card-yt" data-yt="${p.yt}" aria-label="Voir la demo video"
+        style="position:absolute;right:10px;bottom:10px;z-index:3;display:inline-flex;align-items:center;gap:6px;
+               background:rgba(10,10,14,.82);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.66rem;
+               font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:6px 10px;border-radius:8px;
+               cursor:pointer;backdrop-filter:blur(4px)"><i class="fa-brands fa-youtube" style="color:#ff3b3b"></i> Demo</button>`
+    : '';
   const media = dHref
-    ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}<span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
-    : `<div class="card-media">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}</div>`;
+    ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}<span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
+    : `<div class="card-media">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}</div>`;
   const titleHtml = dHref ? `<a href="${dHref}"><h3 class="card-title">${p.name}</h3></a>` : `<h3 class="card-title">${p.name}</h3>`;
   const descHtml = p.desc ? `<p class="card-desc" style="color:var(--text-3);font-size:.68rem;line-height:1.4;margin:2px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${p.desc}</p>` : '';
   el.innerHTML = `
@@ -723,6 +734,16 @@ function vstCard(p){
     const vid = el.querySelector('.card-preview');
     box.addEventListener('mouseenter', ()=>{ vid.style.opacity='1'; vid.play().catch(()=>{}); });
     box.addEventListener('mouseleave', ()=>{ vid.style.opacity='0'; vid.pause(); });
+  }
+  const ytBtn = el.querySelector('.card-yt');
+  if(ytBtn){
+    ytBtn.addEventListener('click', e=>{
+      /* La pastille est posee sur un <a> : sans stopper l'evenement, le clic
+         ouvrirait la fiche produit en meme temps que la video. */
+      e.preventDefault(); e.stopPropagation();
+      if(typeof playYT === 'function') playYT(ytBtn.dataset.yt, p.name);
+      else window.open('https://www.youtube.com/watch?v='+ytBtn.dataset.yt, '_blank', 'noopener');
+    });
   }
   return el;
 }
