@@ -28,12 +28,14 @@ window.VSTS = [
      Two entries on purpose: the free demo is the entry point, the bundle is
      the product. `price` matches the real Gumroad price ($0+ and $50). */
   { id:"station-synth-bundle", name:"STATION SYNTH — Legendary Bundle (4128 presets)", img:"img/vst/station-synth-bundle.jpg", category:"instrument",
+    detail:"station-synth-bundle.html",
     tags:["4128 presets · 44 wavetables","11 country libraries · 5 skins","VST3 · AU · Standalone · Win/Mac"], price:"50", badge:"🔥 New",
     buy:"station-synth-legendary-bundle",
     demo:"station-synth-demo",
     note:"Wavetable synth · 4128 presets · 11 libraries · Windows & macOS" },
 
   { id:"station-synth-demo", name:"STATION SYNTH — Free Demo (50 presets)", img:"img/vst/station-synth-demo.jpg", category:"instrument",
+    detail:"station-synth-demo.html",
     tags:["50 presets · 14 wavetables","Same engine, nothing crippled","VST3 · AU · Standalone · Win/Mac"], price:"0", free:true, badge:"✅ FREE",
     buy:"station-synth-demo", demo:"",
     note:"100% FREE · full engine · 50 presets · upgrade keeps your install" },
