@@ -30,12 +30,12 @@ window.VSTS = [
     note:"Every plugin I make · every future release included · one payment" },
 
   /* ========== EFFECTS ========== */
-  { id:"matrix-modular", yt:"DPoCVD-eK3w", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
+  { id:"matrix-modular", yt:"DPoCVD-eK3w", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/ui/matrix-modular-card.jpg", category:"effect",
     tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], tier:"pro", price:"97",
     buy:"ocpoej", demo:"",
     note:"Stereo modulation · auto-pan · westcoast oriental colour" },
 
-  { id:"mastering", name:"MASTERING — Pro VST3 Mastering Limiter", img:"img/vst/mastering.jpg", category:"effect",
+  { id:"mastering", name:"MASTERING — Pro VST3 Mastering Limiter", img:"img/vst/ui/mastering-card.jpg", category:"effect",
     tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], tier:"pro", price:"97", badge:"🆕 New",
     buy:"mastering", demo:"",
     note:"Transparent mastering limiter · studio-quality peak control" },
@@ -45,7 +45,7 @@ window.VSTS = [
      Apeshyt Rampage) et PRO (tier "pro"). BIGBASS et VICE CITY n'ont pas
      encore de build BASIC — à produire, cf. rapport du 12 août 2026. */
   /* STATION SYNTH — added 2026-08-09. */
-  { id:"station-synth-bundle", yt:"_YLj6CONTXU", name:"STATION SYNTH PRO — Legendary Edition (4128 presets)", img:"img/vst/station-synth-bundle.jpg", category:"instrument",
+  { id:"station-synth-bundle", yt:"_YLj6CONTXU", name:"STATION SYNTH PRO — Legendary Edition (4128 presets)", img:"img/vst/ui/station-synth-card.jpg", category:"instrument",
     detail:"station-synth-bundle.html",
     preview:"assets/products/station-synth/station-synth-card.mp4",
     tags:["4128 presets · 44 wavetables","11 country libraries · 4 skins","VST3 · AU · Standalone · Win/Mac"], tier:"legendary", price:"697", badge:"🔥 New",
@@ -53,41 +53,40 @@ window.VSTS = [
     demo:"station-synth-demo",
     note:"Wavetable synth · 4128 presets · 11 libraries · Windows & macOS" },
 
-  { id:"station-synth-demo", yt:"Hd6PJpDXZIQ", name:"STATION SYNTH BASIC — Free (50 presets)", img:"img/vst/station-synth-demo.jpg", category:"instrument",
+  { id:"station-synth-demo", yt:"Hd6PJpDXZIQ", name:"STATION SYNTH BASIC — Free (50 presets)", img:"img/vst/ui/station-synth-alt-card.jpg", category:"instrument",
     detail:"station-synth-demo.html",
     tags:["50 presets · 14 wavetables","Same engine, nothing crippled","VST3 · AU · Standalone · Win/Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"station-synth-demo", demo:"",
     note:"100% FREE BASIC · full engine · 50 presets · upgrade keeps your install" },
 
-  { id:"mpc-2026", yt:"supwohrB7xg", name:"MPC 2026 BASIC — Beat Machine (16 Pads)", img:"img/vst/ui/mpc-2026-hero.png", category:"instrument",
+  { id:"mpc-2026", yt:"supwohrB7xg", name:"MPC 2026 BASIC — Beat Machine (16 Pads)", img:"img/vst/ui/mpc-2026-card.jpg", category:"instrument",
     tags:["16 pads · 50 kits","Sequencer · MIDI 36-51","VST3 · AU · Win/Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"mpc-2026", demo:"",
     note:"100% FREE BASIC · plays the samples already on your machine · 50 kits across 10 styles" },
 
-  { id:"oriental-instrument", yt:"F-H8_4urmAo", name:"ORIENTAL INSTRUMENT PRO — 280+ Instruments", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
+  { id:"oriental-instrument", yt:"F-H8_4urmAo", name:"ORIENTAL INSTRUMENT PRO — 280+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
     tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], tier:"pro", price:"97",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
-    thumb:"assets/products/oriental-instrument/oriental-instrument-card.jpg",
     note:"Full 280+ instruments · free BASIC available" },
 
-  { id:"bigbass", name:"BIGBASS PRO — LA Lowrider Bass", img:"img/vst/bigbass-vst.jpg", category:"instrument",
+  { id:"bigbass", name:"BIGBASS PRO — LA Lowrider Bass", img:"img/vst/ui/bigbass-card.jpg", category:"instrument",
     tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], tier:"pro", price:"97",
     buy:"xaziro", demo:"",
     note:"808 · 3 bass modes" },
 
-  { id:"vice-city", yt:"oadLL3JJYD0", name:"VICE CITY PRO — VST Synthesizer", img:"img/vst/vice-city-vst.jpg", category:"instrument",
+  { id:"vice-city", yt:"oadLL3JJYD0", name:"VICE CITY PRO — VST Synthesizer", img:"img/vst/ui/vice-city-card.jpg", category:"instrument",
     tags:["Synthwave","VST3 · Standalone"], tier:"pro", price:"97",
     buy:"ykdzli", demo:"",
     preview:"assets/products/vice-city/vice-city-card.mp4",
     note:"70 presets" },
 
-  { id:"neon-synth-80s", yt:"hU39w6LhcAY", name:"NEON SYNTH 80s BASIC — Synthwave Polysynth", img:"img/vst/neon-synth-80s.jpg", category:"instrument",
+  { id:"neon-synth-80s", yt:"hU39w6LhcAY", name:"NEON SYNTH 80s BASIC — Synthwave Polysynth", img:"img/vst/ui/neon-synth-80s-card.jpg", category:"instrument",
     tags:["Synthwave · 80s","6 Presets","VST3 · Standalone"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"neon-synth-80s", demo:"",
     note:"100% FREE BASIC · dual-oscillator synth · 6 synthwave presets" },
 
-  { id:"oriental-instrument-free", name:"ORIENTAL INSTRUMENT BASIC — Free (50+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
+  { id:"oriental-instrument-free", name:"ORIENTAL INSTRUMENT BASIC — Free (50+ Instruments)", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
     tags:["50+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"oriental-instrument-demo-free-Download", demo:"",
     note:"100% FREE BASIC · Try 50+ instruments · PRO version available" },

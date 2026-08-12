@@ -679,10 +679,15 @@ function vstCard(p){
   const tags = (p.tags||[]).slice(0,2).map(t=>`<span class="tag">${t}</span>`).join('');
   const old = p.old ? `<span class="old">$${p.old}</span>` : '';
   const soon = String(p.price).toUpperCase()==='SOON';
+  /* Pastille d'economie, comme les cartes d'Apeshyt : le montant reellement
+     epargne parle plus fort que le pourcentage. Calculee, jamais saisie —
+     pricing.js pose `old` et `price`, elle en decoule.                  */
+  const saved = Math.round((parseFloat(p.old)||0) - (parseFloat(p.price)||0));
+  const save = saved > 0 ? `<span class="djb-save">SAVE $${saved}</span>` : '';
   const priceHtml = soon ? `<span class="now" style="font-size:.82rem;color:var(--text-3)">Coming soon</span>`
                    : p.free ? `<span class="now" style="color:var(--green)">FREE</span>`
                    : String(p.price).startsWith('~') ? `<span class="now" style="font-size:.86rem">${p.price}</span>`
-                   : `<span class="now">$${p.price}</span>${old}`;
+                   : `<span class="now">$${p.price}</span>${old}${save}`;
   const demo = p.demo ? `<button class="btn-cta ghost" onclick="buy('${p.demo.replace(/'/g,"\\'")}')"><i class="fa-solid fa-download"></i> Demo</button>` : '';
   /* External / partner products: link straight out instead of the Gumroad cart.
      `p.url` = full external URL. `p.free` = free download (green "Get Free" button). */
