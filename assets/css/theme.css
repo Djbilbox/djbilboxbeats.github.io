@@ -11,8 +11,12 @@
      The old JOKA red/purple is kept below, commented, so the whole
      palette can be reverted by swapping the two blocks. ---- */
   --bg:#0A0A0B; --surface:#131315; --surface-2:#1B1B1E; --surface-3:#26262A;
-  --accent:#F5B921; --accent-h:#D89E0E; --accent-glow:rgba(245,185,33,.14);
-  --accent-bright:#FFD45E; --accent-plat:#E5E4E2; --accent-chrome:#C0C0C0;
+  /* Rouge + vert : les couleurs du drapeau algerien (bil, 13 aout 2026).
+     L'ancien jaune est garde ici au cas ou :
+     --accent:#F5B921; --accent-h:#D89E0E; --accent-bright:#FFD45E;
+     --accent-glow:rgba(245,185,33,.14);                              */
+  --accent:#D21034; --accent-h:#B00D2B; --accent-glow:rgba(210,16,52,.16);
+  --accent-bright:#FF3B57; --accent-plat:#E5E4E2; --accent-chrome:#C0C0C0;
   --green:#1DB954; --text:#FFFFFF; --text-2:#B8B8BD; --text-3:#8A8A92; --text-4:#5F5F67;
   --border:rgba(255,255,255,.09);
   /* previous: --bg:#0c0714 --surface:#151022 --accent:#E60000 --accent-bright:#FF6633 */
