@@ -263,7 +263,7 @@ img{display:block;max-width:100%}
 .subnav{position:sticky;top:0;z-index:900;
   background:rgba(10,10,12,.95);backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border)}
-.subnav-inner{max-width:1180px;margin:0 auto;padding:8px 20px;
+.subnav-inner{max-width:1280px;margin:0 auto;padding:8px 20px;
   display:flex;align-items:center;gap:10px;overflow-x:auto;scrollbar-width:none}
 .subnav-inner::-webkit-scrollbar{display:none}
 .pill{flex:0 0 auto;font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
@@ -292,7 +292,7 @@ img{display:block;max-width:100%}
 /* Colonnes larges, façon catalogue Apeshyt : ~3 cartes par rangée sur un
    écran de bureau. À 95 px de largeur mini on tombait à 6 cartes par rangée,
    titres tronqués et prix collés au bouton — plus rien n'était lisible. */
-.grid{display:grid;gap:18px;
+.grid{display:grid;gap:24px;
   grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
 /* Plafonne a 3 colonnes comme le catalogue d'Apeshyt : en auto-fill pur, un
    ecran de 1900 px alignait 6 cartes minuscules. La largeur est bornee a
@@ -305,7 +305,7 @@ img{display:block;max-width:100%}
    alignes sur la meme colonne, cartes a ~380 px comme chez lui. */
 body[data-page="shop"] main.container,
 body[data-page="vst"] main.container,
-body[data-page="drumkits"] main.container{max-width:1180px}
+body[data-page="drumkits"] main.container{max-width:1280px}
 /* Sur une page catalogue, la pastille active dit deja quelle rubrique on
    regarde : le gros titre et son sur-titre orange n'ajoutaient que du bruit
    (« les textes, la dimension, c'est trop gros »). */
@@ -339,12 +339,12 @@ body[data-page="shop"] .shop-block{margin-top:14px!important}
   font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
   padding:4px 9px;border-radius:5px;backdrop-filter:blur(4px)}
 /* Accroche d'une ligne sous le titre, a la place de l'ancien encadre rouge */
-.card-tagline{color:var(--text-3);font-size:.73rem;line-height:1.4;margin:0;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-tagline{color:var(--text-3);font-size:.8rem;line-height:1.4;margin:0;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 /* Le bouton prend toute la largeur sous le prix : "ADD TO CART" en entier,
    comme chez lui, plutot qu'un "Add" ecrase contre le montant. */
-.card-actions{display:flex;gap:8px;width:100%}
-.card-actions .btn-cta{flex:1;justify-content:center;padding:10px 12px;font-size:.7rem}
+.card-actions{display:flex;gap:8px}
+.card-actions .btn-cta{justify-content:center;padding:9px 14px;font-size:.68rem}
 /* "FREE demo available" under the price of a paid pack */
 .pack-free-note{display:block;font-size:.56rem;font-weight:800;letter-spacing:.04em;
   text-transform:uppercase;color:var(--green);margin-top:1px}
@@ -360,7 +360,7 @@ body[data-page="shop"] .shop-block{margin-top:14px!important}
   display:flex;align-items:center;justify-content:center;font-size:1.1rem;
   box-shadow:0 6px 20px rgba(255,45,45,.5)}
 .card-body{padding:13px 14px 14px;display:flex;flex-direction:column;gap:7px;flex:1}
-.card-title{font-size:.92rem;font-weight:700;line-height:1.3;
+.card-title{font-size:1.15rem;font-weight:700;line-height:1.25;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .card-tags{display:flex;flex-wrap:wrap;gap:5px}
 .tag{font-size:.58rem;font-weight:600;color:var(--text-3);background:var(--surface-2);
@@ -368,8 +368,8 @@ body[data-page="shop"] .shop-block{margin-top:14px!important}
 .card-meta{display:flex;align-items:center;gap:8px;font-size:.68rem;color:var(--text-3);margin-top:2px}
 /* Le prix a besoin de sa propre ligne : prix barre + economie + bouton ne
    tiennent pas cote a cote dans une colonne de carte. */
-.card-foot{display:flex;flex-direction:column;align-items:stretch;gap:10px;
-  margin-top:auto;padding-top:12px;border-top:1px solid var(--border)}
+.card-foot{display:flex;flex-direction:row;align-items:center;justify-content:space-between;
+  gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:12px}
 .price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 .price .now{font-weight:800;font-size:1.25rem}
 .price .now.free{color:var(--green);font-size:1.05rem;letter-spacing:.03em}
@@ -581,3 +581,7 @@ body{top:0!important;position:static!important}
 .lang-wrap{display:none!important}          /* hide the "Sélectionner une langue / Fourni par Google" bar */
 #goog-gt-tt,.goog-te-balloon-frame,.goog-tooltip{display:none!important}
 .goog-text-highlight{background:none!important;box-shadow:none!important;color:inherit!important}
+
+/* Apeshyt n'affiche aucune pastille de tag sur ses cartes : deux lignes
+   de moins par carte, c'est la hauteur qui faisait « trop gros ». */
+.vst-card .card-tags{display:none}
