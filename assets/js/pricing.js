@@ -151,9 +151,9 @@ window.PRICING = (function () {
 
   const CSS = `
   .promo-strip{background:linear-gradient(90deg,#0e3b28,#123b2c 40%,#0b1a14);
-    border-bottom:1px solid rgba(180,255,214,.22);color:#eafff4;font-size:.76rem;
+    border-bottom:1px solid rgba(180,255,214,.22);color:#eafff4;font-size:.71rem;
     position:relative;z-index:60}
-  .promo-strip-in{max-width:1240px;margin:0 auto;padding:9px 18px;display:flex;
+  .promo-strip-in{max-width:1180px;margin:0 auto;padding:7px 18px;display:flex;
     align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
   .promo-strip .ps-tag{font-weight:800;letter-spacing:.08em;text-transform:uppercase;
     background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
