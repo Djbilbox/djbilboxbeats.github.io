@@ -14,8 +14,12 @@
             $0 product instead — the only pack whose demo is really free.
             Setting the product price to $0 would fix the demo but then the
             Gumroad storefront advertises the pack itself as $0.
-   Prices in USD. No sale running: SOLDES80 expired 30 July 2026 and was
-   removed from the site 1 Aug 2026.
+   `tier`: "pack" — le prix affiché est RÉÉCRIT au chargement par
+           assets/js/pricing.js, qui applique la remise en cours (4 promos
+           par mois) et colle le code Gumroad au lien d'achat. Le `price`
+           écrit ici est donc le prix CATALOGUE (barré), pas le prix payé.
+   Prices in USD. Promos tournantes depuis le 12 août 2026 — voir
+   assets/js/pricing.js pour le calendrier et les codes.
    ============================================================ */
 window.PACKS = [
   /* ---------- New release (2026) ---------- */
@@ -24,7 +28,7 @@ window.PACKS = [
     buy:"westcoast-vybes-vol01", demo:"westcoast-vybes-vol01-demo" },
 
   { id:"kit-drum-funk", name:"KIT DRUM FUNK — Professional Drum Kit", img:"img/packs/kit-drum-funk.jpg",
-    genre:"Funk", tags:["Funk","Drum Kit","MIDI","One-Shots"], price:"5",
+    genre:"Funk", tags:["Funk","Drum Kit","MIDI","One-Shots"], tier:"pack", price:"5",
     buy:"ejmwmz", demo:"ejmwmz" },
 
   { id:"west-side", name:"KIT DRUM WEST SIDE — 2Pac, Snoop Dogg & The Game", img:"img/packs/west-side.jpg",
@@ -33,7 +37,7 @@ window.PACKS = [
 
   /* ---------- Premium kits (2026) ---------- */
   { id:"tone-vault", name:"TONE VAULT — Ultimate Instrument One-Shots", img:"img/packs/tone-vault.jpg",
-    genre:"One-Shots", tags:["One-Shots","Instruments"], price:"16",
+    genre:"One-Shots", tags:["One-Shots","Instruments"], tier:"pack", price:"16",
     buy:"yrkzl" },
 
   { id:"void-signals", name:"VOID SIGNALS — 19GB SFX & Cinematic Suite", img:"img/packs/void-signals.jpg",
@@ -49,23 +53,23 @@ window.PACKS = [
     buy:"pohwt", demo:"pohwt" },
 
   { id:"vinyl-breaker", name:"VINYL BREAKER — Scratch & Vinyl Sample Kit", img:"img/packs/vinyl-breaker.jpg",
-    genre:"Hip-Hop", tags:["Vinyl","Hip-Hop"], price:"13",
+    genre:"Hip-Hop", tags:["Vinyl","Hip-Hop"], tier:"pack", price:"13",
     buy:"yecrn", demo:"yecrn" },
 
   { id:"neon-pulse", name:"NEON PULSE — House & Techno Drum Loops", img:"img/packs/neon-pulse.jpg",
-    genre:"House", tags:["House","Techno"], price:"12",
+    genre:"House", tags:["House","Techno"], tier:"pack", price:"12",
     buy:"argerk", demo:"argerk" },
 
   { id:"concrete-vault", name:"CONCRETE VAULT — Trap & Drill Drum Loops", img:"img/packs/concrete-vault.jpg",
-    genre:"Trap", tags:["Trap","Drill"], price:"12",
+    genre:"Trap", tags:["Trap","Drill"], tier:"pack", price:"12",
     buy:"ecrmh", demo:"ecrmh" },
 
   { id:"westcoast-chrome", name:"WESTCOAST CHROME — G-Funk Drum Loops", img:"img/packs/westcoast-chrome.jpg",
-    genre:"G-Funk", tags:["G-Funk","West Coast"], price:"13",
+    genre:"G-Funk", tags:["G-Funk","West Coast"], tier:"pack", price:"13",
     buy:"seuyup", demo:"seuyup" },
 
   { id:"etnic-ritmik", name:"ETNIC RITMIK — Afrobeat & Reggae Loops Vol.1", img:"img/packs/etnic-ritmik.jpg",
-    genre:"Afro", tags:["Afrobeat","Reggae"], price:"14",
+    genre:"Afro", tags:["Afrobeat","Reggae"], tier:"pack", price:"14",
     buy:"fkodxs", demo:"fkodxs" },
 
   /* ---------- Sample packs (Vol. series) ---------- */
@@ -86,7 +90,7 @@ window.PACKS = [
     buy:"czpvfx", demo:"czpvfx" },
 
   { id:"break-ya-neck-vol2", name:"Break Ya Neck — Hip-Hop Vol.2", img:"img/packs/break-ya-neck-vol2.jpg",
-    genre:"Hip-Hop", tags:["Hip-Hop","Drum Loops"], price:"11",
+    genre:"Hip-Hop", tags:["Hip-Hop","Drum Loops"], tier:"pack", price:"11",
     buy:"break-ya-neck-vol2", demo:"break-ya-neck-vol2" },
 
   { id:"ziploc-vol3", name:"Ziploc — Blue Pack Vol.3", img:"img/packs/ziploc-vol3.jpg",

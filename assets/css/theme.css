@@ -178,6 +178,21 @@ img{display:block;max-width:100%}
   filter:drop-shadow(0 4px 14px rgba(230,0,0,.35))}
 .mtop-logo img{width:auto;height:40px}
 
+/* Verrou de marque : médaillon + nom. Le médaillon porte « DJBILBOX BEATS »
+   gravé sur son anneau, illisible sous ~120 px — d'où le nom écrit à côté,
+   qui reste net à toutes les tailles. Remplace l'ancien logo chromé seul. */
+.brand-lockup{display:inline-flex;align-items:center;gap:11px;line-height:1;
+  text-decoration:none}
+.brand-lockup img{width:auto;height:42px;display:block;
+  filter:drop-shadow(0 3px 10px rgba(0,0,0,.55))}
+.brand-lockup .bl-name{font-family:var(--font-a);font-weight:700;font-size:1.02rem;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--text);white-space:nowrap}
+.brand-lockup .bl-name span{color:var(--accent)}
+@media(max-width:900px){
+  .brand-lockup img{height:34px}
+  .brand-lockup .bl-name{display:none}   /* place au menu : l'emblème suffit */
+}
+
 /* ---------- TOP BAR (replaces the old fixed left sidebar) ---------- */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:1000;
   background:rgba(8,6,12,.88);backdrop-filter:blur(14px);

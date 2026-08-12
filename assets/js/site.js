@@ -67,7 +67,12 @@ function mountSidebar(active){
   header.className='topbar';
   header.innerHTML = `
     <div class="topbar-in">
-      <a href="/index.html" class="brand brand-logo"><img src="/img/djbilbox-logo.png" alt="DJBILBOX BEATS"></a>
+      <!-- Emblème + nom écrit à côté : le médaillon seul est illisible à 40 px
+           (c'était le défaut de l'ancien logo chromé). -->
+      <a href="/index.html" class="brand brand-lockup" aria-label="DJBILBOX BEATS">
+        <img src="/img/djbilbox-emblem.png" alt="">
+        <span class="bl-name">DJBILBOX <span>BEATS</span></span>
+      </a>
 
       <nav class="top-nav">${topLinks}</nav>
 
