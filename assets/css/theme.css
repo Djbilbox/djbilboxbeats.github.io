@@ -12,9 +12,8 @@
      palette can be reverted by swapping the two blocks. ---- */
   --bg:#0A0A0B; --surface:#131315; --surface-2:#1B1B1E; --surface-3:#26262A;
   /* Rouge + vert : les couleurs du drapeau algerien (bil, 13 aout 2026).
-     L'ancien jaune est garde ici au cas ou :
-     --accent:#F5B921; --accent-h:#D89E0E; --accent-bright:#FFD45E;
-     --accent-glow:rgba(245,185,33,.14);                              */
+     L'ancien jaune, si jamais il faut revenir en arriere :
+     accent F5B921 · hover D89E0E · bright FFD45E · glow 245,185,33  */
   --accent:#D21034; --accent-h:#B00D2B; --accent-glow:rgba(210,16,52,.16);
   --accent-bright:#FF3B57; --accent-plat:#E5E4E2; --accent-chrome:#C0C0C0;
   --green:#1DB954; --text:#FFFFFF; --text-2:#B8B8BD; --text-3:#8A8A92; --text-4:#5F5F67;
@@ -42,7 +41,7 @@ img{display:block;max-width:100%}
    ============================================================ */
 .hero2{position:relative;overflow:hidden;padding:72px 0 40px;
   background:
-    radial-gradient(1000px 560px at 78% 30%,rgba(245,185,33,.09),transparent 62%),
+    radial-gradient(1000px 560px at 78% 30%,rgba(210,16,52,.09),transparent 62%),
     radial-gradient(720px 480px at 6% 92%,rgba(255,255,255,.035),transparent 66%),
     var(--bg)}
 .hero2-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
@@ -63,7 +62,7 @@ img{display:block;max-width:100%}
 .hero2-art{perspective:1200px}
 .hero2-art img{width:100%;border-radius:16px;
   transform:rotateY(-7deg) rotateX(2deg);transition:transform .6s cubic-bezier(.2,.7,.2,1);
-  filter:drop-shadow(0 30px 70px rgba(0,0,0,.85)) drop-shadow(0 0 70px rgba(245,185,33,.14))}
+  filter:drop-shadow(0 30px 70px rgba(0,0,0,.85)) drop-shadow(0 0 70px rgba(210,16,52,.14))}
 .hero2-art:hover img{transform:rotateY(-2deg) rotateX(0) scale(1.02)}
 @media(max-width:900px){
   .hero2-grid{grid-template-columns:1fr;gap:30px}
