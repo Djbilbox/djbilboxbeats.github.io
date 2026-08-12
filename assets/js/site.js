@@ -29,7 +29,7 @@ const DISCORD_URL = 'https://discord.gg/7HeMSvbN';
    Each page sets <body data-page="KEY"> to highlight its link.
    ============================================================ */
 /* First NAV_SPLIT entries render under "Browse", the rest under "Library". */
-const NAV_SPLIT = 6;
+const NAV_SPLIT = 7;
 /* La barre du haut EST le catalogue, comme chez Apeshyt : chaque rubrique de
    la boutique y a son entree et ouvre l'onglet correspondant de shop.html.
    Beatmaker est descendu dans le tiroir (bil, 13 aout 2026). */
@@ -39,6 +39,7 @@ const NAV = [
   { key:'effects',     label:'Effects',      href:'/shop.html#effects',        icon:'fa-wave-square' },
   { key:'kits',        label:'Drum Kits',    href:'/shop.html#kits',           icon:'fa-drum' },
   { key:'free',        label:'Free',         href:'/shop.html#free',           icon:'fa-gift' },
+  { key:'video',       label:'Video Studio', href:'/video-studio.html',        icon:'fa-clapperboard' },
   { key:'setup',       label:'Info',         href:'/studio-setup.html',        icon:'fa-circle-info' },
   /* --- au-dela de NAV_SPLIT : uniquement dans le tiroir et le pied de page ---
      « Shop » et « Beatmaker » ont ete retires de la navigation le 13 aout 2026 :
@@ -47,7 +48,6 @@ const NAV = [
   { key:'music',       label:'Music',        href:'/beats-redesign.html',      icon:'fa-music' },
   { key:'oriental',    label:'Oriental VST', href:'/oriental-instrument.html', icon:'fa-star' },
   { key:'mastering',   label:'AI Mastering', href:'/ai-mastering.html',        icon:'fa-sliders' },
-  { key:'video',       label:'Video Studio', href:'/video-studio.html',        icon:'fa-clapperboard' },
   { key:'contact',     label:'Contact',      href:'/contact.html',             icon:'fa-envelope' },
   { key:'account',     label:'My Account',   href:'/account.html',             icon:'fa-user' },
   { key:'license',     label:'License',      href:'/license.html',             icon:'fa-id-card' },
