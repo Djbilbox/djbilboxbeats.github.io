@@ -772,9 +772,17 @@ function renderVsts(list, containerId){
   if(!container) return;
   container.innerHTML='';
 
-  const bundles=(list||[]).filter(p=>p.category==='bundle');
-  const effects=(list||[]).filter(p=>p.category==='effect');
-  const instruments=(list||[]).filter(p=>p.category==='instrument'||!p.category);
+  /* Depuis le 12 aout 2026 cette page ne montre que les articles du store
+     Gumroad DJBILBOX BEATS. Le materiel partenaire (FL Studio, VirtualDJ) et
+     les VST gratuits d'autres editeurs (Vital, Valhalla, Apeshyt Rampage…)
+     gardent leurs fiches — fl-studio.html, free-vst.html, apeshyt-rampage.html —
+     mais ne s'affichent plus dans le catalogue.                          */
+  const mine=(list||[]).filter(p=>p.category!=='partner' && p.category!=='free' && !p.url);
+
+  const bundles=mine.filter(p=>p.tier==='bundle'||p.tier==='legendary'||p.tier==='oriental');
+  const effects=mine.filter(p=>p.category==='effect');
+  const freeMine=mine.filter(p=>p.free);
+  const instruments=mine.filter(p=>!p.free && p.tier==='pro' && p.category!=='effect');
 
   const frag=document.createDocumentFragment();
 
@@ -788,22 +796,28 @@ function renderVsts(list, containerId){
     return h;
   };
 
-  // BUNDLE section
+  // BUNDLES — le plugin avec ses extensions, l'offre qui rapporte
   if(bundles.length>0){
-    frag.appendChild(mkHead('🎁 VST Bundle'));
+    frag.appendChild(mkHead('🎁 Bundles'));
     bundles.forEach(p=>frag.appendChild(vstCard(p)));
   }
 
-  // EFFECTS section
+  // PLUGINS — les instruments vendus seuls
+  if(instruments.length>0){
+    frag.appendChild(mkHead('🎹 Plugins'));
+    instruments.forEach(p=>frag.appendChild(vstCard(p)));
+  }
+
+  // EFFECTS
   if(effects.length>0){
     frag.appendChild(mkHead('⚙️ Audio Effects'));
     effects.forEach(p=>frag.appendChild(vstCard(p)));
   }
 
-  // INSTRUMENTS section
-  if(instruments.length>0){
-    frag.appendChild(mkHead('🎹 Instruments'));
-    instruments.forEach(p=>frag.appendChild(vstCard(p)));
+  // FREE — les versions BASIC, la porte d'entree facon Rampage
+  if(freeMine.length>0){
+    frag.appendChild(mkHead('✅ Free Plugins'));
+    freeMine.forEach(p=>frag.appendChild(vstCard(p)));
   }
 
   container.appendChild(frag);

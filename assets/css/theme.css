@@ -294,6 +294,9 @@ img{display:block;max-width:100%}
    titres tronqués et prix collés au bouton — plus rien n'était lisible. */
 .grid{display:grid;gap:18px;
   grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+/* Plafonne a 3 colonnes comme le catalogue d'Apeshyt : en auto-fill pur, un
+   ecran de 1900 px alignait 6 cartes minuscules. */
+@media(min-width:980px){ .grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);
   overflow:hidden;display:flex;flex-direction:column;transition:.22s ease;position:relative}
 .card:hover{transform:translateY(-4px);border-color:rgba(255,45,45,.4);
