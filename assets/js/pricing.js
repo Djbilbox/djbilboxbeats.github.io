@@ -29,7 +29,7 @@ window.PRICING = (function () {
                    librairies qui se vendent — et il y en a 7× plus que les
                    6 extensions à $343 d'Apeshyt.
      `bundle`    = PRO BUNDLE, tout le catalogue ($1182 pièce par pièce). */
-  const LIST = { pro: 97, legendary: 697, bundle: 997 };
+  const LIST = { pro: 97, oriental: 130, legendary: 697, bundle: 997 };
 
   /* Le calendrier. `day` = jour du mois où la période démarre.
      `pro`/`legendary`/`bundle` = prix affiché pendant la période.
@@ -37,20 +37,20 @@ window.PRICING = (function () {
      `codes` = codes de réduction Gumroad correspondants.            */
   const CAMPAIGNS = [
     { day: 1,  key: 'drop',    name: 'NEW MONTH DROP',       tag: '🔥 New month drop',
-      pro: 67, legendary: 497, bundle: 597, packOff: 30,
-      codes: { pro: 'DROP67', legendary: 'SYNTH497', bundle: 'BUNDLE597', pack: 'PACK30' } },
+      pro: 67, oriental: 97, legendary: 497, bundle: 597, packOff: 30,
+      codes: { pro: 'DROP67', oriental: 'ORI97', legendary: 'SYNTH497', bundle: 'BUNDLE597', pack: 'PACK30' } },
 
     { day: 8,  key: 'flash',   name: 'MID-MONTH FLASH SALE', tag: '⚡ Flash sale',
-      pro: 47, legendary: 343, bundle: 497, packOff: 50,
-      codes: { pro: 'FLASH47', legendary: 'SYNTH343', bundle: 'BUNDLE497', pack: 'PACK50' } },
+      pro: 47, oriental: 67, legendary: 343, bundle: 497, packOff: 50,
+      codes: { pro: 'FLASH47', oriental: 'ORI67', legendary: 'SYNTH343', bundle: 'BUNDLE497', pack: 'PACK50' } },
 
     { day: 15, key: 'proweek', name: 'PRO WEEK',             tag: '💎 Pro week',
-      pro: 77, legendary: 597, bundle: 797, packOff: 20,
-      codes: { pro: 'PROWEEK77', legendary: 'SYNTH597', bundle: 'BUNDLE797', pack: 'PACK20' } },
+      pro: 77, oriental: 110, legendary: 597, bundle: 797, packOff: 20,
+      codes: { pro: 'PROWEEK77', oriental: 'ORI110', legendary: 'SYNTH597', bundle: 'BUNDLE797', pack: 'PACK20' } },
 
     { day: 22, key: 'blowout', name: 'END OF MONTH BLOWOUT', tag: '💣 Blowout',
-      pro: 30, legendary: 197, bundle: 297, packOff: 60,
-      codes: { pro: 'BLOWOUT30', legendary: 'SYNTH197', bundle: 'BUNDLE297', pack: 'PACK60' } }
+      pro: 30, oriental: 47, legendary: 197, bundle: 297, packOff: 60,
+      codes: { pro: 'BLOWOUT30', oriental: 'ORI47', legendary: 'SYNTH197', bundle: 'BUNDLE297', pack: 'PACK60' } }
   ];
 
   /* ---------- période courante + date de fin ---------- */
@@ -79,6 +79,7 @@ window.PRICING = (function () {
   function priceFor(tier, listPrice, camp) {
     camp = camp || current();
     if (tier === 'pro')       return { now: camp.pro,       list: LIST.pro,       code: camp.codes.pro };
+    if (tier === 'oriental')  return { now: camp.oriental,  list: LIST.oriental,  code: camp.codes.oriental };
     if (tier === 'legendary') return { now: camp.legendary, list: LIST.legendary, code: camp.codes.legendary };
     if (tier === 'bundle')    return { now: camp.bundle,    list: LIST.bundle,    code: camp.codes.bundle };
     if (tier === 'pack') {

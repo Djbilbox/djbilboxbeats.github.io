@@ -244,7 +244,7 @@ window.PRODUCTS = {
     type:"vst", name:"Oriental Instrument — Full Version", sub:"Arabic & Oriental Rompler — 280+ Instruments",
     tagline:"280+ authentic oriental instruments & sounds in one pro plug-in — oud, qanun, ney, saz, strings & percussion. Full library.",
     cover:"img/vst/oriental-instrument-box.jpg", accent:"#e8a33d", accent2:"#c0392b",
-    tier:"pro", price:"97",
+    tier:"oriental", price:"130",
     note:"Full 280+ instruments",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",

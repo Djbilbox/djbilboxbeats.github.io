@@ -64,8 +64,8 @@ window.VSTS = [
     buy:"mpc-2026", demo:"",
     note:"100% FREE BASIC · plays the samples already on your machine · 50 kits across 10 styles" },
 
-  { id:"oriental-instrument", yt:"F-H8_4urmAo", name:"ORIENTAL INSTRUMENT PRO — 280+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
-    tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], tier:"pro", price:"97",
+  { id:"oriental-instrument", yt:"F-H8_4urmAo", name:"ORIENTAL INSTRUMENT PRO BUNDLE — 280+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
+    tags:["280+ instruments · Maqam engine","Free BASIC included","Win · Mac"], tier:"oriental", price:"130",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
     note:"Full 280+ instruments · free BASIC available" },

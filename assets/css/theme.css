@@ -289,8 +289,11 @@ img{display:block;max-width:100%}
 /* ============================================================
    CARD GRID — products / beats / VST
    ============================================================ */
-.grid{display:grid;gap:8px;
-  grid-template-columns:repeat(auto-fill,minmax(95px,1fr))}
+/* Colonnes larges, façon catalogue Apeshyt : ~3 cartes par rangée sur un
+   écran de bureau. À 95 px de largeur mini on tombait à 6 cartes par rangée,
+   titres tronqués et prix collés au bouton — plus rien n'était lisible. */
+.grid{display:grid;gap:18px;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);
   overflow:hidden;display:flex;flex-direction:column;transition:.22s ease;position:relative}
 .card:hover{transform:translateY(-4px);border-color:rgba(255,45,45,.4);
@@ -321,18 +324,21 @@ img{display:block;max-width:100%}
 .card-play i{width:54px;height:54px;border-radius:50%;background:var(--accent);color:#fff;
   display:flex;align-items:center;justify-content:center;font-size:1.1rem;
   box-shadow:0 6px 20px rgba(255,45,45,.5)}
-.card-body{padding:9px 10px 11px;display:flex;flex-direction:column;gap:5px;flex:1}
-.card-title{font-size:.82rem;font-weight:700;line-height:1.25;
-  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
-.card-tags{display:flex;flex-wrap:wrap;gap:4px}
-.tag{font-size:.56rem;font-weight:600;color:var(--text-3);background:var(--surface-2);
-  padding:3px 6px;border-radius:4px;text-transform:uppercase;letter-spacing:.03em}
-.card-meta{display:flex;align-items:center;gap:8px;font-size:.62rem;color:var(--text-3);margin-top:2px}
-.card-foot{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:auto;padding-top:5px}
-.price{display:flex;align-items:baseline;gap:6px}
-.price .now{font-weight:800;font-size:.92rem}
-.price .now.free{color:var(--green);font-size:.8rem;letter-spacing:.03em}
-.price .old{font-size:.78rem;color:var(--text-4);text-decoration:line-through}
+.card-body{padding:15px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-title{font-size:1rem;font-weight:700;line-height:1.3;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:.62rem;font-weight:600;color:var(--text-3);background:var(--surface-2);
+  padding:4px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.03em}
+.card-meta{display:flex;align-items:center;gap:8px;font-size:.68rem;color:var(--text-3);margin-top:2px}
+/* Le prix a besoin de sa propre ligne : prix barre + economie + bouton ne
+   tiennent pas cote a cote dans une colonne de carte. */
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  flex-wrap:wrap;margin-top:auto;padding-top:10px;border-top:1px solid var(--border)}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price .now{font-weight:800;font-size:1.25rem}
+.price .now.free{color:var(--green);font-size:1.05rem;letter-spacing:.03em}
+.price .old{font-size:.9rem;color:var(--text-4);text-decoration:line-through}
 .btn-cta{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
   padding:7px 11px;border-radius:6px;background:var(--accent);color:#fff;border:none;cursor:pointer;
   transition:.18s;display:inline-flex;align-items:center;gap:5px}
@@ -474,7 +480,11 @@ img{display:block;max-width:100%}
 /* the sticky sub-nav sits directly under the fixed top bar */
 .subnav{top:var(--hdr-h)}
 @media(max-width:560px){
-  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px}
+  /* une seule colonne sur telephone : deux cartes cote a cote redonnaient
+     les titres tronques qu'on vient de corriger */
+  .grid{grid-template-columns:1fr;gap:14px}
+  .card-title{font-size:.95rem}
+  .price .now{font-size:1.15rem}
   .container{padding:0 16px}
   .promo-bar{font-size:.7rem;gap:8px}
   .promo-bar .promo-close{position:static}
