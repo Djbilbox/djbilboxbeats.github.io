@@ -688,6 +688,14 @@ function vstCard(p){
                    : p.free ? `<span class="now" style="color:var(--green)">FREE</span>`
                    : String(p.price).startsWith('~') ? `<span class="now" style="font-size:.86rem">${p.price}</span>`
                    : `<span class="now">$${p.price}</span>${old}${save}`;
+  /* Pastille de categorie en haut a droite, comme le "PLUGIN" d'Apeshyt :
+     elle dit d'un coup d'oeil a quelle famille appartient la carte.     */
+  const kind = p.tier === 'bundle' ? 'BUNDLE'
+             : p.tier === 'legendary' || p.tier === 'oriental' ? 'PRO BUNDLE'
+             : p.free ? 'FREE'
+             : p.category === 'effect' ? 'EFFECT'
+             : p.url ? 'PARTNER' : 'PLUGIN';
+  const kindHtml = `<span class="card-kind">${kind}</span>`;
   const demo = p.demo ? `<button class="btn-cta ghost" onclick="buy('${p.demo.replace(/'/g,"\\'")}')"><i class="fa-solid fa-download"></i> Demo</button>` : '';
   /* External / partner products: link straight out instead of the Gumroad cart.
      `p.url` = full external URL. `p.free` = free download (green "Get Free" button). */
@@ -699,9 +707,11 @@ function vstCard(p){
   } else if(soon){
     mainBtn = `<button class="btn-cta ghost" onclick="window.open(GUMROAD_STORE,'_blank')"><i class="fa-solid fa-bell"></i> Notify</button>`;
   } else {
-    mainBtn = `<button class="btn-cta" onclick="addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
+    mainBtn = `<button class="btn-cta" onclick="addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>`;
   }
-  const noteHtml = p.note ? `<div style="background:var(--accent-glow);border:1px solid rgba(255,45,45,.3);border-radius:5px;padding:5px 9px;font-size:.64rem;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-top:2px">🎟️ ${p.note}</div>` : '';
+  /* Une seule ligne d'accroche sous le titre, comme chez Apeshyt. L'ancien
+     encadre rouge "🎟️ …" mangeait la carte et faisait doublon avec les tags. */
+  const noteHtml = p.note ? `<p class="card-tagline">${p.note}</p>` : '';
   const el=document.createElement('article');
   el.className='card';
   const dHref = p.detail ? p.detail : (p.id ? `product.html?id=${p.id}` : null);
@@ -723,20 +733,20 @@ function vstCard(p){
                cursor:pointer;backdrop-filter:blur(4px)"><i class="fa-brands fa-youtube" style="color:#ff3b3b"></i> Demo</button>`
     : '';
   const media = dHref
-    ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}<span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
-    : `<div class="card-media">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}</div>`;
+    ? `<a class="card-media" href="${dHref}">${badge}${kindHtml}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}<span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
+    : `<div class="card-media">${badge}${kindHtml}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}</div>`;
   const titleHtml = dHref ? `<a href="${dHref}"><h3 class="card-title">${p.name}</h3></a>` : `<h3 class="card-title">${p.name}</h3>`;
-  const descHtml = p.desc ? `<p class="card-desc" style="color:var(--text-3);font-size:.68rem;line-height:1.4;margin:2px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${p.desc}</p>` : '';
+  const descHtml = p.desc ? `<p class="card-tagline">${p.desc}</p>` : '';
+  /* Une accroche suffit : si `desc` existe, `note` ferait doublon. */
   el.innerHTML = `
     ${media}
     <div class="card-body">
       ${titleHtml}
+      ${descHtml || noteHtml}
       <div class="card-tags">${tags}</div>
-      ${descHtml}
-      ${noteHtml}
       <div class="card-foot">
         <div class="price">${priceHtml}</div>
-        <div style="display:flex;gap:6px">${soon?'':demo}${mainBtn}</div>
+        <div class="card-actions">${soon?'':demo}${mainBtn}</div>
       </div>
     </div>`;
   if(p.preview){
