@@ -20,7 +20,7 @@
 <meta name="twitter:image" content="https://djbilboxbeats.com/img/vst/oriental-instrument-box.jpg">
 
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26081306">
+<link rel="stylesheet" href="assets/css/theme.css?v=26081307">
 <link rel="stylesheet" href="assets/css/modern-effects.css?v=26072710">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -70,10 +70,10 @@
      falls back to the evergreen "931 Beats Free" bar. -->
 
 <!-- ============ SCRIPTS ============ -->
-<script src="assets/js/vst-data.js?v=26081306"></script>
-<script src="assets/js/packs-data.js?v=26081306"></script>
-<script src="assets/js/pricing.js?v=26081306"></script>
-<script src="assets/js/site.js?v=26081306"></script>
+<script src="assets/js/vst-data.js?v=26081307"></script>
+<script src="assets/js/packs-data.js?v=26081307"></script>
+<script src="assets/js/pricing.js?v=26081307"></script>
+<script src="assets/js/site.js?v=26081307"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/modern-animations.js?v=26071803" defer></script>
@@ -88,9 +88,18 @@
   let filter = 'all', sortMode = 'featured', searchTerm = '';
 
   const isMine = v => v.category !== 'partner' && v.category !== 'free' && !v.url;
-  const famille = v => v.tier === 'bundle' || v.tier === 'legendary' || v.tier === 'oriental' ? 'bundles'
-                     : v.category === 'effect' ? 'effects'
-                     : v.free ? 'free' : 'synths';
+  /* Un produit peut appartenir a plusieurs rubriques : un synthe gratuit est
+     un SYNTH *et* un FREE. Sinon les versions BASIC disparaissaient de SYNTHS
+     et l'onglet ne montrait que les payants. */
+  const familles = v => {
+    const f = [];
+    if(v.tier === 'bundle' || v.tier === 'legendary' || v.tier === 'oriental') f.push('bundles');
+    else if(v.category === 'effect') f.push('effects');
+    else f.push('synths');
+    if(v.free) f.push('free');
+    return f;
+  };
+  const famille = v => familles(v)[0];
 
   function parsePrice(v){
     if(v && (v.free || String(v.price).toUpperCase()==='FREE')) return 0;
@@ -116,7 +125,7 @@
        du plus cher au plus accessible, comme sa page. */
     const rang = { bundles:0, synths:1, effects:2, free:3 };
     let vsts = (window.VSTS||[]).filter(isMine).filter(matchSearch)
-                 .filter(v => filter==='all' || famille(v)===filter);
+                 .filter(v => filter==='all' || familles(v).includes(filter));
     vsts = sortMode==='featured'
       ? vsts.sort((a,b)=>rang[famille(a)]-rang[famille(b)])
       : vsts.sort(sortFn);
