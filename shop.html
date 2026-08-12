@@ -20,7 +20,7 @@
 <meta name="twitter:image" content="https://djbilboxbeats.com/img/vst/oriental-instrument-box.jpg">
 
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26081206">
+<link rel="stylesheet" href="assets/css/theme.css?v=26081302">
 <link rel="stylesheet" href="assets/css/modern-effects.css?v=26072710">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -30,9 +30,12 @@
 <!-- ============ SHOP TAB SWITCHER ============ -->
 <div class="subnav">
   <div class="subnav-inner" id="shopTabs">
-    <button class="pill active" data-target="all">🛍️ All</button>
-    <button class="pill" data-target="bundles">🎁 Bundles</button>
+    <!-- Une rubrique a la fois, jamais tout empile : c'est la demande de bil
+         (13 aout 2026, « tu melanges tout »), et c'est ainsi que fonctionne
+         le catalogue d'Apeshyt. Il n'y a donc pas d'onglet « All ». -->
+    <button class="pill active" data-target="bundles">🎁 Bundles</button>
     <button class="pill" data-target="plugins">🎛️ Plugins</button>
+    <button class="pill" data-target="effects">⚙️ Effects</button>
     <button class="pill" data-target="free">✅ Free</button>
     <button class="pill" data-target="kits">🥁 Drum Kits</button>
   </div>
@@ -68,16 +71,27 @@
     <div class="grid" id="bundleGrid"></div>
   </section>
 
-  <!-- ===== PLUGINS (paid singles) ===== -->
+  <!-- ===== PLUGINS (instruments vendus seuls) ===== -->
   <section class="shop-block" data-block="plugins" style="margin-top:36px">
     <div class="section-head" style="margin:16px 0 20px">
       <div>
-        <div class="eyebrow">Studio-grade instruments &amp; effects</div>
+        <div class="eyebrow">Un instrument, une licence · $97 catalogue</div>
         <h2>Plugins</h2>
       </div>
       <a href="vst.html" class="see-all">View all →</a>
     </div>
     <div class="grid" id="vstGrid"></div>
+  </section>
+
+  <!-- ===== EFFECTS ===== -->
+  <section class="shop-block" data-block="effects" style="margin-top:36px">
+    <div class="section-head" style="margin:16px 0 20px">
+      <div>
+        <div class="eyebrow">Mix &amp; master · VST3 · Standalone</div>
+        <h2>Audio Effects</h2>
+      </div>
+    </div>
+    <div class="grid" id="fxGrid"></div>
   </section>
 
   <!-- ===== FREE (mes versions BASIC) ===== -->
@@ -120,10 +134,10 @@
      falls back to the evergreen "931 Beats Free" bar. -->
 
 <!-- ============ SCRIPTS ============ -->
-<script src="assets/js/vst-data.js?v=26081206"></script>
-<script src="assets/js/packs-data.js?v=26081206"></script>
-<script src="assets/js/pricing.js?v=26081206"></script>
-<script src="assets/js/site.js?v=26081206"></script>
+<script src="assets/js/vst-data.js?v=26081302"></script>
+<script src="assets/js/packs-data.js?v=26081302"></script>
+<script src="assets/js/pricing.js?v=26081302"></script>
+<script src="assets/js/site.js?v=26081302"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/modern-animations.js?v=26071803" defer></script>
@@ -138,11 +152,14 @@
   // ============================================================
   const bg  = document.getElementById('bundleGrid');
   const vg  = document.getElementById('vstGrid');
+  const fxG = document.getElementById('fxGrid');
   const fmG = document.getElementById('freeMineGrid');
   const kg  = document.getElementById('packsGrid');
 
   let sortMode = 'featured';
   let searchTerm = '';
+  let currentBlock = 'bundles';   /* rubrique affichee */
+  let showBlock = null;           /* affecte par le commutateur d'onglets */
 
   function parsePrice(v){
     if(v && (v.free || String(v.price).toUpperCase()==='FREE')) return 0;
@@ -177,24 +194,20 @@
   }
 
   function renderShop(){
-    [bg,vg,fmG,kg].forEach(g=>{ if(g) g.innerHTML=''; });
+    [bg,vg,fxG,fmG,kg].forEach(g=>{ if(g) g.innerHTML=''; });
     const mine = (window.VSTS || []).filter(isMine).filter(matchSearch);
-
-    const bundles = mine.filter(v => v.tier === 'bundle' || v.tier === 'legendary' || v.tier === 'oriental');
-    const paid    = mine.filter(v => v.tier === 'pro');
-    const free    = mine.filter(v => v.free);
-
     const order = list => sortMode==='featured' ? list : list.slice().sort(sortFn);
-    order(bundles).forEach(v => bg.appendChild(vstCard(v)));
-    if(sortMode==='featured'){
-      const effects     = paid.filter(v => v.category === 'effect');
-      const instruments = paid.filter(v => v.category !== 'effect');
-      if(instruments.length){ subHead(vg, '🎹 Synths &amp; Instruments'); instruments.forEach(v=>vg.appendChild(vstCard(v))); }
-      if(effects.length)    { subHead(vg, '⚙️ Effects');                  effects.forEach(v=>vg.appendChild(vstCard(v))); }
-    } else {
-      order(paid).forEach(v => vg.appendChild(vstCard(v)));
-    }
-    order(free).forEach(v => fmG.appendChild(vstCard(v)));
+
+    /* Une grille = une rubrique. Aucun sous-titre a l'interieur : melanger
+       deux familles dans la meme grille, c'est ce que bil ne veut plus. */
+    order(mine.filter(v => v.tier==='bundle' || v.tier==='legendary' || v.tier==='oriental'))
+      .forEach(v => bg.appendChild(vstCard(v)));
+    order(mine.filter(v => v.tier==='pro' && v.category!=='effect'))
+      .forEach(v => vg.appendChild(vstCard(v)));
+    order(mine.filter(v => v.category==='effect'))
+      .forEach(v => fxG.appendChild(vstCard(v)));
+    order(mine.filter(v => v.free))
+      .forEach(v => fmG.appendChild(vstCard(v)));
 
     // Drum kits
     let packs = (window.PACKS || []).filter(matchSearch);
@@ -204,27 +217,46 @@
 
   renderShop();
 
+  /* Pendant une recherche on ouvre toutes les rubriques : sinon on cherche
+     "bigbass" depuis l'onglet Bundles et la page reste vide. */
   document.getElementById('searchInput').addEventListener('input', function(e){
-    searchTerm = e.target.value; renderShop();
+    searchTerm = e.target.value;
+    renderShop();
+    document.querySelectorAll('.shop-block').forEach(b => {
+      b.style.display = searchTerm ? '' : b.style.display;
+    });
+    if(!searchTerm && typeof showBlock === 'function') showBlock(currentBlock);
   });
   document.getElementById('sortSelect').addEventListener('change', function(e){
     sortMode = e.target.value; renderShop();
   });
 
-  // Tab switcher: All / VST / Drum Kits
+  /* Une seule rubrique visible a la fois. La page ouvre sur BUNDLES et
+     l'onglet choisi part dans l'URL (#plugins, #free…) pour qu'un lien
+     puisse pointer directement sur une rubrique.                       */
   (function(){
     const tabs = document.getElementById('shopTabs');
     const blocks = document.querySelectorAll('.shop-block');
+
+    function show(target){
+      currentBlock = target;
+      blocks.forEach(b => { b.style.display = (b.dataset.block === target) ? '' : 'none'; });
+      tabs.querySelectorAll('.pill').forEach(p =>
+        p.classList.toggle('active', p.dataset.target === target));
+    }
+    showBlock = show;
+
     tabs.addEventListener('click', function(e){
       const btn = e.target.closest('.pill');
       if(!btn) return;
-      tabs.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
-      btn.classList.add('active');
-      const t = btn.dataset.target;
-      blocks.forEach(b=>{
-        b.style.display = (t==='all' || b.dataset.block===t) ? '' : 'none';
-      });
+      show(btn.dataset.target);
+      history.replaceState(null, '', '#' + btn.dataset.target);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    const known = Array.from(tabs.querySelectorAll('.pill')).map(p => p.dataset.target);
+    const wanted = location.hash.replace('#','');
+    show(known.includes(wanted) ? wanted : 'bundles');
   })();
 </script>
 </body>

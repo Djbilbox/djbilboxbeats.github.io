@@ -295,8 +295,28 @@ img{display:block;max-width:100%}
 .grid{display:grid;gap:18px;
   grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
 /* Plafonne a 3 colonnes comme le catalogue d'Apeshyt : en auto-fill pur, un
-   ecran de 1900 px alignait 6 cartes minuscules. */
-@media(min-width:980px){ .grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+   ecran de 1900 px alignait 6 cartes minuscules. La largeur est bornee a
+   1180 px pour retrouver ses proportions (carte ~380 px) : etalee sur les
+   1320 px du conteneur, la carte montait a 415 px et paraissait enorme. */
+@media(min-width:980px){
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+/* Les pages catalogue respirent dans 1180 px : titres de rubrique et grille
+   alignes sur la meme colonne, cartes a ~380 px comme chez lui. */
+body[data-page="shop"] main.container,
+body[data-page="vst"] main.container,
+body[data-page="drumkits"] main.container{max-width:1180px}
+/* Sur une page catalogue, la pastille active dit deja quelle rubrique on
+   regarde : le gros titre et son sur-titre orange n'ajoutaient que du bruit
+   (« les textes, la dimension, c'est trop gros »). */
+body[data-page="shop"] .section-head h2{font-size:1.1rem;letter-spacing:.05em}
+body[data-page="shop"] .section-head .eyebrow{font-size:.62rem;letter-spacing:.12em;
+  color:var(--text-3);margin-bottom:5px}
+body[data-page="shop"] .section-head{margin-bottom:12px!important}
+body[data-page="shop"] .shop-block{margin-top:14px!important}
+/* Visuel paysage pour les plugins (4:3, comme lui). Les pochettes de packs et
+   de beats restent carrees — c'est leur format d'origine. */
+.vst-card .card-media{aspect-ratio:4/3}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);
   overflow:hidden;display:flex;flex-direction:column;transition:.22s ease;position:relative}
 .card:hover{transform:translateY(-4px);border-color:rgba(255,45,45,.4);
@@ -319,7 +339,7 @@ img{display:block;max-width:100%}
   font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
   padding:4px 9px;border-radius:5px;backdrop-filter:blur(4px)}
 /* Accroche d'une ligne sous le titre, a la place de l'ancien encadre rouge */
-.card-tagline{color:var(--text-3);font-size:.78rem;line-height:1.45;margin:0;
+.card-tagline{color:var(--text-3);font-size:.73rem;line-height:1.4;margin:0;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 /* Le bouton prend toute la largeur sous le prix : "ADD TO CART" en entier,
    comme chez lui, plutot qu'un "Add" ecrase contre le montant. */
@@ -339,12 +359,12 @@ img{display:block;max-width:100%}
 .card-play i{width:54px;height:54px;border-radius:50%;background:var(--accent);color:#fff;
   display:flex;align-items:center;justify-content:center;font-size:1.1rem;
   box-shadow:0 6px 20px rgba(255,45,45,.5)}
-.card-body{padding:15px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
-.card-title{font-size:1rem;font-weight:700;line-height:1.3;
+.card-body{padding:13px 14px 14px;display:flex;flex-direction:column;gap:7px;flex:1}
+.card-title{font-size:.92rem;font-weight:700;line-height:1.3;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .card-tags{display:flex;flex-wrap:wrap;gap:5px}
-.tag{font-size:.62rem;font-weight:600;color:var(--text-3);background:var(--surface-2);
-  padding:4px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.03em}
+.tag{font-size:.58rem;font-weight:600;color:var(--text-3);background:var(--surface-2);
+  padding:3px 7px;border-radius:5px;text-transform:uppercase;letter-spacing:.03em}
 .card-meta{display:flex;align-items:center;gap:8px;font-size:.68rem;color:var(--text-3);margin-top:2px}
 /* Le prix a besoin de sa propre ligne : prix barre + economie + bouton ne
    tiennent pas cote a cote dans une colonne de carte. */

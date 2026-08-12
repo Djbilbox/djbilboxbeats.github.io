@@ -713,7 +713,9 @@ function vstCard(p){
      encadre rouge "🎟️ …" mangeait la carte et faisait doublon avec les tags. */
   const noteHtml = p.note ? `<p class="card-tagline">${p.note}</p>` : '';
   const el=document.createElement('article');
-  el.className='card';
+  /* `vst-card` = visuel paysage. Une capture d'interface est large ; dans le
+     carre des pochettes de packs elle mangeait toute la hauteur de l'ecran. */
+  el.className='card vst-card';
   const dHref = p.detail ? p.detail : (p.id ? `product.html?id=${p.id}` : null);
   const thumb = p.thumb || p.img;
   /* optional muted loop clip revealed on hover, layered over the poster */
