@@ -20,7 +20,7 @@
 <meta name="twitter:image" content="https://djbilboxbeats.com/img/vst/oriental-instrument-box.jpg">
 
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26081308">
+<link rel="stylesheet" href="assets/css/theme.css?v=26081309">
 <link rel="stylesheet" href="assets/css/modern-effects.css?v=26072710">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -70,10 +70,10 @@
      falls back to the evergreen "931 Beats Free" bar. -->
 
 <!-- ============ SCRIPTS ============ -->
-<script src="assets/js/vst-data.js?v=26081308"></script>
-<script src="assets/js/packs-data.js?v=26081308"></script>
-<script src="assets/js/pricing.js?v=26081308"></script>
-<script src="assets/js/site.js?v=26081308"></script>
+<script src="assets/js/vst-data.js?v=26081309"></script>
+<script src="assets/js/packs-data.js?v=26081309"></script>
+<script src="assets/js/pricing.js?v=26081309"></script>
+<script src="assets/js/site.js?v=26081309"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/modern-animations.js?v=26071803" defer></script>
@@ -93,9 +93,13 @@
      et l'onglet ne montrait que les payants. */
   const familles = v => {
     const f = [];
-    if(v.tier === 'bundle' || v.tier === 'legendary' || v.tier === 'oriental') f.push('bundles');
-    else if(v.category === 'effect') f.push('effects');
-    else f.push('synths');
+    /* STATION SYNTH PRO BUNDLE et ORIENTAL PRO BUNDLE sont des bundles ET des
+       synthetiseurs : le bundle, c'est le synthe avec ses extensions. Seul le
+       PRO BUNDLE global (6 plugins) n'est pas un instrument en soi. */
+    if(v.tier === 'bundle')                                  f.push('bundles');
+    else if(v.tier === 'legendary' || v.tier === 'oriental')  f.push('bundles','synths');
+    else if(v.category === 'effect')                          f.push('effects');
+    else                                                      f.push('synths');
     if(v.free) f.push('free');
     return f;
   };
