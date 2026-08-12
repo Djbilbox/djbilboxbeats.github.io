@@ -20,7 +20,7 @@
 <meta name="twitter:image" content="https://djbilboxbeats.com/img/vst/oriental-instrument-box.jpg">
 
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26081307">
+<link rel="stylesheet" href="assets/css/theme.css?v=26081308">
 <link rel="stylesheet" href="assets/css/modern-effects.css?v=26072710">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -70,10 +70,10 @@
      falls back to the evergreen "931 Beats Free" bar. -->
 
 <!-- ============ SCRIPTS ============ -->
-<script src="assets/js/vst-data.js?v=26081307"></script>
-<script src="assets/js/packs-data.js?v=26081307"></script>
-<script src="assets/js/pricing.js?v=26081307"></script>
-<script src="assets/js/site.js?v=26081307"></script>
+<script src="assets/js/vst-data.js?v=26081308"></script>
+<script src="assets/js/packs-data.js?v=26081308"></script>
+<script src="assets/js/pricing.js?v=26081308"></script>
+<script src="assets/js/site.js?v=26081308"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/modern-animations.js?v=26071803" defer></script>
@@ -155,7 +155,11 @@
 
   /* Les entrees de la barre du haut pointent vers shop.html#<rubrique>. */
   function fromHash(){
-    const w = location.hash.replace('#','');
+    /* `#plugins` est l'ancien nom de la rubrique : on le fait suivre vers
+       `#synths` pour ne pas casser les liens deja partages. */
+    const alias = { plugins:'synths', 'drum-kits':'kits' };
+    let w = location.hash.replace('#','');
+    w = alias[w] || w;
     const b = tabs.querySelector('.pill[data-filter="'+w+'"]') || tabs.querySelector('.pill');
     filter = b.dataset.filter;
     tabs.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p===b));

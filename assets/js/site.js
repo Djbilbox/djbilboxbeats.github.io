@@ -35,7 +35,7 @@ const NAV_SPLIT = 7;
    Beatmaker est descendu dans le tiroir (bil, 13 aout 2026). */
 const NAV = [
   { key:'bundles',     label:'Bundles',      href:'/shop.html#bundles',        icon:'fa-gift' },
-  { key:'plugins',     label:'Synths',       href:'/shop.html#plugins',        icon:'fa-sliders' },
+  { key:'synths',      label:'Synths',       href:'/shop.html#synths',         icon:'fa-sliders' },
   { key:'effects',     label:'Effects',      href:'/shop.html#effects',        icon:'fa-wave-square' },
   { key:'kits',        label:'Drum Kits',    href:'/shop.html#kits',           icon:'fa-drum' },
   { key:'free',        label:'Free',         href:'/shop.html#free',           icon:'fa-gift' },
