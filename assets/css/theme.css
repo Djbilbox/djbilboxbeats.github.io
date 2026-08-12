@@ -316,7 +316,14 @@ body[data-page="shop"] .section-head{margin-bottom:12px!important}
 body[data-page="shop"] .shop-block{margin-top:14px!important}
 /* Visuel paysage pour les plugins (4:3, comme lui). Les pochettes de packs et
    de beats restent carrees — c'est leur format d'origine. */
+/* 4:3 pour TOUTES les fiches produit. Les pochettes de packs sont carrees :
+   dans une colonne de 410 px elles faisaient 410 px de haut, une carte plus
+   haute qu'un ecran de portable. Elles passent en `contain` pour garder
+   l'illustration entiere plutot que de rogner le titre. */
 .vst-card .card-media{aspect-ratio:4/3}
+.card .card-media{aspect-ratio:4/3}
+.card:not(.vst-card) .card-media{background:#0b0b10}
+.card:not(.vst-card) .card-media img{object-fit:contain}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);
   overflow:hidden;display:flex;flex-direction:column;transition:.22s ease;position:relative}
 .card:hover{transform:translateY(-4px);border-color:rgba(255,45,45,.4);
