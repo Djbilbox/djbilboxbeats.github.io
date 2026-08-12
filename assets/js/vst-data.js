@@ -3,76 +3,94 @@
    `buy`  : Gumroad product slug (after /l/) or full URL — paid product.
    `demo` : Gumroad slug/URL for the free demo (optional)
    `note` : Short line shown on the card (🎟️ added automatically)
-   `price`: MUST equal the product's real Gumroad price — no markup, no
-            invented discount. `old` is only for the bundle, where it states
-            the genuine sum of the individual VSTs.
-   No sale running: SOLDES80 expired 30 July 2026 and was removed 1 Aug 2026.
+   `tier` : "pro" ($97) | "legendary" ($697, STATION SYNTH + ses 11 librairies)
+            | "bundle" ($997, tout le catalogue). Une entrée qui porte un
+            `tier` voit son `price`/`old`/`buy` RÉÉCRITS au chargement par
+            assets/js/pricing.js selon la promo du moment (4 promos par mois).
+            Ne pas y écrire un prix à la main : il sera écrasé.
+   `price`: pour tout ce qui n'a PAS de `tier` (partenaires, VST gratuits
+            externes, versions BASIC), le prix doit égaler le prix réel.
+   Modèle repris d'Apeshyt808 depuis le 12 août 2026 : le synthé se donne
+   (BASIC gratuit, comme Rampage), ce sont les librairies qui se vendent.
+   Un plugin seul à $97 catalogue, STATION SYNTH + ses 11 librairies à $697,
+   et le PRO BUNDLE à $997 — jamais payés plein tarif, la promo tourne.
    ============================================================ */
 /* MACHINA EFFECT and the ALL VST PACK bundle were pulled from sale on
    2026-08-01: the plug-in does not work, and the bundle shipped it as one
    of its five VSTs. Do not re-add either without a fixed build. */
 window.VSTS = [
+  /* ========== PRO BUNDLE — l'offre phare ==========
+     Vrai bundle Gumroad (il contient les 6 produits, rien à téléverser),
+     publié le 12 août 2026 sous `djbilbox-pro-bundle`. Valeur pièce par
+     pièce : $1182. MACHINA EFFECT en a été retiré — le plug-in ne marche
+     pas, ne pas le remettre sans build corrigé.                          */
+  { id:"pro-bundle", name:"DJBILBOX PRO BUNDLE — Every Plugin, One Payment", img:"img/vst/station-synth-bundle.jpg", category:"instrument",
+    tags:["6 plugins · $1182 value","Lifetime updates","VST3 · AU · Standalone · Win/Mac"], tier:"bundle", price:"997", badge:"👑 Best value",
+    buy:"djbilbox-pro-bundle", demo:"station-synth-demo",
+    note:"Every plugin I make · every future release included · one payment" },
+
   /* ========== EFFECTS ========== */
   { id:"matrix-modular", yt:"DPoCVD-eK3w", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/matrix-modular-cover.jpg", category:"effect",
-    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], price:"10",
+    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], tier:"pro", price:"97",
     buy:"ocpoej", demo:"",
     note:"Stereo modulation · auto-pan · westcoast oriental colour" },
 
   { id:"mastering", name:"MASTERING — Pro VST3 Mastering Limiter", img:"img/vst/mastering.jpg", category:"effect",
-    tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], price:"10", badge:"🆕 New",
+    tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], tier:"pro", price:"97", badge:"🆕 New",
     buy:"mastering", demo:"",
     note:"Transparent mastering limiter · studio-quality peak control" },
 
-  /* ========== INSTRUMENTS ========== */
-  /* STATION SYNTH — added 2026-08-09.
-     Two entries on purpose: the free demo is the entry point, the bundle is
-     the product. `price` matches the real Gumroad price ($0+ and $50). */
-  { id:"station-synth-bundle", yt:"_YLj6CONTXU", name:"STATION SYNTH — Legendary Bundle (4128 presets)", img:"img/vst/station-synth-bundle.jpg", category:"instrument",
+  /* ========== INSTRUMENTS ==========
+     Chaque synthé se décline en BASIC (gratuit, la porte d'entrée façon
+     Apeshyt Rampage) et PRO (tier "pro"). BIGBASS et VICE CITY n'ont pas
+     encore de build BASIC — à produire, cf. rapport du 12 août 2026. */
+  /* STATION SYNTH — added 2026-08-09. */
+  { id:"station-synth-bundle", yt:"_YLj6CONTXU", name:"STATION SYNTH PRO — Legendary Edition (4128 presets)", img:"img/vst/station-synth-bundle.jpg", category:"instrument",
     detail:"station-synth-bundle.html",
     preview:"assets/products/station-synth/station-synth-card.mp4",
-    tags:["4128 presets · 44 wavetables","11 country libraries · 5 skins","VST3 · AU · Standalone · Win/Mac"], price:"50", badge:"🔥 New",
+    tags:["4128 presets · 44 wavetables","11 country libraries · 4 skins","VST3 · AU · Standalone · Win/Mac"], tier:"legendary", price:"697", badge:"🔥 New",
     buy:"station-synth-legendary-bundle",
     demo:"station-synth-demo",
     note:"Wavetable synth · 4128 presets · 11 libraries · Windows & macOS" },
 
-  { id:"station-synth-demo", yt:"Hd6PJpDXZIQ", name:"STATION SYNTH — Free Demo (50 presets)", img:"img/vst/station-synth-demo.jpg", category:"instrument",
+  { id:"station-synth-demo", yt:"Hd6PJpDXZIQ", name:"STATION SYNTH BASIC — Free (50 presets)", img:"img/vst/station-synth-demo.jpg", category:"instrument",
     detail:"station-synth-demo.html",
-    tags:["50 presets · 14 wavetables","Same engine, nothing crippled","VST3 · AU · Standalone · Win/Mac"], price:"0", free:true, badge:"✅ FREE",
+    tags:["50 presets · 14 wavetables","Same engine, nothing crippled","VST3 · AU · Standalone · Win/Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"station-synth-demo", demo:"",
-    note:"100% FREE · full engine · 50 presets · upgrade keeps your install" },
+    note:"100% FREE BASIC · full engine · 50 presets · upgrade keeps your install" },
 
-  { id:"mpc-2026", yt:"supwohrB7xg", name:"MPC 2026 — Beat Machine (16 Pads)", img:"img/vst/ui/mpc-2026-hero.png", category:"instrument",
-    tags:["16 pads · 50 kits","Sequencer · MIDI 36-51","VST3 · AU · Win/Mac"], price:"0", free:true, badge:"✅ FREE",
+  { id:"mpc-2026", yt:"supwohrB7xg", name:"MPC 2026 BASIC — Beat Machine (16 Pads)", img:"img/vst/ui/mpc-2026-hero.png", category:"instrument",
+    tags:["16 pads · 50 kits","Sequencer · MIDI 36-51","VST3 · AU · Win/Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"mpc-2026", demo:"",
-    note:"100% FREE · plays the samples already on your machine · 50 kits across 10 styles" },
+    note:"100% FREE BASIC · plays the samples already on your machine · 50 kits across 10 styles" },
 
-  { id:"oriental-instrument", yt:"F-H8_4urmAo", name:"Oriental Instrument — Full Version (280+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
-    tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"20",
+  { id:"oriental-instrument", yt:"F-H8_4urmAo", name:"ORIENTAL INSTRUMENT PRO — 280+ Instruments", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
+    tags:["280+ Instruments","Oriental · Maqam Engine","Win · Mac"], tier:"pro", price:"97",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
     thumb:"assets/products/oriental-instrument/oriental-instrument-card.jpg",
-    note:"Full 280+ instruments" },
+    note:"Full 280+ instruments · free BASIC available" },
 
-  { id:"bigbass", name:"BIGBASS — LA Lowrider Bass", img:"img/vst/bigbass-vst.jpg", category:"instrument",
-    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], price:"10",
+  { id:"bigbass", name:"BIGBASS PRO — LA Lowrider Bass", img:"img/vst/bigbass-vst.jpg", category:"instrument",
+    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], tier:"pro", price:"97",
     buy:"xaziro", demo:"",
     note:"808 · 3 bass modes" },
 
-  { id:"vice-city", yt:"oadLL3JJYD0", name:"Vice City — VST Synthesizer", img:"img/vst/vice-city-vst.jpg", category:"instrument",
-    tags:["Synthwave","VST3 · Standalone"], price:"10",
+  { id:"vice-city", yt:"oadLL3JJYD0", name:"VICE CITY PRO — VST Synthesizer", img:"img/vst/vice-city-vst.jpg", category:"instrument",
+    tags:["Synthwave","VST3 · Standalone"], tier:"pro", price:"97",
     buy:"ykdzli", demo:"",
     preview:"assets/products/vice-city/vice-city-card.mp4",
     note:"70 presets" },
 
-  { id:"neon-synth-80s", yt:"hU39w6LhcAY", name:"NEON SYNTH 80s — Synthwave Polysynth", img:"img/vst/neon-synth-80s.jpg", category:"instrument",
-    tags:["Synthwave · 80s","6 Presets","VST3 · Standalone"], price:"0", free:true, badge:"✅ FREE",
+  { id:"neon-synth-80s", yt:"hU39w6LhcAY", name:"NEON SYNTH 80s BASIC — Synthwave Polysynth", img:"img/vst/neon-synth-80s.jpg", category:"instrument",
+    tags:["Synthwave · 80s","6 Presets","VST3 · Standalone"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"neon-synth-80s", demo:"",
-    note:"100% FREE · dual-oscillator synth · 6 synthwave presets" },
+    note:"100% FREE BASIC · dual-oscillator synth · 6 synthwave presets" },
 
-  { id:"oriental-instrument-free", name:"Oriental Instrument — Free Demo (50+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
-    tags:["50+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"0", free:true, badge:"✅ FREE",
+  { id:"oriental-instrument-free", name:"ORIENTAL INSTRUMENT BASIC — Free (50+ Instruments)", img:"img/vst/oriental-instrument-box.jpg", category:"instrument",
+    tags:["50+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"oriental-instrument-demo-free-Download", demo:"",
-    note:"100% FREE · Try 50+ instruments · Full version available" },
+    note:"100% FREE BASIC · Try 50+ instruments · PRO version available" },
 
   /* ========== PARTNER GEAR — FL Studio & Apeshyt (separate from my own products) ========== */
   { name:"FL STUDIO 26 — Fruity Edition", img:"img/vst/fl-fruity.jpg", category:"partner",
