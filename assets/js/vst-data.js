@@ -24,8 +24,8 @@ window.VSTS = [
      publié le 12 août 2026 sous `djbilbox-pro-bundle`. Valeur pièce par
      pièce : $1182. MACHINA EFFECT en a été retiré — le plug-in ne marche
      pas, ne pas le remettre sans build corrigé.                          */
-  { id:"pro-bundle", name:"DJBILBOX PRO BUNDLE — Every Plugin, One Payment", img:"img/vst/station-synth-bundle.jpg", category:"instrument",
-    tags:["6 plugins · $1182 value","Lifetime updates","VST3 · AU · Standalone · Win/Mac"], tier:"bundle", price:"997", badge:"👑 Best value",
+  { id:"pro-bundle", name:"DJBILBOX PRO BUNDLE — All 6 Plugins", img:"img/vst/ui/pro-bundle-card.jpg", category:"instrument",
+    tags:["6 plugins · $1182 value","STATION SYNTH PRO included","VST3 · AU · Standalone · Win/Mac"], tier:"bundle", price:"997", badge:"👑 Best value",
     buy:"djbilbox-pro-bundle", demo:"station-synth-demo",
     note:"Every plugin I make · every future release included · one payment" },
 
@@ -45,17 +45,17 @@ window.VSTS = [
      Apeshyt Rampage) et PRO (tier "pro"). BIGBASS et VICE CITY n'ont pas
      encore de build BASIC — à produire, cf. rapport du 12 août 2026. */
   /* STATION SYNTH — added 2026-08-09. */
-  { id:"station-synth-bundle", yt:"_YLj6CONTXU", name:"STATION SYNTH PRO — Legendary Edition (4128 presets)", img:"img/vst/ui/station-synth-card.jpg", category:"instrument",
+  { id:"station-synth-bundle", yt:"_YLj6CONTXU", name:"STATION SYNTH PRO BUNDLE — Synth + 11 Expansion Libraries", img:"img/vst/ui/station-synth-card.jpg", category:"instrument",
     detail:"station-synth-bundle.html",
     preview:"assets/products/station-synth/station-synth-card.mp4",
-    tags:["4128 presets · 44 wavetables","11 country libraries · 4 skins","VST3 · AU · Standalone · Win/Mac"], tier:"legendary", price:"697", badge:"🔥 New",
+    tags:["Synth + 11 expansion libraries","4128 presets · 44 wavetables","VST3 · AU · Standalone · Win/Mac"], tier:"legendary", price:"697", badge:"🔥 New",
     buy:"station-synth-legendary-bundle",
     demo:"station-synth-demo",
     note:"Wavetable synth · 4128 presets · 11 libraries · Windows & macOS" },
 
-  { id:"station-synth-demo", yt:"Hd6PJpDXZIQ", name:"STATION SYNTH BASIC — Free (50 presets)", img:"img/vst/ui/station-synth-alt-card.jpg", category:"instrument",
+  { id:"station-synth-demo", yt:"Hd6PJpDXZIQ", name:"STATION SYNTH BASIC — The Synth, Free (50 presets)", img:"img/vst/ui/station-synth-alt-card.jpg", category:"instrument",
     detail:"station-synth-demo.html",
-    tags:["50 presets · 14 wavetables","Same engine, nothing crippled","VST3 · AU · Standalone · Win/Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
+    tags:["The synth alone, free","50 presets · 14 wavetables","VST3 · AU · Standalone · Win/Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"station-synth-demo", demo:"",
     note:"100% FREE BASIC · full engine · 50 presets · upgrade keeps your install" },
 
