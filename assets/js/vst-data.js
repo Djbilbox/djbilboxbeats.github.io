@@ -65,10 +65,10 @@ window.VSTS = [
     note:"100% FREE BASIC · plays the samples already on your machine · 50 kits across 10 styles" },
 
   { id:"oriental-instrument", yt:"F-H8_4urmAo", name:"ORIENTAL INSTRUMENT PRO BUNDLE — 280+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
-    tags:["280+ instruments · Maqam engine","Free BASIC included","Win · Mac"], tier:"oriental", price:"130",
+    tags:["280+ instruments · Maqam engine","BASIC edition available","Win · Mac"], tier:"oriental", price:"130",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
-    note:"Full 280+ instruments · free BASIC available" },
+    note:"Full 280+ instruments · edition BASIC a 10 $" },
 
   { id:"bigbass", name:"BIGBASS PRO — LA Lowrider Bass", img:"img/vst/ui/bigbass-card.jpg", category:"instrument",
     tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], tier:"pro", price:"97",
@@ -86,10 +86,12 @@ window.VSTS = [
     buy:"neon-synth-80s", demo:"",
     note:"100% FREE BASIC · dual-oscillator synth · 6 synthwave presets" },
 
-  { id:"oriental-instrument-free", name:"ORIENTAL INSTRUMENT BASIC — Free (50+ Instruments)", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
-    tags:["50+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
+  /* Passe de gratuit a 10 $ le 13 aout 2026 (bil). Pas de `tier` : c'est un
+     prix fixe, il ne suit pas le calendrier des promos. */
+  { id:"oriental-instrument-free", name:"ORIENTAL INSTRUMENT BASIC — 50+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
+    tags:["50+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"10", badge:"BASIC",
     buy:"oriental-instrument-demo-free-Download", demo:"",
-    note:"100% FREE BASIC · Try 50+ instruments · PRO version available" },
+    note:"Edition BASIC · 50+ instruments · passe au PRO BUNDLE quand tu veux" },
 
   /* ========== PARTNER GEAR — FL Studio & Apeshyt (separate from my own products) ========== */
   { name:"FL STUDIO 26 — Fruity Edition", img:"img/vst/fl-fruity.jpg", category:"partner",
