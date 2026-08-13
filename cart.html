@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your Cart — HUMPIRE by DJBILBOX BEATS</title>
+<meta name="description" content="Review your cart — add multiple VST plugins, drum kits and packs, then check out once on Gumroad.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css?v=26081375">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26081375">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+.cp-wrap{max-width:1180px;margin:0 auto;padding:40px 22px 80px}
+.cp-title{font-family:var(--font-a);font-weight:800;text-transform:uppercase;font-size:clamp(2rem,5vw,3rem);letter-spacing:-.01em;margin-bottom:28px}
+.cp-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:28px;align-items:start}
+@media(max-width:860px){.cp-grid{grid-template-columns:1fr}}
+
+.cp-panel{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px}
+.cp-empty{text-align:center;color:var(--text-3);padding:60px 20px;font-size:.95rem;line-height:1.7}
+.cp-empty i{font-size:2.4rem;color:var(--text-4);margin-bottom:12px;display:block}
+.cp-empty a{color:var(--accent);font-weight:700}
+
+.cp-item{display:flex;align-items:center;gap:14px;padding:14px 4px;border-bottom:1px solid var(--border)}
+.cp-item:last-child{border-bottom:none}
+.cp-item img{width:64px;height:64px;object-fit:cover;border-radius:9px;flex:0 0 auto;background:var(--surface-2)}
+.cp-item-info{flex:1;min-width:0}
+.cp-item-tag{font-size:.64rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+.cp-item-name{font-weight:700;font-size:.95rem}
+.cp-item-remove{font-size:.76rem;color:var(--text-3);cursor:pointer;margin-top:4px;display:inline-flex;align-items:center;gap:5px}
+.cp-item-remove:hover{color:var(--accent)}
+.cp-item-price{font-family:var(--font-a);font-weight:800;font-size:1.05rem;white-space:nowrap}
+.cp-item-price.free{color:var(--green)}
+.cp-clear{margin-top:14px;font-size:.78rem;color:var(--text-3);cursor:pointer}
+.cp-clear:hover{color:var(--accent)}
+
+.cp-summary{position:sticky;top:calc(var(--hdr-h) + var(--ticker-h) + 20px)}
+.cp-summary h3{font-family:var(--font-a);text-transform:uppercase;font-size:.78rem;letter-spacing:.12em;color:var(--text-3);margin-bottom:14px}
+.cp-row{display:flex;justify-content:space-between;font-size:.9rem;color:var(--text-2);padding:6px 0}
+.cp-row.total{border-top:1px solid var(--border);margin-top:8px;padding-top:14px;font-weight:800;font-size:1.15rem;color:var(--text)}
+.cp-checkout{width:100%;justify-content:center;margin-top:16px;font-size:.92rem}
+.cp-secure{text-align:center;font-size:.68rem;color:var(--text-4);margin-top:10px;line-height:1.5}
+
+.cp-cross{margin-top:40px}
+.cp-cross h2{font-family:var(--font-a);text-transform:uppercase;font-size:1.15rem;letter-spacing:.03em;margin-bottom:16px}
+
+.cp-promo{margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.cp-promo label{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.cp-promo-row{display:flex;gap:8px}
+.cp-promo-row input{flex:1;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:9px 11px;color:var(--text);font-size:.85rem;outline:none}
+.cp-promo-row input:focus{border-color:var(--accent)}
+.cp-promo-row .btn{padding:9px 16px;font-size:.78rem}
+.cp-promo-msg{font-size:.74rem;margin-top:7px;min-height:1em}
+.cp-promo-msg.ok{color:var(--green)}
+
+.cp-bonus{margin-top:36px;background:linear-gradient(135deg,rgba(29,185,84,.08),transparent);
+  border:1px solid rgba(29,185,84,.3);border-radius:16px;padding:22px}
+.cp-bonus-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.cp-bonus-head i{font-size:1.8rem;color:var(--green)}
+.cp-bonus-head h2{font-family:var(--font-a);text-transform:uppercase;font-size:1.1rem;letter-spacing:.03em}
+.cp-bonus-head p{font-size:.82rem;color:var(--text-3);margin-top:2px}
+</style>
+</head>
+<body data-page="cart">
+
+<main class="cp-wrap">
+  <h1 class="cp-title">Your Cart</h1>
+  <div class="cp-grid">
+    <div class="cp-panel">
+      <div id="cpItems"></div>
+      <div class="cp-clear" id="cpClear" onclick="Cart.clear();renderCartPage()" style="display:none">Clear cart</div>
+    </div>
+
+    <div class="cp-panel cp-summary">
+      <h3>Order summary</h3>
+      <div class="cp-row"><span>Subtotal</span><span id="cpSubtotal">$0.00</span></div>
+      <div class="cp-row total"><span>Total</span><span id="cpTotal">$0.00</span></div>
+
+      <div class="cp-promo">
+        <label for="cpPromoInput"><i class="fa-solid fa-tag"></i> Promo code</label>
+        <div class="cp-promo-row">
+          <input type="text" id="cpPromoInput" placeholder="Enter code">
+          <button class="btn ghost" onclick="applyPromo()">Apply</button>
+        </div>
+        <p class="cp-promo-msg" id="cpPromoMsg"></p>
+      </div>
+
+      <button class="btn primary cp-checkout" onclick="checkout()">
+        <i class="fa-solid fa-lock"></i> Checkout on Gumroad</button>
+      <p class="cp-secure">Secure payment via Gumroad · instant download after purchase.<br>
+        Multiple items are combined into one Gumroad payment.</p>
+    </div>
+  </div>
+
+  <section class="cp-bonus" id="cpBonusSection" style="display:none">
+    <div class="cp-bonus-head">
+      <i class="fa-solid fa-gift"></i>
+      <div>
+        <h2>Buy 5, get 5 free — unlocked!</h2>
+        <p>These plugins ride free in your Gumroad checkout, automatically.</p>
+      </div>
+    </div>
+    <div class="grid" id="cpBonusGrid"></div>
+  </section>
+
+  <section class="cp-cross">
+    <h2>Complete your setup</h2>
+    <div class="grid" id="cpCrossGrid"></div>
+  </section>
+</main>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="assets/js/vst-data.js?v=26081375"></script>
+<script src="assets/js/packs-data.js?v=26081375"></script>
+<script src="assets/js/pricing.js?v=26081375"></script>
+<script src="assets/js/site.js?v=26081375"></script>
+<script>
+function renderCartPage(){
+  const items = Cart.get();
+  const box = document.getElementById('cpItems');
+  const clearBtn = document.getElementById('cpClear');
+
+  if(!items.length){
+    box.innerHTML = `<div class="cp-empty"><i class="fa-solid fa-cart-shopping"></i>
+      Your cart is empty.<br><a href="/shop.html">Browse the shop →</a></div>`;
+    clearBtn.style.display = 'none';
+  } else {
+    clearBtn.style.display = 'block';
+    box.innerHTML = items.map((it,i) => {
+      const free = String(it.price).toUpperCase()==='FREE';
+      const priceTxt = free ? 'FREE' : (isNaN(parseFloat(it.price)) ? it.price : '$'+it.price);
+      return `<div class="cp-item">
+        <img src="${it.img||'img/vst/ui/pro-bundle-cover.jpg'}" alt="" onerror="this.style.display='none'">
+        <div class="cp-item-info">
+          <div class="cp-item-tag">Plugin</div>
+          <div class="cp-item-name">${it.title}</div>
+          <div class="cp-item-remove" onclick="Cart.remove(${i});renderCartPage()"><i class="fa-solid fa-trash"></i> Remove</div>
+        </div>
+        <div class="cp-item-price${free?' free':''}">${priceTxt}</div>
+      </div>`;
+    }).join('');
+  }
+
+  const t = Cart.total();
+  document.getElementById('cpSubtotal').textContent = t>0 ? '$'+t.toFixed(2) : 'FREE';
+  document.getElementById('cpTotal').textContent = t>0 ? '$'+t.toFixed(2) : 'FREE';
+
+  renderBonusSection();
+}
+
+function renderBonusSection(){
+  const section = document.getElementById('cpBonusSection');
+  const grid = document.getElementById('cpBonusGrid');
+  const picks = freeBonusItems();
+  if(!picks.length){ section.style.display='none'; return; }
+  section.style.display='block';
+  grid.innerHTML='';
+  picks.forEach(v=>{
+    const card=document.createElement('div');
+    card.className='cp-item';
+    card.innerHTML=`<img src="${v.thumb||v.img}" alt="" onerror="this.style.display='none'">
+      <div class="cp-item-info">
+        <div class="cp-item-tag" style="color:var(--green)">Bonus · was $${v.price}</div>
+        <div class="cp-item-name">${v.name}</div>
+      </div>
+      <div class="cp-item-price free">FREE</div>`;
+    grid.appendChild(card);
+  });
+}
+
+function applyPromo(){
+  const input=document.getElementById('cpPromoInput');
+  const msg=document.getElementById('cpPromoMsg');
+  Cart.setPromo(input.value);
+  const code=Cart.getPromo();
+  msg.textContent = code ? `"${code}" will be applied at checkout.` : '';
+  msg.className = 'cp-promo-msg' + (code ? ' ok' : '');
+}
+
+function renderCrossSell(){
+  const g = document.getElementById('cpCrossGrid');
+  if(!g || !window.VSTS || typeof vstCard!=='function') return;
+  const inCart = new Set(Cart.get().map(it=>it.buy));
+  const bonusBuys = new Set(freeBonusItems().map(v=>v.buy));
+  const picks = window.VSTS.filter(v => v.category!=='partner' && v.category!=='free' && !v.url
+    && !inCart.has(v.buy) && !bonusBuys.has(v.buy)).slice(0,3);
+  picks.forEach(p => g.appendChild(vstCard(p)));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const savedPromo = Cart.getPromo();
+  if(savedPromo) document.getElementById('cpPromoInput').value = savedPromo;
+  renderCartPage();
+  renderCrossSell();
+});
+</script>
+</body>
+</html>
