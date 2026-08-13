@@ -358,7 +358,7 @@ img{display:block;max-width:100%}
 .stats{display:flex;gap:36px;justify-content:center;margin-top:30px;flex-wrap:wrap}
 .stat{text-align:center}
 .stat .num{font-family:var(--font-a);color:var(--accent);font-weight:700;font-size:1.7rem;line-height:1}
-.stat .lbl{color:var(--text-3);font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;margin-top:5px}
+.stat .lbl{color:var(--text-2);font-weight:600;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;margin-top:5px}
 
 /* ---------- video showcase ---------- */
 .video-showcase{position:relative;border-radius:var(--rl);overflow:hidden;border:1px solid var(--border);
