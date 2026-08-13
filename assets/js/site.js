@@ -4,6 +4,13 @@
    Reusable across pages. Load AFTER beats-data.js where needed.
    ============================================================ */
 
+/* Load license generator for free beat licenses */
+(function(){
+  var script = document.createElement('script');
+  script.src = 'assets/js/license-generator.js';
+  document.head.appendChild(script);
+})();
+
 /* Community + contact hub — every "Contact" CTA routes here. */
 const DISCORD_URL = 'https://discord.gg/7HeMSvbN';
 
@@ -81,7 +88,7 @@ function mountSidebar(active){
            (c'était le défaut de l'ancien logo chromé). -->
       <a href="/index.html" class="brand brand-lockup" aria-label="DJBILBOX BEATS">
         <img src="/img/djbilbox-emblem.png" alt="">
-        <span class="bl-name">DJBILBOX <span>BEATS</span></span>
+        <span class="bl-name">HUM<span>PIRE</span></span>
       </a>
 
       <nav class="top-nav">${topLinks}</nav>
@@ -289,6 +296,14 @@ function addToCart(title, price, buy){
   const badge=document.querySelector('[data-cart-badge]');
   if(badge){ badge.animate([{transform:'scale(1.7)'},{transform:'scale(1)'}],{duration:320}); }
   openCart();
+
+  // Show license modal for free beats
+  const isFree = String(price).toUpperCase() === 'FREE' || price === '0' || price === 0;
+  if(isFree && window.LicenseGen) {
+    setTimeout(function() {
+      LicenseGen.showLicenseModal(title);
+    }, 500);
+  }
 }
 
 /* drawer (injected once) */
