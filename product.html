@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Product — DJBILBOX BEATS</title>
 <meta name="description" content="DJBILBOX BEATS — VST plugins & sample kits. Pro instruments, free demos, instant download.">
+<meta property="og:title" content="DJBILBOX BEATS">
+<meta property="og:description" content="VST plugins & sample kits. Pro instruments, free demos, instant download.">
+<meta property="og:image" content="https://djbilboxbeats.com/img/vst/ui/pro-bundle-card.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://djbilboxbeats.com/product.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DJBILBOX BEATS">
+<meta name="twitter:description" content="VST plugins & sample kits. Pro instruments, free demos, instant download.">
+<meta name="twitter:image" content="https://djbilboxbeats.com/img/vst/ui/pro-bundle-card.jpg">
 <link rel="icon" href="favicon.png">
 <link rel="stylesheet" href="assets/css/theme.css?v=26081314">
 <link rel="stylesheet" href="assets/css/product.css">
@@ -71,6 +80,15 @@ function loadVideoBg(el, src) {
   document.title = P.name + ' — DJBILBOX BEATS';
   const md = document.querySelector('meta[name=description]');
   if(md) md.setAttribute('content', P.tagline);
+
+  /* Update Open Graph & Twitter metadata for social sharing */
+  document.querySelector('meta[property="og:title"]').setAttribute('content', P.name);
+  document.querySelector('meta[property="og:description"]').setAttribute('content', P.tagline);
+  document.querySelector('meta[property="og:image"]').setAttribute('content', P.cover.startsWith('http') ? P.cover : 'https://djbilboxbeats.com/' + P.cover);
+  document.querySelector('meta[property="og:url"]').setAttribute('content', window.location.href);
+  document.querySelector('meta[name="twitter:title"]').setAttribute('content', P.name);
+  document.querySelector('meta[name="twitter:description"]').setAttribute('content', P.tagline);
+  document.querySelector('meta[name="twitter:image"]').setAttribute('content', P.cover.startsWith('http') ? P.cover : 'https://djbilboxbeats.com/' + P.cover);
 
   /* per-product accent */
   document.body.style.setProperty('--pa',  P.accent  || '#ff2d2d');
