@@ -7,14 +7,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap');
 
 :root{
-  /* ---- DARK THEME — neutral black, white type, one warm accent.
-     The old JOKA red/purple is kept below, commented, so the whole
-     palette can be reverted by swapping the two blocks. ---- */
-  --bg:#0A0A0B; --surface:#131315; --surface-2:#1B1B1E; --surface-3:#26262A;
-  --accent:#F5B921; --accent-h:#D89E0E; --accent-glow:rgba(245,185,33,.14);
-  --accent-bright:#FFD45E; --accent-plat:#E5E4E2; --accent-chrome:#C0C0C0;
-  --green:#1DB954; --text:#FFFFFF; --text-2:#B8B8BD; --text-3:#8A8A92; --text-4:#5F5F67;
-  --border:rgba(255,255,255,.09);
+  /* ---- LIGHT THEME (WHITE) — Clean, modern, bright background ---- */
+  --bg:#FFFFFF; --surface:#F8F8FA; --surface-2:#F0F0F5; --surface-3:#E8E8F0;
+  --accent:#D21034; --accent-h:#B00D2B; --accent-glow:rgba(210,16,52,.12);
+  --accent-bright:#FF3B57; --accent-plat:#E5E4E2; --accent-chrome:#D0D0D0;
+  --green:#1DB954; --text:#0A0A0B; --text-2:#4A4A52; --text-3:#7A7A82; --text-4:#A0A0A8;
+  --border:rgba(0,0,0,.08);
   /* previous: --bg:#0c0714 --surface:#151022 --accent:#E60000 --accent-bright:#FF6633 */
   --r:8px; --rl:14px;
   --font:'Inter',sans-serif; --font-a:'Rajdhani',sans-serif;
