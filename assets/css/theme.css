@@ -7,17 +7,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap');
 
 :root{
-  /* ---- LIGHT THEME (WHITE) — Clean, modern, bright background ---- */
-  --bg:#FFFFFF; --surface:#F8F8FA; --surface-2:#F0F0F5; --surface-3:#E8E8F0;
-  /* Accent colors: Red & Green (Algerian flag colors) with neon vibrancy */
-  --accent:#D21034; --accent-h:#B00D2B; --accent-glow:rgba(210,16,52,.12);
-  --accent-bright:#FF3B57; --accent-plat:#E5E4E2; --accent-chrome:#D0D0D0;
-  --green:#1DB954; --text:#0A0A0B; --text-2:#4A4A52; --text-3:#7A7A82; --text-4:#A0A0A8;
-  --border:rgba(0,0,0,.08);
+  /* ---- DARK THEME — neutral black, white type, one warm accent.
+     The old JOKA red/purple is kept below, commented, so the whole
+     palette can be reverted by swapping the two blocks. ---- */
+  --bg:#0A0A0B; --surface:#131315; --surface-2:#1B1B1E; --surface-3:#26262A;
+  --accent:#F5B921; --accent-h:#D89E0E; --accent-glow:rgba(245,185,33,.14);
+  --accent-bright:#FFD45E; --accent-plat:#E5E4E2; --accent-chrome:#C0C0C0;
+  --green:#1DB954; --text:#FFFFFF; --text-2:#B8B8BD; --text-3:#8A8A92; --text-4:#5F5F67;
+  --border:rgba(255,255,255,.09);
   /* previous: --bg:#0c0714 --surface:#151022 --accent:#E60000 --accent-bright:#FF6633 */
   --r:8px; --rl:14px;
   --font:'Inter',sans-serif; --font-a:'Rajdhani',sans-serif;
-  --hdr-h:56px; --subnav-h:46px; --side-w:0px; --mtop-h:0px;
+  --hdr-h:68px; --subnav-h:54px; --side-w:0px; --mtop-h:0px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -37,8 +38,8 @@ img{display:block;max-width:100%}
    ============================================================ */
 .hero2{position:relative;overflow:hidden;padding:72px 0 40px;
   background:
-    radial-gradient(1000px 560px at 78% 30%,rgba(210,16,52,.08),transparent 62%),
-    radial-gradient(720px 480px at 6% 92%,rgba(30,181,84,.05),transparent 66%),
+    radial-gradient(1000px 560px at 78% 30%,rgba(245,185,33,.09),transparent 62%),
+    radial-gradient(720px 480px at 6% 92%,rgba(255,255,255,.035),transparent 66%),
     var(--bg)}
 .hero2-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
   gap:48px;align-items:center}
@@ -58,7 +59,7 @@ img{display:block;max-width:100%}
 .hero2-art{perspective:1200px}
 .hero2-art img{width:100%;border-radius:16px;
   transform:rotateY(-7deg) rotateX(2deg);transition:transform .6s cubic-bezier(.2,.7,.2,1);
-  filter:drop-shadow(0 30px 70px rgba(0,0,0,.85)) drop-shadow(0 0 70px rgba(210,16,52,.14))}
+  filter:drop-shadow(0 30px 70px rgba(0,0,0,.85)) drop-shadow(0 0 70px rgba(245,185,33,.14))}
 .hero2-art:hover img{transform:rotateY(-2deg) rotateX(0) scale(1.02)}
 @media(max-width:900px){
   .hero2-grid{grid-template-columns:1fr;gap:30px}
@@ -72,12 +73,12 @@ img{display:block;max-width:100%}
    Scoped to .flagship so it never touches the red site theme.
    ============================================================ */
 .flagship{
-  --g:#D4A03D; --g2:#E8B54D; --g3:#B8860B;
+  --g:#E8B54D; --g2:#F6D98A; --g3:#B8860B;
   padding:64px 0;position:relative;overflow:hidden;
   background:
-    radial-gradient(900px 480px at 76% 40%,rgba(212,160,61,.12),transparent 62%),
-    radial-gradient(620px 420px at 8% 90%,rgba(184,134,11,.08),transparent 66%),
-    #FFFAF5;
+    radial-gradient(900px 480px at 76% 40%,rgba(232,181,77,.16),transparent 62%),
+    radial-gradient(620px 420px at 8% 90%,rgba(160,60,20,.14),transparent 66%),
+    #070505;
   border-top:1px solid rgba(232,181,77,.16);
   border-bottom:1px solid rgba(232,181,77,.16);
 }
@@ -172,46 +173,33 @@ img{display:block;max-width:100%}
   text-transform:uppercase;white-space:nowrap}
 .brand span{color:var(--accent)}
 /* Logo image brand (sidebar + mobile top bar) */
-.brand-logo{display:block;line-height:0}
+.brand-logo{display:block;line-height:1;font-size:1.4rem;font-weight:900;letter-spacing:.08em;color:var(--text);text-transform:uppercase}
+.brand-logo span:last-child{color:var(--accent)}
 .brand-logo img{width:90px;height:auto;display:block;margin:0 auto;
   filter:drop-shadow(0 4px 14px rgba(230,0,0,.35))}
 .mtop-logo img{width:auto;height:40px}
 
-/* Verrou de marque : médaillon + nom. Le médaillon porte « DJBILBOX BEATS »
-   gravé sur son anneau, illisible sous ~120 px — d'où le nom écrit à côté,
-   qui reste net à toutes les tailles. Remplace l'ancien logo chromé seul. */
-.brand-lockup{display:inline-flex;align-items:center;gap:9px;line-height:1;
-  text-decoration:none}
-.brand-lockup img{width:auto;height:32px;display:block;
-  filter:drop-shadow(0 3px 10px rgba(0,0,0,.55))}
-.brand-lockup .bl-name{font-family:var(--font-a);font-weight:700;font-size:.85rem;
-  letter-spacing:.07em;text-transform:uppercase;color:var(--text);white-space:nowrap}
-.brand-lockup .bl-name span{color:var(--accent)}
-@media(max-width:900px){
-  .brand-lockup img{height:34px}
-  .brand-lockup .bl-name{display:none}   /* place au menu : l'emblème suffit */
-}
-
 /* ---------- TOP BAR (replaces the old fixed left sidebar) ---------- */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:1000;
-  background:rgba(255,255,255,.95);backdrop-filter:blur(14px);
+  background:rgba(8,6,12,.88);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border)}
-.topbar-in{max-width:1320px;margin:0 auto;padding:0 20px;height:var(--hdr-h);
-  display:flex;align-items:center;gap:18px}
-.topbar .brand-logo{flex:0 0 auto}
-.topbar .brand-logo img{width:auto;height:30px;margin:0}
+.topbar-in{max-width:1320px;margin:0 auto;padding:0 22px;height:var(--hdr-h);
+  display:flex;align-items:center;gap:26px}
+.topbar .brand-logo{flex:0 0 auto;font-size:1rem;display:flex;align-items:center;padding:8px 0}
+.topbar .brand-logo span{display:inline}
+.topbar .brand-logo img{width:auto;height:40px;margin:0}
 
 .top-nav{display:flex;align-items:center;gap:6px;flex:1;justify-content:center}
-.top-nav a{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--text-2);padding:7px 11px;border-radius:7px;transition:.16s;white-space:nowrap}
-.top-nav a:hover{color:var(--text);background:var(--surface-2)}
+.top-nav a{font-size:.82rem;font-weight:600;color:var(--text-2);padding:9px 14px;
+  border-radius:8px;transition:.16s;white-space:nowrap}
+.top-nav a:hover{color:var(--text);background:rgba(255,255,255,.06)}
 .top-nav a.active{color:#fff;background:var(--accent)}
 
-.top-actions{display:flex;align-items:center;gap:9px;flex:0 0 auto}
-.top-btn{font-size:.7rem;font-weight:700;padding:7px 15px;border-radius:999px;
+.top-actions{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.top-btn{font-size:.8rem;font-weight:700;padding:9px 20px;border-radius:999px;
   transition:.18s;white-space:nowrap;border:1px solid transparent}
-.top-btn.ghost{border-color:var(--border);color:var(--text)}
-.top-btn.ghost:hover{border-color:var(--text);background:var(--surface-2)}
+.top-btn.ghost{border-color:rgba(255,255,255,.28);color:var(--text)}
+.top-btn.ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
 .top-btn.solid{background:#fff;color:#101014}
 .top-btn.solid:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
 
@@ -262,11 +250,11 @@ img{display:block;max-width:100%}
 .subnav{position:sticky;top:0;z-index:900;
   background:rgba(10,10,12,.95);backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border)}
-.subnav-inner{max-width:1280px;margin:0 auto;padding:8px 20px;
+.subnav-inner{max-width:1320px;margin:0 auto;padding:11px 24px;
   display:flex;align-items:center;gap:10px;overflow-x:auto;scrollbar-width:none}
 .subnav-inner::-webkit-scrollbar{display:none}
-.pill{flex:0 0 auto;font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-  padding:7px 14px;border-radius:30px;background:var(--surface-2);color:var(--text-2);
+.pill{flex:0 0 auto;font-size:.74rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  padding:8px 16px;border-radius:30px;background:var(--surface-2);color:var(--text-2);
   border:1px solid var(--border);cursor:pointer;transition:.18s;white-space:nowrap}
 .pill:hover{background:var(--surface-3);color:var(--text)}
 .pill.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
@@ -288,41 +276,8 @@ img{display:block;max-width:100%}
 /* ============================================================
    CARD GRID — products / beats / VST
    ============================================================ */
-/* Colonnes larges, façon catalogue Apeshyt : ~3 cartes par rangée sur un
-   écran de bureau. À 95 px de largeur mini on tombait à 6 cartes par rangée,
-   titres tronqués et prix collés au bouton — plus rien n'était lisible. */
-.grid{display:grid;gap:24px;
-  grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
-/* Plafonne a 3 colonnes comme le catalogue d'Apeshyt : en auto-fill pur, un
-   ecran de 1900 px alignait 6 cartes minuscules. La largeur est bornee a
-   1180 px pour retrouver ses proportions (carte ~380 px) : etalee sur les
-   1320 px du conteneur, la carte montait a 415 px et paraissait enorme. */
-@media(min-width:980px){
-  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-}
-/* Les pages catalogue respirent dans 1180 px : titres de rubrique et grille
-   alignes sur la meme colonne, cartes a ~380 px comme chez lui. */
-body[data-page="shop"] main.container,
-body[data-page="vst"] main.container,
-body[data-page="drumkits"] main.container{max-width:1280px}
-/* Sur une page catalogue, la pastille active dit deja quelle rubrique on
-   regarde : le gros titre et son sur-titre orange n'ajoutaient que du bruit
-   (« les textes, la dimension, c'est trop gros »). */
-body[data-page="shop"] .section-head h2{font-size:1.1rem;letter-spacing:.05em}
-body[data-page="shop"] .section-head .eyebrow{font-size:.62rem;letter-spacing:.12em;
-  color:var(--text-3);margin-bottom:5px}
-body[data-page="shop"] .section-head{margin-bottom:12px!important}
-body[data-page="shop"] .shop-block{margin-top:14px!important}
-/* Visuel paysage pour les plugins (4:3, comme lui). Les pochettes de packs et
-   de beats restent carrees — c'est leur format d'origine. */
-/* 4:3 pour TOUTES les fiches produit. Les pochettes de packs sont carrees :
-   dans une colonne de 410 px elles faisaient 410 px de haut, une carte plus
-   haute qu'un ecran de portable. Elles passent en `contain` pour garder
-   l'illustration entiere plutot que de rogner le titre. */
-.vst-card .card-media{aspect-ratio:4/3}
-.card .card-media{aspect-ratio:4/3}
-.card:not(.vst-card) .card-media{background:#0b0b10}
-.card:not(.vst-card) .card-media img{object-fit:contain}
+.grid{display:grid;gap:8px;
+  grid-template-columns:repeat(auto-fill,minmax(95px,1fr))}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);
   overflow:hidden;display:flex;flex-direction:column;transition:.22s ease;position:relative}
 .card:hover{transform:translateY(-4px);border-color:rgba(255,45,45,.4);
@@ -339,18 +294,6 @@ body[data-page="shop"] .shop-block{margin-top:14px!important}
   font-size:.6rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
   padding:4px 9px;border-radius:5px;z-index:2}
 .card-badge.free{background:var(--green)}
-/* Pastille de famille, en haut a droite — le "PLUGIN" d'Apeshyt */
-.card-kind{position:absolute;top:10px;right:10px;z-index:2;
-  background:rgba(10,10,14,.78);border:1px solid rgba(255,255,255,.22);color:#fff;
-  font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-  padding:4px 9px;border-radius:5px;backdrop-filter:blur(4px)}
-/* Accroche d'une ligne sous le titre, a la place de l'ancien encadre rouge */
-.card-tagline{color:var(--text-3);font-size:.8rem;line-height:1.4;margin:0;
-  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
-/* Le bouton prend toute la largeur sous le prix : "ADD TO CART" en entier,
-   comme chez lui, plutot qu'un "Add" ecrase contre le montant. */
-.card-actions{display:flex;gap:8px}
-.card-actions .btn-cta{justify-content:center;padding:9px 14px;font-size:.68rem}
 /* "FREE demo available" under the price of a paid pack */
 .pack-free-note{display:block;font-size:.56rem;font-weight:800;letter-spacing:.04em;
   text-transform:uppercase;color:var(--green);margin-top:1px}
@@ -365,21 +308,18 @@ body[data-page="shop"] .shop-block{margin-top:14px!important}
 .card-play i{width:54px;height:54px;border-radius:50%;background:var(--accent);color:#fff;
   display:flex;align-items:center;justify-content:center;font-size:1.1rem;
   box-shadow:0 6px 20px rgba(255,45,45,.5)}
-.card-body{padding:13px 14px 14px;display:flex;flex-direction:column;gap:7px;flex:1}
-.card-title{font-size:1.15rem;font-weight:700;line-height:1.25;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card-tags{display:flex;flex-wrap:wrap;gap:5px}
-.tag{font-size:.58rem;font-weight:600;color:var(--text-3);background:var(--surface-2);
-  padding:3px 7px;border-radius:5px;text-transform:uppercase;letter-spacing:.03em}
-.card-meta{display:flex;align-items:center;gap:8px;font-size:.68rem;color:var(--text-3);margin-top:2px}
-/* Le prix a besoin de sa propre ligne : prix barre + economie + bouton ne
-   tiennent pas cote a cote dans une colonne de carte. */
-.card-foot{display:flex;flex-direction:row;align-items:center;justify-content:space-between;
-  gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:12px}
-.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-.price .now{font-weight:800;font-size:1.25rem}
-.price .now.free{color:var(--green);font-size:1.05rem;letter-spacing:.03em}
-.price .old{font-size:.9rem;color:var(--text-4);text-decoration:line-through}
+.card-body{padding:9px 10px 11px;display:flex;flex-direction:column;gap:5px;flex:1}
+.card-title{font-size:.82rem;font-weight:700;line-height:1.25;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.card-tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:.56rem;font-weight:600;color:var(--text-3);background:var(--surface-2);
+  padding:3px 6px;border-radius:4px;text-transform:uppercase;letter-spacing:.03em}
+.card-meta{display:flex;align-items:center;gap:8px;font-size:.62rem;color:var(--text-3);margin-top:2px}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:auto;padding-top:5px}
+.price{display:flex;align-items:baseline;gap:6px}
+.price .now{font-weight:800;font-size:.92rem}
+.price .now.free{color:var(--green);font-size:.8rem;letter-spacing:.03em}
+.price .old{font-size:.78rem;color:var(--text-4);text-decoration:line-through}
 .btn-cta{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
   padding:7px 11px;border-radius:6px;background:var(--accent);color:#fff;border:none;cursor:pointer;
   transition:.18s;display:inline-flex;align-items:center;gap:5px}
@@ -521,11 +461,7 @@ body[data-page="shop"] .shop-block{margin-top:14px!important}
 /* the sticky sub-nav sits directly under the fixed top bar */
 .subnav{top:var(--hdr-h)}
 @media(max-width:560px){
-  /* une seule colonne sur telephone : deux cartes cote a cote redonnaient
-     les titres tronques qu'on vient de corriger */
-  .grid{grid-template-columns:1fr;gap:14px}
-  .card-title{font-size:.95rem}
-  .price .now{font-size:1.15rem}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px}
   .container{padding:0 16px}
   .promo-bar{font-size:.7rem;gap:8px}
   .promo-bar .promo-close{position:static}
@@ -587,7 +523,3 @@ body{top:0!important;position:static!important}
 .lang-wrap{display:none!important}          /* hide the "Sélectionner une langue / Fourni par Google" bar */
 #goog-gt-tt,.goog-te-balloon-frame,.goog-tooltip{display:none!important}
 .goog-text-highlight{background:none!important;box-shadow:none!important;color:inherit!important}
-
-/* Apeshyt n'affiche aucune pastille de tag sur ses cartes : deux lignes
-   de moins par carte, c'est la hauteur qui faisait « trop gros ». */
-.vst-card .card-tags{display:none}
