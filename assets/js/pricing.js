@@ -157,7 +157,9 @@ window.PRICING = (function () {
     align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
   .promo-strip .ps-tag{font-weight:800;letter-spacing:.08em;text-transform:uppercase;
     background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
-    padding:3px 9px;border-radius:6px;white-space:nowrap}
+    padding:3px 9px;border-radius:6px;white-space:nowrap;
+    animation:psTagPulse 1.6s ease-in-out infinite}
+  @keyframes psTagPulse{0%,100%{opacity:1}50%{opacity:.45}}
   .promo-strip .ps-text s{opacity:.55}
   .promo-strip .ps-text b{color:#7dffbe;font-weight:800}
   .promo-strip .ps-timer{font-variant-numeric:tabular-nums;opacity:.9;white-space:nowrap}
