@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    DJBILBOX BEATS — Full product catalog (detail pages)
    Drives product.html?id=<slug>. One entry per VST / sample kit.
    `video` = YouTube playlist id used as the muted hero background.
@@ -72,7 +72,7 @@ window.PRODUCTS = {
 
   /* ===================== BUNDLE ===================== */
   "pro-bundle": {
-    type:"vst", name:"DJBILBOX PRO BUNDLE", sub:"All 6 Plugins — Synth, Effects & Instruments",
+    type:"vst", name:"HUMPIRE BUNDLE", sub:"All 6 Plugins — Synth, Effects & Instruments",
     tagline:"Every plugin I make — STATION SYNTH, ORIENTAL INSTRUMENT, BIGBASS, VICE CITY, MATRIX MODULAR & MASTERING. One payment, all current & future releases included.",
     cover:"img/vst/ui/pro-bundle-card.jpg", accent:"#ff2d2d", accent2:"#ff8a3d",
     tier:"bundle", price:"997", old:"1182", badge:"👑 Best value",
@@ -80,7 +80,7 @@ window.PRODUCTS = {
     buy:"djbilbox-pro-bundle", demo:"station-synth-demo",
     tags:["6 Plugins","STATION SYNTH + 11 libraries","ORIENTAL 280+ instruments","VST3 · Standalone","Win · Mac"],
     about:[
-      "The DJBILBOX PRO BUNDLE is the complete collection — every plugin I've built and every plugin I'll release in the future, all included in one payment. A single license covers STATION SYNTH (wavetable synth + 11 expansion libraries), ORIENTAL INSTRUMENT (280+ authentic instruments), BIGBASS (lowrider bass), VICE CITY (synthwave synth), MATRIX MODULAR (stereo modulation effect) and MASTERING (professional limiter).",
+      "The HUMPIRE BUNDLE is the complete collection — every plugin I've built and every plugin I'll release in the future, all included in one payment. A single license covers STATION SYNTH (wavetable synth + 11 expansion libraries), ORIENTAL INSTRUMENT (280+ authentic instruments), BIGBASS (lowrider bass), VICE CITY (synthwave synth), MATRIX MODULAR (stereo modulation effect) and MASTERING (professional limiter).",
       "This is a true lifetime bundle — buy once, get every update and every new plugin I release. No subscription, no annual fees, no hidden costs. Whether you're building trap, afro, oriental, synthwave or hybrid beats, everything you need is here.",
       "Each plugin ships as VST3, Audio Unit and Standalone for both Windows and macOS. Install once, use everywhere — DAW, standalone, hardware integration, all included."
     ],
