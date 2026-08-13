@@ -97,7 +97,16 @@ function mountSidebar(active){
   overlay.className='side-overlay';
   overlay.onclick=toggleNav;
 
-  document.body.prepend(overlay, header);
+  const ticker = document.createElement('div');
+  ticker.className='top-ticker';
+  const tickerItems = [
+    'HUMPIRE FAM','KEEP GOIN\' HUMPIRE','BUY 1 GET 1 FREE','BUY 3 GET 3 FREE',
+    'BUY 5 GET 5 FREE','AUTO-APPLIES AT CHECKOUT','857+ DOWNLOADS','FREE STATION SYNTH BASIC'
+  ];
+  const tickerHtml = tickerItems.map(t=>`<span>${t}</span>`).join('');
+  ticker.innerHTML = `<div class="top-ticker-track">${tickerHtml}${tickerHtml}</div>`;
+
+  document.body.prepend(overlay, header, ticker);
   reflectAuthState();
   Cart.refresh();
 }
