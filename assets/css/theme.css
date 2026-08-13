@@ -183,9 +183,8 @@ img{display:block;max-width:100%}
   border-bottom:1px solid var(--border)}
 .topbar-in{max-width:1320px;margin:0 auto;padding:0 22px;height:var(--hdr-h);
   display:flex;align-items:center;gap:26px}
-.topbar .brand-logo{flex:0 0 auto;font-size:1rem;display:flex;align-items:center;gap:10px;padding:8px 0}
-.topbar .brand-logo span{display:inline}
-.topbar .brand-logo img{width:auto;height:36px;margin:0;border-radius:50%}
+.topbar .brand-logo{flex:0 0 auto;display:flex;align-items:center;padding:6px 0}
+.topbar .brand-logo img{width:auto;height:48px;margin:0}
 
 .top-nav{display:flex;align-items:center;gap:6px;flex:1;justify-content:center}
 .top-nav a{font-size:.82rem;font-weight:600;color:#000;padding:9px 14px;
@@ -239,7 +238,7 @@ img{display:block;max-width:100%}
 @media(max-width:560px){
   .top-btn.ghost{display:none}
   .top-btn{padding:8px 14px;font-size:.74rem}
-  .topbar .brand-logo img{height:32px}
+  .topbar .brand-logo img{height:40px}
 }
 
 /* ============================================================
