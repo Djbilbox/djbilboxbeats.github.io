@@ -16,7 +16,7 @@
   /* previous: --bg:#0c0714 --surface:#151022 --accent:#E60000 --accent-bright:#FF6633 */
   --r:8px; --rl:14px;
   --font:'Inter',sans-serif; --font-a:'Rajdhani',sans-serif;
-  --hdr-h:68px; --subnav-h:54px; --side-w:0px; --mtop-h:0px;
+  --hdr-h:68px; --subnav-h:54px; --side-w:0px; --mtop-h:0px; --ticker-h:38px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -24,8 +24,37 @@ html{scroll-behavior:smooth}
 body{
   background:var(--bg); color:var(--text); font-family:var(--font);
   -webkit-font-smoothing:antialiased; line-height:1.5;
-  padding-top:var(--hdr-h);     /* room for the fixed top bar */
+  padding-top:calc(var(--hdr-h) + var(--ticker-h));     /* room for the ticker + fixed top bar */
   padding-bottom:48px;          /* room for sticky promo */
+}
+
+/* ---- TOP TICKER — bold scrolling deal band above the header (Apeshyt-style) ---- */
+.top-ticker{position:fixed;top:0;left:0;right:0;z-index:1001;height:var(--ticker-h);
+  overflow:hidden;background:linear-gradient(90deg,#FF7A1A,var(--accent));
+  display:flex;align-items:center}
+.top-ticker-track{display:flex;align-items:center;gap:40px;width:max-content;
+  animation:topTickerScroll 26s linear infinite;padding-left:20px}
+.top-ticker:hover .top-ticker-track{animation-play-state:paused}
+.top-ticker span{font-family:var(--font-a);font-weight:800;font-size:.78rem;
+  letter-spacing:.14em;text-transform:uppercase;color:#fff;white-space:nowrap;
+  display:flex;align-items:center;gap:10px}
+.top-ticker span::after{content:'★';font-size:.7rem;opacity:.7;margin-left:30px}
+@keyframes topTickerScroll{to{transform:translateX(-50%)}}
+.topbar{top:var(--ticker-h) !important}
+
+/* ---- STAT BAND — bold dark strip with big numbers (Apeshyt-style) ---- */
+.stat-band{background:#0A0A0B;padding:32px 0}
+.stat-band-row{display:flex;justify-content:space-around;align-items:center;
+  flex-wrap:wrap;gap:24px;text-align:center}
+.stat-band-item .n{font-family:var(--font-a);font-weight:800;font-size:clamp(1.5rem,3vw,2.2rem);
+  color:#FF7A1A;line-height:1}
+.stat-band-item .l{margin-top:6px;font-size:.72rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:#A0A0A8}
+@media(max-width:700px){.stat-band-row{gap:20px 32px}}
+@media(max-width:560px){
+  :root{--ticker-h:34px}
+  .top-ticker span{font-size:.68rem;letter-spacing:.08em}
+  .top-ticker-track{gap:26px}
 }
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
@@ -460,7 +489,7 @@ img{display:block;max-width:100%}
   .stats{gap:30px}
 }
 /* the sticky sub-nav sits directly under the fixed top bar */
-.subnav{top:var(--hdr-h)}
+.subnav{top:calc(var(--hdr-h) + var(--ticker-h))}
 @media(max-width:560px){
   .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px}
   .container{padding:0 16px}
