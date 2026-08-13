@@ -4,13 +4,6 @@
    Reusable across pages. Load AFTER beats-data.js where needed.
    ============================================================ */
 
-/* Load license generator for free beat licenses */
-(function(){
-  var script = document.createElement('script');
-  script.src = 'assets/js/license-generator.js';
-  document.head.appendChild(script);
-})();
-
 /* Community + contact hub — every "Contact" CTA routes here. */
 const DISCORD_URL = 'https://discord.gg/7HeMSvbN';
 
@@ -37,24 +30,14 @@ const DISCORD_URL = 'https://discord.gg/7HeMSvbN';
    ============================================================ */
 /* First NAV_SPLIT entries render under "Browse", the rest under "Library". */
 const NAV_SPLIT = 7;
-/* La barre du haut EST le catalogue, comme chez Apeshyt : chaque rubrique de
-   la boutique y a son entree et ouvre l'onglet correspondant de shop.html.
-   Beatmaker est descendu dans le tiroir (bil, 13 aout 2026). */
 const NAV = [
-  { key:'bundles',     label:'Bundles',      href:'/shop.html#bundles',        icon:'fa-gift' },
-  { key:'synths',      label:'Synths',       href:'/shop.html#synths',         icon:'fa-sliders' },
-  { key:'effects',     label:'Effects',      href:'/shop.html#effects',        icon:'fa-wave-square' },
-  { key:'kits',        label:'Drum Kits',    href:'/shop.html#kits',           icon:'fa-drum' },
-  { key:'free',        label:'Free',         href:'/shop.html#free',           icon:'fa-gift' },
-  { key:'video',       label:'Video Studio', href:'/video-studio.html',        icon:'fa-clapperboard' },
-  { key:'setup',       label:'Info',         href:'/studio-setup.html',        icon:'fa-circle-info' },
-  /* --- au-dela de NAV_SPLIT : uniquement dans le tiroir et le pied de page ---
-     « Shop » et « Beatmaker » ont ete retires de la navigation le 13 aout 2026 :
-     les rubriques ci-dessus remplacent le Shop, et bil ne veut plus du
-     Beatmaker. Les pages restent en ligne, elles ne sont plus liees ici. */
   { key:'music',       label:'Music',        href:'/beats-redesign.html',      icon:'fa-music' },
+  { key:'beatmaker',   label:'Beatmaker',    href:'/beatmaker.html',           icon:'fa-headphones' },
+  { key:'shop',        label:'Shop',         href:'/shop.html',                icon:'fa-store' },
   { key:'oriental',    label:'Oriental VST', href:'/oriental-instrument.html', icon:'fa-star' },
   { key:'mastering',   label:'AI Mastering', href:'/ai-mastering.html',        icon:'fa-sliders' },
+  { key:'video',       label:'Video Studio', href:'/video-studio.html',        icon:'fa-clapperboard' },
+  { key:'setup',       label:'Info',         href:'/studio-setup.html',        icon:'fa-circle-info' },
   { key:'contact',     label:'Contact',      href:'/contact.html',             icon:'fa-envelope' },
   { key:'account',     label:'My Account',   href:'/account.html',             icon:'fa-user' },
   { key:'license',     label:'License',      href:'/license.html',             icon:'fa-id-card' },
@@ -84,12 +67,7 @@ function mountSidebar(active){
   header.className='topbar';
   header.innerHTML = `
     <div class="topbar-in">
-      <!-- Emblème + nom écrit à côté : le médaillon seul est illisible à 40 px
-           (c'était le défaut de l'ancien logo chromé). -->
-      <a href="/index.html" class="brand brand-lockup" aria-label="DJBILBOX BEATS">
-        <img src="/img/djbilbox-emblem.png" alt="">
-        <span class="bl-name">HUM<span>PIRE</span></span>
-      </a>
+      <a href="/index.html" class="brand brand-logo"><span>HUM<span>PIRE</span></span></a>
 
       <nav class="top-nav">${topLinks}</nav>
 
@@ -296,14 +274,6 @@ function addToCart(title, price, buy){
   const badge=document.querySelector('[data-cart-badge]');
   if(badge){ badge.animate([{transform:'scale(1.7)'},{transform:'scale(1)'}],{duration:320}); }
   openCart();
-
-  // Show license modal for free beats
-  const isFree = String(price).toUpperCase() === 'FREE' || price === '0' || price === 0;
-  if(isFree && window.LicenseGen) {
-    setTimeout(function() {
-      LicenseGen.showLicenseModal(title);
-    }, 500);
-  }
 }
 
 /* drawer (injected once) */
@@ -704,23 +674,10 @@ function vstCard(p){
   const tags = (p.tags||[]).slice(0,2).map(t=>`<span class="tag">${t}</span>`).join('');
   const old = p.old ? `<span class="old">$${p.old}</span>` : '';
   const soon = String(p.price).toUpperCase()==='SOON';
-  /* Pastille d'economie, comme les cartes d'Apeshyt : le montant reellement
-     epargne parle plus fort que le pourcentage. Calculee, jamais saisie —
-     pricing.js pose `old` et `price`, elle en decoule.                  */
-  const saved = Math.round((parseFloat(p.old)||0) - (parseFloat(p.price)||0));
-  const save = saved > 0 ? `<span class="djb-save">SAVE $${saved}</span>` : '';
   const priceHtml = soon ? `<span class="now" style="font-size:.82rem;color:var(--text-3)">Coming soon</span>`
                    : p.free ? `<span class="now" style="color:var(--green)">FREE</span>`
                    : String(p.price).startsWith('~') ? `<span class="now" style="font-size:.86rem">${p.price}</span>`
-                   : `<span class="now">$${p.price}</span>${old}${save}`;
-  /* Pastille de categorie en haut a droite, comme le "PLUGIN" d'Apeshyt :
-     elle dit d'un coup d'oeil a quelle famille appartient la carte.     */
-  const kind = p.tier === 'bundle' ? 'BUNDLE'
-             : p.tier === 'legendary' || p.tier === 'oriental' ? 'PRO BUNDLE'
-             : p.free ? 'FREE'
-             : p.category === 'effect' ? 'EFFECT'
-             : p.url ? 'PARTNER' : 'PLUGIN';
-  const kindHtml = `<span class="card-kind">${kind}</span>`;
+                   : `<span class="now">$${p.price}</span>${old}`;
   const demo = p.demo ? `<button class="btn-cta ghost" onclick="buy('${p.demo.replace(/'/g,"\\'")}')"><i class="fa-solid fa-download"></i> Demo</button>` : '';
   /* External / partner products: link straight out instead of the Gumroad cart.
      `p.url` = full external URL. `p.free` = free download (green "Get Free" button). */
@@ -732,15 +689,11 @@ function vstCard(p){
   } else if(soon){
     mainBtn = `<button class="btn-cta ghost" onclick="window.open(GUMROAD_STORE,'_blank')"><i class="fa-solid fa-bell"></i> Notify</button>`;
   } else {
-    mainBtn = `<button class="btn-cta" onclick="addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>`;
+    mainBtn = `<button class="btn-cta" onclick="addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
   }
-  /* Une seule ligne d'accroche sous le titre, comme chez Apeshyt. L'ancien
-     encadre rouge "🎟️ …" mangeait la carte et faisait doublon avec les tags. */
-  const noteHtml = p.note ? `<p class="card-tagline">${p.note}</p>` : '';
+  const noteHtml = p.note ? `<div style="background:var(--accent-glow);border:1px solid rgba(255,45,45,.3);border-radius:5px;padding:5px 9px;font-size:.64rem;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-top:2px">🎟️ ${p.note}</div>` : '';
   const el=document.createElement('article');
-  /* `vst-card` = visuel paysage. Une capture d'interface est large ; dans le
-     carre des pochettes de packs elle mangeait toute la hauteur de l'ecran. */
-  el.className='card vst-card';
+  el.className='card';
   const dHref = p.detail ? p.detail : (p.id ? `product.html?id=${p.id}` : null);
   const thumb = p.thumb || p.img;
   /* optional muted loop clip revealed on hover, layered over the poster */
@@ -760,20 +713,20 @@ function vstCard(p){
                cursor:pointer;backdrop-filter:blur(4px)"><i class="fa-brands fa-youtube" style="color:#ff3b3b"></i> Demo</button>`
     : '';
   const media = dHref
-    ? `<a class="card-media" href="${dHref}">${badge}${kindHtml}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}<span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
-    : `<div class="card-media">${badge}${kindHtml}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}</div>`;
+    ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}<span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
+    : `<div class="card-media">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}</div>`;
   const titleHtml = dHref ? `<a href="${dHref}"><h3 class="card-title">${p.name}</h3></a>` : `<h3 class="card-title">${p.name}</h3>`;
-  const descHtml = p.desc ? `<p class="card-tagline">${p.desc}</p>` : '';
-  /* Une accroche suffit : si `desc` existe, `note` ferait doublon. */
+  const descHtml = p.desc ? `<p class="card-desc" style="color:var(--text-3);font-size:.68rem;line-height:1.4;margin:2px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${p.desc}</p>` : '';
   el.innerHTML = `
     ${media}
     <div class="card-body">
       ${titleHtml}
-      ${descHtml || noteHtml}
       <div class="card-tags">${tags}</div>
+      ${descHtml}
+      ${noteHtml}
       <div class="card-foot">
         <div class="price">${priceHtml}</div>
-        <div class="card-actions">${soon?'':demo}${mainBtn}</div>
+        <div style="display:flex;gap:6px">${soon?'':demo}${mainBtn}</div>
       </div>
     </div>`;
   if(p.preview){
@@ -799,17 +752,9 @@ function renderVsts(list, containerId){
   if(!container) return;
   container.innerHTML='';
 
-  /* Depuis le 12 aout 2026 cette page ne montre que les articles du store
-     Gumroad DJBILBOX BEATS. Le materiel partenaire (FL Studio, VirtualDJ) et
-     les VST gratuits d'autres editeurs (Vital, Valhalla, Apeshyt Rampage…)
-     gardent leurs fiches — fl-studio.html, free-vst.html, apeshyt-rampage.html —
-     mais ne s'affichent plus dans le catalogue.                          */
-  const mine=(list||[]).filter(p=>p.category!=='partner' && p.category!=='free' && !p.url);
-
-  const bundles=mine.filter(p=>p.tier==='bundle'||p.tier==='legendary'||p.tier==='oriental');
-  const effects=mine.filter(p=>p.category==='effect');
-  const freeMine=mine.filter(p=>p.free);
-  const instruments=mine.filter(p=>!p.free && p.tier==='pro' && p.category!=='effect');
+  const bundles=(list||[]).filter(p=>p.category==='bundle');
+  const effects=(list||[]).filter(p=>p.category==='effect');
+  const instruments=(list||[]).filter(p=>p.category==='instrument'||!p.category);
 
   const frag=document.createDocumentFragment();
 
@@ -823,28 +768,22 @@ function renderVsts(list, containerId){
     return h;
   };
 
-  // BUNDLES — le plugin avec ses extensions, l'offre qui rapporte
+  // BUNDLE section
   if(bundles.length>0){
-    frag.appendChild(mkHead('🎁 Bundles'));
+    frag.appendChild(mkHead('🎁 VST Bundle'));
     bundles.forEach(p=>frag.appendChild(vstCard(p)));
   }
 
-  // PLUGINS — les instruments vendus seuls
-  if(instruments.length>0){
-    frag.appendChild(mkHead('🎹 Plugins'));
-    instruments.forEach(p=>frag.appendChild(vstCard(p)));
-  }
-
-  // EFFECTS
+  // EFFECTS section
   if(effects.length>0){
     frag.appendChild(mkHead('⚙️ Audio Effects'));
     effects.forEach(p=>frag.appendChild(vstCard(p)));
   }
 
-  // FREE — les versions BASIC, la porte d'entree facon Rampage
-  if(freeMine.length>0){
-    frag.appendChild(mkHead('✅ Free Plugins'));
-    freeMine.forEach(p=>frag.appendChild(vstCard(p)));
+  // INSTRUMENTS section
+  if(instruments.length>0){
+    frag.appendChild(mkHead('🎹 Instruments'));
+    instruments.forEach(p=>frag.appendChild(vstCard(p)));
   }
 
   container.appendChild(frag);
