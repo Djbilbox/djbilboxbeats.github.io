@@ -7,17 +7,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap');
 
 :root{
-  /* ---- DARK THEME — neutral black, white type, one warm accent.
-     The old JOKA red/purple is kept below, commented, so the whole
-     palette can be reverted by swapping the two blocks. ---- */
-  --bg:#0A0A0B; --surface:#131315; --surface-2:#1B1B1E; --surface-3:#26262A;
-  /* Rouge + vert : les couleurs du drapeau algerien (bil, 13 aout 2026).
-     L'ancien jaune, si jamais il faut revenir en arriere :
-     accent F5B921 · hover D89E0E · bright FFD45E · glow 245,185,33  */
-  --accent:#D21034; --accent-h:#B00D2B; --accent-glow:rgba(210,16,52,.16);
-  --accent-bright:#FF3B57; --accent-plat:#E5E4E2; --accent-chrome:#C0C0C0;
-  --green:#1DB954; --text:#FFFFFF; --text-2:#B8B8BD; --text-3:#8A8A92; --text-4:#5F5F67;
-  --border:rgba(255,255,255,.09);
+  /* ---- LIGHT THEME (WHITE) — Clean, modern, bright background ---- */
+  --bg:#FFFFFF; --surface:#F8F8FA; --surface-2:#F0F0F5; --surface-3:#E8E8F0;
+  /* Accent colors: Red & Green (Algerian flag colors) with neon vibrancy */
+  --accent:#D21034; --accent-h:#B00D2B; --accent-glow:rgba(210,16,52,.12);
+  --accent-bright:#FF3B57; --accent-plat:#E5E4E2; --accent-chrome:#D0D0D0;
+  --green:#1DB954; --text:#0A0A0B; --text-2:#4A4A52; --text-3:#7A7A82; --text-4:#A0A0A8;
+  --border:rgba(0,0,0,.08);
   /* previous: --bg:#0c0714 --surface:#151022 --accent:#E60000 --accent-bright:#FF6633 */
   --r:8px; --rl:14px;
   --font:'Inter',sans-serif; --font-a:'Rajdhani',sans-serif;
@@ -41,8 +37,8 @@ img{display:block;max-width:100%}
    ============================================================ */
 .hero2{position:relative;overflow:hidden;padding:72px 0 40px;
   background:
-    radial-gradient(1000px 560px at 78% 30%,rgba(210,16,52,.09),transparent 62%),
-    radial-gradient(720px 480px at 6% 92%,rgba(255,255,255,.035),transparent 66%),
+    radial-gradient(1000px 560px at 78% 30%,rgba(210,16,52,.08),transparent 62%),
+    radial-gradient(720px 480px at 6% 92%,rgba(30,181,84,.05),transparent 66%),
     var(--bg)}
 .hero2-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
   gap:48px;align-items:center}
@@ -76,12 +72,12 @@ img{display:block;max-width:100%}
    Scoped to .flagship so it never touches the red site theme.
    ============================================================ */
 .flagship{
-  --g:#E8B54D; --g2:#F6D98A; --g3:#B8860B;
+  --g:#D4A03D; --g2:#E8B54D; --g3:#B8860B;
   padding:64px 0;position:relative;overflow:hidden;
   background:
-    radial-gradient(900px 480px at 76% 40%,rgba(232,181,77,.16),transparent 62%),
-    radial-gradient(620px 420px at 8% 90%,rgba(160,60,20,.14),transparent 66%),
-    #070505;
+    radial-gradient(900px 480px at 76% 40%,rgba(212,160,61,.12),transparent 62%),
+    radial-gradient(620px 420px at 8% 90%,rgba(184,134,11,.08),transparent 66%),
+    #FFFAF5;
   border-top:1px solid rgba(232,181,77,.16);
   border-bottom:1px solid rgba(232,181,77,.16);
 }
