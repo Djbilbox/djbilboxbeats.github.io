@@ -71,35 +71,65 @@
 .ss-embed{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#000}
 .ss-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 @media(max-width:760px){.ss-hero{grid-template-columns:1fr}}
+
+/* ---- Giveaway hero (Apeshyt-style): full-bleed cinematic bg + single free-download CTA ---- */
+.ss-give{position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;
+  width:100vw;margin-top:-40px;margin-bottom:44px;padding:60px 20px 52px;overflow:hidden;
+  background:#0b0704;text-align:center}
+.ss-give-media{position:absolute;inset:0;z-index:0}
+.ss-give-bg{width:100%;height:100%;object-fit:cover;object-position:center 32%;opacity:.5}
+.ss-give-fade{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(11,7,4,.5) 0%,rgba(11,7,4,.78) 48%,#0b0704 97%)}
+.ss-give-back{position:relative;z-index:2;display:inline-flex;align-items:center;gap:7px;
+  color:#fff;opacity:.75;font-size:.78rem;font-weight:600;margin-bottom:26px;transition:.15s}
+.ss-give-back:hover{opacity:1;color:#FF7A1A}
+.ss-give-in{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.ss-give-eyebrow{color:#FF7A1A;font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:.74rem;margin-bottom:14px}
+.ss-give-h1{font-family:var(--font-a);font-weight:800;text-transform:uppercase;color:#fff;
+  font-size:clamp(2rem,6vw,3.5rem);line-height:1.03;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.ss-give-h1 span{color:#FF7A1A}
+.ss-give-sub{color:#e8e5df;font-size:1.02rem;line-height:1.62;max-width:56ch;margin:16px auto 26px;opacity:.92}
+.ss-give-product{width:100%;max-width:540px;margin:0 auto 30px;filter:drop-shadow(0 25px 50px rgba(0,0,0,.65))}
+.ss-give-cta{display:inline-flex;align-items:center;gap:10px;background:#FF7A1A;color:#150900;
+  font-weight:800;text-transform:uppercase;letter-spacing:.03em;font-size:.95rem;
+  padding:17px 32px;border-radius:11px;transition:.18s;cursor:pointer;border:0}
+.ss-give-cta:hover{background:#fff;transform:translateY(-2px)}
+.ss-give-note{color:#c8c4bc;font-size:.76rem;margin-top:13px}
+.ss-give-badges{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:28px}
+.ss-give-badges span{color:#c8c4bc;font-size:.74rem;font-weight:600;display:inline-flex;align-items:center;gap:7px}
+.ss-give-badges i{color:#FF7A1A}
+@media(max-width:640px){.ss-give{margin-top:-24px;padding:40px 16px 36px}}
 </style>
 </head>
 <body data-page="shop">
 
 <main class="ss-wrap">
-  <a href="shop.html" class="ss-back"><i class="fa-solid fa-arrow-left"></i> Back to shop</a>
 
-  <section class="ss-hero">
-    <img src="img/vst/station-synth-demo.jpg" alt="STATION SYNTH — free demo of the wavetable synthesizer">
-    <div>
-      <div class="ss-eyebrow">Free · VST3 · AU · Standalone · Win &amp; Mac</div>
-      <h1 class="ss-title">STATION SYNTH<br>Free Demo</h1>
-      <div class="ss-tags">
-        <span class="ss-tag">50 presets</span>
-        <span class="ss-tag">14 wavetables</span>
-        <span class="ss-tag">Full engine</span>
-        <span class="ss-tag">No time limit</span>
-      </div>
-      <p class="ss-lead">
-        This is not a crippled version. It is the same engine, the same
-        wavetables and the same seven effects as the full edition. Nothing is
-        disabled, nothing beeps over your sound, nothing expires after thirty
-        days. Only the preset library is smaller.
+  <section class="ss-give">
+    <div class="ss-give-media">
+      <img class="ss-give-bg" src="img/vst/station-synth-camel-hero.jpg" alt="" aria-hidden="true">
+      <div class="ss-give-fade"></div>
+    </div>
+    <a href="shop.html" class="ss-give-back"><i class="fa-solid fa-arrow-left"></i> Back to shop</a>
+    <div class="ss-give-in">
+      <div class="ss-give-eyebrow">🐫 DJBILBOX BEATS presents</div>
+      <h1 class="ss-give-h1">STEAL THE <span>STATION SYNTH</span>. FREE.</h1>
+      <p class="ss-give-sub">
+        The full wavetable engine — 50 presets, 14 wavetables, seven effects, four skins.
+        Nothing crippled, nothing timed-out. Get the download link sent to your inbox, no card needed.
       </p>
-      <div class="ss-price">Free</div>
-      <a class="ss-cta" href="https://djbilboxbeats.gumroad.com/l/station-synth-demo" target="_blank" rel="noopener">
-        <i class="fa-solid fa-download"></i> Download free
+      <img class="ss-give-product" src="img/vst/station-synth-free-hero.png"
+           alt="STATION SYNTH — free wavetable synthesizer, VST3 / AU / Standalone, with its country expansion packs">
+      <a class="ss-give-cta gumroad-button" href="https://djbilboxbeats.gumroad.com/l/station-synth-demo?layout=profile"
+         data-gumroad-overlay-checkout="true">
+        <i class="fa-solid fa-download"></i> Send me STATION SYNTH — free
       </a>
-      <a class="ss-cta2" href="station-synth-bundle.html"><i class="fa-solid fa-bolt"></i> See the full bundle</a>
+      <div class="ss-give-note">No card. No spam. Just the download link, straight to your inbox.</div>
+      <div class="ss-give-badges">
+        <span><i class="fa-solid fa-bolt"></i> Instant delivery</span>
+        <span><i class="fa-solid fa-desktop"></i> VST3 · AU · Standalone</span>
+        <span><i class="fa-solid fa-scale-balanced"></i> Royalty-free forever</span>
+      </div>
     </div>
   </section>
 
@@ -156,7 +186,7 @@
   </p>
 
   <div style="margin-top:34px">
-    <a class="ss-cta" href="https://djbilboxbeats.gumroad.com/l/station-synth-demo" target="_blank" rel="noopener">
+    <a class="ss-cta gumroad-button" href="https://djbilboxbeats.gumroad.com/l/station-synth-demo?layout=profile" data-gumroad-overlay-checkout="true">
       <i class="fa-solid fa-download"></i> Download the demo — free
     </a>
     <a class="ss-cta2" href="station-synth-bundle.html"><i class="fa-solid fa-bolt"></i> The $50 bundle</a>
@@ -173,5 +203,6 @@
 
 <script src="assets/js/pricing.js?v=26081385"></script>
 <script src="assets/js/site.js?v=26081385"></script>
+<script src="https://gumroad.com/js/gumroad.js"></script>
 </body>
 </html>

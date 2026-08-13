@@ -136,14 +136,15 @@ window.PRICING = (function () {
   /* ---------- bandeau promo ---------- */
   function bannerHtml(camp) {
     const save = Math.round((1 - camp.pro / LIST.pro) * 100);
+    const dealHtml = `Every DJBILBOX plugin <s>$${LIST.pro}</s> <b>$${camp.pro}</b>
+          — save ${save}% · STATION SYNTH <s>$${LIST.legendary}</s> <b>$${camp.legendary}</b>
+          · PRO BUNDLE <s>$${LIST.bundle}</s> <b>$${camp.bundle}</b>`;
     return `
       <div class="promo-strip-in">
         <span class="ps-tag">${camp.tag}</span>
-        <span class="ps-text">
-          Every DJBILBOX plugin <s>$${LIST.pro}</s> <b>$${camp.pro}</b>
-          — save ${save}% · STATION SYNTH <s>$${LIST.legendary}</s> <b>$${camp.legendary}</b>
-          · PRO BUNDLE <s>$${LIST.bundle}</s> <b>$${camp.bundle}</b>
-        </span>
+        <span class="ps-text"><span class="ps-text-track">
+          <span>${dealHtml}</span><span>${dealHtml}</span>
+        </span></span>
         <span class="ps-timer">Ends in <b data-djb-countdown>—</b></span>
         <a class="ps-cta" href="/vst.html">Shop the sale</a>
       </div>`;
@@ -157,9 +158,14 @@ window.PRICING = (function () {
     align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
   .promo-strip .ps-tag{font-weight:800;letter-spacing:.08em;text-transform:uppercase;
     background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
-    padding:3px 9px;border-radius:6px;white-space:nowrap;
+    padding:3px 9px;border-radius:6px;white-space:nowrap;flex:0 0 auto;
     animation:psTagPulse 1.6s ease-in-out infinite}
   @keyframes psTagPulse{0%,100%{opacity:1}50%{opacity:.45}}
+  .promo-strip .ps-text{overflow:hidden;min-width:0;flex:1 1 260px;max-width:520px}
+  .promo-strip .ps-text-track{display:flex;width:max-content;gap:56px;
+    animation:psTextScroll 14s linear infinite}
+  .promo-strip:hover .ps-text-track{animation-play-state:paused}
+  @keyframes psTextScroll{to{transform:translateX(calc(-50% - 28px))}}
   .promo-strip .ps-text s{opacity:.55}
   .promo-strip .ps-text b{color:#7dffbe;font-weight:800}
   .promo-strip .ps-timer{font-variant-numeric:tabular-nums;opacity:.9;white-space:nowrap}
