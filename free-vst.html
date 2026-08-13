@@ -6,8 +6,8 @@
 <title>Free VST — DJBILBOX BEATS</title>
 <meta name="description" content="Info page for a free VST recommended by DJBILBOX BEATS — description, highlights and official download link.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26081313">
-<link rel="stylesheet" href="assets/css/modern-effects.css?v=26081313">
+<link rel="stylesheet" href="assets/css/theme.css?v=26081314">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26081314">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 .pi-wrap{max-width:1000px;margin:0 auto;padding:40px 20px 70px}
@@ -40,26 +40,65 @@
 <body data-page="shop">
 
 <main class="pi-wrap" id="piWrap">
-  <a href="shop.html" class="pi-back"><i class="fa-solid fa-arrow-left"></i> Back to shop</a>
+  <a id="backLink" href="free-vst.html" class="pi-back"><i class="fa-solid fa-arrow-left"></i> Back to free VSTs</a>
   <div id="piContent"></div>
 </main>
 
-<script src="assets/js/vst-data.js?v=26081313"></script>
+<script>
+// Mettre à jour le lien back en fonction du contexte
+(function(){
+  var params = new URLSearchParams(location.search);
+  var id = params.get('id');
+  var backLink = document.getElementById('backLink');
+
+  if(id){
+    backLink.href = 'free-vst.html';
+    backLink.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to free VSTs';
+  } else {
+    backLink.href = 'shop.html';
+    backLink.innerHTML = '<i class="fa-solid fa-arrow-left"></i> Back to shop';
+  }
+})();
+</script>
+
+<script src="assets/js/vst-data.js?v=26081314"></script>
 <script src="assets/js/free-vst-info.js?v=26071911"></script>
-<script src="assets/js/pricing.js?v=26081313"></script>
-<script src="assets/js/site.js?v=26081313"></script>
+<script src="assets/js/pricing.js?v=26081314"></script>
+<script src="assets/js/site.js?v=26081314"></script>
 <script>
 (function(){
   var params = new URLSearchParams(location.search);
   var id = params.get('id');
+  var box = document.getElementById('piContent');
+
+  // Si pas d'ID, afficher la galerie de tous les VST gratuits
+  if(!id){
+    var freeVsts = (window.VSTS||[]).filter(function(v){ return v.free && v.category !== 'partner'; });
+    var gallery = freeVsts.map(function(v){
+      return '<a href="free-vst.html?id='+v.id+'" class="vst-card" style="display:block;text-decoration:none;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:.2s;background:var(--surface-2)">'+
+        '<img src="'+v.img+'" alt="'+v.name+'" style="width:100%;height:180px;object-fit:cover;background:#0d0d16">'+
+        '<div style="padding:14px">'+
+          '<h3 style="margin:0 0 4px;font-weight:700;color:var(--text);font-size:.9rem">'+v.name+'</h3>'+
+          '<div style="color:var(--text-3);font-size:.75rem;margin-bottom:8px">'+v.note+'</div>'+
+          '<div style="color:var(--green);font-weight:700;font-size:.8rem">FREE</div>'+
+        '</div>'+
+      '</a>';
+    }).join('');
+
+    box.innerHTML = '<h1 class="pi-title" style="margin-bottom:8px">Free VST Plugins</h1>'+
+      '<p class="pi-lead" style="margin-bottom:32px">Download 100% free VST instruments and effects by DJBILBOX BEATS. All free plugins included in the PRO BUNDLE.</p>'+
+      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px">'+gallery+'</div>';
+    return;
+  }
+
+  // Sinon, afficher le détail d'un VST spécifique
   var base = (window.VSTS||[]).find(function(v){ return v.id === id; });
   var info = (window.FREE_VST_INFO||{})[id];
-  var box = document.getElementById('piContent');
 
   if(!base || !info){
     box.innerHTML = '<h1 class="pi-title">Plugin not found</h1>'+
       '<p class="pi-lead">This free VST does not exist or has no page yet. '+
-      '<a href="shop.html" style="color:var(--accent);font-weight:700">Back to shop</a>.</p>';
+      '<a href="free-vst.html" style="color:var(--accent);font-weight:700">Back to free VSTs</a>.</p>';
     return;
   }
 
