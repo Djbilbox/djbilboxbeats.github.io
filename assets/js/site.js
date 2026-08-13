@@ -73,9 +73,9 @@ function mountSidebar(active){
       <nav class="top-nav">${topLinks}</nav>
 
       <div class="top-actions">
-        <button class="icon-btn" onclick="openCart()" aria-label="Cart">
+        <a href="/cart.html" class="icon-btn" aria-label="Cart">
           <i class="fa-solid fa-bag-shopping"></i><span class="badge" data-cart-badge>0</span>
-        </button>
+        </a>
         <a href="/account.html" class="top-btn ghost" data-auth-in>Sign In</a>
         <a href="/account.html" class="top-btn solid" data-auth-up>Sign Up</a>
         <button class="nav-burger" onclick="toggleNav()" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
@@ -271,17 +271,37 @@ function closePromo(){
    Gumroad in one go. Each item stores its Gumroad ref in `buy`. */
 const Cart = {
   key:'djb_cart',
+  promoKey:'djb_promo',
   get(){ try{ return JSON.parse(localStorage.getItem(this.key))||[] }catch{ return [] } },
   save(items){ localStorage.setItem(this.key, JSON.stringify(items)); this.refresh(); },
   add(item){ const c=this.get(); if(item.buy && c.some(x=>x.buy===item.buy)){ this.refresh(); return; } c.push(item); this.save(c); },
   remove(i){ const c=this.get(); c.splice(i,1); this.save(c); renderCartItems(); },
   clear(){ this.save([]); renderCartItems(); },
   total(){ return this.get().reduce((s,it)=>{ const n=parseFloat(String(it.price).replace(',','.').replace(/[^0-9.]/g,'')); return s+(isNaN(n)?0:n); },0); },
+  getPromo(){ return localStorage.getItem(this.promoKey) || ''; },
+  setPromo(code){ localStorage.setItem(this.promoKey, (code||'').trim().toUpperCase()); },
   refresh(){
     const n=this.get().length;
     document.querySelectorAll('[data-cart-badge]').forEach(b=>{ b.textContent=n; b.style.display=n?'flex':'none'; });
   }
 };
+/* "Buy 5 Get 5 Free" — once 5+ PAID items sit in the cart, 5 more paid
+   plugins (not already in the cart) ride along in the same Gumroad bundle
+   checkout at $0, via the BONUS_CODE 100%-off discount. Real paid plugins,
+   not the already-free Basic versions. The code itself must exist on
+   Gumroad (100% off, applied to every plugin) for this to actually zero
+   the price at checkout. */
+const FREE_BONUS_THRESHOLD = 5;
+const FREE_BONUS_COUNT = 5;
+const BONUS_CODE = 'GET5FREE';
+function freeBonusItems(){
+  if(!window.VSTS) return [];
+  const cartBuys = new Set(Cart.get().map(it=>it.buy));
+  const paidCount = Cart.get().filter(it=>String(it.price).toUpperCase()!=='FREE').length;
+  if(paidCount < FREE_BONUS_THRESHOLD) return [];
+  return window.VSTS.filter(v => !v.free && v.buy && v.category!=='partner' && !v.url && !cartBuys.has(v.buy))
+    .slice(0, FREE_BONUS_COUNT);
+}
 function addToCart(title, price, buy){
   Cart.add({title, price, buy:buy||''});
   const badge=document.querySelector('[data-cart-badge]');
@@ -302,6 +322,8 @@ function mountCart(){
     <div class="cart-items" id="cartItems"></div>
     <div class="cart-foot">
       <div class="cart-total"><span>Total</span><strong id="cartTotal">FREE</strong></div>
+      <a href="/cart.html" class="btn ghost" style="width:100%;justify-content:center">
+        <i class="fa-solid fa-cart-shopping"></i> View full cart</a>
       <button class="btn primary" style="width:100%;justify-content:center" onclick="checkout()">
         <i class="fa-solid fa-bag-shopping"></i> Checkout on Gumroad</button>
       <button class="cart-clear" onclick="Cart.clear()">Clear cart</button>
@@ -343,17 +365,23 @@ function loadGumroadOverlay(cb){
 }
 
 function checkout(){
-  const items=Cart.get().filter(it=>it.buy);
-  if(!items.length){ openCart(); return; }
+  const paid=Cart.get().filter(it=>it.buy);
+  if(!paid.length){ openCart(); return; }
+  // Buy 5 Get 5 Free — 5 more real paid plugins ride in the same bundle,
+  // zeroed via the BONUS_CODE 100%-off discount (must exist on Gumroad).
+  const bonus=freeBonusItems().map(v=>({title:v.name, price:v.price, buy:v.buy, bonus:true}));
+  const code=Cart.getPromo();
 
   // Put a Gumroad overlay link for every cart item into the page so Gumroad
   // bundles them together, then open the overlay on the first one.
   let box=document.getElementById('grBundle');
   if(!box){ box=document.createElement('div'); box.id='grBundle';
             box.style.cssText='position:absolute;left:-9999px;top:-9999px'; document.body.appendChild(box); }
-  box.innerHTML=items.map(it=>
-    `<a class="gumroad-button" href="${gumroadUrl(it.buy)}" data-gumroad-overlay-checkout="true">Buy</a>`
-  ).join('');
+  const paidLinks=paid.map(it=>
+    `<a class="gumroad-button" href="${gumroadUrl(it.buy,code)}" data-gumroad-overlay-checkout="true">Buy</a>`).join('');
+  const bonusLinks=bonus.map(it=>
+    `<a class="gumroad-button" href="${gumroadUrl(it.buy,BONUS_CODE)}" data-gumroad-overlay-checkout="true">Buy</a>`).join('');
+  box.innerHTML=paidLinks+bonusLinks;
 
   loadGumroadOverlay(()=>{
     // give the script a tick to attach handlers to the freshly-added links
@@ -367,13 +395,15 @@ function checkout(){
 
 /* ---------- Gumroad checkout ----------
    Store: djbilboxbeats.gumroad.com — open the product overlay.
-   Pass a full /l/<slug> url, a bare slug, or nothing (store front). */
+   Pass a full /l/<slug> url, a bare slug, or nothing (store front).
+   `code` appends a real Gumroad discount code to the link (/l/<slug>/<CODE>). */
 const GUMROAD_STORE='https://djbilboxbeats.gumroad.com';
 const BIG_PACK='djbilbox-beats-big-pack-931-beats'; // 931 beats free-for-profit pack
-function gumroadUrl(buy){
+function gumroadUrl(buy,code){
   if(!buy) return GUMROAD_STORE;
   if(/^https?:\/\//.test(buy)) return buy;
-  return GUMROAD_STORE+'/l/'+buy;
+  const base=GUMROAD_STORE+'/l/'+buy;
+  return code ? base+'/'+encodeURIComponent(code) : base;
 }
 function buy(buyRef){ window.open(gumroadUrl(buyRef),'_blank'); }
 document.addEventListener('DOMContentLoaded',()=>Cart.refresh());
