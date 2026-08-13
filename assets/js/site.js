@@ -88,6 +88,7 @@ function mountSidebar(active){
         <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" rel="noopener" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
         <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
         <a href="https://www.twitch.tv/djbilbox" target="_blank" rel="noopener" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+        <a href="https://kick.com/djbilbox" target="_blank" rel="noopener" aria-label="Kick"><i class="fa-solid fa-tower-broadcast"></i></a>
       </div>
     </nav>`;
 
@@ -166,6 +167,7 @@ const FOOTER_COLS = [
     ['YouTube','https://www.youtube.com/@djbilboxbeats'],
     ['Spotify','https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG'],
     ['Twitch','https://www.twitch.tv/djbilbox'],
+    ['Kick','https://kick.com/djbilbox'],
     ['Discord', DISCORD_URL],
     ['Gumroad','https://djbilboxbeats.gumroad.com'],
   ]},
@@ -195,6 +197,7 @@ function mountFooter(){
           <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank" rel="noopener" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
           <a href="https://www.youtube.com/@djbilboxbeats" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
           <a href="https://www.twitch.tv/djbilbox" target="_blank" rel="noopener" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+          <a href="https://kick.com/djbilbox" target="_blank" rel="noopener" aria-label="Kick"><i class="fa-solid fa-tower-broadcast"></i></a>
           <a href="${DISCORD_URL}" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
         </div>
       </div>
