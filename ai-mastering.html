@@ -12,14 +12,14 @@
 <meta property="og:description" content="Automatic mastering in your DAW with the MASTERING VST3, or hands-on mastering by a real engineer in FL Studio.">
 <meta property="og:image" content="https://djbilboxbeats.com/img/og-djbilbox.jpg">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26081320">
+<link rel="stylesheet" href="assets/css/theme.css?v=26081330">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 /* ============================================================
    AI MASTERING — scoped block. Cold steel/emerald over the dark base,
    deliberately different from the Oriental gold and the Video teal.
    ============================================================ */
-.am{--am1:#34D399;--am2:#38BDF8;--ink:#05080b;background:var(--ink);color:#e9eef2;overflow-x:hidden}
+.am{--am1:#0D9C6E;--am2:#0891B2;--ink:#FFFFFF;background:var(--ink);color:#0A0A0B;overflow-x:hidden}
 .am-in{max-width:1320px;margin:0 auto;padding:0 26px}
 .am-eyebrow{font-family:var(--font-a);font-size:.72rem;font-weight:700;letter-spacing:.3em;
   text-transform:uppercase;color:var(--am1);margin-bottom:14px;display:flex;align-items:center;gap:9px}
@@ -29,23 +29,23 @@
 .am h1{font-size:clamp(2.2rem,6vw,4.4rem)}
 .am h2{font-size:clamp(1.7rem,4vw,2.9rem)}
 .am h3{font-family:var(--font-a);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:1.02rem}
-.am p{color:#94a3ad;line-height:1.66}
+.am p{color:#4A4A52;line-height:1.66}
 .am-grad{background:linear-gradient(100deg,var(--am1),var(--am2));-webkit-background-clip:text;
   background-clip:text;color:transparent}
 
 .am-btn{display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;
   font-family:var(--font-a);font-weight:700;text-transform:uppercase;letter-spacing:.08em;
   font-size:.88rem;transition:.22s;border:1px solid transparent;cursor:pointer}
-.am-btn.go{background:linear-gradient(100deg,var(--am1),var(--am2));color:#03130d;
-  box-shadow:0 12px 34px rgba(52,211,153,.24)}
-.am-btn.go:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(56,189,248,.4)}
-.am-btn.ghost{background:rgba(255,255,255,.04);border-color:rgba(52,211,153,.35);color:#e9eef2}
-.am-btn.ghost:hover{border-color:var(--am1);background:rgba(52,211,153,.09)}
+.am-btn.go{background:linear-gradient(100deg,var(--am1),var(--am2));color:#ffffff;
+  box-shadow:0 12px 34px rgba(13,156,110,.24)}
+.am-btn.go:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(8,145,178,.4)}
+.am-btn.ghost{background:rgba(0,0,0,.04);border-color:rgba(13,156,110,.4);color:#0A0A0B}
+.am-btn.ghost:hover{border-color:var(--am1);background:rgba(13,156,110,.09)}
 
 /* hero + 3D panel */
 .am-hero{padding:78px 0 72px;position:relative;overflow:hidden;
-  background:radial-gradient(940px 560px at 76% 34%,rgba(52,211,153,.16),transparent 62%),
-             radial-gradient(760px 500px at 12% 88%,rgba(56,189,248,.14),transparent 66%),var(--ink)}
+  background:radial-gradient(940px 560px at 76% 34%,rgba(52,211,153,.1),transparent 62%),
+             radial-gradient(760px 500px at 12% 88%,rgba(56,189,248,.08),transparent 66%),var(--ink)}
 .am-hero-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.1fr);gap:50px;align-items:center}
 .am-lead{font-size:1.05rem;max-width:47ch;margin:20px 0 28px}
 .am-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
@@ -74,54 +74,54 @@
 
 /* two routes */
 .am-routes{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:38px}
-.am-route{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:34px 30px;
-  background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.006));
+.am-route{border:1px solid rgba(0,0,0,.1);border-radius:18px;padding:34px 30px;
+  background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.004));
   display:flex;flex-direction:column}
-.am-route.hot{border-color:rgba(52,211,153,.45);
-  background:linear-gradient(180deg,rgba(52,211,153,.11),rgba(56,189,248,.03));
-  box-shadow:0 24px 70px rgba(52,211,153,.14)}
+.am-route.hot{border-color:rgba(13,156,110,.4);
+  background:linear-gradient(180deg,rgba(13,156,110,.08),rgba(8,145,178,.02));
+  box-shadow:0 24px 70px rgba(13,156,110,.1)}
 .am-route .pp{font-family:var(--font-a);font-size:2.3rem;font-weight:700;margin:12px 0 2px}
 .am-route ul{list-style:none;margin:20px 0 26px;display:flex;flex-direction:column;gap:10px;flex:1}
-.am-route li{font-size:.89rem;color:#94a3ad;display:flex;gap:10px;align-items:flex-start}
+.am-route li{font-size:.89rem;color:#4A4A52;display:flex;gap:10px;align-items:flex-start}
 .am-route li i{color:var(--am1);margin-top:3px;font-size:.78rem}
 
 /* chain */
 .am-chain{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:34px}
-.am-link{border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:22px;
-  background:linear-gradient(170deg,rgba(255,255,255,.04),rgba(255,255,255,.008));transition:.2s}
+.am-link{border:1px solid rgba(0,0,0,.1);border-radius:14px;padding:22px;
+  background:linear-gradient(170deg,rgba(0,0,0,.03),rgba(0,0,0,.006));transition:.2s}
 .am-link:hover{border-color:var(--am1);transform:translateY(-3px)}
 .am-link i{font-size:1.4rem;background:linear-gradient(100deg,var(--am1),var(--am2));
   -webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:11px;display:block}
 .am-link b{display:block;font-family:var(--font-a);text-transform:uppercase;letter-spacing:.06em;
   font-size:.98rem;margin-bottom:5px}
-.am-link small{color:#7f8b95;font-size:.79rem;line-height:1.5;display:block}
+.am-link small{color:#7A7A82;font-size:.79rem;line-height:1.5;display:block}
 
 /* loudness targets */
 .am-targets{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.08);
   border-radius:14px;overflow:hidden;margin-top:30px}
 .am-target{background:var(--ink);padding:24px 18px;text-align:center}
 .am-target b{display:block;font-family:var(--font-a);font-size:1.7rem;font-weight:700;color:var(--am1);line-height:1}
 .am-target span{display:block;margin-top:6px;font-size:.7rem;letter-spacing:.14em;
-  text-transform:uppercase;color:#7f8b95;font-weight:700}
+  text-transform:uppercase;color:#7A7A82;font-weight:700}
 
 .am-final{padding:88px 0;text-align:center;
-  background:radial-gradient(880px 460px at 50% 50%,rgba(52,211,153,.15),transparent 66%),#040709}
+  background:radial-gradient(880px 460px at 50% 50%,rgba(13,156,110,.08),transparent 66%),#FFFFFF}
 
 /* ---------- the working tool ---------- */
-.am-tool{border:1px solid rgba(52,211,153,.28);border-radius:20px;padding:30px;
-  background:linear-gradient(180deg,rgba(52,211,153,.07),rgba(255,255,255,.012));margin-top:34px}
-.am-drop{border:2px dashed rgba(52,211,153,.4);border-radius:16px;padding:44px 24px;text-align:center;
-  cursor:pointer;transition:.2s;background:rgba(0,0,0,.25)}
-.am-drop:hover,.am-drop.over{border-color:var(--am1);background:rgba(52,211,153,.09)}
+.am-tool{border:1px solid rgba(13,156,110,.28);border-radius:20px;padding:30px;
+  background:linear-gradient(180deg,rgba(13,156,110,.05),rgba(0,0,0,.008));margin-top:34px}
+.am-drop{border:2px dashed rgba(13,156,110,.4);border-radius:16px;padding:44px 24px;text-align:center;
+  cursor:pointer;transition:.2s;background:rgba(0,0,0,.025)}
+.am-drop:hover,.am-drop.over{border-color:var(--am1);background:rgba(13,156,110,.07)}
 .am-drop i{font-size:2.4rem;color:var(--am1);margin-bottom:14px;display:block}
 .am-drop b{display:block;font-family:var(--font-a);font-size:1.15rem;text-transform:uppercase;letter-spacing:.05em}
-.am-drop small{color:#7f8b95;font-size:.82rem;display:block;margin-top:6px}
+.am-drop small{color:#7A7A82;font-size:.82rem;display:block;margin-top:6px}
 .am-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:22px}
 .am-opt label{display:block;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
-  color:#7f8b95;font-weight:700;margin-bottom:7px}
+  color:#7A7A82;font-weight:700;margin-bottom:7px}
 .am-opt select,.am-opt input[type=range]{width:100%}
-.am-opt select{background:#0b1116;border:1px solid rgba(255,255,255,.14);color:#e9eef2;
+.am-opt select{background:#F0F0F5;border:1px solid rgba(0,0,0,.14);color:#0A0A0B;
   padding:11px 12px;border-radius:9px;font-family:var(--font);font-size:.9rem;outline:none}
 .am-opt select:focus{border-color:var(--am1)}
 .am-opt input[type=range]{accent-color:var(--am1);margin-top:9px}
@@ -130,23 +130,23 @@
 .am-run:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
 .am-prog{margin-top:18px;display:none}
 .am-prog.on{display:block}
-.am-bar{height:7px;border-radius:99px;background:rgba(255,255,255,.09);overflow:hidden}
+.am-bar{height:7px;border-radius:99px;background:rgba(0,0,0,.09);overflow:hidden}
 .am-bar i{display:block;height:100%;width:0;border-radius:99px;
   background:linear-gradient(90deg,var(--am1),var(--am2));transition:width .3s}
-.am-prog span{display:block;margin-top:9px;font-size:.8rem;color:#94a3ad}
+.am-prog span{display:block;margin-top:9px;font-size:.8rem;color:#4A4A52}
 .am-res{display:none;margin-top:26px}
 .am-res.on{display:block}
 .am-meters{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:1px;
-  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.09);border-radius:14px;overflow:hidden}
+  background:rgba(0,0,0,.09);border:1px solid rgba(0,0,0,.09);border-radius:14px;overflow:hidden}
 .am-meter{background:#070c10;padding:18px 12px;text-align:center}
 .am-meter b{display:block;font-family:var(--font-a);font-size:1.45rem;font-weight:700;color:var(--am1);line-height:1}
-.am-meter b.was{color:#6d7a84;font-size:1.05rem}
+.am-meter b.was{color:#8a97a0;font-size:1.05rem}
 .am-meter span{display:block;margin-top:5px;font-size:.63rem;letter-spacing:.1em;
   text-transform:uppercase;color:#7f8b95;font-weight:700}
 .am-ab{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;align-items:center}
 .am-ab button{flex:1;min-width:130px;justify-content:center}
-.am-note{font-size:.76rem;color:#63707a;margin-top:16px;line-height:1.55}
-.am-err{background:rgba(255,80,80,.12);border:1px solid rgba(255,80,80,.3);color:#ff9a9a;
+.am-note{font-size:.76rem;color:#7A7A82;margin-top:16px;line-height:1.55}
+.am-err{background:rgba(255,80,80,.1);border:1px solid rgba(220,38,38,.35);color:#B91C1C;
   padding:13px 15px;border-radius:10px;font-size:.85rem;margin-top:16px;display:none}
 .am-err.on{display:block}
 
@@ -169,8 +169,8 @@
         <div class="am-eyebrow">Mastering</div>
         <h1>Loud, clean,<br><span class="am-grad">release-ready.</span></h1>
         <p class="am-lead">
-          Drop the <strong style="color:#e9eef2">MASTERING</strong> plug-in on your master bus and let
-          <strong style="color:#e9eef2">Auto&nbsp;Gain</strong> and <strong style="color:#e9eef2">Auto&nbsp;Comp</strong>
+          Drop the <strong style="color:#0A0A0B">MASTERING</strong> plug-in on your master bus and let
+          <strong style="color:#0A0A0B">Auto&nbsp;Gain</strong> and <strong style="color:#0A0A0B">Auto&nbsp;Comp</strong>
           do the heavy lifting — threshold, attack, release and harmonics set themselves from your
           material. Then push the output where streaming wants it, with a real gain-reduction meter
           telling you exactly what it's doing.
@@ -183,7 +183,7 @@
             <i class="fa-solid fa-headphones"></i> Have me master it
           </a>
         </div>
-        <p style="font-size:.78rem;color:#63707a">
+        <p style="font-size:.78rem;color:#7A7A82">
           VST3 &amp; Standalone · Windows 64-bit · one payment, no subscription
         </p>
       </div>
@@ -396,7 +396,7 @@
 
 </div>
 
-<script src="assets/js/site.js?v=26081320"></script>
+<script src="assets/js/site.js?v=26081330"></script>
 <script src="assets/js/ai-mastering.js?v=26072611"></script>
 
 <script>
