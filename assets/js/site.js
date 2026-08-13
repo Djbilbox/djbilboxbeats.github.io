@@ -67,7 +67,7 @@ function mountSidebar(active){
   header.className='topbar';
   header.innerHTML = `
     <div class="topbar-in">
-      <a href="/index.html" class="brand brand-logo"><img src="/img/djbilbox-emblem.png" alt=""><span>HUM<span>PIRE</span></span></a>
+      <a href="/index.html" class="brand brand-logo"><img src="/img/humpire-logo.png" alt="HUMPIRE"></a>
 
       <nav class="top-nav">${topLinks}</nav>
 
