@@ -23,6 +23,10 @@
    ============================================================ */
 window.PACKS = [
   /* ---------- New release (2026) ---------- */
+  { id:"cali-g-funk-melodies-2026", name:"🌴 Cali G-Funk Melodies 2026 : Big Pack 6Go (100% Free) 🍦", img:"img/packs/cali-g-funk-melodies-2026.jpg",
+    genre:"G-Funk", tags:["G-Funk","West Coast","Free","Melody Loops","Samples"], price:"FREE",
+    buy:"rdswq" },
+
   { id:"westcoast-vybes-vol01", name:"WESTCOAST VYBES Vol.01 — G-Funk Melody Loops", img:"img/packs/westcoast-vybes-vol01.jpg",
     genre:"West Coast", tags:["West Coast","G-Funk","Melody Loops","Hip-Hop"], price:"5",
     buy:"westcoast-vybes-vol01", demo:"westcoast-vybes-vol01-demo" },
