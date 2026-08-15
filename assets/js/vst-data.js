@@ -59,6 +59,16 @@ window.VSTS = [
     buy:"station-synth-demo", demo:"",
     note:"100% FREE BASIC · full engine · 50 presets · upgrade keeps your install" },
 
+  /* THUGLIFE — ajoute le 15 aout 2026. Synthe soustractif VST3 + Standalone
+     Windows, 60 presets usine (noms west coast) + EXPANSION VOL.1 (22 presets)
+     chargee par la fente a cassette. Slug Gumroad attendu : `thuglife`.
+     tier "pro" => $97 catalogue, prix du moment ecrit par pricing.js. */
+  { id:"thuglife", name:"THUGLIFE PRO — G-Funk Street Synth", img:"img/vst/ui/thuglife-card.jpg", category:"instrument",
+    detail:"thuglife.html",
+    tags:["60 G-Funk presets · Expansion Vol.1","Distortion · Chorus · Delay · Reverb","VST3 · Standalone · Windows"], tier:"pro", price:"97", badge:"🔥 New",
+    buy:"thuglife", demo:"",
+    note:"West coast synth · 60 presets + 22 en Expansion Vol.1 · 16 voix" },
+
   { id:"mpc-2026", yt:"supwohrB7xg", name:"MPC 2026 BASIC — Beat Machine (16 Pads)", img:"img/vst/ui/mpc-2026-card.jpg", category:"instrument",
     tags:["16 pads · 50 kits","Sequencer · MIDI 36-51","VST3 · AU · Win/Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"mpc-2026", demo:"",
