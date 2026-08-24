@@ -3,17 +3,17 @@
    `buy`  : Gumroad product slug (after /l/) or full URL — paid product.
    `demo` : Gumroad slug/URL for the free demo (optional)
    `note` : Short line shown on the card (🎟️ added automatically)
-   `tier` : "pro" ($97) | "legendary" ($697, STATION SYNTH + ses 11 librairies)
-            | "bundle" ($997, tout le catalogue). Une entrée qui porte un
-            `tier` voit son `price`/`old`/`buy` RÉÉCRITS au chargement par
-            assets/js/pricing.js selon la promo du moment (4 promos par mois).
-            Ne pas y écrire un prix à la main : il sera écrasé.
-   `price`: pour tout ce qui n'a PAS de `tier` (partenaires, VST gratuits
-            externes, versions BASIC), le prix doit égaler le prix réel.
+   `tier` : "pro" | "oriental" | "legendary" | "bundle" | "pack".
+            Sert au regroupement et aux jetons d'affichage des pages
+            produit. Depuis le 2026-08-24 pricing.js NE RÉÉCRIT PLUS
+            les prix : le moteur de promo rotatif a été retiré.
+   `price`: TOUJOURS le prix Gumroad réel, pour toutes les entrées.
+            Le site n'invente jamais un prix — si Gumroad change,
+            ce fichier change. Vérifié le 2026-08-24 :
+            MASTERING 10, MATRIX 10, BIGBASS 15, VICE CITY 15,
+            THUGLIFE 15, ORIENTAL 15, STATION SYNTH 25, BUNDLE 39.
    Modèle repris d'Apeshyt808 depuis le 12 août 2026 : le synthé se donne
    (BASIC gratuit, comme Rampage), ce sont les librairies qui se vendent.
-   Un plugin seul à $97 catalogue, STATION SYNTH + ses 11 librairies à $697,
-   et le PRO BUNDLE à $997 — jamais payés plein tarif, la promo tourne.
    ============================================================ */
 /* MACHINA EFFECT and the ALL VST PACK bundle were pulled from sale on
    2026-08-01: the plug-in does not work, and the bundle shipped it as one
@@ -21,22 +21,22 @@
 window.VSTS = [
   /* ========== PRO BUNDLE — l'offre phare ==========
      Vrai bundle Gumroad (il contient les 6 produits, rien à téléverser),
-     publié le 12 août 2026 sous `djbilbox-pro-bundle`. Valeur pièce par
-     pièce : $1182. MACHINA EFFECT en a été retiré — le plug-in ne marche
-     pas, ne pas le remettre sans build corrigé.                          */
+     publié le 12 août 2026 sous `djbilbox-pro-bundle`. MACHINA EFFECT en
+     a été retiré — le plug-in ne marche pas, ne pas le remettre sans
+     build corrigé.                                                       */
   { id:"pro-bundle", name:"DJBILBOX PRO BUNDLE — All 6 Plugins", img:"img/vst/ui/pro-bundle-card.jpg", category:"instrument",
-    tags:["6 plugins · $1182 value","STATION SYNTH PRO included","VST3 · AU · Standalone · Win/Mac"], tier:"bundle", price:"997", badge:"👑 Best value",
+    tags:["6 plugins · one payment","STATION SYNTH PRO included","VST3 · AU · Standalone · Win/Mac"], tier:"bundle", price:"39", badge:"👑 Best value",
     buy:"djbilbox-pro-bundle", demo:"station-synth-demo",
     note:"Every plugin I make · every future release included · one payment" },
 
   /* ========== EFFECTS ========== */
   { id:"matrix-modular", yt:"DPoCVD-eK3w", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/ui/matrix-modular-card.jpg", category:"effect",
-    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], tier:"pro", price:"97",
+    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], tier:"pro", price:"10",
     buy:"ocpoej", demo:"",
     note:"Stereo modulation · auto-pan · westcoast oriental colour" },
 
   { id:"mastering", name:"MASTERING — Pro VST3 Mastering Limiter", img:"img/vst/ui/mastering-card.jpg", category:"effect",
-    tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], tier:"pro", price:"97", badge:"🆕 New",
+    tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], tier:"pro", price:"10", badge:"🆕 New",
     buy:"mastering", demo:"",
     note:"Transparent mastering limiter · studio-quality peak control" },
 
@@ -46,11 +46,10 @@ window.VSTS = [
      encore de build BASIC — à produire, cf. rapport du 12 août 2026. */
   /* THUGLIFE — ajoute le 15 aout 2026. Synthe soustractif VST3 + Standalone
      Windows, 60 presets usine (noms west coast) + EXPANSION VOL.1 (22 presets)
-     chargee par la fente a cassette. Slug Gumroad attendu : `thuglife`.
-     tier "pro" => $97 catalogue, prix du moment ecrit par pricing.js. */
+     chargee par la fente a cassette. Slug Gumroad : `thuglife`, $15. */
   { id:"thuglife", name:"THUGLIFE PRO — G-Funk Street Synth", img:"img/vst/ui/thuglife-card.jpg", category:"instrument",
     detail:"thuglife.html",
-    tags:["60 G-Funk presets · Expansion Vol.1","Distortion · Chorus · Delay · Reverb","VST3 · Standalone · Windows"], tier:"pro", price:"97", badge:"🔥 New",
+    tags:["60 G-Funk presets · Expansion Vol.1","Distortion · Chorus · Delay · Reverb","VST3 · Standalone · Windows"], tier:"pro", price:"15", badge:"🔥 New",
     buy:"thuglife", demo:"",
     note:"West coast synth · 60 presets + 22 en Expansion Vol.1 · 16 voix" },
 
@@ -58,7 +57,7 @@ window.VSTS = [
   { id:"station-synth-bundle", yt:"_YLj6CONTXU", name:"STATION SYNTH PRO BUNDLE — Synth + 11 Expansion Libraries", img:"img/vst/ui/station-synth-card.jpg", category:"instrument",
     detail:"station-synth-bundle.html",
     preview:"assets/products/station-synth/station-synth-card.mp4",
-    tags:["Synth + 11 expansion libraries","4128 presets · 44 wavetables","VST3 · AU · Standalone · Win/Mac"], tier:"legendary", price:"697", badge:"🔥 New",
+    tags:["Synth + 11 expansion libraries","4128 presets · 44 wavetables","VST3 · AU · Standalone · Win/Mac"], tier:"legendary", price:"25", badge:"🔥 New",
     buy:"station-synth-legendary-bundle",
     demo:"station-synth-demo",
     note:"Wavetable synth · 4128 presets · 11 libraries · Windows & macOS" },
@@ -75,18 +74,18 @@ window.VSTS = [
     note:"100% FREE BASIC · plays the samples already on your machine · 50 kits across 10 styles" },
 
   { id:"oriental-instrument", yt:"F-H8_4urmAo", name:"ORIENTAL INSTRUMENT PRO BUNDLE — 280+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
-    tags:["280+ instruments · Maqam engine","BASIC edition available","Win · Mac"], tier:"oriental", price:"130",
+    tags:["280+ instruments · Maqam engine","BASIC edition available","Win · Mac"], tier:"oriental", price:"15",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
     note:"Full 280+ instruments · edition BASIC a 10 $" },
 
   { id:"bigbass", name:"BIGBASS PRO — LA Lowrider Bass", img:"img/vst/ui/bigbass-card.jpg", category:"instrument",
-    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], tier:"pro", price:"97",
+    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], tier:"pro", price:"15",
     buy:"xaziro", demo:"",
     note:"808 · 3 bass modes" },
 
   { id:"vice-city", yt:"oadLL3JJYD0", name:"VICE CITY PRO — VST Synthesizer", img:"img/vst/ui/vice-city-card.jpg", category:"instrument",
-    tags:["Synthwave","VST3 · Standalone"], tier:"pro", price:"97",
+    tags:["Synthwave","VST3 · Standalone"], tier:"pro", price:"15",
     buy:"ykdzli", demo:"",
     preview:"assets/products/vice-city/vice-city-card.mp4",
     note:"70 presets" },

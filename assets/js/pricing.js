@@ -1,243 +1,101 @@
 /* ============================================================
-   DJBILBOX BEATS — ROTATING PROMO ENGINE
+   DJBILBOX BEATS — PRIX RÉELS
    ------------------------------------------------------------
-   Modèle repris d'Apeshyt808 : un prix catalogue unique et élevé
-   ($97 par plugin), jamais payé, et une promo qui tourne
-   plusieurs fois par mois. Le visiteur voit toujours un prix
-   barré + un prix du moment + un compte à rebours.
+   2026-08-24 : le moteur de promo rotatif a été RETIRÉ.
 
-   Le calendrier est déterministe (basé sur le jour du mois), donc
-   il tourne tout seul, sans republier le site : le 1er, le 8, le
-   15 et le 22 de chaque mois la promo change d'elle-même.
+   Il annonçait un prix catalogue de $97 par plugin et une remise
+   qui tournait 4 fois par mois (DROP67 / FLASH47 / PROWEEK77 /
+   BLOWOUT30), codes collés aux liens d'achat en /l/<slug>/<CODE>.
+   Deux problèmes : ces codes n'existaient plus sur Gumroad, et
+   les prix Gumroad sont descendus à $10-$39. Le site affichait
+   donc « $97 barré → $30 » pour un produit vendu $10.
 
-   /!\ CÔTÉ GUMROAD — sans ça le site ment au visiteur :
-   1. Le prix catalogue de chaque plugin doit valoir LIST.pro ($97)
-      et le bundle LIST.bundle ($295).
-   2. Chaque code ci-dessous doit exister comme "discount code"
-      Gumroad (montant fixe pour pro/bundle, pourcentage pour les
-      packs), valable sur tous les produits du tier concerné.
-   Les liens d'achat sont construits en /l/<slug>/<CODE> : la remise
-   s'applique toute seule à l'ouverture de la page produit.
+   RÈGLE : le site n'invente JAMAIS un prix. Le champ `price` de
+   vst-data.js / packs-data.js / products-data.js DOIT égaler le
+   prix Gumroad réel. Ce fichier ne fait plus que :
+     1. retirer tout prix barré / code promo résiduel ;
+     2. remplir les jetons <span data-djb-price="…"> des pages.
+
+   Si une vraie promo redémarre un jour : créer les codes sur
+   Gumroad D'ABORD, vérifier qu'ils s'appliquent au checkout,
+   et seulement ensuite les rebrancher ici.
    ============================================================ */
 window.PRICING = (function () {
 
-  /* Prix catalogue (le prix barré). Doit égaler le prix Gumroad réel.
-     `pro`       = un plugin seul (MATRIX, MASTERING, BIGBASS, VICE CITY,
-                   ORIENTAL INSTRUMENT).
-     `legendary` = STATION SYNTH + ses 11 librairies (4128 presets). Modèle
-                   Apeshyt Rampage : le synthé est gratuit, ce sont les
-                   librairies qui se vendent — et il y en a 7× plus que les
-                   6 extensions à $343 d'Apeshyt.
-     `bundle`    = PRO BUNDLE, tout le catalogue ($1182 pièce par pièce). */
-  const LIST = { pro: 97, oriental: 130, legendary: 697, bundle: 997 };
+  /* Prix Gumroad réels par tier (vérifiés le 2026-08-24).
+     `pro` vaut $15 (THUGLIFE, BIGBASS, VICE CITY) ; MASTERING et
+     MATRIX MODULAR sont à $10 et portent leur prix en propre dans
+     les fichiers de données — ce tableau ne sert qu'aux jetons
+     d'affichage des pages produit. */
+  const LIST = { pro: 15, oriental: 15, legendary: 25, bundle: 39 };
 
-  /* Le calendrier. `day` = jour du mois où la période démarre.
-     `pro`/`legendary`/`bundle` = prix affiché pendant la période.
-     `packOff` = remise en % appliquée aux sample packs / drum kits.
-     `codes` = codes de réduction Gumroad correspondants.            */
-  const CAMPAIGNS = [
-    { day: 1,  key: 'drop',    name: 'NEW MONTH DROP',       tag: '🔥 New month drop',
-      pro: 67, oriental: 97, legendary: 497, bundle: 597, packOff: 30,
-      codes: { pro: 'DROP67', oriental: 'ORI97', legendary: 'SYNTH497', bundle: 'BUNDLE597', pack: 'PACK30' } },
-
-    { day: 8,  key: 'flash',   name: 'MID-MONTH FLASH SALE', tag: '⚡ Flash sale',
-      pro: 47, oriental: 67, legendary: 343, bundle: 497, packOff: 50,
-      codes: { pro: 'FLASH47', oriental: 'ORI67', legendary: 'SYNTH343', bundle: 'BUNDLE497', pack: 'PACK50' } },
-
-    { day: 15, key: 'proweek', name: 'PRO WEEK',             tag: '💎 Pro week',
-      pro: 77, oriental: 110, legendary: 597, bundle: 797, packOff: 20,
-      codes: { pro: 'PROWEEK77', oriental: 'ORI110', legendary: 'SYNTH597', bundle: 'BUNDLE797', pack: 'PACK20' } },
-
-    { day: 22, key: 'blowout', name: 'END OF MONTH BLOWOUT', tag: '💣 Blowout',
-      pro: 30, oriental: 47, legendary: 197, bundle: 297, packOff: 60,
-      codes: { pro: 'BLOWOUT30', oriental: 'ORI47', legendary: 'SYNTH197', bundle: 'BUNDLE297', pack: 'PACK60' } }
-  ];
-
-  /* ---------- période courante + date de fin ---------- */
-  function current(now) {
-    now = now || new Date();
-    const d = now.getDate();
-    let idx = 0;
-    for (let i = 0; i < CAMPAIGNS.length; i++) if (d >= CAMPAIGNS[i].day) idx = i;
-    const camp = CAMPAIGNS[idx];
-    /* fin = début de la période suivante, ou le 1er du mois suivant */
-    const next = CAMPAIGNS[idx + 1];
-    const ends = next
-      ? new Date(now.getFullYear(), now.getMonth(), next.day, 0, 0, 0)
-      : new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0);
-    return Object.assign({}, camp, { ends: ends, index: idx, total: CAMPAIGNS.length });
-  }
-
-  /* ---------- formatage ---------- */
   function money(n) {
     const v = Math.round(n * 100) / 100;
     return Number.isInteger(v) ? String(v) : v.toFixed(2);
   }
 
-  /* Prix promo d'un tier. `listPrice` sert aux packs, dont le prix
-     catalogue est propre à chaque produit.                          */
-  function priceFor(tier, listPrice, camp) {
-    camp = camp || current();
-    if (tier === 'pro')       return { now: camp.pro,       list: LIST.pro,       code: camp.codes.pro };
-    if (tier === 'oriental')  return { now: camp.oriental,  list: LIST.oriental,  code: camp.codes.oriental };
-    if (tier === 'legendary') return { now: camp.legendary, list: LIST.legendary, code: camp.codes.legendary };
-    if (tier === 'bundle')    return { now: camp.bundle,    list: LIST.bundle,    code: camp.codes.bundle };
+  /* Plus de remise : le prix affiché EST le prix catalogue. */
+  function priceFor(tier, listPrice) {
     if (tier === 'pack') {
-      const base = parseFloat(listPrice) || 0;
-      return { now: Math.max(1, base * (1 - camp.packOff / 100)), list: base, code: camp.codes.pack };
+      const b = parseFloat(listPrice) || 0;
+      return { now: b, list: b, code: '' };
     }
-    return null;
+    const v = LIST[tier];
+    return v === undefined ? null : { now: v, list: v, code: '' };
   }
 
-  /* Colle le code promo au slug Gumroad : /l/<slug>/<CODE>.
-     Une URL externe complète est laissée telle quelle.               */
-  function withCode(buy, code) {
-    if (!buy || !code) return buy;
-    if (/^https?:\/\//.test(buy)) return buy;
-    if (buy.indexOf('/') !== -1) return buy;          /* code déjà collé */
-    return buy + '/' + code;
-  }
-
-  /* ---------- application au catalogue ----------
-     Ne touche QUE les entrées portant un `tier` explicite : les
-     produits partenaires (FL Studio, Vital, Apeshyt…) et les démos
-     gratuites gardent leur prix.                                     */
-  function applyTo(item, camp) {
-    if (!item || !item.tier || item.free) return item;
-    const p = priceFor(item.tier, item.price, camp);
-    if (!p) return item;
-    item.old   = money(p.list);
-    item.price = money(p.now);
-    item.promo = { code: p.code, camp: camp.key, name: camp.name };
-    item.buy   = withCode(item.buy, p.code);
+  /* Nettoie une entrée de catalogue : pas de prix barré, pas de
+     code collé au slug Gumroad. `price` est laissé tel quel, il
+     vient des fichiers de données et doit égaler Gumroad. */
+  function applyTo(item) {
+    if (!item) return item;
+    delete item.old;
+    delete item.promo;
+    if (typeof item.buy === 'string' && !/^https?:\/\//.test(item.buy) && item.buy.indexOf('/') !== -1) {
+      item.buy = item.buy.split('/')[0];
+    }
     return item;
   }
 
   function applyAll() {
-    const camp = current();
-    if (Array.isArray(window.VSTS))  window.VSTS.forEach(i => applyTo(i, camp));
-    if (Array.isArray(window.PACKS)) window.PACKS.forEach(i => applyTo(i, camp));
-    if (window.PRODUCTS) Object.keys(window.PRODUCTS).forEach(k => applyTo(window.PRODUCTS[k], camp));
-    return camp;
+    if (Array.isArray(window.VSTS))  window.VSTS.forEach(i => applyTo(i));
+    if (Array.isArray(window.PACKS)) window.PACKS.forEach(i => applyTo(i));
+    if (window.PRODUCTS) Object.keys(window.PRODUCTS).forEach(k => applyTo(window.PRODUCTS[k]));
   }
 
-  /* ---------- compte à rebours ---------- */
-  function remaining(ends) {
-    let ms = ends - new Date();
-    if (ms < 0) ms = 0;
-    const d = Math.floor(ms / 86400000);
-    const h = Math.floor(ms % 86400000 / 3600000);
-    const m = Math.floor(ms % 3600000 / 60000);
-    const s = Math.floor(ms % 60000 / 1000);
-    return d > 0 ? `${d}d ${String(h).padStart(2, '0')}h ${String(m).padStart(2, '0')}m`
-                 : `${String(h).padStart(2, '0')}h ${String(m).padStart(2, '0')}m ${String(s).padStart(2, '0')}s`;
-  }
-
-  /* ---------- bandeau promo ---------- */
-  function bannerHtml(camp) {
-    const save = Math.round((1 - camp.pro / LIST.pro) * 100);
-    const dealHtml = `Every DJBILBOX plugin <s>$${LIST.pro}</s> <b>$${camp.pro}</b>
-          — save ${save}% · STATION SYNTH <s>$${LIST.legendary}</s> <b>$${camp.legendary}</b>
-          · PRO BUNDLE <s>$${LIST.bundle}</s> <b>$${camp.bundle}</b>`;
-    return `
-      <div class="promo-strip-in">
-        <span class="ps-tag">${camp.tag}</span>
-        <span class="ps-text"><span class="ps-text-track">
-          <span>${dealHtml}</span><span>${dealHtml}</span>
-        </span></span>
-        <span class="ps-timer">Ends in <b data-djb-countdown>—</b></span>
-        <a class="ps-cta" href="/vst.html">Shop the sale</a>
-      </div>`;
-  }
-
-  const CSS = `
-  .promo-strip{background:linear-gradient(90deg,#0e3b28,#123b2c 40%,#0b1a14);
-    border-bottom:1px solid rgba(180,255,214,.22);color:#eafff4;font-size:.71rem;
-    position:relative;z-index:60}
-  .promo-strip-in{max-width:1180px;margin:0 auto;padding:7px 18px;display:flex;
-    align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
-  .promo-strip .ps-tag{font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
-    padding:3px 9px;border-radius:6px;white-space:nowrap;flex:0 0 auto;
-    animation:psTagPulse 1.6s ease-in-out infinite}
-  @keyframes psTagPulse{0%,100%{opacity:1}50%{opacity:.45}}
-  .promo-strip .ps-text{overflow:hidden;min-width:0;flex:1 1 260px;max-width:520px}
-  .promo-strip .ps-text-track{display:flex;width:max-content;gap:56px;
-    animation:psTextScroll 14s linear infinite}
-  .promo-strip:hover .ps-text-track{animation-play-state:paused}
-  @keyframes psTextScroll{to{transform:translateX(calc(-50% - 28px))}}
-  .promo-strip .ps-text s{opacity:.55}
-  .promo-strip .ps-text b{color:#7dffbe;font-weight:800}
-  .promo-strip .ps-timer{font-variant-numeric:tabular-nums;opacity:.9;white-space:nowrap}
-  .promo-strip .ps-timer b{color:#fff}
-  .promo-strip .ps-cta{background:#7dffbe;color:#05130d;font-weight:800;
-    text-transform:uppercase;letter-spacing:.05em;font-size:.68rem;padding:6px 13px;
-    border-radius:7px;white-space:nowrap;transition:.18s}
-  .promo-strip .ps-cta:hover{background:#fff;transform:translateY(-1px)}
-  @media(max-width:640px){.promo-strip{font-size:.68rem}
-    .promo-strip-in{gap:8px;padding:8px 12px}}
-  .djb-save{display:inline-block;background:rgba(125,255,190,.14);color:#7dffbe;
-    border:1px solid rgba(125,255,190,.35);border-radius:5px;padding:2px 6px;
-    font-size:.6rem;font-weight:800;letter-spacing:.04em;margin-left:6px;vertical-align:middle}
-  `;
-
+  /* Jetons de prix des pages produit. Ceux hérités du moteur de
+     promo (`*-old`, `save-pct`, `promo-name`, compte à rebours)
+     n'ont plus de sens : on masque l'élément au lieu d'afficher
+     un faux prix barré. */
   function mount() {
-    const camp = current();
+    const REAL = {
+      'pro':       '$' + LIST.pro,
+      'oriental':  '$' + LIST.oriental,
+      'legendary': '$' + LIST.legendary,
+      'bundle':    '$' + LIST.bundle
+    };
+    const DEAD = ['pro-old', 'oriental-old', 'legendary-old', 'bundle-old', 'save-pct', 'promo-name'];
 
-    /* styles */
-    if (!document.getElementById('djb-pricing-css')) {
-      const st = document.createElement('style');
-      st.id = 'djb-pricing-css';
-      st.textContent = CSS;
-      document.head.appendChild(st);
-    }
-
-    /* bandeau, juste sous la barre de navigation */
-    if (!document.body.hasAttribute('data-no-promo') && !document.querySelector('.promo-strip')) {
-      const strip = document.createElement('div');
-      strip.className = 'promo-strip';
-      strip.innerHTML = bannerHtml(camp);
-      const bar = document.querySelector('header.topbar');
-      if (bar) bar.insertAdjacentElement('afterend', strip);
-      else document.body.prepend(strip);
-    }
-
-    /* jetons de prix dans les pages produit :
-       <span data-djb-price="pro">, "pro-old", "bundle", "bundle-old",
-       "promo-name", "save-pct"                                        */
     document.querySelectorAll('[data-djb-price]').forEach(el => {
       const k = el.getAttribute('data-djb-price');
-      const map = {
-        'pro': '$' + camp.pro,
-        'pro-old': '$' + LIST.pro,
-        'legendary': '$' + camp.legendary,
-        'legendary-old': '$' + LIST.legendary,
-        'bundle': '$' + camp.bundle,
-        'bundle-old': '$' + LIST.bundle,
-        'promo-name': camp.name,
-        'save-pct': Math.round((1 - camp.pro / LIST.pro) * 100) + '%'
-      };
-      if (map[k] !== undefined) el.textContent = map[k];
+      if (REAL[k] !== undefined) { el.textContent = REAL[k]; return; }
+      if (DEAD.indexOf(k) !== -1) { el.hidden = true; el.style.display = 'none'; }
     });
 
-    /* compte à rebours */
-    const tick = () => {
-      const txt = remaining(camp.ends);
-      document.querySelectorAll('[data-djb-countdown]').forEach(el => el.textContent = txt);
-    };
-    tick();
-    setInterval(tick, 1000);
+    document.querySelectorAll('[data-djb-countdown]').forEach(el => {
+      el.hidden = true; el.style.display = 'none';
+    });
+
+    /* au cas où un bandeau promo traînerait dans une page en cache */
+    document.querySelectorAll('.promo-strip').forEach(el => el.remove());
   }
 
-  /* Le catalogue est appliqué tout de suite (les scripts de données
-     sont chargés avant celui-ci), le bandeau une fois le DOM prêt et
-     l'en-tête injecté par site.js — d'où le setTimeout.              */
-  const camp = applyAll();
+  applyAll();
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => setTimeout(mount, 0));
   } else {
     setTimeout(mount, 0);
   }
 
-  return { LIST, CAMPAIGNS, current, priceFor, applyAll, applyTo, money, remaining, mount, active: camp };
+  return { LIST, priceFor, applyAll, applyTo, money, mount };
 })();
