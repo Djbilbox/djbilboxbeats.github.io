@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>HUMPIRE — formats produits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Rubik+Bubbles&family=Rajdhani:wght@600;700&display=swap">
+<style>
+  body{background:#0b0b0c;color:#f3efe4;font:14px/1.6 system-ui,sans-serif;margin:0;padding:24px}
+  h1{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;margin:0 0 4px}
+  .sub{color:#a79e89;margin-bottom:18px}
+  #log{font-family:ui-monospace,monospace;font-size:12px;background:#141412;border:1px solid #302c22;
+       padding:12px;white-space:pre-wrap;max-height:44vh;overflow:auto}
+  #grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:18px}
+  figure{margin:0;background:#141412;border:1px solid #302c22}
+  figure canvas{width:100%;height:auto;display:block;background:#1c1b17}
+  figcaption{padding:6px 8px;font-size:11px;color:#a79e89;font-family:ui-monospace,monospace}
+</style>
+</head>
+<body>
+<h1>HUMPIRE — formats produits</h1>
+<p class="sub">Détoure le chameau 8K, puis compose les visuels aux ratios mug / coque / sac à dos.</p>
+<div id="log">démarrage…</div>
+<div id="grid"></div>
+
+<script>
+/* ============================================================
+   Un t-shirt veut un visuel large, une coque un visuel vertical,
+   un mug une bande panoramique. On recompose donc le lockup
+   (tête de dromadaire + nom) selon le ratio de chaque support.
+   ============================================================ */
+
+const SAVE_URL = 'http://127.0.0.1:9099/save';
+const logEl = document.getElementById('log');
+const grid  = document.getElementById('grid');
+const log = (m) => { logEl.textContent += '\n' + m; logEl.scrollTop = logEl.scrollHeight; };
+
+const NEON = ['#FF5CC8', '#E05BF0', '#8B7BFF', '#38E0F0'];
+
+function make(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return [c, c.getContext('2d')]; }
+function linGrad(ctx, x0, y0, x1, y1, stops) {
+  const g = ctx.createLinearGradient(x0, y0, x1, y1);
+  stops.forEach((c, i) => g.addColorStop(i / (stops.length - 1), c));
+  return g;
+}
+function setFont(ctx, px, family, ls) {
+  ctx.font = `${px}px ${family}`; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  ctx.letterSpacing = ls ? `${ls}px` : '0px';
+}
+function fitText(ctx, text, cx, baseY, targetW, px, family, o = {}) {
+  ctx.save(); setFont(ctx, px, family, o.ls);
+  const k = targetW / ctx.measureText(text).width;
+  ctx.translate(cx, 0); ctx.scale(k, 1); ctx.translate(-cx, 0);
+  if (o.stroke) { ctx.lineJoin = 'round'; ctx.strokeStyle = o.stroke; ctx.lineWidth = (o.strokeW || 6) / k; ctx.strokeText(text, cx, baseY); }
+  if (o.fill) { ctx.fillStyle = o.fill; ctx.fillText(text, cx, baseY); }
+  ctx.restore();
+}
+function letterCenters(ctx, text, cx, targetW, px, family) {
+  ctx.save(); setFont(ctx, px, family);
+  const w = [...text].map((c) => ctx.measureText(c).width);
+  const sum = w.reduce((a, b) => a + b, 0);
+  ctx.restore();
+  const k = targetW / sum, x0 = cx - targetW / 2;
+  const out = []; let acc = 0;
+  for (const ww of w) { out.push(x0 + (acc + ww / 2) * k); acc += ww; }
+  return out;
+}
+function drip(ctx, x, yTop, w, len) {
+  const r = w / 2, yb = yTop + len;
+  ctx.beginPath(); ctx.moveTo(x - r, yTop); ctx.lineTo(x - r * .82, yb);
+  ctx.arc(x, yb, r * .82, Math.PI, 0, true); ctx.lineTo(x + r, yTop); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.arc(x, yb + r * .3, r * 1.05, 0, Math.PI * 2); ctx.fill();
+}
+
+/* Le mot HUMPIRE à la bombe. Le dégradé est calculé sur l'empan réel
+   du texte — sinon, sur une toile verticale, le mot tombe au milieu
+   du dégradé et ressort d'une seule couleur. */
+function spray(ctx, cx, baseY, width) {
+  const S = width / 1000;
+  const size = 190 * S, target = 870 * S;
+  const fam = "'Rubik Bubbles','Anton',sans-serif";
+  const x0 = cx - target / 2, x1 = cx + target / 2;
+  const grad = linGrad(ctx, x0, baseY - size * .7, x1, baseY + size * .3, NEON);
+  const cs = letterCenters(ctx, 'HUMPIRE', cx, target, size, fam);
+  ctx.fillStyle = grad;
+  [[0,16,96],[1,12,54],[2,17,124],[3,11,44],[4,14,78],[5,16,108],[6,12,62]]
+    .forEach(([i, w, len]) => drip(ctx, cs[i], baseY - 56 * S, w * S, len * S));
+  fitText(ctx, 'HUMPIRE', cx, baseY, target, size, fam,
+          { fill: grad, stroke: '#0b0b0c', strokeW: 7 * S });
+}
+
+/* ---------- détourage du fond blanc (flood fill depuis les coins) ---------- */
+function knockoutWhite(src) {
+  const [c] = make(src.width, src.height);
+  const ctx = c.getContext('2d', { willReadFrequently: true });
+  ctx.drawImage(src, 0, 0);
+  const id = ctx.getImageData(0, 0, c.width, c.height);
+  const D = id.data, W = c.width, H = c.height;
+  const seen = new Uint8Array(W * H); const stack = [];
+  const pale = (i) => (D[i] + D[i + 1] + D[i + 2]) / 3 > 205;
+  [[0,0],[W-1,0],[0,H-1],[W-1,H-1]].forEach(([sx, sy]) => {
+    const p = sy * W + sx; if (!seen[p] && pale(p * 4)) { seen[p] = 1; stack.push(p); }
+  });
+  while (stack.length) {
+    const p = stack.pop(), px = p % W, py = (p / W) | 0;
+    for (const [nx, ny] of [[px-1,py],[px+1,py],[px,py-1],[px,py+1]]) {
+      if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue;
+      const q = ny * W + nx;
+      if (seen[q] || !pale(q * 4)) continue;
+      seen[q] = 1; stack.push(q);
+    }
+  }
+  for (let p = 0; p < W * H; p++) {
+    if (!seen[p]) continue;
+    const i = p * 4, b = (D[i] + D[i+1] + D[i+2]) / 3;
+    D[i + 3] = b >= 248 ? 0 : Math.max(0, Math.min(255, Math.round((248 - b) * 255 / 43)));
+  }
+  ctx.putImageData(id, 0, 0);
+  return c;
+}
+
+async function save(canvas, name) {
+  const blob = await new Promise((r) => canvas.toBlob(r, 'image/png'));
+  const res = await fetch(SAVE_URL, { method: 'POST', headers: { 'x-filename': name }, body: blob });
+  if (!res.ok) throw new Error(name + ' → ' + res.status + ' ' + (await res.text()));
+  log(`  ✓ ${name.padEnd(30)} ${canvas.width}×${canvas.height}   ${(blob.size / 1048576).toFixed(1)} Mo`);
+}
+function show(canvas, caption) {
+  const f = document.createElement('figure');
+  const k = 320 / canvas.width;
+  const [c] = make(320, Math.round(canvas.height * k));
+  const x = c.getContext('2d');
+  x.fillStyle = '#1c1b17'; x.fillRect(0, 0, c.width, c.height);
+  x.drawImage(canvas, 0, 0, c.width, c.height);
+  const cap = document.createElement('figcaption'); cap.textContent = caption;
+  f.append(c, cap); grid.appendChild(f);
+}
+
+(async function run() {
+  try {
+    await Promise.all([
+      document.fonts.load("190px 'Rubik Bubbles'"),
+      document.fonts.load("150px 'Anton'"),
+    ]);
+    await document.fonts.ready;
+    log('polices prêtes');
+
+    /* le 8K est trop lourd pour un flood fill : on redescend à 3000 px,
+       largement suffisant pour de l'impression. */
+    log('détourage du chameau 8K (réduit à 3000 px)…');
+    const blob = await (await fetch('../img/streetwear/print/logo-chameau-8k.png')).blob();
+    const bmp = await createImageBitmap(blob);
+    const [small, sx] = make(3000, Math.round(bmp.height * 3000 / bmp.width));
+    sx.imageSmoothingQuality = 'high';
+    sx.drawImage(bmp, 0, 0, small.width, small.height);
+    const camel = knockoutWhite(small);
+    await save(camel, 'print-chameau-transparent.png');
+    show(camel, 'print-chameau-transparent.png');
+
+    /* recadre le chameau sur son contenu réel */
+    const cctx = camel.getContext('2d', { willReadFrequently: true });
+    const cd = cctx.getImageData(0, 0, camel.width, camel.height).data;
+    let x0 = camel.width, y0 = camel.height, x1 = 0, y1 = 0;
+    for (let y = 0; y < camel.height; y++) for (let x = 0; x < camel.width; x++) {
+      if (cd[(y * camel.width + x) * 4 + 3] > 12) {
+        if (x < x0) x0 = x; if (x > x1) x1 = x;
+        if (y < y0) y0 = y; if (y > y1) y1 = y;
+      }
+    }
+    const cw = x1 - x0, ch = y1 - y0;
+    log(`  chameau utile : ${cw}×${ch}`);
+
+    /* Lockup vertical : chameau au-dessus, nom en dessous.
+       Le bloc est centré verticalement, sinon il flotte en haut
+       et laisse un grand vide en bas du support. */
+    function lockup(W, H, camelFrac, gapFrac) {
+      const [c, x] = make(W, H);
+      const camelH = H * camelFrac;
+      const dw = cw * (camelH / ch);
+      const gap = H * gapFrac;
+      const sprayW = W * .84;
+      const sprayH = sprayW / 1000 * 260;          /* hauteur utile du mot + coulures */
+      const total = camelH + gap + sprayH;
+      const top = (H - total) / 2;
+      x.drawImage(camel, x0, y0, cw, ch, (W - dw) / 2, top, dw, camelH);
+      spray(x, W / 2, top + camelH + gap + sprayH * .62, sprayW);
+      return c;
+    }
+
+    log('composition des formats…');
+
+    /* mug 11 oz : bande panoramique, nom seul */
+    { const [c, x] = make(2550, 1200);
+      spray(x, 1275, 720, 2100);
+      await save(c, 'print-mug.png'); show(c, 'print-mug.png'); }
+
+    /* coque de téléphone : vertical */
+    { const c = lockup(1800, 3200, .30, .05);
+      await save(c, 'print-coque.png'); show(c, 'print-coque.png'); }
+
+    /* sac à dos : panneau carré */
+    { const c = lockup(2400, 2400, .42, .05);
+      await save(c, 'print-sac.png'); show(c, 'print-sac.png'); }
+
+    /* tote / petit carré, utile aussi pour les vignettes */
+    { const c = lockup(2000, 2000, .44, .05);
+      await save(c, 'print-carre.png'); show(c, 'print-carre.png'); }
+
+    log('\n=== TERMINÉ ===');
+    document.title = 'OK';
+  } catch (e) {
+    log('\n!! ERREUR : ' + (e && e.message ? e.message : e));
+    document.title = 'ERREUR';
+    console.error(e);
+  }
+})();
+</script>
+</body>
+</html>
