@@ -120,7 +120,7 @@ window.PRODUCTS = {
     tier:"pro", price:"10",
 
     buy:"ocpoej", demo:"",
-    video:"", poster:"img/vst/matrix-modular-cover.jpg",
+    video:"QWFc_TVwxGM", poster:"img/vst/matrix-modular-cover.jpg",
     /* Le 16:9 va dans la section « Product visuals », sous la description :
        product.html rend `gallery` en cadre 16/9, c'est le bon format pour lui. */
     gallery:["img/vst/matrix-modular-wide.jpg"],
@@ -219,7 +219,7 @@ window.PRODUCTS = {
     price:"0", currency:"$", badge:"✅ FREE",
     note:"100% FREE · 16 pads · 50 kits",
     buy:"mpc-2026", demo:"",
-    video:"", poster:"img/vst/ui/mpc-2026-hero.png",
+    video:"ufo9aGb7eag", poster:"img/vst/ui/mpc-2026-hero.png",
     tags:["16 Pads","50 Kits","Sequencer","VST3 · AU","Win · Mac"],
     desc:[
       "MPC 2026 is a sixteen-pad beat machine, shipped both as a plug-in for your DAW and as a standalone app. Every control on screen is real: the pads light up as they play, the knobs turn, and the processing actually shapes the sound.",
@@ -257,7 +257,7 @@ window.PRODUCTS = {
     price:"FREE", old:"", badge:"✅ FREE", code:"",
     note:"100% FREE · 50+ instruments sample · Full 280+ version available",
     buy:"oriental-instrument-demo-free-Download", demo:"",
-    video:"", poster:"img/vst/oriental-instrument-box.jpg",
+    video:"aMOigsf8mUs", poster:"img/vst/oriental-instrument-box.jpg",
     tags:["Oriental","Demo","Free","Win · Mac","Rompler"],
     about:[
       "Get a taste of ORIENTAL INSTRUMENT completely free. This demo includes 50+ authentic oriental instruments including oud, qanun, ney, and saz sounds.",
