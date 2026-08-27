@@ -22,7 +22,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = path.resolve(__dirname, '..', 'img', 'streetwear');
 const PORT = 9099;
 const MAX_BYTES = 12 * 1024 * 1024;
-const SAFE_NAME = /^[a-z0-9][a-z0-9-]{0,60}\.(png|jpg)$/;
+/* un seul sous-dossier autorisé : photos/ */
+const SAFE_NAME = /^(photos\/)?[a-z0-9][a-z0-9-]{0,60}\.(png|jpg)$/;
 
 await mkdir(OUT_DIR, { recursive: true });
 
@@ -72,6 +73,12 @@ const server = http.createServer((req, res) => {
       return;
     }
     const dest = path.join(OUT_DIR, name);
+    /* ceinture et bretelles : la destination doit rester sous OUT_DIR */
+    if (!path.resolve(dest).startsWith(path.resolve(OUT_DIR) + path.sep)) {
+      res.writeHead(400, { 'content-type': 'text/plain' }).end('bad path');
+      return;
+    }
+    await mkdir(path.dirname(dest), { recursive: true });
     await writeFile(dest, buf);
     console.log(`saved  ${name}  ${(buf.length / 1024).toFixed(0)} KB`);
     res.writeHead(200, { 'content-type': 'text/plain' }).end('ok');

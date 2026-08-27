@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>HUMPIRE — compression des photos</title>
+<style>
+  body{background:#0b0b0c;color:#f3efe4;font:14px/1.6 system-ui,sans-serif;margin:0;padding:24px}
+  h1{font-size:1.2rem;margin:0 0 16px}
+  #log{font-family:ui-monospace,monospace;font-size:12px;background:#141412;border:1px solid #302c22;
+       padding:12px;white-space:pre-wrap;max-height:60vh;overflow:auto}
+</style>
+</head>
+<body>
+<h1>HUMPIRE — compression des photos</h1>
+<div id="log">démarrage…</div>
+
+<script>
+/* Redimensionne les photos Flow en 1400 px de côté et les réenregistre
+   en JPEG q.86 via tools/asset-server.mjs. Les originaux restent intacts
+   dans Téléchargements — on ne compresse que la copie du dépôt. */
+
+const SAVE_URL = 'http://127.0.0.1:9099/save';
+const MAX = 1400;
+const Q = 0.86;
+
+const FILES = [
+  'tee-blanc-bombe.jpg',
+  'tee-noir-bombe.jpg',
+  'tee-noir-dos.jpg',
+  'cap-bombe.jpg',
+  'bob-bombe.jpg',
+  'sacoche-chrome.jpg',
+  'survetement-medaillon.jpg',
+  'survetement-uni.jpg',
+  'manteau-medaillon.jpg',
+];
+
+const logEl = document.getElementById('log');
+const log = (m) => { logEl.textContent += '\n' + m; logEl.scrollTop = logEl.scrollHeight; };
+
+(async function run() {
+  try {
+    let before = 0, after = 0;
+    for (const name of FILES) {
+      const res = await fetch('../img/streetwear/photos/' + name);
+      if (!res.ok) { log('  ✗ ' + name + ' introuvable'); continue; }
+      const blob = await res.blob();
+      before += blob.size;
+
+      const bmp = await createImageBitmap(blob);
+      const k = Math.min(1, MAX / Math.max(bmp.width, bmp.height));
+      const w = Math.round(bmp.width * k), h = Math.round(bmp.height * k);
+
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      const ctx = c.getContext('2d');
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(bmp, 0, 0, w, h);
+
+      const out = await new Promise((r) => c.toBlob(r, 'image/jpeg', Q));
+      after += out.size;
+
+      const post = await fetch(SAVE_URL, {
+        method: 'POST',
+        headers: { 'x-filename': 'photos/' + name },
+        body: out,
+      });
+      if (!post.ok) throw new Error(name + ' → ' + post.status + ' ' + (await post.text()));
+
+      log(`  ✓ ${name.padEnd(28)} ${bmp.width}×${bmp.height} → ${w}×${h}   ` +
+          `${(blob.size / 1024).toFixed(0)} → ${(out.size / 1024).toFixed(0)} KB`);
+    }
+    log(`\n=== TERMINÉ — ${(before / 1048576).toFixed(1)} Mo → ${(after / 1048576).toFixed(1)} Mo ===`);
+    document.title = 'OK';
+  } catch (e) {
+    log('\n!! ERREUR : ' + (e && e.message ? e.message : e));
+    document.title = 'ERREUR';
+    console.error(e);
+  }
+})();
+</script>
+</body>
+</html>
