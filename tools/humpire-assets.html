@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>HUMPIRE — atelier de rendu des visuels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Rubik+Bubbles&family=Rajdhani:wght@600;700&display=swap">
+<style>
+  :root{color-scheme:dark}
+  body{background:#0b0b0c;color:#f3efe4;font:14px/1.5 system-ui,sans-serif;margin:0;padding:24px}
+  h1{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.02em;margin:0 0 4px}
+  .sub{color:#a79e89;margin-bottom:20px}
+  #log{font-family:ui-monospace,monospace;font-size:12px;background:#141412;border:1px solid #302c22;
+       padding:12px;max-height:220px;overflow:auto;white-space:pre-wrap}
+  #grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-top:20px}
+  figure{margin:0;background:#141412;border:1px solid #302c22}
+  figure canvas{width:100%;height:auto;display:block}
+  figcaption{padding:7px 9px;font-size:11px;color:#a79e89;font-family:ui-monospace,monospace}
+</style>
+</head>
+<body>
+<h1>HUMPIRE — atelier de rendu</h1>
+<p class="sub">Dessine chaque visuel et l'enregistre en PNG dans <code>img/streetwear/</code>.</p>
+<div id="log">initialisation…</div>
+<div id="grid"></div>
+
+<script>
+/* ============================================================
+   Rendu des visuels HUMPIRE sur canvas, puis POST vers
+   tools/asset-server.mjs qui écrit les PNG sur le disque.
+   ============================================================ */
+
+const SAVE_URL = 'http://127.0.0.1:9099/save';
+const logEl = document.getElementById('log');
+const grid  = document.getElementById('grid');
+const log = (m) => { logEl.textContent += '\n' + m; logEl.scrollTop = logEl.scrollHeight; };
+
+const NEON   = ['#FF5CC8', '#E05BF0', '#8B7BFF', '#38E0F0'];
+const GOLD   = ['#8a6a24', '#c7a24e', '#f3da9c', '#ffedbf', '#d0a745', '#7a5d22'];
+const CHROME = ['#6e737a', '#c3c7cd', '#f5f7f8', '#ffffff', '#a8adb4', '#61666d'];
+
+function linGrad(ctx, x0, y0, x1, y1, stops) {
+  const g = ctx.createLinearGradient(x0, y0, x1, y1);
+  stops.forEach((c, i) => g.addColorStop(i / (stops.length - 1), c));
+  return g;
+}
+function make(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return [c, c.getContext('2d')]; }
+
+/* ---------- texte ajusté à une largeur cible ---------- */
+function setFont(ctx, px, family, ls) {
+  ctx.font = `${px}px ${family}`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'alphabetic';
+  ctx.letterSpacing = ls ? `${ls}px` : '0px';
+}
+function fitText(ctx, text, cx, baseY, targetW, px, family, o = {}) {
+  ctx.save();
+  setFont(ctx, px, family, o.ls);
+  const k = targetW / ctx.measureText(text).width;
+  ctx.translate(cx, 0); ctx.scale(k, 1); ctx.translate(-cx, 0);
+  if (o.stroke) {
+    ctx.lineJoin = 'round'; ctx.strokeStyle = o.stroke;
+    ctx.lineWidth = (o.strokeW || 6) / k;
+    ctx.strokeText(text, cx, baseY);
+  }
+  if (o.fill) { ctx.fillStyle = o.fill; ctx.fillText(text, cx, baseY); }
+  ctx.restore();
+}
+/* centre horizontal réel de chaque lettre, une fois le texte ajusté */
+function letterCenters(ctx, text, cx, targetW, px, family, ls) {
+  ctx.save();
+  setFont(ctx, px, family, ls);
+  const widths = [...text].map((ch) => ctx.measureText(ch).width);
+  const sum = widths.reduce((a, b) => a + b, 0);
+  ctx.restore();
+  const k = targetW / sum;
+  const x0 = cx - targetW / 2;
+  const out = []; let acc = 0;
+  for (const w of widths) { out.push(x0 + (acc + w / 2) * k); acc += w; }
+  return out;
+}
+
+/* ---------- coulure de peinture ---------- */
+function drip(ctx, x, yTop, w, len) {
+  const r = w / 2, yb = yTop + len;
+  ctx.beginPath();
+  ctx.moveTo(x - r, yTop);
+  ctx.lineTo(x - r * .82, yb);
+  ctx.arc(x, yb, r * .82, Math.PI, 0, true);
+  ctx.lineTo(x + r, yTop);
+  ctx.closePath();
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(x, yb + r * .3, r * 1.05, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+/* ============================================================
+   VISUEL 01 — le nom à la bombe
+   ============================================================ */
+function artSpray(ctx, W, H, colors = NEON, compact = false) {
+  const S = W / 1000;
+  const g = linGrad(ctx, 0, 0, W, H, colors);
+  const size   = (compact ? 150 : 190) * S;
+  const baseY  = (compact ? 176 : 206) * S;
+  const target = (compact ? 830 : 870) * S;
+  const fam = "'Rubik Bubbles','Anton',sans-serif";
+
+  /* coulures alignées sous le centre réel de chaque lettre */
+  const cs = letterCenters(ctx, 'HUMPIRE', W / 2, target, size, fam);
+  const plan = [
+    [0,  16, 96], [1,  12, 54], [2,  17, 124], [3,  11, 44],
+    [4,  14, 78], [5,  16, 108], [6,  12, 62],
+  ];
+  ctx.fillStyle = g;
+  plan.forEach(([i, w, len]) => {
+    if (cs[i] == null) return;
+    drip(ctx, cs[i], baseY - 56 * S, w * S, len * S);
+  });
+  /* deux coulures décalées, pour casser la régularité */
+  if (!compact) {
+    drip(ctx, cs[1] + 34 * S, baseY - 56 * S, 10 * S, 40 * S);
+    drip(ctx, cs[5] - 30 * S, baseY - 56 * S, 11 * S, 66 * S);
+  }
+
+  fitText(ctx, 'HUMPIRE', W / 2, baseY, target, size, fam,
+          { fill: g, stroke: '#0b0b0c', strokeW: 7 * S });
+
+  if (!compact) {
+    ctx.globalAlpha = .5; ctx.fillStyle = g;
+    [[118, 86, 3.4], [96, 120, 2.2], [142, 62, 2], [884, 92, 3.2], [912, 130, 2.4],
+     [866, 58, 2], [404, 46, 2.6], [612, 40, 2.2], [300, 300, 2.6], [726, 306, 2.2], [466, 292, 2]]
+      .forEach(([x, y, r]) => { ctx.beginPath(); ctx.arc(x * S, y * S, r * S, 0, Math.PI * 2); ctx.fill(); });
+    ctx.globalAlpha = 1;
+  }
+}
+
+/* ============================================================
+   VISUEL 02 — le médaillon
+   ============================================================ */
+function artMedal(ctx, W, H, logo, ring = null) {
+  const S = W / 1000, d = 280 * S, cx = W / 2, cy = 150 * S;
+  if (ring) {
+    [[146, ring[0], 13], [133, ring[1], 11], [122, ring[2], 11]].forEach(([r, col, lw]) => {
+      ctx.beginPath(); ctx.arc(cx, cy, r * S, 0, Math.PI * 2);
+      ctx.strokeStyle = col; ctx.lineWidth = lw * S; ctx.stroke();
+    });
+    ctx.drawImage(logo, cx - d * .40, cy - d * .40, d * .80, d * .80);
+  } else {
+    ctx.drawImage(logo, cx - d / 2, cy - d / 2, d, d);
+  }
+  const g = linGrad(ctx, 232 * S, 0, 768 * S, 0, GOLD);
+  ctx.beginPath(); ctx.moveTo(232 * S, 322 * S); ctx.lineTo(768 * S, 322 * S);
+  ctx.strokeStyle = g; ctx.lineWidth = 3 * S; ctx.stroke();
+  fitText(ctx, 'HUMPIRE', cx, 392 * S, 536 * S, 86 * S, "'Anton',sans-serif", { fill: g, ls: 6 * S });
+  fitText(ctx, 'BY DJBILBOX BEATS', cx, 434 * S, 420 * S, 30 * S,
+          "'Rajdhani',sans-serif", { fill: '#C8CAD0', ls: 9 * S });
+}
+
+/* ============================================================
+   VISUEL 03 — le nom en métal
+   ============================================================ */
+function artMetal(ctx, W, H, tone = 'chrome', compact = false) {
+  const S = W / 1000;
+  const g = linGrad(ctx, 60 * S, 0, 940 * S, 0, tone === 'gold' ? GOLD : CHROME);
+  const size   = (compact ? 140 : 150) * S;
+  const baseY  = (compact ? 134 : 176) * S;
+  const target = (compact ? 900 : 880) * S;
+  fitText(ctx, 'HUMPIRE', W / 2, baseY, target, size, "'Anton',sans-serif",
+          { fill: g, stroke: '#0b0b0c', strokeW: 6 * S, ls: 4 * S });
+  if (!compact) {
+    ctx.beginPath(); ctx.moveTo(180 * S, 210 * S); ctx.lineTo(820 * S, 210 * S);
+    ctx.strokeStyle = g; ctx.lineWidth = 2.5 * S; ctx.stroke();
+    fitText(ctx, 'BY DJBILBOX BEATS', W / 2, 254 * S, 400 * S, 28 * S, "'Rajdhani',sans-serif",
+            { fill: tone === 'gold' ? '#a5822f' : '#8f959c', ls: 9 * S });
+  }
+}
+
+/* ============================================================
+   PATRONS
+   ============================================================ */
+const G = {
+  tee: { vb: [260, 250], body: 'M84 44 L52 60 L34 108 L58 120 L68 92 L68 226 L192 226 L192 92 L202 120 L226 108 L208 60 L176 44 Q130 78 84 44 Z', ops: [
+    ['fab',  'M84 44 L52 60 L34 108 L58 120 L68 92 L68 226 L192 226 L192 92 L202 120 L226 108 L208 60 L176 44 Q130 78 84 44 Z'],
+    ['collar','M84 44 Q130 78 176 44 Q130 66 84 44 Z'],
+    ['fold', 'M70 116 Q84 190 70 224 L68 224 L68 108 Z'],
+    ['fold', 'M190 116 Q176 190 190 224 L192 224 L192 108 Z'],
+    ['seam', 'M68 92 L84 44'], ['seam', 'M192 92 L176 44'],
+    ['stitch', 'M37 104 L58 114'], ['stitch', 'M223 104 L202 114'], ['stitch', 'M68 219 L192 219'],
+  ]},
+  /* casquette de profil : la visière qui dépasse rend la silhouette lisible */
+  cap: { vb: [260, 200], body: 'M102 152 C100 80 130 54 176 54 C216 54 240 92 240 152 Z', ops: [
+    ['bill', 'M104 140 C74 143 40 151 24 166 C44 177 84 177 110 163 Z'],
+    ['fab',  'M102 152 C100 80 130 54 176 54 C216 54 240 92 240 152 Z'],
+    ['seam', 'M176 56 C148 84 138 118 138 152'],
+    ['seam', 'M240 150 C238 110 226 80 206 64'],
+    ['seam', 'M102 152 Q172 163 240 152'],
+    ['stitch', 'M42 163 C60 171 86 171 106 161'],
+    ['stitch', 'M100 148 C76 151 54 157 40 165'],
+    ['panel', 'M171 50 a5 5 0 1 0 10 0 a5 5 0 1 0 -10 0'],
+    ['panel', 'M236 116 h9 v18 h-9 z'],
+    ['eyelet', 'M150 130 a2.4 2.4 0 1 0 4.8 0 a2.4 2.4 0 1 0 -4.8 0'],
+    ['eyelet', 'M196 134 a2.4 2.4 0 1 0 4.8 0 a2.4 2.4 0 1 0 -4.8 0'],
+  ]},
+  bob: { vb: [260, 200], body: 'M74 116 Q74 48 130 48 Q186 48 186 116 Z', ops: [
+    ['fab',  'M74 116 Q74 48 130 48 Q186 48 186 116 Z'],
+    ['fab',  'M50 114 Q130 98 210 114 L222 148 Q130 184 38 148 Z'],
+    ['seam', 'M74 116 H186'],
+    ['stitch', 'M56 120 Q130 106 204 120'], ['stitch', 'M52 132 Q130 116 208 132'],
+    ['seam', 'M70 104 C56 128 58 150 66 160'], ['seam', 'M190 104 C204 128 202 150 194 160'],
+    ['panel', 'M62 154 h8 v12 h-8 z'], ['panel', 'M190 154 h8 v12 h-8 z'],
+  ]},
+  short: { vb: [260, 210], body: 'M40 34 H220 V60 H40 Z', ops: [
+    ['fab', 'M40 34 H220 V60 H40 Z'],
+    ['fab', 'M40 60 H220 V126 Q220 138 208 138 H150 Q140 138 140 126 V80 H120 V126 Q120 138 110 138 H52 Q40 138 40 126 Z'],
+    ['fold', 'M96 60 L104 138 L110 138 Q120 138 120 126 L120 80 L112 80 Z'],
+    ['stripe', 'M40 60 H49 V138 H40 Z'], ['stripe', 'M211 60 H220 V138 H211 Z'],
+    ['seam', 'M120 46 Q130 55 130 60'], ['seam', 'M140 46 Q130 55 130 60'],
+    ['stitch', 'M52 133 H108'], ['stitch', 'M152 133 H208'],
+  ]},
+  hood: { vb: [260, 270], body: 'M80 64 L46 80 L26 178 L58 192 L68 130 L66 250 L194 250 L192 130 L202 192 L234 178 L214 80 L180 64 L168 50 L92 50 Z', ops: [
+    ['fab', 'M94 54 Q130 16 166 54 L166 66 Q130 34 94 66 Z'],
+    ['fab', 'M80 64 L46 80 L26 178 L58 192 L68 130 L66 250 L194 250 L192 130 L202 192 L234 178 L214 80 L180 64 L168 50 L92 50 Z'],
+    ['fold', 'M74 132 Q84 194 74 244 L66 244 L66 124 Z'],
+    ['fold', 'M186 132 Q176 194 186 244 L194 244 L194 124 Z'],
+    ['refl', 'M68 132 L84 66'], ['refl', 'M192 132 L176 66'],
+    ['zip', 'M130 62 V250'],
+    ['seam', 'M74 178 L102 202 L158 202 L186 178'],
+    ['fab', 'M26 172 L58 186 L54 200 L23 187 Z'],
+    ['fab', 'M234 172 L202 186 L206 200 L237 187 Z'],
+    ['fab', 'M66 236 H194 V252 H66 Z'],
+  ]},
+  coat: { vb: [260, 280], body: 'M86 46 L44 66 L24 186 L58 200 L68 134 L68 258 L192 258 L192 134 L202 200 L236 186 L216 66 L174 46 L156 38 Q130 58 104 38 Z', ops: [
+    ['fab', 'M86 46 L44 66 L24 186 L58 200 L68 134 L68 258 L192 258 L192 134 L202 200 L236 186 L216 66 L174 46 L156 38 Q130 58 104 38 Z'],
+    ['fab', 'M104 38 Q130 20 156 38 L156 52 Q130 34 104 52 Z'],
+    ['quilt', 'M68 100 H192'], ['quilt', 'M68 134 H192'], ['quilt', 'M68 168 H192'],
+    ['quilt', 'M68 202 H192'], ['quilt', 'M68 234 H192'],
+    ['quilt', 'M32 108 L48 112'], ['quilt', 'M28 142 L46 146'], ['quilt', 'M26 176 L52 182'],
+    ['quilt', 'M228 108 L212 112'], ['quilt', 'M232 142 L214 146'], ['quilt', 'M234 176 L208 182'],
+    ['zip', 'M130 54 V258'],
+    ['fold', 'M74 136 Q86 200 74 252 L68 252 L68 128 Z'],
+    ['fold', 'M186 136 Q174 200 186 252 L192 252 L192 128 Z'],
+    ['refl', 'M68 134 L86 50'], ['refl', 'M192 134 L174 50'],
+    ['panel', 'M78 208 H112 V219 H78 Z'], ['panel', 'M148 208 H182 V219 H148 Z'],
+  ]},
+  bag: { vb: [260, 190], body: 'M56 62 Q130 50 204 62 L210 140 Q130 158 50 140 Z', ops: [
+    /* sangle : deux montants qui plongent derrière le corps du sac */
+    ['strapband', 'M62 16 L78 12 L88 74 L72 78 Z'],
+    ['strapband', 'M198 16 L182 12 L172 74 L188 78 Z'],
+    ['fab', 'M56 62 Q130 50 204 62 L210 140 Q130 158 50 140 Z'],
+    ['eyelet', 'M64 60 a5 5 0 1 0 10 0 a5 5 0 1 0 -10 0'],
+    ['eyelet', 'M186 60 a5 5 0 1 0 10 0 a5 5 0 1 0 -10 0'],
+    ['zip', 'M60 71 Q130 60 200 71'],
+    ['seam', 'M58 102 Q130 118 202 102'],
+    ['zip', 'M60 107 Q130 123 200 107'],
+    ['panel', 'M195 66 h9 v8 h-9 z'],
+    ['stitch', 'M54 134 Q130 151 206 134'],
+  ]},
+};
+
+/* styles de tracé */
+function applyStyle(ctx, style, p, vh, dark, white) {
+  ctx.setLineDash([]); ctx.globalAlpha = 1; ctx.lineCap = 'butt';
+  switch (style) {
+    case 'fab':
+      ctx.fillStyle = dark; ctx.fill(p);
+      ctx.strokeStyle = '#000'; ctx.lineWidth = 1.8; ctx.lineJoin = 'round'; ctx.stroke(p); break;
+    case 'fabw':
+      ctx.fillStyle = white; ctx.fill(p);
+      ctx.strokeStyle = '#9c9c9c'; ctx.lineWidth = 1.5; ctx.lineJoin = 'round'; ctx.stroke(p); break;
+    case 'bill':
+      ctx.fillStyle = ctx.createLinearGradient ? dark : '#222'; ctx.fill(p);
+      ctx.globalAlpha = .35; ctx.fillStyle = '#000'; ctx.fill(p); ctx.globalAlpha = 1;
+      ctx.strokeStyle = '#000'; ctx.lineWidth = 1.8; ctx.lineJoin = 'round'; ctx.stroke(p); break;
+    case 'collar':
+      ctx.globalAlpha = .5; ctx.fillStyle = '#000'; ctx.fill(p); ctx.globalAlpha = 1;
+      ctx.strokeStyle = '#3a3a3a'; ctx.lineWidth = 1.4; ctx.stroke(p); break;
+    case 'strapband':
+      ctx.fillStyle = '#1a1a1a'; ctx.fill(p);
+      ctx.strokeStyle = '#000'; ctx.lineWidth = 1.6; ctx.stroke(p); break;
+    case 'panel':  ctx.fillStyle = '#2c2c2c'; ctx.fill(p); ctx.strokeStyle = '#000'; ctx.lineWidth = 1.2; ctx.stroke(p); break;
+    case 'eyelet': ctx.fillStyle = '#3a3a3a'; ctx.fill(p); ctx.strokeStyle = '#000'; ctx.lineWidth = 1; ctx.stroke(p); break;
+    case 'stripe': ctx.fillStyle = '#e8e8e8'; ctx.fill(p); break;
+    case 'fold':   ctx.globalAlpha = .22; ctx.fillStyle = '#000'; ctx.fill(p); ctx.globalAlpha = 1; break;
+    case 'foldw':  ctx.globalAlpha = .08; ctx.fillStyle = '#000'; ctx.fill(p); ctx.globalAlpha = 1; break;
+    case 'seam':   ctx.globalAlpha = .5; ctx.strokeStyle = '#000'; ctx.lineWidth = 1.5; ctx.lineCap = 'round'; ctx.stroke(p); ctx.globalAlpha = 1; break;
+    case 'seamw':  ctx.strokeStyle = '#bdbdbd'; ctx.lineWidth = 1.4; ctx.lineCap = 'round'; ctx.stroke(p); break;
+    case 'stitch': ctx.setLineDash([3, 2.4]); ctx.strokeStyle = '#6a6a62'; ctx.lineWidth = 1; ctx.stroke(p); break;
+    case 'stitchw':ctx.setLineDash([3, 2.4]); ctx.strokeStyle = '#b8b8b8'; ctx.lineWidth = 1; ctx.stroke(p); break;
+    case 'zip':    ctx.setLineDash([1.6, 2]); ctx.strokeStyle = '#a8a8a8'; ctx.lineWidth = 2.2; ctx.stroke(p); break;
+    case 'refl':   ctx.globalAlpha = .85; ctx.strokeStyle = '#b6cad2'; ctx.lineWidth = 2.6; ctx.stroke(p); ctx.globalAlpha = 1; break;
+    case 'quilt':  ctx.globalAlpha = .55; ctx.strokeStyle = '#000'; ctx.lineWidth = 1.6; ctx.stroke(p); ctx.globalAlpha = 1; break;
+  }
+}
+
+function drawGarment(ctx, key, W, H, light) {
+  const g = G[key];
+  const [vw, vh] = g.vb;
+  const k = Math.min(W / vw, H / vh);
+  const ox = (W - vw * k) / 2, oy = (H - vh * k) / 2;
+  ctx.save();
+  ctx.translate(ox, oy); ctx.scale(k, k);
+
+  /* tissu : plus clair qu'avant pour se détacher du fond */
+  const dark  = linGrad(ctx, 0, 0, 0, vh, ['#4a4a4a', '#2a2a2a', '#1e1e1e', '#333']);
+  const white = linGrad(ctx, 0, 0, 0, vh, ['#ffffff', '#ededed', '#d8d8d8']);
+
+  const ops = light ? g.ops.map(([s, d]) => [
+    s === 'fab' ? 'fabw' : s === 'seam' ? 'seamw' : s === 'stitch' ? 'stitchw' :
+    s === 'fold' ? 'foldw' : s === 'collar' ? 'collarw' : s, d]) : g.ops;
+
+  for (const [style, d] of ops) {
+    const p = new Path2D(d);
+    if (style === 'collarw') {
+      ctx.globalAlpha = .12; ctx.fillStyle = '#000'; ctx.fill(p); ctx.globalAlpha = 1;
+      ctx.strokeStyle = '#c4c4c4'; ctx.lineWidth = 1.4; ctx.stroke(p);
+      continue;
+    }
+    applyStyle(ctx, style, p, vh, dark, white);
+  }
+
+  /* voile de lumière douce, découpé dans la silhouette */
+  if (g.body) {
+    ctx.save();
+    ctx.clip(new Path2D(g.body));
+    const sh = ctx.createLinearGradient(vw * .2, 0, vw * .8, vh);
+    sh.addColorStop(0,   light ? 'rgba(255,255,255,.55)' : 'rgba(255,255,255,.10)');
+    sh.addColorStop(.45, 'rgba(255,255,255,0)');
+    sh.addColorStop(1,   'rgba(0,0,0,.16)');
+    ctx.fillStyle = sh; ctx.fillRect(0, 0, vw, vh);
+    ctx.restore();
+  }
+
+  ctx.restore();
+  return { k, ox, oy };
+}
+
+/* ---------- fond de studio ---------- */
+function studioBg(ctx, W, H) {
+  let g = ctx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, '#33343a'); g.addColorStop(.55, '#26272c'); g.addColorStop(1, '#191a1e');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+  g = ctx.createRadialGradient(W / 2, H * .3, 0, W / 2, H * .3, W * .58);
+  g.addColorStop(0, 'rgba(255,255,255,.10)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+  g = ctx.createRadialGradient(W / 2, H / 2, W * .3, W / 2, H / 2, W * .72);
+  g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.5)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+}
+/* ombre portée au sol */
+function floorShadow(ctx, W, H, cx, cy, rx, ry) {
+  const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rx);
+  g.addColorStop(0, 'rgba(0,0,0,.55)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.save(); ctx.translate(cx, cy); ctx.scale(1, ry / rx); ctx.translate(-cx, -cy);
+  ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, rx, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+}
+
+/* ---------- logo : détourage du fond blanc ---------- */
+function knockoutWhite(img) {
+  const [c] = make(img.width, img.height);
+  const ctx = c.getContext('2d', { willReadFrequently: true });
+  ctx.drawImage(img, 0, 0);
+  const id = ctx.getImageData(0, 0, c.width, c.height);
+  const D = id.data, W = c.width, H = c.height;
+  const seen = new Uint8Array(W * H); const stack = [];
+  const pale = (i) => (D[i] + D[i + 1] + D[i + 2]) / 3 > 200;
+  [[0, 0], [W - 1, 0], [0, H - 1], [W - 1, H - 1]].forEach(([sx, sy]) => {
+    const p = sy * W + sx; if (!seen[p] && pale(p * 4)) { seen[p] = 1; stack.push(p); }
+  });
+  while (stack.length) {
+    const p = stack.pop(), px = p % W, py = (p / W) | 0;
+    for (const [nx, ny] of [[px - 1, py], [px + 1, py], [px, py - 1], [px, py + 1]]) {
+      if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue;
+      const q = ny * W + nx;
+      if (seen[q] || !pale(q * 4)) continue;
+      seen[q] = 1; stack.push(q);
+    }
+  }
+  for (let p = 0; p < W * H; p++) {
+    if (!seen[p]) continue;
+    const i = p * 4, b = (D[i] + D[i + 1] + D[i + 2]) / 3;
+    D[i + 3] = b >= 246 ? 0 : Math.max(0, Math.min(255, Math.round((246 - b) * 255 / 46)));
+  }
+  ctx.putImageData(id, 0, 0);
+  return c;
+}
+
+/* ---------- enregistrement ---------- */
+async function save(canvas, name) {
+  /* .jpg pour les maquettes (fond opaque) — .png là où la transparence sert */
+  const jpg = name.endsWith('.jpg');
+  const blob = await new Promise((r) => canvas.toBlob(r, jpg ? 'image/jpeg' : 'image/png', jpg ? .9 : undefined));
+  const res = await fetch(SAVE_URL, { method: 'POST', headers: { 'x-filename': name }, body: blob });
+  if (!res.ok) throw new Error(name + ' → ' + res.status + ' ' + (await res.text()));
+  log(`  ✓ ${name}  ${(blob.size / 1024).toFixed(0)} KB`);
+}
+function show(canvas, caption) {
+  const f = document.createElement('figure');
+  const [c] = make(canvas.width, canvas.height);
+  c.getContext('2d').drawImage(canvas, 0, 0);
+  const cap = document.createElement('figcaption'); cap.textContent = caption;
+  f.append(c, cap); grid.appendChild(f);
+}
+
+/* ---------- une maquette produit ---------- */
+async function mockup({ file, garment, art, rect, patch, strap, light }) {
+  const W = 1200, H = 1200;
+  const [c, ctx] = make(W, H);
+  studioBg(ctx, W, H);
+
+  const inner = .84;
+  const gw = W * inner, gh = H * inner;
+  const probe = G[garment].vb;
+  const k = Math.min(gw / probe[0], gh / probe[1]);
+  const ox = (W - probe[0] * k) / 2, oy = (H - probe[1] * k) / 2;
+
+  floorShadow(ctx, W, H, W / 2, oy + probe[1] * k * .99, probe[0] * k * .42, probe[0] * k * .07);
+
+  ctx.save(); ctx.translate(ox, oy); ctx.scale(k, k);
+  const gg = G[garment];
+  const dark  = linGrad(ctx, 0, 0, 0, gg.vb[1], ['#4a4a4a', '#2a2a2a', '#1e1e1e', '#333']);
+  const white = linGrad(ctx, 0, 0, 0, gg.vb[1], ['#ffffff', '#ededed', '#d8d8d8']);
+  const ops = light ? gg.ops.map(([s, d]) => [
+    s === 'fab' ? 'fabw' : s === 'seam' ? 'seamw' : s === 'stitch' ? 'stitchw' :
+    s === 'fold' ? 'foldw' : s === 'collar' ? 'collarw' : s, d]) : gg.ops;
+  for (const [style, d] of ops) {
+    const p = new Path2D(d);
+    if (style === 'collarw') {
+      ctx.globalAlpha = .12; ctx.fillStyle = '#000'; ctx.fill(p); ctx.globalAlpha = 1;
+      ctx.strokeStyle = '#c4c4c4'; ctx.lineWidth = 1.4; ctx.stroke(p); continue;
+    }
+    applyStyle(ctx, style, p, gg.vb[1], dark, white);
+  }
+  if (gg.body) {
+    ctx.save(); ctx.clip(new Path2D(gg.body));
+    const sh = ctx.createLinearGradient(gg.vb[0] * .2, 0, gg.vb[0] * .8, gg.vb[1]);
+    sh.addColorStop(0,   light ? 'rgba(255,255,255,.5)' : 'rgba(255,255,255,.11)');
+    sh.addColorStop(.45, 'rgba(255,255,255,0)');
+    sh.addColorStop(1,   'rgba(0,0,0,.16)');
+    ctx.fillStyle = sh; ctx.fillRect(0, 0, gg.vb[0], gg.vb[1]);
+    ctx.restore();
+  }
+  ctx.restore();
+
+  const gx = (v) => ox + v * k, gy = (v) => oy + v * k;
+
+  if (patch) {
+    const [px, py, pw, ph] = patch;
+    ctx.fillStyle = '#1e1e1e';
+    ctx.strokeStyle = 'rgba(222,184,99,.55)'; ctx.lineWidth = 1.4 * k;
+    ctx.beginPath(); ctx.roundRect(gx(px), gy(py), pw * k, ph * k, 5 * k);
+    ctx.fill(); ctx.stroke();
+  }
+
+  const [rx, ry, rw, rh] = rect;
+  const [ac, actx] = make(Math.round(rw * k * 4), Math.round(rh * k * 4));
+  art(actx, ac.width, ac.height);
+  ctx.drawImage(ac, gx(rx), gy(ry), rw * k, rh * k);
+
+  if (strap) {
+    ctx.save();
+    ctx.fillStyle = strap; ctx.textAlign = 'center';
+    [[72, 40, 80], [188, 40, -80]].forEach(([tx, ty, rot]) => {
+      ctx.save();
+      ctx.translate(gx(tx), gy(ty));
+      ctx.rotate(rot * Math.PI / 180);
+      setFont(ctx, 7.5 * k, "'Rajdhani',sans-serif", 1.6 * k);
+      ctx.fillText('HUMPIRE', 0, 0);
+      ctx.restore();
+    });
+    ctx.restore();
+  }
+
+  await save(c, file);
+  show(c, file);
+}
+
+/* ============================================================
+   PROGRAMME
+   ============================================================ */
+(async function run() {
+  try {
+    logEl.textContent = 'chargement des polices…';
+    await Promise.all([
+      document.fonts.load("190px 'Rubik Bubbles'"),
+      document.fonts.load("150px 'Anton'"),
+      document.fonts.load("700 30px 'Rajdhani'"),
+    ]);
+    await document.fonts.ready;
+    log('polices prêtes');
+
+    log('détourage du logo…');
+    const blob = await (await fetch('../img/humpire-logo.png')).blob();
+    const bmp = await createImageBitmap(blob);
+    const logo = knockoutWhite(bmp);
+    await save(logo, 'humpire-logo-transparent.png');
+    show(logo, 'humpire-logo-transparent.png');
+
+    log('visuels de marque…');
+    { const [c, x] = make(2400, 816); artSpray(x, 2400, 816, NEON);
+      await save(c, 'art-bombe-neon.png'); show(c, 'art-bombe-neon.png'); }
+    { const [c, x] = make(2000, 920); artMedal(x, 2000, 920, logo);
+      await save(c, 'art-medaillon.png'); show(c, 'art-medaillon.png'); }
+    { const [c, x] = make(2400, 720); artMetal(x, 2400, 720, 'chrome');
+      await save(c, 'art-metal-argent.png'); show(c, 'art-metal-argent.png'); }
+    { const [c, x] = make(2400, 720); artMetal(x, 2400, 720, 'gold');
+      await save(c, 'art-metal-or.png'); show(c, 'art-metal-or.png'); }
+
+    log('maquettes produit…');
+    const sprayS = (x, w, h) => artSpray(x, w, h, NEON, true);
+    const sprayL = (x, w, h) => artSpray(x, w, h, NEON, false);
+    const medal  = (x, w, h) => { const S = w / 300; x.drawImage(logo, 8 * S, 8 * S, 284 * S, 284 * S); };
+    const metalC = (x, w, h) => artMetal(x, w, h, 'chrome', true);
+    const metalG = (x, w, h) => artMetal(x, w, h, 'gold', true);
+
+    await mockup({ file: 'cap-bombe.jpg',  garment: 'cap',  art: sprayS, rect: [140, 92, 94, 25] });
+    await mockup({ file: 'bob-bombe.jpg',  garment: 'bob',  art: sprayS, rect: [78, 68, 104, 27] });
+    await mockup({ file: 'tee-noir-bombe.jpg',  garment: 'tee',  art: sprayL, rect: [66, 100, 128, 44] });
+    await mockup({ file: 'tee-blanc-bombe.jpg',  garment: 'tee',  art: sprayL, rect: [66, 100, 128, 44], light: true });
+    await mockup({ file: 'survetement-medaillon.jpg',  garment: 'hood', art: medal, rect: [146, 82, 50, 50] });
+    await mockup({ file: 'manteau-medaillon.jpg',  garment: 'coat', art: medal, rect: [144, 98, 48, 48] });
+    await mockup({ file: 'cap-medaillon-strass.jpg',  garment: 'cap',  art: medal, rect: [149, 82, 56, 56], patch: [146, 79, 62, 62] });
+    await mockup({ file: 'tee-medaillon.jpg',  garment: 'tee',  art: medal,  rect: [104, 96, 52, 52] });
+    await mockup({ file: 'sacoche-argent.jpg',  garment: 'bag',  art: metalC, rect: [70, 78, 120, 22], strap: '#a8adb4' });
+    await mockup({ file: 'sacoche-or.jpg',  garment: 'bag',  art: metalG, rect: [70, 78, 120, 22], strap: '#c7a24e' });
+    await mockup({ file: 'short-or.jpg',  garment: 'short',art: metalG, rect: [56, 84, 62, 11] });
+    await mockup({ file: 'tee-argent.jpg',  garment: 'tee',  art: metalC, rect: [68, 112, 124, 22] });
+
+    log('\n=== TERMINÉ ===');
+    document.title = 'OK — rendu terminé';
+  } catch (e) {
+    log('\n!! ERREUR : ' + (e && e.message ? e.message : e));
+    document.title = 'ERREUR';
+    console.error(e);
+  }
+})();
+</script>
+</body>
+</html>
