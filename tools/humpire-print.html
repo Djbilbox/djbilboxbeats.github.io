@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>HUMPIRE — fichiers d'impression</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Rubik+Bubbles&family=Rajdhani:wght@600;700&display=swap">
+<style>
+  body{background:#0b0b0c;color:#f3efe4;font:14px/1.6 system-ui,sans-serif;margin:0;padding:24px}
+  h1{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;margin:0 0 4px}
+  .sub{color:#a79e89;margin-bottom:18px}
+  #log{font-family:ui-monospace,monospace;font-size:12px;background:#141412;border:1px solid #302c22;
+       padding:12px;white-space:pre-wrap;max-height:50vh;overflow:auto}
+</style>
+</head>
+<body>
+<h1>HUMPIRE — fichiers d'impression</h1>
+<p class="sub">Visuels à 300 DPI, fond transparent, prêts pour Fourthwall / Printful / un atelier.</p>
+<div id="log">démarrage…</div>
+
+<script>
+/* ============================================================
+   Régénère les visuels de marque à la résolution d'impression.
+   300 DPI : 1 cm = 118 px. Un marquage poitrine de 30 cm de large
+   demande donc ~3540 px — d'où les tailles ci-dessous.
+   ============================================================ */
+
+const SAVE_URL = 'http://127.0.0.1:9099/save';
+const logEl = document.getElementById('log');
+const log = (m) => { logEl.textContent += '\n' + m; logEl.scrollTop = logEl.scrollHeight; };
+
+const NEON   = ['#FF5CC8', '#E05BF0', '#8B7BFF', '#38E0F0'];
+const GOLD   = ['#8a6a24', '#c7a24e', '#f3da9c', '#ffedbf', '#d0a745', '#7a5d22'];
+const CHROME = ['#6e737a', '#c3c7cd', '#f5f7f8', '#ffffff', '#a8adb4', '#61666d'];
+
+function make(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return [c, c.getContext('2d')]; }
+function linGrad(ctx, x0, y0, x1, y1, stops) {
+  const g = ctx.createLinearGradient(x0, y0, x1, y1);
+  stops.forEach((c, i) => g.addColorStop(i / (stops.length - 1), c));
+  return g;
+}
+function setFont(ctx, px, family, ls) {
+  ctx.font = `${px}px ${family}`;
+  ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  ctx.letterSpacing = ls ? `${ls}px` : '0px';
+}
+function fitText(ctx, text, cx, baseY, targetW, px, family, o = {}) {
+  ctx.save();
+  setFont(ctx, px, family, o.ls);
+  const k = targetW / ctx.measureText(text).width;
+  ctx.translate(cx, 0); ctx.scale(k, 1); ctx.translate(-cx, 0);
+  if (o.stroke) {
+    ctx.lineJoin = 'round'; ctx.strokeStyle = o.stroke;
+    ctx.lineWidth = (o.strokeW || 6) / k;
+    ctx.strokeText(text, cx, baseY);
+  }
+  if (o.fill) { ctx.fillStyle = o.fill; ctx.fillText(text, cx, baseY); }
+  ctx.restore();
+}
+function letterCenters(ctx, text, cx, targetW, px, family, ls) {
+  ctx.save(); setFont(ctx, px, family, ls);
+  const widths = [...text].map((ch) => ctx.measureText(ch).width);
+  const sum = widths.reduce((a, b) => a + b, 0);
+  ctx.restore();
+  const k = targetW / sum, x0 = cx - targetW / 2;
+  const out = []; let acc = 0;
+  for (const w of widths) { out.push(x0 + (acc + w / 2) * k); acc += w; }
+  return out;
+}
+function drip(ctx, x, yTop, w, len) {
+  const r = w / 2, yb = yTop + len;
+  ctx.beginPath();
+  ctx.moveTo(x - r, yTop); ctx.lineTo(x - r * .82, yb);
+  ctx.arc(x, yb, r * .82, Math.PI, 0, true);
+  ctx.lineTo(x + r, yTop); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.arc(x, yb + r * .3, r * 1.05, 0, Math.PI * 2); ctx.fill();
+}
+
+function artSpray(ctx, W, H, colors = NEON) {
+  const S = W / 1000;
+  const g = linGrad(ctx, 0, 0, W, H, colors);
+  const size = 190 * S, baseY = 206 * S, target = 870 * S;
+  const fam = "'Rubik Bubbles','Anton',sans-serif";
+  const cs = letterCenters(ctx, 'HUMPIRE', W / 2, target, size, fam);
+  ctx.fillStyle = g;
+  [[0,16,96],[1,12,54],[2,17,124],[3,11,44],[4,14,78],[5,16,108],[6,12,62]]
+    .forEach(([i, w, len]) => drip(ctx, cs[i], baseY - 56 * S, w * S, len * S));
+  drip(ctx, cs[1] + 34 * S, baseY - 56 * S, 10 * S, 40 * S);
+  drip(ctx, cs[5] - 30 * S, baseY - 56 * S, 11 * S, 66 * S);
+  fitText(ctx, 'HUMPIRE', W / 2, baseY, target, size, fam,
+          { fill: g, stroke: '#0b0b0c', strokeW: 7 * S });
+  ctx.globalAlpha = .5; ctx.fillStyle = g;
+  [[118,86,3.4],[96,120,2.2],[142,62,2],[884,92,3.2],[912,130,2.4],[866,58,2],
+   [404,46,2.6],[612,40,2.2],[300,300,2.6],[726,306,2.2],[466,292,2]]
+    .forEach(([x, y, r]) => { ctx.beginPath(); ctx.arc(x * S, y * S, r * S, 0, Math.PI * 2); ctx.fill(); });
+  ctx.globalAlpha = 1;
+}
+
+function artMetal(ctx, W, H, tone) {
+  const S = W / 1000;
+  const g = linGrad(ctx, 60 * S, 0, 940 * S, 0, tone === 'gold' ? GOLD : CHROME);
+  fitText(ctx, 'HUMPIRE', W / 2, 176 * S, 880 * S, 150 * S, "'Anton',sans-serif",
+          { fill: g, stroke: '#0b0b0c', strokeW: 6 * S, ls: 4 * S });
+  ctx.beginPath(); ctx.moveTo(180 * S, 210 * S); ctx.lineTo(820 * S, 210 * S);
+  ctx.strokeStyle = g; ctx.lineWidth = 2.5 * S; ctx.stroke();
+  fitText(ctx, 'BY DJBILBOX BEATS', W / 2, 254 * S, 400 * S, 28 * S, "'Rajdhani',sans-serif",
+          { fill: tone === 'gold' ? '#a5822f' : '#8f959c', ls: 9 * S });
+}
+
+async function save(canvas, name) {
+  const blob = await new Promise((r) => canvas.toBlob(r, 'image/png'));
+  const res = await fetch(SAVE_URL, { method: 'POST', headers: { 'x-filename': name }, body: blob });
+  if (!res.ok) throw new Error(name + ' → ' + res.status + ' ' + (await res.text()));
+  const cm = (canvas.width / 118).toFixed(0);
+  log(`  ✓ ${name.padEnd(30)} ${canvas.width}×${canvas.height}  (~${cm} cm à 300 DPI)  ${(blob.size / 1024 / 1024).toFixed(1)} Mo`);
+}
+
+(async function run() {
+  try {
+    await Promise.all([
+      document.fonts.load("190px 'Rubik Bubbles'"),
+      document.fonts.load("150px 'Anton'"),
+      document.fonts.load("700 30px 'Rajdhani'"),
+    ]);
+    await document.fonts.ready;
+    log('polices prêtes\n');
+
+    /* marquage poitrine / dos : 35 cm de large */
+    { const [c, x] = make(4200, 1428); artSpray(x, 4200, 1428, NEON);
+      await save(c, 'print-bombe-neon.png'); }
+
+    /* marquage casquette / petite pièce : 12 cm de large */
+    { const [c, x] = make(1440, 490); artSpray(x, 1440, 490, NEON);
+      await save(c, 'print-bombe-petit.png'); }
+
+    /* nom en métal, 35 cm */
+    { const [c, x] = make(4200, 1260); artMetal(x, 4200, 1260, 'chrome');
+      await save(c, 'print-metal-argent.png'); }
+    { const [c, x] = make(4200, 1260); artMetal(x, 4200, 1260, 'gold');
+      await save(c, 'print-metal-or.png'); }
+
+    log('\n=== TERMINÉ ===');
+    log('\n⚠️  Le médaillon n\'est PAS régénéré ici : le logo source fait');
+    log('    500×500 px. Agrandi il devient flou. Pour un grand marquage');
+    log('    il doit être redessiné en vectoriel (SVG/AI) par un graphiste.');
+    log('    En l\'état il convient jusqu\'à ~8 cm (poitrine, casquette).');
+    document.title = 'OK';
+  } catch (e) {
+    log('\n!! ERREUR : ' + (e && e.message ? e.message : e));
+    document.title = 'ERREUR';
+    console.error(e);
+  }
+})();
+</script>
+</body>
+</html>
