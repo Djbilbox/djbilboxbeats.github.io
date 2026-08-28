@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="Trois signatures, une marque. Plus les versions aux couleurs de ton pays.">
 <meta name="twitter:image" content="https://djbilboxbeats.com/img/streetwear/art-bombe-neon.png">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26082704">
+<link rel="stylesheet" href="assets/css/theme.css?v=26082801">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -147,6 +147,17 @@
 .sw-piece h3{font-size:.98rem}
 .sw-piece .fin{font-family:'Rajdhani',var(--font);font-size:.68rem;font-weight:600;letter-spacing:.06em;
   text-transform:uppercase;color:var(--c1);margin-top:auto;padding-top:4px}
+/* une pièce achetable : la carte devient un lien, le prix remplace la finition */
+a.sw-piece{text-decoration:none}
+a.sw-piece:hover img{opacity:.92}
+.sw-piece .buy{display:flex;align-items:baseline;justify-content:space-between;gap:8px;
+  margin-top:auto;padding-top:6px}
+.sw-piece .buy .price{font-family:'Anton',sans-serif;font-size:1.15rem;color:var(--sw-ink)}
+.sw-piece .buy .go{font-family:'Rajdhani',var(--font);font-size:.68rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--c1)}
+a.sw-piece:hover .buy .go::after{content:" 92"}
+.sw-piece .soon{font-family:'Rajdhani',var(--font);font-size:.68rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--sw-faint);margin-top:auto;padding-top:6px}
 
 /* ---------------- PAYS ---------------- */
 .sw-pays{padding:clamp(42px,7vw,80px) 0;border-top:1px solid var(--sw-line-2);
@@ -254,14 +265,14 @@
         <a class="j4" href="#pays"><i class="fa-solid fa-circle"></i> 04 · Pays</a>
       </div>
       <div class="sw-cta">
-        <a class="sw-btn go" href="https://discord.gg/7HeMSvbN" target="_blank" rel="noopener">
-          <i class="fa-brands fa-discord"></i> Rejoins la waitlist
+        <a class="sw-btn go" href="https://djbilbox-beats-shop.fourthwall.com" target="_blank" rel="noopener">
+          <i class="fa-solid fa-bag-shopping"></i> Boutique
         </a>
-        <a class="sw-btn ghost" href="https://djbilboxbeats.gumroad.com" target="_blank" rel="noopener">
-          <i class="fa-solid fa-bag-shopping"></i> La boutique
+        <a class="sw-btn ghost" href="https://discord.gg/7HeMSvbN" target="_blank" rel="noopener">
+          <i class="fa-brands fa-discord"></i> Discord
         </a>
       </div>
-      <p class="sw-micro">Drop 01 en préparation · pré-commande à venir</p>
+      <p class="sw-micro">Drop 01 en ligne · imprimé et expédié depuis l'Europe</p>
     </div>
   </header>
 
@@ -296,30 +307,30 @@
       </div>
 
       <div class="sw-pieces">
-        <article class="sw-piece sw-reveal">
+        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-snapback-cap-spray" target="_blank" rel="noopener">
           <img src="img/streetwear/photos/cap-bombe.jpg" width="1200" height="1200" loading="lazy" alt="Casquette HUMPIRE à la bombe">
-          <div class="sw-piece-body"><div class="ref">BMB-CAP-01</div><h3>Casquette</h3>
-            <div class="fin">Côté · all-over</div></div>
-        </article>
+          <div class="sw-piece-body"><div class="ref">Snapback · taille unique</div><h3>Casquette</h3>
+            <div class="buy"><span class="price">$26</span><span class="go">Acheter</span></div></div>
+        </a>
         <article class="sw-piece sw-reveal">
           <img src="img/streetwear/photos/bob-bombe.jpg" width="1200" height="1200" loading="lazy" alt="Bob HUMPIRE à la bombe">
           <div class="sw-piece-body"><div class="ref">BMB-BOB-02</div><h3>Bob</h3>
-            <div class="fin">Face avant · cordon</div></div>
+            <div class="soon">Bientôt</div></div>
         </article>
         <article class="sw-piece sw-reveal">
           <img src="img/streetwear/photos/tee-noir-bombe.jpg" width="1200" height="1200" loading="lazy" alt="T-shirt noir HUMPIRE à la bombe">
           <div class="sw-piece-body"><div class="ref">BMB-TEE-03</div><h3>T-shirt noir</h3>
-            <div class="fin">Poitrine grand format</div></div>
+            <div class="soon">Bientôt</div></div>
         </article>
-        <article class="sw-piece sw-reveal">
+        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-oversized-tee-spray-white" target="_blank" rel="noopener">
           <img src="img/streetwear/photos/tee-blanc-bombe.jpg" width="1200" height="1200" loading="lazy" alt="T-shirt blanc HUMPIRE à la bombe">
-          <div class="sw-piece-body"><div class="ref">BMB-TEE-04</div><h3>T-shirt blanc</h3>
-            <div class="fin">Poitrine grand format</div></div>
-        </article>
+          <div class="sw-piece-body"><div class="ref">Oversize · S à 2XL</div><h3>T-shirt blanc</h3>
+            <div class="buy"><span class="price">$32</span><span class="go">Acheter</span></div></div>
+        </a>
         <article class="sw-piece sw-reveal">
           <img src="img/streetwear/photos/tee-noir-dos.jpg" width="1200" height="1200" loading="lazy" alt="Dos du t-shirt noir HUMPIRE, marquage grand format qui dégouline">
           <div class="sw-piece-body"><div class="ref">BMB-TEE-05</div><h3>T-shirt · dos</h3>
-            <div class="fin">Grand format · coulures</div></div>
+            <div class="soon">Bientôt</div></div>
         </article>
       </div>
     </div>
@@ -394,13 +405,18 @@
             <strong style="color:var(--sw-chrome)">argenté</strong> ou <strong style="color:var(--sw-gold)">doré</strong>.
           </p>
           <div class="specs">
-            <span class="lead">4 pièces</span><span>Patch embossé</span>
+            <span class="lead">5 pièces</span><span>Patch embossé</span>
             <span>Sangle sérigraphiée</span><span>Zip métal</span>
           </div>
         </div>
       </div>
 
       <div class="sw-pieces">
+        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-mug-spray" target="_blank" rel="noopener">
+          <img src="img/streetwear/print/print-mug.png" width="2550" height="1200" loading="lazy" alt="Mug noir HUMPIRE, nom à la bombe">
+          <div class="sw-piece-body"><div class="ref">Céramique · 11oz / 15oz</div><h3>Mug</h3>
+            <div class="buy"><span class="price">$19</span><span class="go">Acheter</span></div></div>
+        </a>
         <article class="sw-piece sw-reveal">
           <img src="img/streetwear/photos/sacoche-chrome.jpg" width="1200" height="1200" loading="lazy" alt="Sacoche HUMPIRE argentée">
           <div class="sw-piece-body"><div class="ref">MTL-BAG-01</div><h3>Sacoche argentée</h3>
@@ -485,14 +501,14 @@
   <!-- ==================== WAITLIST ==================== -->
   <section class="sw-band">
     <div class="sw-in">
-      <h2>Sois là pour le <span>Drop 01</span></h2>
-      <p>La waitlist Discord passe en premier : les échantillons, le vote des prochains pays et la pré-commande avant tout le monde.</p>
+      <h2>Le <span>Drop 01</span> est en ligne</h2>
+      <p>T-shirt, casquette et mug, imprimés à la commande et expédiés depuis l'Europe. Les autres pièces arrivent au fil des drops — le Discord est prévenu en premier.</p>
       <div class="sw-cta">
-        <a class="sw-btn go" href="https://discord.gg/7HeMSvbN" target="_blank" rel="noopener">
-          <i class="fa-brands fa-discord"></i> Rejoindre la waitlist
+        <a class="sw-btn go" href="https://djbilbox-beats-shop.fourthwall.com" target="_blank" rel="noopener">
+          <i class="fa-solid fa-bag-shopping"></i> Voir la boutique
         </a>
-        <a class="sw-btn ghost" href="https://djbilboxbeats.gumroad.com" target="_blank" rel="noopener">
-          <i class="fa-solid fa-bag-shopping"></i> La boutique Gumroad
+        <a class="sw-btn ghost" href="https://discord.gg/7HeMSvbN" target="_blank" rel="noopener">
+          <i class="fa-brands fa-discord"></i> Rejoindre le Discord
         </a>
       </div>
     </div>
@@ -508,11 +524,11 @@
       <div class="sw-faq sw-reveal">
         <details>
           <summary>C'est dispo quand ?</summary>
-          <p>Drop 01 est en préparation. Les échantillons passent en premier, puis la pré-commande ouvre sur Gumroad. La waitlist Discord est prévenue à chaque étape.</p>
+          <p>Le Drop 01 est en vente maintenant : t-shirt, casquette et mug. Chaque pièce est imprimée à la commande et expédiée depuis l'Europe — compte 5 à 11 jours. Les autres pièces de la collection arrivent au fil des drops.</p>
         </details>
         <details>
           <summary>Les visuels, c'est les vrais produits ?</summary>
-          <p>Les <strong>visuels de marque</strong> sont les vrais designs, ceux qui partent à l'impression. Les vêtements affichés sont des <strong>maquettes de placement</strong> — les photos des pièces réelles arrivent dès le premier échantillon.</p>
+          <p>Les <strong>visuels de marque</strong> sont les vrais designs, ceux qui partent à l'impression. Les pièces en vente ont leurs propres photos sur la boutique. Les vêtements encore marqués « bientôt » sont montrés en <strong>maquette de placement</strong> — ils ne sont pas encore produits.</p>
         </details>
         <details>
           <summary>Je peux avoir mon pays ?</summary>
@@ -520,11 +536,11 @@
         </details>
         <details>
           <summary>Où acheter ?</summary>
-          <p>Sur <a href="https://djbilboxbeats.gumroad.com" target="_blank" rel="noopener">djbilboxbeats.gumroad.com</a>, comme les beats et les plugins. Chaque pièce y aura sa page dès l'ouverture de la pré-commande.</p>
+          <p>Sur la boutique HUMPIRE : <a href="https://djbilbox-beats-shop.fourthwall.com" target="_blank" rel="noopener">djbilbox-beats-shop.fourthwall.com</a>. Les beats et les plugins restent sur <a href="https://djbilboxbeats.gumroad.com" target="_blank" rel="noopener">Gumroad</a>.</p>
         </details>
         <details>
           <summary>Les prix ?</summary>
-          <p>Annoncés pièce par pièce une fois l'échantillon validé et le coût de production connu — jamais avant.</p>
+          <p>T-shirt oversize 32 $, casquette 26 $, mug 19 $ (11oz) ou 22 $ (15oz). Les frais de port sont calculés au panier selon le poids et la destination.</p>
         </details>
         <details>
           <summary>Les tailles ?</summary>
@@ -536,7 +552,7 @@
 
 </div>
 
-<script src="assets/js/site.js?v=26082704"></script>
+<script src="assets/js/site.js?v=26082801"></script>
 <script>
 /* ---------- Collection PAYS : recolore les visuels ---------- */
 (function () {
