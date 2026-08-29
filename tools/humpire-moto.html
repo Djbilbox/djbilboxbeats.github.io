@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>HUMPIRE MOTO — t-shirts motocross par pays + casquettes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Rajdhani:wght@500;600;700&display=swap">
+<style>
+  body{background:#0b0b0c;color:#f3efe4;font:14px/1.6 system-ui,sans-serif;margin:0;padding:24px}
+  h1{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;margin:0 0 4px}
+  .sub{color:#a79e89;margin-bottom:18px}
+  #log{font-family:ui-monospace,monospace;font-size:12px;background:#141412;border:1px solid #302c22;
+       padding:12px;white-space:pre-wrap;max-height:34vh;overflow:auto}
+  #grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:18px}
+  figure{margin:0;background:#141412;border:1px solid #302c22}
+  figure canvas{width:100%;height:auto;display:block}
+  figcaption{padding:6px 8px;font-size:11px;color:#a79e89;font-family:ui-monospace,monospace}
+</style>
+</head>
+<body>
+<h1>HUMPIRE MOTO</h1>
+<p class="sub">T-shirts motocross aux couleurs des pays + 10 modèles de casquette. Fond transparent, impression directe.</p>
+<div id="log">démarrage…</div>
+<div id="grid"></div>
+
+<script>
+/* ============================================================
+   Ce que la ligne RACING avait raté : le t-shirt motocross
+   DÉCLINÉ PAR PAYS — pas un maillot de foot, un maillot cross,
+   avec plaque de numéro, aux trois couleurs du drapeau.
+
+   Fond transparent : c'est une impression posée sur un t-shirt
+   noir, pas un all-over. Donc créable sans le designer en iframe.
+   ============================================================ */
+
+const SAVE_URL = 'http://127.0.0.1:9099/save';
+const logEl = document.getElementById('log');
+const grid  = document.getElementById('grid');
+const log = (m) => { logEl.textContent += '\n' + m; logEl.scrollTop = logEl.scrollHeight; };
+
+const NEON   = ['#FF5CC8', '#E05BF0', '#8B7BFF', '#38E0F0'];
+const GOLD   = ['#8a6a24', '#c7a24e', '#f3da9c', '#ffedbf', '#d0a745', '#7a5d22'];
+const CHROME = ['#6e737a', '#c3c7cd', '#f5f7f8', '#ffffff', '#a8adb4', '#61666d'];
+const RED    = '#E01E37';
+const INK    = '#0B0B0C';
+const PAPER  = '#F4F4F2';
+
+/* [nom, [drapeau1, drapeau2, drapeau3]] */
+const PAYS = [
+  ['FRANCE',       ['#0055A4','#FFFFFF','#EF4135']],
+  ['ALGERIE',      ['#006233','#FFFFFF','#D21034']],
+  ['MAROC',        ['#C1272D','#FFFFFF','#006233']],
+  ['TUNISIE',      ['#E70013','#FFFFFF','#E70013']],
+  ['SENEGAL',      ['#00853F','#FDEF42','#E31B23']],
+  ['COTE DIVOIRE', ['#F77F00','#FFFFFF','#009E60']],
+  ['MALI',         ['#14B53A','#FCD116','#CE1126']],
+  ['NIGERIA',      ['#008751','#FFFFFF','#008751']],
+  ['COMORES',      ['#3D8E33','#FFC61E','#CE1126']],
+  ['PORTUGAL',     ['#006600','#FFD700','#FF0000']],
+  ['ESPAGNE',      ['#AA151B','#F1BF00','#AA151B']],
+  ['ITALIE',       ['#008C45','#FFFFFF','#CD212A']],
+  ['ENGLAND',      ['#CE1124','#FFFFFF','#00247D']],
+  ['GERMANY',      ['#000000','#FFCE00','#DD0000']],
+  ['NETHERLANDS',  ['#AE1C28','#FFFFFF','#21468B']],
+  ['POLAND',       ['#DC143C','#FFFFFF','#DC143C']],
+  ['TURQUIE',      ['#E30A17','#FFFFFF','#E30A17']],
+  ['THAILAND',     ['#A51931','#FFFFFF','#2D2A4A']],
+  ['JAPAN',        ['#BC002D','#FFFFFF','#BC002D']],
+  ['USA',          ['#B22234','#FFFFFF','#3C3B6E']],
+  ['CANADA',       ['#FF0000','#FFFFFF','#FF0000']],
+  ['MEXICO',       ['#006847','#FFFFFF','#CE1126']],
+  ['BRESIL',       ['#009C3B','#FFDF00','#002776']],
+  ['AUSTRALIA',    ['#00247D','#FFFFFF','#FF0000']],
+];
+
+function make(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return[c,c.getContext('2d')]}
+function linGrad(ctx,x0,y0,x1,y1,stops){const g=ctx.createLinearGradient(x0,y0,x1,y1);
+  stops.forEach((c,i)=>g.addColorStop(i/(stops.length-1),c));return g}
+function setFont(ctx,px,family,ls){ctx.font=`${px}px ${family}`;ctx.textAlign='center';
+  ctx.textBaseline='alphabetic';ctx.letterSpacing=ls?`${ls}px`:'0px'}
+function fitText(ctx,text,cx,baseY,targetW,px,family,o={}){
+  ctx.save();setFont(ctx,px,family,o.ls);
+  const k=targetW/ctx.measureText(text).width;
+  ctx.translate(cx,0);ctx.scale(k,1);ctx.translate(-cx,0);
+  if(o.stroke){ctx.lineJoin='round';ctx.strokeStyle=o.stroke;ctx.lineWidth=(o.strokeW||6)/k;ctx.strokeText(text,cx,baseY)}
+  if(o.fill){ctx.fillStyle=o.fill;ctx.fillText(text,cx,baseY)}
+  ctx.restore();
+}
+function racingText(ctx,text,cx,baseY,targetW,px,o={}){
+  ctx.save();ctx.transform(1,0,-0.17,1,0,0);
+  fitText(ctx,text,cx+baseY*0.17,baseY,targetW,px,"'Archivo Black',sans-serif",o);
+  ctx.restore();
+}
+function checker(ctx,x,y,w,h,cell,colA,colB){
+  const cols=Math.ceil(w/cell),rows=Math.ceil(h/cell);
+  ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+    ctx.fillStyle=(r+c)%2?colA:colB;ctx.fillRect(x+c*cell,y+r*cell,cell,cell)}
+  ctx.restore();
+}
+/* ---- contraste mesuré : sur un drapeau clair, le blanc devine faux ---- */
+function lum(hex){const n=parseInt(hex.slice(1),16);
+  const[r,g,b]=[n>>16&255,n>>8&255,n&255].map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});
+  return .2126*r+.7152*g+.0722*b}
+function contrast(a,b){const l1=lum(a),l2=lum(b);
+  return(Math.max(l1,l2)+.05)/(Math.min(l1,l2)+.05)}
+function bestOn(bg,cands){return cands.reduce((best,c)=>contrast(c,bg)>contrast(best,bg)?c:best,cands[0])}
+const outlineFor=(fill)=>lum(fill)>0.42?INK:'#FFFFFF';
+
+async function save(canvas,name){
+  const blob=await new Promise(r=>canvas.toBlob(r,'image/png'));
+  const res=await fetch(SAVE_URL,{method:'POST',headers:{'x-filename':name},body:blob});
+  if(!res.ok)throw new Error(name+' → '+res.status);
+  log(`  ✓ ${name.padEnd(30)} ${canvas.width}×${canvas.height}  ${(blob.size/1048576).toFixed(2)} Mo`);
+}
+function show(canvas,cap){
+  const f=document.createElement('figure');
+  const k=340/canvas.width;
+  const[c]=make(340,Math.round(canvas.height*k));
+  const x=c.getContext('2d');
+  /* aperçu sur noir : c'est un t-shirt noir que ça habille */
+  x.fillStyle='#141414';x.fillRect(0,0,c.width,c.height);
+  x.drawImage(canvas,0,0,c.width,c.height);
+  const cc=document.createElement('figcaption');cc.textContent=cap;
+  f.append(c,cc);grid.appendChild(f);
+}
+
+(async function run(){
+ try{
+  await Promise.all([
+    document.fonts.load("200px 'Archivo Black'"),
+    document.fonts.load("150px 'Anton'"),
+    document.fonts.load("700 40px 'Rajdhani'"),
+    document.fonts.load("500 40px 'Rajdhani'"),
+  ]);
+  await document.fonts.ready;
+  log('polices prêtes');
+
+  const camel=await createImageBitmap(
+    await (await fetch('../img/streetwear/print/print-chameau-transparent.png')).blob());
+  log('chameau chargé\n');
+
+  const slug=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
+                 .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+
+  /* =========================================================
+     T-SHIRT MOTOCROSS PAR PAYS
+     Plaque de numéro aux couleurs du drapeau, fond transparent.
+     ========================================================= */
+  for(const [nom,col] of PAYS){
+    const W=3600,H=4400,[c,x]=make(W,H),S=W/1000;
+
+    /* chevrons de course derrière la plaque */
+    x.save();
+    x.translate(W/2,H*0.44);x.rotate(-0.30);
+    [[-1,col[0]],[0,col[2]],[1,col[1]]].forEach(([i,cc],k)=>{
+      x.globalAlpha=0.85;x.fillStyle=cc;
+      x.fillRect(-W*0.72,-H*0.30+i*118*S,W*1.44,74*S);
+    });
+    x.restore();
+
+    /* HUMPIRE au-dessus */
+    const topFill=bestOn(INK,[col[1],'#FFFFFF',col[0]]);
+    fitText(x,'HUMPIRE',W/2,H*0.135,W*0.90,250*S,"'Archivo Black',sans-serif",
+            {fill:topFill,stroke:outlineFor(topFill),strokeW:20*S,ls:5*S});
+
+    /* la plaque de numéro */
+    const plateW=W*0.74,plateH=H*0.36,px0=W/2-plateW/2,py0=H*0.19;
+    x.save();
+    x.translate(W/2,py0+plateH/2);x.rotate(-0.028);
+    x.fillStyle=col[1];
+    x.beginPath();x.roundRect(-plateW/2,-plateH/2,plateW,plateH,58*S);x.fill();
+    x.lineWidth=16*S;x.strokeStyle=INK;x.stroke();
+    x.fillStyle=col[0];x.fillRect(-plateW/2,-plateH/2,plateW,40*S);
+    x.fillStyle=col[2];x.fillRect(-plateW/2,plateH/2-40*S,plateW,40*S);
+    x.restore();
+
+    /* le numéro, dans la couleur qui ressort sur la plaque */
+    const numFill=bestOn(col[1],[col[0],col[2],INK,'#FFFFFF']);
+    racingText(x,'01',W/2,py0+plateH*0.80,plateW*0.52,plateH*1.05,
+               {fill:numFill,stroke:outlineFor(numFill),strokeW:18*S});
+
+    /* nom du pays */
+    const nameFill=bestOn(INK,[col[1],col[0],col[2],'#FFFFFF']);
+    fitText(x,nom,W/2,H*0.635,W*0.80,175*S,"'Archivo Black',sans-serif",
+            {fill:nameFill,stroke:outlineFor(nameFill),strokeW:16*S,ls:12*S});
+
+    /* damier + bandes drapeau */
+    checker(x,W*0.10,H*0.665,W*0.80,52*S,26*S,PAPER,INK);
+    [col[0],col[1],col[2]].forEach((cc,i)=>{
+      x.fillStyle=cc;x.fillRect(W*0.10,H*0.665+(62+i*26)*S,W*0.80,18*S);
+    });
+
+    /* écusson chameau + URL */
+    const cd=W*0.24;
+    x.drawImage(camel,W/2-cd/2,H*0.755,cd,cd);
+    fitText(x,'RACING DIVISION 01',W/2,H*0.955,W*0.56,74*S,"'Rajdhani',sans-serif",
+            {fill:PAPER,ls:16*S});
+    fitText(x,'WWW.DJBILBOXBEATS.COM',W/2,H*0.99,W*0.44,54*S,"'Rajdhani',sans-serif",
+            {fill:'#9a9384',ls:10*S});
+
+    await save(c,`moto/${slug(nom)}.png`);show(c,`moto/${slug(nom)}.png`);
+  }
+
+  /* =========================================================
+     10 MODÈLES DE CASQUETTE
+     Zone d'impression étroite (~12 cm) : composition compacte.
+     ========================================================= */
+  const CAPW=1800,CAPH=760,CS=CAPW/1000;
+
+  async function cap(name,draw){
+    const [c,x]=make(CAPW,CAPH);
+    draw(x,CAPW,CAPH,CS);
+    await save(c,`moto/cap-${name}.png`);show(c,`moto/cap-${name}.png`);
+  }
+
+  /* 01 — bloc racing + damier */
+  await cap('01-racing',(x,W,H,S)=>{
+    fitText(x,'HUMPIRE',W/2,H*0.52,W*0.88,320*S,"'Archivo Black',sans-serif",
+            {fill:PAPER,stroke:RED,strokeW:16*S,ls:4*S});
+    checker(x,W*0.06,H*0.62,W*0.88,46*S,23*S,PAPER,'#2a2a2a');
+    fitText(x,'RACING DIVISION 01',W/2,H*0.88,W*0.56,66*S,"'Rajdhani',sans-serif",{fill:RED,ls:14*S});
+  });
+
+  /* 02 — lettres dorées */
+  await cap('02-or',(x,W,H,S)=>{
+    const g=linGrad(x,W*0.06,0,W*0.94,0,GOLD);
+    fitText(x,'HUMPIRE',W/2,H*0.56,W*0.88,340*S,"'Anton',sans-serif",
+            {fill:g,stroke:INK,strokeW:12*S,ls:6*S});
+    fitText(x,'BY DJBILBOX BEATS',W/2,H*0.83,W*0.50,58*S,"'Rajdhani',sans-serif",
+            {fill:'#a5822f',ls:16*S});
+  });
+
+  /* 03 — lettres chromées */
+  await cap('03-argent',(x,W,H,S)=>{
+    const g=linGrad(x,W*0.06,0,W*0.94,0,CHROME);
+    fitText(x,'HUMPIRE',W/2,H*0.56,W*0.88,340*S,"'Anton',sans-serif",
+            {fill:g,stroke:INK,strokeW:12*S,ls:6*S});
+    fitText(x,'BY DJBILBOX BEATS',W/2,H*0.83,W*0.50,58*S,"'Rajdhani',sans-serif",
+            {fill:'#8f959c',ls:16*S});
+  });
+
+  /* 04 — dégradé néon */
+  await cap('04-neon',(x,W,H,S)=>{
+    const g=linGrad(x,W*0.06,H*0.2,W*0.94,H*0.7,NEON);
+    fitText(x,'HUMPIRE',W/2,H*0.60,W*0.88,380*S,"'Archivo Black',sans-serif",
+            {fill:g,stroke:INK,strokeW:16*S,ls:4*S});
+    x.fillStyle=g;x.fillRect(W*0.06,H*0.72,W*0.88,16*S);
+  });
+
+  /* 05 — chameau + nom, en ligne */
+  await cap('05-chameau',(x,W,H,S)=>{
+    const d=H*0.82;
+    x.drawImage(camel,W*0.05,(H-d)/2,d,d);
+    const tx=W*0.05+d,tw=W-tx-W*0.05;
+    fitText(x,'HUMPIRE',tx+tw/2,H*0.56,tw,300*S,"'Archivo Black',sans-serif",
+            {fill:PAPER,stroke:INK,strokeW:12*S,ls:3*S});
+    fitText(x,'DIVISION 01',tx+tw/2,H*0.80,tw*0.72,62*S,"'Rajdhani',sans-serif",{fill:RED,ls:16*S});
+  });
+
+  /* 06 — plaque 01 */
+  await cap('06-numero',(x,W,H,S)=>{
+    const pw=W*0.34,ph=H*0.76;
+    x.fillStyle=PAPER;
+    x.beginPath();x.roundRect(W/2-pw/2,H*0.12,pw,ph,34*S);x.fill();
+    x.lineWidth=12*S;x.strokeStyle=RED;x.stroke();
+    racingText(x,'01',W/2,H*0.80,pw*0.62,ph*1.02,{fill:INK});
+    fitText(x,'HUMPIRE',W*0.20,H*0.46,W*0.28,110*S,"'Archivo Black',sans-serif",{fill:PAPER,ls:2*S});
+    fitText(x,'RACING',W*0.80,H*0.46,W*0.24,110*S,"'Archivo Black',sans-serif",{fill:RED,ls:2*S});
+  });
+
+  /* 07 — écusson bouclier */
+  await cap('07-ecusson',(x,W,H,S)=>{
+    const bw=W*0.30,bx=W/2-bw/2,by=H*0.04;
+    x.save();
+    x.beginPath();
+    x.moveTo(bx,by);x.lineTo(bx+bw,by);x.lineTo(bx+bw,by+bw*0.60);
+    x.quadraticCurveTo(bx+bw,by+bw*0.95,bx+bw/2,by+bw*1.10);
+    x.quadraticCurveTo(bx,by+bw*0.95,bx,by+bw*0.60);x.closePath();
+    x.fillStyle=INK;x.fill();x.strokeStyle=PAPER;x.lineWidth=9*S;x.stroke();
+    x.clip();x.drawImage(camel,bx+bw*0.12,by+bw*0.04,bw*0.76,bw*0.76);
+    x.restore();
+    fitText(x,'HUMPIRE RACING',W/2,H*0.92,W*0.62,96*S,"'Archivo Black',sans-serif",
+            {fill:PAPER,stroke:INK,strokeW:8*S,ls:6*S});
+  });
+
+  /* 08 — damier plein */
+  await cap('08-damier',(x,W,H,S)=>{
+    checker(x,0,0,W,H,H/4,PAPER,'#1a1a1a');
+    x.fillStyle='rgba(11,11,12,.72)';x.fillRect(0,H*0.28,W,H*0.44);
+    const g=linGrad(x,W*0.08,0,W*0.92,0,NEON);
+    fitText(x,'HUMPIRE',W/2,H*0.63,W*0.84,300*S,"'Archivo Black',sans-serif",
+            {fill:g,stroke:INK,strokeW:14*S,ls:4*S});
+  });
+
+  /* 09 — DIVISION 01 empilé */
+  await cap('09-division',(x,W,H,S)=>{
+    fitText(x,'HUMPIRE',W/2,H*0.42,W*0.86,240*S,"'Archivo Black',sans-serif",
+            {fill:PAPER,stroke:INK,strokeW:12*S,ls:4*S});
+    x.fillStyle=RED;x.fillRect(W*0.07,H*0.48,W*0.86,14*S);
+    fitText(x,'DIVISION',W/2,H*0.72,W*0.52,180*S,"'Archivo Black',sans-serif",{fill:RED,ls:8*S});
+    fitText(x,'01',W/2,H*0.95,W*0.14,150*S,"'Archivo Black',sans-serif",{fill:PAPER,ls:4*S});
+  });
+
+  /* 10 — le site en marquage */
+  await cap('10-site',(x,W,H,S)=>{
+    fitText(x,'HUMPIRE',W/2,H*0.50,W*0.88,320*S,"'Archivo Black',sans-serif",
+            {fill:PAPER,stroke:INK,strokeW:14*S,ls:4*S});
+    const g=linGrad(x,W*0.06,0,W*0.94,0,NEON);
+    x.fillStyle=g;x.fillRect(W*0.06,H*0.58,W*0.88,14*S);
+    fitText(x,'WWW.DJBILBOXBEATS.COM',W/2,H*0.86,W*0.76,96*S,"'Rajdhani',sans-serif",
+            {fill:PAPER,ls:12*S});
+  });
+
+  log(`\n=== TERMINÉ — ${PAYS.length} t-shirts motocross + 10 casquettes ===`);
+  document.title='OK';
+ }catch(e){
+  log('\n!! ERREUR : '+(e&&e.message?e.message:e));
+  document.title='ERREUR';console.error(e);
+ }
+})();
+</script>
+</body>
+</html>

@@ -23,7 +23,7 @@ const OUT_DIR = path.resolve(__dirname, '..', 'img', 'streetwear');
 const PORT = 9099;
 const MAX_BYTES = 12 * 1024 * 1024;
 /* sous-dossiers autorisés, liste fermée */
-const SAFE_NAME = /^(photos\/|racing\/|web\/)?[a-z0-9][a-z0-9-]{0,60}\.(png|jpg)$/;
+const SAFE_NAME = /^(photos\/|racing\/|web\/|moto\/)?[a-z0-9][a-z0-9-]{0,60}\.(png|jpg)$/;
 
 await mkdir(OUT_DIR, { recursive: true });
 
