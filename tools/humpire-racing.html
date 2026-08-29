@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>HUMPIRE RACING — ligne motocross</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Rajdhani:wght@500;600;700&display=swap">
+<style>
+  body{background:#0b0b0c;color:#f3efe4;font:14px/1.6 system-ui,sans-serif;margin:0;padding:24px}
+  h1{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;margin:0 0 4px}
+  .sub{color:#a79e89;margin-bottom:18px}
+  #log{font-family:ui-monospace,monospace;font-size:12px;background:#141412;border:1px solid #302c22;
+       padding:12px;white-space:pre-wrap;max-height:34vh;overflow:auto}
+  #grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:18px}
+  figure{margin:0;background:#141412;border:1px solid #302c22}
+  figure canvas{width:100%;height:auto;display:block}
+  figcaption{padding:6px 8px;font-size:11px;color:#a79e89;font-family:ui-monospace,monospace}
+</style>
+</head>
+<body>
+<h1>HUMPIRE RACING</h1>
+<p class="sub">Ligne motocross : plaque de numéro, écusson, bandeau sponsors, et 4 imprimés all-over.</p>
+<div id="log">démarrage…</div>
+<div id="grid"></div>
+
+<script>
+/* ============================================================
+   Deuxième ligne graphique HUMPIRE : les codes du motocross.
+   Tous les badges « sponsors » sont inventés pour la marque —
+   aucun signe de tiers, sinon c'est de la contrefaçon.
+   ============================================================ */
+
+const SAVE_URL = 'http://127.0.0.1:9099/save';
+const logEl = document.getElementById('log');
+const grid  = document.getElementById('grid');
+const log = (m) => { logEl.textContent += '\n' + m; logEl.scrollTop = logEl.scrollHeight; };
+
+const NEON = ['#FF5CC8', '#E05BF0', '#8B7BFF', '#38E0F0'];
+const RED  = '#E01E37';
+const INK  = '#0B0B0C';
+
+/* nos propres « sponsors » — l'adresse du site sert de marquage */
+const SPONSORS = ['HUMPIRE', 'WWW.DJBILBOXBEATS.COM', 'DESERT BUILT', 'DIVISION 01', 'HUMPIRE'];
+
+/* maillots pays : [nom, 3 couleurs du drapeau, couleur du texte] */
+const PAYS = [
+  ['FRANCE',      ['#0055A4', '#FFFFFF', '#EF4135'], '#FFFFFF'],
+  ['ALGERIE',     ['#006233', '#FFFFFF', '#D21034'], '#FFFFFF'],
+  ['MAROC',       ['#C1272D', '#C1272D', '#006233'], '#FFFFFF'],
+  ['TUNISIE',     ['#E70013', '#FFFFFF', '#E70013'], '#FFFFFF'],
+  ['SENEGAL',     ['#00853F', '#FDEF42', '#E31B23'], '#0B0B0C'],
+  ['COTE DIVOIRE',['#F77F00', '#FFFFFF', '#009E60'], '#0B0B0C'],
+  ['MALI',        ['#14B53A', '#FCD116', '#CE1126'], '#0B0B0C'],
+  ['PORTUGAL',    ['#006600', '#006600', '#FF0000'], '#FFD700'],
+  ['ESPAGNE',     ['#AA151B', '#F1BF00', '#AA151B'], '#0B0B0C'],
+  ['ITALIE',      ['#008C45', '#F4F5F0', '#CD212A'], '#0B0B0C'],
+  ['BRESIL',      ['#009C3B', '#FFDF00', '#002776'], '#FFFFFF'],
+  ['USA',         ['#3C3B6E', '#FFFFFF', '#B22234'], '#FFFFFF'],
+  ['TURQUIE',     ['#E30A17', '#E30A17', '#FFFFFF'], '#FFFFFF'],
+  ['COMORES',     ['#3D8E33', '#FFC61E', '#CE1126'], '#0B0B0C'],
+  ['ENGLAND',     ['#FFFFFF', '#CE1124', '#FFFFFF'], '#0B0B0C'],
+  ['THAILAND',    ['#A51931', '#F4F5F8', '#2D2A4A'], '#FFFFFF'],
+  ['GERMANY',     ['#000000', '#DD0000', '#FFCE00'], '#FFFFFF'],
+  ['NETHERLANDS', ['#AE1C28', '#FFFFFF', '#21468B'], '#FFFFFF'],
+  ['JAPAN',       ['#FFFFFF', '#BC002D', '#FFFFFF'], '#0B0B0C'],
+  ['MEXICO',      ['#006847', '#FFFFFF', '#CE1126'], '#0B0B0C'],
+  ['NIGERIA',     ['#008751', '#FFFFFF', '#008751'], '#0B0B0C'],
+  ['CANADA',      ['#FF0000', '#FFFFFF', '#FF0000'], '#0B0B0C'],
+  ['AUSTRALIA',   ['#00247D', '#FFFFFF', '#FF0000'], '#FFFFFF'],
+  ['POLAND',      ['#FFFFFF', '#FFFFFF', '#DC143C'], '#0B0B0C'],
+];
+
+/* générateur pseudo-aléatoire à graine : le rendu doit être reproductible */
+function rng(seed) { return function () {
+  seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+  let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+  t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+  return ((t ^ t >>> 14) >>> 0) / 4294967296;
+}; }
+
+/* ---------- contraste ----------
+   Certains drapeaux sont clairs sur clair (Italie, Pologne, USA) : choisir
+   la couleur du texte « au jugé » donne un nom de pays illisible. On mesure. */
+function lum(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  const [r, g, b] = [n >> 16 & 255, n >> 8 & 255, n & 255].map((v) => {
+    v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+function contrast(a, b) {
+  const l1 = lum(a), l2 = lum(b);
+  return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+}
+/* la couleur candidate qui ressort le mieux sur `bg` */
+function bestOn(bg, cands) {
+  return cands.reduce((best, c) => contrast(c, bg) > contrast(best, bg) ? c : best, cands[0]);
+}
+/* un contour qui garantit la lisibilité quel que soit le fond traversé */
+const outlineFor = (fill) => lum(fill) > 0.42 ? '#0B0B0C' : '#FFFFFF';
+
+function make(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return [c, c.getContext('2d')]; }
+function linGrad(ctx, x0, y0, x1, y1, stops) {
+  const g = ctx.createLinearGradient(x0, y0, x1, y1);
+  stops.forEach((c, i) => g.addColorStop(i / (stops.length - 1), c));
+  return g;
+}
+function setFont(ctx, px, family, ls) {
+  ctx.font = `${px}px ${family}`; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  ctx.letterSpacing = ls ? `${ls}px` : '0px';
+}
+function fitText(ctx, text, cx, baseY, targetW, px, family, o = {}) {
+  ctx.save(); setFont(ctx, px, family, o.ls);
+  const k = targetW / ctx.measureText(text).width;
+  ctx.translate(cx, 0); ctx.scale(k, 1); ctx.translate(-cx, 0);
+  if (o.stroke) { ctx.lineJoin='round'; ctx.strokeStyle=o.stroke; ctx.lineWidth=(o.strokeW||6)/k; ctx.strokeText(text,cx,baseY); }
+  if (o.fill) { ctx.fillStyle = o.fill; ctx.fillText(text, cx, baseY); }
+  ctx.restore();
+}
+/* texte penché, comme un dossard */
+function racingText(ctx, text, cx, baseY, targetW, px, o = {}) {
+  ctx.save();
+  ctx.transform(1, 0, -0.17, 1, 0, 0);
+  fitText(ctx, text, cx + baseY * 0.17, baseY, targetW, px, "'Archivo Black',sans-serif", o);
+  ctx.restore();
+}
+function checker(ctx, x, y, w, h, cell, colA, colB) {
+  const cols = Math.ceil(w / cell), rows = Math.ceil(h / cell);
+  ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+    ctx.fillStyle = (r + c) % 2 ? colA : colB;
+    ctx.fillRect(x + c * cell, y + r * cell, cell, cell);
+  }
+  ctx.restore();
+}
+
+/* ---------- briques « planche technique » ---------- */
+function techCircle(x, S, cx, cy, r) {
+  x.beginPath(); x.arc(cx, cy, r, 0, Math.PI*2); x.stroke();
+  x.beginPath(); x.arc(cx, cy, r*0.62, 0, Math.PI*2); x.stroke();
+  x.setLineDash([9*S, 7*S]);
+  x.beginPath(); x.moveTo(cx-r*1.28, cy); x.lineTo(cx+r*1.28, cy);
+  x.moveTo(cx, cy-r*1.28); x.lineTo(cx, cy+r*1.28); x.stroke();
+  x.setLineDash([]);
+}
+function techDim(x, S, x0, y, x1, label) {
+  x.beginPath(); x.moveTo(x0, y); x.lineTo(x1, y); x.stroke();
+  [[x0, 1], [x1, -1]].forEach(([px, d]) => {
+    x.beginPath(); x.moveTo(px, y); x.lineTo(px + d*12*S, y - 5*S); x.lineTo(px + d*12*S, y + 5*S); x.closePath();
+    x.fillStyle = x.strokeStyle; x.fill();
+  });
+  x.beginPath(); x.moveTo(x0, y-13*S); x.lineTo(x0, y+13*S); x.moveTo(x1, y-13*S); x.lineTo(x1, y+13*S); x.stroke();
+  x.save(); x.textAlign='center'; x.textBaseline='bottom';
+  x.font = `${20*S}px 'Rajdhani',sans-serif`; x.letterSpacing = `${2*S}px`;
+  x.fillStyle = x.strokeStyle; x.fillText(label, (x0+x1)/2, y - 8*S); x.restore();
+}
+function techBolt(x, S, cx, cy, r) {
+  x.beginPath();
+  for (let i = 0; i < 6; i++) {
+    const a = i * Math.PI/3 - Math.PI/6;
+    const px = cx + Math.cos(a)*r, py = cy + Math.sin(a)*r;
+    i ? x.lineTo(px, py) : x.moveTo(px, py);
+  }
+  x.closePath(); x.stroke();
+  x.beginPath(); x.arc(cx, cy, r*0.5, 0, Math.PI*2); x.stroke();
+}
+function techGrid(x, S, gx, gy, w, h, step) {
+  x.save(); x.globalAlpha = 0.5;
+  for (let i = 0; i <= w; i += step) { x.beginPath(); x.moveTo(gx+i, gy); x.lineTo(gx+i, gy+h); x.stroke(); }
+  for (let j = 0; j <= h; j += step) { x.beginPath(); x.moveTo(gx, gy+j); x.lineTo(gx+w, gy+j); x.stroke(); }
+  x.restore();
+}
+function techLabel(x, S, px, py, txt, size) {
+  x.save(); x.textAlign='left'; x.textBaseline='middle';
+  x.font = `${(size||22)*S}px 'Rajdhani',sans-serif`; x.letterSpacing = `${3*S}px`;
+  x.fillStyle = x.strokeStyle; x.fillText(txt, px, py); x.restore();
+}
+
+/* badge sponsor : pastille rectangulaire avec un mot dedans */
+function badge(x, S, cx, cy, w, txt, bg, fg) {
+  const h = w * 0.30;
+  x.save();
+  x.fillStyle = bg;
+  x.beginPath(); x.roundRect(cx - w/2, cy - h/2, w, h, h*0.16); x.fill();
+  x.textAlign = 'center'; x.textBaseline = 'middle';
+  let px = h * 0.52;
+  x.font = `700 ${px}px 'Rajdhani',sans-serif`; x.letterSpacing = `${px*0.06}px`;
+  const k = (w * 0.82) / x.measureText(txt).width;
+  if (k < 1) { px *= k; x.font = `700 ${px}px 'Rajdhani',sans-serif`; }
+  x.fillStyle = fg; x.fillText(txt, cx, cy + px*0.04);
+  x.restore();
+}
+
+async function save(canvas, name) {
+  const blob = await new Promise((r) => canvas.toBlob(r, 'image/png'));
+  const res = await fetch(SAVE_URL, { method: 'POST', headers: { 'x-filename': name }, body: blob });
+  if (!res.ok) throw new Error(name + ' → ' + res.status + ' ' + (await res.text()));
+  log(`  ✓ ${name.padEnd(32)} ${canvas.width}×${canvas.height}   ${(blob.size/1048576).toFixed(1)} Mo`);
+}
+function show(canvas, cap) {
+  const f = document.createElement('figure');
+  const k = 400 / canvas.width;
+  const [c] = make(400, Math.round(canvas.height * k));
+  const x = c.getContext('2d');
+  x.fillStyle = '#3a3a3a'; x.fillRect(0,0,c.width,c.height);
+  x.drawImage(canvas, 0, 0, c.width, c.height);
+  const cc = document.createElement('figcaption'); cc.textContent = cap;
+  f.append(c, cc); grid.appendChild(f);
+}
+
+(async function run() {
+  try {
+    await Promise.all([
+      document.fonts.load("200px 'Archivo Black'"),
+      document.fonts.load("150px 'Anton'"),
+      document.fonts.load("700 40px 'Rajdhani'"),
+      document.fonts.load("500 40px 'Rajdhani'"),
+    ]);
+    await document.fonts.ready;
+    log('polices prêtes');
+
+    const camel = await createImageBitmap(
+      await (await fetch('../img/streetwear/print/print-chameau-transparent.png')).blob());
+    log('chameau chargé\n');
+
+    /* =========================================================
+       A. PLAQUE DE NUMÉRO — gros dos de maillot
+       ========================================================= */
+    {
+      const W = 3600, H = 4200, [c, x] = make(W, H), S = W / 1000;
+      x.save(); x.translate(W/2, H*0.46); x.rotate(-0.03);
+      x.fillStyle = '#f2f2f2';
+      x.beginPath(); x.roundRect(-W*0.40, -H*0.26, W*0.80, H*0.52, 60*S); x.fill();
+      x.strokeStyle = INK; x.lineWidth = 14*S; x.stroke();
+      x.fillStyle = RED;
+      x.fillRect(-W*0.40, -H*0.26, W*0.80, 34*S);
+      x.fillRect(-W*0.40, H*0.26 - 34*S, W*0.80, 34*S);
+      x.restore();
+
+      fitText(x, 'HUMPIRE', W/2, H*0.155, W*0.80, 210*S, "'Archivo Black',sans-serif",
+              { fill: '#f2f2f2', stroke: INK, strokeW: 16*S, ls: 6*S });
+      racingText(x, '01', W/2, H*0.60, W*0.44, 900*S, { fill: INK, stroke: RED, strokeW: 26*S });
+      fitText(x, 'RACING DIVISION', W/2, H*0.79, W*0.60, 96*S, "'Rajdhani',sans-serif",
+              { fill: '#f2f2f2', ls: 22*S });
+      checker(x, W*0.16, H*0.83, W*0.68, 46*S, 23*S, '#f2f2f2', INK);
+      x.fillStyle = linGrad(x, W*0.16, 0, W*0.84, 0, NEON);
+      x.fillRect(W*0.16, H*0.83 + 52*S, W*0.68, 16*S);
+      await save(c, 'race-dos-plaque.png'); show(c, 'race-dos-plaque.png');
+    }
+
+    /* =========================================================
+       B. ÉCUSSON D'ÉQUIPE — poitrine gauche
+       ========================================================= */
+    {
+      const W = 1600, H = 1800, [c, x] = make(W, H), S = W / 1000;
+      const shield = () => { x.beginPath();
+        x.moveTo(W*0.10, H*0.06); x.lineTo(W*0.90, H*0.06); x.lineTo(W*0.90, H*0.60);
+        x.quadraticCurveTo(W*0.90, H*0.86, W*0.50, H*0.96);
+        x.quadraticCurveTo(W*0.10, H*0.86, W*0.10, H*0.60); x.closePath(); };
+      shield(); x.fillStyle = INK; x.fill();
+      x.strokeStyle = '#f2f2f2'; x.lineWidth = 16*S; x.stroke();
+      x.save(); shield(); x.clip();
+      x.fillStyle = RED; x.fillRect(W*0.10, H*0.06, W*0.80, H*0.10);
+      checker(x, W*0.10, H*0.60, W*0.80, 30*S, 15*S, '#f2f2f2', INK);
+      x.restore();
+      const cd = Math.min(W*0.62, H*0.42);
+      x.drawImage(camel, W/2 - cd/2, H*0.20, cd, cd);
+      fitText(x, 'HUMPIRE', W/2, H*0.70, W*0.66, 132*S, "'Archivo Black',sans-serif", { fill:'#f2f2f2', ls:3*S });
+      fitText(x, 'RACING',  W/2, H*0.82, W*0.44,  84*S, "'Rajdhani',sans-serif",      { fill:RED, ls:16*S });
+      await save(c, 'race-ecusson.png'); show(c, 'race-ecusson.png');
+    }
+
+    /* =========================================================
+       C. BANDEAU SPONSORS — manche / bas de dos
+       ========================================================= */
+    {
+      const W = 4200, H = 620, [c, x] = make(W, H), S = W / 1000;
+      x.fillStyle = INK; x.fillRect(0, 0, W, H);
+      checker(x, 0, 0, W, 40*S, 20*S, '#f2f2f2', INK);
+      checker(x, 0, H - 40*S, W, 40*S, 20*S, '#f2f2f2', INK);
+      let px = W * 0.02;
+      x.textAlign = 'left'; x.textBaseline = 'middle';
+      SPONSORS.forEach((w, i) => {
+        x.font = `600 ${52*S}px 'Rajdhani',sans-serif`; x.letterSpacing = `${10*S}px`;
+        x.fillStyle = i % 2 ? RED : '#f2f2f2';
+        x.fillText(w, px, H/2);
+        px += x.measureText(w).width + 70*S;
+        x.fillStyle = '#5a5a5a'; x.fillRect(px - 40*S, H/2 - 20*S, 5*S, 40*S);
+      });
+      await save(c, 'race-bandeau.png'); show(c, 'race-bandeau.png');
+    }
+
+    /* =========================================================
+       D. POITRINE RACING
+       ========================================================= */
+    {
+      const W = 4200, H = 1700, [c, x] = make(W, H), S = W / 1000;
+      const cd = H * 0.86;
+      x.drawImage(camel, W*0.03, (H - cd)/2, cd, cd);
+      /* le texte occupe tout ce qui reste à droite du chameau */
+      const tx = W*0.03 + cd, tw = W - tx - W*0.03, tc = tx + tw/2;
+      fitText(x, 'HUMPIRE', tc, H*0.48, tw, 340*S, "'Archivo Black',sans-serif",
+              { fill:'#f2f2f2', stroke:RED, strokeW:14*S, ls:4*S });
+      fitText(x, 'RACING · DIVISION 01', tc, H*0.70, tw*0.86, 92*S, "'Rajdhani',sans-serif",
+              { fill:RED, ls:16*S });
+      x.fillStyle = linGrad(x, tx, 0, tx + tw, 0, NEON);
+      x.fillRect(tx, H*0.76, tw, 14*S);
+      await save(c, 'race-poitrine.png'); show(c, 'race-poitrine.png');
+    }
+
+    /* =========================================================
+       E. ALL-OVER « BLUEPRINT » — planche technique sur noir
+       ========================================================= */
+    {
+      const W = 3600, H = 3600, [c, x] = make(W, H), S = W / 1000;
+      x.fillStyle = INK; x.fillRect(0, 0, W, H);
+
+      x.strokeStyle = 'rgba(242,242,242,.30)'; x.lineWidth = 1.6*S;
+      techGrid(x, S, 0, 0, W, H, 70*S);
+
+      const r = rng(20260829);
+      x.lineWidth = 2.6*S;
+      for (let i = 0; i < 46; i++) {
+        const cx = r()*W, cy = r()*H, sz = (34 + r()*90) * S;
+        x.strokeStyle = r() < .16 ? 'rgba(224,30,55,.85)' : 'rgba(242,242,242,.72)';
+        const k = Math.floor(r()*4);
+        if (k === 0) techCircle(x, S, cx, cy, sz);
+        else if (k === 1) techBolt(x, S, cx, cy, sz*0.7);
+        else if (k === 2) techDim(x, S, cx - sz*1.5, cy, cx + sz*1.5, ['Ø 12','R 45','SCALE 1:2','A–A','128 mm'][Math.floor(r()*5)]);
+        else techLabel(x, S, cx, cy, ['DETAIL A','SECTION B','REV 01','HUMPIRE','MAT. 6061','TOL ±0.2'][Math.floor(r()*6)], 22 + r()*14);
+      }
+
+      /* le chameau traité comme une pièce technique */
+      x.save(); x.globalAlpha = .16;
+      const cd = W*0.52; x.drawImage(camel, W*0.24, H*0.10, cd, cd); x.restore();
+
+      /* bloc central */
+      fitText(x, 'HUMPIRE', W/2, H*0.55, W*0.86, 380*S, "'Archivo Black',sans-serif",
+              { fill:'#f2f2f2', stroke:INK, strokeW:22*S, ls:4*S });
+      x.fillStyle = RED; x.fillRect(W*0.07, H*0.585, W*0.86, 16*S);
+      fitText(x, 'RACING DIVISION 01 · DJBILBOX BEATS', W/2, H*0.635, W*0.72, 68*S,
+              "'Rajdhani',sans-serif", { fill:'#f2f2f2', ls:12*S });
+
+      /* diagonales de bas de maillot */
+      x.save();
+      x.translate(0, H*0.86); x.transform(1, -0.09, 0, 1, 0, 0);
+      x.fillStyle = RED;                     x.fillRect(0, 0,      W, 60*S);
+      x.fillStyle = linGrad(x,0,0,W,0,NEON); x.fillRect(0, 74*S,  W, 26*S);
+      x.fillStyle = '#f2f2f2';               x.fillRect(0, 112*S, W, 12*S);
+      x.restore();
+      checker(x, 0, H - 70*S, W, 70*S, 35*S, '#f2f2f2', INK);
+
+      await save(c, 'allover-blueprint.png'); show(c, 'allover-blueprint.png');
+    }
+
+    /* =========================================================
+       F. ALL-OVER « DAMIER DÉGRADÉ » + badges sponsors
+       ========================================================= */
+    {
+      const W = 3600, H = 3600, [c, x] = make(W, H), S = W / 1000;
+      const cell = W / 12;
+      for (let ry = 0; ry < 12; ry++) for (let cx2 = 0; cx2 < 12; cx2++) {
+        x.fillStyle = (ry + cx2) % 2 ? '#ffffff' : '#d8d8d6';
+        x.fillRect(cx2*cell, ry*cell, cell, cell);
+      }
+      x.save(); x.globalCompositeOperation = 'multiply';
+      x.fillStyle = linGrad(x, 0, 0, 0, H, ['#FF5C93', '#FF9ABF', '#f6f6f6', '#7BE3E0', '#22B8C6']);
+      x.fillRect(0, 0, W, H); x.restore();
+
+      /* un badge dans une case sur deux */
+      for (let ry = 0; ry < 12; ry++) for (let cx2 = 0; cx2 < 12; cx2++) {
+        if ((ry + cx2) % 2) continue;
+        badge(x, S, cx2*cell + cell/2, ry*cell + cell/2, cell*0.80,
+              SPONSORS[(ry*3 + cx2) % SPONSORS.length], INK, '#f2f2f2');
+      }
+
+      fitText(x, 'HUMPIRE', W/2, H*0.52, W*0.84, 430*S, "'Archivo Black',sans-serif",
+              { fill:'#f2f2f2', stroke:RED, strokeW:34*S, ls:4*S });
+      fitText(x, 'HUMPIRE', W/2, H*0.52, W*0.84, 430*S, "'Archivo Black',sans-serif",
+              { stroke: INK, strokeW: 9*S, ls:4*S });
+      fitText(x, 'RACING · DIVISION 01', W/2, H*0.585, W*0.56, 76*S, "'Rajdhani',sans-serif",
+              { fill:INK, ls:16*S });
+
+      await save(c, 'allover-damier.png'); show(c, 'allover-damier.png');
+    }
+
+    /* =========================================================
+       G. ALL-OVER « TOPO » — courbes de niveau
+       ========================================================= */
+    {
+      const W = 3600, H = 3600, [c, x] = make(W, H), S = W / 1000;
+      x.fillStyle = '#12102a'; x.fillRect(0, 0, W, H);
+      x.save(); x.globalAlpha = .55;
+      x.fillStyle = linGrad(x, 0, 0, W, H, ['#3B1A6B', '#12102a', '#0d2a3a']);
+      x.fillRect(0, 0, W, H); x.restore();
+
+      /* trois reliefs, chacun une pile d'anneaux déformés */
+      const r = rng(77);
+      [[W*0.28, H*0.30], [W*0.74, H*0.62], [W*0.20, H*0.84]].forEach(([ox, oy]) => {
+        const harm = [0,1,2,3].map(() => ({ a: 0.05 + r()*0.16, p: r()*Math.PI*2, n: 2 + Math.floor(r()*4) }));
+        for (let ring = 1; ring <= 26; ring++) {
+          const base = ring * 46 * S;
+          x.beginPath();
+          for (let a = 0; a <= Math.PI*2 + .01; a += 0.045) {
+            let rad = base;
+            harm.forEach(h => { rad *= 1 + h.a * Math.sin(h.n * a + h.p); });
+            const px = ox + Math.cos(a)*rad, py = oy + Math.sin(a)*rad*0.82;
+            a ? x.lineTo(px, py) : x.moveTo(px, py);
+          }
+          x.closePath();
+          x.strokeStyle = ring % 5 === 0 ? 'rgba(255,92,200,.85)' : 'rgba(120,200,225,.42)';
+          x.lineWidth = (ring % 5 === 0 ? 4.5 : 2.4) * S;
+          x.stroke();
+        }
+      });
+
+      x.save(); x.globalAlpha = .20;
+      const cd = W*0.46; x.drawImage(camel, W*0.27, H*0.06, cd, cd); x.restore();
+
+      fitText(x, 'HUMPIRE', W/2, H*0.56, W*0.86, 420*S, "'Archivo Black',sans-serif",
+              { fill:'#f2f2f2', stroke:'#12102a', strokeW:28*S, ls:4*S });
+      x.fillStyle = linGrad(x, W*0.07, 0, W*0.93, 0, NEON);
+      x.fillRect(W*0.07, H*0.585, W*0.86, 18*S);
+      fitText(x, 'DESERT BUILT · DIVISION 01', W/2, H*0.645, W*0.62, 72*S, "'Rajdhani',sans-serif",
+              { fill:'#9fd8e6', ls:14*S });
+
+      x.fillStyle = '#FF5C93'; x.fillRect(0, H - 90*S, W, 46*S);
+      await save(c, 'allover-topo.png'); show(c, 'allover-topo.png');
+    }
+
+    /* =========================================================
+       H. ALL-OVER « CAMO CHAMEAU » — le logo en motif dense
+       ========================================================= */
+    {
+      const W = 3600, H = 3600, [c, x] = make(W, H), S = W / 1000;
+      x.fillStyle = INK; x.fillRect(0, 0, W, H);
+      const r = rng(404), step = W / 7;
+      for (let ry = -1; ry < 8; ry++) for (let cx2 = -1; cx2 < 8; cx2++) {
+        const ox = cx2*step + (ry % 2 ? step/2 : 0), oy = ry*step;
+        x.save();
+        x.globalAlpha = 0.20 + r()*0.26;
+        x.translate(ox + step/2, oy + step/2);
+        x.rotate((r() - .5) * 0.5);
+        const d = step * (0.62 + r()*0.28);
+        x.drawImage(camel, -d/2, -d/2, d, d);
+        x.restore();
+      }
+      x.save(); x.globalAlpha = .55;
+      for (let i = -2; i < 10; i++) {
+        x.save(); x.translate(i*440*S, 0); x.transform(1, 0, -0.42, 1, 0, 0);
+        x.fillStyle = linGrad(x, 0, 0, 0, H, NEON); x.fillRect(0, 0, 26*S, H); x.restore();
+      }
+      x.restore();
+
+      fitText(x, 'HUMPIRE', W/2, H*0.54, W*0.86, 440*S, "'Archivo Black',sans-serif",
+              { fill:'#f2f2f2', stroke:INK, strokeW:30*S, ls:4*S });
+      fitText(x, 'BY DJBILBOX BEATS', W/2, H*0.60, W*0.50, 66*S, "'Rajdhani',sans-serif",
+              { fill:'#a79e89', ls:18*S });
+      checker(x, 0, H - 80*S, W, 80*S, 40*S, '#f2f2f2', INK);
+      await save(c, 'allover-camo.png'); show(c, 'allover-camo.png');
+    }
+
+    /* =========================================================
+       I. MAILLOTS DE FOOTBALL PAR PAYS — all-over sublimation
+       ========================================================= */
+    const slug = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+                         .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+    for (const [nom, col, textCol] of PAYS) {
+      const W = 3600, H = 3600, [c, x] = make(W, H), S = W / 1000;
+      const dark = textCol === '#FFFFFF';
+
+      /* fond dans la couleur principale */
+      x.fillStyle = col[0]; x.fillRect(0, 0, W, H);
+
+      /* fines rayures verticales, à peine visibles — texture de maillot */
+      x.save(); x.globalAlpha = 0.07;
+      x.fillStyle = dark ? '#ffffff' : '#000000';
+      for (let i = 0; i < W; i += 46*S) x.fillRect(i, 0, 16*S, H);
+      x.restore();
+
+      /* écharpe diagonale */
+      x.save();
+      x.translate(W*0.5, H*0.5); x.rotate(-0.62); x.translate(-W*0.5, -H*0.5);
+      x.fillStyle = col[2]; x.fillRect(-W, H*0.30, W*3, H*0.26);
+      x.fillStyle = col[1]; x.fillRect(-W, H*0.30 - 26*S, W*3, 26*S);
+      x.fillStyle = col[1]; x.fillRect(-W, H*0.56,        W*3, 26*S);
+      x.restore();
+
+      /* chameau en filigrane */
+      x.save(); x.globalAlpha = dark ? 0.13 : 0.10;
+      const cd = W*0.62; x.drawImage(camel, W*0.19, H*0.04, cd, cd); x.restore();
+
+      /* écusson chameau en haut à gauche */
+      {
+        const bw = W*0.15, bx = W*0.10, by = H*0.13;
+        x.save();
+        x.beginPath();
+        x.moveTo(bx, by); x.lineTo(bx+bw, by); x.lineTo(bx+bw, by+bw*0.72);
+        x.quadraticCurveTo(bx+bw, by+bw*1.10, bx+bw/2, by+bw*1.26);
+        x.quadraticCurveTo(bx, by+bw*1.10, bx, by+bw*0.72); x.closePath();
+        x.fillStyle = INK; x.fill();
+        x.strokeStyle = col[1]; x.lineWidth = 8*S; x.stroke();
+        x.clip();
+        x.drawImage(camel, bx+bw*0.10, by+bw*0.06, bw*0.80, bw*0.80);
+        x.restore();
+      }
+
+      /* bloc central. Le texte traverse le fond ET l'écharpe : on choisit la
+         teinte la plus contrastée, puis on la cerne de son opposé. */
+      const nameFill = bestOn(col[0], [col[1], col[2], '#FFFFFF', '#0B0B0C', '#FFD700']);
+      fitText(x, 'HUMPIRE', W/2, H*0.55, W*0.84, 420*S, "'Archivo Black',sans-serif",
+              { fill: textCol, stroke: outlineFor(textCol), strokeW: 26*S, ls: 4*S });
+      fitText(x, nom, W/2, H*0.635, W*0.62, 150*S, "'Archivo Black',sans-serif",
+              { fill: nameFill, stroke: outlineFor(nameFill), strokeW: 16*S, ls: 14*S });
+      fitText(x, 'WWW.DJBILBOXBEATS.COM', W/2, H*0.695, W*0.52, 66*S, "'Rajdhani',sans-serif",
+              { fill: textCol, stroke: outlineFor(textCol), strokeW: 7*S, ls: 10*S });
+
+      /* numéro en filigrane, bas de dos */
+      x.save(); x.globalAlpha = 0.18;
+      racingText(x, '01', W/2, H*0.90, W*0.30, 620*S, { fill: textCol });
+      x.restore();
+
+      /* ourlet : les trois couleurs */
+      const hb = 44*S;
+      x.fillStyle = col[0]; x.fillRect(0, H - hb*3, W, hb);
+      x.fillStyle = col[1]; x.fillRect(0, H - hb*2, W, hb);
+      x.fillStyle = col[2]; x.fillRect(0, H - hb,   W, hb);
+
+      await save(c, `foot-${slug(nom)}.png`); show(c, `foot-${slug(nom)}.png`);
+    }
+
+    log(`\n=== TERMINÉ — 8 visuels racing + ${PAYS.length} maillots pays ===`);
+    document.title = 'OK';
+  } catch (e) {
+    log('\n!! ERREUR : ' + (e && e.message ? e.message : e));
+    document.title = 'ERREUR';
+    console.error(e);
+  }
+})();
+</script>
+</body>
+</html>

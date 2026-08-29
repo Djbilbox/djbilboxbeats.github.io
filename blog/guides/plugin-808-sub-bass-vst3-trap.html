@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Plugin 808 & Sub Bass VST3 pour Trap : BIGBASS Expliqué</title>
+<meta name="description" content="BIGBASS est un plugin VST3 808/sub bass pour trap : 3 moteurs de basse, 80 presets LA, glide et filtre 24 dB. VST3 + Standalone, Windows et macOS, 15 $.">
+<link rel="canonical" href="https://djbilboxbeats.com/blog/guides/plugin-808-sub-bass-vst3-trap.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="DJBILBOX BEATS">
+<meta property="og:title" content="Plugin 808 & Sub Bass VST3 pour Trap : BIGBASS Expliqué">
+<meta property="og:description" content="BIGBASS : 3 moteurs de basse, 80 presets LA, glide, filtre 24 dB. VST3 + Standalone, Win/Mac, 15 $.">
+<meta property="og:url" content="https://djbilboxbeats.com/blog/guides/plugin-808-sub-bass-vst3-trap.html">
+<meta property="og:image" content="https://djbilboxbeats.com/img/vst/bigbass-vst.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../../favicon.png">
+<link rel="stylesheet" href="../../assets/css/theme.css?v=26082701">
+<link rel="stylesheet" href="../../assets/css/modern-effects.css?v=26082701">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://djbilboxbeats.com/"},
+        {"@type":"ListItem","position":2,"name":"Blog","item":"https://djbilboxbeats.com/blog.html"},
+        {"@type":"ListItem","position":3,"name":"Plugin 808 & Sub Bass VST3","item":"https://djbilboxbeats.com/blog/guides/plugin-808-sub-bass-vst3-trap.html"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "name":"BIGBASS PRO — LA Lowrider Bass",
+      "applicationCategory":"MultimediaApplication",
+      "operatingSystem":"Windows, macOS",
+      "url":"https://djbilboxbeats.gumroad.com/l/xaziro",
+      "image":"https://djbilboxbeats.com/img/vst/bigbass-vst.jpg",
+      "offers":{"@type":"Offer","price":"15","priceCurrency":"USD","url":"https://djbilboxbeats.gumroad.com/l/xaziro"}
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"BIGBASS fait-il un vrai 808 ou un sub propre ?","acceptedAnswer":{"@type":"Answer","text":"Les deux, selon le mode choisi parmi les 3 moteurs de basse : certains presets donnent un 808 saturé et collant, d'autres un sub plus net pour un mix léger. Ce n'est pas un rompler à un seul son — chaque mode a son propre caractère."}},
+        {"@type":"Question","name":"Quels formats et systèmes pour BIGBASS ?","acceptedAnswer":{"@type":"Answer","text":"VST3 64-bit et application standalone, sur Windows et macOS. Le téléchargement est instantané et débloqué avec une clé de série personnelle."}},
+        {"@type":"Question","name":"BIGBASS suffit-il ou faut-il un limiteur en plus ?","acceptedAnswer":{"@type":"Answer","text":"BIGBASS shape le son de la basse (glide, filtre 24 dB, drive, FX chain) mais ne remplace pas un limiteur de mastering. Pour éviter le clipping sur un 808 poussé, l'étage suivant logique est un limiteur dédié sur le bus master."}}
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+.art{max-width:760px;margin:0 auto;padding:50px 24px 80px}
+.art .crumb{font-size:.82rem;color:var(--text-3);margin-bottom:18px}
+.art .crumb a{color:var(--text-3)}
+.art .tag{color:var(--accent);font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.art h1{font-family:var(--font-a);font-size:2.1rem;font-weight:700;line-height:1.15;margin-bottom:16px}
+.art .lead{font-size:1.1rem;color:var(--text-2);line-height:1.65;margin-bottom:28px}
+.art h2{font-family:var(--font-a);font-size:1.35rem;font-weight:700;margin:40px 0 12px}
+.art p{color:var(--text-2);line-height:1.75;margin-bottom:16px}
+.art ul{color:var(--text-2);line-height:1.8;padding-left:22px;margin-bottom:16px}
+.art li{margin-bottom:8px}
+.art a{color:var(--accent)}
+.cta-box{background:var(--surface-2);border:1px solid var(--accent);border-radius:10px;padding:22px;margin:26px 0;text-align:center}
+.cta-box a.btn{display:inline-block;margin-top:10px;background:var(--accent);color:#fff;padding:12px 26px;border-radius:8px;font-weight:700;text-decoration:none}
+.faq-item{border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:12px;background:var(--surface-2)}
+.faq-item h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.faq-item p{font-size:.92rem;margin:0}
+.related{margin-top:44px;padding-top:24px;border-top:1px solid var(--border)}
+.related h3{margin-bottom:12px}
+.related a{display:inline-block;margin:0 10px 10px 0;padding:8px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:6px;text-decoration:none;font-size:.88rem}
+.related a:hover{border-color:var(--accent)}
+</style>
+</head>
+<body data-page="blog">
+
+<article class="art">
+  <div class="crumb"><a href="../../index.html">Home</a> / <a href="../../blog.html">Blog</a> / Plugin 808 & Sub Bass VST3</div>
+  <div class="tag">VST · 808 · Trap</div>
+  <h1>Plugin 808 & sub bass VST3 pour trap : BIGBASS expliqué</h1>
+  <p class="lead">Chercher « plugin 808 sub bass VST3 trap », c'est chercher un outil qui fait les deux jobs à la fois : un 808 qui porte le morceau et un sub propre quand le mix a besoin de retenue. <strong>BIGBASS</strong> est construit pour ça — trois moteurs de basse réels et pitchés, 80 presets classés par ambiance LA, et une chaîne glide/filtre/drive pensée pour le grain West Coast plutôt que pour un seul preset générique.</p>
+
+  <h2>Ce que BIGBASS apporte concrètement</h2>
+  <p>Derrière sa face chromée façon Pioneer, BIGBASS embarque 3 moteurs de basse échantillonnés et détectés en hauteur — chaque mode garde son propre caractère plutôt que de recycler le même 808 avec un filtre différent. Les 80 presets sont organisés autour d'un thème LA (Los Santos, Lakers, Los Angeles), directement jouables sans réglage préalable.</p>
+  <p>Pour aller plus loin : glide pour les glissés façon drill, filtre 24 dB avec enveloppe, ADSR complet, drive, et une chaîne d'effets (reverb, delay, distortion) pilotée par des molettes chromées animées. Le tout tourne en VST3 64-bit ou en standalone, sur Windows comme sur macOS.</p>
+
+  <div class="cta-box">
+    <strong>BIGBASS PRO — LA Lowrider Bass</strong>
+    <p style="margin:6px 0 0;color:var(--text-3);font-size:.9rem">15 $ · VST3 / Standalone · Win &amp; Mac · téléchargement instantané</p>
+    <a class="btn" href="https://djbilboxbeats.gumroad.com/l/xaziro" target="_blank" rel="noopener">Voir BIGBASS sur Gumroad →</a>
+  </div>
+
+  <p>La <a href="../../product.html?id=bigbass">fiche produit complète</a> détaille les 3 moteurs de basse et la liste des 80 presets par thème.</p>
+
+  <h2>Questions fréquentes</h2>
+  <div class="faq-item"><h3>BIGBASS fait-il un vrai 808 ou un sub propre ?</h3><p>Les deux, selon le mode choisi parmi les 3 moteurs de basse : certains presets donnent un 808 saturé et collant, d'autres un sub plus net pour un mix léger. Ce n'est pas un rompler à un seul son — chaque mode a son propre caractère.</p></div>
+  <div class="faq-item"><h3>Quels formats et systèmes pour BIGBASS ?</h3><p>VST3 64-bit et application standalone, sur Windows et macOS. Le téléchargement est instantané et débloqué avec une clé de série personnelle.</p></div>
+  <div class="faq-item"><h3>BIGBASS suffit-il ou faut-il un limiteur en plus ?</h3><p>BIGBASS shape le son de la basse (glide, filtre 24 dB, drive, FX chain) mais ne remplace pas un limiteur de mastering. Pour éviter le clipping sur un 808 poussé, l'étage suivant logique est un limiteur dédié sur le bus master.</p></div>
+
+  <div class="related">
+    <h3>À lire aussi</h3>
+    <a href="comment-masteriser-un-beat-trap-2026.html">Comment mastériser un beat trap en 2026</a>
+    <a href="sample-pack-trap-gratuit-2026-telechargement.html">Sample pack trap gratuit 2026</a>
+    <a href="../articles/how-to-make-trap-beats.html">How to Make Trap Beats</a>
+    <a href="../../shop.html">Voir tous les VST DJBILBOX</a>
+  </div>
+</article>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="../../index.html" class="brand">DJBILBOX <span>BEATS</span></a>
+      <div class="footer-links">
+        <a href="../../blog.html">Blog</a>
+        <a href="../../shop.html">Shop</a>
+        <a href="../../drum-kits.html">Drum Kits</a>
+        <a href="../../beats-redesign.html">Beats</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://open.spotify.com/artist/2wP5nwScAUiXF6Esc4x0hG" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://www.youtube.com/@djbilboxbeats" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-copy">DJBILBOX BEATS — Bilel Abdelkader Attalah · Toulouse, France · © 2026</div>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js?v=26082701"></script>
+</body>
+</html>

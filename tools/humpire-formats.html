@@ -207,6 +207,27 @@ function show(canvas, caption) {
     { const c = lockup(2000, 2000, .44, .05);
       await save(c, 'print-carre.png'); show(c, 'print-carre.png'); }
 
+    /* ---- versions ALL-OVER (sublimation) ----
+       Sur un sac ou un sac à dos sublimé, toute la surface est imprimée :
+       un fond transparent ressort BLANC. Il faut donc peindre le noir
+       nous-mêmes pour obtenir une pièce noire. */
+    function allover(W, H, camelFrac, gapFrac) {
+      const [c, x] = make(W, H);
+      x.fillStyle = '#0B0B0C'; x.fillRect(0, 0, W, H);
+      const camelH = H * camelFrac;
+      const dw = cw * (camelH / ch);
+      const gap = H * gapFrac;
+      const sprayW = Math.min(W * .78, H * .78);
+      const sprayH = sprayW / 1000 * 260;
+      const total = camelH + gap + sprayH;
+      const top = (H - total) / 2;
+      x.drawImage(camel, x0, y0, cw, ch, (W - dw) / 2, top, dw, camelH);
+      spray(x, W / 2, top + camelH + gap + sprayH * .62, sprayW);
+      return c;
+    }
+    { const c = allover(3000, 3000, .34, .05);
+      await save(c, 'print-allover-noir.png'); show(c, 'print-allover-noir.png'); }
+
     log('\n=== TERMINÉ ===');
     document.title = 'OK';
   } catch (e) {
