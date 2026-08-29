@@ -22,8 +22,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = path.resolve(__dirname, '..', 'img', 'streetwear');
 const PORT = 9099;
 const MAX_BYTES = 12 * 1024 * 1024;
-/* un seul sous-dossier autorisé : photos/ */
-const SAFE_NAME = /^(photos\/)?[a-z0-9][a-z0-9-]{0,60}\.(png|jpg)$/;
+/* sous-dossiers autorisés, liste fermée */
+const SAFE_NAME = /^(photos\/|racing\/|web\/)?[a-z0-9][a-z0-9-]{0,60}\.(png|jpg)$/;
 
 await mkdir(OUT_DIR, { recursive: true });
 

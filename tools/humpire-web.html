@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>HUMPIRE — versions web</title>
+<style>
+  body{background:#0b0b0c;color:#f3efe4;font:14px/1.6 system-ui,sans-serif;margin:0;padding:24px}
+  #log{font-family:ui-monospace,monospace;font-size:12px;background:#141412;border:1px solid #302c22;
+       padding:12px;white-space:pre-wrap;max-height:70vh;overflow:auto}
+</style>
+</head>
+<body>
+<h1>Versions web</h1>
+<p>Les fichiers d'impression font 3600 px et jusqu'à 2 Mo. Le site a besoin de vignettes.</p>
+<div id="log">démarrage…</div>
+
+<script>
+/* Réduit les visuels RACING en JPEG pour la page streetwear.
+   Les PNG d'origine restent la source d'impression, intouchés. */
+
+const SAVE_URL = 'http://127.0.0.1:9099/save';
+const logEl = document.getElementById('log');
+const log = (m) => { logEl.textContent += '\n' + m; logEl.scrollTop = logEl.scrollHeight; };
+
+const PAYS = ['france','algerie','maroc','tunisie','senegal','cote-divoire','mali','portugal',
+              'espagne','italie','bresil','usa','turquie','comores','england','thailand','germany',
+              'netherlands','japan','mexico','nigeria','canada','australia','poland'];
+const RACE = ['allover-blueprint','allover-damier','allover-topo','allover-camo',
+              'race-dos-plaque','race-ecusson','race-poitrine'];
+
+async function shrink(src, out, maxW, quality) {
+  const bmp = await createImageBitmap(await (await fetch(src)).blob());
+  const k = Math.min(1, maxW / bmp.width);
+  const c = document.createElement('canvas');
+  c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+  const x = c.getContext('2d');
+  x.imageSmoothingQuality = 'high';
+  /* les PNG racing ont un fond opaque, sauf race-poitrine : on pose du noir dessous */
+  x.fillStyle = '#0B0B0C'; x.fillRect(0, 0, c.width, c.height);
+  x.drawImage(bmp, 0, 0, c.width, c.height);
+  const blob = await new Promise((r) => c.toBlob(r, 'image/jpeg', quality));
+  const res = await fetch(SAVE_URL, { method: 'POST', headers: { 'x-filename': out }, body: blob });
+  if (!res.ok) throw new Error(out + ' → ' + res.status);
+  log(`  ✓ ${out.padEnd(34)} ${c.width}×${c.height}  ${Math.round(blob.size/1024)} Ko`);
+  return blob.size;
+}
+
+(async function run() {
+  try {
+    let total = 0;
+    for (const p of PAYS)  total += await shrink(`../img/streetwear/racing/foot-${p}.png`,  `web/foot-${p}.jpg`,  560, 0.80);
+    for (const r of RACE)  total += await shrink(`../img/streetwear/racing/${r}.png`,       `web/${r}.jpg`,       760, 0.82);
+    log(`\n=== TERMINÉ — ${(total/1048576).toFixed(1)} Mo au total ===`);
+    document.title = 'OK';
+  } catch (e) {
+    log('\n!! ERREUR : ' + (e && e.message ? e.message : e));
+    document.title = 'ERREUR';
+  }
+})();
+</script>
+</body>
+</html>
