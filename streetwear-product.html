@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="pageTitle">Streetwear — Fiche Produit &amp; Vidéo | HUMPIRE &amp; RAPFORCE38</title>
+<meta name="description" id="pageDesc" content="Découvrez la présentation complète, la vidéo immersive en arrière-plan et les détails techniques de ce modèle streetwear par DJBILBOX BEATS.">
+<meta property="og:type" content="product">
+<meta property="og:title" id="ogTitle" content="HUMPIRE STREETWEAR — Modèle Officiel">
+<meta property="og:description" id="ogDesc" content="Présentation vidéo d'ambiance, détails techniques et commande directe sur Fourthwall.">
+<meta property="og:image" id="ogImage" content="img/humpire-logo.png">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="assets/css/theme.css?v=26092706">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26092706">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@600;700;800&display=swap">
+
+<style>
+/* ============================================================
+   STREETWEAR DEDICATED PRODUCT PAGE (NIKE / JD SPORTS AMBIENT STYLE)
+   ============================================================ */
+:root {
+  --sw-accent: #d96528;
+  --sw-accent-bright: #ff6b2b;
+  --sw-glow: rgba(217,101,40,0.35);
+  --sw-surface: rgba(26, 17, 14, 0.88);
+  --sw-border: rgba(217,101,40,0.24);
+}
+
+.swp-page{
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+/* ================= AMBIENT VIDEO HERO BANNER ================= */
+.swp-hero-ambient{
+  position: relative;
+  min-height: 520px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+  background: #000;
+}
+.swp-ambient-video-frame{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120vw;
+  height: 120vh;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.45;
+  filter: brightness(0.7) contrast(1.25) saturate(1.2);
+}
+.swp-ambient-video-frame iframe{
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+}
+.swp-hero-ambient-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(14,7,5,0.65) 0%, rgba(14,7,5,0.92) 100%),
+              radial-gradient(circle at 50% 40%, rgba(217,101,40,0.2), transparent 75%);
+}
+.swp-hero-ambient-content{
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 60px 20px 50px;
+  max-width: 900px;
+}
+.swp-hero-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(217,101,40,0.2);
+  border: 1px solid rgba(217,101,40,0.5);
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-bright);
+  margin-bottom: 18px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(217,101,40,0.25);
+}
+.swp-hero-title{
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  margin: 0 0 14px;
+  color: #fff;
+  text-shadow: 0 4px 25px rgba(0,0,0,0.9);
+}
+.swp-hero-title span{
+  background: linear-gradient(135deg, #ff7a3d, #ffd4a3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.swp-hero-sub{
+  font-size: 1.15rem;
+  color: var(--text-2);
+  max-width: 680px;
+  margin: 0 auto 26px;
+  line-height: 1.55;
+  font-weight: 500;
+}
+.swp-hero-actions{
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Breadcrumb */
+.swp-breadcrumb{
+  padding: 24px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.86rem;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  flex-wrap: wrap;
+}
+.swp-breadcrumb a{
+  color: var(--text-2);
+  text-decoration: none;
+  transition: color .2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.swp-breadcrumb a:hover{ color: var(--accent-bright); }
+.swp-breadcrumb .sep{ color: var(--border); }
+.swp-breadcrumb .current{ color: var(--accent-bright); }
+
+/* Main Showcase Grid */
+.swp-showcase{
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-top: 14px;
+  background: var(--sw-surface);
+  border: 1px solid var(--sw-border);
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+.swp-showcase::before{
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--accent-bright), transparent);
+}
+@media(max-width: 960px){
+  .swp-showcase{
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 28px;
+  }
+}
+
+/* Product Media Left */
+.swp-media-wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.swp-main-img-box{
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0d0705;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+}
+.swp-main-img-box img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
+}
+.swp-main-img-box:hover img{
+  transform: scale(1.05);
+}
+.swp-media-badge{
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  z-index: 2;
+}
+
+/* Product Info Right */
+.swp-info-wrap{
+  display: flex;
+  flex-direction: column;
+}
+.swp-brand-tag{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-bright);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.swp-title{
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  margin: 0 0 14px;
+  color: #fff;
+}
+.swp-price-row{
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+}
+.swp-price{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--accent-bright);
+  line-height: 1;
+}
+.swp-stock-badge{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #22c55e;
+  background: rgba(34,197,94,0.12);
+  border: 1px solid rgba(34,197,94,0.3);
+  padding: 4px 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.swp-tagline{
+  font-size: 1.05rem;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* Size Selector */
+.swp-size-section{ margin-bottom: 24px; }
+.swp-size-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.swp-size-label{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+.swp-size-guide-btn{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent-bright);
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.swp-size-list{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.swp-size-chip{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 800;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.swp-size-chip:hover{
+  border-color: var(--accent);
+  color: var(--accent-bright);
+  transform: translateY(-2px);
+}
+.swp-size-chip.active{
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+/* Actions */
+.swp-actions-wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+.swp-buy-btn{
+  background: linear-gradient(135deg, #ff6b2b, #d96528);
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 18px 36px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-decoration: none;
+  box-shadow: 0 10px 30px var(--accent-glow);
+  transition: all .25s ease;
+}
+.swp-buy-btn:hover{
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(217,101,40,0.6);
+  color: #fff;
+}
+.swp-buy-sub{
+  font-size: 0.82rem;
+  color: var(--text-3);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.swp-buy-sub span{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Quick Specs Pills */
+.swp-specs-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+}
+.swp-spec-pill{
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.swp-spec-pill-title{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+  margin-bottom: 3px;
+}
+.swp-spec-pill-val{
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ================= INTERACTIVE SPOTLIGHT PLAYER ================= */
+.swp-video-section{
+  margin-top: 56px;
+  background: radial-gradient(850px 360px at 50% 0%, rgba(217,101,40,0.18), transparent 75%), var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.6);
+}
+.swp-video-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.swp-video-tag{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-bright);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.swp-video-title{
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.8rem, 3.8vw, 2.4rem);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  margin: 0;
+}
+.swp-video-title span{ color: var(--accent-bright); }
+.swp-video-player-box{
+  background: #000;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.8);
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
+.swp-video-player-box iframe{
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ================= DESCRIPTION & SPECS SECTION ================= */
+.swp-details-section{
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+}
+@media(max-width: 900px){
+  .swp-details-section{ grid-template-columns: 1fr; }
+}
+.swp-desc-card{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+}
+.swp-desc-card h3{
+  font-family: 'Anton', sans-serif;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.swp-desc-card h3 i{ color: var(--accent); }
+.swp-desc-text{
+  font-size: 1rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.swp-specs-table{
+  width: 100%;
+  border-collapse: collapse;
+}
+.swp-specs-table tr td{
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.92rem;
+}
+.swp-specs-table tr td:first-child{
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  width: 32%;
+}
+
+.swp-guide-card{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+}
+.swp-guide-card h3{
+  font-family: 'Anton', sans-serif;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.swp-guide-card h3 i{ color: var(--accent); }
+
+/* ================= RELATED PRODUCTS ================= */
+.swp-related-section{ margin-top: 64px; }
+.swp-related-title{
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+}
+.swp-related-title span{ color: var(--accent-bright); }
+.swp-related-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.swp-not-found{
+  text-align: center;
+  padding: 100px 20px;
+}
+</style>
+</head>
+<body data-page="streetwear">
+
+<div class="swp-page" id="productRoot">
+  <div style="text-align:center;padding:120px 0;">
+    <i class="fa-solid fa-spinner fa-spin fa-2x" style="color:var(--accent);"></i>
+  </div>
+</div>
+
+<script src="assets/js/streetwear-data.js?v=26092706"></script>
+<script src="assets/js/site.js?v=26092706"></script>
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var productId = params.get('id') || 'hoodie-spray-black';
+  var root = document.getElementById('productRoot');
+  var P = (window.STREETWEAR_PRODUCTS || {})[productId];
+
+  if(!P){
+    root.innerHTML = `
+      <div class="container swp-not-found">
+        <h1 style="font-family:'Anton',sans-serif;font-size:3rem;margin-bottom:14px;">MODÈLE INTROUVABLE</h1>
+        <p style="color:var(--text-2);margin-bottom:24px;">Le vêtement streetwear demandé n'existe pas ou a été déplacé.</p>
+        <a href="streetwear.html" class="swp-buy-btn" style="display:inline-flex;padding:12px 28px;">
+          <i class="fa-solid fa-arrow-left"></i> Retour au catalogue Streetwear
+        </a>
+      </div>
+    `;
+    return;
+  }
+
+  // Update meta & title
+  document.title = P.name + ' — Présentation Vidéo & Fiche | HUMPIRE';
+  var pageTitle = document.getElementById('pageTitle');
+  if(pageTitle) pageTitle.textContent = P.name + ' — Présentation Vidéo';
+
+  // Build Sizes HTML
+  var sizesHtml = (P.sizes || []).map(function(s, idx){
+    return '<button type="button" class="swp-size-chip' + (idx === 0 ? ' active' : '') + '">' + s + '</button>';
+  }).join('');
+
+  // Related products (4 other items)
+  var allKeys = Object.keys(window.STREETWEAR_PRODUCTS);
+  var relatedKeys = allKeys.filter(function(k){ return k !== productId; }).slice(0, 4);
+  var relatedHtml = relatedKeys.map(function(k){
+    var item = window.STREETWEAR_PRODUCTS[k];
+    return `
+      <article class="sw-card" style="background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.25s ease;">
+        <a href="streetwear-product.html?id=${item.id}" style="text-decoration:none;color:inherit;">
+          <div style="aspect-ratio:1/1;overflow:hidden;background:#0d0705;position:relative;">
+            <img src="${item.image}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease;" loading="lazy">
+            <span style="position:absolute;top:10px;left:10px;font-family:'Rajdhani',sans-serif;font-size:0.7rem;font-weight:800;padding:4px 10px;border-radius:4px;background:var(--accent);color:#fff;">${item.badge}</span>
+          </div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:8px;">
+            <span style="font-family:'Rajdhani',sans-serif;font-size:0.74rem;font-weight:700;color:var(--text-3);text-transform:uppercase;">${item.categoryLabel}</span>
+            <h4 style="font-size:0.92rem;font-weight:700;margin:0;line-height:1.3;color:var(--text);">${item.name}</h4>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:10px;border-top:1px solid var(--border-subtle);">
+              <span style="font-family:'Rajdhani',sans-serif;font-size:1.3rem;font-weight:800;color:var(--accent-bright);">${item.price}</span>
+              <span style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;font-weight:800;color:var(--accent);text-transform:uppercase;">Voir modèle <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+      </article>
+    `;
+  }).join('');
+
+  // Embed ambient video URL with autoplay, loop, mute, controls 0 for Nike style
+  var ambientEmbedUrl = 'https://www.youtube-nocookie.com/embed/' + P.videoId + '?autoplay=1&mute=1&loop=1&playlist=' + P.videoId + '&controls=0&showinfo=0&rel=0&playsinline=1&enablejsapi=1';
+
+  // Render Full Page
+  root.innerHTML = `
+    <!-- ================= NIKE-STYLE AMBIENT VIDEO HERO ================= -->
+    <section class="swp-hero-ambient">
+      <div class="swp-ambient-video-frame">
+        <iframe src="${ambientEmbedUrl}" title="${P.name} Ambient Video" allow="autoplay; encrypted-media" playsinline allowfullscreen></iframe>
+      </div>
+      <div class="swp-hero-ambient-overlay"></div>
+
+      <div class="swp-hero-ambient-content">
+        <div class="swp-hero-badge">
+          <i class="fa-solid fa-play"></i> PRÉSENTATION OFFICIELLE EN VIDÉO
+        </div>
+        <h1 class="swp-hero-title">${P.name}</h1>
+        <p class="swp-hero-sub">${P.tagline}</p>
+        <div class="swp-hero-actions">
+          <a class="swp-buy-btn" href="${P.buyUrl}" target="_blank" rel="noopener" style="padding:14px 32px;font-size:1.05rem;">
+            <i class="fa-solid fa-store"></i> Commander (${P.price})
+          </a>
+          <a class="sw-btn-ghost" href="#showcase" style="background:rgba(26,17,14,0.85);color:#fff;border:1px solid var(--accent);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.95rem;text-transform:uppercase;padding:14px 26px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+            <i class="fa-solid fa-shirt"></i> Détails &amp; Tailles
+          </a>
+          <a class="sw-btn-ghost" href="#video-spotlight" style="background:rgba(26,17,14,0.85);color:#fff;border:1px solid var(--border);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.95rem;text-transform:uppercase;padding:14px 26px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+            <i class="fa-solid fa-expand"></i> Lecteur Plein Écran
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container" id="showcase">
+      <!-- Breadcrumb -->
+      <nav class="swp-breadcrumb" aria-label="Fil d'Ariane">
+        <a href="index.html"><i class="fa-solid fa-house"></i> Accueil</a>
+        <span class="sep">/</span>
+        <a href="streetwear.html"><i class="fa-solid fa-shirt"></i> Streetwear</a>
+        <span class="sep">/</span>
+        <span class="current">${P.name}</span>
+      </nav>
+
+      <!-- Main Showcase -->
+      <section class="swp-showcase">
+        <!-- Media Left -->
+        <div class="swp-media-wrap">
+          <div class="swp-main-img-box">
+            <span class="swp-media-badge">${P.badge || 'Streetwear'}</span>
+            <img src="${P.image}" alt="${P.name}">
+          </div>
+        </div>
+
+        <!-- Info Right -->
+        <div class="swp-info-wrap">
+          <div class="swp-brand-tag">
+            <i class="fa-solid fa-certificate"></i> ${P.brandTag || P.brand} · ÉDITION 2026
+          </div>
+          <h2 class="swp-title">${P.name}</h2>
+          
+          <div class="swp-price-row">
+            <span class="swp-price">${P.price}</span>
+            <span class="swp-stock-badge"><i class="fa-solid fa-circle-check"></i> En Stock · Expédié sous 48-72h</span>
+          </div>
+
+          <p class="swp-tagline">${P.tagline}</p>
+
+          <!-- Size Selector -->
+          <div class="swp-size-section">
+            <div class="swp-size-header">
+              <span class="swp-size-label">Sélectionner votre taille :</span>
+              <a href="#guide-section" class="swp-size-guide-btn"><i class="fa-solid fa-ruler-combined"></i> Guide des Tailles</a>
+            </div>
+            <div class="swp-size-list" id="swpSizeList">
+              ${sizesHtml}
+            </div>
+          </div>
+
+          <!-- Purchase Button -->
+          <div class="swp-actions-wrap">
+            <a class="swp-buy-btn" href="${P.buyUrl}" target="_blank" rel="noopener">
+              <i class="fa-solid fa-bag-shopping"></i> Commander sur Fourthwall (${P.price})
+            </a>
+            <div class="swp-buy-sub">
+              <span><i class="fa-solid fa-shield-halved"></i> Paiement 100% Sécurisé</span>
+              <span><i class="fa-solid fa-truck-fast"></i> Expédition France &amp; Monde</span>
+              <span><i class="fa-solid fa-rotate-left"></i> Garantie Qualité</span>
+            </div>
+          </div>
+
+          <!-- Quick Specs -->
+          <div class="swp-specs-grid">
+            <div class="swp-spec-pill">
+              <div class="swp-spec-pill-title">Matière &amp; Grammage</div>
+              <div class="swp-spec-pill-val">${P.specs.fabric.split('/')[0] || 'Coton Lourd'}</div>
+            </div>
+            <div class="swp-spec-pill">
+              <div class="swp-spec-pill-title">Coupe &amp; Fit</div>
+              <div class="swp-spec-pill-val">${P.specs.fit.split(',')[0] || 'Boxy Fit Urbain'}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= INTERACTIVE SPOTLIGHT PLAYER ================= -->
+      <section class="swp-video-section" id="video-spotlight">
+        <div class="swp-video-header">
+          <div>
+            <div class="swp-video-tag"><i class="fa-solid fa-play"></i> SPOT PUBLICITAIRE OFFICIEL</div>
+            <h2 class="swp-video-title">LE MODÈLE EN <span>MOUVEMENT &amp; DÉTAILS</span></h2>
+          </div>
+          <a href="https://www.youtube.com/playlist?list=PLC62DpPjARlo" target="_blank" rel="noopener" class="sw-btn-yt" style="background:#ff0000;color:#fff;font-family:'Rajdhani',sans-serif;font-weight:800;font-size:0.86rem;text-transform:uppercase;padding:10px 20px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+            <i class="fa-brands fa-youtube"></i> Playlist Complète (52 Vidéos)
+          </a>
+        </div>
+
+        <div class="swp-video-player-box">
+          <iframe src="https://www.youtube-nocookie.com/embed/${P.videoId}?autoplay=0&enablejsapi=1&rel=0" title="${P.videoTitle || P.name}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </section>
+
+      <!-- ================= DESCRIPTION & TECHNICAL SPECS ================= -->
+      <section class="swp-details-section">
+        <div class="swp-desc-card">
+          <h3><i class="fa-solid fa-file-lines"></i> Description Détaillée</h3>
+          <p class="swp-desc-text">${P.description}</p>
+
+          <h4 style="font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:800;text-transform:uppercase;color:var(--text);margin-bottom:12px;">Fiche Technique :</h4>
+          <table class="swp-specs-table">
+            <tr>
+              <td>Composition</td>
+              <td>${P.specs.fabric}</td>
+            </tr>
+            <tr>
+              <td>Coupe</td>
+              <td>${P.specs.fit}</td>
+            </tr>
+            <tr>
+              <td>Finitions</td>
+              <td>${P.specs.details}</td>
+            </tr>
+            <tr>
+              <td>Entretien</td>
+              <td>${P.specs.care}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="swp-guide-card" id="guide-section">
+          <h3><i class="fa-solid fa-ruler-combined"></i> Conseils de Coupe &amp; Taille</h3>
+          <p style="color:var(--text-2);font-size:0.92rem;line-height:1.6;margin-bottom:18px;">
+            Nos modèles sont taillés dans la pure tradition streetwear contemporaine.
+          </p>
+          <ul style="color:var(--text-2);font-size:0.9rem;line-height:1.7;padding-left:20px;margin-bottom:24px;">
+            <li><strong>T-Shirts :</strong> Coupe oversize boxy fit. Prenez votre taille habituelle pour un tombé ample stylé.</li>
+            <li><strong>Hoodies &amp; Sweats :</strong> Molleton lourd 340-380 GSM. Pour un style très loose, choisissez une taille au-dessus.</li>
+            <li><strong>Joggings :</strong> Taille élastiquée avec cordon, resserré aux chevilles.</li>
+          </ul>
+          <a href="${P.buyUrl}" target="_blank" rel="noopener" class="swp-buy-btn" style="padding:14px 24px;font-size:1rem;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Commander sur Fourthwall (${P.price})
+          </a>
+        </div>
+      </section>
+
+      <!-- ================= RELATED PRODUCTS ================= -->
+      <section class="swp-related-section">
+        <h2 class="swp-related-title">AUTRES MODÈLES DE LA <span>COLLECTION</span></h2>
+        <div class="swp-related-grid">
+          ${relatedHtml}
+        </div>
+      </section>
+    </div>
+  `;
+
+  // Size Chips click behavior
+  document.querySelectorAll('.swp-size-chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      document.querySelectorAll('.swp-size-chip').forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

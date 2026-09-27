@@ -3,74 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HUMPIRE STREETWEAR & RAPFORCE38 — Boutique Officielle</title>
-<meta name="description" content="Boutique officielle HUMPIRE STREETWEAR & COLLECTION RAPFORCE38 par DJBILBOX BEATS sur Fourthwall — Hoodies, Pulls, Balaclava, T-Shirts Oversize, Jogging et Accessoires.">
-<meta name="keywords" content="humpire streetwear, rapforce38, humpire corporation, djbilbox beats merch, fourthwall humpire, hoodie humpire, t-shirt rapforce38, balaclava humpire">
+<title>HUMPIRE STREETWEAR & RAPFORCE38 — Boutique Officielle | DJBILBOX BEATS</title>
+<meta name="description" content="Boutique officielle HUMPIRE STREETWEAR & COLLECTION RAPFORCE38 par DJBILBOX BEATS sur Fourthwall — Fiches détaillées, vidéos de présentation des modèles, Hoodies, T-Shirts Oversize et Accessoires.">
+<meta name="keywords" content="humpire streetwear, rapforce38, humpire corporation, djbilbox beats merch, fourthwall humpire, hoodie humpire, t-shirt rapforce38, balaclava humpire, streetwear oversize, lookbook streetwear">
 <link rel="canonical" href="https://humpireplugins.netlify.app/streetwear.html">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="HUMPIRE STREETWEAR">
 <meta property="og:title" content="HUMPIRE STREETWEAR & RAPFORCE38 — Boutique Officielle">
-<meta property="og:description" content="Découvrez toute la collection officielle HUMPIRE STREETWEAR et la COLLECTION RAPFORCE38 : hoodies, pulls, balaclava, t-shirts oversize et accessoires.">
+<meta property="og:description" content="Découvrez toute la collection officielle HUMPIRE STREETWEAR et RAPFORCE38 : vidéos de présentation des modèles, fiches techniques et commande directe.">
 <meta property="og:image" content="https://humpireplugins.netlify.app/img/humpire-logo.png">
 <meta property="og:url" content="https://humpireplugins.netlify.app/streetwear.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HUMPIRE STREETWEAR — Official Merch & Apparel">
+<meta name="twitter:description" content="Streetwear officiel par DJBILBOX BEATS. Fiches produits complètes et spots vidéo pour chaque modèle.">
+<meta name="twitter:image" content="https://humpireplugins.netlify.app/img/humpire-logo.png">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26092702">
-<link rel="stylesheet" href="assets/css/modern-effects.css?v=26092702">
+<link rel="stylesheet" href="assets/css/theme.css?v=26092705">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26092705">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@600;700;800&display=swap">
 
 <style>
+/* ============================================================
+   STREETWEAR MODERN REDESIGN CSS
+   ============================================================ */
+:root {
+  --sw-glow: rgba(217,101,40,0.35);
+  --sw-neon: #ff6b2b;
+  --sw-rapforce: #e65100;
+  --sw-card-bg: rgba(26, 17, 14, 0.85);
+  --sw-card-border: rgba(217,101,40,0.22);
+}
+
 .sw-page{
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  padding-bottom: 60px;
+  padding-bottom: 80px;
 }
+
+/* ================= HERO SECTION ================= */
 .sw-hero-banner{
   position: relative;
   overflow: hidden;
-  padding: 54px 0 36px;
-  background: radial-gradient(800px 420px at 50% 20%, rgba(217,101,40,0.18), transparent 70%), var(--surface);
+  padding: 70px 0 50px;
+  background: radial-gradient(900px 480px at 50% 15%, rgba(217,101,40,0.22), transparent 70%), 
+              linear-gradient(180deg, rgba(20,10,8,0.95) 0%, rgba(14,7,5,1) 100%);
   border-bottom: 1px solid var(--border);
   text-align: center;
 }
+
+.sw-hero-video-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+.sw-ambient-video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.28;
+  filter: brightness(0.7) contrast(1.2) saturate(1.15);
+  transform: scale(1.04);
+}
+.sw-hero-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(14,7,5,0.7) 0%, rgba(14,7,5,0.92) 100%),
+              radial-gradient(circle at 50% 30%, rgba(217,101,40,0.18), transparent 75%);
+  z-index: 2;
+}
+.sw-hero-content{
+  position: relative;
+  z-index: 3;
+}
+
+.sw-hero-top-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(217,101,40,0.15);
+  border: 1px solid rgba(217,101,40,0.4);
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-bright);
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(217,101,40,0.2);
+  animation: pulseBadge 3s infinite ease-in-out;
+}
+@keyframes pulseBadge {
+  0%, 100% { border-color: rgba(217,101,40,0.4); box-shadow: 0 0 15px rgba(217,101,40,0.2); }
+  50% { border-color: rgba(255,107,43,0.8); box-shadow: 0 0 25px rgba(255,107,43,0.45); }
+}
+
 .sw-hero-banner .logo-badge{
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 16px;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 18px;
   border-radius: 50%;
-  padding: 6px;
+  padding: 8px;
   background: var(--surface-2);
-  border: 1px solid var(--border);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 24px var(--accent-glow);
+  border: 2px solid var(--accent);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 28px var(--accent-glow);
+  transition: transform .3s ease;
+}
+.sw-hero-banner .logo-badge:hover{
+  transform: scale(1.08) rotate(4deg);
 }
 .sw-hero-banner .logo-badge img{
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
+
 .sw-hero-banner h1{
   font-family: 'Anton', sans-serif;
-  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
   text-transform: uppercase;
-  letter-spacing: 0.02em;
-  line-height: 1;
-  margin-bottom: 12px;
+  letter-spacing: 0.03em;
+  line-height: 1.02;
+  margin-bottom: 14px;
 }
 .sw-hero-banner h1 span{
-  background: linear-gradient(135deg, var(--accent-bright), var(--accent-plat));
+  background: linear-gradient(135deg, #ff7a3d, #ffd4a3);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  display: inline-block;
 }
+
 .sw-hero-banner p{
   color: var(--text-2);
-  font-size: 1.05rem;
-  max-width: 620px;
-  margin: 0 auto 24px;
+  font-size: 1.1rem;
+  max-width: 680px;
+  margin: 0 auto 28px;
   line-height: 1.6;
 }
+
+/* Hero Stats Bar */
+.sw-hero-stats{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.sw-hero-stat{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(25, 14, 11, 0.6);
+  border: 1px solid var(--border);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-family: 'Rajdhani', sans-serif;
+}
+.sw-hero-stat i{
+  color: var(--accent-bright);
+  font-size: 1rem;
+}
+.sw-hero-stat span{
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+
 .sw-hero-actions{
   display: flex;
   gap: 14px;
@@ -78,72 +193,191 @@
   flex-wrap: wrap;
 }
 .sw-btn-fw{
-  background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+  background: linear-gradient(135deg, #ff6b2b, #d96528);
   color: #fff;
   font-family: 'Rajdhani', sans-serif;
   font-weight: 800;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding: 12px 28px;
+  padding: 14px 32px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  box-shadow: 0 8px 24px var(--accent-glow);
-  transition: .2s ease;
+  gap: 10px;
+  box-shadow: 0 8px 26px var(--accent-glow);
+  transition: all .25s ease;
   text-decoration: none;
 }
 .sw-btn-fw:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(217,101,40,0.45);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 35px rgba(217,101,40,0.55);
   color: #fff;
 }
 .sw-btn-ghost{
-  background: var(--surface-2);
+  background: rgba(30,17,13,0.8);
   color: var(--text);
   border: 1px solid var(--border);
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding: 12px 24px;
+  padding: 14px 26px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: .2s ease;
+  transition: all .25s ease;
   text-decoration: none;
+  backdrop-filter: blur(8px);
 }
 .sw-btn-ghost:hover{
   border-color: var(--accent);
   color: var(--accent-bright);
+  transform: translateY(-2px);
+  background: rgba(45,24,18,0.9);
 }
 
-/* Category Filter Tabs */
-.sw-tabs-bar{
+/* ================= CONTROLS & FILTER BAR ================= */
+.sw-controls-bar{
   position: sticky;
   top: calc(var(--hdr-h) + var(--ticker-h));
   z-index: 850;
-  background: rgba(18,10,8,0.96);
-  backdrop-filter: blur(14px);
+  background: rgba(14, 8, 6, 0.96);
+  backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  padding: 12px 0;
+  padding: 14px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
+.sw-controls-wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sw-controls-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.sw-search-box{
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+  max-width: 440px;
+}
+.sw-search-box i{
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-3);
+  font-size: 0.9rem;
+}
+.sw-search-input{
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 14px 9px 38px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-family: 'Inter', sans-serif;
+  transition: all .2s ease;
+}
+.sw-search-input:focus{
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+  background: var(--surface-3);
+}
+.sw-search-clear{
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-3);
+  cursor: pointer;
+  display: none;
+  font-size: 0.85rem;
+}
+.sw-search-clear:hover{ color: var(--accent-bright); }
+
+.sw-brand-filters{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sw-brand-chip{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-3);
+  cursor: pointer;
+  transition: .2s ease;
+}
+.sw-brand-chip:hover{
+  color: var(--text);
+  border-color: var(--accent);
+}
+.sw-brand-chip.active{
+  background: rgba(217,101,40,0.18);
+  border-color: var(--accent);
+  color: var(--accent-bright);
+}
+
+.sw-sort-box{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sw-sort-label{
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+.sw-sort-select{
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+/* Category Tabs */
 .sw-tabs{
   display: flex;
   align-items: center;
   gap: 8px;
   overflow-x: auto;
   scrollbar-width: none;
+  padding-bottom: 2px;
 }
 .sw-tabs::-webkit-scrollbar{ display: none; }
 .sw-tab{
   flex: 0 0 auto;
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding: 8px 18px;
@@ -152,7 +386,10 @@
   color: var(--text-2);
   border: 1px solid var(--border);
   cursor: pointer;
-  transition: .18s ease;
+  transition: all .2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 .sw-tab:hover{
   color: var(--text);
@@ -163,97 +400,43 @@
   background: var(--accent);
   color: #fff;
   border-color: var(--accent);
-  box-shadow: 0 0 14px var(--accent-glow);
+  box-shadow: 0 0 16px var(--accent-glow);
 }
-
-/* Section Dividers */
-.sw-section-head{
-  margin-top: 48px;
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid var(--border);
-}
-.sw-section-head.rapforce{
-  margin-top: 64px;
-  border-bottom-color: var(--accent);
-}
-.sw-section-title{
-  font-family: 'Anton', sans-serif;
-  font-size: 1.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.sw-section-title span{
-  color: var(--accent-bright);
-}
-.sw-section-badge{
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 4px 12px;
+.sw-tab-badge{
+  font-size: 0.72rem;
+  background: rgba(0,0,0,0.3);
+  padding: 2px 7px;
   border-radius: 999px;
-  background: var(--surface-3);
-  border: 1px solid var(--border);
-  color: var(--text-2);
-}
-.sw-section-badge.highlight{
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
+  color: inherit;
 }
 
-/* Rapforce Special Banner */
-.rapforce-banner{
-  background: linear-gradient(135deg, rgba(217,101,40,0.15), rgba(27,15,11,0.9)), var(--surface);
-  border: 1px solid var(--accent);
-  border-radius: 14px;
-  padding: 24px 28px;
-  margin-top: 48px;
-  margin-bottom: 28px;
+/* Results Status Bar */
+.sw-results-meta{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(217,101,40,0.15);
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-size: 0.88rem;
+  color: var(--text-3);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
-.rapforce-banner-text h2{
-  font-family: 'Anton', sans-serif;
-  font-size: 1.9rem;
-  letter-spacing: 0.04em;
-  color: #fff;
-  margin-bottom: 6px;
-}
-.rapforce-banner-text h2 span{
+.sw-results-count strong{
   color: var(--accent-bright);
 }
-.rapforce-banner-text p{
-  color: var(--text-2);
-  font-size: 0.95rem;
-  margin: 0;
-}
 
-/* ============================================================
-   VIDEO SPOTLIGHT & LOOKBOOK SHOWCASE
-   ============================================================ */
+/* ================= VIDEO SPOTLIGHT ================= */
 .sw-video-showcase{
-  margin-top: 24px;
+  margin-top: 36px;
   margin-bottom: 48px;
-  background: radial-gradient(800px 320px at 50% 0%, rgba(217,101,40,0.14), transparent 70%), var(--surface);
+  background: radial-gradient(850px 360px at 50% 0%, rgba(217,101,40,0.18), transparent 75%), var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px 28px 32px;
-  box-shadow: 0 16px 45px rgba(0,0,0,0.5);
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 16px 45px rgba(0,0,0,0.6);
   position: relative;
   overflow: hidden;
 }
@@ -261,7 +444,7 @@
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 2px;
+  height: 3px;
   background: linear-gradient(90deg, transparent, var(--accent), var(--accent-bright), transparent);
 }
 .sw-video-header{
@@ -274,118 +457,86 @@
 }
 .sw-video-tag{
   font-family: 'Rajdhani', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--accent-bright);
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   margin-bottom: 6px;
 }
 .sw-video-title{
   font-family: 'Anton', sans-serif;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-size: clamp(1.9rem, 4.2vw, 2.6rem);
   text-transform: uppercase;
   letter-spacing: 0.03em;
   line-height: 1.1;
-  margin: 0 0 6px;
+  margin: 0 0 8px;
 }
-.sw-video-title span{
-  color: var(--accent-bright);
-}
+.sw-video-title span{ color: var(--accent-bright); }
 .sw-video-desc{
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   color: var(--text-2);
   margin: 0;
-  max-width: 620px;
-  line-height: 1.5;
-}
-.sw-video-header-actions{
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  max-width: 650px;
+  line-height: 1.55;
 }
 .sw-btn-yt{
   background: #ff0000;
   color: #fff;
   font-family: 'Rajdhani', sans-serif;
   font-weight: 800;
-  font-size: 0.84rem;
+  font-size: 0.88rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 10px 18px;
+  padding: 11px 20px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  box-shadow: 0 4px 16px rgba(255,0,0,0.3);
-  transition: .2s ease;
+  box-shadow: 0 4px 18px rgba(255,0,0,0.35);
+  transition: all .2s ease;
 }
 .sw-btn-yt:hover{
   background: #cc0000;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255,0,0,0.45);
   color: #fff;
-}
-.sw-btn-yt-sub{
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  font-size: 0.84rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 10px 16px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  text-decoration: none;
-  transition: .2s ease;
-}
-.sw-btn-yt-sub:hover{
-  border-color: var(--accent);
-  color: var(--accent-bright);
 }
 
 .sw-video-grid-layout{
   display: grid;
   grid-template-columns: 1.65fr 1fr;
-  gap: 22px;
+  gap: 24px;
   align-items: start;
 }
-@media(max-width: 960px){
-  .sw-video-grid-layout{
-    grid-template-columns: 1fr;
-  }
+@media(max-width: 980px){
+  .sw-video-grid-layout{ grid-template-columns: 1fr; }
 }
-
 .sw-main-player-wrap{
   background: #0d0705;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.7);
 }
 .sw-player-topbar{
   background: var(--surface-2);
-  padding: 10px 16px;
+  padding: 12px 18px;
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.82rem;
+  gap: 12px;
+  font-size: 0.85rem;
 }
 .live-dot{
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: #22c55e;
-  box-shadow: 0 0 10px #22c55e;
+  box-shadow: 0 0 12px #22c55e;
   display: inline-block;
   flex-shrink: 0;
 }
@@ -397,18 +548,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   flex: 1;
-}
-.player-quality{
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--accent-bright);
-  letter-spacing: 0.06em;
-  background: rgba(217,101,40,0.15);
-  padding: 3px 8px;
-  border-radius: 4px;
-  border: 1px solid rgba(217,101,40,0.3);
-  flex-shrink: 0;
 }
 .sw-iframe-container{
   position: relative;
@@ -423,23 +562,22 @@
   height: 100%;
   border: 0;
 }
-
 .sw-video-playlist{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 11px;
 }
 .sw-playlist-head{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--border-subtle);
   margin-bottom: 4px;
 }
 .sw-playlist-head h4{
   font-family: 'Rajdhani', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -449,50 +587,39 @@
   align-items: center;
   gap: 8px;
 }
-.sw-playlist-head h4 i{
-  color: var(--accent);
-}
-.sw-pl-count{
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--text-3);
-  text-transform: uppercase;
-}
-
 .sw-video-item{
   background: var(--surface-2);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 10px;
   display: flex;
-  gap: 12px;
+  gap: 14px;
   cursor: pointer;
   transition: all .22s ease;
   position: relative;
 }
 .sw-video-item:hover{
   border-color: var(--accent);
-  background: rgba(217,101,40,0.08);
+  background: rgba(217,101,40,0.1);
   transform: translateX(4px);
 }
 .sw-video-item.active{
   border-color: var(--accent-bright);
-  background: rgba(217,101,40,0.16);
-  box-shadow: 0 0 16px var(--accent-glow);
+  background: rgba(217,101,40,0.18);
+  box-shadow: 0 0 18px var(--accent-glow);
 }
 .sw-video-item.active::after{
   content: "";
   position: absolute;
-  left: 0; top: 8px; bottom: 8px;
+  left: 0; top: 10px; bottom: 10px;
   width: 4px;
   background: var(--accent-bright);
   border-radius: 0 4px 4px 0;
 }
 .sw-vthumb{
-  width: 90px;
-  height: 58px;
-  border-radius: 6px;
+  width: 96px;
+  height: 62px;
+  border-radius: 8px;
   overflow: hidden;
   position: relative;
   background: #000;
@@ -512,23 +639,18 @@
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: 0.8rem;
-  transition: transform .2s ease, background .2s ease;
-}
-.sw-video-item:hover .sw-vthumb .play-icon{
-  background: rgba(217,101,40,0.75);
-  transform: scale(1.08);
+  font-size: 0.85rem;
 }
 .sw-vthumb .vtime{
   position: absolute;
-  bottom: 2px;
-  right: 3px;
+  bottom: 3px;
+  right: 4px;
   background: rgba(0,0,0,0.85);
   color: #fff;
   font-family: 'Rajdhani', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  padding: 1px 4px;
+  padding: 1px 5px;
   border-radius: 3px;
 }
 .sw-vinfo{
@@ -539,85 +661,145 @@
 }
 .sw-vinfo .vtag{
   font-family: 'Rajdhani', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--accent-bright);
   margin-bottom: 2px;
 }
-.sw-vinfo .vtag.rapforce{
-  color: #f59e0b;
-}
-.sw-vinfo .vtag.all{
-  color: #a855f7;
-}
 .sw-vinfo h5{
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--text);
-  margin: 0 0 2px;
+  margin: 0 0 3px;
   line-height: 1.3;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.sw-video-item.active .sw-vinfo h5{
+.sw-video-item.active .sw-vinfo h5{ color: #fff; }
+
+/* ================= SECTION HEADINGS ================= */
+.sw-section-head{
+  margin-top: 52px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--border);
+}
+.sw-section-title{
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+.sw-section-title span{ color: var(--accent-bright); }
+.sw-section-badge{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+}
+.sw-section-badge.highlight{
+  background: var(--accent);
+  border-color: var(--accent);
   color: #fff;
 }
-.sw-vinfo .vmeta{
-  font-size: 0.74rem;
-  color: var(--text-3);
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
-/* Product Cards Grid */
+/* Rapforce Special Banner */
+.rapforce-banner{
+  background: linear-gradient(135deg, rgba(217,101,40,0.18), rgba(27,15,11,0.95)), var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-top: 56px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.6), 0 0 24px rgba(217,101,40,0.2);
+}
+.rapforce-banner-text h2{
+  font-family: 'Anton', sans-serif;
+  font-size: 2.1rem;
+  letter-spacing: 0.04em;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.rapforce-banner-text h2 span{ color: var(--accent-bright); }
+.rapforce-banner-text p{ color: var(--text-2); font-size: 1rem; margin: 0; }
+
+/* ================= PRODUCT CARDS GRID ================= */
 .sw-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 22px;
-  margin-top: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 24px;
+  margin-top: 18px;
 }
 .sw-card{
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  background: var(--sw-card-bg);
+  border: 1px solid var(--sw-card-border);
+  border-radius: 14px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  transition: transform .28s cubic-bezier(0.16, 1, 0.3, 1), border-color .28s ease, box-shadow .28s ease;
   position: relative;
+  backdrop-filter: blur(8px);
 }
 .sw-card:hover{
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   border-color: var(--accent);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 0 20px var(--accent-glow);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.7), 0 0 25px var(--accent-glow);
 }
-.sw-card-img{
+.sw-card-img-link{
+  display: block;
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: #0d0705;
 }
-.sw-card-img img{
+.sw-card-img-link img{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform .4s ease;
+  transition: transform .5s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
 }
-.sw-card:hover .sw-card-img img{
-  transform: scale(1.05);
+.sw-card:hover .sw-card-img-link img{
+  transform: scale(1.08);
 }
-.sw-card-badge{
+
+/* Badges */
+.sw-card-badges{
   position: absolute;
   top: 10px;
   left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 2;
+}
+.sw-card-badge{
   font-family: 'Rajdhani', sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -625,118 +807,203 @@
   border-radius: 4px;
   background: var(--accent);
   color: #fff;
-  z-index: 2;
 }
-.sw-card-badge.soldout{
-  background: #6a554c;
-  color: #d4a359;
-}
-.sw-card-badge.new{
-  background: #22c55e;
-}
-.sw-card-badge.rapforce{
-  background: #d96528;
+.sw-card-badge.soldout{ background: #4a3832; color: #d4a359; }
+.sw-card-badge.new{ background: #22c55e; }
+.sw-card-badge.rapforce{ background: #e65100; color: #fff; }
+.sw-card-badge.signature{ background: #8b5cf6; }
+.sw-card-badge.oversize{ background: #0ea5e9; }
+
+/* Video Indicator Overlay */
+.sw-video-badge-hover{
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(18,10,8,0.9);
+  border: 1px solid var(--accent);
   color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 6px 16px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all .25s ease;
+  backdrop-filter: blur(6px);
+  z-index: 3;
 }
-.sw-card-badge.signature{
-  background: #8b5cf6;
+.sw-card:hover .sw-video-badge-hover{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
+
 .sw-card-body{
-  padding: 16px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 8px;
+  gap: 10px;
 }
 .sw-card-cat{
   font-family: 'Rajdhani', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sw-card-title-link{
+  text-decoration: none;
+  color: inherit;
 }
 .sw-card-title{
-  font-size: 0.92rem;
+  font-size: 0.98rem;
   font-weight: 700;
   line-height: 1.35;
   color: var(--text);
+  margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  min-height: 2.7em;
+  transition: color .2s ease;
 }
+.sw-card-title-link:hover .sw-card-title{
+  color: var(--accent-bright);
+}
+
+/* Size Chips */
+.sw-card-sizes{
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: -2px;
+}
+.sw-size-pill{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-3);
+}
+
 .sw-card-foot{
   margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding-top: 12px;
+  padding-top: 14px;
   border-top: 1px solid var(--border-subtle);
 }
 .sw-card-price{
   font-family: 'Rajdhani', sans-serif;
   font-weight: 800;
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   color: var(--accent-bright);
 }
-.sw-card-buy{
+.sw-card-actions{
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.sw-card-view-btn{
   background: var(--surface-2);
   border: 1px solid var(--border);
   color: var(--text);
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
-  font-size: 0.76rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding: 8px 14px;
-  border-radius: 6px;
+  border-radius: 8px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: .18s ease;
+  transition: all .2s ease;
   text-decoration: none;
 }
-.sw-card-buy:hover{
+.sw-card-view-btn:hover{
   background: var(--accent);
   border-color: var(--accent);
   color: #fff;
+  transform: translateY(-2px);
 }
 
-/* Info Banner */
+/* Empty search state */
+.sw-empty-results{
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--surface-2);
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  display: none;
+}
+.sw-empty-results i{
+  font-size: 3rem;
+  color: var(--text-3);
+  margin-bottom: 16px;
+}
+.sw-empty-results h3{
+  font-family: 'Anton', sans-serif;
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+/* ================= TRUST BANNER ================= */
 .sw-info-banner{
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 32px;
-  margin-top: 56px;
+  border-radius: 16px;
+  padding: 36px 32px;
+  margin-top: 64px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
+  gap: 28px;
 }
 .sw-info-item{
   display: flex;
-  gap: 16px;
+  gap: 18px;
   align-items: flex-start;
 }
 .sw-info-item i{
-  font-size: 1.6rem;
-  color: var(--accent);
+  font-size: 1.8rem;
+  color: var(--accent-bright);
   margin-top: 2px;
+  background: rgba(217,101,40,0.12);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(217,101,40,0.25);
 }
 .sw-info-item h4{
   font-family: 'Rajdhani', sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 .sw-info-item p{
-  font-size: 0.84rem;
+  font-size: 0.86rem;
   color: var(--text-2);
   line-height: 1.5;
+  margin: 0;
 }
 </style>
 </head>
@@ -744,20 +1011,57 @@
 
 <div class="sw-page">
 
-  <!-- Header Banner -->
+  <!-- ================= HERO BANNER ================= -->
   <header class="sw-hero-banner">
-    <div class="container">
+    <!-- Nike / JD Sports Style Ambient Background Video (Autoplay, Loop, Muted) -->
+    <div class="sw-hero-video-bg">
+      <iframe src="https://www.youtube-nocookie.com/embed/XeUwHoKLOIo?autoplay=1&mute=1&loop=1&playlist=XeUwHoKLOIo&controls=0&showinfo=0&rel=0&playsinline=1&enablejsapi=1" 
+              title="HUMPIRE Ambient Streetwear Video" 
+              allow="autoplay; encrypted-media" 
+              playsinline 
+              allowfullscreen 
+              style="width: 130vw; height: 130vh; border: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.38; filter: brightness(0.7) contrast(1.2) saturate(1.15); pointer-events: none;">
+      </iframe>
+    </div>
+    <div class="sw-hero-overlay"></div>
+
+    <div class="container sw-hero-content">
+      <div class="sw-hero-top-badge">
+        <i class="fa-solid fa-sparkles"></i> DROP STREETWEAR 2026 · ÉDITION LIMITÉE
+      </div>
+
       <div class="logo-badge">
         <img src="img/humpire-logo.png" alt="HUMPIRE Streetwear">
       </div>
+
       <h1>HUMPIRE <span>STREETWEAR</span></h1>
-      <p>La collection textile et merchandising officielle de DJBILBOX BEATS. Imprimée en haute définition et expédiée directement via notre boutique partenaire Fourthwall.</p>
+      <p>L'univers streetwear officiel par DJBILBOX BEATS. Cliquez sur n'importe quel modèle pour lancer sa <strong>vidéo de présentation officielle</strong>, sa description détaillée et la commande directe via Fourthwall.</p>
+
+      <div class="sw-hero-stats">
+        <div class="sw-hero-stat">
+          <i class="fa-solid fa-play"></i>
+          <span>Vidéos &amp; Spots Détaillés</span>
+        </div>
+        <div class="sw-hero-stat">
+          <i class="fa-solid fa-shirt"></i>
+          <span>21 Pièces Exclusives</span>
+        </div>
+        <div class="sw-hero-stat">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>Coton 240-380 GSM</span>
+        </div>
+        <div class="sw-hero-stat">
+          <i class="fa-solid fa-globe"></i>
+          <span>Livraison Europe &amp; Monde</span>
+        </div>
+      </div>
+
       <div class="sw-hero-actions">
         <a class="sw-btn-fw" href="https://djbilbox-beats-shop.fourthwall.com/en-eur" target="_blank" rel="noopener">
           <i class="fa-solid fa-store"></i> Boutique Fourthwall (EUR)
         </a>
         <a class="sw-btn-ghost" href="#video-spots">
-          <i class="fa-solid fa-play"></i> Spots &amp; Lookbook Vidéo
+          <i class="fa-solid fa-play"></i> Lookbook &amp; Spots Vidéo
         </a>
         <a class="sw-btn-ghost" href="#rapforce-section">
           <i class="fa-solid fa-fire"></i> Collection RAPFORCE38
@@ -766,20 +1070,68 @@
     </div>
   </header>
 
-  <!-- Category Tabs Bar -->
-  <div class="sw-tabs-bar">
-    <div class="container">
+  <!-- ================= CONTROLS & LIVE FILTER BAR ================= -->
+  <div class="sw-controls-bar">
+    <div class="container sw-controls-wrap">
+      <div class="sw-controls-top">
+        <!-- Live Instant Search -->
+        <div class="sw-search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="swSearchInput" class="sw-search-input" placeholder="Rechercher un hoodie, t-shirt, balaclava, jogging..." autocomplete="off">
+          <button type="button" id="swSearchClear" class="sw-search-clear" aria-label="Effacer recherche"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <!-- Brand selector chips -->
+        <div class="sw-brand-filters">
+          <button class="sw-brand-chip active" data-brand="all">Toutes Marques</button>
+          <button class="sw-brand-chip" data-brand="humpire">HUMPIRE Corp</button>
+          <button class="sw-brand-chip" data-brand="rapforce">RAPFORCE38</button>
+        </div>
+
+        <!-- Sort Select -->
+        <div class="sw-sort-box">
+          <span class="sw-sort-label"><i class="fa-solid fa-arrow-down-short-wide"></i> Trier par :</span>
+          <select id="swSortSelect" class="sw-sort-select">
+            <option value="featured">Sélection vedette</option>
+            <option value="price-asc">Prix croissant</option>
+            <option value="price-desc">Prix décroissant</option>
+            <option value="name-asc">Nom (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
       <div class="sw-tabs" id="swTabs">
-        <button class="sw-tab active" data-filter="all">Tous les articles (21)</button>
-        <button class="sw-tab" data-filter="hoodies">Hoodies &amp; Sweats (7)</button>
-        <button class="sw-tab" data-filter="tshirts">T-Shirts (7)</button>
-        <button class="sw-tab" data-filter="jogging">Bas &amp; Jogging (2)</button>
-        <button class="sw-tab" data-filter="accessories">Casquettes &amp; Accessoires (5)</button>
+        <button class="sw-tab active" data-filter="all">
+          <i class="fa-solid fa-grid-2"></i> Tous les articles <span class="sw-tab-badge">21</span>
+        </button>
+        <button class="sw-tab" data-filter="hoodies">
+          <i class="fa-solid fa-vest-patches"></i> Hoodies &amp; Sweats <span class="sw-tab-badge">7</span>
+        </button>
+        <button class="sw-tab" data-filter="tshirts">
+          <i class="fa-solid fa-shirt"></i> T-Shirts Oversize <span class="sw-tab-badge">7</span>
+        </button>
+        <button class="sw-tab" data-filter="jogging">
+          <i class="fa-solid fa-person-walking"></i> Bas &amp; Jogging <span class="sw-tab-badge">2</span>
+        </button>
+        <button class="sw-tab" data-filter="accessories">
+          <i class="fa-solid fa-hat-cowboy-side"></i> Casquettes &amp; Goodies <span class="sw-tab-badge">5</span>
+        </button>
       </div>
     </div>
   </div>
 
   <main class="container">
+
+    <!-- Results Counter -->
+    <div class="sw-results-meta">
+      <div class="sw-results-count" id="swResultsCount">
+        Affichage de <strong>21</strong> articles
+      </div>
+      <div class="sw-results-status">
+        <i class="fa-solid fa-circle-play" style="color:var(--accent-bright);"></i> Cliquez sur un modèle pour voir sa vidéo &amp; fiche
+      </div>
+    </div>
 
     <!-- ============================================================
          SECTION SPOTS PUBLICITAIRES & LOOKBOOK VIDÉO
@@ -791,23 +1143,16 @@
           <h2 class="sw-video-title">SPOTS PUBLICITAIRES <span>OFFICIELS</span></h2>
           <p class="sw-video-desc">Découvrez nos collections streetwear en mouvement : teasers officiels, coupes oversize, détails textiles et lookbooks vidéo en haute définition.</p>
         </div>
-        <div class="sw-video-header-actions">
-          <a class="sw-btn-yt" href="https://www.youtube.com/playlist?list=PLC62DpPjARlo" target="_blank" rel="noopener">
-            <i class="fa-brands fa-youtube"></i> Playlist Complète (52 Vidéos)
-          </a>
-          <a class="sw-btn-yt-sub" href="https://www.youtube.com/@djbilboxbeats?sub_confirmation=1" target="_blank" rel="noopener">
-            <i class="fa-solid fa-bell"></i> S'abonner @djbilboxbeats
-          </a>
-        </div>
+        <a class="sw-btn-yt" href="https://www.youtube.com/playlist?list=PLC62DpPjARlo" target="_blank" rel="noopener">
+          <i class="fa-brands fa-youtube"></i> Playlist Complète (52 Vidéos)
+        </a>
       </div>
 
       <div class="sw-video-grid-layout">
-        <!-- Big Video Player -->
         <div class="sw-main-player-wrap">
           <div class="sw-player-topbar">
             <span class="live-dot"></span>
             <span class="player-label" id="currentVideoTitle">HUMPIRE Spray Oversized Tee (Black) | Official Promo Spot</span>
-            <span class="player-quality"><i class="fa-solid fa-film"></i> 4K / 1080P HD</span>
           </div>
           <div class="sw-iframe-container">
             <iframe id="mainSpotFrame" 
@@ -820,14 +1165,12 @@
           </div>
         </div>
 
-        <!-- Video Selector Cards -->
         <div class="sw-video-playlist">
           <div class="sw-playlist-head">
             <h4><i class="fa-solid fa-list-ul"></i> Sélection de Spots</h4>
             <span class="sw-pl-count">4 Sélections</span>
           </div>
 
-          <!-- Spot 1 : Spray Tee -->
           <div class="sw-video-item active" data-vid="XeUwHoKLOIo" data-title="HUMPIRE Spray Oversized Tee (Black) | Official Promo Spot">
             <div class="sw-vthumb">
               <img src="https://img.youtube.com/vi/XeUwHoKLOIo/hqdefault.jpg" alt="HUMPIRE Spray Oversized Tee Spot">
@@ -841,7 +1184,6 @@
             </div>
           </div>
 
-          <!-- Spot 2 : Collab Rapforce38 -->
           <div class="sw-video-item" data-vid="5TA-vq3TjK8" data-title="TSHIRT COLLAB RAPFORCE38 HUMPIRE DJBILBOX BEATS">
             <div class="sw-vthumb">
               <img src="https://img.youtube.com/vi/5TA-vq3TjK8/hqdefault.jpg" alt="RAPFORCE38 Collab Spot">
@@ -851,11 +1193,10 @@
             <div class="sw-vinfo">
               <span class="vtag rapforce">Collab Rapforce38</span>
               <h5>Collab RAPFORCE38 × HUMPIRE</h5>
-              <p class="vmeta">Collection RAPFORCE38 · Edition Limitée</p>
+              <p class="vmeta">Collection RAPFORCE38 · Édition Limitée</p>
             </div>
           </div>
 
-          <!-- Spot 3 : Winter Lookbook -->
           <div class="sw-video-item" data-vid="SNc3v21TTMo" data-title="HUMPIRE Winter Streetwear Collection Lookbook">
             <div class="sw-vthumb">
               <img src="https://img.youtube.com/vi/SNc3v21TTMo/hqdefault.jpg" alt="HUMPIRE Winter Lookbook">
@@ -869,7 +1210,6 @@
             </div>
           </div>
 
-          <!-- Spot 4 : Full Playlist -->
           <div class="sw-video-item" data-vid="videoseries?list=PLC62DpPjARlo" data-title="Playlist Complète STREETWEAR HUMPIRE (52 Vidéos &amp; Shorts)">
             <div class="sw-vthumb">
               <img src="https://img.youtube.com/vi/XeUwHoKLOIo/hqdefault.jpg" alt="Playlist Streetwear Humpire">
@@ -882,7 +1222,6 @@
               <p class="vmeta">52 spots, shorts &amp; visualisations</p>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -892,313 +1231,537 @@
          ============================================================ -->
     <div class="sw-section-head">
       <h2 class="sw-section-title">COLLECTION <span>HUMPIRE</span></h2>
-      <span class="sw-section-badge">17 Articles Officiels</span>
+      <span class="sw-section-badge highlight">17 Pièces Officielles</span>
     </div>
 
     <div class="sw-grid" id="humpireGrid">
 
       <!-- 1. Balaclava Humpire Corp -->
-      <article class="sw-card" data-cat="accessories">
-        <div class="sw-card-img">
-          <span class="sw-card-badge new">Nouveau</span>
+      <article class="sw-card" data-cat="accessories" data-brand="humpire" data-price="11.56" data-name="BALACLAVA HUMPIRE CORPORATION">
+        <a href="streetwear-product.html?id=balaclava-corp" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge new"><i class="fa-solid fa-sparkles"></i> Nouveau</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/5Vj1-oMnuxGW2e7qTpo5XdNGI1XI1j5xecNdvNtCymE/w:720/sm:1/enc/fcN4fqIx6K1pLATU/W0BzvwKf-1CndBgX/_rHRBRlxJnOyO7pA/tyiFpZUEE7q7xCMh/RjZZyciDc__mGAdJ/r3pSuNlUcDoKOWIX/HF8sI0_kMYXGUe4E/a7thzsI8CaP0OuZB/AYw5IsM0d7LY-Yn0/O9uMhvWuJZJtl1TB/OuhBfYx72qnpCanj/Yre8yz6x-gda3wnR/l47aKXl1KbCU9FPm/xPw7TWfr0EneT1eE/4iYbEPzX7ME.jpg" loading="lazy" alt="BALACLAVA HUMPIRE CORPORATION">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">Accessoire · Cache-Cou / Balaclava</span>
-          <h3 class="sw-card-title">BALACLAVA HUMPIRE CORPORATION</h3>
+          <div class="sw-card-cat">
+            <span>Accessoire · Cache-Cou / Balaclava</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=balaclava-corp" class="sw-card-title-link">
+            <h3 class="sw-card-title">BALACLAVA HUMPIRE CORPORATION</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">Taille Unique</span>
+            <span class="sw-size-pill">Stretch</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">11,56 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/balaclava-humpire-corporation" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=balaclava-corp">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 2. Motor Venum Hoodie -->
-      <article class="sw-card" data-cat="hoodies">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Streetwear</span>
+      <article class="sw-card" data-cat="hoodies" data-brand="humpire" data-price="27.04" data-name="HUMPIRE CORPORATION — MOTOR VENUM Hoodie">
+        <a href="streetwear-product.html?id=motor-venum" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge">Streetwear</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/9v7SLnFsJvrWTnpy4GVpdzSr9bsXbuZq_oGU01vp5jo/w:720/sm:1/enc/aqd61eL0mS2-Mxlx/9avCcaPDBAs5Ela6/uVlD_SWl5gomM1JN/IvHXJZ-AT2Zt_NyZ/a2eI8LzL9mQfd6zW/B_LYlJHFVGfxBP-R/VCZsu8slM6ys5rnj/9ajT-YQEQUmH-vJw/w5fNH2KIYy2J9b5H/UDy7bvaKw9k9gu-6/IoBnkTeBqCEWzI06/8idqjCtqsijHa0ok/wuObCzMNWld7TmVq/Mouq7rqgAR_Lnmpp/3Jq2W4Tjyrs.jpg" loading="lazy" alt="HUMPIRE CORPORATION — MOTOR VENUM Hoodie">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">Hoodie · S à 3XL</span>
-          <h3 class="sw-card-title">HUMPIRE CORPORATION — MOTOR VENUM Hoodie</h3>
+          <div class="sw-card-cat">
+            <span>Hoodie · Unisexe Boxy Fit</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=motor-venum" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE CORPORATION — MOTOR VENUM Hoodie</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">27,04 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-corporation-iron-riot-hoodie" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=motor-venum">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 3. Static Saints Hoodie -->
-      <article class="sw-card" data-cat="hoodies">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Streetwear</span>
+      <article class="sw-card" data-cat="hoodies" data-brand="humpire" data-price="27.04" data-name="HUMPIRE CORPORATION — STATIC SAINTS Hoodie">
+        <a href="streetwear-product.html?id=static-saints" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge">Streetwear</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/JJl-_5cOVC58tgeyaTe5f-yqwAcSjKXgn6p0avbW5ys/w:720/sm:1/enc/FuHHFapPcnp1h7Ch/vAWzLqrzFD3HWCC8/d4pf7dgo3ZvzVVj6/KVsAFRaHPZbQKrzq/MOhfNQNC5V9ymqgw/ndf7QSFwTviUu5DO/XfFqyuiMJbplAYJB/XBupLd-hkqnKVTYp/XJAm623eWMo9CZFy/KffiZNydCOeFPO4k/AbBIUltDgv9mizSw/X3i5V1iA_aMCvPI8/wNSN0_bJfQOZ3kpg/EkN0HdUQZM_Fxy3q/b851YjogF4Q.jpg" loading="lazy" alt="HUMPIRE CORPORATION — STATIC SAINTS Hoodie">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">Hoodie · S à 3XL</span>
-          <h3 class="sw-card-title">HUMPIRE CORPORATION — STATIC SAINTS Hoodie</h3>
+          <div class="sw-card-cat">
+            <span>Hoodie · Unisexe Boxy Fit</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=static-saints" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE CORPORATION — STATIC SAINTS Hoodie</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">27,04 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-corporation-neon-graveyard-hoodie" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=static-saints">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 4. Loud Or Die Hoodie -->
-      <article class="sw-card" data-cat="hoodies">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Streetwear</span>
+      <article class="sw-card" data-cat="hoodies" data-brand="humpire" data-price="27.04" data-name="HUMPIRE CORPORATION — LOUD OR DIE Hoodie">
+        <a href="streetwear-product.html?id=loud-or-die" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge">Streetwear</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/ou8G9YbF26Xi5pZIfhsc5rk92GYGHH8virmjquJXzbU/w:720/sm:1/enc/ZigXHmF7wHTNgKR7/tL9fVGKKOBr7ITvN/3zcqdhcOFK-irZIc/X9ES2nRgFGT-hNMK/GIdDZRNF8Jed40Ft/KMTWTIATq5Rvgk39/WcwZ8fQyaCNS9Elt/RDS--QxORusxnWfu/32OC3kHRPotfgMmE/rIN7xT-tWyhtca_-/tjzvvvBW7ku-lKWU/fmCFbdkx5U9W1rsv/9_w9US-BZB4UbwxU/iwqA6is8X6c1d-Af/3FPiG21Y81k.jpg" loading="lazy" alt="HUMPIRE CORPORATION — LOUD OR DIE Hoodie">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">Hoodie · S à 3XL</span>
-          <h3 class="sw-card-title">HUMPIRE CORPORATION — LOUD OR DIE Hoodie</h3>
+          <div class="sw-card-cat">
+            <span>Hoodie · Unisexe Boxy Fit</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=loud-or-die" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE CORPORATION — LOUD OR DIE Hoodie</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">27,04 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-corporation-loud-or-die-hoodie" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=loud-or-die">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 5. Broken Amp Premium Hoodie -->
-      <article class="sw-card" data-cat="hoodies">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Premium</span>
+      <article class="sw-card" data-cat="hoodies" data-brand="humpire" data-price="27.04" data-name="HUMPIRE CORPORATION — BROKEN AMP Premium Hoodie">
+        <a href="streetwear-product.html?id=broken-amp" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge signature"><i class="fa-solid fa-crown"></i> Premium 380 GSM</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/0xNb9pVZuUK2lIPvwAmfw8GMCp6AJBkJaRa32-KLqk8/w:720/sm:1/enc/VDmt4y4DCXB1hcd2/X5L7Pvf7Z3zhUhq5/1OVAvlVEU-2QLhpd/1NZycC3HPqsRtDsV/WlcZTYtfvb5Ci3hu/VeZ3hb7OnzWx235O/HZ523u51QDMv2zmZ/iosoPchc-S_51pcx/39NIDK_tfI-Qs4w9/r7WDqS4tGT9R49Nd/9CaHaLkChstTpron/ZhNrc1GedTv0ETYv/hwDcHX0g-Hj9NoFm/E3sYip9Kjsgp5a1g/5urhMok3C5g.jpg" loading="lazy" alt="HUMPIRE CORPORATION — BROKEN AMP Premium Hoodie">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">Premium Hoodie · Lourd</span>
-          <h3 class="sw-card-title">HUMPIRE CORPORATION — BROKEN AMP Premium Hoodie</h3>
+          <div class="sw-card-cat">
+            <span>Premium Hoodie · Molleton Lourd</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=broken-amp" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE CORPORATION — BROKEN AMP Premium Hoodie</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">27,04 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-corporation-iron-riot-premium-hoodie" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=broken-amp">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 6. Pull Humpire Corporation Collection -->
-      <article class="sw-card" data-cat="hoodies">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Collection</span>
+      <article class="sw-card" data-cat="hoodies" data-brand="humpire" data-price="27.04" data-name="PULL HUMPIRE CORPORATION COLLECTION">
+        <a href="streetwear-product.html?id=pull-corp" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge">Crewneck</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/XEpD9yRVOwS3hmEtnznbsgz82_TQTfH641Hw2h7f70c/w:720/sm:1/enc/H2ae1ARvPVPmIDyw/Lj1MPa_TZCvJzcgg/qx5lbbdN82_gAWZ8/HHNbUx4fIwFH01H7/oRwZEYz1n4zMqNKx/DtYk_xyQm8Ryay2W/QJAIM4yz-EvjOrfd/EY3BSMD_RBQcuQWO/1F_XiJxhE03BHD90/dehnduF2-7Di6vSk/VJQzq44tHiWXGXEA/agl6ZcIHneN5SSy0/A1zHBPK4S_cDl5Zv/rHnvRnopuj30oFh1/t2jmaDKxSnA.jpg" loading="lazy" alt="PULL HUMPIRE CORPORATION COLLECTION">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">Crewneck · Pull</span>
-          <h3 class="sw-card-title">PULL HUMPIRE CORPORATION COLLECTION</h3>
+          <div class="sw-card-cat">
+            <span>Crewneck · Sweat Sans Capuche</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=pull-corp" class="sw-card-title-link">
+            <h3 class="sw-card-title">PULL HUMPIRE CORPORATION COLLECTION</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">27,04 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/pull-humpire-corporation-collection" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=pull-corp">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 7. Zombies T-Shirt -->
-      <article class="sw-card" data-cat="tshirts">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Merch</span>
+      <article class="sw-card" data-cat="tshirts" data-brand="humpire" data-price="16.47" data-name="HUMPIRE ZOMBIES — NEON HORROR T-Shirt">
+        <a href="streetwear-product.html?id=zombies-tee" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge">Merch</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/-0DvsKWQ3oFQfYWuCcn9fanBlqGB7oAMRdZj1F5OD5k/w:720/sm:1/enc/bJsG1ASaB10nBfN6/eNYweDGp3-4ZKQwx/_MTRTYujcSdqBWU5/_BTYD9kJMrQbs84b/IxUuhsTGEQcXbWWF/amkNEJInUqANvExW/PVDAk2N9b0zSN3WX/jDXLucSqlZcT1XX5/pYN8P6VseWpWRd0u/l9ztpMi-VaVKhqxj/wIWyNLvdluMqB_om/EuQzWkxA6b9aIHKS/HCoZYvMm0jdFCKSM/l16hliVkIkQ_dkVk/ff_O63kCPsE.jpg" loading="lazy" alt="HUMPIRE ZOMBIES — NEON HORROR T-Shirt">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">T-Shirt · Coton</span>
-          <h3 class="sw-card-title">HUMPIRE ZOMBIES — NEON HORROR T-Shirt</h3>
+          <div class="sw-card-cat">
+            <span>T-Shirt · Coton Peigné</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=zombies-tee" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE ZOMBIES — NEON HORROR T-Shirt</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">16,47 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-zombies-neon-horror-t-shirt" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=zombies-tee">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 8. Neon Graveyard Tee -->
-      <article class="sw-card" data-cat="tshirts">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Streetwear</span>
+      <article class="sw-card" data-cat="tshirts" data-brand="humpire" data-price="26.69" data-name="HUMPIRE CORPORATION — NEON GRAVEYARD">
+        <a href="streetwear-product.html?id=neon-graveyard" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge">Streetwear</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/7lyIIZ_8JoAaVBosUSHs695_OFvmkslsAlF4fVZMAhI/w:720/sm:1/enc/3F-qdV164DQIZHzg/obKo2H9wD24TYj2B/gYP1Ve6fRnsA6__N/_zY63S6IfgHnWmHJ/raX1uiz4KPkeQiNA/-eKyu3nN57SOmpq8/FQpMX6uNaUokIGVA/AYnrlxYAWjSzrM37/XpXAueP57mHFfMus/Z_ua9KTCH22xh_VN/F8L1G7bjl_5X6_BA/2bVYdfwklyJ0LvAL/MUzf3FDhf2SaG5wj/5EplVttamkr9ied0/VxFFOdJ1QKw.jpg" loading="lazy" alt="HUMPIRE CORPORATION — NEON GRAVEYARD">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">T-Shirt · Graphique</span>
-          <h3 class="sw-card-title">HUMPIRE CORPORATION — NEON GRAVEYARD</h3>
+          <div class="sw-card-cat">
+            <span>T-Shirt · Graphique</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=neon-graveyard" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE CORPORATION — NEON GRAVEYARD</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">26,69 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-corporation-neon-graveyard" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=neon-graveyard">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 9. Iron Riot Tee -->
-      <article class="sw-card" data-cat="tshirts">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Streetwear</span>
+      <article class="sw-card" data-cat="tshirts" data-brand="humpire" data-price="26.69" data-name="HUMPIRE CORPORATION — IRON RIOT">
+        <a href="streetwear-product.html?id=iron-riot" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge">Streetwear</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/2W7VgVDpL7J65g6GovgPBhJdsuijc-7JgkczVJuuDOA/w:720/sm:1/enc/Q08dc5l5t9B9fR9G/Oqpfjuholxlfks54/TOWgTK9yVwi1pfmP/4wH3tqULVaU3fpvo/qnjASj8i-yjGoA4y/1Gn98Ne1IqGJEr5l/WsniDXUJwzaubVxv/5l0w0Ck66gJI2LGv/4K95dYkC8crpNT8H/tieCpiQ3AM-8LcEj/gzNERhs_x0-SMjWM/GocQ6LJfluhDlOIi/8yN55AKcGRcIkW7h/7POG5PUWw30TJXaD/vH6Ak67Vk30.jpg" loading="lazy" alt="HUMPIRE CORPORATION — IRON RIOT">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">T-Shirt · Graphique</span>
-          <h3 class="sw-card-title">HUMPIRE CORPORATION — IRON RIOT</h3>
+          <div class="sw-card-cat">
+            <span>T-Shirt · Graphique</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=iron-riot" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE CORPORATION — IRON RIOT</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">26,69 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-corporation-iron-riot" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=iron-riot">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 10. Humpire Hoodie Spray Black -->
-      <article class="sw-card" data-cat="hoodies">
-        <div class="sw-card-img">
-          <span class="sw-card-badge signature">Signature</span>
+      <article class="sw-card" data-cat="hoodies" data-brand="humpire" data-price="37.50" data-name="HUMPIRE — Hoodie Spray (Black)">
+        <a href="streetwear-product.html?id=hoodie-spray-black" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge signature"><i class="fa-solid fa-fire"></i> Signature</span>
+            <span class="sw-card-badge oversize">Boxy Fit</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/CvgkkUGL50Wc2cYAHkNWyAKXWRc8vrGFhO0aA8eAJCU/w:720/sm:1/enc/C9IDfOBBlJ5BRyDW/sxrtLR7pGIxrIf_P/_qmkhsgC5P6yY8vU/YKuqWnx2yKxwzutC/Z7VLDCKwVh01X_5f/nUF8diZ5L46wXw64/xquLUiTNMH6nYu9I/tGMsgL5txZbgeM2a/stzMEglt3_z3Sxgk/Uptw1nkeev1LRZtJ/zmb77mglftl8IRX-/xf2dUlkC9-K0Pi5N/blsWKOmXGOrXsINR/cIA9XIlx_wAvBgS5/Ld676bgxSqM.jpg" loading="lazy" alt="HUMPIRE — Hoodie Spray (Black)">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">Hoodie · Marquage Spray</span>
-          <h3 class="sw-card-title">HUMPIRE — Hoodie "Spray" (Black)</h3>
+          <div class="sw-card-cat">
+            <span>Hoodie · Marquage Spray</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=hoodie-spray-black" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE — Hoodie "Spray" (Black)</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span><span class="sw-size-pill">3XL</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">37,50 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-hoodie-spray-black" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=hoodie-spray-black">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 11. Humpire Spray Joggers -->
-      <article class="sw-card" data-cat="jogging">
-        <div class="sw-card-img">
-          <span class="sw-card-badge soldout">Sold Out</span>
+      <article class="sw-card" data-cat="jogging" data-brand="humpire" data-price="33.93" data-name="HUMPIRE Spray Joggers — Black">
+        <a href="streetwear-product.html?id=spray-joggers" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge soldout">Édition Limitée</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/u5uGcEYdFZvoaE02wp2Blub2giQc-QGpAzghumdagWE/w:720/sm:1/enc/ToOTptko9v6d0LMD/90OFe__olhUVFj-H/rWMMqO80LmQPQ97r/aHnPkKVxWhWXYsD3/Ot66qJfU02gAnXg_/fYip3hcqi6Jr3BJW/9PnnlfHhSwJlkcIm/Nu6kAidIP19HyVCY/RVnBCIqBRupjgdSm/3MZKZrFwJhm3NOe_/YrzWIl-2NbLruEj0/zeGPqmSDkHtDOjq2/wyKD-WwLAZ6jWG_c/j96HScpQ07qXsKBD/2Uo10ikoe34.jpg" loading="lazy" alt="HUMPIRE Spray Joggers — Black">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">Jogging · Spray Black</span>
-          <h3 class="sw-card-title">HUMPIRE Spray Joggers — Black</h3>
+          <div class="sw-card-cat">
+            <span>Jogging · Molleton Confort</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=spray-joggers" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE Spray Joggers — Black</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">33,93 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-spray-joggers-black" target="_blank" rel="noopener">
-              Voir <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=spray-joggers">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 12. Humpire Oversized Tee Spray White -->
-      <article class="sw-card" data-cat="tshirts">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Oversize</span>
+      <article class="sw-card" data-cat="tshirts" data-brand="humpire" data-price="28.57" data-name="HUMPIRE — Oversized Tee Spray (White)">
+        <a href="streetwear-product.html?id=tee-spray-white" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge oversize">Oversize 240 GSM</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/SAEPKPe8DpEOmlxSIMh12BYR7Ju_kjxHb2sNAdSJeEI/w:720/sm:1/enc/TMcBjIrwP1nEUJ0Z/qIOg6SVoctcyQFTG/trUogr4LTsqergFO/4S8wSQETwGOkwA4D/W52IAX3SQP99G873/o1AohrKn_fI9M6uZ/FulKBmSOZdwbku73/bFEn2kCvUi1IC2lU/-iN2BDsoG-TF_2oF/AqQbwa_NDKRrIMsq/pVC9ufeFvLvFpyzG/ivUpcx8w8ab5cBVP/iNUaQCsqhmQdQhhe/ePxWBRlOQN0_je7l/Ce7aof0bNTc.jpg" loading="lazy" alt="HUMPIRE — Oversized Tee Spray (White)">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">T-Shirt · Blanc Oversize</span>
-          <h3 class="sw-card-title">HUMPIRE — Oversized Tee "Spray" (White)</h3>
+          <div class="sw-card-cat">
+            <span>T-Shirt · Blanc Oversize</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=tee-spray-white" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE — Oversized Tee "Spray" (White)</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">28,57 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-oversized-tee-spray-white" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=tee-spray-white">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 13. Humpire Oversized Tee Spray Black -->
-      <article class="sw-card" data-cat="tshirts">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Oversize</span>
+      <article class="sw-card" data-cat="tshirts" data-brand="humpire" data-price="28.57" data-name="HUMPIRE — Oversized Tee Spray (Black)">
+        <a href="streetwear-product.html?id=tee-spray-black" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge oversize">Oversize 240 GSM</span>
+            <span class="sw-card-badge signature">Best-Seller</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/ZSGNHloZw_7nlQ2Dgncf0pyvbjTJzizymOAuyYDeE_Y/w:720/sm:1/enc/MjApFq4q6emqr3dd/W0CauoTxPCNUFCVi/JzBgFxEJbcmLUCZ8/YH-_ksDu6QbLOyxI/jcDEn9FNx1EzF8AC/S_9lNeBYRCBOjpOm/j2C2nqTmgAiN7K6V/oADHHJ_q1e1MjLU2/N3fxnX-U4RDNjZ13/QuPsjasg_2AyxBKX/714CbYgrPriUfbpF/cLgPCSG1U3nvi-LK/gn1Kc-75znsURLeJ/ePxrbwv7Owll0Pdr/B3957cIbHic.jpg" loading="lazy" alt="HUMPIRE — Oversized Tee Spray (Black)">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">T-Shirt · Noir Oversize</span>
-          <h3 class="sw-card-title">HUMPIRE — Oversized Tee "Spray" (Black)</h3>
+          <div class="sw-card-cat">
+            <span>T-Shirt · Noir Oversize</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=tee-spray-black" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE — Oversized Tee "Spray" (Black)</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">28,57 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-oversized-tee-spray-black" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=tee-spray-black">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 14. Humpire Spray Cap -->
-      <article class="sw-card" data-cat="accessories">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Populaire</span>
+      <article class="sw-card" data-cat="accessories" data-brand="humpire" data-price="23.21" data-name="HUMPIRE Spray Cap">
+        <a href="streetwear-product.html?id=spray-cap" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge">Populaire</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/yvNYZFDV8BOjokwFA-E50RI5nk5XD-iiQ16H5mHm_UM/w:720/sm:1/enc/jICik5sChQwhMHfn/oU2sXESgqm02nHuY/sc2IYT9fEfKy0DPO/radTBipYAyWGDj2u/nE52Dtl6Ht5hQrAx/ARflucvGqpfwIrmu/TkvLhrOYkKJJqvdn/sUA1qElqGo0sDvyX/zqrknBO_D5f9d00b/Xa4A8_TD8t0Ud2wX/ecccILenBn1-tZcU/wN-d0Ksz_7LF1qhl/G47IY4Cene25Tr4K/tZqqY7VQu_lW6wGT/jOvg-eyeKtw.jpg" loading="lazy" alt="HUMPIRE Spray Cap">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">Casquette · Snapback</span>
-          <h3 class="sw-card-title">HUMPIRE Spray Cap</h3>
+          <div class="sw-card-cat">
+            <span>Casquette · Snapback</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=spray-cap" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE Spray Cap</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">Taille Réglable</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">23,21 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-spray-cap" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=spray-cap">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 15. Humpire Spray Bucket Hat -->
-      <article class="sw-card" data-cat="accessories">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Accessoire</span>
+      <article class="sw-card" data-cat="accessories" data-brand="humpire" data-price="25.89" data-name="HUMPIRE Spray Bucket Hat">
+        <a href="streetwear-product.html?id=bucket-hat" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge">Streetwear</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/oiboy9m3iG9dyO3uO_1hceYbfDtKPLRmQhHX9RI9Gzs/w:720/sm:1/enc/BSlrDEsUgN9DF5Yt/w7f5mf09FmGWk47_/zD5r8J4McloXkLxR/Tz8fUHn__Rp1vuCw/bk1EyeO5aFyMdj-m/_qw44FYS6TTxEkYw/RN4Gu2VsvuKFMB5-/7_YGgJc3qPIlVvou/ca5pZq21Kd6r5HmJ/Dhcmzxo_4Yl2t7uD/h2MOUwsbvlmTTKRL/L9wJXR1fRO3cttAN/zO-1HAMr5d1geFcH/5_maUQeeF8KBPkC6/VZ8hcUNutzg.jpg" loading="lazy" alt="HUMPIRE Spray Bucket Hat">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">Chapeau · Bob</span>
-          <h3 class="sw-card-title">HUMPIRE Spray Bucket Hat</h3>
+          <div class="sw-card-cat">
+            <span>Chapeau · Bob Urbain</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=bucket-hat" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE Spray Bucket Hat</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">Taille Unique</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">25,89 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-spray-bucket-hat" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=bucket-hat">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 16. Humpire Camel Tote Black -->
-      <article class="sw-card" data-cat="accessories">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Accessoire</span>
+      <article class="sw-card" data-cat="accessories" data-brand="humpire" data-price="25.00" data-name="HUMPIRE Camel Tote — Black">
+        <a href="streetwear-product.html?id=camel-tote" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge">Accessoire</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/6OSKvOBP1sHypl94RzS4CMoxYiaxFbIc79doajOmugQ/w:720/sm:1/enc/ffpIAnaQDt_N7072/O9tur9iWlyVg63Gk/T5r1xdwBK0mETZMq/rQ0raeFnFeXM6GKU/MIw2wKfo-8KSxnxq/ingyaFRk9eRq5OjF/M8C_O6fY207F9UDK/Oi_5pT1-mWG562b1/7fZqaYam5Ijhw7wZ/ISq2_G6iCUihGZb-/BJCSyC0k2Y6RaG7t/eqeVgSmrQvsoFg8-/C57trF2ucBfkelH-/A-s5JKpR1QKPfAZV/-FfyhA7t3Oo.jpg" loading="lazy" alt="HUMPIRE Camel Tote — Black">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">Sac · Tote Bag</span>
-          <h3 class="sw-card-title">HUMPIRE Camel Tote — Black</h3>
+          <div class="sw-card-cat">
+            <span>Sac · Tote Bag Renforcé</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=camel-tote" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE Camel Tote — Black</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">Toile 300 GSM</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">25,00 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-camel-tote-black" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=camel-tote">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
 
       <!-- 17. Humpire Camel Mug -->
-      <article class="sw-card" data-cat="accessories">
-        <div class="sw-card-img">
-          <span class="sw-card-badge">Goodies</span>
+      <article class="sw-card" data-cat="accessories" data-brand="humpire" data-price="16.96" data-name="HUMPIRE Camel Mug">
+        <a href="streetwear-product.html?id=camel-mug" class="sw-card-img-link">
+          <div class="sw-card-badges">
+            <span class="sw-card-badge">Goodies</span>
+          </div>
           <img src="https://imgproxy.fourthwall.dev/gVsJhaCPJQBMBQVvsjPWOi4YNRzPqbHOZg81TalAv9c/w:720/sm:1/enc/2VtsfJkS2pAf4Jv2/boG4nuNBYHAwpIGK/4QycZ5SjAIqgkbX4/VBRVNk2wG5ABTL-q/8ni81E_953XCpfbW/Df8dbwnIV-bQfWBG/SjG_ESewB2z7A-hx/W8hTXsiKtMHZ4lLX/-VZ9-yBKsiJiAUMS/ItPQqXbz9kNIT-7B/_ufn5YN7slB9vtjI/an1SO-TU5_PoSM3T/mc6j1RR-6swmw92w/msWjnJpJ889iZY3T/xMeOEu1BQW0.jpg" loading="lazy" alt="HUMPIRE Camel Mug">
-        </div>
+          <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+        </a>
         <div class="sw-card-body">
-          <span class="sw-card-cat">Accessoire · Céramique</span>
-          <h3 class="sw-card-title">HUMPIRE Camel Mug</h3>
+          <div class="sw-card-cat">
+            <span>Goodies · Céramique Brillante</span>
+            <span style="color:var(--accent-bright);font-weight:800;">HUMPIRE</span>
+          </div>
+          <a href="streetwear-product.html?id=camel-mug" class="sw-card-title-link">
+            <h3 class="sw-card-title">HUMPIRE Camel Mug</h3>
+          </a>
+          <div class="sw-card-sizes">
+            <span class="sw-size-pill">325 ml (11 oz)</span>
+          </div>
           <div class="sw-card-foot">
             <span class="sw-card-price">16,96 €</span>
-            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-mug-spray" target="_blank" rel="noopener">
-              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <div class="sw-card-actions">
+              <a class="sw-card-view-btn" href="streetwear-product.html?id=camel-mug">
+                <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+              </a>
+            </div>
           </div>
         </div>
       </article>
@@ -1213,83 +1776,136 @@
       <div class="rapforce-banner">
         <div class="rapforce-banner-text">
           <h2>COLLECTION <span>RAPFORCE38</span></h2>
-          <p>L'univers streetwear urbain & percutant de RAPFORCE38 par DJBILBOX BEATS. Sweat, Jogging et T-Shirts premium.</p>
+          <p>L'univers streetwear urbain & percutant de RAPFORCE38 par DJBILBOX BEATS. Hoodies lourds, broderies signature, joggings molleton et t-shirts premium.</p>
         </div>
         <a class="sw-btn-fw" href="https://djbilbox-beats-shop.fourthwall.com/en-eur" target="_blank" rel="noopener">
-          <i class="fa-solid fa-fire"></i> Voir sur Fourthwall
+          <i class="fa-solid fa-fire"></i> Voir toute la collection
         </a>
       </div>
 
       <div class="sw-grid" id="rapforceGrid">
 
         <!-- 1. Rapforce38 Hoodie Arche -->
-        <article class="sw-card" data-cat="hoodies">
-          <div class="sw-card-img">
-            <span class="sw-card-badge rapforce">Rapforce38</span>
+        <article class="sw-card" data-cat="hoodies" data-brand="rapforce" data-price="53.57" data-name="RAPFORCE38 — Hoodie Arche (Noir)">
+          <a href="streetwear-product.html?id=rapforce-hoodie-arche" class="sw-card-img-link">
+            <div class="sw-card-badges">
+              <span class="sw-card-badge rapforce"><i class="fa-solid fa-fire"></i> RAPFORCE38</span>
+              <span class="sw-card-badge signature">Lourd 380 GSM</span>
+            </div>
             <img src="https://imgproxy.fourthwall.dev/N1SQku71TCtEdihGY536XloXm7p9ars6HeUEzZ389aA/w:720/sm:1/enc/HafA-XrP8Dm7DAG7/mlHxTDq6gYv1HvJn/dt5ENpeMzeJiiqG_/WnsjHJckeg0qgr2L/qHw8Eby9oTCdImWf/YiYADH7vSaDZKT-V/9pJpWFcTMfU5Sov3/DaCNN5q7A0C6TsdP/AwyttV7NLYwxJ0DT/ohJtOP8FAM0ElwxA/L_v_VszokNGUUWVf/EFdx85otb3iJV9G8/-IVqmT6AP3VX2isk/10TsREtzuzXHEkN_/Pr_TaDrTjwA.jpg" loading="lazy" alt="RAPFORCE38 — Hoodie Arche (Noir)">
-          </div>
+            <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+          </a>
           <div class="sw-card-body">
-            <span class="sw-card-cat">Hoodie · Broderie Arche</span>
-            <h3 class="sw-card-title">RAPFORCE38 — Hoodie Arche (Noir)</h3>
+            <div class="sw-card-cat">
+              <span>Hoodie Luxe · Broderie Arche</span>
+              <span style="color:#ff9800;font-weight:800;">RAPFORCE38</span>
+            </div>
+            <a href="streetwear-product.html?id=rapforce-hoodie-arche" class="sw-card-title-link">
+              <h3 class="sw-card-title">RAPFORCE38 — Hoodie Arche (Noir)</h3>
+            </a>
+            <div class="sw-card-sizes">
+              <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+            </div>
             <div class="sw-card-foot">
               <span class="sw-card-price">53,57 €</span>
-              <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/rapforce38-hoodie-arche-noir" target="_blank" rel="noopener">
-                Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
+              <div class="sw-card-actions">
+                <a class="sw-card-view-btn" href="streetwear-product.html?id=rapforce-hoodie-arche">
+                  <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+                </a>
+              </div>
             </div>
           </div>
         </article>
 
         <!-- 2. Rapforce38 Jogging Molleton -->
-        <article class="sw-card" data-cat="jogging">
-          <div class="sw-card-img">
-            <span class="sw-card-badge rapforce">Rapforce38</span>
+        <article class="sw-card" data-cat="jogging" data-brand="rapforce" data-price="49.10" data-name="RAPFORCE38 — Jogging Molleton (Noir)">
+          <a href="streetwear-product.html?id=rapforce-jogging" class="sw-card-img-link">
+            <div class="sw-card-badges">
+              <span class="sw-card-badge rapforce"><i class="fa-solid fa-fire"></i> RAPFORCE38</span>
+            </div>
             <img src="https://imgproxy.fourthwall.dev/PR7C-q0DEYqIxXpBJqWLJHLZ_gSN4n1Ryy1zUEGv1Zk/w:720/sm:1/enc/CL_Wiu7zIalamUud/paKcN7cbQcqn-QEI/GYrs95YMVcFeHy63/fpO4s-xvchU-uJcF/_DP4KOo269DnPVFR/DxKbjfhYuW3_jGzm/g5kgohq063r541fh/XU_GXA6HF3NTbqzm/faY2VlvKFGCf50Nq/bnBqzS181UUggoYb/IBYfKo6vMfmUftDz/dCk3MNl3wMx3T2hn/3lvMlKtVa3ilr9FS/hP9fTvylVUT2Wbuf/BQ9R1Ol48-c.jpg" loading="lazy" alt="RAPFORCE38 — Jogging Molleton (Noir)">
-          </div>
+            <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+          </a>
           <div class="sw-card-body">
-            <span class="sw-card-cat">Bas · Molleton Lourd Premium</span>
-            <h3 class="sw-card-title">RAPFORCE38 — Jogging Molleton (Noir)</h3>
+            <div class="sw-card-cat">
+              <span>Bas · Molleton Lourd Premium</span>
+              <span style="color:#ff9800;font-weight:800;">RAPFORCE38</span>
+            </div>
+            <a href="streetwear-product.html?id=rapforce-jogging" class="sw-card-title-link">
+              <h3 class="sw-card-title">RAPFORCE38 — Jogging Molleton (Noir)</h3>
+            </a>
+            <div class="sw-card-sizes">
+              <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+            </div>
             <div class="sw-card-foot">
               <span class="sw-card-price">49,10 €</span>
-              <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/rapforce38-jogging-molleton-noir" target="_blank" rel="noopener">
-                Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
+              <div class="sw-card-actions">
+                <a class="sw-card-view-btn" href="streetwear-product.html?id=rapforce-jogging">
+                  <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+                </a>
+              </div>
             </div>
           </div>
         </article>
 
         <!-- 3. Rapforce38 T-Shirt Texte -->
-        <article class="sw-card" data-cat="tshirts">
-          <div class="sw-card-img">
-            <span class="sw-card-badge rapforce">Rapforce38</span>
+        <article class="sw-card" data-cat="tshirts" data-brand="rapforce" data-price="22.32" data-name="RAPFORCE38 — T-Shirt Texte (Noir)">
+          <a href="streetwear-product.html?id=rapforce-tee-texte" class="sw-card-img-link">
+            <div class="sw-card-badges">
+              <span class="sw-card-badge rapforce"><i class="fa-solid fa-fire"></i> RAPFORCE38</span>
+            </div>
             <img src="https://imgproxy.fourthwall.dev/I3nP-uTIPIoHl7rkygy-KzEe-87PhgeatnbJGHoM14U/w:720/sm:1/enc/7p4uRmEOCbWEbpUz/49_YOd3yL7C4i0RP/5UH0b80R1TTE5AV8/gvp2gWVi0jmrpR5n/cSrme73JyYaDtdgt/xSBEojyS_WKI1YS6/FZXu5U_U7OWJgk6V/rrXZQ5g3UBS77N_J/7S__2lcK9YM3tF_Y/PwEbZAvbJNTJeCLU/RZcpeEgfEgCizV6N/8ok730nAb1PjTsfo/sNyYlnJIWvk1ePzY/fKA1z2s2LX8JIciz/_dpqj7DLKiQ.jpg" loading="lazy" alt="RAPFORCE38 — T-Shirt Texte (Noir)">
-          </div>
+            <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+          </a>
           <div class="sw-card-body">
-            <span class="sw-card-cat">T-Shirt · Coton Noir</span>
-            <h3 class="sw-card-title">RAPFORCE38 — T-Shirt Texte (Noir)</h3>
+            <div class="sw-card-cat">
+              <span>T-Shirt · Coton Noir</span>
+              <span style="color:#ff9800;font-weight:800;">RAPFORCE38</span>
+            </div>
+            <a href="streetwear-product.html?id=rapforce-tee-texte" class="sw-card-title-link">
+              <h3 class="sw-card-title">RAPFORCE38 — T-Shirt Texte (Noir)</h3>
+            </a>
+            <div class="sw-card-sizes">
+              <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+            </div>
             <div class="sw-card-foot">
               <span class="sw-card-price">22,32 €</span>
-              <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/rapforce38-t-shirt-texte-noir" target="_blank" rel="noopener">
-                Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
+              <div class="sw-card-actions">
+                <a class="sw-card-view-btn" href="streetwear-product.html?id=rapforce-tee-texte">
+                  <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+                </a>
+              </div>
             </div>
           </div>
         </article>
 
         <!-- 4. Rapforce38 T-Shirt Logo -->
-        <article class="sw-card" data-cat="tshirts">
-          <div class="sw-card-img">
-            <span class="sw-card-badge rapforce">Rapforce38</span>
+        <article class="sw-card" data-cat="tshirts" data-brand="rapforce" data-price="22.32" data-name="RAPFORCE38 — T-Shirt Logo (Noir)">
+          <a href="streetwear-product.html?id=rapforce-tee-logo" class="sw-card-img-link">
+            <div class="sw-card-badges">
+              <span class="sw-card-badge rapforce"><i class="fa-solid fa-fire"></i> RAPFORCE38</span>
+            </div>
             <img src="https://imgproxy.fourthwall.dev/buVihei2rfBO9mEwwRrufMblIqKwI_A_fsTDrInXsr4/w:720/sm:1/enc/3MFPSlBhAhz8iyM6/lI139W8IWbkCFxQh/iNvn3LS_8iRbpwTt/Jj_nosdVceNnuZmV/jleq_hUUWxBHV1TI/b3E78nFTlXFHk8kA/jUETCNDPqvgwJ8XF/p4z_eBeh7XPY8RZA/CmCosDBOoySbbctN/TFDbFyJanvoAssVL/G-iKNZnruRcAbkSE/VVAtfc6_r1MvK46u/7rGkGSBCZfgCejcW/QJpMzxwkDFmNaMbC/NfCVL1j3ap0.jpg" loading="lazy" alt="RAPFORCE38 — T-Shirt Logo (Noir)">
-          </div>
+            <div class="sw-video-badge-hover"><i class="fa-solid fa-circle-play"></i> Voir Présentation &amp; Vidéo</div>
+          </a>
           <div class="sw-card-body">
-            <span class="sw-card-cat">T-Shirt · Logo Poitrine</span>
-            <h3 class="sw-card-title">RAPFORCE38 — T-Shirt Logo (Noir)</h3>
+            <div class="sw-card-cat">
+              <span>T-Shirt · Logo Poitrine</span>
+              <span style="color:#ff9800;font-weight:800;">RAPFORCE38</span>
+            </div>
+            <a href="streetwear-product.html?id=rapforce-tee-logo" class="sw-card-title-link">
+              <h3 class="sw-card-title">RAPFORCE38 — T-Shirt Logo (Noir)</h3>
+            </a>
+            <div class="sw-card-sizes">
+              <span class="sw-size-pill">S</span><span class="sw-size-pill">M</span><span class="sw-size-pill">L</span><span class="sw-size-pill">XL</span><span class="sw-size-pill">2XL</span>
+            </div>
             <div class="sw-card-foot">
               <span class="sw-card-price">22,32 €</span>
-              <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/products/rapforce38-t-shirt-logo-noir" target="_blank" rel="noopener">
-                Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
+              <div class="sw-card-actions">
+                <a class="sw-card-view-btn" href="streetwear-product.html?id=rapforce-tee-logo">
+                  <i class="fa-solid fa-play"></i> Vidéo &amp; Fiche
+                </a>
+              </div>
             </div>
           </div>
         </article>
@@ -1297,27 +1913,42 @@
       </div>
     </section>
 
+    <!-- Empty search fallback block -->
+    <div class="sw-empty-results" id="swEmptyResults">
+      <i class="fa-solid fa-box-open"></i>
+      <h3>Aucun article correspondant</h3>
+      <p>Aucun produit ne correspond à votre recherche. Essayez avec d'autres mots-clés ou réinitialisez les filtres.</p>
+      <button class="sw-btn-ghost" id="swResetFiltersBtn"><i class="fa-solid fa-rotate-left"></i> Réinitialiser les filtres</button>
+    </div>
+
     <!-- Guarantees / Store Info -->
     <section class="sw-info-banner">
       <div class="sw-info-item">
         <i class="fa-solid fa-truck-fast"></i>
         <div>
-          <h4>Livraison Rapide</h4>
-          <p>Production et expédition directe depuis l'Europe et les États-Unis avec suivi de commande.</p>
+          <h4>Livraison Rapide avec Suivi</h4>
+          <p>Production et expédition directe depuis l'Europe et les États-Unis avec suivi en temps réel de votre colis.</p>
         </div>
       </div>
       <div class="sw-info-item">
         <i class="fa-solid fa-shield-halved"></i>
         <div>
           <h4>Paiement 100% Sécurisé</h4>
-          <p>Transactions protégées par Stripe, Apple Pay, Google Pay et cartes bancaires via Fourthwall.</p>
+          <p>Transactions protégées par Stripe, Apple Pay, Google Pay et cartes bancaires via la plateforme Fourthwall.</p>
         </div>
       </div>
       <div class="sw-info-item">
         <i class="fa-solid fa-shirt"></i>
         <div>
           <h4>Qualité Textile Supérieure</h4>
-          <p>Coton lourd premium, coupes streetwear soignées et impressions durables haute définition.</p>
+          <p>Coton lourd 240-380 GSM, coupes streetwear amples et impressions durables haute définition.</p>
+        </div>
+      </div>
+      <div class="sw-info-item">
+        <i class="fa-brands fa-discord"></i>
+        <div>
+          <h4>Support &amp; Communauté</h4>
+          <p>Assistance directe par e-mail et sur le Discord officiel de DJBILBOX BEATS pour toute question.</p>
         </div>
       </div>
     </section>
@@ -1325,59 +1956,176 @@
   </main>
 </div>
 
-<script src="assets/js/site.js?v=26092702"></script>
+<script src="assets/js/site.js?v=26092705"></script>
 <script>
-// Filter by category
 (function(){
+  // Elements
   var tabs = document.querySelectorAll('.sw-tab');
+  var brandChips = document.querySelectorAll('.sw-brand-chip');
   var cards = document.querySelectorAll('.sw-card');
+  var searchInput = document.getElementById('swSearchInput');
+  var searchClear = document.getElementById('swSearchClear');
+  var sortSelect = document.getElementById('swSortSelect');
+  var resultsCount = document.getElementById('swResultsCount');
+  var emptyResults = document.getElementById('swEmptyResults');
+  var resetFiltersBtn = document.getElementById('swResetFiltersBtn');
 
+  // State
+  var currentCat = 'all';
+  var currentBrand = 'all';
+  var searchQuery = '';
+
+  function applyFilters(){
+    var visibleCount = 0;
+    var query = searchQuery.trim().toLowerCase();
+
+    cards.forEach(function(card){
+      var cardCat = card.getAttribute('data-cat') || '';
+      var cardBrand = card.getAttribute('data-brand') || '';
+      var cardName = (card.getAttribute('data-name') || '').toLowerCase();
+      var cardText = card.textContent.toLowerCase();
+
+      var matchCat = (currentCat === 'all' || cardCat === currentCat);
+      var matchBrand = (currentBrand === 'all' || cardBrand === currentBrand);
+      var matchSearch = (!query || cardName.indexOf(query) !== -1 || cardText.indexOf(query) !== -1);
+
+      if(matchCat && matchBrand && matchSearch){
+        card.style.display = 'flex';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if(resultsCount){
+      resultsCount.innerHTML = 'Affichage de <strong>' + visibleCount + '</strong> article' + (visibleCount > 1 ? 's' : '');
+    }
+
+    if(emptyResults){
+      emptyResults.style.display = (visibleCount === 0) ? 'block' : 'none';
+    }
+  }
+
+  // Category Tabs
   tabs.forEach(function(tab){
     tab.addEventListener('click', function(){
       tabs.forEach(function(t){ t.classList.remove('active'); });
       tab.classList.add('active');
-
-      var filter = tab.getAttribute('data-filter');
-      cards.forEach(function(card){
-        if(filter === 'all' || card.getAttribute('data-cat') === filter){
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      currentCat = tab.getAttribute('data-filter') || 'all';
+      applyFilters();
     });
   });
-})();
 
-// Video Spot Switcher
-(function(){
+  // Brand Chips
+  brandChips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      brandChips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      currentBrand = chip.getAttribute('data-brand') || 'all';
+      applyFilters();
+    });
+  });
+
+  // Search input
+  if(searchInput){
+    searchInput.addEventListener('input', function(){
+      searchQuery = this.value;
+      if(searchClear){
+        searchClear.style.display = searchQuery ? 'block' : 'none';
+      }
+      applyFilters();
+    });
+  }
+
+  if(searchClear){
+    searchClear.addEventListener('click', function(){
+      if(searchInput){
+        searchInput.value = '';
+        searchQuery = '';
+        searchClear.style.display = 'none';
+        searchInput.focus();
+        applyFilters();
+      }
+    });
+  }
+
+  // Reset Filters
+  if(resetFiltersBtn){
+    resetFiltersBtn.addEventListener('click', function(){
+      currentCat = 'all';
+      currentBrand = 'all';
+      searchQuery = '';
+      if(searchInput) searchInput.value = '';
+      if(searchClear) searchClear.style.display = 'none';
+
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      if(tabs[0]) tabs[0].classList.add('active');
+
+      brandChips.forEach(function(c){ c.classList.remove('active'); });
+      if(brandChips[0]) brandChips[0].classList.add('active');
+
+      applyFilters();
+    });
+  }
+
+  // Sorting
+  if(sortSelect){
+    sortSelect.addEventListener('change', function(){
+      var val = this.value;
+      var humpireContainer = document.getElementById('humpireGrid');
+      var rapforceContainer = document.getElementById('rapforceGrid');
+
+      function sortContainer(container){
+        if(!container) return;
+        var items = Array.from(container.querySelectorAll('.sw-card'));
+        items.sort(function(a, b){
+          var priceA = parseFloat(a.getAttribute('data-price')) || 0;
+          var priceB = parseFloat(b.getAttribute('data-price')) || 0;
+          var nameA = (a.getAttribute('data-name') || '').toLowerCase();
+          var nameB = (b.getAttribute('data-name') || '').toLowerCase();
+
+          if(val === 'price-asc') return priceA - priceB;
+          if(val === 'price-desc') return priceB - priceA;
+          if(val === 'name-asc') return nameA.localeCompare(nameB);
+          return 0;
+        });
+        items.forEach(function(item){ container.appendChild(item); });
+      }
+
+      sortContainer(humpireContainer);
+      sortContainer(rapforceContainer);
+    });
+  }
+
+  // Video Spot Switcher
   var videoItems = document.querySelectorAll('.sw-video-item');
   var mainFrame = document.getElementById('mainSpotFrame');
   var videoTitle = document.getElementById('currentVideoTitle');
 
-  if(!videoItems.length || !mainFrame) return;
+  if(videoItems.length && mainFrame){
+    videoItems.forEach(function(item){
+      item.addEventListener('click', function(){
+        var vid = item.getAttribute('data-vid');
+        var title = item.getAttribute('data-title');
 
-  videoItems.forEach(function(item){
-    item.addEventListener('click', function(){
-      var vid = item.getAttribute('data-vid');
-      var title = item.getAttribute('data-title');
+        videoItems.forEach(function(v){ v.classList.remove('active'); });
+        item.classList.add('active');
 
-      videoItems.forEach(function(v){ v.classList.remove('active'); });
-      item.classList.add('active');
-
-      if(title && videoTitle){
-        videoTitle.textContent = title;
-      }
-
-      if(vid){
-        if(vid.indexOf('list=') !== -1){
-          mainFrame.src = 'https://www.youtube-nocookie.com/embed/' + vid + '&autoplay=1&rel=0';
-        } else {
-          mainFrame.src = 'https://www.youtube-nocookie.com/embed/' + vid + '?autoplay=1&enablejsapi=1&rel=0';
+        if(title && videoTitle){
+          videoTitle.textContent = title;
         }
-      }
+
+        if(vid){
+          if(vid.indexOf('list=') !== -1){
+            mainFrame.src = 'https://www.youtube-nocookie.com/embed/' + vid + '&autoplay=1&rel=0';
+          } else {
+            mainFrame.src = 'https://www.youtube-nocookie.com/embed/' + vid + '?autoplay=1&enablejsapi=1&rel=0';
+          }
+        }
+      });
     });
-  });
+  }
+
 })();
 </script>
 </body>
