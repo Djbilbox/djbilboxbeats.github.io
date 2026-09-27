@@ -3,773 +3,793 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HUMPIRE STREETWEAR — by Djbilbox BEATS</title>
-<meta name="description" content="HUMPIRE STREETWEAR by Djbilbox BEATS — casquettes à la bombe, survêtements au médaillon dromadaire, sacoches argent et or, maillots racing imprimés intégralement, et le maillot de foot de 24 pays.">
-<meta name="keywords" content="humpire streetwear, humpire vetements, djbilbox beats streetwear, casquette graffiti humpire, survetement medaillon dromadaire, sacoche humpire doré, maillot racing motocross, maillot foot humpire, collection pays">
-<link rel="canonical" href="https://djbilboxbeats.com/streetwear.html">
+<title>HUMPIRE STREETWEAR — Boutique Officielle Fourthwall</title>
+<meta name="description" content="Boutique officielle HUMPIRE STREETWEAR par Djbilbox BEATS sur Fourthwall — Hoodies, Pulls, Balaclava, T-Shirts Oversize, Jogging et Accessoires.">
+<meta name="keywords" content="humpire streetwear, humpire corporation, djbilbox beats merch, fourthwall humpire, hoodie humpire, t-shirt oversize humpire, balaclava humpire">
+<link rel="canonical" href="https://humpireplugins.netlify.app/streetwear.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="HUMPIRE STREETWEAR — by Djbilbox BEATS">
-<meta property="og:description" content="Casquettes à la bombe, survêtements au médaillon, sacoches argent et or, maillots racing. Et le maillot de ton pays parmi 24. Drop 01 en ligne.">
-<meta property="og:image" content="https://djbilboxbeats.com/img/streetwear/art-bombe-neon.png">
-<meta property="og:url" content="https://djbilboxbeats.com/streetwear.html">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="HUMPIRE STREETWEAR — by Djbilbox BEATS">
-<meta name="twitter:description" content="Cinq signatures, une marque. Et le maillot de ton pays parmi 24.">
-<meta name="twitter:image" content="https://djbilboxbeats.com/img/streetwear/art-bombe-neon.png">
+<meta property="og:title" content="HUMPIRE STREETWEAR — Boutique Officielle Fourthwall">
+<meta property="og:description" content="Découvrez toute la collection officielle HUMPIRE STREETWEAR : hoodies, pulls, balaclava, t-shirts oversize et accessoires.">
+<meta property="og:image" content="https://humpireplugins.netlify.app/img/humpire-logo.png">
+<meta property="og:url" content="https://humpireplugins.netlify.app/streetwear.html">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="assets/css/theme.css?v=26082801">
+<link rel="stylesheet" href="assets/css/theme.css?v=26092701">
+<link rel="stylesheet" href="assets/css/modern-effects.css?v=26092701">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Brand",
-  "name": "HUMPIRE STREETWEAR",
-  "slogan": "by Djbilbox BEATS",
-  "logo": "https://djbilboxbeats.com/img/humpire-logo.png",
-  "url": "https://djbilboxbeats.com/streetwear.html",
-  "description": "Marque de streetwear par Djbilbox BEATS. Cinq signatures : le nom à la bombe sur les casquettes, le médaillon dromadaire sur les survêtements et manteaux, le nom en argenté ou doré sur les sacoches, les imprimés racing sur les maillots, et le maillot de foot de 24 pays.",
-  "parentOrganization": { "@type": "Organization", "name": "DJBILBOX BEATS" }
-}
-</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@600;700;800&display=swap">
 
 <style>
-/* ============================================================
-   HUMPIRE STREETWEAR — bloc scopé, thème sombre assumé.
-   Cadre de marque = noir + or + chrome ; chaque signature
-   apporte son accent via --c1/--c2.
-   ============================================================ */
-.sw{
-  --sw-bg:#0B0B0C; --sw-surface:#141412; --sw-surface-2:#1C1B17;
-  --sw-line:#302C22; --sw-line-2:#241f18;
-  --sw-ink:#F3EFE4; --sw-dim:#A79E89; --sw-faint:#6c6455;
-  --sw-gold:#DEB863; --sw-gold-2:#8a6a24; --sw-chrome:#C8CAD0; --sw-emerald:#2F9E76;
-  --sw-foil:linear-gradient(96deg,#8a6a24 0%,#c7a24e 24%,#f3da9c 46%,#ffedbf 52%,#d0a745 66%,#9a7a2e 86%,#7a5d22 100%);
-  --sw-max:1200px;
-  --c1:#DEB863; --c2:#C8CAD0;
-  background:var(--sw-bg); color:var(--sw-ink);
-  font-family:var(--font); overflow-x:hidden;
+.sw-page{
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 60px;
 }
-.sw *{box-sizing:border-box}
-.sw-in{max-width:var(--sw-max);margin:0 auto;padding:0 24px}
-.sw a{color:inherit;text-decoration:none}
-.sw img{display:block;max-width:100%}
-.sw ::selection{background:var(--sw-gold);color:#0B0B0C}
-.sw h1,.sw h2,.sw h3,.sw .sw-word{
-  font-family:'Anton','Arial Narrow','Rajdhani',sans-serif;
-  font-weight:400;text-transform:uppercase;letter-spacing:.015em;line-height:.94;
+.sw-hero-banner{
+  position: relative;
+  overflow: hidden;
+  padding: 54px 0 36px;
+  background: radial-gradient(800px 420px at 50% 20%, rgba(217,101,40,0.18), transparent 70%), var(--surface);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
 }
-.sw p{margin:0}
-.sw-eyebrow{font-family:'Rajdhani',var(--font);font-size:.74rem;font-weight:700;letter-spacing:.32em;
-  text-transform:uppercase;color:var(--sw-gold);display:flex;align-items:center;gap:10px;justify-content:center}
-.sw-eyebrow::before,.sw-eyebrow::after{content:"";height:1px;width:34px;background:linear-gradient(90deg,transparent,var(--sw-gold-2))}
-.sw-eyebrow::after{background:linear-gradient(90deg,var(--sw-gold-2),transparent)}
-
-/* ---------------- HERO ---------------- */
-.sw-hero{position:relative;text-align:center;padding:clamp(44px,8vw,92px) 0 clamp(34px,6vw,64px);overflow:hidden}
-.sw-hero::before{content:"";position:absolute;inset:-20% 0 auto 50%;transform:translateX(-50%);
-  width:min(760px,120vw);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle,rgba(47,158,118,.20),rgba(47,158,118,.05) 45%,transparent 70%);
-  animation:swGlow 7s ease-in-out infinite}
-@keyframes swGlow{0%,100%{opacity:.7;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.06)}}
-.sw-hero-in{position:relative;max-width:860px;margin:0 auto;padding:0 24px}
-.sw-medal{width:clamp(118px,23vw,168px);height:auto;margin:0 auto 18px;
-  filter:drop-shadow(0 18px 40px rgba(0,0,0,.6)) drop-shadow(0 0 34px rgba(47,158,118,.22))}
-.sw-word{font-size:clamp(3.2rem,14vw,7.6rem);
-  background:var(--sw-foil);background-size:230% 100%;background-position:42% 0;
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:swSheen 2.8s cubic-bezier(.2,.6,.2,1) .1s 1 both}
-@keyframes swSheen{from{background-position:130% 0}to{background-position:14% 0}}
-.sw-sub{margin-top:8px;font-family:'Rajdhani',var(--font);font-weight:700;
-  font-size:clamp(.88rem,2.4vw,1.12rem);letter-spacing:.42em;text-transform:uppercase;color:var(--sw-chrome)}
-.sw-tag{margin:20px auto 0;max-width:48ch;color:var(--sw-dim);font-size:1.02rem;line-height:1.62}
-.sw-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
-.sw-btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:2px;
-  font-family:'Rajdhani',var(--font);font-weight:700;font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;
-  border:1px solid var(--sw-line);transition:transform .16s ease,border-color .16s ease,background .16s ease}
-.sw-btn.go{background:var(--sw-foil);background-size:180% 100%;color:#140f04;border-color:transparent}
-.sw-btn.go:hover{transform:translateY(-2px);background-position:100% 0}
-.sw-btn.ghost{color:var(--sw-ink)}
-.sw-btn.ghost:hover{border-color:var(--sw-gold);color:var(--sw-gold);transform:translateY(-2px)}
-.sw-micro{margin-top:16px;font-family:'Rajdhani',var(--font);font-size:.76rem;font-weight:600;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--sw-faint)}
-.sw-jump{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:24px}
-.sw-jump a{font-family:'Rajdhani',var(--font);font-weight:700;font-size:.72rem;letter-spacing:.14em;
-  text-transform:uppercase;border:1px solid var(--sw-line);padding:7px 13px;color:var(--sw-dim);transition:.16s}
-.sw-jump a:hover{color:var(--sw-ink);border-color:var(--sw-gold)}
-.sw-jump a i{font-size:.62rem;margin-right:6px}
-.sw-jump .j1 i{color:#F45BD6}.sw-jump .j2 i{color:#DEB863}
-.sw-jump .j3 i{color:#C8CAD0}.sw-jump .j4 i{color:#2F9E76}
-.sw-jump .j5 i{color:#E01E37}
-
-/* ---------------- MANIFESTO ---------------- */
-.sw-manifesto{background:linear-gradient(180deg,var(--sw-surface),var(--sw-bg)),var(--sw-bg);
-  border-top:1px solid var(--sw-line-2);border-bottom:1px solid var(--sw-line-2)}
-.sw-manifesto .sw-in{padding-top:clamp(34px,6vw,58px);padding-bottom:clamp(34px,6vw,58px);text-align:center}
-.sw-manifesto p{max-width:44ch;margin:0 auto;font-family:'Anton',sans-serif;text-transform:uppercase;
-  font-size:clamp(1.4rem,4vw,2.4rem);line-height:1.16}
-.sw-manifesto p b{background:var(--sw-foil);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sw-manifesto .em{color:var(--sw-emerald)}
-
-/* ---------------- SIGNATURE ---------------- */
-.sw-col{padding:clamp(42px,7vw,76px) 0;border-top:1px solid var(--sw-line-2)}
-.sw-col-head{display:grid;gap:26px;align-items:center;margin-bottom:clamp(24px,4vw,38px)}
-@media(min-width:880px){.sw-col-head{grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:44px}}
-.sw-plate{position:relative;border:1px solid var(--sw-line);overflow:hidden;
-  aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;padding:22px;
-  background:
-    radial-gradient(circle at 50% 44%,color-mix(in srgb,var(--c1) 15%,transparent),transparent 66%),
-    repeating-linear-gradient(-45deg,rgba(255,255,255,.012) 0 2px,transparent 2px 10px),
-    #08080a}
-.sw-plate img,.sw-plate svg{width:100%;height:auto;max-height:100%;object-fit:contain}
-.sw-plate .plate-tag{position:absolute;left:12px;bottom:10px;font-family:'Rajdhani',var(--font);
-  font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sw-faint)}
-.sw-col-copy .num{font-family:'Anton',sans-serif;font-size:.9rem;letter-spacing:.22em;color:var(--c1)}
-.sw-col-copy h2{margin:10px 0 6px;font-size:clamp(2rem,6vw,3.4rem);color:var(--c1)}
-.sw-col-copy .kicker{font-family:'Rajdhani',var(--font);font-weight:700;font-size:.8rem;
-  letter-spacing:.24em;text-transform:uppercase;color:var(--c2)}
-.sw-col-copy p{margin-top:16px;color:var(--sw-dim);line-height:1.65;max-width:52ch}
-.sw-col-copy .specs{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
-.sw-col-copy .specs span{font-family:'Rajdhani',var(--font);font-size:.68rem;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--sw-dim);border:1px solid var(--sw-line);padding:4px 9px}
-.sw-col-copy .specs span.lead{color:#0d0d0d;background:var(--c1);border-color:transparent;font-weight:700}
-
-.sw-pieces{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
-.sw-piece{background:var(--sw-surface);border:1px solid var(--sw-line);overflow:hidden;
-  display:flex;flex-direction:column;transition:border-color .18s ease,transform .18s ease}
-.sw-piece:hover{border-color:color-mix(in srgb,var(--c1) 55%,var(--sw-line));transform:translateY(-3px)}
-.sw-piece img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-bottom:1px solid var(--sw-line)}
-.sw-piece-body{padding:12px 13px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
-.sw-piece .ref{font-family:'Rajdhani',var(--font);font-size:.62rem;font-weight:700;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--sw-faint)}
-.sw-piece h3{font-size:.98rem}
-.sw-piece .fin{font-family:'Rajdhani',var(--font);font-size:.68rem;font-weight:600;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--c1);margin-top:auto;padding-top:4px}
-/* une pièce achetable : la carte devient un lien, le prix remplace la finition */
-a.sw-piece{text-decoration:none}
-a.sw-piece:hover img{opacity:.92}
-.sw-piece .buy{display:flex;align-items:baseline;justify-content:space-between;gap:8px;
-  margin-top:auto;padding-top:6px}
-.sw-piece .buy .price{font-family:'Anton',sans-serif;font-size:1.15rem;color:var(--sw-ink)}
-.sw-piece .buy .go{font-family:'Rajdhani',var(--font);font-size:.68rem;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--c1)}
-a.sw-piece:hover .buy .go::after{content:" 92"}
-.sw-piece .soon{font-family:'Rajdhani',var(--font);font-size:.68rem;font-weight:600;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--sw-faint);margin-top:auto;padding-top:6px}
-
-/* ---------------- PAYS ---------------- */
-.sw-pays{padding:clamp(42px,7vw,80px) 0;border-top:1px solid var(--sw-line-2);
-  --f1:#0055A4; --f2:#FFFFFF; --f3:#EF4135;
-  background:radial-gradient(700px 380px at 50% 0%,rgba(255,255,255,.035),transparent 70%),var(--sw-bg)}
-.sw-pays-head{text-align:center;max-width:660px;margin:0 auto clamp(24px,4vw,36px)}
-.sw-pays-head h2{margin-top:14px;font-size:clamp(1.9rem,5.4vw,3.1rem)}
-.sw-pays-head h2 em{font-style:normal;
-  background:linear-gradient(96deg,var(--f1),var(--f2) 50%,var(--f3));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.sw-pays-head p{margin-top:14px;color:var(--sw-dim);line-height:1.6}
-  text-transform:uppercase;color:var(--sw-chrome);text-align:center;margin-bottom:14px}
-  text-transform:uppercase;color:var(--sw-dim);background:var(--sw-surface);
-  border:1px solid var(--sw-line);padding:8px 13px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
-  transition:border-color .16s ease,color .16s ease,transform .16s ease}
-  background:radial-gradient(circle at 50% 44%,rgba(255,255,255,.05),transparent 62%),#08080a;
-  border-bottom:1px solid var(--sw-line);min-height:190px}
-.sw-pays-note{margin-top:22px;text-align:center;font-family:'Rajdhani',var(--font);font-size:.76rem;
-  font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sw-faint)}
-
-/* ---------------- WAITLIST ---------------- */
-.sw-band{text-align:center;padding:clamp(44px,7vw,80px) 0;position:relative;overflow:hidden;
-  background:radial-gradient(680px 340px at 50% 0%,rgba(47,158,118,.14),transparent 68%),
-    linear-gradient(180deg,var(--sw-surface),var(--sw-bg));border-top:1px solid var(--sw-line-2)}
-.sw-band h2{font-size:clamp(1.8rem,5vw,3.1rem)}
-.sw-band h2 span{background:var(--sw-foil);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sw-band p{max-width:44ch;margin:16px auto 0;color:var(--sw-dim);line-height:1.6}
-
-/* ---------------- FAQ ---------------- */
-.sw-sec{padding:clamp(40px,7vw,72px) 0;border-top:1px solid var(--sw-line-2)}
-.sw-sec-head{text-align:center;max-width:640px;margin:0 auto clamp(26px,4vw,42px)}
-.sw-sec-head h2{margin-top:14px;font-size:clamp(1.7rem,4.6vw,2.7rem)}
-.sw-faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
-.sw-faq details{border:1px solid var(--sw-line);background:var(--sw-surface)}
-.sw-faq summary{list-style:none;cursor:pointer;padding:15px 18px;font-family:'Rajdhani',var(--font);
-  font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.92rem;
-  display:flex;justify-content:space-between;align-items:center;gap:12px}
-.sw-faq summary::-webkit-details-marker{display:none}
-.sw-faq summary::after{content:"+";color:var(--sw-gold);font-size:1.2rem;font-family:'Anton',sans-serif}
-.sw-faq details[open] summary::after{content:"\2013"}
-.sw-faq p{padding:0 18px 16px;color:var(--sw-dim);line-height:1.6;font-size:.92rem}
-.sw-faq a{color:var(--sw-gold)}
-
-/* ---------------- RACING ---------------- */
-.sw-race{display:grid;grid-template-columns:1fr;gap:14px}
-@media(min-width:720px){.sw-race{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1040px){.sw-race{grid-template-columns:repeat(4,1fr)}}
-.sw-race figure{margin:0;background:var(--sw-surface);border:1px solid var(--sw-line);overflow:hidden;
-  transition:border-color .18s ease,transform .18s ease}
-.sw-race figure:hover{border-color:color-mix(in srgb,var(--c1) 55%,var(--sw-line));transform:translateY(-3px)}
-.sw-race img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-bottom:1px solid var(--sw-line)}
-.sw-race figcaption{padding:12px 13px 14px}
-.sw-race figcaption h3{font-size:.98rem}
-.sw-race figcaption p{margin-top:5px;color:var(--sw-dim);font-size:.82rem;line-height:1.5}
-.sw-marks{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
-@media(min-width:720px){.sw-marks{grid-template-columns:repeat(3,1fr)}}
-.sw-marks figure{margin:0;background:#08080a;border:1px solid var(--sw-line);overflow:hidden}
-.sw-marks img{width:100%;height:auto;object-fit:contain;background:#08080a}
-.sw-marks figcaption{padding:10px 13px 13px;font-family:'Rajdhani',var(--font);font-size:.72rem;
-  font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sw-dim)}
-
-/* ---------------- MAILLOTS PAYS ---------------- */
-.sw-kit-search{display:flex;justify-content:center;margin:0 0 22px}
-.sw-kit-search input{width:min(340px,100%);background:var(--sw-surface);border:1px solid var(--sw-line);
-  color:var(--sw-ink);font-family:'Rajdhani',var(--font);font-weight:600;font-size:.86rem;
-  letter-spacing:.1em;text-transform:uppercase;padding:11px 14px;border-radius:2px}
-.sw-kit-search input::placeholder{color:var(--sw-faint)}
-.sw-kit-search input:focus{outline:none;border-color:var(--sw-gold)}
-.sw-kits{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
-.sw-kit{background:var(--sw-surface);border:1px solid var(--sw-line);overflow:hidden;
-  transition:border-color .18s ease,transform .18s ease}
-.sw-kit:hover{border-color:var(--sw-gold);transform:translateY(-3px)}
-.sw-kit img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-bottom:1px solid var(--sw-line)}
-.sw-kit span{display:block;padding:9px 11px 11px;font-family:'Rajdhani',var(--font);font-weight:700;
-  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sw-dim)}
-.sw-kit[hidden]{display:none}
-.sw-kits-empty{text-align:center;color:var(--sw-faint);font-family:'Rajdhani',var(--font);
-  font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;padding:26px 0}
-
-/* ---------------- reveal ---------------- */
-.sw-reveal-ready .sw-reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
-.sw-reveal-ready .sw-reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  .sw-hero::before{animation-duration:16s}
-  .sw-word{animation:none;background-position:42% 0}
+.sw-hero-banner .logo-badge{
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  padding: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 24px var(--accent-glow);
 }
-@media (max-width:600px){
-  .sw-pieces{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
-  .sw-eyebrow::before,.sw-eyebrow::after{width:20px}
+.sw-hero-banner .logo-badge img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.sw-hero-banner h1{
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.sw-hero-banner h1 span{
+  background: linear-gradient(135deg, var(--accent-bright), var(--accent-plat));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sw-hero-banner p{
+  color: var(--text-2);
+  font-size: 1.05rem;
+  max-width: 580px;
+  margin: 0 auto 24px;
+  line-height: 1.6;
+}
+.sw-hero-actions{
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.sw-btn-fw{
+  background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 12px 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  box-shadow: 0 8px 24px var(--accent-glow);
+  transition: .2s ease;
+}
+.sw-btn-fw:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(217,101,40,0.45);
+}
+.sw-btn-ghost{
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 12px 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: .2s ease;
+}
+.sw-btn-ghost:hover{
+  border-color: var(--accent);
+  color: var(--accent-bright);
+}
+
+/* Category Filter Tabs */
+.sw-tabs-bar{
+  position: sticky;
+  top: calc(var(--hdr-h) + var(--ticker-h));
+  z-index: 850;
+  background: rgba(18,10,8,0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+}
+.sw-tabs{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sw-tabs::-webkit-scrollbar{ display: none; }
+.sw-tab{
+  flex: 0 0 auto;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: .18s ease;
+}
+.sw-tab:hover{
+  color: var(--text);
+  background: var(--surface-3);
+  border-color: var(--accent);
+}
+.sw-tab.active{
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+/* Product Cards Grid */
+.sw-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 32px;
+}
+.sw-card{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  position: relative;
+}
+.sw-card:hover{
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 0 20px var(--accent-glow);
+}
+.sw-card-img{
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.sw-card-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+.sw-card:hover .sw-card-img img{
+  transform: scale(1.05);
+}
+.sw-card-badge{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #fff;
+  z-index: 2;
+}
+.sw-card-badge.soldout{
+  background: #6a554c;
+  color: #d4a359;
+}
+.sw-card-badge.new{
+  background: var(--green);
+}
+.sw-card-body{
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+.sw-card-cat{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+}
+.sw-card-title{
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.sw-card-foot{
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+.sw-card-price{
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--accent-bright);
+}
+.sw-card-buy{
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 8px 14px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: .18s ease;
+}
+.sw-card-buy:hover{
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Info Banner */
+.sw-info-banner{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+.sw-info-item{
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.sw-info-item i{
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin-top: 2px;
+}
+.sw-info-item h4{
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+.sw-info-item p{
+  font-size: 0.84rem;
+  color: var(--text-2);
+  line-height: 1.5;
 }
 </style>
 </head>
-
 <body data-page="streetwear">
 
-<div class="sw">
+<div class="sw-page">
 
-  <!-- ==================== HERO ==================== -->
-  <header class="sw-hero">
-    <div class="sw-hero-in">
-      <img class="sw-medal" src="img/humpire-logo.png" width="500" height="500" alt="Logo HUMPIRE">
-      <p class="sw-eyebrow">La marque de vêtements</p>
-      <h1 class="sw-word">HUMPIRE</h1>
-      <p class="sw-sub">Streetwear · by Djbilbox BEATS</p>
-      <p class="sw-tag">
-        Cinq façons de porter le nom : à la bombe sur les casquettes, en médaillon sur les
-        survêtements, en argenté ou doré sur les sacoches, en imprimé racing sur les maillots.
-        Et vingt-quatre pays ont déjà le leur.
-      </p>
-      <div class="sw-jump">
-        <a class="j2" href="#nouvelle-collection"><i class="fa-solid fa-fire"></i> New Drop 2026</a>
-        <a class="j1" href="#bombe"><i class="fa-solid fa-circle"></i> 01 · À la bombe</a>
-        <a class="j2" href="#medaillon"><i class="fa-solid fa-circle"></i> 02 · Médaillon</a>
-        <a class="j3" href="#metal"><i class="fa-solid fa-circle"></i> 03 · Argent &amp; or</a>
-        <a class="j5" href="#racing"><i class="fa-solid fa-circle"></i> 04 · Racing</a>
-        <a class="j4" href="#pays"><i class="fa-solid fa-circle"></i> 05 · Pays</a>
+  <!-- Header Banner -->
+  <header class="sw-hero-banner">
+    <div class="container">
+      <div class="logo-badge">
+        <img src="img/humpire-logo.png" alt="HUMPIRE Streetwear">
       </div>
-      <div class="sw-cta">
-        <a class="sw-btn go" href="https://djbilbox-beats-shop.fourthwall.com/en-eur" target="_blank" rel="noopener">
-          <i class="fa-solid fa-bag-shopping"></i> Boutique Fourthwall
+      <h1>HUMPIRE <span>STREETWEAR</span></h1>
+      <p>La collection textile et accessoires officielle de DJBILBOX BEATS. Imprimée et expédiée directement via notre boutique partenaire Fourthwall.</p>
+      <div class="sw-hero-actions">
+        <a class="sw-btn-fw" href="https://djbilbox-beats-shop.fourthwall.com/en-eur" target="_blank" rel="noopener">
+          <i class="fa-solid fa-store"></i> Ouvrir la boutique Fourthwall
         </a>
-        <a class="sw-btn ghost" href="https://discord.gg/7HeMSvbN" target="_blank" rel="noopener">
-          <i class="fa-brands fa-discord"></i> Discord
+        <a class="sw-btn-ghost" href="https://discord.gg/7HeMSvbN" target="_blank" rel="noopener">
+          <i class="fa-brands fa-discord"></i> Communauté Discord
         </a>
       </div>
-      <p class="sw-micro">Nouvelle collection en ligne · Imprimé &amp; expédié depuis l'Europe</p>
     </div>
   </header>
 
-  <!-- ==================== MANIFESTO ==================== -->
-  <section class="sw-manifesto">
-    <div class="sw-in"><p><span class="em">Monte</span> dans <b>l'empire</b>.</p></div>
-  </section>
+  <!-- Category Tabs Bar -->
+  <div class="sw-tabs-bar">
+    <div class="container">
+      <div class="sw-tabs" id="swTabs">
+        <button class="sw-tab active" data-filter="all">Tous les articles (21)</button>
+        <button class="sw-tab" data-filter="hoodies">Hoodies &amp; Sweats (7)</button>
+        <button class="sw-tab" data-filter="tshirts">T-Shirts (6)</button>
+        <button class="sw-tab" data-filter="jogging">Bas &amp; Jogging (2)</button>
+        <button class="sw-tab" data-filter="accessories">Casquettes &amp; Accessoires (6)</button>
+      </div>
+    </div>
+  </div>
 
-  <!-- ==================== NOUVELLE COLLECTION FOURTHWALL (2026) ==================== -->
-  <section class="sw-col" id="nouvelle-collection" style="--c1:#DEB863;--c2:#E01E37">
-    <div class="sw-in">
-      <div class="sw-col-head sw-reveal">
-        <div class="sw-plate">
-          <img src="img/streetwear/humpire-logo-transparent.png" width="800" height="800" loading="lazy" style="max-height:220px;object-fit:contain;margin:0 auto;"
-               alt="HUMPIRE CORPORATION STREETWEAR 2026">
-          <span class="plate-tag">Collection Officielle 2026</span>
+  <!-- Products Grid -->
+  <main class="container">
+    <div class="sw-grid" id="swGrid">
+
+      <!-- 1. Balaclava -->
+      <article class="sw-card" data-cat="accessories">
+        <div class="sw-card-img">
+          <span class="sw-card-badge new">Nouveau</span>
+          <img src="https://imgproxy.fourthwall.dev/5Vj1-oMnuxGW2e7qTpo5XdNGI1XI1j5xecNdvNtCymE/w:720/sm:1/enc/fcN4fqIx6K1pLATU/W0BzvwKf-1CndBgX/_rHRBRlxJnOyO7pA/tyiFpZUEE7q7xCMh/RjZZyciDc__mGAdJ/r3pSuNlUcDoKOWIX/HF8sI0_kMYXGUe4E/a7thzsI8CaP0OuZB/AYw5IsM0d7LY-Yn0/O9uMhvWuJZJtl1TB/OuhBfYx72qnpCanj/Yre8yz6x-gda3wnR/l47aKXl1KbCU9FPm/xPw7TWfr0EneT1eE/4iYbEPzX7ME.jpg" loading="lazy" alt="BALACLAVA HUMPIRE CORPORATION">
         </div>
-        <div class="sw-col-copy">
-          <div class="num">NOUVELLE COLLECTION</div>
-          <h2>HUMPIRE CORPORATION</h2>
-          <div class="kicker">Hoodies · Pulls · Balaclava · T-Shirts · Jogging</div>
-          <p>
-            Retrouvez toutes les dernières pièces exclusives disponibles sur la boutique officielle Fourthwall :
-            hoodies lourds, pulls graphiques, cagoule Balaclava, t-shirts oversize et ensemble jogging.
-          </p>
-          <div class="specs">
-            <span class="lead">Boutique Fourthwall</span><span>Coton lourd premium</span>
-            <span>Livraison Europe &amp; Monde</span><span>Paiement sécurisé</span>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Accessoire · Masque / Cagoule</span>
+          <h3 class="sw-card-title">BALACLAVA HUMPIRE CORPORATION</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$12.95</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/balaclava-humpire-corporation" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="sw-pieces">
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/balaclava-humpire-corporation" target="_blank" rel="noopener">
-          <img src="https://imgproxy.fourthwall.dev/5Vj1-oMnuxGW2e7qTpo5XdNGI1XI1j5xecNdvNtCymE/w:720/sm:1/enc/fcN4fqIx6K1pLATU/W0BzvwKf-1CndBgX/_rHRBRlxJnOyO7pA/tyiFpZUEE7q7xCMh/RjZZyciDc__mGAdJ/r3pSuNlUcDoKOWIX/HF8sI0_kMYXGUe4E/a7thzsI8CaP0OuZB/AYw5IsM0d7LY-Yn0/O9uMhvWuJZJtl1TB/OuhBfYx72qnpCanj/Yre8yz6x-gda3wnR/l47aKXl1KbCU9FPm/xPw7TWfr0EneT1eE/4iYbEPzX7ME.jpg" width="720" height="720" loading="lazy" alt="BALACLAVA HUMPIRE CORPORATION">
-          <div class="sw-piece-body"><div class="ref">Accessoire · Brodé</div><h3>Balaclava Humpire</h3>
-            <div class="buy"><span class="price">$12.95</span><span class="go">Acheter</span></div></div>
-        </a>
-
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-corporation-iron-riot-hoodie" target="_blank" rel="noopener">
-          <img src="https://imgproxy.fourthwall.dev/2Kx5mBhYToan-dZx11prU55TrJbQsojE-W_MGqW6HP8/w:720/sm:1/enc/p8WhWEc9iBGyx6sD/Ecw3rDXNVMM0CILk/Z0PZe7_uQ_jAyMeE/tG9mylaNxP4EQ_VA/38VbOh_hGCbEu9Fr/DIEkOUESpO5lS31d/GRhesC_pLWxfH80Q/LqwtDOOKk0zyo90V/ggv2rQ8HcVrWvLyq/aIZF4Q4DO12YrzMa/yw4zfIPEKOUpfb0-/Gj25n60P_MjSUo-a/Q9vkDeLQit4gXuCB/nNeZ8yu1GQq36-_k/zCqqMPBCWBs.jpg" width="720" height="720" loading="lazy" alt="HUMPIRE CORPORATION — MOTOR VENUM Hoodie">
-          <div class="sw-piece-body"><div class="ref">Hoodie · S à 3XL</div><h3>Motor Venum Hoodie</h3>
-            <div class="buy"><span class="price">$30.29</span><span class="go">Acheter</span></div></div>
-        </a>
-
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-corporation-neon-graveyard-hoodie" target="_blank" rel="noopener">
-          <img src="https://imgproxy.fourthwall.dev/9v7SLnFsJvrWTnpy4GVpdzSr9bsXbuZq_oGU01vp5jo/w:720/sm:1/enc/aqd61eL0mS2-Mxlx/9avCcaPDBAs5Ela6/uVlD_SWl5gomM1JN/IvHXJZ-AT2Zt_NyZ/a2eI8LzL9mQfd6zW/B_LYlJHFVGfxBP-R/VCZsu8slM6ys5rnj/9ajT-YQEQUmH-vJw/w5fNH2KIYy2J9b5H/UDy7bvaKw9k9gu-6/IoBnkTeBqCEWzI06/8idqjCtqsijHa0ok/wuObCzMNWld7TmVq/Mouq7rqgAR_Lnmpp/3Jq2W4Tjyrs.jpg" width="720" height="720" loading="lazy" alt="HUMPIRE CORPORATION — STATIC SAINTS Hoodie">
-          <div class="sw-piece-body"><div class="ref">Hoodie · S à 3XL</div><h3>Static Saints Hoodie</h3>
-            <div class="buy"><span class="price">$30.29</span><span class="go">Acheter</span></div></div>
-        </a>
-
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-corporation-loud-or-die-hoodie" target="_blank" rel="noopener">
-          <img src="https://imgproxy.fourthwall.dev/p7eAIpnatu4OjyXiVacb2J6jkDEAMbDYzh_EGO5M7Kc/w:720/sm:1/enc/W4U4MSHewV80n7M_/Ftb3uHD7gICnaeUm/ncL0y93UwieLZpi8/h_fAW268OFw756lr/fhfAtl2k9Py-WrUU/wt_4McDL41OKhWDY/HCsl8JaUXN8mUo5F/RjfKqmCIOiJIacvq/0NMuvPGSukqKwCH2/Z_4XvGOB_RzGlips/VV2W4PerKd2yEY2O/YEzGrXMPWPhfec6w/nqtUnMdsdw2etP3a/ru5dwoKTC96s7bxN/gn6BVwIvHoU.jpg" width="720" height="720" loading="lazy" alt="HUMPIRE CORPORATION — LOUD OR DIE Hoodie">
-          <div class="sw-piece-body"><div class="ref">Hoodie · S à 3XL</div><h3>Loud Or Die Hoodie</h3>
-            <div class="buy"><span class="price">$30.29</span><span class="go">Acheter</span></div></div>
-        </a>
-
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-corporation-iron-riot-premium-hoodie" target="_blank" rel="noopener">
-          <img src="https://imgproxy.fourthwall.dev/JJl-_5cOVC58tgeyaTe5f-yqwAcSjKXgn6p0avbW5ys/w:720/sm:1/enc/FuHHFapPcnp1h7Ch/vAWzLqrzFD3HWCC8/d4pf7dgo3ZvzVVj6/KVsAFRaHPZbQKrzq/MOhfNQNC5V9ymqgw/ndf7QSFwTviUu5DO/XfFqyuiMJbplAYJB/XBupLd-hkqnKVTYp/XJAm623eWMo9CZFy/KffiZNydCOeFPO4k/AbBIUltDgv9mizSw/X3i5V1iA_aMCvPI8/wNSN0_bJfQOZ3kpg/EkN0HdUQZM_Fxy3q/b851YjogF4Q.jpg" width="720" height="720" loading="lazy" alt="HUMPIRE CORPORATION — BROKEN AMP Premium Hoodie">
-          <div class="sw-piece-body"><div class="ref">Premium Hoodie · Lourd</div><h3>Broken Amp Hoodie</h3>
-            <div class="buy"><span class="price">$30.29</span><span class="go">Acheter</span></div></div>
-        </a>
-
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/pull-humpire-corporation-collection" target="_blank" rel="noopener">
-          <img src="https://imgproxy.fourthwall.dev/GA1brzQ4DQC_2A9acAhIKPg8P3-C9soEHpDg0HRGsng/w:720/sm:1/enc/IgSgjZ9ljtacqEos/ULI8IL60fAOeK9me/O5WnWlq46X6grCrp/67_QPE0Nf8Vd7yvr/iBAjav0VbO3T4smd/_5nkcGLLpL6VEvk5/VlGkhhVHDdhlFdxU/LbT_2aroAhuugdD4/7MM9CNhlUwdmw6-N/Y-SIbiTZtHAF1nna/lZOYHmakiPzljbYS/7e1WI0sIn3VEhyGa/nucVKfoseCygnNyb/fJYtqVnekwxU_Wlg/Bct29SUfXKM.jpg" width="720" height="720" loading="lazy" alt="PULL HUMPIRE CORPORATION COLLECTION">
-          <div class="sw-piece-body"><div class="ref">Crewneck · Pull</div><h3>Pull Humpire Corp</h3>
-            <div class="buy"><span class="price">$30.29</span><span class="go">Acheter</span></div></div>
-        </a>
-
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-zombies-neon-horror-t-shirt" target="_blank" rel="noopener">
-          <img src="https://imgproxy.fourthwall.dev/ou8G9YbF26Xi5pZIfhsc5rk92GYGHH8virmjquJXzbU/w:720/sm:1/enc/ZigXHmF7wHTNgKR7/tL9fVGKKOBr7ITvN/3zcqdhcOFK-irZIc/X9ES2nRgFGT-hNMK/GIdDZRNF8Jed40Ft/KMTWTIATq5Rvgk39/WcwZ8fQyaCNS9Elt/RDS--QxORusxnWfu/32OC3kHRPotfgMmE/rIN7xT-tWyhtca_-/tjzvvvBW7ku-lKWU/fmCFbdkx5U9W1rsv/9_w9US-BZB4UbwxU/iwqA6is8X6c1d-Af/3FPiG21Y81k.jpg" width="720" height="720" loading="lazy" alt="HUMPIRE ZOMBIES — NEON HORROR T-Shirt">
-          <div class="sw-piece-body"><div class="ref">T-Shirt · Neon Horror</div><h3>Zombies T-Shirt</h3>
-            <div class="buy"><span class="price">$18.45</span><span class="go">Acheter</span></div></div>
-        </a>
-
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-corporation-neon-graveyard" target="_blank" rel="noopener">
-          <img src="https://imgproxy.fourthwall.dev/atcuaSs3Y1-HrPUN4bNcgfJ529HZjJT6Bf1G5KUSnZc/w:720/sm:1/enc/1DxMqwnwxevZ-g1y/VU1hz7bp5tLTpwa9/QxbNTSVIeCUy_hI7/GS2-Hm192Wz1GyyV/Ks5bWCPSvhmj_vUi/IjaVKGrxFH1T5hP3/1a5S342ZWT850okz/1WT6yKSsogsmJzzw/-h-e82hKDKdXwuOW/c33fFWNuBGRo1Bsj/-u2JGot-EJun1hs7/NnUWaqOSpN94Yc8g/rGsq_qIaqBR57DxI/2RqCxAU4FKf7KOGe/dDSyzWcszpc.jpg" width="720" height="720" loading="lazy" alt="HUMPIRE CORPORATION — NEON GRAVEYARD">
-          <div class="sw-piece-body"><div class="ref">T-Shirt · Neon Graveyard</div><h3>Neon Graveyard Tee</h3>
-            <div class="buy"><span class="price">$29.90</span><span class="go">Acheter</span></div></div>
-        </a>
-
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/rapforce38-jogging-molleton-noir" target="_blank" rel="noopener">
-          <img src="https://imgproxy.fourthwall.dev/i7nrfPTdMHaScmXb5adBXmaxJKCiv_5aOg7qMnLaUE/w:720/sm:1/enc/hiYpiBGj0PLf6yqx/LQuHGw7ybTREXO85/E4fh1FtgLqHluQQi/5wv0pcYRdKPuHiur/eMEkVcLhiXZIGFmo/lwNwNMa21A67gsel/sS01Gl-7qsd4mMvm/OQwi4GuGGXP4REEa/XRFrnpIKwnql_ouP/NEeaWgER9xWrRy06/u4eI6ln04Yr_gfyk/NNHIpqNX0VyLQDSg/ipZQQ83g56cERVYI/Lw2fzQeDCT83dF6h/UxM9HHVx6_Y.jpg" width="720" height="720" loading="lazy" alt="RAPFORCE38 — Jogging Molleton (Noir)">
-          <div class="sw-piece-body"><div class="ref">Jogging · Molleton Noir</div><h3>Rapforce38 Jogging</h3>
-            <div class="buy"><span class="price">$55.00</span><span class="go">Acheter</span></div></div>
-        </a>
-
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/rapforce38-hoodie-arche-noir" target="_blank" rel="noopener">
-          <img src="https://imgproxy.fourthwall.dev/XEpD9yRVOwS3hmEtnznbsgz82_TQTfH641Hw2h7f70c/w:720/sm:1/enc/H2ae1ARvPVPmIDyw/Lj1MPa_TZCvJzcgg/qx5lbbdN82_gAWZ8/HHNbUx4fIwFH01H7/oRwZEYz1n4zMqNKx/DtYk_xyQm8Ryay2W/QJAIM4yz-EvjOrfd/EY3BSMD_RBQcuQWO/1F_XiJxhE03BHD90/dehnduF2-7Di6vSk/VJQzq44tHiWXGXEA/agl6ZcIHneN5SSy0/A1zHBPK4S_cDl5Zv/rHnvRnopuj30oFh1/t2jmaDKxSnA.jpg" width="720" height="720" loading="lazy" alt="RAPFORCE38 — Hoodie Arche (Noir)">
-          <div class="sw-piece-body"><div class="ref">Hoodie · Noir Arche</div><h3>Rapforce38 Hoodie</h3>
-            <div class="buy"><span class="price">$60.00</span><span class="go">Acheter</span></div></div>
-        </a>
-
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-hoodie-spray-black" target="_blank" rel="noopener">
-          <img src="https://imgproxy.fourthwall.dev/7lyIIZ_8JoAaVBosUSHs695_OFvmkslsAlF4fVZMAhI/w:720/sm:1/enc/3F-qdV164DQIZHzg/obKo2H9wD24TYj2B/gYP1Ve6fRnsA6__N/_zY63S6IfgHnWmHJ/raX1uiz4KPkeQiNA/-eKyu3nN57SOmpq8/FQpMX6uNaUokIGVA/AYnrlxYAWjSzrM37/XpXAueP57mHFfMus/Z_ua9KTCH22xh_VN/F8L1G7bjl_5X6_BA/2bVYdfwklyJ0LvAL/MUzf3FDhf2SaG5wj/5EplVttamkr9ied0/VxFFOdJ1QKw.jpg" width="720" height="720" loading="lazy" alt="HUMPIRE — Hoodie Spray (Black)">
-          <div class="sw-piece-body"><div class="ref">Hoodie · Spray Black</div><h3>Humpire Spray Hoodie</h3>
-            <div class="buy"><span class="price">$42.00</span><span class="go">Acheter</span></div></div>
-        </a>
-
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-spray-cap" target="_blank" rel="noopener">
-          <img src="https://imgproxy.fourthwall.dev/PR7C-q0DEYqIxXpBJqWLJHLZ_gSN4n1Ryy1zUEGv1Zk/w:720/sm:1/enc/CL_Wiu7zIalamUud/paKcN7cbQcqn-QEI/GYrs95YMVcFeHy63/fpO4s-xvchU-uJcF/_DP4KOo269DnPVFR/DxKbjfhYuW3_jGzm/g5kgohq063r541fh/XU_GXA6HF3NTbqzm/faY2VlvKFGCf50Nq/bnBqzS181UUggoYb/IBYfKo6vMfmUftDz/dCk3MNl3wMx3T2hn/3lvMlKtVa3ilr9FS/hP9fTvylVUT2Wbuf/BQ9R1Ol48-c.jpg" width="720" height="720" loading="lazy" alt="HUMPIRE Spray Cap">
-          <div class="sw-piece-body"><div class="ref">Casquette · Spray</div><h3>Humpire Spray Cap</h3>
-            <div class="buy"><span class="price">$26.00</span><span class="go">Acheter</span></div></div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 01 — À LA BOMBE ==================== -->
-  <section class="sw-col" id="bombe" style="--c1:#F45BD6;--c2:#38E0F0">
-    <div class="sw-in">
-      <div class="sw-col-head sw-reveal">
-        <div class="sw-plate">
-          <img src="img/streetwear/art-bombe-neon.png" width="2400" height="816" loading="lazy"
-               alt="HUMPIRE écrit à la bombe, lettres pleines dégoulinantes, dégradé rose vers cyan">
-          <span class="plate-tag">Visuel · à la bombe</span>
+      <!-- 2. Motor Venum Hoodie -->
+      <article class="sw-card" data-cat="hoodies">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Streetwear</span>
+          <img src="https://imgproxy.fourthwall.dev/2Kx5mBhYToan-dZx11prU55TrJbQsojE-W_MGqW6HP8/w:720/sm:1/enc/p8WhWEc9iBGyx6sD/Ecw3rDXNVMM0CILk/Z0PZe7_uQ_jAyMeE/tG9mylaNxP4EQ_VA/38VbOh_hGCbEu9Fr/DIEkOUESpO5lS31d/GRhesC_pLWxfH80Q/LqwtDOOKk0zyo90V/ggv2rQ8HcVrWvLyq/aIZF4Q4DO12YrzMa/yw4zfIPEKOUpfb0-/Gj25n60P_MjSUo-a/Q9vkDeLQit4gXuCB/nNeZ8yu1GQq36-_k/zCqqMPBCWBs.jpg" loading="lazy" alt="HUMPIRE CORPORATION — MOTOR VENUM Hoodie">
         </div>
-        <div class="sw-col-copy">
-          <div class="num">SIGNATURE 01</div>
-          <h2>À la bombe</h2>
-          <div class="kicker">Casquettes · bobs · t-shirts</div>
-          <p>
-            Le nom bombé sur le mur, en lettres pleines qui dégoulinent. Dégradé rose → violet → cyan,
-            contour noir pour que ça claque autant sur le noir que sur le blanc.
-            C'est la signature qui se voit à dix mètres.
-          </p>
-          <div class="specs">
-            <span class="lead">5 pièces</span><span>Impression all-over</span>
-            <span>DTF</span><span>Noir &amp; blanc</span>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Hoodie · S à 3XL</span>
+          <h3 class="sw-card-title">HUMPIRE CORPORATION — MOTOR VENUM Hoodie</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$30.29</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-corporation-iron-riot-hoodie" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="sw-pieces">
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-snapback-cap-spray" target="_blank" rel="noopener">
-          <img src="img/streetwear/photos/cap-bombe.jpg" width="1200" height="1200" loading="lazy" alt="Casquette HUMPIRE à la bombe">
-          <div class="sw-piece-body"><div class="ref">Snapback · taille unique</div><h3>Casquette</h3>
-            <div class="buy"><span class="price">$26</span><span class="go">Acheter</span></div></div>
-        </a>
-        <article class="sw-piece sw-reveal">
-          <img src="img/streetwear/photos/bob-bombe.jpg" width="1200" height="1200" loading="lazy" alt="Bob HUMPIRE à la bombe">
-          <div class="sw-piece-body"><div class="ref">BMB-BOB-02</div><h3>Bob</h3>
-            <div class="soon">Bientôt</div></div>
-        </article>
-        <article class="sw-piece sw-reveal">
-          <img src="img/streetwear/photos/tee-noir-bombe.jpg" width="1200" height="1200" loading="lazy" alt="T-shirt noir HUMPIRE à la bombe">
-          <div class="sw-piece-body"><div class="ref">BMB-TEE-03</div><h3>T-shirt noir</h3>
-            <div class="soon">Bientôt</div></div>
-        </article>
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-oversized-tee-spray-white" target="_blank" rel="noopener">
-          <img src="img/streetwear/photos/tee-blanc-bombe.jpg" width="1200" height="1200" loading="lazy" alt="T-shirt blanc HUMPIRE à la bombe">
-          <div class="sw-piece-body"><div class="ref">Oversize · S à 2XL</div><h3>T-shirt blanc</h3>
-            <div class="buy"><span class="price">$32</span><span class="go">Acheter</span></div></div>
-        </a>
-        <article class="sw-piece sw-reveal">
-          <img src="img/streetwear/photos/tee-noir-dos.jpg" width="1200" height="1200" loading="lazy" alt="Dos du t-shirt noir HUMPIRE, marquage grand format qui dégouline">
-          <div class="sw-piece-body"><div class="ref">BMB-TEE-05</div><h3>T-shirt · dos</h3>
-            <div class="soon">Bientôt</div></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 02 — MÉDAILLON ==================== -->
-  <section class="sw-col" id="medaillon" style="--c1:#DEB863;--c2:#C8CAD0">
-    <div class="sw-in">
-      <div class="sw-col-head sw-reveal">
-        <div class="sw-plate">
-          <img src="img/streetwear/art-medaillon.png" width="2000" height="920" loading="lazy"
-               alt="Le logo rond HUMPIRE au-dessus du nom en lettres or et de la signature by Djbilbox Beats">
-          <span class="plate-tag">Visuel · médaillon</span>
+      <!-- 3. Static Saints Hoodie -->
+      <article class="sw-card" data-cat="hoodies">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Streetwear</span>
+          <img src="https://imgproxy.fourthwall.dev/9v7SLnFsJvrWTnpy4GVpdzSr9bsXbuZq_oGU01vp5jo/w:720/sm:1/enc/aqd61eL0mS2-Mxlx/9avCcaPDBAs5Ela6/uVlD_SWl5gomM1JN/IvHXJZ-AT2Zt_NyZ/a2eI8LzL9mQfd6zW/B_LYlJHFVGfxBP-R/VCZsu8slM6ys5rnj/9ajT-YQEQUmH-vJw/w5fNH2KIYy2J9b5H/UDy7bvaKw9k9gu-6/IoBnkTeBqCEWzI06/8idqjCtqsijHa0ok/wuObCzMNWld7TmVq/Mouq7rqgAR_Lnmpp/3Jq2W4Tjyrs.jpg" loading="lazy" alt="HUMPIRE CORPORATION — STATIC SAINTS Hoodie">
         </div>
-        <div class="sw-col-copy">
-          <div class="num">SIGNATURE 02</div>
-          <h2>Médaillon</h2>
-          <div class="kicker">Survêtements · manteaux · vestes</div>
-          <p>
-            Le logo rond, en patch. Brodé en relief fil or sur la poitrine du survêtement,
-            serti de strass sur les éditions limitées, embossé en caoutchouc sur le manteau.
-            C'est la signature des grosses pièces — celle qu'on garde des années.
-          </p>
-          <div class="specs">
-            <span class="lead">4 pièces</span><span>Broderie 3D puff</span>
-            <span>Patch strass</span><span>Passepoil réfléchissant</span>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Hoodie · S à 3XL</span>
+          <h3 class="sw-card-title">HUMPIRE CORPORATION — STATIC SAINTS Hoodie</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$30.29</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-corporation-neon-graveyard-hoodie" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="sw-pieces">
-        <article class="sw-piece sw-reveal">
-          <img src="img/streetwear/photos/survetement-medaillon.jpg" width="1200" height="1200" loading="lazy" alt="Veste de survêtement HUMPIRE au médaillon">
-          <div class="sw-piece-body"><div class="ref">MED-SET-01</div><h3>Survêtement</h3>
-            <div class="fin">Brodé 3D · fil or</div></div>
-        </article>
-        <article class="sw-piece sw-reveal">
-          <img src="img/streetwear/photos/manteau-medaillon.jpg" width="1200" height="1200" loading="lazy" alt="Manteau matelassé HUMPIRE au médaillon">
-          <div class="sw-piece-body"><div class="ref">MED-COAT-02</div><h3>Manteau</h3>
-            <div class="fin">Patch embossé · matelassé</div></div>
-        </article>
-        <article class="sw-piece sw-reveal">
-          <img src="img/streetwear/cap-medaillon-strass.jpg" width="1200" height="1200" loading="lazy" alt="Casquette HUMPIRE patch médaillon strass">
-          <div class="sw-piece-body"><div class="ref">MED-CAP-03</div><h3>Casquette strass</h3>
-            <div class="fin">Patch serti · édition limitée</div></div>
-        </article>
-        <article class="sw-piece sw-reveal">
-          <img src="img/streetwear/tee-medaillon.jpg" width="1200" height="1200" loading="lazy" alt="T-shirt HUMPIRE au médaillon">
-          <div class="sw-piece-body"><div class="ref">MED-TEE-04</div><h3>T-shirt</h3>
-            <div class="fin">Poitrine · foil or</div></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 03 — ARGENT & OR ==================== -->
-  <section class="sw-col" id="metal" style="--c1:#C8CAD0;--c2:#DEB863">
-    <div class="sw-in">
-      <div class="sw-col-head sw-reveal">
-        <div class="sw-plate">
-          <img src="img/streetwear/art-metal-or.png" width="2400" height="720" loading="lazy"
-               alt="HUMPIRE en lettres block dorées avec la signature by Djbilbox Beats">
-          <span class="plate-tag">Visuel · argent &amp; or</span>
+      <!-- 4. Loud Or Die Hoodie -->
+      <article class="sw-card" data-cat="hoodies">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Streetwear</span>
+          <img src="https://imgproxy.fourthwall.dev/p7eAIpnatu4OjyXiVacb2J6jkDEAMbDYzh_EGO5M7Kc/w:720/sm:1/enc/W4U4MSHewV80n7M_/Ftb3uHD7gICnaeUm/ncL0y93UwieLZpi8/h_fAW268OFw756lr/fhfAtl2k9Py-WrUU/wt_4McDL41OKhWDY/HCsl8JaUXN8mUo5F/RjfKqmCIOiJIacvq/0NMuvPGSukqKwCH2/Z_4XvGOB_RzGlips/VV2W4PerKd2yEY2O/YEzGrXMPWPhfec6w/nqtUnMdsdw2etP3a/ru5dwoKTC96s7bxN/gn6BVwIvHoU.jpg" loading="lazy" alt="HUMPIRE CORPORATION — LOUD OR DIE Hoodie">
         </div>
-        <div class="sw-col-copy">
-          <div class="num">SIGNATURE 03</div>
-          <h2>Argent &amp; or</h2>
-          <div class="kicker">Sacoches · bananes · shorts</div>
-          <p>
-            Le nom en lettres block, chromé ou doré. Sur la sacoche il est embossé sur la face avant
-            et répété tout le long de la sangle. Deux finitions au choix sur chaque pièce :
-            <strong style="color:var(--sw-chrome)">argenté</strong> ou <strong style="color:var(--sw-gold)">doré</strong>.
-          </p>
-          <div class="specs">
-            <span class="lead">5 pièces</span><span>Patch embossé</span>
-            <span>Sangle sérigraphiée</span><span>Zip métal</span>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Hoodie · S à 3XL</span>
+          <h3 class="sw-card-title">HUMPIRE CORPORATION — LOUD OR DIE Hoodie</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$30.29</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-corporation-loud-or-die-hoodie" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="sw-pieces">
-        <a class="sw-piece sw-reveal" href="https://djbilbox-beats-shop.fourthwall.com/products/humpire-mug-spray" target="_blank" rel="noopener">
-          <img src="img/streetwear/print/print-mug.png" width="2550" height="1200" loading="lazy" alt="Mug noir HUMPIRE, nom à la bombe">
-          <div class="sw-piece-body"><div class="ref">Céramique · 11oz / 15oz</div><h3>Mug</h3>
-            <div class="buy"><span class="price">$19</span><span class="go">Acheter</span></div></div>
-        </a>
-        <article class="sw-piece sw-reveal">
-          <img src="img/streetwear/photos/sacoche-chrome.jpg" width="1200" height="1200" loading="lazy" alt="Sacoche HUMPIRE argentée">
-          <div class="sw-piece-body"><div class="ref">MTL-BAG-01</div><h3>Sacoche argentée</h3>
-            <div class="fin">Embossé chrome · sangle logo</div></div>
-        </article>
-        <article class="sw-piece sw-reveal">
-          <img src="img/streetwear/sacoche-or.jpg" width="1200" height="1200" loading="lazy" alt="Sacoche HUMPIRE dorée">
-          <div class="sw-piece-body"><div class="ref">MTL-BAG-02</div><h3>Sacoche dorée</h3>
-            <div class="fin">Embossé or · zip or</div></div>
-        </article>
-        <article class="sw-piece sw-reveal">
-          <img src="img/streetwear/short-or.jpg" width="1200" height="1200" loading="lazy" alt="Short mesh HUMPIRE marquage doré">
-          <div class="sw-piece-body"><div class="ref">MTL-SHORT-03</div><h3>Short mesh</h3>
-            <div class="fin">Cuisse · bande blanche</div></div>
-        </article>
-        <article class="sw-piece sw-reveal">
-          <img src="img/streetwear/tee-argent.jpg" width="1200" height="1200" loading="lazy" alt="T-shirt HUMPIRE marquage chromé">
-          <div class="sw-piece-body"><div class="ref">MTL-TEE-04</div><h3>T-shirt</h3>
-            <div class="fin">Foil chrome ou or</div></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 04 — RACING ==================== -->
-  <section class="sw-col" id="racing" style="--c1:#E01E37;--c2:#38E0F0">
-    <div class="sw-in">
-      <div class="sw-col-head sw-reveal">
-        <div class="sw-plate">
-          <img src="img/streetwear/web/race-poitrine.jpg" width="760" height="308" loading="lazy"
-               alt="Marquage HUMPIRE RACING DIVISION 01 avec le dromadaire">
-          <span class="plate-tag">Racing · division 01</span>
+      <!-- 5. Broken Amp Premium Hoodie -->
+      <article class="sw-card" data-cat="hoodies">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Premium</span>
+          <img src="https://imgproxy.fourthwall.dev/JJl-_5cOVC58tgeyaTe5f-yqwAcSjKXgn6p0avbW5ys/w:720/sm:1/enc/FuHHFapPcnp1h7Ch/vAWzLqrzFD3HWCC8/d4pf7dgo3ZvzVVj6/KVsAFRaHPZbQKrzq/MOhfNQNC5V9ymqgw/ndf7QSFwTviUu5DO/XfFqyuiMJbplAYJB/XBupLd-hkqnKVTYp/XJAm623eWMo9CZFy/KffiZNydCOeFPO4k/AbBIUltDgv9mizSw/X3i5V1iA_aMCvPI8/wNSN0_bJfQOZ3kpg/EkN0HdUQZM_Fxy3q/b851YjogF4Q.jpg" loading="lazy" alt="HUMPIRE CORPORATION — BROKEN AMP Premium Hoodie">
         </div>
-        <div class="sw-col-copy">
-          <div class="num">04</div>
-          <h2>Racing</h2>
-          <p class="kicker">Imprimé sur toute la pièce</p>
-          <p>
-            Les codes du motocross : plaque de numéro, écusson d'équipe, bandeau de sponsors.
-            L'impression traverse le tissu au lieu de se poser dessus — elle ne craquelle pas,
-            elle ne s'écaille pas, et elle couvre la pièce d'un bord à l'autre.
-          </p>
-          <div class="specs">
-            <span class="lead">Sublimation intégrale</span>
-            <span>Maille légère respirante</span>
-            <span>Numéro 01</span>
-            <span>Maillot · short · casquette</span>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Premium Hoodie · Lourd</span>
+          <h3 class="sw-card-title">HUMPIRE CORPORATION — BROKEN AMP Premium Hoodie</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$30.29</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-corporation-iron-riot-premium-hoodie" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="sw-race">
-        <figure class="sw-reveal">
-          <img src="img/streetwear/web/allover-blueprint.jpg" width="760" height="760" loading="lazy"
-               alt="Imprimé Blueprint : planche technique blanche sur noir">
-          <figcaption><h3>Blueprint</h3>
-            <p>Une planche technique complète : cotes, repères de coupe, le dromadaire classé comme une pièce détachée.</p></figcaption>
-        </figure>
-        <figure class="sw-reveal">
-          <img src="img/streetwear/web/allover-damier.jpg" width="760" height="760" loading="lazy"
-               alt="Imprimé Damier : damier en dégradé rose vers cyan">
-          <figcaption><h3>Damier</h3>
-            <p>Le damier de l'arrivée, fondu du rose au cyan, avec les pastilles sponsors empilées dans chaque case.</p></figcaption>
-        </figure>
-        <figure class="sw-reveal">
-          <img src="img/streetwear/web/allover-topo.jpg" width="760" height="760" loading="lazy"
-               alt="Imprimé Topo : courbes de niveau violettes et cyan">
-          <figcaption><h3>Topo</h3>
-            <p>Des courbes de niveau qui montent en relief. Le plus sobre des quatre, de loin.</p></figcaption>
-        </figure>
-        <figure class="sw-reveal">
-          <img src="img/streetwear/web/allover-camo.jpg" width="760" height="760" loading="lazy"
-               alt="Imprimé Camo : le dromadaire répété en motif dense sur noir">
-          <figcaption><h3>Camo</h3>
-            <p>Le dromadaire répété jusqu'à devenir une texture, traversé de diagonales néon.</p></figcaption>
-        </figure>
-      </div>
+      <!-- 6. Pull Humpire Corp -->
+      <article class="sw-card" data-cat="hoodies">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Collection</span>
+          <img src="https://imgproxy.fourthwall.dev/GA1brzQ4DQC_2A9acAhIKPg8P3-C9soEHpDg0HRGsng/w:720/sm:1/enc/IgSgjZ9ljtacqEos/ULI8IL60fAOeK9me/O5WnWlq46X6grCrp/67_QPE0Nf8Vd7yvr/iBAjav0VbO3T4smd/_5nkcGLLpL6VEvk5/VlGkhhVHDdhlFdxU/LbT_2aroAhuugdD4/7MM9CNhlUwdmw6-N/Y-SIbiTZtHAF1nna/lZOYHmakiPzljbYS/7e1WI0sIn3VEhyGa/nucVKfoseCygnNyb/fJYtqVnekwxU_Wlg/Bct29SUfXKM.jpg" loading="lazy" alt="PULL HUMPIRE CORPORATION COLLECTION">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Crewneck · Pull</span>
+          <h3 class="sw-card-title">PULL HUMPIRE CORPORATION COLLECTION</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$30.29</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/pull-humpire-corporation-collection" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
 
-      <div class="sw-marks">
-        <figure class="sw-reveal">
-          <img src="img/streetwear/web/race-dos-plaque.jpg" width="760" height="887" loading="lazy"
-               alt="Plaque de numéro 01 pour le dos du maillot">
-          <figcaption>Plaque de numéro · dos</figcaption>
-        </figure>
-        <figure class="sw-reveal">
-          <img src="img/streetwear/web/race-ecusson.jpg" width="760" height="855" loading="lazy"
-               alt="Écusson d'équipe HUMPIRE RACING avec le dromadaire">
-          <figcaption>Écusson d'équipe · poitrine</figcaption>
-        </figure>
-        <figure class="sw-reveal">
-          <img src="img/streetwear/web/race-poitrine.jpg" width="760" height="308" loading="lazy"
-               alt="Marquage poitrine HUMPIRE RACING">
-          <figcaption>Marquage large · poitrine</figcaption>
-        </figure>
-      </div>
+      <!-- 7. Zombies T-Shirt -->
+      <article class="sw-card" data-cat="tshirts">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Gaming / Merch</span>
+          <img src="https://imgproxy.fourthwall.dev/ou8G9YbF26Xi5pZIfhsc5rk92GYGHH8virmjquJXzbU/w:720/sm:1/enc/ZigXHmF7wHTNgKR7/tL9fVGKKOBr7ITvN/3zcqdhcOFK-irZIc/X9ES2nRgFGT-hNMK/GIdDZRNF8Jed40Ft/KMTWTIATq5Rvgk39/WcwZ8fQyaCNS9Elt/RDS--QxORusxnWfu/32OC3kHRPotfgMmE/rIN7xT-tWyhtca_-/tjzvvvBW7ku-lKWU/fmCFbdkx5U9W1rsv/9_w9US-BZB4UbwxU/iwqA6is8X6c1d-Af/3FPiG21Y81k.jpg" loading="lazy" alt="HUMPIRE ZOMBIES — NEON HORROR T-Shirt">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">T-Shirt · Coton</span>
+          <h3 class="sw-card-title">HUMPIRE ZOMBIES — NEON HORROR T-Shirt</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$18.45</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-zombies-neon-horror-t-shirt" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8. Neon Graveyard Tee -->
+      <article class="sw-card" data-cat="tshirts">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Streetwear</span>
+          <img src="https://imgproxy.fourthwall.dev/atcuaSs3Y1-HrPUN4bNcgfJ529HZjJT6Bf1G5KUSnZc/w:720/sm:1/enc/1DxMqwnwxevZ-g1y/VU1hz7bp5tLTpwa9/QxbNTSVIeCUy_hI7/GS2-Hm192Wz1GyyV/Ks5bWCPSvhmj_vUi/IjaVKGrxFH1T5hP3/1a5S342ZWT850okz/1WT6yKSsogsmJzzw/-h-e82hKDKdXwuOW/c33fFWNuBGRo1Bsj/-u2JGot-EJun1hs7/NnUWaqOSpN94Yc8g/rGsq_qIaqBR57DxI/2RqCxAU4FKf7KOGe/dDSyzWcszpc.jpg" loading="lazy" alt="HUMPIRE CORPORATION — NEON GRAVEYARD">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">T-Shirt · Graphique</span>
+          <h3 class="sw-card-title">HUMPIRE CORPORATION — NEON GRAVEYARD</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$29.90</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-corporation-neon-graveyard" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9. Iron Riot Tee -->
+      <article class="sw-card" data-cat="tshirts">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Streetwear</span>
+          <img src="https://imgproxy.fourthwall.dev/0xNb9pVZuUK2lIPvwAmfw8GMCp6AJBkJaRa32-KLqk8/w:720/sm:1/enc/VDmt4y4DCXB1hcd2/X5L7Pvf7Z3zhUhq5/1OVAvlVEU-2QLhpd/1NZycC3HPqsRtDsV/WlcZTYtfvb5Ci3hu/VeZ3hb7OnzWx235O/HZ523u51QDMv2zmZ/iosoPchc-S_51pcx/39NIDK_tfI-Qs4w9/r7WDqS4tGT9R49Nd/9CaHaLkChstTpron/ZhNrc1GedTv0ETYv/hwDcHX0g-Hj9NoFm/E3sYip9Kjsgp5a1g/5urhMok3C5g.jpg" loading="lazy" alt="HUMPIRE CORPORATION — IRON RIOT">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">T-Shirt · Graphique</span>
+          <h3 class="sw-card-title">HUMPIRE CORPORATION — IRON RIOT</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$29.90</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-corporation-iron-riot" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10. Rapforce38 Jogging -->
+      <article class="sw-card" data-cat="jogging">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Rapforce38</span>
+          <img src="https://imgproxy.fourthwall.dev/i7nrfPTdMHaScmXb5adBXmaxJKCiv_5aOg7qMnLaUE/w:720/sm:1/enc/hiYpiBGj0PLf6yqx/LQuHGw7ybTREXO85/E4fh1FtgLqHluQQi/5wv0pcYRdKPuHiur/eMEkVcLhiXZIGFmo/lwNwNMa21A67gsel/sS01Gl-7qsd4mMvm/OQwi4GuGGXP4REEa/XRFrnpIKwnql_ouP/NEeaWgER9xWrRy06/u4eI6ln04Yr_gfyk/NNHIpqNX0VyLQDSg/ipZQQ83g56cERVYI/Lw2fzQeDCT83dF6h/UxM9HHVx6_Y.jpg" loading="lazy" alt="RAPFORCE38 — Jogging Molleton (Noir)">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Bas · Molleton Lourd</span>
+          <h3 class="sw-card-title">RAPFORCE38 — Jogging Molleton (Noir)</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$55.00</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/rapforce38-jogging-molleton-noir" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 11. Rapforce38 Hoodie Arche -->
+      <article class="sw-card" data-cat="hoodies">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Rapforce38</span>
+          <img src="https://imgproxy.fourthwall.dev/XEpD9yRVOwS3hmEtnznbsgz82_TQTfH641Hw2h7f70c/w:720/sm:1/enc/H2ae1ARvPVPmIDyw/Lj1MPa_TZCvJzcgg/qx5lbbdN82_gAWZ8/HHNbUx4fIwFH01H7/oRwZEYz1n4zMqNKx/DtYk_xyQm8Ryay2W/QJAIM4yz-EvjOrfd/EY3BSMD_RBQcuQWO/1F_XiJxhE03BHD90/dehnduF2-7Di6vSk/VJQzq44tHiWXGXEA/agl6ZcIHneN5SSy0/A1zHBPK4S_cDl5Zv/rHnvRnopuj30oFh1/t2jmaDKxSnA.jpg" loading="lazy" alt="RAPFORCE38 — Hoodie Arche (Noir)">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Hoodie · Broderie Arche</span>
+          <h3 class="sw-card-title">RAPFORCE38 — Hoodie Arche (Noir)</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$60.00</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/rapforce38-hoodie-arche-noir" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12. Rapforce38 T-Shirt Texte -->
+      <article class="sw-card" data-cat="tshirts">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Rapforce38</span>
+          <img src="https://imgproxy.fourthwall.dev/d6kK5ZC5DOzMc68gHVqYSlJutw3Hx76cIfk6CKfrw-o/w:720/sm:1/enc/k_WqX6dOuYU6F8Ug/kxqegWfdTy-U32IB/UUtreIRgoj82swci/SpasMj4CQqzYmPRk/3pwov2tluV3KzT6o/_UatD5yM4RbV9HDM/RVvseetZJRbotT7C/Y9rbisiRZLxKdBhz/IilyGuXPiml4Q3Vt/uFqNGEyGUjvsgqH2/6avoW6gGf-HecCwR/cPUQSJleIa_2SM7L/MDUn8_JSlj99Py6I/aOOO0p3pohLHImi3/HQ2yRS9-kBc.jpg" loading="lazy" alt="RAPFORCE38 — T-Shirt Texte (Noir)">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">T-Shirt · Coton Noir</span>
+          <h3 class="sw-card-title">RAPFORCE38 — T-Shirt Texte (Noir)</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$25.00</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/rapforce38-t-shirt-texte-noir" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 13. Rapforce38 T-Shirt Logo -->
+      <article class="sw-card" data-cat="tshirts">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Rapforce38</span>
+          <img src="https://imgproxy.fourthwall.dev/-0DvsKWQ3oFQfYWuCcn9fanBlqGB7oAMRdZj1F5OD5k/w:720/sm:1/enc/bJsG1ASaB10nBfN6/eNYweDGp3-4ZKQwx/_MTRTYujcSdqBWU5/_BTYD9kJMrQbs84b/IxUuhsTGEQcXbWWF/amkNEJInUqANvExW/PVDAk2N9b0zSN3WX/jDXLucSqlZcT1XX5/pYN8P6VseWpWRd0u/l9ztpMi-VaVKhqxj/wIWyNLvdluMqB_om/EuQzWkxA6b9aIHKS/HCoZYvMm0jdFCKSM/l16hliVkIkQ_dkVk/ff_O63kCPsE.jpg" loading="lazy" alt="RAPFORCE38 — T-Shirt Logo (Noir)">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">T-Shirt · Logo Poitrine</span>
+          <h3 class="sw-card-title">RAPFORCE38 — T-Shirt Logo (Noir)</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$25.00</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/rapforce38-t-shirt-logo-noir" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 14. Humpire Spray Hoodie -->
+      <article class="sw-card" data-cat="hoodies">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Signature</span>
+          <img src="https://imgproxy.fourthwall.dev/7lyIIZ_8JoAaVBosUSHs695_OFvmkslsAlF4fVZMAhI/w:720/sm:1/enc/3F-qdV164DQIZHzg/obKo2H9wD24TYj2B/gYP1Ve6fRnsA6__N/_zY63S6IfgHnWmHJ/raX1uiz4KPkeQiNA/-eKyu3nN57SOmpq8/FQpMX6uNaUokIGVA/AYnrlxYAWjSzrM37/XpXAueP57mHFfMus/Z_ua9KTCH22xh_VN/F8L1G7bjl_5X6_BA/2bVYdfwklyJ0LvAL/MUzf3FDhf2SaG5wj/5EplVttamkr9ied0/VxFFOdJ1QKw.jpg" loading="lazy" alt="HUMPIRE — Hoodie Spray (Black)">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Hoodie · Marquage Spray</span>
+          <h3 class="sw-card-title">HUMPIRE — Hoodie "Spray" (Black)</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$42.00</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-hoodie-spray-black" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 15. Humpire Spray Joggers -->
+      <article class="sw-card" data-cat="jogging">
+        <div class="sw-card-img">
+          <span class="sw-card-badge soldout">Sold Out</span>
+          <img src="https://imgproxy.fourthwall.dev/YViU0qxkrMWVgjZnHIhcy-Sgl0QKvnLmyD8EbwKeckc/w:720/sm:1/enc/TH8XSIvoe8G5y2X9/8KgzeblklyMxe4U3/4KNPfhZlQDq4a_yt/Im2W3fRRDsRONmZQ/f-b-lDUvIpSygWBz/egC83k20dHsgteK2/ioFqEVPoMFPGUr-7/_RJhg3asIDPHa7zN/-hWxu46kF0rgjaHJ/hrCYs0lf_UsBRelR/LdN9MYhVO1o2et9Z/jv6xXmG-2K9HiLvt/0h0dWe8fUWBGjT2P/2FhX9B480LY8abSL/RI7Re-54D-s.jpg" loading="lazy" alt="HUMPIRE Spray Joggers — Black">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Jogging · Spray Black</span>
+          <h3 class="sw-card-title">HUMPIRE Spray Joggers — Black</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$38.00</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-spray-joggers-black" target="_blank" rel="noopener">
+              Voir <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 16. Humpire Spray Bucket Hat -->
+      <article class="sw-card" data-cat="accessories">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Accessoire</span>
+          <img src="https://imgproxy.fourthwall.dev/2W7VgVDpL7J65g6GovgPBhJdsuijc-7JgkczVJuuDOA/w:720/sm:1/enc/Q08dc5l5t9B9fR9G/Oqpfjuholxlfks54/TOWgTK9yVwi1pfmP/4wH3tqULVaU3fpvo/qnjASj8i-yjGoA4y/1Gn98Ne1IqGJEr5l/WsniDXUJwzaubVxv/5l0w0Ck66gJI2LGv/4K95dYkC8crpNT8H/tieCpiQ3AM-8LcEj/gzNERhs_x0-SMjWM/GocQ6LJfluhDlOIi/8yN55AKcGRcIkW7h/7POG5PUWw30TJXaD/vH6Ak67Vk30.jpg" loading="lazy" alt="HUMPIRE Spray Bucket Hat">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Chapeau · Bob</span>
+          <h3 class="sw-card-title">HUMPIRE Spray Bucket Hat</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$29.00</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-spray-bucket-hat" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 17. Humpire Spray Cap -->
+      <article class="sw-card" data-cat="accessories">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Populaire</span>
+          <img src="https://imgproxy.fourthwall.dev/PR7C-q0DEYqIxXpBJqWLJHLZ_gSN4n1Ryy1zUEGv1Zk/w:720/sm:1/enc/CL_Wiu7zIalamUud/paKcN7cbQcqn-QEI/GYrs95YMVcFeHy63/fpO4s-xvchU-uJcF/_DP4KOo269DnPVFR/DxKbjfhYuW3_jGzm/g5kgohq063r541fh/XU_GXA6HF3NTbqzm/faY2VlvKFGCf50Nq/bnBqzS181UUggoYb/IBYfKo6vMfmUftDz/dCk3MNl3wMx3T2hn/3lvMlKtVa3ilr9FS/hP9fTvylVUT2Wbuf/BQ9R1Ol48-c.jpg" loading="lazy" alt="HUMPIRE Spray Cap">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Casquette · Snapback</span>
+          <h3 class="sw-card-title">HUMPIRE Spray Cap</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$26.00</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-spray-cap" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 18. Humpire Camel Mug -->
+      <article class="sw-card" data-cat="accessories">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Mug</span>
+          <img src="https://imgproxy.fourthwall.dev/3FL0B6zBCZcGBoureGp95ECBFFrJ-ZijuSTgHtbx6hw/w:720/sm:1/enc/WMg35qTJGI4Jvn9z/jc_UUtyFClpwZzhA/GqBuqtuD3dRXoYcY/tP918waDjp4qlRO0/obLf3K2fSSZ_zgXi/rmJoJZ78N7CCdMrU/pXhRWckTQPIQT_Rr/CgcLUykiwoiaNxNU/d3TV-xK20vGiohIV/puTeFUiC3iexhvZl/mkBFpZujyIdYxZaN/LSDc85YM3B5uiAf6/GF6WqS0F7puLUJby/7NIIDLblXazlwR4m/g6IY8SRONDY.jpg" loading="lazy" alt="HUMPIRE Camel Mug">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Accessoire · Céramique</span>
+          <h3 class="sw-card-title">HUMPIRE Camel Mug</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$19.00</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-mug-spray" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 19. Humpire Camel Tote -->
+      <article class="sw-card" data-cat="accessories">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Accessoire</span>
+          <img src="https://imgproxy.fourthwall.dev/5cNqJ67HIEMySjBi8RbAyVeva_k0pRc-hEu7_112QOQ/w:720/sm:1/enc/vd8z5MfC6n36reyj/BOAJx-MEGGTV36D5/_paI557TSjwcEq75/5CvbUrgZi67nbNJ6/lI7Lr4UHiVpuXHYm/TYeg7to0TXXzTg5J/luI3edhAntNUsr5Z/ufO1nfPMrRXnJ0-P/XM-lkWjIjT9Yhfgj/tCV95BBgaLtmeUfI/m7B45aZXMoiEyU22/BRAZRoxEr3aoQUzq/QG30u533ezPB-o0k/IycAt8gR5cb8AULt/8lxh2Y2KAdY.jpg" loading="lazy" alt="HUMPIRE Camel Tote — Black">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">Sac · Tote Bag</span>
+          <h3 class="sw-card-title">HUMPIRE Camel Tote — Black</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$28.00</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-camel-tote-black" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 20. Oversized Tee Spray White -->
+      <article class="sw-card" data-cat="tshirts">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Oversize</span>
+          <img src="https://imgproxy.fourthwall.dev/j3Mt6HP1t7ICgkQ7BXz3KqcYsFtjXXT9xM5Vg0iH87w/w:720/sm:1/enc/to36qKezvi2qdSnL/En2RKOQtFwoG4uFH/jfFLXcHBSw-zAHxU/Ti0LbJl7EJcOHxwU/ektgu0lw1c_zLgMh/ddudpFc2xkfLi7Hy/JAz8LPYP1NuPTJNs/4paam43FW6o9YA2S/3C6OdJJCQJ4a5Pci/ZbuW5EPXtHI9Hmxd/35QYLc1rdKRqgyM1/P5uCDju1dsz-mx-Z/CuKBxypWHjfMFSue/xnRUit6I9ebAtCf7/ilrbdC9mU3c.jpg" loading="lazy" alt="HUMPIRE — Oversized Tee Spray (White)">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">T-Shirt · Blanc Oversize</span>
+          <h3 class="sw-card-title">HUMPIRE — Oversized Tee "Spray" (White)</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$32.00</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-oversized-tee-spray-white" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 21. Oversized Tee Spray Black -->
+      <article class="sw-card" data-cat="tshirts">
+        <div class="sw-card-img">
+          <span class="sw-card-badge">Oversize</span>
+          <img src="https://imgproxy.fourthwall.dev/N1SQku71TCtEdihGY536XloXm7p9ars6HeUEzZ389aA/w:720/sm:1/enc/HafA-XrP8Dm7DAG7/mlHxTDq6gYv1HvJn/dt5ENpeMzeJiiqG_/WnsjHJckeg0qgr2L/qHw8Eby9oTCdImWf/YiYADH7vSaDZKT-V/9pJpWFcTMfU5Sov3/DaCNN5q7A0C6TsdP/AwyttV7NLYwxJ0DT/ohJtOP8FAM0ElwxA/L_v_VszokNGUUWVf/EFdx85otb3iJV9G8/-IVqmT6AP3VX2isk/10TsREtzuzXHEkN_/Pr_TaDrTjwA.jpg" loading="lazy" alt="HUMPIRE — Oversized Tee Spray (Black)">
+        </div>
+        <div class="sw-card-body">
+          <span class="sw-card-cat">T-Shirt · Noir Oversize</span>
+          <h3 class="sw-card-title">HUMPIRE — Oversized Tee "Spray" (Black)</h3>
+          <div class="sw-card-foot">
+            <span class="sw-card-price">$32.00</span>
+            <a class="sw-card-buy" href="https://djbilbox-beats-shop.fourthwall.com/en-eur/products/humpire-oversized-tee-spray-black" target="_blank" rel="noopener">
+              Acheter <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
     </div>
-  </section>
 
-  <!-- ==================== 05 — MAILLOTS PAYS ==================== -->
-  <section class="sw-pays" id="pays">
-    <div class="sw-in">
-      <div class="sw-pays-head sw-reveal">
-        <p class="sw-eyebrow">Signature 05 · 24 pays</p>
-        <h2>Le maillot de <em>ton pays</em></h2>
-        <p>
-          Tes couleurs, notre écusson. Écharpe en diagonale, dromadaire à la poitrine,
-          HUMPIRE en grand et le nom du pays dessous. Vingt-quatre existent déjà.
-        </p>
+    <!-- Guarantees / Store Info -->
+    <section class="sw-info-banner">
+      <div class="sw-info-item">
+        <i class="fa-solid fa-truck-fast"></i>
+        <div>
+          <h4>Livraison Rapide</h4>
+          <p>Production et expédition directe depuis l'Europe et les États-Unis avec suivi de commande.</p>
+        </div>
       </div>
-
-      <div class="sw-kit-search">
-        <input type="search" id="swKitSearch" placeholder="Cherche un pays" aria-label="Filtrer les maillots par pays">
+      <div class="sw-info-item">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div>
+          <h4>Paiement 100% Sécurisé</h4>
+          <p>Transactions protégées par Stripe, Apple Pay, Google Pay et cartes bancaires via Fourthwall.</p>
+        </div>
       </div>
-
-      <div class="sw-kits sw-reveal" id="swKits">
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-france.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE France"><span>France</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-algerie.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Algérie"><span>Algérie</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-maroc.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Maroc"><span>Maroc</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-tunisie.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Tunisie"><span>Tunisie</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-senegal.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Sénégal"><span>Sénégal</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-cote-divoire.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Côte d'Ivoire"><span>Côte d'Ivoire</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-mali.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Mali"><span>Mali</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-comores.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Comores"><span>Comores</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-nigeria.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Nigeria"><span>Nigeria</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-portugal.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Portugal"><span>Portugal</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-espagne.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Espagne"><span>Espagne</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-italie.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Italie"><span>Italie</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-england.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE England"><span>England</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-germany.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Germany"><span>Germany</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-netherlands.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Netherlands"><span>Netherlands</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-poland.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Poland"><span>Poland</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-turquie.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Turquie"><span>Turquie</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-thailand.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Thailand"><span>Thailand</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-japan.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Japan"><span>Japan</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-usa.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE USA"><span>USA</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-canada.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Canada"><span>Canada</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-mexico.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Mexico"><span>Mexico</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-bresil.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Brésil"><span>Brésil</span></figure>
-        <figure class="sw-kit"><img src="img/streetwear/web/foot-australia.jpg" width="560" height="560" loading="lazy" alt="Maillot HUMPIRE Australia"><span>Australia</span></figure>
+      <div class="sw-info-item">
+        <i class="fa-solid fa-shirt"></i>
+        <div>
+          <h4>Qualité Textile Supérieure</h4>
+          <p>Coton lourd premium, coupes streetwear soignées et impressions durables haute définition.</p>
+        </div>
       </div>
-      <p class="sw-kits-empty" id="swKitsEmpty" hidden>Ce pays n'existe pas encore</p>
+    </section>
 
-      <p class="sw-pays-note">Un pays manque ? Demande-le sur le Discord — les plus demandés partent en production.</p>
-    </div>
-  </section>
-
-  <!-- ==================== WAITLIST ==================== -->
-  <section class="sw-band">
-    <div class="sw-in">
-      <h2>Le <span>Drop 01</span> est en ligne</h2>
-      <p>T-shirt, sweat, jogging, casquette, bob, tote bag et mug — imprimés à la commande et expédiés depuis l'Europe. Les maillots racing et les maillots pays arrivent ensuite : le Discord est prévenu en premier.</p>
-      <div class="sw-cta">
-        <a class="sw-btn go" href="https://djbilbox-beats-shop.fourthwall.com" target="_blank" rel="noopener">
-          <i class="fa-solid fa-bag-shopping"></i> Voir la boutique
-        </a>
-        <a class="sw-btn ghost" href="https://discord.gg/7HeMSvbN" target="_blank" rel="noopener">
-          <i class="fa-brands fa-discord"></i> Rejoindre le Discord
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== FAQ ==================== -->
-  <section class="sw-sec">
-    <div class="sw-in">
-      <div class="sw-sec-head sw-reveal">
-        <p class="sw-eyebrow">Questions</p>
-        <h2>Bon à savoir</h2>
-      </div>
-      <div class="sw-faq sw-reveal">
-        <details>
-          <summary>C'est dispo quand ?</summary>
-          <p>Le Drop 01 est en vente maintenant : t-shirt, casquette et mug. Chaque pièce est imprimée à la commande et expédiée depuis l'Europe — compte 5 à 11 jours. Les autres pièces de la collection arrivent au fil des drops.</p>
-        </details>
-        <details>
-          <summary>Les visuels, c'est les vrais produits ?</summary>
-          <p>Les <strong>visuels de marque</strong> sont les vrais designs, ceux qui partent à l'impression. Les pièces en vente ont leurs propres photos sur la boutique. Les vêtements encore marqués « bientôt » sont montrés en <strong>maquette de placement</strong> — ils ne sont pas encore produits.</p>
-        </details>
-        <details>
-          <summary>Je peux avoir mon pays ?</summary>
-          <p>Les pays listés partent en premier. Pour en ajouter un, demande-le sur le Discord : les plus demandés passent en production au drop suivant.</p>
-        </details>
-        <details>
-          <summary>Où acheter ?</summary>
-          <p>Sur la boutique HUMPIRE : <a href="https://djbilbox-beats-shop.fourthwall.com" target="_blank" rel="noopener">djbilbox-beats-shop.fourthwall.com</a>. Les beats et les plugins restent sur <a href="https://djbilboxbeats.gumroad.com" target="_blank" rel="noopener">Gumroad</a>.</p>
-        </details>
-        <details>
-          <summary>Les prix ?</summary>
-          <p>T-shirt oversize 32 $, sweat à capuche 42 $, jogging 38 $, bob 29 $, tote bag 28 $, casquette 26 $, mug 19 $ (11oz) ou 22 $ (15oz). Les frais de port sont calculés au panier selon le poids et la destination.</p>
-        </details>
-        <details>
-          <summary>Les tailles ?</summary>
-          <p>T-shirts, survêtements et manteaux en XS–XXL, coupe oversize (taille habituelle pour un fit large, une taille en dessous pour un fit ajusté). Casquettes et bobs en taille unique ajustable.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
+  </main>
 </div>
 
-<script src="assets/js/site.js?v=26082801"></script>
+<script src="assets/js/site.js?v=26092701"></script>
 <script>
-/* ---------- Maillots pays : filtre par nom ---------- */
-(function () {
-  var input = document.getElementById('swKitSearch');
-  var grid  = document.getElementById('swKits');
-  var empty = document.getElementById('swKitsEmpty');
-  if (!input || !grid || !empty) return;
+// Filter by category
+(function(){
+  var tabs = document.querySelectorAll('.sw-tab');
+  var cards = document.querySelectorAll('.sw-card');
 
-  var kits = [].slice.call(grid.querySelectorAll('.sw-kit')).map(function (el) {
-    /* on compare sans accents : "senegal" doit trouver "Senegal" */
-    var name = el.querySelector('span').textContent;
-    return { el: el, key: name.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '') };
-  });
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
 
-  input.addEventListener('input', function () {
-    var q = input.value.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-    var shown = 0;
-    kits.forEach(function (k) {
-      var hit = !q || k.key.indexOf(q) !== -1;
-      k.el.hidden = !hit;
-      if (hit) shown++;
+      var filter = tab.getAttribute('data-filter');
+      cards.forEach(function(card){
+        if(filter === 'all' || card.getAttribute('data-cat') === filter){
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     });
-    empty.hidden = shown > 0;
   });
-})();
-
-/* ---------- reveal au scroll (inactif si reduced-motion) ---------- */
-(function () {
-  var root = document.documentElement;
-  var els = document.querySelectorAll('.sw-reveal');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce || !('IntersectionObserver' in window)) return;
-  root.classList.add('sw-reveal-ready');
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  els.forEach(function (el) { io.observe(el); });
-  setTimeout(function () { els.forEach(function (el) { el.classList.add('in'); }); }, 2500);
 })();
 </script>
 </body>
