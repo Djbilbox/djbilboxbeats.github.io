@@ -101,11 +101,35 @@ function mountSidebar(active){
 
   const ticker = document.createElement('div');
   ticker.className='top-ticker';
+  /* Cinematic product ribbon: official HUMPIRE synths + effects. */
   const tickerItems = [
-    'HUMPIRE FAM','KEEP GOIN\' HUMPIRE','BUY 1 GET 1 FREE','BUY 3 GET 3 FREE',
-    'BUY 5 GET 5 FREE','AUTO-APPLIES AT CHECKOUT','857+ DOWNLOADS','FREE STATION SYNTH BASIC'
+    {kind:'kicker', title:'HUMPIRE VST UNIVERSE'},
+    {kind:'synth', title:'VICE CITY PRO', subtitle:'SYNTHWAVE', href:'/product.html?id=vice-city'},
+    {kind:'synth', title:'NEON SYNTH 80s BASIC', subtitle:'80s POLYSYNTH', href:'/product.html?id=neon-synth-80s'},
+    {kind:'synth', title:'THUGLIFE PRO', subtitle:'G-FUNK STREET SYNTH', href:'/thuglife.html'},
+    {kind:'synth', title:'STATION SYNTH BASIC', subtitle:'FREE WAVETABLE', href:'/station-synth-demo.html'},
+    {kind:'synth', title:'BIGBASS PRO', subtitle:'LA LOWRIDER BASS', href:'/product.html?id=bigbass'},
+    {kind:'synth', title:'ORIENTAL INSTRUMENT', subtitle:'MAQAM ENGINE', href:'/product.html?id=oriental-instrument'},
+    {kind:'divider', title:'EFFECTS'},
+    {kind:'effect', title:'PHARAOH COMP', subtitle:'COMPRESSOR', href:'/product.html?id=pharaoh-comp'},
+    {kind:'effect', title:'AURORA VERB', subtitle:'REVERB', href:'/product.html?id=aurora-verb'},
+    {kind:'effect', title:'CANYON ECHO', subtitle:'TAPE DELAY', href:'/product.html?id=canyon-echo'},
+    {kind:'effect', title:'STORM RIDER', subtitle:'DISTORTION', href:'/product.html?id=storm-rider'},
+    {kind:'effect', title:'LAVA FUZZ', subtitle:'VINTAGE FUZZ', href:'/product.html?id=lava-fuzz'},
+    {kind:'effect', title:'CAMEL PEDAL', subtitle:'OVERDRIVE', href:'/product.html?id=camel-pedal'},
+    {kind:'effect', title:'JET FLANGER', subtitle:'STEREO MODULATION', href:'/product.html?id=jet-flanger'},
+    {kind:'effect', title:'NEON PHASER', subtitle:'70s FUNK SWIRL', href:'/product.html?id=neon-phaser'},
+    {kind:'effect', title:'CORAL CHORUS', subtitle:'80s ANALOG WARMTH', href:'/product.html?id=coral-chorus'},
+    {kind:'effect', title:'SURF TREMOLO', subtitle:'RHYTHMIC PULSE', href:'/product.html?id=surf-tremolo'},
+    {kind:'effect', title:'EQ-PRO SPIDER', subtitle:'8-BAND EQ', href:'/product.html?id=eq-pro-spider'},
+    {kind:'effect', title:'MATRIX MODULAR', subtitle:'AUTO-PAN VST', href:'/product.html?id=matrix-modular'},
+    {kind:'effect', title:'MASTERING', subtitle:'PRO LIMITER', href:'/product.html?id=mastering'}
   ];
-  const tickerHtml = tickerItems.map(t=>`<span>${t}</span>`).join('');
+  const tickerHtml = tickerItems.map(item=>{
+    if(item.kind==='kicker') return `<span class="ticker-kicker">${item.title}</span>`;
+    if(item.kind==='divider') return `<span class="ticker-divider">${item.title}</span>`;
+    return `<a class="ticker-product ticker-${item.kind}" href="${item.href}"><strong>${item.title}</strong><small>${item.subtitle}</small></a>`;
+  }).join('');
   ticker.innerHTML = `<div class="top-ticker-track">${tickerHtml}${tickerHtml}</div>`;
 
   document.body.prepend(overlay, header, ticker);

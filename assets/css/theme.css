@@ -28,18 +28,29 @@ body{
   padding-bottom:48px;          /* room for sticky promo */
 }
 
-/* ---- TOP TICKER — bold scrolling deal band above the header (Apeshyt-style) ---- */
+/* ---- PRODUCT TICKER — cinematic VST title ribbon above the header ---- */
 .top-ticker{position:fixed;top:0;left:0;right:0;z-index:1001;height:var(--ticker-h);
-  overflow:hidden;background:linear-gradient(90deg,#FF7A1A,var(--accent));
-  display:flex;align-items:center}
-.top-ticker-track{display:flex;align-items:center;gap:40px;width:max-content;
-  animation:topTickerScroll 26s linear infinite;padding-left:20px}
+  overflow:hidden;background:
+    linear-gradient(90deg,rgba(6,6,12,.98),rgba(20,8,28,.98) 48%,rgba(5,13,22,.98)),
+    #09090d;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.13);
+  box-shadow:0 5px 24px rgba(0,0,0,.35)}
+.top-ticker::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;
+  background:linear-gradient(90deg,transparent,rgba(255,35,150,.35),transparent 35%,rgba(32,220,255,.25),transparent 72%);
+  animation:tickerLightSweep 8s ease-in-out infinite}
+.top-ticker-track{position:relative;display:flex;align-items:center;gap:30px;width:max-content;
+  animation:topTickerScroll 46s linear infinite;padding-left:24px}
 .top-ticker:hover .top-ticker-track{animation-play-state:paused}
-.top-ticker span{font-family:var(--font-a);font-weight:800;font-size:.78rem;
-  letter-spacing:.14em;text-transform:uppercase;color:#fff;white-space:nowrap;
-  display:flex;align-items:center;gap:10px}
-.top-ticker span::after{content:'★';font-size:.7rem;opacity:.7;margin-left:30px}
+.ticker-product{display:inline-flex;align-items:baseline;gap:9px;white-space:nowrap;color:#fff;transition:transform .2s ease,filter .2s ease}
+.ticker-product:hover{transform:translateY(-1px) scale(1.025);filter:brightness(1.25)}
+.ticker-product strong,.ticker-kicker,.ticker-divider{font-family:var(--font-a);font-weight:800;text-transform:uppercase;letter-spacing:.11em}
+.ticker-product strong{font-size:.78rem;text-shadow:0 1px 0 #000,0 0 13px currentColor}
+.ticker-product small{font-family:var(--font-a);font-size:.54rem;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,.62)}
+.ticker-synth{color:#ff63c6}.ticker-effect{color:#45ddff}
+.ticker-kicker{font-size:.68rem;color:#fff;letter-spacing:.25em;text-shadow:0 0 16px rgba(255,255,255,.5)}
+.ticker-divider{font-size:.62rem;color:#f7c75d;letter-spacing:.3em;border-left:1px solid rgba(247,199,93,.5);padding-left:30px}
+.ticker-product::after{content:'✦';font-size:.62rem;color:#fff;opacity:.55;margin-left:5px}
 @keyframes topTickerScroll{to{transform:translateX(-50%)}}
+@keyframes tickerLightSweep{0%,100%{transform:translateX(-30%);opacity:.2}50%{transform:translateX(30%);opacity:.55}}
 .topbar{top:var(--ticker-h) !important}
 
 /* ---- STAT BAND — bold dark strip with big numbers (Apeshyt-style) ---- */
