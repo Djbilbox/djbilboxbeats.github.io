@@ -19,6 +19,72 @@
    2026-08-01: the plug-in does not work, and the bundle shipped it as one
    of its five VSTs. Do not re-add either without a fixed build. */
 window.VSTS = [
+  /* ========== GUITAR PEDALS COLLECTION (NEW 2026) ========== */
+  { id:"camel-pedals", name:"CAMEL PEDALS — 10 Guitar Pedal Plugins Pack", img:"https://public-files.gumroad.com/lpnzoq7297f1r57b9mhaqmaawtbh", category:"effect",
+    tags:["10 Pedal Plugins Pack","VST3 · AU · Standalone","Win · Mac"], tier:"bundle", price:"64", badge:"🔥 10 Pedals Pack",
+    buy:"camel-pedals", demo:"",
+    note:"The complete 10 guitar pedals suite · compressor, fuzz, overdrive, reverb, echo, chorus..." },
+
+  { id:"pharaoh-comp", name:"PHARAOH COMP — Compressor Guitar Pedal Plugin", img:"https://public-files.gumroad.com/h6s66mf334sfv3ts8428c9jyxpfh", category:"effect",
+    tags:["Compressor Pedal","Analog Warmth · Punch","VST3 · AU · Standalone"], tier:"pro", price:"7", badge:"🎸 Pedal",
+    buy:"pharaoh-comp", demo:"",
+    note:"Studio compressor guitar pedal · vintage warmth and dynamic punch" },
+
+  { id:"aurora-verb", name:"AURORA VERB — Reverb Guitar Pedal Plugin", img:"https://public-files.gumroad.com/pqpo6cdlc3lzks4w5qsozrz1twrn", category:"effect",
+    tags:["Reverb Pedal","Ambient · Shimmer · Hall","VST3 · AU · Standalone"], tier:"pro", price:"10", badge:"🎸 Pedal",
+    buy:"aurora-verb", demo:"",
+    note:"Lush ambient reverb guitar pedal · rich space and shimmer modulation" },
+
+  { id:"canyon-echo", name:"CANYON ECHO — Delay Guitar Pedal Plugin", img:"https://public-files.gumroad.com/q47rz4hq812g467mjvx15h632oet", category:"effect",
+    tags:["Delay Pedal","Tape Echo · Analog Ping-Pong","VST3 · AU · Standalone"], tier:"pro", price:"10", badge:"🎸 Pedal",
+    buy:"canyon-echo", demo:"",
+    note:"Analog tape echo & delay pedal · warm repeats and spatial ping-pong" },
+
+  { id:"storm-rider", name:"STORM RIDER — Distortion Guitar Pedal Plugin", img:"https://public-files.gumroad.com/qngv5yymburjw3w2pcldwiozfh8r", category:"effect",
+    tags:["Distortion Pedal","Heavy Gain · Tube Drive","VST3 · AU · Standalone"], tier:"pro", price:"9", badge:"🎸 Pedal",
+    buy:"storm-rider", demo:"",
+    note:"High gain aggressive distortion pedal · tube-style saturation and bite" },
+
+  { id:"lava-fuzz", name:"LAVA FUZZ — Fuzz Guitar Pedal Plugin", img:"https://public-files.gumroad.com/nhpz78kimfj1t0t7kpgmak6rf4qt", category:"effect",
+    tags:["Fuzz Pedal","Vintage Silicon / Germanium","VST3 · AU · Standalone"], tier:"pro", price:"8", badge:"🎸 Pedal",
+    buy:"lava-fuzz", demo:"",
+    note:"Heavy vintage fuzz pedal · thick harmonic distortion and sustain" },
+
+  { id:"camel-pedal", name:"CAMEL PEDAL — Overdrive Guitar Pedal Plugin", img:"https://public-files.gumroad.com/3xjusvi9udunlevrnvwlgcrwi5ca", category:"effect",
+    tags:["Overdrive Pedal","Tube Screamer Style · Boost","VST3 · AU · Standalone"], tier:"pro", price:"8", badge:"🎸 Pedal",
+    buy:"camel-pedal", demo:"",
+    note:"Classic warm overdrive pedal · transparent boost and creamy clipping" },
+
+  { id:"jet-flanger", name:"JET FLANGER — Flanger Guitar Pedal Plugin", img:"https://public-files.gumroad.com/mtdbidxitjjugxe2s5fbeljffzcf", category:"effect",
+    tags:["Flanger Pedal","Jet Sweep · Stereo Modulation","VST3 · AU · Standalone"], tier:"pro", price:"7", badge:"🎸 Pedal",
+    buy:"jet-flanger", demo:"",
+    note:"Stereo flanger pedal · dramatic jet sweeps and lush swirl modulation" },
+
+  { id:"neon-phaser", name:"NEON PHASER — Phaser Guitar Pedal Plugin", img:"https://public-files.gumroad.com/qbj8j8vjo1g30d2a3x5bm3ur1d4u", category:"effect",
+    tags:["Phaser Pedal","Multi-Stage Analog Phase","VST3 · AU · Standalone"], tier:"pro", price:"6", badge:"🎸 Pedal",
+    buy:"neon-phaser", demo:"",
+    note:"Multi-stage analog phaser pedal · 70s funk swirl and deep sweeps" },
+
+  { id:"coral-chorus", name:"CORAL CHORUS — Chorus Guitar Pedal Plugin", img:"https://public-files.gumroad.com/s7v9htl1ut6inbfondek1cme2jym", category:"effect",
+    tags:["Chorus Pedal","Stereo Dimension · Warmth","VST3 · AU · Standalone"], tier:"pro", price:"6", badge:"🎸 Pedal",
+    buy:"coral-chorus", demo:"",
+    note:"Lush stereo chorus pedal · wide shimmer and 80s analog warmth" },
+
+  { id:"surf-tremolo", name:"SURF TREMOLO — Tremolo Guitar Pedal Plugin", img:"https://public-files.gumroad.com/41icqnhtl82jb7jfqq9wrtoywppl", category:"effect",
+    tags:["Tremolo Pedal","Opto / Harmonic Tremolo","VST3 · AU · Standalone"], tier:"pro", price:"5", badge:"🎸 Pedal",
+    buy:"surf-tremolo", demo:"",
+    note:"Vintage optical and harmonic tremolo pedal · rhythmic pulse and wave shaping" },
+
+  { id:"eq-pro-spider", name:"EQ-PRO SPIDER — Free 8-Band EQ Plugin", img:"https://public-files.gumroad.com/pewpk4wx84fcy9rn6igvz5bfi8vq", category:"effect",
+    tags:["8-Band Parametric EQ","Visual Spectrum Analyzer","VST3 · AU · Standalone"], price:"0", free:true, badge:"✅ FREE",
+    buy:"eq-pro-spider", demo:"",
+    note:"100% FREE · professional 8-band parametric equalizer with real-time analyzer" },
+
+  { id:"mini-mpc-humpire", name:"MINI MPC HUMPIRE — Free Beat Machine (64 Pads)", img:"https://public-files.gumroad.com/4l3h0k0qe4alih949ll89f6sjqvf", category:"instrument",
+    tags:["64 Pads Sampler","Built-in Sequencer · Kits","Standalone · App"], price:"0", free:true, badge:"✅ FREE BASIC",
+    buy:"retihn", demo:"",
+    note:"100% FREE · 64-pad MPC sampler and beat machine with custom kits" },
+
   /* ========== PRO BUNDLE — l'offre phare ==========
      Vrai bundle Gumroad (il contient les 6 produits, rien à téléverser),
      publié le 12 août 2026 sous `djbilbox-pro-bundle`. MACHINA EFFECT en

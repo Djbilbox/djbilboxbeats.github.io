@@ -825,6 +825,36 @@ window.PRODUCTS = {
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["MASTERING VST3 (64-bit)","MASTERING Standalone app","Full documentation (PDF)","User manual & quick-start guide"]
+  },
+
+  /* ===================== CAMEL PEDALS PACK ===================== */
+  "camel-pedals": {
+    type:"vst", name:"CAMEL PEDALS — 10 Guitar Pedal Plugins Pack", sub:"Complete Studio Guitar FX Suite",
+    tagline:"10 analog-modeled guitar pedals — Compressor, Tremolo, Phaser, Chorus, Reverb, Delay, Fuzz, Distortion, Overdrive & Flanger. Windows & Mac.",
+    cover:"https://public-files.gumroad.com/lpnzoq7297f1r57b9mhaqmaawtbh", accent:"#d96528", accent2:"#d4a359",
+    tier:"bundle", price:"64", badge:"🔥 10 Pedals Pack",
+    note:"10 analog-modeled pedals · one payment · lifetime access",
+    buy:"camel-pedals",
+    tags:["10 Pedals","Guitar FX","VST3 · AU · Standalone","Win · Mac"],
+    about:[
+      "CAMEL PEDALS is the ultimate guitar effects pedalboard suite for beatmakers, guitarists and sound designers. 10 meticulously crafted analog-modeled pedals covering every essential effect: PHARAOH COMP (optical compressor), SURF TREMOLO, NEON PHASER, CORAL CHORUS, AURORA VERB, CANYON ECHO, LAVA FUZZ, STORM RIDER (distortion), CAMEL PEDAL (overdrive), and JET FLANGER.",
+      "Each pedal features high-resolution vector UI, low CPU footprint, analog saturation staging, and true stereo processing. Perfect for guitars, Rhodes, synths, vocals and 808s.",
+      "Available as VST3, Audio Unit (macOS) and Standalone application for Windows 10/11 and macOS."
+    ],
+    features:[
+      {icon:"fa-guitar", t:"10 Guitar Pedals in one pack", d:"Compressor, Tremolo, Phaser, Chorus, Reverb, Delay, Fuzz, Distortion, Overdrive, Flanger."},
+      {icon:"fa-bolt", t:"Analog modeling & saturation", d:"Warm analog warmth, vintage character and dynamic punch."},
+      {icon:"fa-desktop", t:"Win & Mac · VST3 / AU / Standalone", d:"Universal 64-bit support for all major DAWs (FL Studio, Ableton, Logic, Studio One...)."},
+      {icon:"fa-unlock", t:"Lifetime royalty-free license", d:"Use on all your commercial tracks without restrictions."}
+    ],
+    specs:[
+      {k:"Included plugins", v:"10 standalone & VST3/AU pedals"},
+      {k:"Formats", v:"VST3 · Audio Unit · Standalone"},
+      {k:"Platforms", v:"Windows 10/11 & macOS (Intel + Apple Silicon)"},
+      {k:"Price", v:"$64"},
+      {k:"License", v:"Royalty-free commercial use"}
+    ],
+    includes:["10 Guitar Pedal Plugins (VST3/AU/Standalone)","PHARAOH COMP, SURF TREMOLO, NEON PHASER, CORAL CHORUS","AURORA VERB, CANYON ECHO, LAVA FUZZ, STORM RIDER","CAMEL PEDAL (Overdrive), JET FLANGER","User presets and documentation"]
   }
 
 };

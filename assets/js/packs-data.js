@@ -23,6 +23,22 @@
    ============================================================ */
 window.PACKS = [
   /* ---------- New release (2026) ---------- */
+  { id:"menace-to-melody", name:"MENACE TO MELODY — G-Funk & West Coast Melodies (2026)", img:"https://public-files.gumroad.com/dapyb6imssp9ofk6vbupisttsdpp",
+    genre:"G-Funk", tags:["G-Funk","West Coast","Melody Loops","Free"], price:"FREE",
+    buy:"menace-to-melody" },
+
+  { id:"boyz-n-da-loop", name:"BOYZ N DA LOOP — G-Funk & West Coast Drum Loops (2026)", img:"https://public-files.gumroad.com/rjwd8ao71azl84zuzdup2umabvzw",
+    genre:"West Coast", tags:["G-Funk","West Coast","Drum Loops","Free"], price:"FREE",
+    buy:"boyz-n-da-loop" },
+
+  { id:"venom-flp", name:"VENOM — Free FL Studio Drum Loop Template (FLP)", img:"https://public-files.gumroad.com/sj3ni0o893kspzpz0gpcd8lvy6gw",
+    genre:"FL Studio", tags:["FL Studio","FLP","Template","Free"], price:"FREE",
+    buy:"psmeiq" },
+
+  { id:"lowrider-drum-loops-2026", name:"Lowrider Drum Loops 2026 — G-Funk & West Coast Pack", img:"https://public-files.gumroad.com/rq6kvahdjx91hqo6zrtr1qp5igqr",
+    genre:"G-Funk", tags:["G-Funk","Lowrider","Drum Loops","Free"], price:"FREE",
+    buy:"epabpp" },
+
   { id:"cali-g-funk-melodies-2026", name:"🌴 Cali G-Funk Melodies 2026 : Big Pack 6Go (100% Free) 🍦", img:"img/packs/cali-g-funk-melodies-2026.jpg",
     genre:"G-Funk", tags:["G-Funk","West Coast","Free","Melody Loops","Samples"], price:"FREE",
     buy:"rdswq" },
