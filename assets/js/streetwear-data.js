@@ -107,58 +107,6 @@ window.STREETWEAR_PRODUCTS = {
     }
   },
 
-  "balaclava-corp": {
-    id: "balaclava-corp",
-    name: "BALACLAVA HUMPIRE CORPORATION",
-    brand: "HUMPIRE",
-    brandTag: "HUMPIRE Corporation",
-    category: "accessories",
-    categoryLabel: "Accessoire · Cache-Cou / Balaclava",
-    price: "11,56 €",
-    priceNum: 11.56,
-    badge: "Nouveau",
-    badgeType: "new",
-    image: "https://imgproxy.fourthwall.dev/5Vj1-oMnuxGW2e7qTpo5XdNGI1XI1j5xecNdvNtCymE/w:720/sm:1/enc/fcN4fqIx6K1pLATU/W0BzvwKf-1CndBgX/_rHRBRlxJnOyO7pA/tyiFpZUEE7q7xCMh/RjZZyciDc__mGAdJ/r3pSuNlUcDoKOWIX/HF8sI0_kMYXGUe4E/a7thzsI8CaP0OuZB/AYw5IsM0d7LY-Yn0/O9uMhvWuJZJtl1TB/OuhBfYx72qnpCanj/Yre8yz6x-gda3wnR/l47aKXl1KbCU9FPm/xPw7TWfr0EneT1eE/4iYbEPzX7ME.jpg",
-    buyUrl: "https://djbilbox-beats-shop.fourthwall.com/products/balaclava-humpire-corporation",
-    videoId: "SNc3v21TTMo",
-    videoTitle: "HUMPIRE Winter Streetwear & Balaclavas | Official Spot",
-    sizes: ["Taille Unique Universelle", "Stretch"],
-    tagline: "Cagoule cache-cou technique et respirante ornée de l'emblème HUMPIRE Corporation.",
-    description: "La Balaclava HUMPIRE CORPORATION est conçue pour les sorties urbaines et le style streetwear contemporain. Tissu technique respirant et extensible.",
-    specs: {
-      fabric: "Microfibre Stretch respirante thermo-régulante",
-      fit: "Ajustement ergonomique multi-positions",
-      details: "Logo HUMPIRE Corporation haute définition",
-      care: "Lavage machine à 30°C ou à la main"
-    }
-  },
-
-  "motor-venum": {
-    id: "motor-venum",
-    name: "HUMPIRE CORPORATION — MOTOR VENUM Hoodie",
-    brand: "HUMPIRE",
-    brandTag: "HUMPIRE Corporation",
-    category: "hoodies",
-    categoryLabel: "Hoodie · Unisexe Boxy Fit",
-    price: "27,04 €",
-    priceNum: 27.04,
-    badge: "Streetwear",
-    badgeType: "default",
-    image: "https://imgproxy.fourthwall.dev/9v7SLnFsJvrWTnpy4GVpdzSr9bsXbuZq_oGU01vp5jo/w:720/sm:1/enc/aqd61eL0mS2-Mxlx/9avCcaPDBAs5Ela6/uVlD_SWl5gomM1JN/IvHXJZ-AT2Zt_NyZ/a2eI8LzL9mQfd6zW/B_LYlJHFVGfxBP-R/VCZsu8slM6ys5rnj/9ajT-YQEQUmH-vJw/w5fNH2KIYy2J9b5H/UDy7bvaKw9k9gu-6/IoBnkTeBqCEWzI06/8idqjCtqsijHa0ok/wuObCzMNWld7TmVq/Mouq7rqgAR_Lnmpp/3Jq2W4Tjyrs.jpg",
-    buyUrl: "https://djbilbox-beats-shop.fourthwall.com/products/humpire-corporation-iron-riot-hoodie",
-    videoId: "SNc3v21TTMo",
-    videoTitle: "HUMPIRE MOTOR VENUM Hoodie — Winter Lookbook",
-    sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
-    tagline: "Sweat à capuche lourd au design biker & cyber underground percutant.",
-    description: "Le MOTOR VENUM Hoodie associe l'esprit racing alternatif et l'esthétique streetwear futuriste de HUMPIRE. Coupe ample et structurée 340 GSM.",
-    specs: {
-      fabric: "80% Coton peigné / 20% Polyester molleton lourd 340 GSM",
-      fit: "Coupe streetwear boxy fit ample et confortable",
-      details: "Sérigraphie grand format dos et poitrine haute durabilité",
-      care: "Lavage 30°C sur l'envers"
-    }
-  },
-
   "static-saints": {
     id: "static-saints",
     name: "HUMPIRE CORPORATION — STATIC SAINTS Hoodie",
@@ -338,32 +286,6 @@ window.STREETWEAR_PRODUCTS = {
       fit: "Coupe fuselée décontractée",
       details: "Poches latérales profondes et logo Spray cuisse gauche",
       care: "Lavage délicat 30°C"
-    }
-  },
-
-  "spray-cap": {
-    id: "spray-cap",
-    name: "HUMPIRE Spray Cap",
-    brand: "HUMPIRE",
-    brandTag: "HUMPIRE Accessories",
-    category: "accessories",
-    categoryLabel: "Casquette · Snapback 6 Panneaux",
-    price: "23,21 €",
-    priceNum: 23.21,
-    badge: "Populaire",
-    badgeType: "default",
-    image: "https://imgproxy.fourthwall.dev/yvNYZFDV8BOjokwFA-E50RI5nk5XD-iiQ16H5mHm_UM/w:720/sm:1/enc/jICik5sChQwhMHfn/oU2sXESgqm02nHuY/sc2IYT9fEfKy0DPO/radTBipYAyWGDj2u/nE52Dtl6Ht5hQrAx/ARflucvGqpfwIrmu/TkvLhrOYkKJJqvdn/sUA1qElqGo0sDvyX/zqrknBO_D5f9d00b/Xa4A8_TD8t0Ud2wX/ecccILenBn1-tZcU/wN-d0Ksz_7LF1qhl/G47IY4Cene25Tr4K/tZqqY7VQu_lW6wGT/jOvg-eyeKtw.jpg",
-    buyUrl: "https://djbilbox-beats-shop.fourthwall.com/products/humpire-spray-cap",
-    videoId: "XeUwHoKLOIo",
-    videoTitle: "HUMPIRE Accessories & Snapback | Spot",
-    sizes: ["Taille Réglable Snapback"],
-    tagline: "Broderie 3D haute précision et calotte structurée pour un look intemporel.",
-    description: "La casquette Snapback HUMPIRE Spray est confectionnée avec un sergé de coton résistant et broderie 3D en relief.",
-    specs: {
-      fabric: "100% Coton sergé épais avec visière rigide",
-      fit: "Fermeture arrière par languette réglable",
-      details: "Œillets de ventilation brodés et bandeau absorbant",
-      care: "Nettoyage de surface avec éponge humide"
     }
   },
 
