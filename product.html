@@ -16,6 +16,7 @@
 <meta name="twitter:image" content="https://djbilboxbeats.com/img/vst/ui/pro-bundle-card.jpg">
 <link rel="icon" href="favicon.png">
 <link rel="stylesheet" href="assets/css/theme.css?v=26082801">
+<link rel="stylesheet" href="assets/css/play-now.css?v=26100901">
 <link rel="stylesheet" href="assets/css/product.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -29,7 +30,7 @@
      page ne lisait que PRODUCTS. Tout pack sans fiche rédigée à la main
      tombait donc sur « Product not found ». -->
 <script src="assets/js/packs-data.js?v=26100901"></script>
-<script src="assets/js/vst-data.js?v=26100901"></script>
+<script src="assets/js/vst-data.js?v=26100902"></script>
 <script>
 /* Load video on click (bypasses YouTube age-restriction) */
 function loadVideoBg(el, src) {
@@ -78,7 +79,7 @@ function loadVideoBg(el, src) {
       cover: p.img,
       price: p.free ? 'FREE' : p.price, old: p.old, badge: p.badge, cur: p.cur,
       buy: p.buy, demo: p.demo, note: p.note,
-      video: p.yt,
+      video: p.yt, playNow: p.playNow,
       tags: p.tags || [],
       accent: '#d2561b', accent2: '#a87a2c'
     };
@@ -242,6 +243,9 @@ function loadVideoBg(el, src) {
       </div>
     </section>
 
+    ${/* clavier jouable avec les vrais presets (assets/js/play-now.js) */''}
+    ${P.playNow ? `<section class="pd-section"><div class="pd-wrap"><div data-play-now="${P.playNow}"></div></div></section>` : ''}
+
     ${/* fiches synthétisées (packOf / vstOf) : pas de bloc vide sans contenu */''}
     ${aboutHtml ? `<section class="pd-section"><div class="pd-wrap pd-about">
       <h2 class="pd-h2">About <span>${P.name}</span></h2>
@@ -282,5 +286,6 @@ function loadVideoBg(el, src) {
 </script>
 <script src="assets/js/pricing.js?v=26082401"></script>
 <script src="assets/js/site.js?v=26100901"></script>
+<script src="assets/js/play-now.js?v=26100901"></script>
 </body>
 </html>

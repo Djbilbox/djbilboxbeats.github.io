@@ -60,7 +60,8 @@ window.VSTS = [
     buy:"alien-808", demo:"",
     note:"808 instrument with a built-in pattern generator · slides & glides" },
 
-  { id:"camel-pilot", yt:"NiOGzRZxf8g", name:"CAMEL PILOT — Bass Synth VST3 + Bassline Generator", img:"https://public-files.gumroad.com/717hxxq26sj2d4ksw8w99ieavpqk", category:"instrument",
+  /* `playNow` : clavier jouable sur la fiche (assets/audio/play/camel-pilot.json) */
+  { id:"camel-pilot", yt:"NiOGzRZxf8g", playNow:"camel-pilot", name:"CAMEL PILOT — Bass Synth VST3 + Bassline Generator", img:"https://public-files.gumroad.com/717hxxq26sj2d4ksw8w99ieavpqk", category:"instrument",
     tags:["Bass synthesizer","Bassline generator · MIDI","VST3 · Win · Mac"], tier:"pro", price:"35", cur:"€", badge:"🆕 Suite 1.0",
     buy:"camel-pilot", demo:"",
     note:"Pick a genre, hit GENERATE, get a bassline and its MIDI" },
