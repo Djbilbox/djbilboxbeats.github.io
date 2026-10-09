@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ORIENTAL INSTRUMENT â€” Best VST for Oriental Sound | DJBILBOX BEATS</title>
-<meta name="description" content="ORIENTAL INSTRUMENT by DJBILBOX BEATS â€” 280+ authentic oriental instruments, Maqam quarter-tone engine, oud, qanun, ney, saz, darbuka. VST3 & AU for Windows & Mac. Free demo available.">
+<title>ORIENTAL INSTRUMENT — Best VST for Oriental Sound | DJBILBOX BEATS</title>
+<meta name="description" content="ORIENTAL INSTRUMENT by DJBILBOX BEATS — 280+ authentic oriental instruments, Maqam quarter-tone engine, oud, qanun, ney, saz, darbuka. VST3 & AU for Windows & Mac. Free demo available.">
 <meta name="keywords" content="oriental vst, arabic vst plugin, maqam engine, oud vst, qanun vst, ney vst, darbuka, quarter tone plugin, oriental instrument djbilbox">
 <link rel="canonical" href="https://djbilboxbeats.com/oriental-instrument.html">
 <meta property="og:type" content="product">
-<meta property="og:title" content="ORIENTAL INSTRUMENT â€” Best VST for Oriental Sound">
-<meta property="og:description" content="280+ authentic oriental instruments Â· Maqam quarter-tone engine Â· VST3 & AU Â· Win/Mac. Free demo available.">
+<meta property="og:title" content="ORIENTAL INSTRUMENT — Best VST for Oriental Sound">
+<meta property="og:description" content="280+ authentic oriental instruments · Maqam quarter-tone engine · VST3 & AU · Win/Mac. Free demo available.">
 <meta property="og:image" content="https://djbilboxbeats.com/img/og-djbilbox.jpg">
 <meta property="og:url" content="https://djbilboxbeats.com/oriental-instrument.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -20,10 +20,10 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
 <!-- ============================================================
-     3D SHOWCASE â€” module resolution.
+     3D SHOWCASE — module resolution.
      The site is plain GitHub Pages with no bundler, so three.js and
      GSAP are resolved by a native import map instead of Vite. Same
-     ES modules, same specifiers ('three', 'three/addons/â€¦'), no
+     ES modules, same specifiers ('three', 'three/addons/…'), no
      build step to run before a deploy.
      Pinned versions on purpose: "latest" on a CDN is a live
      dependency on someone else's release schedule.
@@ -57,19 +57,19 @@
 </script>
 <style>
 /* ============================================================
-   ORIENTAL INSTRUMENT â€” flagship landing page.
+   ORIENTAL INSTRUMENT — flagship landing page.
    Own scoped palette (gold on black) that overrides the site red
    only inside .ori-* blocks, so the rest of the theme is untouched.
    ============================================================ */
 .ori{
   --gold:#E8B54D; --gold-2:#F6D98A; --gold-deep:#B8860B;
-  --ink:#050403; --ink-2:#0d0a07;
-  background:var(--ink); color:#f2ece0;
+  --ink:#fbf7f1; --ink-2:#f3ede4;
+  background:var(--ink); color:#17110e;
   /* Clips the hero's glow, which bleeds ~38px past both edges on a phone.
      It MUST be `clip`, not `hidden`: with one axis hidden the other
      computes to `auto`, .ori becomes a scroll container, and
      `position:sticky` on .ori-cine-pin then anchors to a box that never
-     scrolls â€” the cinematic hero scrolls away instead of pinning, so its
+     scrolls — the cinematic hero scrolls away instead of pinning, so its
      320vh of choreography plays against an empty screen. `hidden` stays
      first as a fallback for browsers without `clip` (Safari < 16). */
   overflow-x:hidden;
@@ -83,8 +83,8 @@
 .ori h2{font-family:var(--font-a);font-weight:700;text-transform:uppercase;line-height:.98;
   font-size:clamp(2rem,5.4vw,4.2rem);letter-spacing:.01em}
 .ori h3{font-family:var(--font-a);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:1.05rem}
-.ori p{color:#b9b0a2;line-height:1.65}
-.ori-gold{background:linear-gradient(180deg,#FFF3D0 0%,var(--gold) 45%,var(--gold-deep) 100%);
+.ori p{color:#4b3f39;line-height:1.65}
+.ori-gold{background:linear-gradient(180deg,var(--gold) 0%,var(--gold-deep) 55%,#7a5306 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 
 .ori-btn{display:inline-flex;align-items:center;gap:9px;padding:15px 30px;border-radius:999px;
@@ -93,10 +93,10 @@
 .ori-btn.buy{background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,var(--gold-deep));
   color:#1a1200;box-shadow:0 12px 34px rgba(232,181,77,.28)}
 .ori-btn.buy:hover{transform:translateY(-2px);box-shadow:0 18px 44px rgba(232,181,77,.45)}
-.ori-btn.ghost{background:rgba(255,255,255,.04);border-color:rgba(232,181,77,.4);color:#f2ece0}
+.ori-btn.ghost{background:rgba(23,17,14,.04);border-color:rgba(232,181,77,.4);color:#17110e}
 .ori-btn.ghost:hover{border-color:var(--gold);background:rgba(232,181,77,.1)}
 
-/* CTA light sweep â€” a highlight crosses the primary button every few
+/* CTA light sweep — a highlight crosses the primary button every few
    seconds to pull the eye to it. Long pause, short travel, so it
    reads as a catch of light rather than a blinking banner. */
 .ori-btn.buy{position:relative;overflow:hidden;isolation:isolate}
@@ -111,15 +111,15 @@
   0%,68%{transform:translateX(-180%) rotate(14deg)}
   100%   {transform:translateX(520%)  rotate(14deg)}
 }
-/* Slowed, not removed â€” a small highlight is not what makes people
+/* Slowed, not removed — a small highlight is not what makes people
    motion-sick, and killing it entirely reads as a dead page. */
 @media(prefers-reduced-motion:reduce){
   .ori-btn.buy::after{animation-duration:11s}
 }
 
-.ori-compat{display:flex;align-items:center;gap:14px;color:#8d8577;font-size:.68rem;
+.ori-compat{display:flex;align-items:center;gap:14px;color:#7c6d65;font-size:.68rem;
   font-weight:700;letter-spacing:.22em;text-transform:uppercase}
-.ori-compat i{font-size:1.35rem;color:#e8e2d6}
+.ori-compat i{font-size:1.35rem;color:#2a211c}
 
 /* ---------- 3D stage: the real plugin screenshot, tilted ----------
    The rotation is driven by scroll: oriental3D() (bottom of page)
@@ -128,13 +128,13 @@
    the resting pose used before JS runs / if JS is disabled.        */
 .ori-stage{perspective:1600px;perspective-origin:50% 45%}
 
-/* (The earlier hand-built CSS slab â€” front face plus four folded
-   side walls â€” is gone. The renders below are real 3D product shots
+/* (The earlier hand-built CSS slab — front face plus four folded
+   side walls — is gone. The renders below are real 3D product shots
    with their own geometry and lighting, so faking a box on top of
    them only fought the image.) */
 
 /* ============================================================
-   RENDERED UNIT â€” the real cut-out 3D renders.
+   RENDERED UNIT — the real cut-out 3D renders.
    These already carry their own perspective, thickness and
    lighting, so nothing here fakes geometry. The job is only to
    make the object breathe: a slow float, a scroll-linked drift
@@ -191,7 +191,7 @@
   transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);
   transition-delay:var(--d,0ms)}
 .rv-s.in{opacity:1;transform:none}
-/* Fade only â€” for .ori-stage, which carries the `perspective` for the
+/* Fade only — for .ori-stage, which carries the `perspective` for the
    3D panel. Any transform on that element disturbs the 3D context, so
    this variant deliberately animates opacity alone. */
 .rv-f{opacity:0;transition:opacity .8s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0ms)}
@@ -223,7 +223,7 @@
 /* respect users who ask for less motion */
 /* ---------- reduced motion ----------
    Reduce, don't erase. What actually triggers motion sickness is
-   large travel, parallax and anything that tracks the pointer â€” those
+   large travel, parallax and anything that tracks the pointer — those
    are switched off in JS. A slow, small float and plain opacity fades
    stay, so the page still feels alive instead of dead.
    Note: on Windows this preference is Settings > Accessibility >
@@ -254,7 +254,7 @@
 .ori-logo{font-family:var(--font-a);font-weight:700;text-transform:uppercase;
   font-size:clamp(2.6rem,7vw,5.4rem);line-height:.9;letter-spacing:-.01em;margin-bottom:10px}
 .ori-tag{font-family:var(--font-a);font-size:clamp(.7rem,1.5vw,.92rem);font-weight:600;
-  letter-spacing:.42em;text-transform:uppercase;color:#cbbfa8;margin-bottom:26px}
+  letter-spacing:.42em;text-transform:uppercase;color:#7c6d65;margin-bottom:26px}
 .ori-lead{font-size:1.05rem;max-width:46ch;margin-bottom:28px}
 .ori-price{display:flex;align-items:baseline;gap:12px;margin-bottom:22px;flex-wrap:wrap}
 .ori-price .now{font-family:var(--font-a);font-size:2.6rem;font-weight:700;color:var(--gold)}
@@ -264,13 +264,13 @@
 .ori-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
 
 /* ---------- feature band ---------- */
-.ori-band{border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);
-  background:rgba(255,255,255,.015)}
-.ori-band-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.07)}
+.ori-band{border-top:1px solid rgba(23,17,14,.07);border-bottom:1px solid rgba(23,17,14,.07);
+  background:rgba(23,17,14,.015)}
+.ori-band-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(23,17,14,.07)}
 .ori-band-cell{background:var(--ink);padding:30px 22px;text-align:center}
 .ori-band-cell b{display:block;font-family:var(--font-a);font-size:2.1rem;font-weight:700;color:var(--gold);line-height:1}
 .ori-band-cell span{display:block;margin-top:7px;font-size:.7rem;letter-spacing:.18em;
-  text-transform:uppercase;color:#8d8577;font-weight:700}
+  text-transform:uppercase;color:#7c6d65;font-weight:700}
 
 /* ---------- split sections ---------- */
 .ori-split{padding:88px 0}
@@ -279,43 +279,43 @@
 .ori-split.rev .ori-split-grid > *{direction:ltr}
 .ori-list{list-style:none;margin:26px 0 0;display:flex;flex-direction:column;gap:2px}
 .ori-list li{font-family:var(--font-a);font-weight:700;text-transform:uppercase;
-  letter-spacing:.14em;font-size:clamp(1rem,2.1vw,1.5rem);color:#e5ddcd;padding:7px 0;
-  border-bottom:1px solid rgba(255,255,255,.06)}
+  letter-spacing:.14em;font-size:clamp(1rem,2.1vw,1.5rem);color:#2a211c;padding:7px 0;
+  border-bottom:1px solid rgba(23,17,14,.06)}
 .ori-list li span{color:var(--gold);font-size:.62em;letter-spacing:.1em;display:block;
-  font-weight:600;color:#8d8577;margin-top:2px}
+  font-weight:600;color:#7c6d65;margin-top:2px}
 
 /* ---------- categories ---------- */
 .ori-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:34px}
-.ori-cat{background:linear-gradient(160deg,rgba(232,181,77,.09),rgba(255,255,255,.02));
+.ori-cat{background:linear-gradient(160deg,rgba(232,181,77,.09),rgba(23,17,14,.02));
   border:1px solid rgba(232,181,77,.18);border-radius:12px;padding:20px 16px;transition:.2s}
 .ori-cat:hover{border-color:var(--gold);transform:translateY(-3px)}
 .ori-cat i{font-size:1.4rem;color:var(--gold);margin-bottom:10px;display:block}
 .ori-cat b{display:block;font-family:var(--font-a);text-transform:uppercase;letter-spacing:.08em;font-size:.95rem}
-.ori-cat small{color:#8d8577;font-size:.74rem}
+.ori-cat small{color:#7c6d65;font-size:.74rem}
 
 /* ---------- presets ---------- */
 .ori-presets{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:32px}
-.ori-preset{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.025);
-  border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px 14px;transition:.18s}
+.ori-preset{display:flex;align-items:center;gap:12px;background:rgba(23,17,14,.025);
+  border:1px solid rgba(23,17,14,.07);border-radius:10px;padding:12px 14px;transition:.18s}
 .ori-preset:hover{border-color:rgba(232,181,77,.5);background:rgba(232,181,77,.06)}
 .ori-preset .n{font-family:var(--font-a);font-weight:700;color:var(--gold-deep);font-size:.9rem;min-width:22px}
-.ori-preset b{display:block;font-size:.88rem;font-weight:600;color:#efe7d8}
-.ori-preset small{color:#8d8577;font-size:.72rem}
+.ori-preset b{display:block;font-size:.88rem;font-weight:600;color:#17110e}
+.ori-preset small{color:#7c6d65;font-size:.72rem}
 
 /* ---------- free vs pro ---------- */
 .ori-plans{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:38px}
-.ori-plan{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:34px 30px;
-  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.005))}
+.ori-plan{border:1px solid rgba(23,17,14,.1);border-radius:18px;padding:34px 30px;
+  background:linear-gradient(180deg,rgba(23,17,14,.03),rgba(23,17,14,.005))}
 .ori-plan.pro{border-color:rgba(232,181,77,.45);
   background:linear-gradient(180deg,rgba(232,181,77,.1),rgba(232,181,77,.02));
   box-shadow:0 24px 70px rgba(232,181,77,.12)}
 .ori-plan h3{margin-bottom:6px}
 .ori-plan .pp{font-family:var(--font-a);font-size:2.4rem;font-weight:700;margin:12px 0 4px}
 .ori-plan ul{list-style:none;margin:20px 0 26px;display:flex;flex-direction:column;gap:10px}
-.ori-plan li{font-size:.9rem;color:#c3bbac;display:flex;gap:10px;align-items:flex-start}
+.ori-plan li{font-size:.9rem;color:#4b3f39;display:flex;gap:10px;align-items:flex-start}
 .ori-plan li i{color:var(--gold);margin-top:3px;font-size:.8rem}
-.ori-plan li.no{color:#6f6a60}
-.ori-plan li.no i{color:#5a554c}
+.ori-plan li.no{color:#ab9d95}
+.ori-plan li.no i{color:#ab9d95}
 
 /* ---------- closing CTA ---------- */
 .ori-final{padding:96px 0;text-align:center;
@@ -334,13 +334,13 @@
    Every rule below is scoped to .ori-3d-on, a class that
    assets/js/oriental3d/main.js puts on <html> ONLY after a renderer
    has actually started. No WebGL, JS off, CDN unreachable, texture
-   404 â€” none of this applies and the page stays exactly the CSS
+   404 — none of this applies and the page stays exactly the CSS
    showcase written above. The 3D layer is additive, never
    load-bearing on a page that has to sell a plug-in.
    ============================================================ */
 #ori-webgl{
   position:fixed;inset:0;width:100%;height:100%;
-  z-index:0;display:block;pointer-events:none;background:#050403;
+  z-index:0;display:block;pointer-events:none;background:#fbf7f1;
 }
 .ori{position:relative;z-index:1}
 
@@ -355,12 +355,12 @@
     radial-gradient(1100px 620px at 78% 36%,rgba(232,181,77,.045),transparent 62%),
     radial-gradient(760px 520px at 10% 88%,rgba(160,60,20,.05),transparent 65%);
 }
-.ori-3d-on .ori-band{background:rgba(5,4,3,.40);
+.ori-3d-on .ori-band{background:rgba(251,247,241,.55);
   backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
-.ori-3d-on .ori-band-cell{background:rgba(5,4,3,.74)}
+.ori-3d-on .ori-band-cell{background:rgba(251,247,241,.85)}
 .ori-3d-on .ori-final{
   background:radial-gradient(900px 480px at 50% 50%,rgba(232,181,77,.12),transparent 68%),
-             rgba(13,10,7,.62)}
+             rgba(251,247,241,.7)}
 .ori-3d-on .ori-plan,
 .ori-3d-on .ori-preset,
 .ori-3d-on .ori-cat{backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
@@ -398,15 +398,15 @@
    Erasing it entirely just makes the page look broken. */
 
 /* ============================================================
-   CINEMA MODE â€” plein Ã©cran avec scrubbing de frames
+   CINEMA MODE — plein écran avec scrubbing de frames
    ============================================================ */
-/* L'Ã©tage donne au cinÃ©ma sa durÃ©e de vie : un Ã©cran Ã©pinglÃ©, puis
-   environ un Ã©cran de dÃ©filement pendant lequel la scÃ¨ne se joue. PassÃ©
-   l'Ã©tage, tout remonte et disparaÃ®t â€” la suite de la page reprend le
-   plein Ã©cran pour elle seule. */
-/* 150vh au lieu de 200 : la scÃ¨ne n'est plus pilotÃ©e par le dÃ©filement,
-   donc l'Ã©tage n'a plus besoin d'une longue course de scrubbing â€” juste
-   assez de tenue pour qu'on regarde l'unitÃ© avant que la page reprenne. */
+/* L'étage donne au cinéma sa durée de vie : un écran épinglé, puis
+   environ un écran de défilement pendant lequel la scène se joue. Passé
+   l'étage, tout remonte et disparaît — la suite de la page reprend le
+   plein écran pour elle seule. */
+/* 150vh au lieu de 200 : la scène n'est plus pilotée par le défilement,
+   donc l'étage n'a plus besoin d'une longue course de scrubbing — juste
+   assez de tenue pour qu'on regarde l'unité avant que la page reprenne. */
 .ori-cinema-stage {
   position: relative;
   height: 150vh;
@@ -417,13 +417,13 @@
   height: 100vh;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 46%, rgba(232, 181, 77, 0.09), transparent 55%),
-    #000;
+    radial-gradient(ellipse at 50% 46%, rgba(232, 181, 77, 0.12), transparent 55%),
+    #fbf7f1;
   pointer-events: none;
 }
-/* Plus de dalle 3D reconstruite : c'est le PNG dÃ©tourÃ© du produit, de
-   face dÃ¨s la premiÃ¨re image. La cinÃ©matique ne fait plus pivoter
-   l'unitÃ© â€” elle l'amÃ¨ne, l'allume, puis la laisse respirer. */
+/* Plus de dalle 3D reconstruite : c'est le PNG détouré du produit, de
+   face dès la première image. La cinématique ne fait plus pivoter
+   l'unité — elle l'amène, l'allume, puis la laisse respirer. */
 .ori-cinema-inner {
   height: 100%;
   display: flex;
@@ -438,8 +438,8 @@
   max-width: min(1255px, 90vw);
   animation: ori-model-float 7.5s ease-in-out 2.7s infinite;
 }
-/* La lueur chaude est posÃ©e derriÃ¨re l'unitÃ©, pas dessus : elle monte
-   pendant l'arrivÃ©e et donne son assise Ã  l'objet. */
+/* La lueur chaude est posée derrière l'unité, pas dessus : elle monte
+   pendant l'arrivée et donne son assise à l'objet. */
 .ori-cinema-unit::before {
   content: "";
   position: absolute;
@@ -454,16 +454,16 @@
   display: block;
   width: 100%;
   height: auto;
-  /* Hauteur calculÃ©e, pas devinÃ©e. La colonne contient aussi le titre,
-     le sous-titre, l'Ã©cart et les marges ; Ã  70vh l'ensemble dÃ©passait
-     de 69 px et, comme .ori-cinema masque le dÃ©bordement et centre son
+  /* Hauteur calculée, pas devinée. La colonne contient aussi le titre,
+     le sous-titre, l'écart et les marges ; à 70vh l'ensemble dépassait
+     de 69 px et, comme .ori-cinema masque le débordement et centre son
      contenu, c'est le TITRE qui se faisait couper en haut. Ce calcul
-     rÃ©serve d'abord la place du texte et donne le reste Ã  l'unitÃ©. */
+     réserve d'abord la place du texte et donne le reste à l'unité. */
   max-height: max(180px, calc(88vh - 215px));
   object-fit: contain;
   animation: ori-model-in 2.3s cubic-bezier(0.22, 0.68, 0.24, 1) both;
 }
-/* Un Ã©clat traverse la face une seule fois, juste aprÃ¨s l'allumage. */
+/* Un éclat traverse la face une seule fois, juste après l'allumage. */
 .ori-cinema-sweep {
   position: absolute;
   inset: 0;
@@ -499,8 +499,8 @@
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-10px); }
 }
-/* Rien ici ne doit clignoter ni glisser pour qui a demandÃ© moins de
-   mouvement : l'unitÃ© est simplement lÃ , allumÃ©e. */
+/* Rien ici ne doit clignoter ni glisser pour qui a demandé moins de
+   mouvement : l'unité est simplement là, allumée. */
 @media (prefers-reduced-motion: reduce) {
   .ori-cinema-unit,
   .ori-cinema-unit::before,
@@ -530,13 +530,13 @@
   font-size: clamp(0.8rem, 2vw, 1.2rem);
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(23, 17, 14, 0.6);
   margin-top: 16px;
   animation: ori-cinema-fade-in 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 /* Sorti de l'overlay : celui-ci n'occupe plus que le haut du cadre,
-   alors que la flÃ¨che doit rester en bas. CentrÃ©e Ã  la main puisqu'elle
-   ne bÃ©nÃ©ficie plus du flex du parent. */
+   alors que la flèche doit rester en bas. Centrée à la main puisqu'elle
+   ne bénéficie plus du flex du parent. */
 .ori-cinema-arrow {
   position: absolute;
   left: 0;
@@ -557,10 +557,10 @@
   50% { transform: translateY(-12px); }
 }
 
-/* Le cinÃ©ma est un fond opaque plein Ã©cran. Sans ces deux rÃ¨gles, les
-   sections qui suivent sont peintes SOUS lui et la page paraÃ®t vide
-   aprÃ¨s le premier Ã©cran. Tout le contenu passe au-dessus ; l'Ã©tage du
-   cinÃ©ma reste dessous et se fait recouvrir en fin de course. */
+/* Le cinéma est un fond opaque plein écran. Sans ces deux règles, les
+   sections qui suivent sont peintes SOUS lui et la page paraît vide
+   après le premier écran. Tout le contenu passe au-dessus ; l'étage du
+   cinéma reste dessous et se fait recouvrir en fin de course. */
 .ori > * {
   position: relative;
   z-index: 10;
@@ -615,24 +615,24 @@
 
 <div class="ori">
 
-  <!-- ==================== CINÃ‰MATIQUE 3 PHASES ====================
+  <!-- ==================== CINÉMATIQUE 3 PHASES ====================
        La section est haute, son contenu est `sticky` : c'est le pinning,
        obtenu sans le pin de ScrollTrigger et donc sans pin-spacer ni
        recalculs de layout. GSAP ne fait que scrubber une timeline sur la
-       course de dÃ©filement.
+       course de défilement.
 
-       Phase 1  le VST couchÃ© au centre se redresse et se cale Ã  GAUCHE,
-                le texte et les CTA arrivent Ã  DROITE
-       Phase 2  recul camÃ©ra : l'unitÃ© s'Ã©loigne et revient au centre
-       Phase 3  contre-plongÃ©e monumentale, specs et presets Ã  cÃ´tÃ©
+       Phase 1  le VST couché au centre se redresse et se cale à GAUCHE,
+                le texte et les CTA arrivent à DROITE
+       Phase 2  recul caméra : l'unité s'éloigne et revient au centre
+       Phase 3  contre-plongée monumentale, specs et presets à côté
 
-       L'unitÃ© est le PNG dÃ©tourÃ© du produit, pas une dalle reconstruite :
+       L'unité est le PNG détouré du produit, pas une dalle reconstruite :
        toute la 3D est du transform CSS sur cette image. -->
   <section class="ori-cine" id="ori-cine" data-texture="img/vst/ui/oriental-ui.png">
     <div class="ori-cine-pin">
 
-      <!-- Preloader : bloque le dÃ©filement jusqu'Ã  100 %. Sans lui on
-           dÃ©file une scÃ¨ne vide et ScrollTrigger dÃ©marre dÃ©jÃ  avancÃ©. -->
+      <!-- Preloader : bloque le défilement jusqu'à 100 %. Sans lui on
+           défile une scène vide et ScrollTrigger démarre déjà avancé. -->
       <div class="ori-cine-loader" aria-hidden="true">
         <div class="ori-cine-load-mark">ORIENTAL</div>
         <div class="ori-cine-load-bar"><i></i></div>
@@ -640,7 +640,7 @@
       </div>
 
       <!-- Rendu WebGL. Reste vide et invisible tant que .ori-cine-gl
-           n'est pas posÃ©e sur <html>, donc un Ã©chec ne laisse pas un
+           n'est pas posée sur <html>, donc un échec ne laisse pas un
            rectangle noir sur la page. -->
       <canvas class="ori-cine-canvas" aria-hidden="true"></canvas>
       <div class="ori-cine-hotspots" aria-hidden="false"></div>
@@ -658,23 +658,23 @@
         <div class="ori-cine-unit">
           <img class="ori-cine-model" src="img/vst/ui/showcase/ori-model.png?v=2"
                width="1255" height="855" fetchpriority="high"
-               alt="ORIENTAL INSTRUMENT â€” macro knobs, preset browser, FX chain and keyboard">
+               alt="ORIENTAL INSTRUMENT — macro knobs, preset browser, FX chain and keyboard">
           <span class="ori-cine-sweep" aria-hidden="true"></span>
         </div>
       </div>
 
-      <!-- Phase 1 â€” prÃ©sentation + CTA, Ã  droite -->
+      <!-- Phase 1 — présentation + CTA, à droite -->
       <div class="ori-cine-copy ori-cine-copy-a">
-        <div class="ori-eyebrow">DJBILBOX BEATS Â· Flagship plug-in</div>
+        <div class="ori-eyebrow">DJBILBOX BEATS · Flagship plug-in</div>
         <h1 class="ori-cine-h1"><span class="ori-gold">ORIENTAL</span><br>INSTRUMENT</h1>
         <p class="ori-cine-sub">NEW FREE VST ALGERIEN SOUND</p>
         <p class="ori-lead">
-          280+ authentic oriental instruments in one window â€” oud, qanun, ney, saz, rabab,
+          280+ authentic oriental instruments in one window — oud, qanun, ney, saz, rabab,
           darbuka and oriental strings. Driven by a real <strong style="color:#e5ddcd">Maqam engine</strong>
           with quarter-tone tuning, so your melodies actually sound Middle-Eastern, not just "scaled".
         </p>
         <div class="ori-price">
-          <span class="now">$20</span>
+          <span class="now">$50</span>
         </div>
         <div class="ori-cta">
           <button class="ori-btn buy" onclick="buy('oriental-instrument-djbilbox-beats')">
@@ -688,19 +688,19 @@
           <span>Compatible</span>
           <i class="fa-brands fa-apple"></i>
           <i class="fa-brands fa-windows"></i>
-          <span style="letter-spacing:.1em">VST3 Â· AU</span>
+          <span style="letter-spacing:.1em">VST3 · AU</span>
         </div>
       </div>
 
-      <!-- Phase 3 â€” specs et presets, Ã  cÃ´tÃ© de l'unitÃ© en contre-plongÃ©e -->
+      <!-- Phase 3 — specs et presets, à côté de l'unité en contre-plongée -->
       <div class="ori-cine-copy ori-cine-copy-b">
         <div class="ori-eyebrow">Inside the engine</div>
         <h2 class="ori-cine-h2">BUILT<br><span class="ori-gold">FOR SCORING</span></h2>
         <ul class="ori-cine-specs">
-          <li><b>MAQAM ENGINE</b><span>Rast Â· Hijaz Â· Bayati Â· Kurd Â· Nahawand Â· Saba Â· Ajam</span></li>
+          <li><b>MAQAM ENGINE</b><span>Rast · Hijaz · Bayati · Kurd · Nahawand · Saba · Ajam</span></li>
           <li><b>280+ INSTRUMENTS</b><span>7 categories, 40 presets each, tagged by city &amp; key</span></li>
-          <li><b>8-SLOT FX CHAIN</b><span>Reverb Â· Echo Â· Chorus Â· Distort Â· Comprs Â· EQ Â· Phaser Â· Bitcrsh</span></li>
-          <li><b>VST3 Â· AU Â· STANDALONE</b><span>Windows &amp; Mac Â· royalty-free for your productions</span></li>
+          <li><b>8-SLOT FX CHAIN</b><span>Reverb · Echo · Chorus · Distort · Comprs · EQ · Phaser · Bitcrsh</span></li>
+          <li><b>VST3 · AU · STANDALONE</b><span>Windows &amp; Mac · royalty-free for your productions</span></li>
         </ul>
         <div class="ori-cine-chips">
           <span>Mission Cleopatre</span><span>Atlas Tears</span><span>Oran Sunset Strings</span>
@@ -708,13 +708,13 @@
         </div>
       </div>
 
-      <div class="ori-cine-hint" aria-hidden="true">â†“</div>
+      <div class="ori-cine-hint" aria-hidden="true">↓</div>
     </div>
   </section>
 
-  <!-- Le bloc hero autonome a Ã©tÃ© absorbÃ© par la phase 1 de la
-       cinÃ©matique ci-dessus : le laisser ici affichait deux fois le mÃªme
-       titre, le mÃªme prix et les mÃªmes boutons. -->
+  <!-- Le bloc hero autonome a été absorbé par la phase 1 de la
+       cinématique ci-dessus : le laisser ici affichait deux fois le même
+       titre, le même prix et les mêmes boutons. -->
 
   <!-- ==================== STATS BAND ==================== -->
   <section class="ori-band">
@@ -736,7 +736,7 @@
         <h2><span class="ori-gold">7 CATEGORIES</span><br>280+ INSTRUMENTS</h2>
         <p style="margin-top:18px;max-width:46ch">
           Every family of the oriental orchestra, multi-sampled and playable from one browser.
-          Search by preset, by city or by key â€” then drop a melody in seconds.
+          Search by preset, by city or by key — then drop a melody in seconds.
         </p>
         <div class="ori-cats">
           <div class="ori-cat"><i class="fa-solid fa-guitar"></i><b>OUD</b><small>Arabic lute</small></div>
@@ -751,7 +751,7 @@
       <div class="ori-stage ori-reflect">
         <div class="ori-render flip">
             <img src="img/vst/ui/showcase/ori-screen.png?v=1"
-                 alt="ORIENTAL INSTRUMENT â€” the QANUN category open: Alexandria Elegance, Damascus Ornament, Tunis Malouf, Baghdad Maqam"
+                 alt="ORIENTAL INSTRUMENT — the QANUN category open: Alexandria Elegance, Damascus Ornament, Tunis Malouf, Baghdad Maqam"
                  onerror="this.onerror=null;this.src='img/vst/ui/oriental-cat-qan.png?v=2'">
           </div>
       </div>
@@ -765,10 +765,10 @@
         <div class="ori-eyebrow">Sound design</div>
         <h2>MAXIMUM<br><span class="ori-gold">CONTROL</span></h2>
         <ul class="ori-list">
-          <li>MAQAM ENGINE <span>Quarter-tone tuning Â· Rast, Hijaz, Bayati, Kurd, Nahawand, Saba, Ajam</span></li>
-          <li>MACRO KNOBS <span>Glide Â· Space Â· Filter Â· Orient Â· Reso Â· Depth</span></li>
-          <li>FX CHAIN <span>Reverb Â· Echo Â· Chorus Â· Distort Â· Comprs Â· EQ Â· Phaser Â· Bitcrsh</span></li>
-          <li>PLAY MODES <span>Poly Â· Legato Â· A/B compare Â· MIDI learn Â· REC Â· Panic</span></li>
+          <li>MAQAM ENGINE <span>Quarter-tone tuning · Rast, Hijaz, Bayati, Kurd, Nahawand, Saba, Ajam</span></li>
+          <li>MACRO KNOBS <span>Glide · Space · Filter · Orient · Reso · Depth</span></li>
+          <li>FX CHAIN <span>Reverb · Echo · Chorus · Distort · Comprs · EQ · Phaser · Bitcrsh</span></li>
+          <li>PLAY MODES <span>Poly · Legato · A/B compare · MIDI learn · REC · Panic</span></li>
         </ul>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px">
           <button class="ori-btn buy" onclick="buy('oriental-instrument-djbilbox-beats')">
@@ -782,7 +782,7 @@
       <div class="ori-stage ori-reflect">
         <div class="ori-render">
             <img src="img/vst/ui/showcase/ori-angle.png?v=1"
-                 alt="ORIENTAL INSTRUMENT â€” low-angle view of the copper unit: macro knobs, preset browser and FX chain"
+                 alt="ORIENTAL INSTRUMENT — low-angle view of the copper unit: macro knobs, preset browser and FX chain"
                  onerror="this.onerror=null;this.src='img/vst/ui/oriental-3d-hero.png?v=2'">
           </div>
       </div>
@@ -795,21 +795,21 @@
       <div class="ori-eyebrow">Factory bank</div>
       <h2>40 PRESETS <span class="ori-gold">PER INSTRUMENT</span></h2>
       <p style="margin-top:16px;max-width:60ch">
-        Each preset is tagged by country and by maqam â€” pick a mood, not a menu.
+        Each preset is tagged by country and by maqam — pick a mood, not a menu.
       </p>
       <div class="ori-presets">
-        <div class="ori-preset"><span class="n">01</span><div><b>Mission Cleopatre</b><small>Cairo Â· Dm Â· Rast</small></div></div>
-        <div class="ori-preset"><span class="n">02</span><div><b>Desert Cinema Score</b><small>Egypt Â· Am Â· Hijaz</small></div></div>
-        <div class="ori-preset"><span class="n">03</span><div><b>Casablanca Nights</b><small>Morocco Â· Fm Â· Saba</small></div></div>
-        <div class="ori-preset"><span class="n">04</span><div><b>Atlas Tears</b><small>Algeria Â· Bm Â· Kurd</small></div></div>
-        <div class="ori-preset"><span class="n">05</span><div><b>Beirut Lovers</b><small>Lebanon Â· Cm Â· Ajam</small></div></div>
-        <div class="ori-preset"><span class="n">06</span><div><b>Oran Sunset Strings</b><small>Algeria Â· Em Â· Nahawand</small></div></div>
-        <div class="ori-preset"><span class="n">07</span><div><b>Chaabi Wedding Strings</b><small>Morocco Â· Am Â· Rast</small></div></div>
-        <div class="ori-preset"><span class="n">08</span><div><b>Istanbul Bridge</b><small>Turkey Â· Bm Â· Segah</small></div></div>
-        <div class="ori-preset"><span class="n">09</span><div><b>Wadi Rum Sunrise</b><small>Jordan Â· Am Â· Rast</small></div></div>
-        <div class="ori-preset"><span class="n">10</span><div><b>Medina Minarets</b><small>Saudi Â· Am Â· Saba</small></div></div>
-        <div class="ori-preset"><span class="n">11</span><div><b>Carthage Ruins</b><small>Tunisia Â· Cm Â· Bayati</small></div></div>
-        <div class="ori-preset"><span class="n">12</span><div><b>Byblos Ancient</b><small>Lebanon Â· Dm Â· Hijaz</small></div></div>
+        <div class="ori-preset"><span class="n">01</span><div><b>Mission Cleopatre</b><small>Cairo · Dm · Rast</small></div></div>
+        <div class="ori-preset"><span class="n">02</span><div><b>Desert Cinema Score</b><small>Egypt · Am · Hijaz</small></div></div>
+        <div class="ori-preset"><span class="n">03</span><div><b>Casablanca Nights</b><small>Morocco · Fm · Saba</small></div></div>
+        <div class="ori-preset"><span class="n">04</span><div><b>Atlas Tears</b><small>Algeria · Bm · Kurd</small></div></div>
+        <div class="ori-preset"><span class="n">05</span><div><b>Beirut Lovers</b><small>Lebanon · Cm · Ajam</small></div></div>
+        <div class="ori-preset"><span class="n">06</span><div><b>Oran Sunset Strings</b><small>Algeria · Em · Nahawand</small></div></div>
+        <div class="ori-preset"><span class="n">07</span><div><b>Chaabi Wedding Strings</b><small>Morocco · Am · Rast</small></div></div>
+        <div class="ori-preset"><span class="n">08</span><div><b>Istanbul Bridge</b><small>Turkey · Bm · Segah</small></div></div>
+        <div class="ori-preset"><span class="n">09</span><div><b>Wadi Rum Sunrise</b><small>Jordan · Am · Rast</small></div></div>
+        <div class="ori-preset"><span class="n">10</span><div><b>Medina Minarets</b><small>Saudi · Am · Saba</small></div></div>
+        <div class="ori-preset"><span class="n">11</span><div><b>Carthage Ruins</b><small>Tunisia · Cm · Bayati</small></div></div>
+        <div class="ori-preset"><span class="n">12</span><div><b>Byblos Ancient</b><small>Lebanon · Dm · Hijaz</small></div></div>
       </div>
     </div>
   </section>
@@ -827,7 +827,7 @@
           <ul>
             <li><i class="fa-solid fa-check"></i> 50+ oriental instruments</li>
             <li><i class="fa-solid fa-check"></i> Full Maqam quarter-tone engine</li>
-            <li><i class="fa-solid fa-check"></i> VST3 &amp; AU Â· Windows + Mac</li>
+            <li><i class="fa-solid fa-check"></i> VST3 &amp; AU · Windows + Mac</li>
             <li class="no"><i class="fa-solid fa-xmark"></i> Limited preset browser</li>
             <li class="no"><i class="fa-solid fa-xmark"></i> No full 280+ library</li>
           </ul>
@@ -839,7 +839,7 @@
         <div class="ori-plan pro">
           <h3><span class="ori-gold">Full Version</span></h3>
           <p style="font-size:.88rem">The complete library, unlocked forever. One payment.</p>
-          <div class="pp" style="color:var(--gold)">$20</div>
+          <div class="pp" style="color:var(--gold)">$50</div>
           <ul>
             <li><i class="fa-solid fa-check"></i> <strong style="color:#efe7d8">280+ instruments &amp; sounds</strong></li>
             <li><i class="fa-solid fa-check"></i> 40 presets per instrument, tagged by country &amp; maqam</li>
@@ -863,7 +863,7 @@
       <h2>READY TO <span class="ori-gold">PLAY THE ORIENT?</span></h2>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px">
         <button class="ori-btn buy" onclick="buy('oriental-instrument-djbilbox-beats')">
-          <i class="fa-solid fa-bolt"></i> Buy now â€” $20
+          <i class="fa-solid fa-bolt"></i> Buy now — $50
         </button>
         <button class="ori-btn ghost" onclick="buy('oriental-instrument-demo-free-Download')">
           <i class="fa-solid fa-download"></i> Get the free demo
@@ -873,7 +873,7 @@
         <span>Compatible</span>
         <i class="fa-brands fa-apple"></i>
         <i class="fa-brands fa-windows"></i>
-        <span style="letter-spacing:.1em">VST3 Â· AU Â· Standalone</span>
+        <span style="letter-spacing:.1em">VST3 · AU · Standalone</span>
       </div>
     </div>
   </section>
@@ -885,7 +885,7 @@
 
 <script>
 /* ============================================================
-   SCROLL-DRIVEN 3D â€” the plug-in panel rotates as it travels
+   SCROLL-DRIVEN 3D — the plug-in panel rotates as it travels
    through the viewport (Bujaa/ORIENT-style parallax).
    p = -1 when the panel sits at the bottom edge, 0 at centre,
    +1 at the top edge. Everything is one rAF-throttled pass.
@@ -899,7 +899,7 @@
 
   function frame(){
     ticking = false;
-    /* Once the WebGL showcase is live it owns these slots â€” the
+    /* Once the WebGL showcase is live it owns these slots — the
        panels are anchored to the <img> rectangles, so writing
        transforms here would drag the anchor out from under them.
        (The stylesheet already neutralises the result; this just
@@ -912,7 +912,7 @@
       if(r.bottom < -240 || r.top > vh + 240) continue;   // off-screen: skip
 
       var centre = r.top + r.height/2;
-      var p = (vh/2 - centre) / (vh/2 + r.height/2);       // -1 â€¦ +1
+      var p = (vh/2 - centre) / (vh/2 + r.height/2);       // -1 … +1
       p = p < -1 ? -1 : (p > 1 ? 1 : p);
 
       var dir = el.classList.contains('flip') ? 1 : -1;
@@ -951,7 +951,7 @@
    ============================================================ */
 (function oriReveal(){
   /* Under reduced motion the reveals still run, but everything is
-     tagged fade-only â€” the content still arrives, it just doesn't
+     tagged fade-only — the content still arrives, it just doesn't
      travel across the screen. */
   var soft = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -994,14 +994,14 @@
 
   for(var i=0;i<hidden.length;i++) io.observe(hidden[i]);
 
-  /* Hero is already on screen at load â€” release it straight away
+  /* Hero is already on screen at load — release it straight away
      so it animates in rather than waiting for a scroll. */
   requestAnimationFrame(function(){
     document.querySelectorAll('.ori-hero .rv,.ori-hero .rv-l,.ori-hero .rv-s,.ori-hero .rv-f')
       .forEach(function(el){ el.classList.add('in'); });
   });
 
-  /* WATCHDOG â€” the reveal classes are applied by this script, so if
+  /* WATCHDOG — the reveal classes are applied by this script, so if
      the observer never fires (throttled tab, odd embedded webview,
      compositing paused) every tagged element would stay at opacity 0
      and the page would read as blank. Force everything visible after
@@ -1046,7 +1046,7 @@
 })();
 
 /* ============================================================
-   POINTER TILT â€” the unit leans toward the cursor. This is the
+   POINTER TILT — the unit leans toward the cursor. This is the
    bit that makes it read as a physical object rather than a
    picture. Skipped on touch, where there is no hover.
    ============================================================ */
@@ -1063,7 +1063,7 @@
     el.addEventListener('mousemove', function(e){
       if(document.documentElement.classList.contains('ori-3d-on')) return;
       var r = el.getBoundingClientRect();
-      var nx = (e.clientX - r.left) / r.width  - 0.5;   // -0.5 â€¦ +0.5
+      var nx = (e.clientX - r.left) / r.width  - 0.5;   // -0.5 … +0.5
       var ny = (e.clientY - r.top)  / r.height - 0.5;
       el.style.setProperty('--my', ( nx * 2 * MAX).toFixed(2) + 'deg');
       el.style.setProperty('--mx', (-ny * 2 * MAX).toFixed(2) + 'deg');
@@ -1076,7 +1076,7 @@
 })();
 
 /* ============================================================
-   PARALLAX â€” the hero orbs drift against the scroll, which is
+   PARALLAX — the hero orbs drift against the scroll, which is
    what sells the depth on the reference site.
    ============================================================ */
 (function oriParallax(){
@@ -1099,20 +1099,20 @@
 </script>
 
 <!-- ============================================================
-     3D SHOWCASE â€” three.js scene.
+     3D SHOWCASE — three.js scene.
      Loads last and boots on 'load', so it never delays first paint
      or the purchase buttons. Everything it needs to fail safely is
      already on the page above it.
      ============================================================ -->
-<!-- La couche WebGL (assets/js/oriental3d/main.js) n'est plus chargÃ©e ici.
-     PanelJourney peignait une unitÃ© en 3D qui VOYAGEAIT entre les deux
-     emplacements de rendu, sur un canvas fixe couvrant tout l'Ã©cran â€”
-     pendant que les <img> DOM restaient Ã  opacity:1. On voyait donc le
-     produit en double, et le panneau flottant dÃ©rivait par-dessus les
-     cartes de catÃ©gories.
+<!-- La couche WebGL (assets/js/oriental3d/main.js) n'est plus chargée ici.
+     PanelJourney peignait une unité en 3D qui VOYAGEAIT entre les deux
+     emplacements de rendu, sur un canvas fixe couvrant tout l'écran —
+     pendant que les <img> DOM restaient à opacity:1. On voyait donc le
+     produit en double, et le panneau flottant dérivait par-dessus les
+     cartes de catégories.
      Les vraies captures produit, avec le parallaxe CSS d'oriental3D()
      plus bas, font le travail sans rien dupliquer. Le module reste dans
-     le dÃ©pÃ´t pour une Ã©ventuelle reprise avec un vrai modÃ¨le 3D. -->
+     le dépôt pour une éventuelle reprise avec un vrai modèle 3D. -->
 <script type="module" src="assets/js/oriental-cine/index.js?v=26080703"></script>
 </body>
 </html>

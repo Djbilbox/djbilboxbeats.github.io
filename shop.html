@@ -49,7 +49,7 @@
     <div class="filter-controls">
       <input type="text" id="searchInput" class="search-box" placeholder="Search products..." />
       <select id="sortSelect" class="sort-select">
-        <option value="featured">Featured</option>
+        <option value="featured">Newest first</option>
         <option value="price-asc">Price: Low to High</option>
         <option value="price-desc">Price: High to Low</option>
         <option value="name-asc">Name: A-Z</option>
@@ -71,9 +71,10 @@
      falls back to the evergreen "931 Beats Free" bar. -->
 
 <!-- ============ SCRIPTS ============ -->
-<script src="assets/js/vst-data.js?v=26100902"></script>
-<script src="assets/js/packs-data.js?v=26100901"></script>
-<script src="assets/js/pricing.js?v=26082401"></script>
+<script src="assets/js/vst-data.js?v=26100903"></script>
+<script src="assets/js/release-order.js?v=26100901"></script>
+<script src="assets/js/packs-data.js?v=26100902"></script>
+<script src="assets/js/pricing.js?v=26100901"></script>
 <script src="assets/js/site.js?v=26100901"></script>
 <script src="assets/js/shop-video.js?v=26100901"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -125,29 +126,36 @@
     return 0;
   }
 
+  /* Ordre de sortie Gumroad (assets/js/release-order.js) : plus le rang est
+     petit, plus le produit est récent. Un produit est repéré par son slug
+     d'achat ou celui de sa démo ; absent de la liste, il passe en fin. */
+  const releaseRank = (() => {
+    const map = {};
+    (window.RELEASE_ORDER||[]).forEach(([permalink, slug], i) => { map[permalink] = map[slug] = i; });
+    return v => Math.min(map[v.buy] ?? 1e6, map[v.demo] ?? 1e6);
+  })();
+
   function render(){
     grid.innerHTML = '';
-    /* Ordre par defaut : bundles, synthes, effets, gratuits, puis les kits —
-       du plus cher au plus accessible, comme sa page. */
-    const rang = { bundles:0, synths:1, effects:2, free:3 };
     let vsts = (window.VSTS||[]).filter(isMine).filter(matchSearch)
                  .filter(v => filter==='all' || familles(v).includes(filter));
-    vsts = sortMode==='featured'
-      ? vsts.sort((a,b)=>rang[famille(a)]-rang[famille(b)])
-      : vsts.sort(sortFn);
-
     let packs = (filter==='all' || filter==='kits')
       ? (window.PACKS||[]).filter(matchSearch) : [];
-    if(sortMode!=='featured') packs = packs.slice().sort(sortFn);
+
+    /* Plugins et packs dans une seule liste : par défaut du plus récent au
+       plus ancien (demande de bil, 2026-10-09), sinon le tri choisi. */
+    const items = vsts.map(v => ({ v, card: vstCard })).concat(packs.map(p => ({ v: p, card: packCard })));
+    items.sort(sortMode==='featured'
+      ? (a,b) => releaseRank(a.v) - releaseRank(b.v)
+      : (a,b) => sortFn(a.v, b.v));
 
     const frag = document.createDocumentFragment();
-    vsts.forEach(v => frag.appendChild(vstCard(v)));
-    packs.forEach(p => frag.appendChild(packCard(p)));
+    items.forEach(it => frag.appendChild(it.card(it.v)));
     grid.appendChild(frag);
     /* vidéos promo animées dans les cartes (assets/js/shop-video.js) */
     if(window.ShopVideo) ShopVideo.watch(grid);
 
-    const n = vsts.length + packs.length;
+    const n = items.length;
     count.textContent = n + (n>1 ? ' produits' : ' produit');
     if(!n) grid.innerHTML = '<p class="empty">Aucun produit ici.</p>';
   }

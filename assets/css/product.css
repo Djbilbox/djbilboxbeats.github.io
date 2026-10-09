@@ -1,24 +1,24 @@
 /* ============================================================
-   DJBILBOX BEATS — Product detail page (DARK, apeshyt-style)
-   Loaded only on product.html. Flips the light theme to dark and
-   overrides the hardcoded-white injected sidebar / topbar / footer.
+   DJBILBOX BEATS — Product detail page (fond blanc depuis le 2026-10-09)
+   Loaded only on product.html. Ancienne palette sombre : --bg:#0a0a0c
+   --surface:#141418 --text:#f4f4f7 (voir l'historique git).
    Per-product accent colors come from inline --pa / --pa2.
    ============================================================ */
 
 .product-page{
-  /* dark palette override */
-  --bg:#0a0a0c; --surface:#141418; --surface-2:#1b1b21; --surface-3:#26262e;
-  --text:#f4f4f7; --text-2:#c6c6d2; --text-3:#9595a4; --text-4:#646471;
-  --border:rgba(255,255,255,.10);
+  /* palette claire, alignée sur theme.css */
+  --bg:#ffffff; --surface:#ffffff; --surface-2:#f6f3f0; --surface-3:#ece6e1;
+  --text:#17110e; --text-2:#4b3f39; --text-3:#7c6d65; --text-4:#ab9d95;
+  --border:rgba(23,17,14,.10);
   --pa:#E60000; --pa2:#FF6633;            /* fallbacks; set per product */
   background:var(--bg); color:var(--text);
 }
 
 /* re-skin the injected chrome that hardcodes white */
-.product-page .sidebar{background:#0c0c10;border-right-color:var(--border)}
+.product-page .sidebar{background:#ffffff;border-right-color:var(--border)}
 .product-page .sidebar .brand{border-bottom-color:var(--border)}
-.product-page .mtop{background:rgba(10,10,12,.92);border-bottom-color:var(--border)}
-.product-page .footer{background:#0c0c10;border-top:1px solid var(--border)}
+.product-page .mtop{background:rgba(255,255,255,.94);border-bottom-color:var(--border)}
+.product-page .footer{background:#f7f4f1;border-top:1px solid var(--border)}
 .product-page .side-nav a:hover{background:var(--surface-2)}
 
 /* ---------- HERO with looping video background ---------- */
@@ -38,7 +38,7 @@
   background:
     url(var(--hero-bg, 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23D4AF37" width="1920" height="1080"/></svg>')) center/cover,
     radial-gradient(120% 90% at 80% 0%, color-mix(in srgb,var(--pa) 28%, transparent), transparent 60%),
-    linear-gradient(180deg, rgba(8,8,10,.85) 0%, rgba(8,8,10,.92) 55%, var(--bg) 100%);
+    linear-gradient(180deg, rgba(255,255,255,.86) 0%, rgba(255,255,255,.93) 55%, var(--bg) 100%);
   opacity:1}
 
 .pd-hero-inner{position:relative;display:grid;grid-template-columns:minmax(0,420px) 1fr;
@@ -54,11 +54,11 @@
   font-size:.72rem;margin-bottom:14px}
 .pd-title{font-family:var(--font-a);font-weight:700;line-height:.95;text-transform:uppercase;
   font-size:clamp(2.6rem,6vw,4.6rem);letter-spacing:.01em;
-  background:linear-gradient(120deg,#fff 30%,var(--pa) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  background:linear-gradient(120deg,var(--text) 30%,var(--pa) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .pd-sub{color:var(--text-2);font-weight:600;font-size:1.05rem;margin-top:6px}
 .pd-tagline{color:var(--text-2);font-size:1.02rem;max-width:46ch;margin-top:18px;line-height:1.6}
 .pd-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.pd-tags .tag{background:rgba(255,255,255,.06);border:1px solid var(--border);
+.pd-tags .tag{background:var(--surface-2);border:1px solid var(--border);
   color:var(--text-2);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
   padding:5px 11px;border-radius:999px}
 
@@ -83,8 +83,8 @@
   box-shadow:0 16px 40px rgba(230,0,0,.5),inset 0 2px 0 rgba(255,255,255,.6);
   filter:brightness(1.05);
 }
-.pd-btn.ghost{background:rgba(255,255,255,.05);border-color:var(--border);color:var(--text)}
-.pd-btn.ghost:hover{background:rgba(255,255,255,.1)}
+.pd-btn.ghost{background:#fff;border-color:var(--border);color:var(--text)}
+.pd-btn.ghost:hover{background:var(--surface-2)}
 .pd-note{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-size:.74rem;font-weight:700;
   color:var(--pa);background:color-mix(in srgb,var(--pa) 14%, transparent);
   border:1px solid color-mix(in srgb,var(--pa) 35%, transparent);border-radius:7px;padding:7px 12px}
@@ -99,7 +99,7 @@
 .pd-about p{color:var(--text-2);line-height:1.8;max-width:70ch;margin-bottom:16px;font-size:1.02rem}
 
 .pd-feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.pd-feat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;
+.pd-feat{background:var(--surface);box-shadow:0 6px 18px rgba(23,17,14,.05);border:1px solid var(--border);border-radius:14px;padding:22px;
   transition:.2s}
 .pd-feat:hover{border-color:color-mix(in srgb,var(--pa) 55%, var(--border));transform:translateY(-3px)}
 .pd-feat i{font-size:1.4rem;color:var(--pa);margin-bottom:12px}
@@ -139,7 +139,7 @@
 /* ---------- sticky mobile buy bar ---------- */
 .pd-sticky{position:fixed;left:var(--side-w);right:0;bottom:0;z-index:950;display:none;
   align-items:center;justify-content:space-between;gap:14px;padding:12px 18px;
-  background:rgba(12,12,15,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border)}
+  background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid var(--border)}
 .pd-sticky .pd-price .now{font-size:1.4rem}
 
 @media(max-width:880px){

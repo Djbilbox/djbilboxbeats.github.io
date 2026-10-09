@@ -27,7 +27,7 @@ window.PRICING = (function () {
      MATRIX MODULAR sont à $10 et portent leur prix en propre dans
      les fichiers de données — ce tableau ne sert qu'aux jetons
      d'affichage des pages produit. */
-  const LIST = { pro: 15, oriental: 15, legendary: 25, bundle: 39 };
+  const LIST = { pro: 15, oriental: 50, legendary: 99, bundle: 39 };
 
   function money(n) {
     const v = Math.round(n * 100) / 100;

@@ -7,13 +7,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap');
 
 :root{
-  /* ---- DARK MAHOGANY WOOD THEME (BOIS D'ACAJOU) ---- */
-  --bg:#120a08; --surface:#1b0f0b; --surface-2:#241510; --surface-3:#2e1b15;
-  --accent:#d96528; --accent-h:#b84f18; --accent-glow:rgba(217,101,40,.22);
-  --accent-bright:#f07d3b; --accent-plat:#d4a359; --accent-chrome:#8c6250;
-  --green:#2ecc71; --text:#f5ede8; --text-2:#cbb3a6; --text-3:#967d71; --text-4:#6a554c;
-  --border:rgba(217,101,40,.18);
-  --border-subtle:rgba(255,230,215,.08);
+  /* ---- THÈME CLAIR (fond blanc) — depuis le 2026-10-09, à la demande de bil.
+     Ancien thème bois d'acajou : --bg:#120a08 --surface:#1b0f0b --surface-2:#241510
+     --surface-3:#2e1b15 --accent:#d96528 --text:#f5ede8 --text-2:#cbb3a6 --text-3:#967d71 ---- */
+  --bg:#ffffff; --surface:#ffffff; --surface-2:#f6f3f0; --surface-3:#ece6e1;
+  --accent:#d2561b; --accent-h:#b4460f; --accent-glow:rgba(210,86,27,.14);
+  --accent-bright:#d2561b; --accent-plat:#a87a2c; --accent-chrome:#8c6250;
+  --green:#14935a; --text:#17110e; --text-2:#4b3f39; --text-3:#7c6d65; --text-4:#ab9d95;
+  --border:rgba(23,17,14,.10);
+  --border-subtle:rgba(23,17,14,.06);
   --r:8px; --rl:14px;
   --font:'Inter',sans-serif; --font-a:'Rajdhani',sans-serif;
   --hdr-h:68px; --subnav-h:54px; --side-w:0px; --mtop-h:0px; --ticker-h:38px;
@@ -54,7 +56,7 @@ body{
 .topbar{top:var(--ticker-h) !important}
 
 /* ---- STAT BAND — bold dark strip with big numbers (Apeshyt-style) ---- */
-.stat-band{background:#0e0705;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:32px 0}
+.stat-band{background:#f7f4f1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:32px 0}
 .stat-band-row{display:flex;justify-content:space-around;align-items:center;
   flex-wrap:wrap;gap:24px;text-align:center}
 .stat-band-item .n{font-family:var(--font-a);font-weight:800;font-size:clamp(1.5rem,3vw,2.2rem);
@@ -114,9 +116,9 @@ img{display:block;max-width:100%}
   --g:#E8B54D; --g2:#F6D98A; --g3:#B8860B;
   padding:64px 0;position:relative;overflow:hidden;
   background:
-    radial-gradient(900px 480px at 76% 40%,rgba(232,181,77,.16),transparent 62%),
-    radial-gradient(620px 420px at 8% 90%,rgba(160,60,20,.14),transparent 66%),
-    #070505;
+    radial-gradient(900px 480px at 76% 40%,rgba(232,181,77,.20),transparent 62%),
+    radial-gradient(620px 420px at 8% 90%,rgba(210,86,27,.08),transparent 66%),
+    #fbf7f1;
   border-top:1px solid rgba(232,181,77,.16);
   border-bottom:1px solid rgba(232,181,77,.16);
 }
@@ -125,20 +127,20 @@ img{display:block;max-width:100%}
   text-transform:uppercase;color:var(--g);margin-bottom:12px}
 .flagship-title{font-family:var(--font-a);font-weight:700;text-transform:uppercase;
   font-size:clamp(2rem,5.4vw,3.9rem);line-height:.92;letter-spacing:-.005em;margin-bottom:8px}
-.flagship-title span{background:linear-gradient(180deg,#FFF3D0,var(--g) 45%,var(--g3));
+.flagship-title span{background:linear-gradient(180deg,var(--g),var(--g3) 55%,#7a5306);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .flagship-tag{font-family:var(--font-a);font-size:.8rem;font-weight:600;letter-spacing:.38em;
-  text-transform:uppercase;color:#cbbfa8;margin-bottom:18px}
-.flagship-lead{color:#b9b0a2;max-width:46ch;line-height:1.65;margin-bottom:20px}
+  text-transform:uppercase;color:var(--text-3);margin-bottom:18px}
+.flagship-lead{color:var(--text-2);max-width:46ch;line-height:1.65;margin-bottom:20px}
 .flagship-price{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;margin-bottom:22px}
-.flagship-price .now{font-family:var(--font-a);font-size:2.2rem;font-weight:700;color:var(--g)}
-.flagship-price .was{color:#7d7568;text-decoration:line-through}
+.flagship-price .now{font-family:var(--font-a);font-size:2.2rem;font-weight:700;color:var(--g3)}
+.flagship-price .was{color:var(--text-4);text-decoration:line-through}
 .flagship-price .off{background:var(--accent);color:#fff;font-size:.64rem;font-weight:800;
   padding:5px 9px;border-radius:6px;letter-spacing:.06em;text-transform:uppercase}
 .flagship-cta{display:flex;gap:11px;flex-wrap:wrap}
 .flagship-cta .btn.primary{background:linear-gradient(135deg,var(--g2),var(--g) 55%,var(--g3));
   border-color:transparent;color:#1a1200;box-shadow:0 10px 30px rgba(232,181,77,.28)}
-.flagship-cta .btn.ghost{border-color:rgba(232,181,77,.45);color:#f2ece0}
+.flagship-cta .btn.ghost{border-color:rgba(184,134,11,.45);color:var(--text)}
 .flagship-cta .btn.ghost:hover{border-color:var(--g);background:rgba(232,181,77,.1)}
 .flagship-art{display:block;perspective:1200px}
 .flagship-art img{width:100%;border-radius:14px;
@@ -219,7 +221,7 @@ img{display:block;max-width:100%}
 
 /* ---------- TOP BAR (replaces the old fixed left sidebar) ---------- */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:1000;
-  background:rgba(18,10,8,.94);backdrop-filter:blur(16px);
+  background:rgba(255,255,255,.94);backdrop-filter:blur(16px);
   border-bottom:1px solid var(--border)}
 .topbar-in{max-width:1320px;margin:0 auto;padding:0 22px;height:var(--hdr-h);
   display:flex;align-items:center;gap:26px}
@@ -287,7 +289,7 @@ img{display:block;max-width:100%}
    SUB-NAV — horizontal filter pills (per page)
    ============================================================ */
 .subnav{position:sticky;top:0;z-index:900;
-  background:rgba(22,12,9,.94);backdrop-filter:blur(14px);
+  background:rgba(255,255,255,.96);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border)}
 .subnav-inner{max-width:1320px;margin:0 auto;padding:11px 24px;
   display:flex;align-items:center;gap:10px;overflow-x:auto;scrollbar-width:none}
@@ -436,7 +438,7 @@ img{display:block;max-width:100%}
 /* Dark bar, accent used only on the wording — a full-width saturated
    band was competing with the hero. */
 .promo-bar{position:fixed;left:0;right:0;bottom:0;z-index:1100;
-  background:rgba(24,13,10,.96);backdrop-filter:blur(14px);
+  background:rgba(255,255,255,.97);backdrop-filter:blur(14px);
   border-top:1px solid var(--border);color:var(--text-2);
   display:flex;align-items:center;justify-content:center;gap:14px;
   padding:11px 18px;font-size:.8rem;font-weight:500;text-align:center}

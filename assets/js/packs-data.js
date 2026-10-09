@@ -73,11 +73,11 @@ window.PACKS = [
     buy:"westcoast-vybes-vol01", demo:"westcoast-vybes-vol01-demo" },
 
   { id:"kit-drum-funk", name:"KIT DRUM FUNK — Professional Drum Kit", img:"img/packs/kit-drum-funk.jpg",
-    genre:"Funk", tags:["Funk","Drum Kit","MIDI","One-Shots"], tier:"pack", price:"5",
+    genre:"Funk", tags:["Funk","Drum Kit","MIDI","One-Shots"], tier:"pack", price:"10",
     buy:"ejmwmz", demo:"ejmwmz" },
 
   { id:"west-side", name:"KIT DRUM WEST SIDE — 2Pac, Snoop Dogg & The Game", img:"img/packs/west-side.jpg",
-    genre:"West Coast", tags:["West Coast","G-Funk","Hip-Hop","MIDI"], price:"19",
+    genre:"West Coast", tags:["West Coast","G-Funk","Hip-Hop","MIDI"], price:"10",
     buy:"west-side-drum-kit", demo:"west-side-drum-kit" },
 
   /* ---------- Premium kits (2026) ---------- */
@@ -86,35 +86,35 @@ window.PACKS = [
     buy:"yrkzl" },
 
   { id:"void-signals", name:"VOID SIGNALS — 19GB SFX & Cinematic Suite", img:"img/packs/void-signals.jpg",
-    genre:"SFX", tags:["SFX","Cinematic"], price:"34",
+    genre:"SFX", tags:["SFX","Cinematic"], price:"10",
     buy:"mkijdn", demo:"mkijdn" },
 
   { id:"ghost-voice", name:"GHOST VOICE — Vocal Hooks & Acapellas", img:"img/packs/ghost-voice.jpg",
-    genre:"Vocals", tags:["Vocals","Acapellas"], price:"15",
+    genre:"Vocals", tags:["Vocals","Acapellas"], price:"10",
     buy:"fnpdxf", demo:"fnpdxf" },
 
   { id:"raw-elements", name:"RAW ELEMENTS — Ultimate One-Shot Drum Kit", img:"img/packs/raw-elements.jpg",
-    genre:"One-Shots", tags:["Drums","One-Shots"], price:"17",
+    genre:"One-Shots", tags:["Drums","One-Shots"], price:"10",
     buy:"pohwt", demo:"pohwt" },
 
   { id:"vinyl-breaker", name:"VINYL BREAKER — Scratch & Vinyl Sample Kit", img:"img/packs/vinyl-breaker.jpg",
-    genre:"Hip-Hop", tags:["Vinyl","Hip-Hop"], tier:"pack", price:"7",
+    genre:"Hip-Hop", tags:["Vinyl","Hip-Hop"], tier:"pack", price:"20",
     buy:"yecrn", demo:"yecrn" },
 
   { id:"neon-pulse", name:"NEON PULSE — House & Techno Drum Loops", img:"img/packs/neon-pulse.jpg",
-    genre:"House", tags:["House","Techno"], tier:"pack", price:"6",
+    genre:"House", tags:["House","Techno"], tier:"pack", price:"18",
     buy:"argerk", demo:"argerk" },
 
   { id:"concrete-vault", name:"CONCRETE VAULT — Trap & Drill Drum Loops", img:"img/packs/concrete-vault.jpg",
-    genre:"Trap", tags:["Trap","Drill"], tier:"pack", price:"6",
+    genre:"Trap", tags:["Trap","Drill"], tier:"pack", price:"18",
     buy:"ecrmh", demo:"ecrmh" },
 
   { id:"westcoast-chrome", name:"WESTCOAST CHROME — G-Funk Drum Loops", img:"img/packs/westcoast-chrome.jpg",
-    genre:"G-Funk", tags:["G-Funk","West Coast"], tier:"pack", price:"7",
+    genre:"G-Funk", tags:["G-Funk","West Coast"], tier:"pack", price:"20",
     buy:"seuyup", demo:"seuyup" },
 
   { id:"etnic-ritmik", name:"ETNIC RITMIK — Afrobeat & Reggae Loops Vol.1", img:"img/packs/etnic-ritmik.jpg",
-    genre:"Afro", tags:["Afrobeat","Reggae"], tier:"pack", price:"7",
+    genre:"Afro", tags:["Afrobeat","Reggae"], tier:"pack", price:"21",
     buy:"fkodxs", demo:"fkodxs" },
 
   /* ---------- Sample packs (Vol. series) ---------- */
@@ -135,10 +135,10 @@ window.PACKS = [
     buy:"czpvfx", demo:"czpvfx" },
 
   { id:"break-ya-neck-vol2", name:"Break Ya Neck — Hip-Hop Vol.2", img:"img/packs/break-ya-neck-vol2.jpg",
-    genre:"Hip-Hop", tags:["Hip-Hop","Drum Loops"], tier:"pack", price:"7",
+    genre:"Hip-Hop", tags:["Hip-Hop","Drum Loops"], tier:"pack", price:"18",
     buy:"break-ya-neck-vol2", demo:"break-ya-neck-vol2" },
 
   { id:"ziploc-vol3", name:"Ziploc — Blue Pack Vol.3", img:"img/packs/ziploc-vol3.jpg",
-    genre:"Afrotrap", tags:["Afrotrap","Hip-Hop","Trap"], price:"12",
+    genre:"Afrotrap", tags:["Afrotrap","Hip-Hop","Trap"], price:"10",
     buy:"ghruf", demo:"ghruf" },
 ];

@@ -42,7 +42,7 @@ window.PRODUCTS = {
     type:"kit", name:"KIT DRUM WEST SIDE", sub:"2Pac × Snoop Dogg × The Game — West Coast Drum Kit",
     tagline:"The ultimate West Coast drum kit — one-shots, MIDI patterns & full stems from 8 legendary G-Funk records.",
     cover:"img/packs/west-side.jpg", accent:"#e8a33d", accent2:"#2e6fd6",
-    price:"19", badge:"🆕 New",
+    price:"10", badge:"🆕 New",
     note:"37 one-shots · 36 MIDI · full stems · royalty-free",
     buy:"west-side-drum-kit",
     video:"nD2CfT4Ortw",
@@ -285,7 +285,7 @@ window.PRODUCTS = {
     type:"vst", name:"Oriental Instrument — Full Version", sub:"Arabic & Oriental Rompler — 280+ Instruments",
     tagline:"280+ authentic oriental instruments & sounds in one pro plug-in — oud, qanun, ney, saz, strings & percussion. Full library.",
     cover:"img/vst/oriental-instrument-box.jpg", accent:"#e8a33d", accent2:"#c0392b",
-    tier:"oriental", price:"15",
+    tier:"oriental", price:"50",
     note:"Full 280+ instruments",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
@@ -432,7 +432,7 @@ window.PRODUCTS = {
     cover:"img/packs/break-ya-neck-vol2.jpg", accent:"#d4a017", accent2:"#8a5a00",
     /* `ntscu` renvoyait une 404 : le produit vit sous `break-ya-neck-vol2`.
        Un client qui cliquait « Buy » tombait sur une page Gumroad introuvable. */
-    tier:"pack", price:"7", badge:"🆕 New", buy:"break-ya-neck-vol2",
+    tier:"pack", price:"18", badge:"🆕 New", buy:"break-ya-neck-vol2",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Hip-Hop","Drum Loops","Free"],
     about:[
@@ -460,7 +460,7 @@ window.PRODUCTS = {
     type:"kit", name:"Ziploc — Blue Pack Vol.3", sub:"Afrotrap · Hip-Hop · Trap",
     tagline:"The Blue Pack — versatile afrotrap & trap sounds, ready to layer.",
     cover:"img/packs/ziploc-vol3.jpg", accent:"#2e86de", accent2:"#37e1ff",
-    price:"12", badge:"🆕 New", buy:"ghruf",
+    price:"10", badge:"🆕 New", buy:"ghruf",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Afrotrap","Hip-Hop","Trap","Free"],
     about:[
@@ -520,7 +520,7 @@ window.PRODUCTS = {
     type:"kit", name:"VOID SIGNALS", sub:"19GB SFX & Cinematic Sound Design Suite",
     tagline:"A massive 19GB cinematic arsenal — risers, impacts, drones, textures & FX (feat. Boom Library).",
     cover:"img/packs/void-signals.jpg", accent:"#37e1ff", accent2:"#7b5cff",
-    price:"34", badge:"🔊 19GB",
+    price:"10", badge:"🔊 19GB",
     note:"19GB · feat. Boom Library · royalty-free",
     buy:"mkijdn",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -541,7 +541,7 @@ window.PRODUCTS = {
       {k:"Size", v:"19 GB"},
       {k:"Format", v:"High-resolution WAV"},
       {k:"Sources", v:"Featuring Boom Library"},
-      {k:"Price", v:"$30"},
+      {k:"Price", v:"$10"},
       {k:"License", v:"Royalty-free for music, film & games"}
     ],
     includes:["19GB cinematic SFX suite","Risers, impacts, drones & textures","Boom Library-sourced content","Trailer & game-ready sound design"]
@@ -551,7 +551,7 @@ window.PRODUCTS = {
     type:"kit", name:"GHOST VOICE", sub:"Premium Vocal Hooks, Chops & Acapellas",
     tagline:"Studio-recorded vocal hooks, chops, adlibs & acapellas — drop them in and instantly humanize your beats.",
     cover:"img/packs/ghost-voice.jpg", accent:"#ff3ca6", accent2:"#7b5cff",
-    price:"15", badge:"🆕 New",
+    price:"10", badge:"🆕 New",
     note:"Dry & wet · key & BPM labeled · royalty-free",
     buy:"fnpdxf",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -572,7 +572,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Labeling", v:"Key + BPM in filename"},
       {k:"Styles", v:"Trap, R&B, afro, drill, house, pop"},
-      {k:"Price", v:"$20"},
+      {k:"Price", v:"$10"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["Vocal hooks & full phrases","Chopped syllables & adlibs","Clean acapellas","Key/BPM documentation"]
@@ -582,7 +582,7 @@ window.PRODUCTS = {
     type:"kit", name:"RAW ELEMENTS", sub:"Ultimate One-Shot Drum Kit",
     tagline:"Hard, clean drum one-shots — punchy kicks, cracking snares, crisp hats & knocking 808s.",
     cover:"img/packs/raw-elements.jpg", accent:"#ff2d2d", accent2:"#ff8a3d",
-    price:"17", badge:"🆕 New",
+    price:"10", badge:"🆕 New",
     note:"Punchy · mix-ready · royalty-free",
     buy:"pohwt",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -613,7 +613,7 @@ window.PRODUCTS = {
     type:"kit", name:"VINYL BREAKER", sub:"Scratch & Hip-Hop Vinyl Sample Kit",
     tagline:"Dusty vinyl scratches, crackle, chops & textures — authentic boom-bap character in one kit.",
     cover:"img/packs/vinyl-breaker.jpg", accent:"#d4a017", accent2:"#8a5a00",
-    tier:"pack", price:"7", badge:"🆕 New",
+    tier:"pack", price:"20", badge:"🆕 New",
     note:"Authentic vinyl character · royalty-free",
     buy:"yecrn",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -634,7 +634,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Vibe", v:"Boom-bap, lo-fi, vintage hip-hop"},
       {k:"Source", v:"Recorded from real vinyl & hardware"},
-      {k:"Price", v:"$5"},
+      {k:"Price", v:"$20"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["Turntable scratch library","Vinyl crackle & texture loops","Dusty vinyl chops & stabs","Boom-bap & lo-fi ready"]
@@ -644,7 +644,7 @@ window.PRODUCTS = {
     type:"kit", name:"NEON PULSE", sub:"House, Techno & Progressive Pro Drum Loops",
     tagline:"Club-ready drum loops for House, Techno & Progressive — locked, punchy and mix-ready.",
     cover:"img/packs/neon-pulse.jpg", accent:"#1DB954", accent2:"#37e1ff",
-    tier:"pack", price:"6", badge:"🆕 New",
+    tier:"pack", price:"18", badge:"🆕 New",
     note:"Club-ready · tempo-labeled · royalty-free",
     buy:"argerk",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -665,7 +665,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"120–135 BPM"},
       {k:"Included", v:"Full grooves + layerable perc loops"},
-      {k:"Price", v:"$10"},
+      {k:"Price", v:"$18"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["House/Techno/Progressive drum loops","Full grooves + element loops","Studio-mixed & tempo-labeled","Works in all DAWs"]
@@ -675,7 +675,7 @@ window.PRODUCTS = {
     type:"kit", name:"CONCRETE VAULT", sub:"HipHop, Trap & Drill Pro Drum Loops",
     tagline:"Hard-hitting drum loops for HipHop, Trap & Drill — pocket, bounce and aggression.",
     cover:"img/packs/concrete-vault.jpg", accent:"#8895a7", accent2:"#ff2d2d",
-    tier:"pack", price:"6", badge:"🆕 New",
+    tier:"pack", price:"18", badge:"🆕 New",
     note:"Pro loops · tempo-labeled · royalty-free",
     buy:"ecrmh",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -696,7 +696,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"120–150 BPM"},
       {k:"Included", v:"Full grooves + hat & perc loops"},
-      {k:"Price", v:"$10"},
+      {k:"Price", v:"$18"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["HipHop/Trap/Drill drum loops","Full patterns + hat loops","Studio-mixed & tempo-labeled","Works in all DAWs"]
@@ -706,7 +706,7 @@ window.PRODUCTS = {
     type:"kit", name:"WESTCOAST CHROME", sub:"G-Funk & West Coast Pro Drum Loops",
     tagline:"Laid-back G-Funk & West Coast drum grooves — that classic lowrider bounce.",
     cover:"img/packs/westcoast-chrome.jpg", accent:"#2e86de", accent2:"#b06cff",
-    tier:"pack", price:"7", badge:"🆕 New",
+    tier:"pack", price:"20", badge:"🆕 New",
     note:"West-Coast bounce · tempo-labeled · royalty-free",
     buy:"seuyup",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -727,7 +727,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"85–105 BPM"},
       {k:"Included", v:"Full grooves + percussion loops"},
-      {k:"Price", v:"$10"},
+      {k:"Price", v:"$20"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["G-Funk/West Coast drum loops","Full grooves + perc loops","Swung, studio-mixed pockets","Works in all DAWs"]
@@ -737,7 +737,7 @@ window.PRODUCTS = {
     type:"kit", name:"ETNIC RITMIK", sub:"Afrobeat & Reggae Pro Drum Loops Vol.1",
     tagline:"Live-feel Afrobeat & Reggae drum grooves — organic percussion and infectious rhythm.",
     cover:"img/packs/etnic-ritmik.jpg", accent:"#1DB954", accent2:"#ffcf33",
-    tier:"pack", price:"7", badge:"🆕 New",
+    tier:"pack", price:"21", badge:"🆕 New",
     note:"Organic groove · tempo-labeled · royalty-free",
     buy:"fkodxs",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -758,7 +758,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"95–120 BPM"},
       {k:"Included", v:"Full grooves + percussion loops"},
-      {k:"Price", v:"$10"},
+      {k:"Price", v:"$21"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["Afrobeat & Reggae drum loops","Organic percussion loops","Live-feel, tempo-labeled grooves","Works in all DAWs"]

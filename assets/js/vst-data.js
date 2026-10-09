@@ -25,6 +25,12 @@ window.VSTS = [
      `yt`  : vidéo promo de la playlist YouTube PLHBhwyzxv1c0, jouée en
              boucle muette dans la carte (assets/js/shop-video.js).
      `ytv` : la vidéo est un Short vertical (9:16) — recadrage différent. */
+  /* ROBOTALK — talkbox, vocodeur et autotune (Gumroad `jvdta`, 30 $ depuis le 2026-10-09). */
+  { id:"robotalk", name:"ROBOTALK — Talkbox, Vocoder & Autotune Plugin", img:"https://public-files.gumroad.com/uqd1ilkibxzd4jmnxnwym0madhb6", category:"effect",
+    tags:["Talkbox · Vocoder · Autotune","3 engines · 6 skins","VST3 · AU · Win · Mac"], tier:"pro", price:"30", badge:"🆕 New",
+    buy:"jvdta", demo:"",
+    note:"Talkbox, vocoder and autotune in one plugin · animated droid, 6 skins" },
+
   { id:"humpire-vst-suite", yt:"sqUykeuBnSk", ytv:true, name:"HUMPIRE VST SUITE — 7 VST3 Plugins + 6,142 Presets + MIDI", img:"https://public-files.gumroad.com/hq0b3i51z2fn8097vymtniyy1226", category:"instrument",
     tags:["7 plugins · 6,142 presets","Generators · Instruments · FX","VST3 · Win x64 · macOS Universal"], tier:"bundle", price:"129", cur:"€", badge:"👑 Suite 1.0",
     buy:"humpire-vst-suite", demo:"",
@@ -132,10 +138,10 @@ window.VSTS = [
     buy:"surf-tremolo", demo:"",
     note:"Vintage optical and harmonic tremolo pedal · rhythmic pulse and wave shaping" },
 
-  { id:"eq-pro-spider", yt:"t8N7Z6bG7u0", name:"EQ-PRO SPIDER — Free 8-Band EQ Plugin", img:"https://public-files.gumroad.com/pewpk4wx84fcy9rn6igvz5bfi8vq", category:"effect",
-    tags:["8-Band Parametric EQ","Visual Spectrum Analyzer","VST3 · AU · Standalone"], price:"0", free:true, badge:"✅ FREE",
+  { id:"eq-pro-spider", yt:"t8N7Z6bG7u0", name:"EQ-PRO SPIDER — 8-Band EQ Plugin", img:"https://public-files.gumroad.com/pewpk4wx84fcy9rn6igvz5bfi8vq", category:"effect",
+    tags:["8-Band Parametric EQ","Visual Spectrum Analyzer","VST3 · AU · Standalone"], price:"10", badge:"🎚️ EQ",
     buy:"eq-pro-spider", demo:"",
-    note:"100% FREE · professional 8-band parametric equalizer with real-time analyzer" },
+    note:"Professional 8-band parametric equalizer with real-time analyzer" },
 
   { id:"mini-mpc-humpire", yt:"_0a3LF_2O0Y", name:"MINI MPC HUMPIRE — Free Beat Machine (64 Pads)", img:"https://public-files.gumroad.com/4l3h0k0qe4alih949ll89f6sjqvf", category:"instrument",
     tags:["64 Pads Sampler","Built-in Sequencer · Kits","Standalone · App"], price:"0", free:true, badge:"✅ FREE BASIC",
@@ -180,7 +186,7 @@ window.VSTS = [
   { id:"station-synth-bundle", yt:"vvfdwvFgUNk", name:"STATION SYNTH PRO BUNDLE — Synth + 11 Expansion Libraries", img:"img/vst/ui/station-synth-card.jpg", category:"instrument",
     detail:"station-synth-bundle.html",
     preview:"assets/products/station-synth/station-synth-card.mp4",
-    tags:["Synth + 11 expansion libraries","4128 presets · 44 wavetables","VST3 · AU · Standalone · Win/Mac"], tier:"legendary", price:"25", badge:"🔥 New",
+    tags:["Synth + 11 expansion libraries","4128 presets · 44 wavetables","VST3 · AU · Standalone · Win/Mac"], tier:"legendary", price:"99", badge:"🔥 New",
     buy:"station-synth-legendary-bundle",
     demo:"station-synth-demo",
     note:"Wavetable synth · 4128 presets · 11 libraries · Windows & macOS" },
@@ -197,10 +203,10 @@ window.VSTS = [
     note:"100% FREE BASIC · plays the samples already on your machine · 50 kits across 10 styles" },
 
   { id:"oriental-instrument", yt:"og8FVdn1oBs", name:"ORIENTAL INSTRUMENT PRO BUNDLE — 280+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
-    tags:["280+ instruments · Maqam engine","BASIC edition available","Win · Mac"], tier:"oriental", price:"15",
+    tags:["280+ instruments · Maqam engine","Free demo available","Win · Mac"], tier:"oriental", price:"50",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
-    note:"Full 280+ instruments · edition BASIC a 10 $" },
+    note:"Full 280+ instruments · démo gratuite disponible" },
 
   { id:"bigbass", yt:"Rf7737wRKrE", name:"BIGBASS PRO — LA Lowrider Bass", img:"img/vst/ui/bigbass-card.jpg", category:"instrument",
     tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], tier:"pro", price:"15",
@@ -218,12 +224,11 @@ window.VSTS = [
     buy:"neon-synth-80s", demo:"",
     note:"100% FREE BASIC · dual-oscillator synth · 6 synthwave presets" },
 
-  /* Passe de gratuit a 10 $ le 13 aout 2026 (bil). Pas de `tier` : c'est un
-     prix fixe, il ne suit pas le calendrier des promos. */
+  /* Gratuit sur Gumroad (relevé du 2026-10-09) : c'est la démo du PRO. */
   { id:"oriental-instrument-free", yt:"og8FVdn1oBs", name:"ORIENTAL INSTRUMENT BASIC — 50+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
-    tags:["50+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"10", badge:"BASIC",
+    tags:["50+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"oriental-instrument-demo-free-Download", demo:"",
-    note:"Edition BASIC · 50+ instruments · passe au PRO BUNDLE quand tu veux" },
+    note:"100% FREE BASIC · 50+ instruments · passe au PRO quand tu veux" },
 
   /* ========== PARTNER GEAR — FL Studio & Apeshyt (separate from my own products) ========== */
   { name:"FL STUDIO 26 — Fruity Edition", img:"img/vst/fl-fruity.jpg", category:"partner",
