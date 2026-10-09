@@ -569,6 +569,8 @@
   padding: 100px 20px;
 }
 </style>
+<!-- thème clair de la boutique : après le <style> de la page pour le surcharger -->
+<link rel="stylesheet" href="assets/css/shop-light.css?v=26100901">
 </head>
 <body data-page="streetwear">
 
@@ -578,8 +580,8 @@
   </div>
 </div>
 
-<script src="assets/js/streetwear-data.js?v=26092707"></script>
-<script src="assets/js/site.js?v=26092707"></script>
+<script src="assets/js/streetwear-data.js?v=26100901"></script>
+<script src="assets/js/site.js?v=26100901"></script>
 <script>
 (function(){
   var params = new URLSearchParams(window.location.search);
@@ -643,19 +645,19 @@
     <!-- ================= NIKE-STYLE AMBIENT VIDEO HERO ================= -->
     <section class="swp-hero-ambient">
       <div class="swp-ambient-video-frame">
-        <iframe id="ambientIframe" 
-                src="${ambientEmbedUrl}" 
-                title="${P.name} Ambient Video" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                playsinline 
+        ${P.videoId ? `<iframe id="ambientIframe"
+                src="${ambientEmbedUrl}"
+                title="${P.name} Ambient Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                playsinline
                 allowfullscreen>
-        </iframe>
+        </iframe>` : `<img src="${P.image}" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;animation:swpNoVideoZoom 14s ease-in-out infinite alternate">`}
       </div>
       <div class="swp-hero-ambient-overlay"></div>
 
       <div class="swp-hero-ambient-content">
         <div class="swp-hero-badge">
-          <i class="fa-solid fa-play"></i> PRÉSENTATION OFFICIELLE EN VIDÉO
+          ${P.videoId ? '<i class="fa-solid fa-play"></i> PRÉSENTATION OFFICIELLE EN VIDÉO' : '<i class="fa-solid fa-star"></i> NOUVEAUTÉ 2026'}
         </div>
         <h1 class="swp-hero-title">${P.name}</h1>
         <p class="swp-hero-sub">${P.tagline}</p>
@@ -666,9 +668,9 @@
           <a class="sw-btn-ghost" href="#showcase" style="background:rgba(26,17,14,0.85);color:#fff;border:1px solid var(--accent);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.95rem;text-transform:uppercase;padding:14px 26px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
             <i class="fa-solid fa-shirt"></i> Détails &amp; Tailles
           </a>
-          <a class="sw-btn-ghost" href="#video-spotlight" style="background:rgba(26,17,14,0.85);color:#fff;border:1px solid var(--border);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.95rem;text-transform:uppercase;padding:14px 26px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+          ${P.videoId ? `<a class="sw-btn-ghost" href="#video-spotlight" style="background:rgba(26,17,14,0.85);color:#fff;border:1px solid var(--border);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.95rem;text-transform:uppercase;padding:14px 26px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
             <i class="fa-solid fa-expand"></i> Lecteur Plein Écran
-          </a>
+          </a>` : ''}
         </div>
       </div>
     </section>
@@ -744,8 +746,10 @@
         </div>
       </section>
 
-      <!-- ================= INTERACTIVE SPOTLIGHT PLAYER ================= -->
-      <section class="swp-video-section" id="video-spotlight">
+      <!-- ================= INTERACTIVE SPOTLIGHT PLAYER =================
+           Seulement si l'article a une vraie vidéo (videoId) : on ne montre
+           pas le spot d'un autre vêtement sous un nouveau modèle. -->
+      ${P.videoId ? `<section class="swp-video-section" id="video-spotlight">
         <div class="swp-video-header">
           <div>
             <div class="swp-video-tag"><i class="fa-solid fa-play"></i> SPOT PUBLICITAIRE OFFICIEL</div>
@@ -759,7 +763,7 @@
         <div class="swp-video-player-box">
           <iframe src="https://www.youtube-nocookie.com/embed/${P.videoId}?autoplay=0&enablejsapi=1&rel=0" title="${P.videoTitle || P.name}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
         </div>
-      </section>
+      </section>` : ''}
 
       <!-- ================= DESCRIPTION & TECHNICAL SPECS ================= -->
       <section class="swp-details-section">

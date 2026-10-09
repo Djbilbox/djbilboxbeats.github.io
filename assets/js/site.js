@@ -368,7 +368,7 @@ function renderCartItems(){
   }else{
     box.innerHTML=items.map((it,i)=>{
       const free=String(it.price).toUpperCase()==='FREE';
-      const priceTxt=free?'FREE':(isNaN(parseFloat(it.price))?it.price:'$'+it.price);
+      const priceTxt=free?'FREE':(/€/.test(it.price)||isNaN(parseFloat(it.price))?it.price:'$'+it.price);
       return `<div class="cart-item">
         <div class="ci-info"><div class="ci-name">${it.title}</div>
           <div class="ci-price${free?' free':''}">${priceTxt}</div></div>
@@ -377,8 +377,12 @@ function renderCartItems(){
       </div>`;
     }).join('');
   }
-  const t=Cart.total();
-  const tEl=document.getElementById('cartTotal'); if(tEl) tEl.textContent = t>0?('$'+t.toFixed(2)):'FREE';
+  /* Deux devises possibles (produits Gumroad en $ et en €) : un sous-total
+     par devise plutôt qu'une somme qui les mélangerait. */
+  const tot={usd:0,eur:0};
+  Cart.get().forEach(it=>{ const n=parseFloat(String(it.price).replace(',','.').replace(/[^0-9.]/g,'')); if(!isNaN(n)) tot[/€/.test(it.price)?'eur':'usd']+=n; });
+  const parts=[]; if(tot.usd>0) parts.push('$'+tot.usd.toFixed(2)); if(tot.eur>0) parts.push(tot.eur.toFixed(2)+' €');
+  const tEl=document.getElementById('cartTotal'); if(tEl) tEl.textContent = parts.length?parts.join(' + '):'FREE';
 }
 /* Load Gumroad's overlay once. When several Gumroad product links exist on the
    same page, the overlay auto-bundles them into ONE payment (Bundle Buy). */
@@ -597,6 +601,12 @@ function playBeat(trackId, title){
 /* ============================================================
    PACK / DRUM-KIT CARDS — product cards with real cover art
    ============================================================ */
+/* Prix affiché dans la devise du produit Gumroad : `cur:"€"` pour les
+   produits vendus en euros (HUMPIRE VST SUITE...), dollar sinon. */
+function money(v, cur){ return cur==='€' ? v+' €' : '$'+v; }
+/* Le panier reçoit le prix tel qu'affiché (« 129 € ») pour ne pas
+   confondre les devises. */
+function cartPrice(p){ return p.cur==='€' ? p.price+' €' : p.price; }
 function packCard(p){
   const isFree = String(p.price).toUpperCase()==='FREE' || p.price==='0';
   /* A paid pack that ships a free demo still gets a green FREE badge — the
@@ -604,9 +614,9 @@ function packCard(p){
   const badgeTxt = p.badge || (isFree ? 'FREE' : p.demo ? 'FREE DEMO' : '');
   const badge = badgeTxt ? `<span class="card-badge${(isFree||p.demo)?' free':''}">${badgeTxt}</span>` : '';
   const tags = (p.tags||[]).slice(0,2).map(t=>`<span class="tag">${t}</span>`).join('');
-  const old = p.old ? `<span class="old">$${p.old}</span>` : '';
+  const old = p.old ? `<span class="old">${money(p.old,p.cur)}</span>` : '';
   const freeNote = (!isFree && p.demo) ? `<span class="pack-free-note">FREE demo available</span>` : '';
-  const priceHtml = isFree ? `<span class="now free">FREE</span>` : `<span class="now">$${p.price}</span>${old}${freeNote}`;
+  const priceHtml = isFree ? `<span class="now free">FREE</span>` : `<span class="now">${money(p.price,p.cur)}</span>${old}${freeNote}`;
   const el = document.createElement('article');
   el.className='card';
   el.dataset.genre = p.genre || '';
@@ -629,7 +639,7 @@ function packCard(p){
       <div class="card-tags">${tags}</div>
       <div class="card-foot">
         <div class="price">${priceHtml}</div>
-        <div style="display:flex;gap:6px">${demo}<button class="btn-cta" onclick="addToCart('${nm}','${p.price}','${ref}')"><i class="fa-solid fa-cart-plus"></i> Add</button></div>
+        <div style="display:flex;gap:6px">${demo}<button class="btn-cta" onclick="addToCart('${nm}','${cartPrice(p)}','${ref}')"><i class="fa-solid fa-cart-plus"></i> Add</button></div>
       </div>
     </div>`;
   return el;
@@ -742,12 +752,12 @@ function renderReviews(arr, id){
 function vstCard(p){
   const badge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
   const tags = (p.tags||[]).slice(0,2).map(t=>`<span class="tag">${t}</span>`).join('');
-  const old = p.old ? `<span class="old">$${p.old}</span>` : '';
+  const old = p.old ? `<span class="old">${money(p.old,p.cur)}</span>` : '';
   const soon = String(p.price).toUpperCase()==='SOON';
   const priceHtml = soon ? `<span class="now" style="font-size:.82rem;color:var(--text-3)">Coming soon</span>`
                    : p.free ? `<span class="now" style="color:var(--green)">FREE</span>`
                    : String(p.price).startsWith('~') ? `<span class="now" style="font-size:.86rem">${p.price}</span>`
-                   : `<span class="now">$${p.price}</span>${old}`;
+                   : `<span class="now">${money(p.price,p.cur)}</span>${old}`;
   const demo = p.demo ? `<button class="btn-cta ghost" onclick="buy('${p.demo.replace(/'/g,"\\'")}')"><i class="fa-solid fa-download"></i> Demo</button>` : '';
   /* External / partner products: link straight out instead of the Gumroad cart.
      `p.url` = full external URL. `p.free` = free download (green "Get Free" button). */
@@ -759,7 +769,7 @@ function vstCard(p){
   } else if(soon){
     mainBtn = `<button class="btn-cta ghost" onclick="window.open(GUMROAD_STORE,'_blank')"><i class="fa-solid fa-bell"></i> Notify</button>`;
   } else {
-    mainBtn = `<button class="btn-cta" onclick="addToCart('${p.name.replace(/'/g,"\\'")}','${p.price}','${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
+    mainBtn = `<button class="btn-cta" onclick="addToCart('${p.name.replace(/'/g,"\\'")}','${cartPrice(p)}','${(p.buy||'').replace(/'/g,"\\'")}')"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
   }
   const noteHtml = p.note ? `<div style="background:var(--accent-glow);border:1px solid rgba(255,45,45,.3);border-radius:5px;padding:5px 9px;font-size:.64rem;font-weight:700;color:var(--accent);letter-spacing:.03em;margin-top:2px">🎟️ ${p.note}</div>` : '';
   const el=document.createElement('article');
@@ -776,7 +786,7 @@ function vstCard(p){
      que d'emmener le visiteur hors de la boutique. Purement additive : une
      fiche sans `yt` s'affiche exactement comme avant. */
   const ytBadge = p.yt
-    ? `<button type="button" class="card-yt" data-yt="${p.yt}" aria-label="Voir la demo video"
+    ? `<button type="button" class="card-yt" data-yt="${p.yt}"${p.ytv?' data-ytv="1"':''} aria-label="Voir la demo video"
         style="position:absolute;right:10px;bottom:10px;z-index:3;display:inline-flex;align-items:center;gap:6px;
                background:rgba(10,10,14,.82);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.66rem;
                font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:6px 10px;border-radius:8px;

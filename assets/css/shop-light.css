@@ -1,0 +1,124 @@
+/* ============================================================
+   HUMPIRE SHOP — thème clair (fond blanc)
+   Chargé uniquement par shop.html et streetwear.html, APRÈS theme.css et
+   modern-effects.css : il ne fait que redéfinir les jetons de couleur et
+   les quelques fonds sombres codés en dur. Le reste du site garde son
+   thème bois d'acajou.
+   ============================================================ */
+
+:root{
+  --bg:#ffffff; --surface:#ffffff; --surface-2:#f6f3f0; --surface-3:#ece6e1;
+  --accent:#d2561b; --accent-h:#b4460f; --accent-glow:rgba(210,86,27,.14);
+  --accent-bright:#d2561b; --accent-plat:#a87a2c; --accent-chrome:#8c6250;
+  --green:#14935a;
+  --text:#17110e; --text-2:#4b3f39; --text-3:#7c6d65; --text-4:#ab9d95;
+  --border:rgba(23,17,14,.10);
+  --border-subtle:rgba(23,17,14,.06);
+}
+
+body{background:#fff;color:var(--text)}
+body::after{display:none}                       /* grain de film : inutile sur blanc */
+::selection{background:var(--accent);color:#fff}
+
+/* barres fixes */
+.topbar{background:rgba(255,255,255,.94) !important;border-bottom:1px solid var(--border)}
+.subnav{background:rgba(255,255,255,.96);border-bottom:1px solid var(--border)}
+.filter-bar{background:#faf8f6;border-bottom:1px solid var(--border)}
+.promo-bar{background:rgba(255,255,255,.97);color:var(--text-2);border-top:1px solid var(--border);
+  box-shadow:0 -6px 20px rgba(23,17,14,.06)}
+.footer{background:#f7f4f1 !important;border-top:1px solid var(--border) !important}
+.stat-band{background:#f7f4f1}
+
+/* filtres */
+.pill{background:#fff;color:var(--text-2);border-color:var(--border)}
+.pill:hover{background:var(--surface-2);color:var(--text)}
+.pill.active{background:var(--text);border-color:var(--text);color:#fff;box-shadow:none}
+.search-box,.sort-select{background:#fff;color:var(--text);border-color:rgba(23,17,14,.14)}
+.sort-select option{background:#fff;color:var(--text)}
+
+/* cartes produit */
+.card{
+  background:#fff !important;backdrop-filter:none;-webkit-backdrop-filter:none;
+  border:1px solid var(--border) !important;
+  box-shadow:0 1px 2px rgba(23,17,14,.04),0 6px 18px rgba(23,17,14,.05);
+}
+.card::after{display:none}
+.card:hover{
+  border-color:rgba(210,86,27,.35) !important;
+  box-shadow:0 14px 34px rgba(23,17,14,.12) !important;
+}
+.card-media{background:#f2eeea}
+.tag{background:var(--surface-2);color:var(--text-3)}
+.card-title{color:var(--text)}
+.price .now{color:var(--text)}
+/* modern-effects.css force des boutons dorés en !important : sur fond blanc
+   on passe à des boutons noirs, orange au survol. */
+.card .btn-cta{background:var(--text) !important;color:#fff !important;box-shadow:none !important}
+.card .btn-cta:hover{background:var(--accent) !important}
+.card .btn-cta.ghost{background:#fff !important;color:var(--text-2) !important;border:1px solid rgba(23,17,14,.16) !important}
+.card .btn-cta.ghost:hover{color:var(--accent) !important;border-color:var(--accent) !important}
+.shop-count{color:var(--text-3);font-size:.78rem;font-weight:600;margin-bottom:12px}
+
+/* ---- vidéo promo animée dans la carte (assets/js/shop-video.js) ---- */
+.card-live{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none;
+  opacity:0;transition:opacity .6s ease;background:#000}
+.card-live.on{opacity:1}
+/* Une vidéo 16:9 recadrée en carré : on l'agrandit pour remplir la vignette
+   sans bandes noires, et 35 % de marge font sortir du cadre la barre de
+   titre et les commandes YouTube. Les Shorts (9:16) sont signalés par data-ratio="v". */
+.card-live iframe{position:absolute;top:50%;left:50%;border:0;
+  width:240%;height:135%;transform:translate(-50%,-50%)}
+.card-live[data-ratio="v"] iframe{width:135%;height:240%}
+
+/* cartes sans vidéo : lent zoom « Ken Burns » quand elles sont à l'écran */
+@keyframes shopKenBurns{
+  0%{transform:scale(1) translate(0,0)}
+  50%{transform:scale(1.09) translate(-1.6%,-1.2%)}
+  100%{transform:scale(1) translate(0,0)}
+}
+.card-media.kb img,.sw-card-img-link.kb img{animation:shopKenBurns 9s ease-in-out infinite}
+.card:hover .card-media.kb img,.sw-card:hover .sw-card-img-link.kb img{animation-play-state:paused}
+.card-live-tag{position:absolute;left:10px;bottom:10px;z-index:2;display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.92);color:var(--text);font-size:.6rem;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;padding:5px 9px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.15);
+  opacity:0;transition:opacity .4s ease}
+.card-live.on ~ .card-live-tag{opacity:1}
+.card-live-tag i{color:#e62117;font-size:.5rem}
+.card-badge,.card-yt,.card-view{z-index:3}
+@media (prefers-reduced-motion:reduce){.card-live{display:none}}
+
+/* ============================================================
+   PAGE STREETWEAR (streetwear.html, streetwear-product.html)
+   Le bandeau vidéo du haut reste sombre (c'est une vidéo) ; tout le
+   reste de la boutique passe sur fond blanc.
+   ============================================================ */
+:root{--sw-card-bg:#fff;--sw-card-border:rgba(23,17,14,.10);--sw-glow:rgba(210,86,27,.18)}
+.sw-page{background:#fff}
+.sw-controls-bar{background:rgba(255,255,255,.97);box-shadow:0 6px 18px rgba(23,17,14,.06)}
+.sw-card{backdrop-filter:none;box-shadow:0 1px 2px rgba(23,17,14,.04),0 6px 18px rgba(23,17,14,.05)}
+.sw-card:hover{box-shadow:0 14px 34px rgba(23,17,14,.12)}
+.sw-card-img-link{background:#f2eeea}
+.sw-card-badges{z-index:3}
+.sw-tab.active,.sw-brand-chip.active{background:var(--text);border-color:var(--text);color:#fff;box-shadow:none}
+.rapforce-banner{background:linear-gradient(135deg,rgba(210,86,27,.10),#fff 70%);box-shadow:0 10px 30px rgba(23,17,14,.08)}
+.rapforce-banner-text h2{color:var(--text)}
+.sw-info-banner{background:#f7f4f1}
+/* fiche produit sans vidéo dédiée : la photo remplit le bandeau et zoome lentement */
+@keyframes swpNoVideoZoom{from{transform:scale(1)}to{transform:scale(1.12)}}
+
+/* Bandeaux vidéo sombres (haut de streetwear.html et des fiches) : on y
+   remet les jetons du thème sombre pour garder un texte clair lisible. */
+.sw-hero-banner,.swp-hero-ambient{
+  --text:#f5ede8; --text-2:#cbb3a6; --text-3:#967d71; --text-4:#6a554c;
+  --surface:#1b0f0b; --surface-2:rgba(255,255,255,.06); --surface-3:rgba(255,255,255,.1);
+  --border:rgba(255,255,255,.16); --border-subtle:rgba(255,255,255,.08);
+  --accent-bright:#f07d3b;
+  color:var(--text);
+}
+
+/* fiche produit streetwear : encadré blanc */
+:root{--sw-surface:#fff;--sw-border:rgba(23,17,14,.10)}
+.swp-page{background:#fff}
+.swp-showcase{box-shadow:0 14px 40px rgba(23,17,14,.10);backdrop-filter:none}
+.swp-title{color:var(--text)}
+.swp-main-img-box{background:#f2eeea}

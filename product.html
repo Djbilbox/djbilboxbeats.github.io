@@ -28,7 +28,8 @@
 <!-- Les cartes de packs pointent vers product.html?id=<pack.id>, mais cette
      page ne lisait que PRODUCTS. Tout pack sans fiche rédigée à la main
      tombait donc sur « Product not found ». -->
-<script src="assets/js/packs-data.js?v=26082401"></script>
+<script src="assets/js/packs-data.js?v=26100901"></script>
+<script src="assets/js/vst-data.js?v=26100901"></script>
 <script>
 /* Load video on click (bypasses YouTube age-restriction) */
 function loadVideoBg(el, src) {
@@ -63,7 +64,26 @@ function loadVideoBg(el, src) {
       accent: '#e8a33d', accent2: '#b8860b'
     };
   };
-  const P = (window.PRODUCTS||{})[id] || packOf(id);
+  /* Même repli pour les plugins de vst-data.js (HUMPIRE VST SUITE et
+     autres ajouts sans fiche rédigée) : la vidéo promo `yt` devient la
+     vidéo de la fiche. */
+  const vstOf = (pid) => {
+    const p = (window.VSTS||[]).find(x => x.id === pid);
+    if (!p) return null;
+    return {
+      type: 'vst',
+      name: p.name,
+      sub: (p.tags||[])[0] || 'VST plugin',
+      tagline: (p.note || p.name) + ' — by HUMPIRE / DJBILBOX BEATS.',
+      cover: p.img,
+      price: p.free ? 'FREE' : p.price, old: p.old, badge: p.badge, cur: p.cur,
+      buy: p.buy, demo: p.demo, note: p.note,
+      video: p.yt,
+      tags: p.tags || [],
+      accent: '#d2561b', accent2: '#a87a2c'
+    };
+  };
+  const P = (window.PRODUCTS||{})[id] || packOf(id) || vstOf(id);
   const root = document.getElementById('pd');
 
   if(!P){
@@ -112,16 +132,19 @@ function loadVideoBg(el, src) {
     : '';
 
   /* ---- price + actions ---- */
+  /* produits Gumroad vendus en euros : `cur:"€"` (vst-data.js) */
+  const fmt = v => P.cur==='€' ? v+' €' : '$'+v;
+  const cartPrice = P.cur==='€' ? P.price+' €' : P.price;
   const priceHtml = isFree
     ? `<span class="now free">FREE</span>`
-    : `<span class="now">$${P.price}</span>${P.old?`<span class="old">$${P.old}</span>`:''}${P.badge?`<span class="pd-badge">${P.badge}</span>`:''}`;
+    : `<span class="now">${fmt(P.price)}</span>${P.old?`<span class="old">${fmt(P.old)}</span>`:''}${P.badge?`<span class="pd-badge">${P.badge}</span>`:''}`;
 
   let actions;
   if(isFree){
     actions = `<button class="pd-btn primary" onclick="buy('${esc(P.buy)}')"><i class="fa-solid fa-download"></i> Download free</button>
       <button class="pd-btn ghost" onclick="addToCart('${esc(P.name)}','${esc(P.price)}','${esc(P.buy)}')"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>`;
   } else {
-    actions = `<button class="pd-btn primary" onclick="addToCart('${esc(P.name)}','${esc(P.price)}','${esc(P.buy)}')"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>
+    actions = `<button class="pd-btn primary" onclick="addToCart('${esc(P.name)}','${esc(cartPrice)}','${esc(P.buy)}')"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>
       <button class="pd-btn ghost" onclick="buy('${esc(P.buy)}')"><i class="fa-solid fa-bag-shopping"></i> Buy now</button>
       ${P.demo?`<button class="pd-btn ghost" onclick="buy('${esc(P.demo)}')"><i class="fa-solid fa-play"></i> Free demo</button>`:''}`;
   }
@@ -219,28 +242,29 @@ function loadVideoBg(el, src) {
       </div>
     </section>
 
-    <section class="pd-section"><div class="pd-wrap pd-about">
+    ${/* fiches synthétisées (packOf / vstOf) : pas de bloc vide sans contenu */''}
+    ${aboutHtml ? `<section class="pd-section"><div class="pd-wrap pd-about">
       <h2 class="pd-h2">About <span>${P.name}</span></h2>
       ${aboutHtml}
-    </div></section>
+    </div></section>` : ''}
 
     ${bundleHtml}
     ${galleryHtml}
     ${previewHtml}
 
-    <section class="pd-section"><div class="pd-wrap">
+    ${featsHtml ? `<section class="pd-section"><div class="pd-wrap">
       <h2 class="pd-h2">Key <span>features</span></h2>
       <div class="pd-feats">${featsHtml}</div>
-    </div></section>
+    </div></section>` : ''}
 
-    <section class="pd-section"><div class="pd-wrap">
+    ${(specsHtml || inclHtml) ? `<section class="pd-section"><div class="pd-wrap">
       <h2 class="pd-h2">Specs <span>& contents</span></h2>
       <div class="pd-grid2">
         <table class="pd-specs">${specsHtml}</table>
         <div><h4 style="font-family:var(--font-a);text-transform:uppercase;letter-spacing:.04em;margin-bottom:14px;color:var(--text-2)">What's included</h4>
           <ul class="pd-includes">${inclHtml}</ul></div>
       </div>
-    </div></section>
+    </div></section>` : ''}
 
     ${demoHtml}
 
@@ -257,6 +281,6 @@ function loadVideoBg(el, src) {
 })();
 </script>
 <script src="assets/js/pricing.js?v=26082401"></script>
-<script src="assets/js/site.js?v=26082801"></script>
+<script src="assets/js/site.js?v=26100901"></script>
 </body>
 </html>

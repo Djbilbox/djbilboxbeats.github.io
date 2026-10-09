@@ -22,6 +22,31 @@
    assets/js/pricing.js pour le calendrier et les codes.
    ============================================================ */
 window.PACKS = [
+  /* ---------- Bundles & kit loops HUMPIRE (Gumroad, ajoutés le 2026-10-09) ---------- */
+  { id:"djbilbox-paid-packs", name:"DJBILBOX BEATS — Complete Paid Packs, Kits & Loops (8 packs)", img:"https://public-files.gumroad.com/72ditauizwiml4m3ok8p79p79z8s",
+    genre:"Bundle", tags:["Bundle","8 premium packs","Drum Kits","Loops"], price:"29", badge:"🎁 BUNDLE",
+    buy:"fhpnge" },
+
+  { id:"djbilbox-free-packs", name:"DJBILBOX BEATS — Free Packs, Kits & Loops (15 packs)", img:"https://public-files.gumroad.com/s59nl0f34izq5c294j3fwdb21px9",
+    genre:"Bundle", tags:["Bundle","15 free packs","Free"], price:"FREE",
+    buy:"ozwlb" },
+
+  { id:"kit-loop-sunset", name:"SUNSET — Kit Loop by HUMPIRE (West Coast & G-Funk, 119 BPM)", img:"https://public-files.gumroad.com/a1u4l9d05vl6ubhnfdb169d74t2y",
+    genre:"West Coast", tags:["West Coast","G-Funk","Kit Loop","Free"], price:"FREE",
+    buy:"ioprn" },
+
+  { id:"kit-loop-supreme", name:"SUPREME — Kit Loop by HUMPIRE (Miami Up-Tempo & Synth, 134 BPM)", img:"https://public-files.gumroad.com/gp5c44ozszvbn7k7l0gx2meom1xn",
+    genre:"Synth", tags:["Miami","Synth","Kit Loop","Free"], price:"FREE",
+    buy:"erckby" },
+
+  { id:"kit-loop-viper", name:"VIPER — Kit Loop by HUMPIRE (Dark Trap & 808)", img:"https://public-files.gumroad.com/pa4ipxwevvtxde764jz77ck01p9a",
+    genre:"Trap", tags:["Trap","Drill","808","Free"], price:"FREE",
+    buy:"lsuizj" },
+
+  { id:"931-free-beats", name:"931 Free Rap Beats — Royalty-Free Instrumental Beat Pack", img:"https://public-files.gumroad.com/4sr3oqdct58ty9vxwuz8p0qhwv4u",
+    genre:"Beats", tags:["931 beats","Instrumentals","Free"], price:"FREE",
+    buy:"djbilbox-beats-big-pack-931-beats" },
+
   /* ---------- New release (2026) ---------- */
   { id:"menace-to-melody", name:"MENACE TO MELODY — G-Funk & West Coast Melodies (2026)", img:"https://public-files.gumroad.com/dapyb6imssp9ofk6vbupisttsdpp",
     genre:"G-Funk", tags:["G-Funk","West Coast","Melody Loops","Free"], price:"FREE",

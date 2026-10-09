@@ -831,7 +831,7 @@ window.PRODUCTS = {
   "camel-pedals": {
     type:"vst", name:"CAMEL PEDALS — 10 Guitar Pedal Plugins Pack", sub:"Complete Studio Guitar FX Suite",
     tagline:"10 analog-modeled guitar pedals — Compressor, Tremolo, Phaser, Chorus, Reverb, Delay, Fuzz, Distortion, Overdrive & Flanger. Windows & Mac.",
-    cover:"https://public-files.gumroad.com/lpnzoq7297f1r57b9mhaqmaawtbh", accent:"#d96528", accent2:"#d4a359",
+    cover:"https://public-files.gumroad.com/1hyo02s4s0yijj5cbxldca3pbayk", accent:"#d96528", accent2:"#d4a359",
     tier:"bundle", price:"64", badge:"🔥 10 Pedals Pack",
     note:"10 analog-modeled pedals · one payment · lifetime access",
     buy:"camel-pedals",
