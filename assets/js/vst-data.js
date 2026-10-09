@@ -61,7 +61,7 @@ window.VSTS = [
     buy:"block-gorilla", demo:"",
     note:"Drum machine, sampler, sequencer and beat generator in one plugin" },
 
-  { id:"alien-808", name:"ALIEN 808 — 808 & Sub Bass VST3 + Pattern Generator", img:"https://public-files.gumroad.com/ij1x8tjbkhc7x2vpqc0bn5w51tpr", category:"instrument",
+  { id:"alien-808", playNow:"alien-808", name:"ALIEN 808 — 808 & Sub Bass VST3 + Pattern Generator", img:"https://public-files.gumroad.com/ij1x8tjbkhc7x2vpqc0bn5w51tpr", category:"instrument",
     tags:["808 & sub bass","Pattern generator · slides & glides","VST3 · Win · Mac"], tier:"pro", price:"35", cur:"€", badge:"🆕 Suite 1.0",
     buy:"alien-808", demo:"",
     note:"808 instrument with a built-in pattern generator · slides & glides" },
@@ -176,14 +176,14 @@ window.VSTS = [
   /* THUGLIFE — ajoute le 15 aout 2026. Synthe soustractif VST3 + Standalone
      Windows, 60 presets usine (noms west coast) + EXPANSION VOL.1 (22 presets)
      chargee par la fente a cassette. Slug Gumroad : `thuglife`, $15. */
-  { id:"thuglife", yt:"OMAN209ZVxI", name:"THUGLIFE PRO — G-Funk Street Synth", img:"img/vst/ui/thuglife-card.jpg", category:"instrument",
+  { id:"thuglife", playNow:"thuglife", yt:"OMAN209ZVxI", name:"THUGLIFE PRO — G-Funk Street Synth", img:"img/vst/ui/thuglife-card.jpg", category:"instrument",
     detail:"thuglife.html",
     tags:["60 G-Funk presets · Expansion Vol.1","Distortion · Chorus · Delay · Reverb","VST3 · Standalone · Windows"], tier:"pro", price:"15", badge:"🔥 New",
     buy:"thuglife", demo:"oxckm",
     note:"West coast synth · 60 presets + 22 en Expansion Vol.1 · 16 voix" },
 
   /* STATION SYNTH — added 2026-08-09. */
-  { id:"station-synth-bundle", yt:"vvfdwvFgUNk", name:"STATION SYNTH PRO BUNDLE — Synth + 11 Expansion Libraries", img:"img/vst/ui/station-synth-card.jpg", category:"instrument",
+  { id:"station-synth-bundle", playNow:"station-synth", yt:"vvfdwvFgUNk", name:"STATION SYNTH PRO BUNDLE — Synth + 11 Expansion Libraries", img:"img/vst/ui/station-synth-card.jpg", category:"instrument",
     detail:"station-synth-bundle.html",
     preview:"assets/products/station-synth/station-synth-card.mp4",
     tags:["Synth + 11 expansion libraries","4128 presets · 44 wavetables","VST3 · AU · Standalone · Win/Mac"], tier:"legendary", price:"99", badge:"🔥 New",
@@ -191,7 +191,7 @@ window.VSTS = [
     demo:"station-synth-demo",
     note:"Wavetable synth · 4128 presets · 11 libraries · Windows & macOS" },
 
-  { id:"station-synth-demo", yt:"EiXPY1bMZk8", ytv:true, name:"STATION SYNTH BASIC — The Synth, Free (50 presets)", img:"img/vst/ui/station-synth-alt-card.jpg", category:"instrument",
+  { id:"station-synth-demo", playNow:"station-synth", yt:"EiXPY1bMZk8", ytv:true, name:"STATION SYNTH BASIC — The Synth, Free (50 presets)", img:"img/vst/ui/station-synth-alt-card.jpg", category:"instrument",
     detail:"station-synth-demo.html",
     tags:["The synth alone, free","50 presets · 14 wavetables","VST3 · AU · Standalone · Win/Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"station-synth-demo", demo:"",
@@ -202,7 +202,7 @@ window.VSTS = [
     buy:"mpc-2026", demo:"",
     note:"100% FREE BASIC · plays the samples already on your machine · 50 kits across 10 styles" },
 
-  { id:"oriental-instrument", yt:"og8FVdn1oBs", name:"ORIENTAL INSTRUMENT PRO BUNDLE — 280+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
+  { id:"oriental-instrument", playNow:"oriental-instrument", yt:"og8FVdn1oBs", name:"ORIENTAL INSTRUMENT PRO BUNDLE — 280+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
     tags:["280+ instruments · Maqam engine","Free demo available","Win · Mac"], tier:"oriental", price:"50",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
@@ -219,13 +219,13 @@ window.VSTS = [
     preview:"assets/products/vice-city/vice-city-card.mp4",
     note:"70 presets" },
 
-  { id:"neon-synth-80s", yt:"opGIZrYgWPI", name:"NEON SYNTH 80s BASIC — Synthwave Polysynth", img:"img/vst/ui/neon-synth-80s-card.jpg", category:"instrument",
+  { id:"neon-synth-80s", playNow:"neon-synth-80s", yt:"opGIZrYgWPI", name:"NEON SYNTH 80s BASIC — Synthwave Polysynth", img:"img/vst/ui/neon-synth-80s-card.jpg", category:"instrument",
     tags:["Synthwave · 80s","6 Presets","VST3 · Standalone"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"neon-synth-80s", demo:"",
     note:"100% FREE BASIC · dual-oscillator synth · 6 synthwave presets" },
 
   /* Gratuit sur Gumroad (relevé du 2026-10-09) : c'est la démo du PRO. */
-  { id:"oriental-instrument-free", yt:"og8FVdn1oBs", name:"ORIENTAL INSTRUMENT BASIC — 50+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
+  { id:"oriental-instrument-free", playNow:"oriental-instrument", yt:"og8FVdn1oBs", name:"ORIENTAL INSTRUMENT BASIC — 50+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
     tags:["50+ Instruments","Oriental · Maqam Engine","Win · Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"oriental-instrument-demo-free-Download", demo:"",
     note:"100% FREE BASIC · 50+ instruments · passe au PRO quand tu veux" },

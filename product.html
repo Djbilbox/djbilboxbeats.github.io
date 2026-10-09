@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://djbilboxbeats.com/img/vst/ui/pro-bundle-card.jpg">
 <link rel="icon" href="favicon.png">
 <link rel="stylesheet" href="assets/css/theme.css?v=26082801">
-<link rel="stylesheet" href="assets/css/play-now.css?v=26100901">
+<link rel="stylesheet" href="assets/css/play-now.css?v=26100902">
 <link rel="stylesheet" href="assets/css/product.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -30,7 +30,7 @@
      page ne lisait que PRODUCTS. Tout pack sans fiche rédigée à la main
      tombait donc sur « Product not found ». -->
 <script src="assets/js/packs-data.js?v=26100902"></script>
-<script src="assets/js/vst-data.js?v=26100903"></script>
+<script src="assets/js/vst-data.js?v=26100904"></script>
 <script>
 /* Load video on click (bypasses YouTube age-restriction) */
 function loadVideoBg(el, src) {
@@ -85,6 +85,9 @@ function loadVideoBg(el, src) {
     };
   };
   const P = (window.PRODUCTS||{})[id] || packOf(id) || vstOf(id);
+  /* Le clavier jouable est déclaré dans vst-data.js (`playNow`) : on le
+     reprend aussi pour les fiches rédigées à la main (PRODUCTS). */
+  if (P && !P.playNow) P.playNow = ((window.VSTS||[]).find(v => v.id === id) || {}).playNow;
   const root = document.getElementById('pd');
 
   if(!P){
@@ -286,6 +289,6 @@ function loadVideoBg(el, src) {
 </script>
 <script src="assets/js/pricing.js?v=26082401"></script>
 <script src="assets/js/site.js?v=26100901"></script>
-<script src="assets/js/play-now.js?v=26100901"></script>
+<script src="assets/js/play-now.js?v=26100902"></script>
 </body>
 </html>

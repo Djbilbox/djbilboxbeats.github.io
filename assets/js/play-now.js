@@ -58,7 +58,7 @@
   }
 
   function build(root, id, cfg){
-    let preset = cfg.presets[0], samples = null, octave = preset.octave, hold = false;
+    let preset = cfg.presets[0], samples = null, octave = preset.octave, hold = false, legato = false;
     let loadToken = 0;
     const voices = new Map();          // midi -> {src, gain}
     const pointerNote = new Map();     // pointerId -> midi
@@ -74,7 +74,9 @@
     const octDown = el('button', 'pn-btn pn-sq', '−'); octDown.type = 'button'; octDown.setAttribute('aria-label', 'Octave down');
     const octLabel = el('div', 'pn-oct');
     const octUp = el('button', 'pn-btn pn-sq', '+'); octUp.type = 'button'; octUp.setAttribute('aria-label', 'Octave up');
-    tools.append(meter, holdBtn, octDown, octLabel, octUp);
+    /* LEGATO : une seule note à la fois, la nouvelle remplace la précédente */
+    const legatoBtn = el('button', 'pn-btn', 'Legato'); legatoBtn.type = 'button'; legatoBtn.setAttribute('aria-pressed', 'false');
+    tools.append(meter, holdBtn, legatoBtn, octDown, octLabel, octUp);
     head.append(tools);
 
     const sub = el('p', 'pn-sub', 'Real ' + cfg.title + ' presets, recorded straight from the plugin. Tap the keys or use your computer keyboard.');
@@ -92,7 +94,9 @@
     const statusL = el('span', '', 'Tap a key to start'), statusR = el('span', '', 'Demo quality · the plugin plays in full resolution');
     status.append(statusL, statusR);
     const foot = el('div', 'pn-foot');
-    foot.append(el('p', '', 'You\'re playing <b>' + cfg.presets.length + ' of ' + cfg.total + '</b> presets. The full plugin ships all ' + cfg.total + '.'));
+    foot.append(el('p', '', cfg.presets.length >= cfg.total
+      ? 'You\'re playing <b>all ' + cfg.total + '</b> presets. Get the plugin to use them in your DAW.'
+      : 'You\'re playing <b>' + cfg.presets.length + ' of ' + cfg.total + '</b> presets. The full plugin ships all ' + cfg.total + '.'));
     const cta = el('a', 'pn-cta', cfg.cta || 'Get the plugin');
     cta.href = 'https://djbilboxbeats.gumroad.com/l/' + cfg.buy; cta.target = '_blank'; cta.rel = 'noopener';
     foot.append(cta);
@@ -138,6 +142,7 @@
       if (!samples) return;
       audio();
       noteOff(m, true);
+      if (legato) for (const other of [...voices.keys()]) noteOff(other, true);
       if (voices.size >= MAX_VOICES) noteOff(voices.keys().next().value, true);
       const s = nearest(m);
       const src = ctx.createBufferSource();
@@ -232,6 +237,12 @@
     function shiftOctave(d){ octave = Math.max(0, Math.min(6, octave + d)); drawKeyboard(); }
     octDown.addEventListener('click', () => shiftOctave(-1));
     octUp.addEventListener('click', () => shiftOctave(1));
+    legatoBtn.addEventListener('click', () => {
+      legato = !legato;
+      legatoBtn.classList.toggle('active', legato);
+      legatoBtn.setAttribute('aria-pressed', legato ? 'true' : 'false');
+      if (legato) allOff();
+    });
     holdBtn.addEventListener('click', () => {
       hold = !hold;
       holdBtn.classList.toggle('active', hold);
