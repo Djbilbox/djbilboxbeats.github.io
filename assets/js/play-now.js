@@ -53,7 +53,7 @@
     const id = root.dataset.playNow;
     root.classList.add('pn');
     root.innerHTML = '<p class="pn-msg">Loading the player…</p>';
-    fetch(BASE + id + '.json').then(r => r.json()).then(cfg => build(root, id, cfg))
+    fetch(BASE + id + '.json?v=26101005').then(r => r.json()).then(cfg => build(root, id, cfg))
       .catch(() => { root.innerHTML = ''; root.hidden = true; });
   }
 
@@ -79,7 +79,7 @@
     tools.append(meter, holdBtn, legatoBtn, octDown, octLabel, octUp);
     head.append(tools);
 
-    const sub = el('p', 'pn-sub', 'Real ' + cfg.title + ' presets, recorded straight from the plugin. Tap the keys or use your computer keyboard.');
+    const sub = el('p', 'pn-sub', cfg.sub || ('Real ' + cfg.title + ' presets, recorded straight from the plugin. Tap the keys or use your computer keyboard.'));
     const presetsBar = el('div', 'pn-presets'); presetsBar.setAttribute('role', 'group'); presetsBar.setAttribute('aria-label', 'Presets');
     const presetBtns = cfg.presets.map((p, i) => {
       const b = el('button', 'pn-preset' + (i === 0 ? ' active' : ''), p.name); b.type = 'button';
@@ -94,9 +94,9 @@
     const statusL = el('span', '', 'Tap a key to start'), statusR = el('span', '', 'Demo quality · the plugin plays in full resolution');
     status.append(statusL, statusR);
     const foot = el('div', 'pn-foot');
-    foot.append(el('p', '', cfg.presets.length >= cfg.total
+    foot.append(el('p', '', cfg.foot || (cfg.presets.length >= cfg.total
       ? 'You\'re playing <b>all ' + cfg.total + '</b> presets. Get the plugin to use them in your DAW.'
-      : 'You\'re playing <b>' + cfg.presets.length + ' of ' + cfg.total + '</b> presets. The full plugin ships all ' + cfg.total + '.'));
+      : 'You\'re playing <b>' + cfg.presets.length + ' of ' + cfg.total + '</b> presets. The full plugin ships all ' + cfg.total + '.')));
     const cta = el('a', 'pn-cta', cfg.cta || 'Get the plugin');
     cta.href = 'https://djbilboxbeats.gumroad.com/l/' + cfg.buy; cta.target = '_blank'; cta.rel = 'noopener';
     foot.append(cta);

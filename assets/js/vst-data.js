@@ -213,7 +213,7 @@ window.VSTS = [
     buy:"xaziro", demo:"",
     note:"808 · 3 bass modes" },
 
-  { id:"vice-city", yt:"-0zeINzGrPg", name:"VICE CITY PRO — VST Synthesizer", img:"img/vst/ui/vice-city-card.jpg", category:"instrument",
+  { id:"vice-city", playNow:"vice-city", yt:"-0zeINzGrPg", name:"VICE CITY PRO — VST Synthesizer", img:"img/vst/ui/vice-city-card.jpg", category:"instrument",
     tags:["Synthwave","VST3 · Standalone"], tier:"pro", price:"99",
     buy:"ykdzli", demo:"",
     preview:"assets/products/vice-city/vice-city-card.mp4",
