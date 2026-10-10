@@ -109,7 +109,8 @@
 </main>
 
 <!-- ============ SCRIPTS ============ -->
-<script src="assets/js/vst-data.js?v=26082401"></script>
+<script src="assets/js/promo.js?v=26101001"></script>
+<script src="assets/js/vst-data.js?v=26101002"></script>
 <script src="assets/js/packs-data.js?v=26082401"></script>
 <script src="assets/js/pricing.js?v=26082401"></script>
 <script src="assets/js/site.js?v=26082801"></script>
@@ -127,7 +128,7 @@ function renderCartPage(){
     clearBtn.style.display = 'block';
     box.innerHTML = items.map((it,i) => {
       const free = String(it.price).toUpperCase()==='FREE';
-      const priceTxt = free ? 'FREE' : (isNaN(parseFloat(it.price)) ? it.price : '$'+it.price);
+      const priceTxt = free ? 'FREE' : Promo.ok(it.buy) ? `${Promo.fmt(Promo.sale(it.price))} <s style="opacity:.55;font-weight:500">$${Promo.num(it.price)}</s>` : (isNaN(parseFloat(it.price)) ? it.price : '$'+it.price);
       return `<div class="cp-item">
         <img src="${it.img||'img/vst/ui/pro-bundle-cover.jpg'}" alt="" onerror="this.style.display='none'">
         <div class="cp-item-info">

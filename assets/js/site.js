@@ -254,6 +254,13 @@ function mountPromo(){
   if(document.querySelector('.promo-bar')) return;
   const p=document.createElement('div');
   p.className='promo-bar';
+  if(Promo.active()){
+    p.innerHTML=`<strong>🔥 −${Promo.PERCENT}% SALE</strong> — on selected plugins &amp; packs until October 24 · applied automatically at checkout.
+      <a href="shop.html" class="promo-cta">Shop the sale</a>
+      <button class="promo-close" onclick="closePromo()" aria-label="Close">✕</button>`;
+    document.body.appendChild(p);
+    return;
+  }
   p.innerHTML=`<strong>🔥 931 Beats Free</strong> — Download the DJBILBOX BIG PACK · free for profit.
     <a href="${gumroadUrl(BIG_PACK)}" target="_blank" class="promo-cta">Get the pack</a>
     <button class="promo-close" onclick="closePromo()" aria-label="Close">✕</button>`;
@@ -293,6 +300,14 @@ function closePromo(){
   document.body.style.paddingBottom = '0';
 }
 
+/* ---------- Promo −30 % : voir assets/js/promo.js ----------
+   Les pages qui affichent des prix chargent promo.js AVANT ce fichier.
+   Ailleurs, ce repli désactive la promo (prix plein, liens sans code). */
+if(!window.Promo){
+  const _n = v => parseFloat(String(v).replace(',','.').replace(/[^0-9.]/g,'')) || 0;
+  window.Promo = { active:()=>false, ok:()=>false, num:_n, sale:_n, fmt:n=>'$'+n, codeFor:()=>'', price:(b,l)=>_n(l) };
+}
+
 /* ---------- Cart (localStorage) + slide-out drawer ----------
    Accumulate any product (packs, VST, services…) then check out on
    Gumroad in one go. Each item stores its Gumroad ref in `buy`. */
@@ -304,7 +319,7 @@ const Cart = {
   add(item){ const c=this.get(); if(item.buy && c.some(x=>x.buy===item.buy)){ this.refresh(); return; } c.push(item); this.save(c); },
   remove(i){ const c=this.get(); c.splice(i,1); this.save(c); renderCartItems(); },
   clear(){ this.save([]); renderCartItems(); },
-  total(){ return this.get().reduce((s,it)=>{ const n=parseFloat(String(it.price).replace(',','.').replace(/[^0-9.]/g,'')); return s+(isNaN(n)?0:n); },0); },
+  total(){ return this.get().reduce((s,it)=>{ const n=Promo.price(it.buy,it.price); return s+(isNaN(n)?0:n); },0); },
   getPromo(){ return localStorage.getItem(this.promoKey) || ''; },
   setPromo(code){ localStorage.setItem(this.promoKey, (code||'').trim().toUpperCase()); },
   refresh(){
@@ -368,7 +383,7 @@ function renderCartItems(){
   }else{
     box.innerHTML=items.map((it,i)=>{
       const free=String(it.price).toUpperCase()==='FREE';
-      const priceTxt=free?'FREE':(/€/.test(it.price)||isNaN(parseFloat(it.price))?it.price:'$'+it.price);
+      const priceTxt=free?'FREE':Promo.ok(it.buy)?`${Promo.fmt(Promo.sale(it.price))} <s style="opacity:.55;font-weight:500">$${Promo.num(it.price)}</s>`:(/€/.test(it.price)||isNaN(parseFloat(it.price))?it.price:'$'+it.price);
       return `<div class="cart-item">
         <div class="ci-info"><div class="ci-name">${it.title}</div>
           <div class="ci-price${free?' free':''}">${priceTxt}</div></div>
@@ -380,7 +395,7 @@ function renderCartItems(){
   /* Deux devises possibles (produits Gumroad en $ et en €) : un sous-total
      par devise plutôt qu'une somme qui les mélangerait. */
   const tot={usd:0,eur:0};
-  Cart.get().forEach(it=>{ const n=parseFloat(String(it.price).replace(',','.').replace(/[^0-9.]/g,'')); if(!isNaN(n)) tot[/€/.test(it.price)?'eur':'usd']+=n; });
+  Cart.get().forEach(it=>{ const n=Promo.price(it.buy,it.price); if(!isNaN(n)) tot[/€/.test(it.price)?'eur':'usd']+=n; });
   const parts=[]; if(tot.usd>0) parts.push('$'+tot.usd.toFixed(2)); if(tot.eur>0) parts.push(tot.eur.toFixed(2)+' €');
   const tEl=document.getElementById('cartTotal'); if(tEl) tEl.textContent = parts.length?parts.join(' + '):'FREE';
 }
@@ -409,7 +424,7 @@ function checkout(){
   if(!box){ box=document.createElement('div'); box.id='grBundle';
             box.style.cssText='position:absolute;left:-9999px;top:-9999px'; document.body.appendChild(box); }
   const paidLinks=paid.map(it=>
-    `<a class="gumroad-button" href="${gumroadUrl(it.buy,code)}" data-gumroad-overlay-checkout="true">Buy</a>`).join('');
+    `<a class="gumroad-button" href="${gumroadUrl(it.buy,Promo.codeFor(it.buy)||code)}" data-gumroad-overlay-checkout="true">Buy</a>`).join('');
   const bonusLinks=bonus.map(it=>
     `<a class="gumroad-button" href="${gumroadUrl(it.buy,BONUS_CODE)}" data-gumroad-overlay-checkout="true">Buy</a>`).join('');
   box.innerHTML=paidLinks+bonusLinks;
@@ -436,7 +451,7 @@ function gumroadUrl(buy,code){
   const base=GUMROAD_STORE+'/l/'+buy;
   return code ? base+'/'+encodeURIComponent(code) : base;
 }
-function buy(buyRef){ window.open(gumroadUrl(buyRef),'_blank'); }
+function buy(buyRef){ window.open(gumroadUrl(buyRef,Promo.codeFor(buyRef)),'_blank'); }
 document.addEventListener('DOMContentLoaded',()=>Cart.refresh());
 
 /* ============================================================
@@ -616,7 +631,11 @@ function packCard(p){
   const tags = (p.tags||[]).slice(0,2).map(t=>`<span class="tag">${t}</span>`).join('');
   const old = p.old ? `<span class="old">${money(p.old,p.cur)}</span>` : '';
   const freeNote = (!isFree && p.demo) ? `<span class="pack-free-note">FREE demo available</span>` : '';
-  const priceHtml = isFree ? `<span class="now free">FREE</span>` : `<span class="now">${money(p.price,p.cur)}</span>${old}${freeNote}`;
+  const promo = !isFree && Promo.ok(p.buy);
+  const saleTag = promo ? '<span class="card-sale">SALE</span>' : '';
+  const priceHtml = isFree ? `<span class="now free">FREE</span>` : promo
+    ? `<span class="now">${Promo.fmt(Promo.sale(p.price))}</span><span class="old">${money(p.price,p.cur)}</span><span class="save-tag">SAVE ${Promo.fmt(Promo.num(p.price)-Promo.sale(p.price))}</span>${freeNote}`
+    : `<span class="now">${money(p.price,p.cur)}</span>${old}${freeNote}`;
   const el = document.createElement('article');
   el.className='card';
   el.dataset.genre = p.genre || '';
@@ -629,8 +648,8 @@ function packCard(p){
     : '';
   const dHref = p.id ? `product.html?id=${p.id}` : null;
   const media = dHref
-    ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"><span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
-    : `<div class="card-media">${badge}<img loading="lazy" src="${p.img}" alt="${p.name}"></div>`;
+    ? `<a class="card-media" href="${dHref}">${badge}${saleTag}<img loading="lazy" src="${p.img}" alt="${p.name}"><span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
+    : `<div class="card-media">${badge}${saleTag}<img loading="lazy" src="${p.img}" alt="${p.name}"></div>`;
   const titleHtml = dHref ? `<a href="${dHref}"><h3 class="card-title">${p.name}</h3></a>` : `<h3 class="card-title">${p.name}</h3>`;
   el.innerHTML = `
     ${media}
@@ -754,9 +773,12 @@ function vstCard(p){
   const tags = (p.tags||[]).slice(0,2).map(t=>`<span class="tag">${t}</span>`).join('');
   const old = p.old ? `<span class="old">${money(p.old,p.cur)}</span>` : '';
   const soon = String(p.price).toUpperCase()==='SOON';
+  const promo = !soon && !p.free && !p.url && Promo.ok(p.buy);
+  const saleTag = promo ? '<span class="card-sale">SALE</span>' : '';
   const priceHtml = soon ? `<span class="now" style="font-size:.82rem;color:var(--text-3)">Coming soon</span>`
                    : p.free ? `<span class="now" style="color:var(--green)">FREE</span>`
                    : String(p.price).startsWith('~') ? `<span class="now" style="font-size:.86rem">${p.price}</span>`
+                   : promo ? `<span class="now">${Promo.fmt(Promo.sale(p.price))}</span><span class="old">${money(p.price,p.cur)}</span><span class="save-tag">SAVE ${Promo.fmt(Promo.num(p.price)-Promo.sale(p.price))}</span>`
                    : `<span class="now">${money(p.price,p.cur)}</span>${old}`;
   const demo = p.demo ? `<button class="btn-cta ghost" onclick="buy('${p.demo.replace(/'/g,"\\'")}')"><i class="fa-solid fa-download"></i> Demo</button>` : '';
   /* External / partner products: link straight out instead of the Gumroad cart.
@@ -793,8 +815,8 @@ function vstCard(p){
                cursor:pointer;backdrop-filter:blur(4px)"><i class="fa-brands fa-youtube" style="color:#ff3b3b"></i> Demo</button>`
     : '';
   const media = dHref
-    ? `<a class="card-media" href="${dHref}">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}<span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
-    : `<div class="card-media">${badge}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}</div>`;
+    ? `<a class="card-media" href="${dHref}">${badge}${saleTag}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}<span class="card-view"><i class="fa-solid fa-circle-info"></i> View details</span></a>`
+    : `<div class="card-media">${badge}${saleTag}<img loading="lazy" src="${thumb}" alt="${p.name}">${preview}${ytBadge}</div>`;
   const titleHtml = dHref ? `<a href="${dHref}"><h3 class="card-title">${p.name}</h3></a>` : `<h3 class="card-title">${p.name}</h3>`;
   const descHtml = p.desc ? `<p class="card-desc" style="color:var(--text-3);font-size:.68rem;line-height:1.4;margin:2px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${p.desc}</p>` : '';
   el.innerHTML = `

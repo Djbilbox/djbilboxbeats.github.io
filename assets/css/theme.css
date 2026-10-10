@@ -566,3 +566,10 @@ body{top:0!important;position:static!important}
 .lang-wrap{display:none!important}          /* hide the "Sélectionner une langue / Fourni par Google" bar */
 #goog-gt-tt,.goog-te-balloon-frame,.goog-tooltip{display:none!important}
 .goog-text-highlight{background:none!important;box-shadow:none!important;color:inherit!important}
+
+/* ---- PROMO −30 % (assets/js/promo.js) : étiquette SALE + « SAVE $x » ---- */
+.card-sale{position:absolute;top:10px;right:10px;z-index:3;background:var(--accent);color:#fff;
+  font-family:var(--font-a);font-weight:800;font-size:.66rem;letter-spacing:.14em;padding:5px 9px;border-radius:5px}
+.save-tag{font-family:var(--font-a);font-weight:800;font-size:.6rem;letter-spacing:.08em;color:var(--accent);
+  border:1px solid var(--accent);border-radius:4px;padding:2px 6px;text-transform:uppercase;white-space:nowrap}
+.price{flex-wrap:wrap}

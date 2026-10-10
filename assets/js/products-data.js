@@ -72,43 +72,45 @@ window.PRODUCTS = {
 
   /* ===================== BUNDLE ===================== */
   "pro-bundle": {
-    type:"vst", name:"HUMPIRE BUNDLE", sub:"All 6 Plugins — Synth, Effects & Instruments",
-    tagline:"Every plugin I make — STATION SYNTH, ORIENTAL INSTRUMENT, BIGBASS, VICE CITY, MATRIX MODULAR & MASTERING. One payment, all current & future releases included.",
+    type:"vst", name:"DJBILBOX PRO BUNDLE", sub:"8 Plugins — Synths, Effects & Instruments",
+    tagline:"The DJBILBOX BEATS classic collection — STATION SYNTH, ORIENTAL INSTRUMENT, THUGLIFE, ROBOTALK, BIGBASS, VICE CITY, MATRIX MODULAR & MASTERING. One payment, lifetime updates for all 8 plugins.",
     cover:"img/vst/ui/pro-bundle-card.jpg", accent:"#ff2d2d", accent2:"#ff8a3d",
-    tier:"bundle", price:"39", badge:"👑 Best value",
-    note:"6 plugins · all future releases included · one lifetime payment",
+    tier:"bundle", price:"119", badge:"👑 Best value",
+    note:"8 plugins · lifetime updates · one payment",
     buy:"djbilbox-pro-bundle", demo:"station-synth-demo",
-    tags:["6 Plugins","STATION SYNTH + 11 libraries","ORIENTAL 280+ instruments","VST3 · Standalone","Win · Mac"],
+    tags:["8 Plugins","STATION SYNTH + 11 libraries","ORIENTAL 280+ instruments","VST3 · Standalone","Win · Mac"],
     about:[
-      "The HUMPIRE BUNDLE is the complete collection — every plugin I've built and every plugin I'll release in the future, all included in one payment. A single license covers STATION SYNTH (wavetable synth + 11 expansion libraries), ORIENTAL INSTRUMENT (280+ authentic instruments), BIGBASS (lowrider bass), VICE CITY (synthwave synth), MATRIX MODULAR (stereo modulation effect) and MASTERING (professional limiter).",
-      "This is a true lifetime bundle — buy once, get every update and every new plugin I release. No subscription, no annual fees, no hidden costs. Whether you're building trap, afro, oriental, synthwave or hybrid beats, everything you need is here.",
+      "The DJBILBOX PRO BUNDLE is the classic collection in one payment. A single license covers STATION SYNTH (wavetable synth + 11 expansion libraries), ORIENTAL INSTRUMENT (280+ authentic instruments), THUGLIFE (G-Funk sampler synth), ROBOTALK (talkbox, vocoder & autotune), BIGBASS (lowrider bass), VICE CITY (synthwave synth), MATRIX MODULAR (stereo modulation effect) and MASTERING (professional limiter). The 7 HUMPIRE VST SUITE plugins are in their own bundle.",
+      "This is a lifetime bundle — buy once, get every update to these 8 plugins. No subscription, no annual fees, no hidden costs. Whether you're building trap, afro, oriental, synthwave or hybrid beats, everything you need is here.",
       "Each plugin ships as VST3, Audio Unit and Standalone for both Windows and macOS. Install once, use everywhere — DAW, standalone, hardware integration, all included."
     ],
     features:[
-      {icon:"fa-crown", t:"Every plugin, all at once", d:"STATION SYNTH, ORIENTAL INSTRUMENT, BIGBASS, VICE CITY, MATRIX MODULAR & MASTERING in one bundle."},
-      {icon:"fa-gift", t:"Future releases included", d:"Every plugin I release in the future is automatically yours — lifetime access, one payment."},
+      {icon:"fa-crown", t:"8 plugins, one payment", d:"STATION SYNTH, ORIENTAL INSTRUMENT, THUGLIFE, ROBOTALK, BIGBASS, VICE CITY, MATRIX MODULAR & MASTERING in one bundle."},
+      {icon:"fa-gift", t:"Lifetime updates", d:"Every update to these 8 plugins is yours — lifetime access, one payment."},
       {icon:"fa-wave-square", t:"4128 STATION SYNTH presets", d:"Wavetable engine with 11 expansion libraries covering every sound from lo-fi to synthwave."},
       {icon:"fa-layer-group", t:"280+ oriental instruments", d:"Oud, qanun, ney, saz, strings, brass and percussion — full maqam engine for authentic phrasing."},
       {icon:"fa-sliders", t:"Professional effects & synths", d:"Stereo modulation, mastering limiter, lowrider bass, synthwave synth — everything in the toolkit."},
       {icon:"fa-desktop", t:"Win & Mac · VST3, AU, Standalone", d:"Cross-platform bundle for your entire studio setup."}
     ],
     specs:[
-      {k:"Included plugins", v:"6 pro VSTs + all future releases"},
+      {k:"Included plugins", v:"8 pro VSTs"},
       {k:"Formats", v:"VST3 · Audio Unit (macOS) · Standalone"},
       {k:"Platform", v:"Windows 10/11 & macOS (64-bit, universal Intel + Apple Silicon)"},
       {k:"STATION SYNTH", v:"4128 presets · 44 wavetables · 11 expansion libraries"},
       {k:"ORIENTAL INSTRUMENT", v:"280+ authentic instruments · maqam engine"},
-      {k:"Other plugins", v:"BIGBASS · VICE CITY · MATRIX MODULAR · MASTERING"},
-      {k:"License", v:"Lifetime — all current & future plugin releases included"}
+      {k:"Other plugins", v:"THUGLIFE · ROBOTALK · BIGBASS · VICE CITY · MATRIX MODULAR · MASTERING"},
+      {k:"License", v:"Lifetime updates for the 8 included plugins"}
     ],
-    includes:["STATION SYNTH PRO BUNDLE (4128 presets, 11 libraries)","ORIENTAL INSTRUMENT — Full 280+ instruments","BIGBASS — LA Lowrider Bass Synth (80 presets)","VICE CITY — Synthwave VST (70 presets)","MATRIX MODULAR — Stereo Modulation Effect","MASTERING — Professional Mastering Limiter","All future DJBILBOX plugin releases — included for life","Windows & macOS installers + DMG bundles","User manuals (PDF) for each plugin","Standalone apps + VST3 + Audio Unit"],
+    includes:["STATION SYNTH PRO BUNDLE (4128 presets, 11 libraries)","ORIENTAL INSTRUMENT — Full 280+ instruments","BIGBASS — LA Lowrider Bass Synth (80 presets)","VICE CITY — Synthwave VST (70 presets)","MATRIX MODULAR — Stereo Modulation Effect","MASTERING — Professional Mastering Limiter","THUGLIFE — G-Funk sampler synth (70 presets)","ROBOTALK — Talkbox, vocoder & autotune","Lifetime updates for all 8 plugins","Windows & macOS installers + DMG bundles","User manuals (PDF) for each plugin","Standalone apps + VST3 + Audio Unit"],
     bundleItems:[
       {name:"STATION SYNTH PRO", sub:"Wavetable Synth + 11 Libraries", img:"img/vst/ui/station-synth-card.jpg", buy:"station-synth-legendary-bundle"},
       {name:"ORIENTAL INSTRUMENT PRO", sub:"280+ Authentic Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", buy:"oriental-instrument-djbilbox-beats"},
       {name:"BIGBASS PRO", sub:"LA Lowrider Bass Synth", img:"img/vst/ui/bigbass-card.jpg", buy:"xaziro"},
       {name:"VICE CITY PRO", sub:"Synthwave Synthesizer", img:"img/vst/ui/vice-city-card.jpg", buy:"ykdzli"},
       {name:"MATRIX MODULAR", sub:"Stereo Modulation Effect", img:"img/vst/ui/matrix-modular-card.jpg", buy:"ocpoej"},
-      {name:"MASTERING", sub:"Professional Mastering Limiter", img:"img/vst/ui/mastering-card.jpg", buy:"mastering"}
+      {name:"MASTERING", sub:"Professional Mastering Limiter", img:"img/vst/ui/mastering-card.jpg", buy:"mastering"},
+      {name:"THUGLIFE", sub:"G-Funk Sampler Synth", img:"img/vst/ui/thuglife-card.jpg", buy:"thuglife"},
+      {name:"ROBOTALK", sub:"Talkbox, Vocoder & Autotune", img:"https://public-files.gumroad.com/uqd1ilkibxzd4jmnxnwym0madhb6", buy:"jvdta"}
     ]
   },
 

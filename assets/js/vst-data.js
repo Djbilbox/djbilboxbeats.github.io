@@ -36,8 +36,8 @@ window.VSTS = [
     buy:"humpire-vst-suite", demo:"",
     note:"TAXI ALGER, CASBAH CHORDS, BLOCK GORILLA, ALIEN 808, CAMEL PILOT, LA BAGUETTE, CHOCOLATINE · 237 € séparément" },
 
-  { id:"humpire-all-vst", yt:"V78hhQnKFMo", ytv:true, name:"HUMPIRE VST & EFFECTS — 24 VST3 Plugins (Synths, Guitar & Mixing)", img:"https://public-files.gumroad.com/hs1ke1qz5ks8s2jqu0sygu1r9uyf", category:"instrument",
-    tags:["24 plugins · 25 products","Synths · Guitar pedals · Mixing","VST3 · Win · Mac"], tier:"bundle", price:"199", cur:"€", badge:"👑 Everything",
+  { id:"humpire-all-vst", yt:"V78hhQnKFMo", ytv:true, name:"HUMPIRE VST & EFFECTS — 25 VST3 Plugins (Synths, Guitar, Vocals & Mixing)", img:"https://public-files.gumroad.com/hs1ke1qz5ks8s2jqu0sygu1r9uyf", category:"instrument",
+    tags:["25 plugins · 16 products","Synths · Guitar pedals · Vocals · Mixing","VST3 · Win · Mac"], tier:"bundle", price:"249", cur:"€", badge:"👑 Everything",
     buy:"ohiyxu", demo:"",
     note:"Every paid HUMPIRE & DJBILBOX BEATS plugin in one bundle" },
 
@@ -153,10 +153,10 @@ window.VSTS = [
      publié le 12 août 2026 sous `djbilbox-pro-bundle`. MACHINA EFFECT en
      a été retiré — le plug-in ne marche pas, ne pas le remettre sans
      build corrigé.                                                       */
-  { id:"pro-bundle", yt:"1j-7i2QO38Y", ytv:true, name:"DJBILBOX PRO BUNDLE — All 6 Plugins", img:"img/vst/ui/pro-bundle-card.jpg", category:"instrument",
-    tags:["6 plugins · one payment","STATION SYNTH PRO included","VST3 · AU · Standalone · Win/Mac"], tier:"bundle", price:"39", badge:"👑 Best value",
+  { id:"pro-bundle", yt:"1j-7i2QO38Y", ytv:true, name:"DJBILBOX PRO BUNDLE — 8 VST Plugins, One Payment", img:"img/vst/ui/pro-bundle-card.jpg", category:"instrument",
+    tags:["8 plugins · one payment","STATION SYNTH + THUGLIFE + ROBOTALK","VST3 · AU · Standalone · Win/Mac"], tier:"bundle", price:"119", badge:"👑 Best value",
     buy:"djbilbox-pro-bundle", demo:"station-synth-demo",
-    note:"Every plugin I make · every future release included · one payment" },
+    note:"8 plugins in one payment · lifetime updates" },
 
   /* ========== EFFECTS ========== */
   { id:"matrix-modular", yt:"QMOsU3igGrM", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/ui/matrix-modular-card.jpg", category:"effect",

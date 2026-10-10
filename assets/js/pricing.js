@@ -41,7 +41,11 @@ window.PRICING = (function () {
       return { now: b, list: b, code: '' };
     }
     const v = LIST[tier];
-    return v === undefined ? null : { now: v, list: v, code: '' };
+    if (v === undefined) return null;
+    /* THUGLIFE (tier pro) est dans la promo −30 % (assets/js/promo.js) */
+    if (tier === 'pro' && window.Promo && Promo.ok('thuglife'))
+      return { now: Promo.sale(v), list: v, code: Promo.CODE };
+    return { now: v, list: v, code: '' };
   }
 
   /* Nettoie une entrée de catalogue : pas de prix barré, pas de
@@ -78,6 +82,10 @@ window.PRICING = (function () {
 
     document.querySelectorAll('[data-djb-price]').forEach(el => {
       const k = el.getAttribute('data-djb-price');
+      if (k === 'pro' && window.Promo && Promo.ok('thuglife')) {
+        el.innerHTML = '<s>' + REAL[k] + '</s> ' + Promo.fmt(Promo.sale(LIST.pro));
+        return;
+      }
       if (REAL[k] !== undefined) { el.textContent = REAL[k]; return; }
       if (DEAD.indexOf(k) !== -1) { el.hidden = true; el.style.display = 'none'; }
     });
