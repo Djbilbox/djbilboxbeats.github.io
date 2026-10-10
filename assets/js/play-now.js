@@ -53,7 +53,7 @@
     const id = root.dataset.playNow;
     root.classList.add('pn');
     root.innerHTML = '<p class="pn-msg">Loading the player…</p>';
-    fetch(BASE + id + '.json?v=26101005').then(r => r.json()).then(cfg => build(root, id, cfg))
+    fetch(BASE + id + '.json?v=26101010').then(r => r.json()).then(cfg => build(root, id, cfg))
       .catch(() => { root.innerHTML = ''; root.hidden = true; });
   }
 
@@ -138,6 +138,7 @@
       for (const s of samples) if (Math.abs(s.midi - m) < Math.abs(best.midi - m)) best = s;
       return best;
     }
+    const PADS = cfg.mode === 'pads';     // pads / loops : un son exact par touche, aucune transposition
     function noteOn(m){
       if (!samples) return;
       audio();
@@ -145,9 +146,10 @@
       if (legato) for (const other of [...voices.keys()]) noteOff(other, true);
       if (voices.size >= MAX_VOICES) noteOff(voices.keys().next().value, true);
       const s = nearest(m);
+      if (PADS && s.midi !== m) return;
       const src = ctx.createBufferSource();
       src.buffer = s.buffer;
-      src.playbackRate.value = Math.pow(2, (m - s.midi) / 12);
+      src.playbackRate.value = PADS ? 1 : Math.pow(2, (m - s.midi) / 12);
       const g = ctx.createGain();
       src.connect(g).connect(master);
       src.start();
@@ -155,11 +157,12 @@
       src.onended = () => { if (voices.get(m) === v) { voices.delete(m); const k = keyEl(m); if (k) k.classList.remove('down'); } };
       voices.set(m, v);
       const k = keyEl(m); if (k) k.classList.add('down');
-      statusL.textContent = noteName(m) + ' · ' + preset.name;
+      statusL.textContent = noteName(m) + ' · ' + ((preset.labels && preset.labels[m]) || preset.name);
     }
     function noteOff(m, force){
       const v = voices.get(m);
       if (!v || (hold && !force)) return;
+      if (PADS && !force) { const k = keyEl(m); if (k) k.classList.remove('down'); return; }   // un coup de pad sonne jusqu'au bout
       voices.delete(m);
       const t = ctx.currentTime;
       v.gain.gain.setTargetAtTime(0, t, force ? 0.01 : 0.07);

@@ -46,17 +46,17 @@ window.VSTS = [
     buy:"pqhfx", demo:"",
     note:"100% FREE · every free HUMPIRE plugin and demo in one download" },
 
-  { id:"taxi-alger", name:"TAXI ALGER — Beat Generator VST3 (36 Genres)", img:"https://public-files.gumroad.com/vcwebqva83j5oogk7whupyv9171n", category:"instrument",
+  { id:"taxi-alger", playNow:"taxi-alger", name:"TAXI ALGER — Beat Generator VST3 (36 Genres)", img:"https://public-files.gumroad.com/vcwebqva83j5oogk7whupyv9171n", category:"instrument",
     tags:["Beat generator · 36 genres","Real drummer grooves · drag to DAW","VST3 · Win · Mac"], tier:"pro", price:"39", cur:"€", badge:"🆕 Suite 1.0",
     buy:"taxi-alger", demo:"",
     note:"Pick a genre, hit GENERATE, drag the groove into your DAW" },
 
-  { id:"casbah-chords", yt:"fKaF1aQVe30", name:"CASBAH CHORDS — Chord & Melody Generator VST3 (Maqam Modes)", img:"https://public-files.gumroad.com/s15lzhfwfvts60kmc84pwv8wt1yq", category:"instrument",
+  { id:"casbah-chords", playNow:"casbah-chords", yt:"fKaF1aQVe30", name:"CASBAH CHORDS — Chord & Melody Generator VST3 (Maqam Modes)", img:"https://public-files.gumroad.com/s15lzhfwfvts60kmc84pwv8wt1yq", category:"instrument",
     tags:["Chords & melodies · 36 genres","Maqam modes · Chaabi · Raï","VST3 · Win · Mac"], tier:"pro", price:"39", cur:"€", badge:"🆕 Suite 1.0",
     buy:"casbah-chords", demo:"",
     note:"Pick a genre and a key, hit GENERATE, drag chords & melodies into your DAW" },
 
-  { id:"block-gorilla", yt:"Eb0n_N0ehNI", name:"BLOCK GORILLA — 16-Pad Drum Machine VST3 + Beat Generator", img:"https://public-files.gumroad.com/44dfrmww3ve5ed0qc51ldz2k1db7", category:"instrument",
+  { id:"block-gorilla", playNow:"block-gorilla", yt:"Eb0n_N0ehNI", name:"BLOCK GORILLA — 16-Pad Drum Machine VST3 + Beat Generator", img:"https://public-files.gumroad.com/44dfrmww3ve5ed0qc51ldz2k1db7", category:"instrument",
     tags:["16 pads · sampler · sequencer","Beat generator · real drummers","VST3 · Win · Mac"], tier:"pro", price:"39", cur:"€", badge:"🆕 Suite 1.0",
     buy:"block-gorilla", demo:"",
     note:"Drum machine, sampler, sequencer and beat generator in one plugin" },
@@ -143,7 +143,7 @@ window.VSTS = [
     buy:"eq-pro-spider", demo:"",
     note:"Professional 8-band parametric equalizer with real-time analyzer" },
 
-  { id:"mini-mpc-humpire", yt:"_0a3LF_2O0Y", name:"MINI MPC HUMPIRE — Free Beat Machine (64 Pads)", img:"https://public-files.gumroad.com/4l3h0k0qe4alih949ll89f6sjqvf", category:"instrument",
+  { id:"mini-mpc-humpire", playNow:"mini-mpc-humpire", yt:"_0a3LF_2O0Y", name:"MINI MPC HUMPIRE — Free Beat Machine (64 Pads)", img:"https://public-files.gumroad.com/4l3h0k0qe4alih949ll89f6sjqvf", category:"instrument",
     tags:["64 Pads Sampler","Built-in Sequencer · Kits","Standalone · App"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"retihn", demo:"",
     note:"100% FREE · 64-pad MPC sampler and beat machine with custom kits" },
@@ -197,7 +197,7 @@ window.VSTS = [
     buy:"station-synth-demo", demo:"",
     note:"100% FREE BASIC · full engine · 50 presets · upgrade keeps your install" },
 
-  { id:"mpc-2026", yt:"KHdAfW6mKRI", name:"MPC 2026 BASIC — Beat Machine (16 Pads)", img:"img/vst/ui/mpc-2026-card.jpg", category:"instrument",
+  { id:"mpc-2026", playNow:"mpc-2026", yt:"KHdAfW6mKRI", name:"MPC 2026 BASIC — Beat Machine (16 Pads)", img:"img/vst/ui/mpc-2026-card.jpg", category:"instrument",
     tags:["16 pads · 50 kits","Sequencer · MIDI 36-51","VST3 · AU · Win/Mac"], price:"0", free:true, badge:"✅ FREE BASIC",
     buy:"mpc-2026", demo:"",
     note:"100% FREE BASIC · plays the samples already on your machine · 50 kits across 10 styles" },

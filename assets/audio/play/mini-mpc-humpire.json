@@ -1,0 +1,59 @@
+{
+ "id": "mini-mpc-humpire",
+ "title": "MINI MPC HUMPIRE",
+ "total": 64,
+ "buy": "retihn",
+ "cta": "Get MINI MPC HUMPIRE",
+ "hold": 2,
+ "presets": [
+  {
+   "name": "Original Kit",
+   "slug": "original-kit",
+   "notes": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+   ],
+   "octave": 2
+  },
+  {
+   "name": "Compressed",
+   "slug": "compressed",
+   "notes": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+   ],
+   "octave": 2
+  }
+ ],
+ "mode": "pads",
+ "sub": "The pads of MINI MPC HUMPIRE (free), recorded straight from the plugin. Tap the pads (the first 16 keys) or use your computer keyboard.",
+ "foot": "You're hearing the <b>16 pads</b> in 2 variations. Tap the pads or use your computer keyboard — the bottom row of keys is the pad bank. The full plugin has 64 pads and over 1,000 grooves."
+}

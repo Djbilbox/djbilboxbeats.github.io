@@ -1,0 +1,128 @@
+{
+ "id": "mpc-2026",
+ "title": "MPC 2026",
+ "total": 16,
+ "buy": "mpc-2026",
+ "cta": "Get MPC 2026",
+ "hold": 2,
+ "presets": [
+  {
+   "name": "Original Kit",
+   "slug": "original-kit",
+   "notes": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+   ],
+   "octave": 2
+  },
+  {
+   "name": "Tight & Dry",
+   "slug": "tight-dry",
+   "notes": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+   ],
+   "octave": 2
+  },
+  {
+   "name": "Deep Pitch",
+   "slug": "deep-pitch",
+   "notes": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+   ],
+   "octave": 2
+  },
+  {
+   "name": "Bright Pitch",
+   "slug": "bright-pitch",
+   "notes": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+   ],
+   "octave": 2
+  },
+  {
+   "name": "Lo-Fi Filter",
+   "slug": "lo-fi-filter",
+   "notes": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+   ],
+   "octave": 2
+  }
+ ],
+ "mode": "pads",
+ "sub": "The 16 pads of MPC 2026, recorded straight from the plugin. Tap the pads (the first 16 keys) or use your computer keyboard.",
+ "foot": "You're hearing the <b>16 pads</b> in 5 variations. Tap the pads or use your computer keyboard — the bottom row of keys is the pad bank. Every pad has its own volume, pan, pitch, filter and decay in the full plugin."
+}
