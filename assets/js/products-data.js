@@ -462,7 +462,7 @@ window.PRODUCTS = {
     type:"kit", name:"Ziploc — Blue Pack Vol.3", sub:"Afrotrap · Hip-Hop · Trap",
     tagline:"The Blue Pack — versatile afrotrap & trap sounds, ready to layer.",
     cover:"img/packs/ziploc-vol3.jpg", accent:"#2e86de", accent2:"#37e1ff",
-    price:"10", badge:"🆕 New", buy:"ghruf",
+    price:"19", badge:"🆕 New", buy:"ghruf",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Afrotrap","Hip-Hop","Trap","Free"],
     about:[
@@ -480,7 +480,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Genres", v:"Afrotrap, trap, hip-hop"},
       {k:"Tempo range", v:"95–160 BPM"},
-      {k:"Price", v:"Free (name-your-price)"},
+      {k:"Price", v:"$19"},
       {k:"License", v:"Free for profit"}
     ],
     includes:["Ziploc Blue Pack WAV collection","Mixed genre loops","Layerable one-shots","Full genre documentation"]

@@ -139,6 +139,6 @@ window.PACKS = [
     buy:"break-ya-neck-vol2", demo:"break-ya-neck-vol2" },
 
   { id:"ziploc-vol3", name:"Ziploc — Blue Pack Vol.3", img:"img/packs/ziploc-vol3.jpg",
-    genre:"Afrotrap", tags:["Afrotrap","Hip-Hop","Trap"], price:"10",
+    genre:"Afrotrap", tags:["Afrotrap","Hip-Hop","Trap"], price:"19",
     buy:"ghruf", demo:"ghruf" },
 ];

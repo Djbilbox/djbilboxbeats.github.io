@@ -36,7 +36,7 @@ window.Promo = (function () {
     // pack des 10 pédales (prix inchangé)
     'camel-pedals', 'awwbw',
     // packs dont le prix n'a pas bougé
-    'yecrn', 'argerk', 'ecrmh', 'seuyup', 'fkodxs', 'break-ya-neck-vol2', 'zpcjxk', 'ghruf'
+    'yecrn', 'argerk', 'ecrmh', 'seuyup', 'fkodxs', 'break-ya-neck-vol2', 'zpcjxk'
   ]);
 
   const num = v => parseFloat(String(v).replace(',', '.').replace(/[^0-9.]/g, '')) || 0;
