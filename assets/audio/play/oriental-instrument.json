@@ -7,32 +7,8 @@
  "hold": 2,
  "presets": [
   {
-   "name": "Oran Sunset Strings",
-   "slug": "oran-sunset-strings",
-   "notes": [
-    36,
-    39,
-    42,
-    45,
-    48,
-    51,
-    54,
-    57,
-    60,
-    63,
-    66,
-    69,
-    72,
-    75,
-    78,
-    81,
-    84
-   ],
-   "octave": 3
-  },
-  {
-   "name": "Beirut Jazz Oud",
-   "slug": "beirut-jazz-oud",
+   "name": "Thousand Nights Story",
+   "slug": "thousand-nights-story",
    "notes": [
     36,
     39,
@@ -79,8 +55,8 @@
    "octave": 3
   },
   {
-   "name": "Chaabi Wedding Strings",
-   "slug": "chaabi-wedding-strings",
+   "name": "Euphrates Breeze",
+   "slug": "euphrates-breeze",
    "notes": [
     36,
     39,
@@ -103,8 +79,8 @@
    "octave": 3
   },
   {
-   "name": "Andalus Revival",
-   "slug": "andalus-revival",
+   "name": "Luxor Temple Wind",
+   "slug": "luxor-temple-wind",
    "notes": [
     36,
     39,
@@ -127,8 +103,8 @@
    "octave": 3
   },
   {
-   "name": "Tarab Trance",
-   "slug": "tarab-trance",
+   "name": "Salalah Rain",
+   "slug": "salalah-rain",
    "notes": [
     36,
     39,
@@ -151,8 +127,8 @@
    "octave": 3
   },
   {
-   "name": "Desert Caravan",
-   "slug": "desert-caravan",
+   "name": "Nejd Plains",
+   "slug": "nejd-plains",
    "notes": [
     36,
     39,
@@ -175,8 +151,8 @@
    "octave": 3
   },
   {
-   "name": "Fes Medina",
-   "slug": "fes-medina",
+   "name": "Tuareg Wanderer",
+   "slug": "tuareg-wanderer",
    "notes": [
     36,
     39,
@@ -199,8 +175,128 @@
    "octave": 3
   },
   {
-   "name": "Tangier Port",
-   "slug": "tangier-port",
+   "name": "Rub al Khali Soul",
+   "slug": "rub-al-khali-soul",
+   "notes": [
+    36,
+    39,
+    42,
+    45,
+    48,
+    51,
+    54,
+    57,
+    60,
+    63,
+    66,
+    69,
+    72,
+    75,
+    78,
+    81,
+    84
+   ],
+   "octave": 3
+  },
+  {
+   "name": "Sinai Nomad",
+   "slug": "sinai-nomad",
+   "notes": [
+    36,
+    39,
+    42,
+    45,
+    48,
+    51,
+    54,
+    57,
+    60,
+    63,
+    66,
+    69,
+    72,
+    75,
+    78,
+    81,
+    84
+   ],
+   "octave": 3
+  },
+  {
+   "name": "Procession Brass",
+   "slug": "procession-brass",
+   "notes": [
+    36,
+    39,
+    42,
+    45,
+    48,
+    51,
+    54,
+    57,
+    60,
+    63,
+    66,
+    69,
+    72,
+    75,
+    78,
+    81,
+    84
+   ],
+   "octave": 3
+  },
+  {
+   "name": "Cairo Bazaar",
+   "slug": "cairo-bazaar",
+   "notes": [
+    36,
+    39,
+    42,
+    45,
+    48,
+    51,
+    54,
+    57,
+    60,
+    63,
+    66,
+    69,
+    72,
+    75,
+    78,
+    81,
+    84
+   ],
+   "octave": 3
+  },
+  {
+   "name": "Zarb Driver",
+   "slug": "zarb-driver",
+   "notes": [
+    36,
+    39,
+    42,
+    45,
+    48,
+    51,
+    54,
+    57,
+    60,
+    63,
+    66,
+    69,
+    72,
+    75,
+    78,
+    81,
+    84
+   ],
+   "octave": 3
+  },
+  {
+   "name": "Sufi Ritual",
+   "slug": "sufi-ritual",
    "notes": [
     36,
     39,
@@ -225,54 +321,6 @@
   {
    "name": "Rai Boulevard",
    "slug": "rai-boulevard",
-   "notes": [
-    36,
-    39,
-    42,
-    45,
-    48,
-    51,
-    54,
-    57,
-    60,
-    63,
-    66,
-    69,
-    72,
-    75,
-    78,
-    81,
-    84
-   ],
-   "octave": 3
-  },
-  {
-   "name": "Doumbek Drill",
-   "slug": "doumbek-drill",
-   "notes": [
-    36,
-    39,
-    42,
-    45,
-    48,
-    51,
-    54,
-    57,
-    60,
-    63,
-    66,
-    69,
-    72,
-    75,
-    78,
-    81,
-    84
-   ],
-   "octave": 3
-  },
-  {
-   "name": "Nubian Pulse",
-   "slug": "nubian-pulse",
    "notes": [
     36,
     39,
