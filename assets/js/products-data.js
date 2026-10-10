@@ -75,7 +75,7 @@ window.PRODUCTS = {
     type:"vst", name:"DJBILBOX PRO BUNDLE", sub:"8 Plugins — Synths, Effects & Instruments",
     tagline:"The DJBILBOX BEATS classic collection — STATION SYNTH, ORIENTAL INSTRUMENT, THUGLIFE, ROBOTALK, BIGBASS, VICE CITY, MATRIX MODULAR & MASTERING. One payment, lifetime updates for all 8 plugins.",
     cover:"img/vst/ui/pro-bundle-card.jpg", accent:"#ff2d2d", accent2:"#ff8a3d",
-    tier:"bundle", price:"119", badge:"👑 Best value",
+    tier:"bundle", price:"149", badge:"👑 Best value",
     note:"8 plugins · lifetime updates · one payment",
     buy:"djbilbox-pro-bundle", demo:"station-synth-demo",
     tags:["8 Plugins","STATION SYNTH + 11 libraries","ORIENTAL 280+ instruments","VST3 · Standalone","Win · Mac"],
@@ -434,7 +434,7 @@ window.PRODUCTS = {
     cover:"img/packs/break-ya-neck-vol2.jpg", accent:"#d4a017", accent2:"#8a5a00",
     /* `ntscu` renvoyait une 404 : le produit vit sous `break-ya-neck-vol2`.
        Un client qui cliquait « Buy » tombait sur une page Gumroad introuvable. */
-    tier:"pack", price:"18", badge:"🆕 New", buy:"break-ya-neck-vol2",
+    tier:"pack", price:"29", badge:"🆕 New", buy:"break-ya-neck-vol2",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Hip-Hop","Drum Loops","Free"],
     about:[
@@ -452,7 +452,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Vibe", v:"Dusty, swung, vintage hip-hop"},
       {k:"Tempo range", v:"85–110 BPM"},
-      {k:"Price", v:"Free (name-your-price)"},
+      {k:"Price", v:"$29"},
       {k:"License", v:"Free for profit"}
     ],
     includes:["Break Ya Neck Vol.2 WAV loops","All boom-bap grooves","Vinyl and chop-ready","Works in all DAWs"]
@@ -615,7 +615,7 @@ window.PRODUCTS = {
     type:"kit", name:"VINYL BREAKER", sub:"Scratch & Hip-Hop Vinyl Sample Kit",
     tagline:"Dusty vinyl scratches, crackle, chops & textures — authentic boom-bap character in one kit.",
     cover:"img/packs/vinyl-breaker.jpg", accent:"#d4a017", accent2:"#8a5a00",
-    tier:"pack", price:"20", badge:"🆕 New",
+    tier:"pack", price:"29", badge:"🆕 New",
     note:"Authentic vinyl character · royalty-free",
     buy:"yecrn",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -636,7 +636,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Vibe", v:"Boom-bap, lo-fi, vintage hip-hop"},
       {k:"Source", v:"Recorded from real vinyl & hardware"},
-      {k:"Price", v:"$20"},
+      {k:"Price", v:"$29"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["Turntable scratch library","Vinyl crackle & texture loops","Dusty vinyl chops & stabs","Boom-bap & lo-fi ready"]
@@ -646,7 +646,7 @@ window.PRODUCTS = {
     type:"kit", name:"NEON PULSE", sub:"House, Techno & Progressive Pro Drum Loops",
     tagline:"Club-ready drum loops for House, Techno & Progressive — locked, punchy and mix-ready.",
     cover:"img/packs/neon-pulse.jpg", accent:"#1DB954", accent2:"#37e1ff",
-    tier:"pack", price:"18", badge:"🆕 New",
+    tier:"pack", price:"29", badge:"🆕 New",
     note:"Club-ready · tempo-labeled · royalty-free",
     buy:"argerk",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -667,7 +667,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"120–135 BPM"},
       {k:"Included", v:"Full grooves + layerable perc loops"},
-      {k:"Price", v:"$18"},
+      {k:"Price", v:"$29"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["House/Techno/Progressive drum loops","Full grooves + element loops","Studio-mixed & tempo-labeled","Works in all DAWs"]
@@ -677,7 +677,7 @@ window.PRODUCTS = {
     type:"kit", name:"CONCRETE VAULT", sub:"HipHop, Trap & Drill Pro Drum Loops",
     tagline:"Hard-hitting drum loops for HipHop, Trap & Drill — pocket, bounce and aggression.",
     cover:"img/packs/concrete-vault.jpg", accent:"#8895a7", accent2:"#ff2d2d",
-    tier:"pack", price:"18", badge:"🆕 New",
+    tier:"pack", price:"29", badge:"🆕 New",
     note:"Pro loops · tempo-labeled · royalty-free",
     buy:"ecrmh",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -698,7 +698,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"120–150 BPM"},
       {k:"Included", v:"Full grooves + hat & perc loops"},
-      {k:"Price", v:"$18"},
+      {k:"Price", v:"$29"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["HipHop/Trap/Drill drum loops","Full patterns + hat loops","Studio-mixed & tempo-labeled","Works in all DAWs"]
@@ -708,7 +708,7 @@ window.PRODUCTS = {
     type:"kit", name:"WESTCOAST CHROME", sub:"G-Funk & West Coast Pro Drum Loops",
     tagline:"Laid-back G-Funk & West Coast drum grooves — that classic lowrider bounce.",
     cover:"img/packs/westcoast-chrome.jpg", accent:"#2e86de", accent2:"#b06cff",
-    tier:"pack", price:"20", badge:"🆕 New",
+    tier:"pack", price:"29", badge:"🆕 New",
     note:"West-Coast bounce · tempo-labeled · royalty-free",
     buy:"seuyup",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -729,7 +729,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"85–105 BPM"},
       {k:"Included", v:"Full grooves + percussion loops"},
-      {k:"Price", v:"$20"},
+      {k:"Price", v:"$29"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["G-Funk/West Coast drum loops","Full grooves + perc loops","Swung, studio-mixed pockets","Works in all DAWs"]
@@ -739,7 +739,7 @@ window.PRODUCTS = {
     type:"kit", name:"ETNIC RITMIK", sub:"Afrobeat & Reggae Pro Drum Loops Vol.1",
     tagline:"Live-feel Afrobeat & Reggae drum grooves — organic percussion and infectious rhythm.",
     cover:"img/packs/etnic-ritmik.jpg", accent:"#1DB954", accent2:"#ffcf33",
-    tier:"pack", price:"21", badge:"🆕 New",
+    tier:"pack", price:"29", badge:"🆕 New",
     note:"Organic groove · tempo-labeled · royalty-free",
     buy:"fkodxs",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -760,7 +760,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"95–120 BPM"},
       {k:"Included", v:"Full grooves + percussion loops"},
-      {k:"Price", v:"$21"},
+      {k:"Price", v:"$29"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["Afrobeat & Reggae drum loops","Organic percussion loops","Live-feel, tempo-labeled grooves","Works in all DAWs"]
@@ -834,7 +834,7 @@ window.PRODUCTS = {
     type:"vst", name:"CAMEL PEDALS — 10 Guitar Pedal Plugins Pack", sub:"Complete Studio Guitar FX Suite",
     tagline:"10 analog-modeled guitar pedals — Compressor, Tremolo, Phaser, Chorus, Reverb, Delay, Fuzz, Distortion, Overdrive & Flanger. Windows & Mac.",
     cover:"https://public-files.gumroad.com/1hyo02s4s0yijj5cbxldca3pbayk", accent:"#d96528", accent2:"#d4a359",
-    tier:"bundle", price:"64", badge:"🔥 10 Pedals Pack",
+    tier:"bundle", price:"99", badge:"🔥 10 Pedals Pack",
     note:"10 analog-modeled pedals · one payment · lifetime access",
     buy:"camel-pedals",
     tags:["10 Pedals","Guitar FX","VST3 · AU · Standalone","Win · Mac"],
@@ -853,7 +853,7 @@ window.PRODUCTS = {
       {k:"Included plugins", v:"10 standalone & VST3/AU pedals"},
       {k:"Formats", v:"VST3 · Audio Unit · Standalone"},
       {k:"Platforms", v:"Windows 10/11 & macOS (Intel + Apple Silicon)"},
-      {k:"Price", v:"$64"},
+      {k:"Price", v:"$99"},
       {k:"License", v:"Royalty-free commercial use"}
     ],
     includes:["10 Guitar Pedal Plugins (VST3/AU/Standalone)","PHARAOH COMP, SURF TREMOLO, NEON PHASER, CORAL CHORUS","AURORA VERB, CANYON ECHO, LAVA FUZZ, STORM RIDER","CAMEL PEDAL (Overdrive), JET FLANGER","User presets and documentation"]

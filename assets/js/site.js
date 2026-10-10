@@ -255,7 +255,7 @@ function mountPromo(){
   const p=document.createElement('div');
   p.className='promo-bar';
   if(Promo.active()){
-    p.innerHTML=`<strong>🔥 −${Promo.PERCENT}% SALE</strong> — on selected plugins &amp; packs until October 24 · applied automatically at checkout.
+    p.innerHTML=`<strong>🔥 −${Promo.PERCENT}% SALE</strong> — on the whole shop (except the HUMPIRE VST SUITE &amp; JUKEBOX NEW YORK) until October 24 · applied automatically at checkout.
       <a href="shop.html" class="promo-cta">Shop the sale</a>
       <button class="promo-close" onclick="closePromo()" aria-label="Close">✕</button>`;
     document.body.appendChild(p);

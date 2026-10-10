@@ -84,7 +84,7 @@ window.VSTS = [
 
   /* ========== GUITAR PEDALS COLLECTION (NEW 2026) ========== */
   { id:"camel-pedals", name:"CAMEL PEDALS — 10 Guitar Pedal Plugins Pack", img:"https://public-files.gumroad.com/1hyo02s4s0yijj5cbxldca3pbayk", category:"effect",
-    tags:["10 Pedal Plugins Pack","VST3 · AU · Standalone","Win · Mac"], tier:"bundle", price:"64", badge:"🔥 10 Pedals Pack",
+    tags:["10 Pedal Plugins Pack","VST3 · AU · Standalone","Win · Mac"], tier:"bundle", price:"99", badge:"🔥 10 Pedals Pack",
     buy:"camel-pedals", demo:"",
     note:"The complete 10 guitar pedals suite · compressor, fuzz, overdrive, reverb, echo, chorus..." },
 
@@ -154,7 +154,7 @@ window.VSTS = [
      a été retiré — le plug-in ne marche pas, ne pas le remettre sans
      build corrigé.                                                       */
   { id:"pro-bundle", yt:"1j-7i2QO38Y", ytv:true, name:"DJBILBOX PRO BUNDLE — 8 VST Plugins, One Payment", img:"img/vst/ui/pro-bundle-card.jpg", category:"instrument",
-    tags:["8 plugins · one payment","STATION SYNTH + THUGLIFE + ROBOTALK","VST3 · AU · Standalone · Win/Mac"], tier:"bundle", price:"119", badge:"👑 Best value",
+    tags:["8 plugins · one payment","STATION SYNTH + THUGLIFE + ROBOTALK","VST3 · AU · Standalone · Win/Mac"], tier:"bundle", price:"149", badge:"👑 Best value",
     buy:"djbilbox-pro-bundle", demo:"station-synth-demo",
     note:"8 plugins in one payment · lifetime updates" },
 

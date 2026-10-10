@@ -23,8 +23,8 @@
    ============================================================ */
 window.PACKS = [
   /* ---------- Bundles & kit loops HUMPIRE (Gumroad, ajoutés le 2026-10-09) ---------- */
-  { id:"djbilbox-paid-packs", name:"DJBILBOX BEATS — Complete Paid Packs, Kits & Loops (8 packs)", img:"https://public-files.gumroad.com/72ditauizwiml4m3ok8p79p79z8s",
-    genre:"Bundle", tags:["Bundle","8 premium packs","Drum Kits","Loops"], price:"29", badge:"🎁 BUNDLE",
+  { id:"djbilbox-paid-packs", name:"DJBILBOX BEATS — Complete Paid Packs, Kits & Loops (16 packs)", img:"https://public-files.gumroad.com/72ditauizwiml4m3ok8p79p79z8s",
+    genre:"Bundle", tags:["Bundle","16 premium packs","Drum Kits","Loops"], price:"99", badge:"🎁 BUNDLE",
     buy:"fhpnge" },
 
   { id:"djbilbox-free-packs", name:"DJBILBOX BEATS — Free Packs, Kits & Loops (15 packs)", img:"https://public-files.gumroad.com/s59nl0f34izq5c294j3fwdb21px9",
@@ -98,23 +98,23 @@ window.PACKS = [
     buy:"pohwt", demo:"pohwt" },
 
   { id:"vinyl-breaker", name:"VINYL BREAKER — Scratch & Vinyl Sample Kit", img:"img/packs/vinyl-breaker.jpg",
-    genre:"Hip-Hop", tags:["Vinyl","Hip-Hop"], tier:"pack", price:"20",
+    genre:"Hip-Hop", tags:["Vinyl","Hip-Hop"], tier:"pack", price:"29",
     buy:"yecrn", demo:"yecrn" },
 
   { id:"neon-pulse", name:"NEON PULSE — House & Techno Drum Loops", img:"img/packs/neon-pulse.jpg",
-    genre:"House", tags:["House","Techno"], tier:"pack", price:"18",
+    genre:"House", tags:["House","Techno"], tier:"pack", price:"29",
     buy:"argerk", demo:"argerk" },
 
   { id:"concrete-vault", name:"CONCRETE VAULT — Trap & Drill Drum Loops", img:"img/packs/concrete-vault.jpg",
-    genre:"Trap", tags:["Trap","Drill"], tier:"pack", price:"18",
+    genre:"Trap", tags:["Trap","Drill"], tier:"pack", price:"29",
     buy:"ecrmh", demo:"ecrmh" },
 
   { id:"westcoast-chrome", name:"WESTCOAST CHROME — G-Funk Drum Loops", img:"img/packs/westcoast-chrome.jpg",
-    genre:"G-Funk", tags:["G-Funk","West Coast"], tier:"pack", price:"20",
+    genre:"G-Funk", tags:["G-Funk","West Coast"], tier:"pack", price:"29",
     buy:"seuyup", demo:"seuyup" },
 
   { id:"etnic-ritmik", name:"ETNIC RITMIK — Afrobeat & Reggae Loops Vol.1", img:"img/packs/etnic-ritmik.jpg",
-    genre:"Afro", tags:["Afrobeat","Reggae"], tier:"pack", price:"21",
+    genre:"Afro", tags:["Afrobeat","Reggae"], tier:"pack", price:"29",
     buy:"fkodxs", demo:"fkodxs" },
 
   /* ---------- Sample packs (Vol. series) ---------- */
@@ -135,7 +135,7 @@ window.PACKS = [
     buy:"czpvfx", demo:"czpvfx" },
 
   { id:"break-ya-neck-vol2", name:"Break Ya Neck — Hip-Hop Vol.2", img:"img/packs/break-ya-neck-vol2.jpg",
-    genre:"Hip-Hop", tags:["Hip-Hop","Drum Loops"], tier:"pack", price:"18",
+    genre:"Hip-Hop", tags:["Hip-Hop","Drum Loops"], tier:"pack", price:"29",
     buy:"break-ya-neck-vol2", demo:"break-ya-neck-vol2" },
 
   { id:"ziploc-vol3", name:"Ziploc — Blue Pack Vol.3", img:"img/packs/ziploc-vol3.jpg",

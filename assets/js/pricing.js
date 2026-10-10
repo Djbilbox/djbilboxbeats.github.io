@@ -27,7 +27,10 @@ window.PRICING = (function () {
      MATRIX MODULAR sont à $10 et portent leur prix en propre dans
      les fichiers de données — ce tableau ne sert qu'aux jetons
      d'affichage des pages produit. */
-  const LIST = { pro: 99, oriental: 99, legendary: 99, bundle: 119 };
+  const LIST = { pro: 99, oriental: 99, legendary: 99, bundle: 149 };
+
+  /* produit Gumroad derrière chaque jeton : sert au prix barré −30 % (assets/js/promo.js) */
+  const TIER_BUY = { pro: 'thuglife', oriental: 'oriental-instrument-djbilbox-beats', legendary: 'station-synth-legendary-bundle', bundle: 'djbilbox-pro-bundle' };
 
   function money(n) {
     const v = Math.round(n * 100) / 100;
@@ -79,6 +82,10 @@ window.PRICING = (function () {
 
     document.querySelectorAll('[data-djb-price]').forEach(el => {
       const k = el.getAttribute('data-djb-price');
+      if (REAL[k] !== undefined && window.Promo && Promo.ok(TIER_BUY[k])) {
+        el.innerHTML = '<s style="opacity:.55;font-weight:500">' + REAL[k] + '</s> ' + Promo.fmt(Promo.sale(LIST[k]));
+        return;
+      }
       if (REAL[k] !== undefined) { el.textContent = REAL[k]; return; }
       if (DEAD.indexOf(k) !== -1) { el.hidden = true; el.style.display = 'none'; }
     });
