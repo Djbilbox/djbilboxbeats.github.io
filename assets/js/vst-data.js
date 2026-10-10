@@ -208,7 +208,7 @@ window.VSTS = [
     demo:"oriental-instrument-demo-free-Download",
     note:"Full 280+ instruments · démo gratuite disponible" },
 
-  { id:"bigbass", yt:"Rf7737wRKrE", name:"BIGBASS PRO — LA Lowrider Bass", img:"img/vst/ui/bigbass-card.jpg", category:"instrument",
+  { id:"bigbass", playNow:"bigbass", yt:"Rf7737wRKrE", name:"BIGBASS PRO — LA Lowrider Bass", img:"img/vst/ui/bigbass-card.jpg", category:"instrument",
     tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], tier:"pro", price:"99",
     buy:"xaziro", demo:"",
     note:"808 · 3 bass modes" },
