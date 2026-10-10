@@ -180,7 +180,7 @@
       samples = null;
       root.classList.add('loading');
       statusL.textContent = 'Loading ' + preset.name + '…';
-      Promise.all(preset.notes.map(m => loadBuffer(BASE + id + '/' + preset.slug + '/n' + m + '.m4a').then(buffer => ({ midi: m, buffer }))))
+      Promise.all(preset.notes.map(m => loadBuffer(BASE + (preset.dir || (id + '/' + preset.slug)) + '/n' + m + '.m4a').then(buffer => ({ midi: m, buffer }))))
         .then(list => {
           if (token !== loadToken) return;
           samples = list;
