@@ -16,7 +16,8 @@
    Exclus volontairement (bil, 2026-10-10) : les nouveautés et les
    produits dont le prix vient de changer — HUMPIRE VST SUITE et
    ses 7 plugins, ROBOTALK, STATION SYNTH, ORIENTAL INSTRUMENT,
-   THUGLIFE, BIGBASS, VICE CITY (passés à 99 $ le 2026-10-10),
+   THUGLIFE, BIGBASS, VICE CITY (passés à 99 $ le 2026-10-10), MATRIX MODULAR,
+   MASTERING, les 10 pédales (30 $) et 11 packs (19 $) montés le 2026-10-10,
    PRO BUNDLE, bundles de plugins et de packs, EQ-PRO SPIDER. Un
    prix barré doit être le prix le plus bas des 30 jours
    précédents (règle UE) : pas de « −30 % » sur un prix relevé
@@ -32,18 +33,10 @@ window.Promo = (function () {
   /* slugs d'achat utilisés par le site + permalinks courts Gumroad */
   const ELIGIBLE = new Set([
     // plugins
-    'ocpoej',                       // MATRIX MODULAR
-    'mastering', 'vptjlg',          // MASTERING
-    // pédales
-    'pharaoh-comp', 'wrvnxn', 'surf-tremolo', 'krwhfy', 'neon-phaser', 'lqcun',
-    'coral-chorus', 'nxkwfd', 'aurora-verb', 'dzranx', 'canyon-echo', 'cbbot',
-    'lava-fuzz', 'gjebft', 'storm-rider', 'hfmjow', 'camel-pedal', 'fimvw',
-    'jet-flanger', 'lbceu', 'camel-pedals', 'awwbw',
-    // packs et kits
-    'westcoast-vybes-vol01', 'tbycyi', 'ejmwmz', 'west-side-drum-kit', 'tiyemt',
-    'yrkzl', 'mkijdn', 'fnpdxf', 'pohwt', 'yecrn', 'argerk', 'ecrmh', 'seuyup',
-    'fkodxs', 'oceljx', 'pkesp', 'fhzxyv', 'czpvfx', 'break-ya-neck-vol2',
-    'zpcjxk', 'ghruf'
+    // pack des 10 pédales (prix inchangé)
+    'camel-pedals', 'awwbw',
+    // packs dont le prix n'a pas bougé
+    'yecrn', 'argerk', 'ecrmh', 'seuyup', 'fkodxs', 'break-ya-neck-vol2', 'zpcjxk', 'ghruf'
   ]);
 
   const num = v => parseFloat(String(v).replace(',', '.').replace(/[^0-9.]/g, '')) || 0;

@@ -89,52 +89,52 @@ window.VSTS = [
     note:"The complete 10 guitar pedals suite · compressor, fuzz, overdrive, reverb, echo, chorus..." },
 
   { id:"pharaoh-comp", name:"PHARAOH COMP — Compressor Guitar Pedal Plugin", img:"https://public-files.gumroad.com/s35yqlyl6e4xc7x8vbt5pvh2lmok", category:"effect",
-    tags:["Compressor Pedal","Analog Warmth · Punch","VST3 · AU · Standalone"], tier:"pro", price:"7", badge:"🎸 Pedal",
+    tags:["Compressor Pedal","Analog Warmth · Punch","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
     buy:"pharaoh-comp", demo:"",
     note:"Studio compressor guitar pedal · vintage warmth and dynamic punch" },
 
   { id:"aurora-verb", name:"AURORA VERB — Reverb Guitar Pedal Plugin", img:"https://public-files.gumroad.com/k6tauzs2b0d5lvmslbrbnp6ogrba", category:"effect",
-    tags:["Reverb Pedal","Ambient · Shimmer · Hall","VST3 · AU · Standalone"], tier:"pro", price:"10", badge:"🎸 Pedal",
+    tags:["Reverb Pedal","Ambient · Shimmer · Hall","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
     buy:"aurora-verb", demo:"",
     note:"Lush ambient reverb guitar pedal · rich space and shimmer modulation" },
 
   { id:"canyon-echo", yt:"qt3efwJxBA0", name:"CANYON ECHO — Delay Guitar Pedal Plugin", img:"https://public-files.gumroad.com/ecgc5v83136n8rc57u4c71mdhgh1", category:"effect",
-    tags:["Delay Pedal","Tape Echo · Analog Ping-Pong","VST3 · AU · Standalone"], tier:"pro", price:"10", badge:"🎸 Pedal",
+    tags:["Delay Pedal","Tape Echo · Analog Ping-Pong","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
     buy:"canyon-echo", demo:"",
     note:"Analog tape echo & delay pedal · warm repeats and spatial ping-pong" },
 
   { id:"storm-rider", name:"STORM RIDER — Distortion Guitar Pedal Plugin", img:"https://public-files.gumroad.com/4z4l9vwo64hax6qwbguyqn6zogid", category:"effect",
-    tags:["Distortion Pedal","Heavy Gain · Tube Drive","VST3 · AU · Standalone"], tier:"pro", price:"9", badge:"🎸 Pedal",
+    tags:["Distortion Pedal","Heavy Gain · Tube Drive","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
     buy:"storm-rider", demo:"",
     note:"High gain aggressive distortion pedal · tube-style saturation and bite" },
 
   { id:"lava-fuzz", name:"LAVA FUZZ — Fuzz Guitar Pedal Plugin", img:"https://public-files.gumroad.com/0hochbyl11hbyqjumsnbs067jsue", category:"effect",
-    tags:["Fuzz Pedal","Vintage Silicon / Germanium","VST3 · AU · Standalone"], tier:"pro", price:"8", badge:"🎸 Pedal",
+    tags:["Fuzz Pedal","Vintage Silicon / Germanium","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
     buy:"lava-fuzz", demo:"",
     note:"Heavy vintage fuzz pedal · thick harmonic distortion and sustain" },
 
   { id:"camel-pedal", name:"CAMEL PEDAL — Overdrive Guitar Pedal Plugin", img:"https://public-files.gumroad.com/cvwjhpwvbrzh12ce6r1g2u7k4vh8", category:"effect",
-    tags:["Overdrive Pedal","Tube Screamer Style · Boost","VST3 · AU · Standalone"], tier:"pro", price:"8", badge:"🎸 Pedal",
+    tags:["Overdrive Pedal","Tube Screamer Style · Boost","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
     buy:"camel-pedal", demo:"",
     note:"Classic warm overdrive pedal · transparent boost and creamy clipping" },
 
   { id:"jet-flanger", name:"JET FLANGER — Flanger Guitar Pedal Plugin", img:"https://public-files.gumroad.com/13f1yfeuscwxxqn7f40cpvgvqjnp", category:"effect",
-    tags:["Flanger Pedal","Jet Sweep · Stereo Modulation","VST3 · AU · Standalone"], tier:"pro", price:"7", badge:"🎸 Pedal",
+    tags:["Flanger Pedal","Jet Sweep · Stereo Modulation","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
     buy:"jet-flanger", demo:"",
     note:"Stereo flanger pedal · dramatic jet sweeps and lush swirl modulation" },
 
   { id:"neon-phaser", name:"NEON PHASER — Phaser Guitar Pedal Plugin", img:"https://public-files.gumroad.com/gn2mo18w1u5vamm6ex0p0s6n1r90", category:"effect",
-    tags:["Phaser Pedal","Multi-Stage Analog Phase","VST3 · AU · Standalone"], tier:"pro", price:"6", badge:"🎸 Pedal",
+    tags:["Phaser Pedal","Multi-Stage Analog Phase","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
     buy:"neon-phaser", demo:"",
     note:"Multi-stage analog phaser pedal · 70s funk swirl and deep sweeps" },
 
   { id:"coral-chorus", name:"CORAL CHORUS — Chorus Guitar Pedal Plugin", img:"https://public-files.gumroad.com/jcatj3mxf9m5y6vpl1dd14z9fcbm", category:"effect",
-    tags:["Chorus Pedal","Stereo Dimension · Warmth","VST3 · AU · Standalone"], tier:"pro", price:"6", badge:"🎸 Pedal",
+    tags:["Chorus Pedal","Stereo Dimension · Warmth","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
     buy:"coral-chorus", demo:"",
     note:"Lush stereo chorus pedal · wide shimmer and 80s analog warmth" },
 
   { id:"surf-tremolo", name:"SURF TREMOLO — Tremolo Guitar Pedal Plugin", img:"https://public-files.gumroad.com/a80mqbr6d4yprm8yzkwgw237nv1d", category:"effect",
-    tags:["Tremolo Pedal","Opto / Harmonic Tremolo","VST3 · AU · Standalone"], tier:"pro", price:"5", badge:"🎸 Pedal",
+    tags:["Tremolo Pedal","Opto / Harmonic Tremolo","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
     buy:"surf-tremolo", demo:"",
     note:"Vintage optical and harmonic tremolo pedal · rhythmic pulse and wave shaping" },
 
@@ -160,12 +160,12 @@ window.VSTS = [
 
   /* ========== EFFECTS ========== */
   { id:"matrix-modular", yt:"QMOsU3igGrM", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/ui/matrix-modular-card.jpg", category:"effect",
-    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], tier:"pro", price:"10",
+    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], tier:"pro", price:"30",
     buy:"ocpoej", demo:"",
     note:"Stereo modulation · auto-pan · westcoast oriental colour" },
 
   { id:"mastering", yt:"zo7iokIrYuo", name:"MASTERING — Pro VST3 Mastering Limiter", img:"img/vst/ui/mastering-card.jpg", category:"effect",
-    tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], tier:"pro", price:"10", badge:"🆕 New",
+    tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], tier:"pro", price:"30", badge:"🆕 New",
     buy:"mastering", demo:"",
     note:"Transparent mastering limiter · studio-quality peak control" },
 

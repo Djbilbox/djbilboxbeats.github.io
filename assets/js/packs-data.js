@@ -69,32 +69,32 @@ window.PACKS = [
     buy:"rdswq" },
 
   { id:"westcoast-vybes-vol01", name:"WESTCOAST VYBES Vol.01 — G-Funk Melody Loops", img:"img/packs/westcoast-vybes-vol01.jpg",
-    genre:"West Coast", tags:["West Coast","G-Funk","Melody Loops","Hip-Hop"], price:"5",
+    genre:"West Coast", tags:["West Coast","G-Funk","Melody Loops","Hip-Hop"], price:"19",
     buy:"westcoast-vybes-vol01", demo:"westcoast-vybes-vol01-demo" },
 
   { id:"kit-drum-funk", name:"KIT DRUM FUNK — Professional Drum Kit", img:"img/packs/kit-drum-funk.jpg",
-    genre:"Funk", tags:["Funk","Drum Kit","MIDI","One-Shots"], tier:"pack", price:"10",
+    genre:"Funk", tags:["Funk","Drum Kit","MIDI","One-Shots"], tier:"pack", price:"19",
     buy:"ejmwmz", demo:"ejmwmz" },
 
   { id:"west-side", name:"KIT DRUM WEST SIDE — 2Pac, Snoop Dogg & The Game", img:"img/packs/west-side.jpg",
-    genre:"West Coast", tags:["West Coast","G-Funk","Hip-Hop","MIDI"], price:"10",
+    genre:"West Coast", tags:["West Coast","G-Funk","Hip-Hop","MIDI"], price:"19",
     buy:"west-side-drum-kit", demo:"west-side-drum-kit" },
 
   /* ---------- Premium kits (2026) ---------- */
   { id:"tone-vault", name:"TONE VAULT — Ultimate Instrument One-Shots", img:"img/packs/tone-vault.jpg",
-    genre:"One-Shots", tags:["One-Shots","Instruments"], tier:"pack", price:"8",
+    genre:"One-Shots", tags:["One-Shots","Instruments"], tier:"pack", price:"19",
     buy:"yrkzl" },
 
   { id:"void-signals", name:"VOID SIGNALS — 19GB SFX & Cinematic Suite", img:"img/packs/void-signals.jpg",
-    genre:"SFX", tags:["SFX","Cinematic"], price:"10",
+    genre:"SFX", tags:["SFX","Cinematic"], price:"19",
     buy:"mkijdn", demo:"mkijdn" },
 
   { id:"ghost-voice", name:"GHOST VOICE — Vocal Hooks & Acapellas", img:"img/packs/ghost-voice.jpg",
-    genre:"Vocals", tags:["Vocals","Acapellas"], price:"10",
+    genre:"Vocals", tags:["Vocals","Acapellas"], price:"19",
     buy:"fnpdxf", demo:"fnpdxf" },
 
   { id:"raw-elements", name:"RAW ELEMENTS — Ultimate One-Shot Drum Kit", img:"img/packs/raw-elements.jpg",
-    genre:"One-Shots", tags:["Drums","One-Shots"], price:"10",
+    genre:"One-Shots", tags:["Drums","One-Shots"], price:"19",
     buy:"pohwt", demo:"pohwt" },
 
   { id:"vinyl-breaker", name:"VINYL BREAKER — Scratch & Vinyl Sample Kit", img:"img/packs/vinyl-breaker.jpg",
@@ -119,19 +119,19 @@ window.PACKS = [
 
   /* ---------- Sample packs (Vol. series) ---------- */
   { id:"oriental-vol1", name:"Oriental — Loop Melody Vol.1", img:"img/packs/oriental-vol1.jpg",
-    genre:"Oriental", tags:["Oriental","Melody Loops"], price:"7",
+    genre:"Oriental", tags:["Oriental","Melody Loops"], price:"19",
     buy:"oceljx", demo:"oceljx" },
 
   { id:"vice-city-vol4", name:"Vice City — Drum Loop Vol.4", img:"img/packs/vice-city-vol4.jpg",
-    genre:"Drill", tags:["Drill","Afrotrap","Synthwave"], price:"10",
+    genre:"Drill", tags:["Drill","Afrotrap","Synthwave"], price:"19",
     buy:"pkesp", demo:"pkesp" },
 
   { id:"futur-melody", name:"Futur — 23 New Melody", img:"img/packs/futur-melody.jpg",
-    genre:"Futur", tags:["Future","Melody Loops"], price:"8",
+    genre:"Futur", tags:["Future","Melody Loops"], price:"19",
     buy:"fhzxyv", demo:"fhzxyv" },
 
   { id:"drums-loop-vol1", name:"Drums Loop Vol.1", img:"img/packs/drums-loop-vol1.jpg",
-    genre:"Drums", tags:["Drums","Loops"], price:"6",
+    genre:"Drums", tags:["Drums","Loops"], price:"19",
     buy:"czpvfx", demo:"czpvfx" },
 
   { id:"break-ya-neck-vol2", name:"Break Ya Neck — Hip-Hop Vol.2", img:"img/packs/break-ya-neck-vol2.jpg",

@@ -11,7 +11,7 @@ window.PRODUCTS = {
     type:"kit", name:"WESTCOAST VYBES Vol.01", sub:"G-Funk & West Coast Melody Loops",
     tagline:"17 sun-soaked West Coast melody loops — lowrider leads, warm keys and G-Funk bounce, ready to flip.",
     cover:"img/packs/westcoast-vybes-vol01.jpg", accent:"#e0a63c", accent2:"#2e86de",
-    price:"5", badge:"🆕 New",
+    price:"19", badge:"🆕 New",
     note:"17 melody loops · 6 free in the demo · royalty-free",
     buy:"westcoast-vybes-vol01",
     demo:"westcoast-vybes-vol01-demo",
@@ -32,7 +32,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"84–185 BPM"},
       {k:"Free demo", v:"6 loops, full quality"},
-      {k:"Price", v:"$5"},
+      {k:"Price", v:"$19"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["17 West Coast melody loops (WAV)","Tempo labeled in every filename","Drum-bus versions on selected loops","Separate free 6-loop demo download","Works in all DAWs"]
@@ -42,7 +42,7 @@ window.PRODUCTS = {
     type:"kit", name:"KIT DRUM WEST SIDE", sub:"2Pac × Snoop Dogg × The Game — West Coast Drum Kit",
     tagline:"The ultimate West Coast drum kit — one-shots, MIDI patterns & full stems from 8 legendary G-Funk records.",
     cover:"img/packs/west-side.jpg", accent:"#e8a33d", accent2:"#2e6fd6",
-    price:"10", badge:"🆕 New",
+    price:"19", badge:"🆕 New",
     note:"37 one-shots · 36 MIDI · full stems · royalty-free",
     buy:"west-side-drum-kit",
     video:"nD2CfT4Ortw",
@@ -64,7 +64,7 @@ window.PRODUCTS = {
       {k:"One-shots", v:"37 (drums, perc, scratch/FX)"},
       {k:"MIDI", v:"36 drum patterns (8 tracks)"},
       {k:"Tempo range", v:"82–99 BPM"},
-      {k:"Price", v:"Name your price (free)"},
+      {k:"Price", v:"$19"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["37 drum one-shots (WAV)","36 MIDI drum patterns","Full WAV stems — 8 tracks","2Pac · Snoop Dogg · The Game grooves","Works in all DAWs (FL, Ableton, Logic…)"]
@@ -119,7 +119,7 @@ window.PRODUCTS = {
     type:"vst", name:"MATRIX MODULAR", sub:"Westcoast Oriental VST Effect",
     tagline:"Stereo modulation & auto-pan effect inspired by analog matrix mixers — lush, dimensional, and endlessly tweakable.",
     cover:"img/vst/matrix-modular-cover.jpg", accent:"#1abc9c", accent2:"#16a085",
-    tier:"pro", price:"10",
+    tier:"pro", price:"30",
 
     buy:"ocpoej", demo:"",
     video:"QWFc_TVwxGM", poster:"img/vst/matrix-modular-cover.jpg",
@@ -320,7 +320,7 @@ window.PRODUCTS = {
     type:"kit", name:"Oriental — Loop Melody Vol.1", sub:"Oriental Melody Loops",
     tagline:"23+ authentic oriental melody loops — oud, qanun, strings ready to flip.",
     cover:"img/packs/oriental-vol1.jpg", accent:"#e8a33d", accent2:"#c0392b",
-    price:"7", badge:"🆕 New", buy:"oceljx",
+    price:"19", badge:"🆕 New", buy:"oceljx",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Oriental","Melody Loops","Free"],
     about:[
@@ -338,7 +338,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Labeling", v:"Key + BPM in filename"},
       {k:"Tempo range", v:"90–140 BPM"},
-      {k:"Price", v:"Free (name-your-price)"},
+      {k:"Price", v:"$19"},
       {k:"License", v:"Free for profit"}
     ],
     includes:["23+ oriental WAV melody loops","All keys & tempos included","BPM/Key documentation","Works in FL Studio, Ableton, Logic, all DAWs"]
@@ -348,7 +348,7 @@ window.PRODUCTS = {
     type:"kit", name:"Vice City — Drum Loop Vol.4", sub:"Drill · Afrotrap · Synthwave Drums",
     tagline:"Hard-hitting drum loops — neon synthwave bounce meets trap aggression.",
     cover:"img/packs/vice-city-vol4.jpg", accent:"#ff3ca6", accent2:"#37e1ff",
-    price:"10", badge:"🆕 New", buy:"pkesp",
+    price:"19", badge:"🆕 New", buy:"pkesp",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Drill","Afrotrap","Synthwave","Free"],
     about:[
@@ -366,7 +366,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Tempo range", v:"120–160 BPM"},
       {k:"Included", v:"Kicks, snares, hats, percussion"},
-      {k:"Price", v:"Free (name-your-price)"},
+      {k:"Price", v:"$19"},
       {k:"License", v:"Free for profit"}
     ],
     includes:["Vice City drum loop collection","Full-mix WAV loops","Professional EQ'd & compressed","Tempo-tagged for quick matching"]
@@ -376,7 +376,7 @@ window.PRODUCTS = {
     type:"kit", name:"Futur — 23 New Melody", sub:"Future Melody Loops",
     tagline:"23 forward-thinking melody loops — synths, plucks, pads for modern trap.",
     cover:"img/packs/futur-melody.jpg", accent:"#7b5cff", accent2:"#37e1ff",
-    price:"8", badge:"🆕 New", buy:"fhzxyv",
+    price:"19", badge:"🆕 New", buy:"fhzxyv",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Future","Melody Loops","Free"],
     about:[
@@ -394,7 +394,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Instruments", v:"Synths, plucks, pads, strings, textures"},
       {k:"Tempo range", v:"90–140 BPM"},
-      {k:"Price", v:"Free (name-your-price)"},
+      {k:"Price", v:"$19"},
       {k:"License", v:"Free for profit"}
     ],
     includes:["23 Futur melody WAV loops","All synth presets included","Key/BPM/Tempo documentation","Multi-DAW compatibility"]
@@ -404,7 +404,7 @@ window.PRODUCTS = {
     type:"kit", name:"Drums Loop Vol.1", sub:"Drum Loops Collection",
     tagline:"The essential starter pack — trap, hip-hop, afro grooves ready to layer.",
     cover:"img/packs/drums-loop-vol1.jpg", accent:"#ff2d2d", accent2:"#ff8a3d",
-    price:"6", badge:"🆕 New", buy:"czpvfx",
+    price:"19", badge:"🆕 New", buy:"czpvfx",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
     tags:["Drums","Loops","Free"],
     about:[
@@ -422,7 +422,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Genres", v:"Trap, hip-hop, afro"},
       {k:"Tempo range", v:"85–150 BPM"},
-      {k:"Price", v:"Free (name-your-price)"},
+      {k:"Price", v:"$19"},
       {k:"License", v:"Free for profit"}
     ],
     includes:["Drums Loop Vol.1 WAV pack","15+ versatile grooves","Professional mix & EQ'd","Tempo and genre labeled"]
@@ -491,7 +491,7 @@ window.PRODUCTS = {
     type:"kit", name:"TONE VAULT", sub:"Ultimate Instrument One-Shot Kit",
     tagline:"A vault of pro instrument one-shots — keys, plucks, bells, brass, strings & synths, ready to compose.",
     cover:"img/packs/tone-vault.jpg", accent:"#d4a017", accent2:"#7b2ff7",
-    tier:"pack", price:"8", badge:"🆕 New",
+    tier:"pack", price:"19", badge:"🆕 New",
     note:"Instant download · royalty-free",
     buy:"yrkzl",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -512,7 +512,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Labeling", v:"Key-tagged filenames"},
       {k:"Use", v:"Melodies, chords, layering, sound design"},
-      {k:"Price", v:"$8"},
+      {k:"Price", v:"$19"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["TONE VAULT one-shot library","Key-labeled WAV samples","Multi-instrument categories","Works in all DAWs & samplers"]
@@ -522,7 +522,7 @@ window.PRODUCTS = {
     type:"kit", name:"VOID SIGNALS", sub:"19GB SFX & Cinematic Sound Design Suite",
     tagline:"A massive 19GB cinematic arsenal — risers, impacts, drones, textures & FX (feat. Boom Library).",
     cover:"img/packs/void-signals.jpg", accent:"#37e1ff", accent2:"#7b5cff",
-    price:"10", badge:"🔊 19GB",
+    price:"19", badge:"🔊 19GB",
     note:"19GB · feat. Boom Library · royalty-free",
     buy:"mkijdn",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -543,7 +543,7 @@ window.PRODUCTS = {
       {k:"Size", v:"19 GB"},
       {k:"Format", v:"High-resolution WAV"},
       {k:"Sources", v:"Featuring Boom Library"},
-      {k:"Price", v:"$10"},
+      {k:"Price", v:"$19"},
       {k:"License", v:"Royalty-free for music, film & games"}
     ],
     includes:["19GB cinematic SFX suite","Risers, impacts, drones & textures","Boom Library-sourced content","Trailer & game-ready sound design"]
@@ -553,7 +553,7 @@ window.PRODUCTS = {
     type:"kit", name:"GHOST VOICE", sub:"Premium Vocal Hooks, Chops & Acapellas",
     tagline:"Studio-recorded vocal hooks, chops, adlibs & acapellas — drop them in and instantly humanize your beats.",
     cover:"img/packs/ghost-voice.jpg", accent:"#ff3ca6", accent2:"#7b5cff",
-    price:"10", badge:"🆕 New",
+    price:"19", badge:"🆕 New",
     note:"Dry & wet · key & BPM labeled · royalty-free",
     buy:"fnpdxf",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -574,7 +574,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Labeling", v:"Key + BPM in filename"},
       {k:"Styles", v:"Trap, R&B, afro, drill, house, pop"},
-      {k:"Price", v:"$10"},
+      {k:"Price", v:"$19"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["Vocal hooks & full phrases","Chopped syllables & adlibs","Clean acapellas","Key/BPM documentation"]
@@ -584,7 +584,7 @@ window.PRODUCTS = {
     type:"kit", name:"RAW ELEMENTS", sub:"Ultimate One-Shot Drum Kit",
     tagline:"Hard, clean drum one-shots — punchy kicks, cracking snares, crisp hats & knocking 808s.",
     cover:"img/packs/raw-elements.jpg", accent:"#ff2d2d", accent2:"#ff8a3d",
-    price:"10", badge:"🆕 New",
+    price:"19", badge:"🆕 New",
     note:"Punchy · mix-ready · royalty-free",
     buy:"pohwt",
     video:"PLbtcZhy947NWd96DYzVDRNHYX846jE9zr",
@@ -605,7 +605,7 @@ window.PRODUCTS = {
       {k:"Format", v:"WAV · 44.1kHz / 24-bit"},
       {k:"Included", v:"Kicks, snares, claps, hats, perc, 808s"},
       {k:"Styles", v:"Trap, drill, hip-hop"},
-      {k:"Price", v:"$10"},
+      {k:"Price", v:"$19"},
       {k:"License", v:"Royalty-free for your productions"}
     ],
     includes:["One-shot drum library","Tuned 808 collection","Kicks, snares, hats & percussion","Organized & mix-ready"]
@@ -802,7 +802,7 @@ window.PRODUCTS = {
     type:"vst", name:"MASTERING", sub:"Professional VST3 Mastering Limiter",
     tagline:"Professional mastering limiter for transparent peak control and loudness maximization — studio-quality mastering in one plugin.",
     cover:"img/vst/mastering.jpg", accent:"#8b4513", accent2:"#d2b48c",
-    tier:"pro", price:"10", badge:"🆕 New",
+    tier:"pro", price:"30", badge:"🆕 New",
     note:"Professional mastering · $10",
     buy:"mastering",
     video:"", poster:"img/vst/mastering.jpg",
