@@ -337,6 +337,9 @@ const FREE_BONUS_THRESHOLD = 5;
 const FREE_BONUS_COUNT = 5;
 const BONUS_CODE = 'GET5FREE';
 function freeBonusItems(){
+  /* RETIRÉ le 2026-10-10 (bil) : la seule promo de la boutique est le −30 % (assets/js/promo.js).
+     Le code GET5FREE n'existe pas sur Gumroad : les « plugins offerts » auraient été facturés. */
+  return [];
   if(!window.VSTS) return [];
   const cartBuys = new Set(Cart.get().map(it=>it.buy));
   const paidCount = Cart.get().filter(it=>String(it.price).toUpperCase()!=='FREE').length;
