@@ -16,6 +16,7 @@
    Exclus volontairement (bil, 2026-10-10) : les nouveautés et les
    produits dont le prix vient de changer — HUMPIRE VST SUITE et
    ses 7 plugins, ROBOTALK, STATION SYNTH, ORIENTAL INSTRUMENT,
+   THUGLIFE, BIGBASS, VICE CITY (passés à 99 $ le 2026-10-10),
    PRO BUNDLE, bundles de plugins et de packs, EQ-PRO SPIDER. Un
    prix barré doit être le prix le plus bas des 30 jours
    précédents (règle UE) : pas de « −30 % » sur un prix relevé
@@ -31,9 +32,6 @@ window.Promo = (function () {
   /* slugs d'achat utilisés par le site + permalinks courts Gumroad */
   const ELIGIBLE = new Set([
     // plugins
-    'thuglife', 'quwjty',
-    'xaziro',                       // BIGBASS
-    'ykdzli',                       // VICE CITY
     'ocpoej',                       // MATRIX MODULAR
     'mastering', 'vptjlg',          // MASTERING
     // pédales

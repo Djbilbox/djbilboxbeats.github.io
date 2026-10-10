@@ -27,7 +27,7 @@ window.PRICING = (function () {
      MATRIX MODULAR sont à $10 et portent leur prix en propre dans
      les fichiers de données — ce tableau ne sert qu'aux jetons
      d'affichage des pages produit. */
-  const LIST = { pro: 15, oriental: 50, legendary: 99, bundle: 39 };
+  const LIST = { pro: 99, oriental: 99, legendary: 99, bundle: 119 };
 
   function money(n) {
     const v = Math.round(n * 100) / 100;
@@ -42,9 +42,6 @@ window.PRICING = (function () {
     }
     const v = LIST[tier];
     if (v === undefined) return null;
-    /* THUGLIFE (tier pro) est dans la promo −30 % (assets/js/promo.js) */
-    if (tier === 'pro' && window.Promo && Promo.ok('thuglife'))
-      return { now: Promo.sale(v), list: v, code: Promo.CODE };
     return { now: v, list: v, code: '' };
   }
 
@@ -82,10 +79,6 @@ window.PRICING = (function () {
 
     document.querySelectorAll('[data-djb-price]').forEach(el => {
       const k = el.getAttribute('data-djb-price');
-      if (k === 'pro' && window.Promo && Promo.ok('thuglife')) {
-        el.innerHTML = '<s>' + REAL[k] + '</s> ' + Promo.fmt(Promo.sale(LIST.pro));
-        return;
-      }
       if (REAL[k] !== undefined) { el.textContent = REAL[k]; return; }
       if (DEAD.indexOf(k) !== -1) { el.hidden = true; el.style.display = 'none'; }
     });

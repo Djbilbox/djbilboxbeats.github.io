@@ -22,8 +22,8 @@ window.VSTS = [
   /* ========== HUMPIRE VST SUITE 1.0 (NEW — octobre 2026) ==========
      Repris du store Gumroad le 2026-10-09. Ces produits sont vendus en EUR :
      `cur:"€"` fait afficher le bon symbole (le reste du catalogue est en $).
-     `yt`  : vidéo promo de la playlist YouTube PLHBhwyzxv1c0, jouée en
-             boucle muette dans la carte (assets/js/shop-video.js).
+     `yt`  : vidéo promo de la playlist YouTube PLHBhwyzxv1c0, jouée à la demande
+             (bouton Demo, fiche produit) — plus de boucle dans la carte.
      `ytv` : la vidéo est un Short vertical (9:16) — recadrage différent. */
   /* ROBOTALK — talkbox, vocodeur et autotune (Gumroad `jvdta`, 30 $ depuis le 2026-10-09). */
   { id:"robotalk", name:"ROBOTALK — Talkbox, Vocoder & Autotune Plugin", img:"https://public-files.gumroad.com/uqd1ilkibxzd4jmnxnwym0madhb6", category:"effect",
@@ -175,10 +175,10 @@ window.VSTS = [
      encore de build BASIC — à produire, cf. rapport du 12 août 2026. */
   /* THUGLIFE — ajoute le 15 aout 2026. Synthe soustractif VST3 + Standalone
      Windows, 60 presets usine (noms west coast) + EXPANSION VOL.1 (22 presets)
-     chargee par la fente a cassette. Slug Gumroad : `thuglife`, $15. */
+     chargee par la fente a cassette. Slug Gumroad : `thuglife`, 99 $. */
   { id:"thuglife", playNow:"thuglife", yt:"OMAN209ZVxI", name:"THUGLIFE PRO — G-Funk Street Synth", img:"img/vst/ui/thuglife-card.jpg", category:"instrument",
     detail:"thuglife.html",
-    tags:["60 G-Funk presets · Expansion Vol.1","Distortion · Chorus · Delay · Reverb","VST3 · Standalone · Windows"], tier:"pro", price:"15", badge:"🔥 New",
+    tags:["60 G-Funk presets · Expansion Vol.1","Distortion · Chorus · Delay · Reverb","VST3 · Standalone · Windows"], tier:"pro", price:"99", badge:"🔥 New",
     buy:"thuglife", demo:"oxckm",
     note:"West coast synth · 60 presets + 22 en Expansion Vol.1 · 16 voix" },
 
@@ -203,18 +203,18 @@ window.VSTS = [
     note:"100% FREE BASIC · plays the samples already on your machine · 50 kits across 10 styles" },
 
   { id:"oriental-instrument", playNow:"oriental-instrument", yt:"og8FVdn1oBs", name:"ORIENTAL INSTRUMENT PRO BUNDLE — 280+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
-    tags:["280+ instruments · Maqam engine","Free demo available","Win · Mac"], tier:"oriental", price:"50",
+    tags:["280+ instruments · Maqam engine","Free demo available","Win · Mac"], tier:"oriental", price:"99",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
     note:"Full 280+ instruments · démo gratuite disponible" },
 
   { id:"bigbass", yt:"Rf7737wRKrE", name:"BIGBASS PRO — LA Lowrider Bass", img:"img/vst/ui/bigbass-card.jpg", category:"instrument",
-    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], tier:"pro", price:"15",
+    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], tier:"pro", price:"99",
     buy:"xaziro", demo:"",
     note:"808 · 3 bass modes" },
 
   { id:"vice-city", yt:"-0zeINzGrPg", name:"VICE CITY PRO — VST Synthesizer", img:"img/vst/ui/vice-city-card.jpg", category:"instrument",
-    tags:["Synthwave","VST3 · Standalone"], tier:"pro", price:"15",
+    tags:["Synthwave","VST3 · Standalone"], tier:"pro", price:"99",
     buy:"ykdzli", demo:"",
     preview:"assets/products/vice-city/vice-city-card.mp4",
     note:"70 presets" },

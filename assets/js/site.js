@@ -798,11 +798,9 @@ function vstCard(p){
   el.className='card';
   const dHref = p.detail ? p.detail : (p.id ? `product.html?id=${p.id}` : null);
   const thumb = p.thumb || p.img;
-  /* optional muted loop clip revealed on hover, layered over the poster */
-  const preview = p.preview
-    ? `<video class="card-preview" src="${p.preview}" muted loop playsinline preload="none" aria-hidden="true"
-        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .25s ease;pointer-events:none"></video>`
-    : '';
+  /* miniatures fixes (bil, 2026-10-10) : plus de clip au survol. Le champ `preview` des
+     données est ignoré ; la démo vidéo s'ouvre au clic (pastille Demo, fiche produit). */
+  const preview = '';
   /* Pastille "demo video" quand le produit a une video YouTube (champ `yt`).
      Elle ouvre la fenetre YouTube deja utilisee ailleurs sur le site plutot
      que d'emmener le visiteur hors de la boutique. Purement additive : une
@@ -831,12 +829,6 @@ function vstCard(p){
         <div style="display:flex;gap:6px">${soon?'':demo}${mainBtn}</div>
       </div>
     </div>`;
-  if(p.preview){
-    const box = el.querySelector('.card-media');
-    const vid = el.querySelector('.card-preview');
-    box.addEventListener('mouseenter', ()=>{ vid.style.opacity='1'; vid.play().catch(()=>{}); });
-    box.addEventListener('mouseleave', ()=>{ vid.style.opacity='0'; vid.pause(); });
-  }
   const ytBtn = el.querySelector('.card-yt');
   if(ytBtn){
     ytBtn.addEventListener('click', e=>{

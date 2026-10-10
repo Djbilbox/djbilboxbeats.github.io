@@ -59,33 +59,7 @@ body::after{display:none}                       /* grain de film : inutile sur b
 .card .btn-cta.ghost:hover{color:var(--accent) !important;border-color:var(--accent) !important}
 .shop-count{color:var(--text-3);font-size:.78rem;font-weight:600;margin-bottom:12px}
 
-/* ---- vidéo promo animée dans la carte (assets/js/shop-video.js) ---- */
-.card-live{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none;
-  opacity:0;transition:opacity .6s ease;background:#000}
-.card-live.on{opacity:1}
-/* Une vidéo 16:9 recadrée en carré : on l'agrandit pour remplir la vignette
-   sans bandes noires, et 35 % de marge font sortir du cadre la barre de
-   titre et les commandes YouTube. Les Shorts (9:16) sont signalés par data-ratio="v". */
-.card-live iframe{position:absolute;top:50%;left:50%;border:0;
-  width:240%;height:135%;transform:translate(-50%,-50%)}
-.card-live[data-ratio="v"] iframe{width:135%;height:240%}
-
-/* cartes sans vidéo : lent zoom « Ken Burns » quand elles sont à l'écran */
-@keyframes shopKenBurns{
-  0%{transform:scale(1) translate(0,0)}
-  50%{transform:scale(1.09) translate(-1.6%,-1.2%)}
-  100%{transform:scale(1) translate(0,0)}
-}
-.card-media.kb img,.sw-card-img-link.kb img{animation:shopKenBurns 9s ease-in-out infinite}
-.card:hover .card-media.kb img,.sw-card:hover .sw-card-img-link.kb img{animation-play-state:paused}
-.card-live-tag{position:absolute;left:10px;bottom:10px;z-index:2;display:inline-flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,.92);color:var(--text);font-size:.6rem;font-weight:800;letter-spacing:.08em;
-  text-transform:uppercase;padding:5px 9px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.15);
-  opacity:0;transition:opacity .4s ease}
-.card-live.on ~ .card-live-tag{opacity:1}
-.card-live-tag i{color:#e62117;font-size:.5rem}
 .card-badge,.card-yt,.card-view{z-index:3}
-@media (prefers-reduced-motion:reduce){.card-live{display:none}}
 
 /* ============================================================
    PAGE STREETWEAR (streetwear.html, streetwear-product.html)
