@@ -26,7 +26,7 @@ window.VSTS = [
              (bouton Demo, fiche produit) — plus de boucle dans la carte.
      `ytv` : la vidéo est un Short vertical (9:16) — recadrage différent. */
   /* ROBOTALK — talkbox, vocodeur et autotune (Gumroad `jvdta`, 30 $ depuis le 2026-10-09). */
-  { id:"robotalk", name:"ROBOTALK — Talkbox, Vocoder & Autotune Plugin", img:"https://public-files.gumroad.com/uqd1ilkibxzd4jmnxnwym0madhb6", category:"effect",
+  { id:"robotalk", playNow:"robotalk", name:"ROBOTALK — Talkbox, Vocoder & Autotune Plugin", img:"https://public-files.gumroad.com/uqd1ilkibxzd4jmnxnwym0madhb6", category:"effect",
     tags:["Talkbox · Vocoder · Autotune","3 engines · 6 skins","VST3 · AU · Win · Mac"], tier:"pro", price:"30", badge:"🆕 New",
     buy:"jvdta", demo:"",
     note:"Talkbox, vocoder and autotune in one plugin · animated droid, 6 skins" },
@@ -36,12 +36,12 @@ window.VSTS = [
     buy:"humpire-vst-suite", demo:"",
     note:"TAXI ALGER, CASBAH CHORDS, BLOCK GORILLA, ALIEN 808, CAMEL PILOT, LA BAGUETTE, CHOCOLATINE · 237 € séparément" },
 
-  { id:"humpire-all-vst", yt:"V78hhQnKFMo", ytv:true, name:"HUMPIRE VST & EFFECTS — 25 VST3 Plugins (Synths, Guitar, Vocals & Mixing)", img:"https://public-files.gumroad.com/hs1ke1qz5ks8s2jqu0sygu1r9uyf", category:"instrument",
+  { id:"humpire-all-vst", playNow:"humpire-all-vst", yt:"V78hhQnKFMo", ytv:true, name:"HUMPIRE VST & EFFECTS — 25 VST3 Plugins (Synths, Guitar, Vocals & Mixing)", img:"https://public-files.gumroad.com/hs1ke1qz5ks8s2jqu0sygu1r9uyf", category:"instrument",
     tags:["25 plugins · 16 products","Synths · Guitar pedals · Vocals · Mixing","VST3 · Win · Mac"], tier:"bundle", price:"249", cur:"€", badge:"👑 Everything",
     buy:"ohiyxu", demo:"",
     note:"Every paid HUMPIRE & DJBILBOX BEATS plugin in one bundle" },
 
-  { id:"humpire-free-vst", yt:"wGAhmsQpYsU", name:"HUMPIRE FREE VST COLLECTION — 6 Plugins & Demos", img:"https://public-files.gumroad.com/ddhz33xrds5jjxosfmfscq5dg197", category:"instrument",
+  { id:"humpire-free-vst", playNow:"humpire-free-vst", yt:"wGAhmsQpYsU", name:"HUMPIRE FREE VST COLLECTION — 6 Plugins & Demos", img:"https://public-files.gumroad.com/ddhz33xrds5jjxosfmfscq5dg197", category:"instrument",
     tags:["3 free plugins + 3 demos","No payment needed","VST3"], tier:"bundle", price:"0", free:true, badge:"✅ FREE",
     buy:"pqhfx", demo:"",
     note:"100% FREE · every free HUMPIRE plugin and demo in one download" },
@@ -83,7 +83,7 @@ window.VSTS = [
     note:"Glue your bus with harmonic saturation, transient shaping and stereo width" },
 
   /* ========== GUITAR PEDALS COLLECTION (NEW 2026) ========== */
-  { id:"camel-pedals", name:"CAMEL PEDALS — 10 Guitar Pedal Plugins Pack", img:"https://public-files.gumroad.com/1hyo02s4s0yijj5cbxldca3pbayk", category:"effect",
+  { id:"camel-pedals", playNow:"camel-pedals", name:"CAMEL PEDALS — 10 Guitar Pedal Plugins Pack", img:"https://public-files.gumroad.com/1hyo02s4s0yijj5cbxldca3pbayk", category:"effect",
     tags:["10 Pedal Plugins Pack","VST3 · AU · Standalone","Win · Mac"], tier:"bundle", price:"99", badge:"🔥 10 Pedals Pack",
     buy:"camel-pedals", demo:"",
     note:"The complete 10 guitar pedals suite · compressor, fuzz, overdrive, reverb, echo, chorus..." },
@@ -153,7 +153,7 @@ window.VSTS = [
      publié le 12 août 2026 sous `djbilbox-pro-bundle`. MACHINA EFFECT en
      a été retiré — le plug-in ne marche pas, ne pas le remettre sans
      build corrigé.                                                       */
-  { id:"pro-bundle", yt:"1j-7i2QO38Y", ytv:true, name:"DJBILBOX PRO BUNDLE — 8 VST Plugins, One Payment", img:"img/vst/ui/pro-bundle-card.jpg", category:"instrument",
+  { id:"pro-bundle", playNow:"pro-bundle", yt:"1j-7i2QO38Y", ytv:true, name:"DJBILBOX PRO BUNDLE — 8 VST Plugins, One Payment", img:"img/vst/ui/pro-bundle-card.jpg", category:"instrument",
     tags:["8 plugins · one payment","STATION SYNTH + THUGLIFE + ROBOTALK","VST3 · AU · Standalone · Win/Mac"], tier:"bundle", price:"149", badge:"👑 Best value",
     buy:"djbilbox-pro-bundle", demo:"station-synth-demo",
     note:"8 plugins in one payment · lifetime updates" },
