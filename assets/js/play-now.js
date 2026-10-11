@@ -53,7 +53,7 @@
     const id = root.dataset.playNow;
     root.classList.add('pn');
     root.innerHTML = '<p class="pn-msg">Loading the player…</p>';
-    fetch(BASE + id + '.json?v=26101010').then(r => r.json()).then(cfg => build(root, id, cfg))
+    fetch(BASE + id + '.json?v=26101013').then(r => r.json()).then(cfg => build(root, id, cfg))
       .catch(() => { root.innerHTML = ''; root.hidden = true; });
   }
 

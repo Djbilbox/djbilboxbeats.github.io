@@ -9,9 +9,9 @@
  "foot": "You're hearing <b>a handful of the 25 plugins</b> (synths, instruments, effects). Open any plugin page to try more.",
  "presets": [
   {
-   "name": "STATION SYNTH · Floating Theremin",
-   "slug": "floating-theremin",
-   "dir": "station-synth/floating-theremin",
+   "name": "STATION SYNTH · FM Bell",
+   "slug": "fm-bell",
+   "dir": "station-synth/fm-bell",
    "notes": [
     36,
     39,
@@ -34,9 +34,9 @@
    "octave": 3
   },
   {
-   "name": "STATION SYNTH · Crystal Overtone Pad",
-   "slug": "crystal-overtone",
-   "dir": "station-synth/crystal-overtone",
+   "name": "STATION SYNTH · Wide Brass Stab",
+   "slug": "wide-brass-stab",
+   "dir": "station-synth/wide-brass-stab",
    "notes": [
     36,
     39,

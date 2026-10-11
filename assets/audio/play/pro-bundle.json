@@ -9,9 +9,9 @@
  "foot": "You're hearing a selection from <b>STATION SYNTH, ORIENTAL INSTRUMENT, THUGLIFE, VICE CITY, ROBOTALK, MATRIX MODULAR and MASTERING</b>. Each product page has many more.",
  "presets": [
   {
-   "name": "STATION SYNTH · Warm Clarinet Lead",
-   "slug": "warm-clarinet",
-   "dir": "station-synth/warm-clarinet",
+   "name": "STATION SYNTH · Supersaw Lead",
+   "slug": "supersaw-lead",
+   "dir": "station-synth/supersaw-lead",
    "notes": [
     36,
     39,
@@ -34,9 +34,9 @@
    "octave": 3
   },
   {
-   "name": "STATION SYNTH · Soft Piano",
-   "slug": "soft-piano",
-   "dir": "station-synth/soft-piano",
+   "name": "STATION SYNTH · Warm Triangle Keys",
+   "slug": "warm-triangle-keys",
+   "dir": "station-synth/warm-triangle-keys",
    "notes": [
     36,
     39,
@@ -59,9 +59,9 @@
    "octave": 3
   },
   {
-   "name": "STATION SYNTH · Ensemble Strings",
-   "slug": "ensemble-strings",
-   "dir": "station-synth/ensemble-strings",
+   "name": "STATION SYNTH · Silk Sine Pad",
+   "slug": "silk-sine-pad",
+   "dir": "station-synth/silk-sine-pad",
    "notes": [
     36,
     39,

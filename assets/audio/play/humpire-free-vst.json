@@ -96,9 +96,9 @@
    "octave": 3
   },
   {
-   "name": "STATION SYNTH · Soft Piano",
-   "slug": "soft-piano",
-   "dir": "station-synth/soft-piano",
+   "name": "STATION SYNTH · Warm Triangle Keys",
+   "slug": "warm-triangle-keys",
+   "dir": "station-synth/warm-triangle-keys",
    "notes": [
     36,
     39,
@@ -121,9 +121,9 @@
    "octave": 3
   },
   {
-   "name": "STATION SYNTH · Glass Pluck",
-   "slug": "glass-pluck",
-   "dir": "station-synth/glass-pluck",
+   "name": "STATION SYNTH · Square Pluck",
+   "slug": "square-pluck",
+   "dir": "station-synth/square-pluck",
    "notes": [
     36,
     39,
