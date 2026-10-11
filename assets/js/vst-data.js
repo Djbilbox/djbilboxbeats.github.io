@@ -31,7 +31,13 @@ window.VSTS = [
     buy:"jvdta", demo:"",
     note:"Talkbox, vocoder and autotune in one plugin · animated droid, 6 skins" },
 
-  { id:"humpire-vst-suite", yt:"sqUykeuBnSk", ytv:true, name:"HUMPIRE VST SUITE — 7 VST3 Plugins + 6,142 Presets + MIDI", img:"https://public-files.gumroad.com/hq0b3i51z2fn8097vymtniyy1226", category:"instrument",
+  /* JUKEBOX NEW YORK — sampler + vrais instruments enregistrés (Gumroad `jukebox-new-york`, 59 €, 2026-10-10). */
+  { id:"jukebox-new-york", playNow:"jukebox-new-york", name:"JUKEBOX NEW YORK — Sampler VST3 (21 Real Instruments + Riff Generator)", img:"https://public-files.gumroad.com/l2ycu2g7a3ok40nv9ob4jx55nlt7", category:"instrument",
+    tags:["32 sounds · 5 NYC districts","21 real instruments · 1,944 presets","VST3 · Win x64 · macOS Universal"], tier:"pro", price:"59", cur:"€", badge:"🆕 New",
+    buy:"jukebox-new-york", demo:"",
+    note:"Hyper-realistic jukebox sampler · riff generator · drag MIDI & audio" },
+
+  { id:"humpire-vst-suite", playNow:"humpire-vst-suite", yt:"sqUykeuBnSk", ytv:true, name:"HUMPIRE VST SUITE — 7 VST3 Plugins + 6,142 Presets + MIDI", img:"https://public-files.gumroad.com/hq0b3i51z2fn8097vymtniyy1226", category:"instrument",
     tags:["7 plugins · 6,142 presets","Generators · Instruments · FX","VST3 · Win x64 · macOS Universal"], tier:"bundle", price:"129", cur:"€", badge:"👑 Suite 1.0",
     buy:"humpire-vst-suite", demo:"",
     note:"TAXI ALGER, CASBAH CHORDS, BLOCK GORILLA, ALIEN 808, CAMEL PILOT, LA BAGUETTE, CHOCOLATINE · 237 € séparément" },
