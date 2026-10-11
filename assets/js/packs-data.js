@@ -24,7 +24,7 @@
 window.PACKS = [
   /* ---------- Bundles & kit loops HUMPIRE (Gumroad, ajoutés le 2026-10-09) ---------- */
   { id:"djbilbox-paid-packs", name:"DJBILBOX BEATS — Complete Paid Packs, Kits & Loops (16 packs)", img:"https://public-files.gumroad.com/72ditauizwiml4m3ok8p79p79z8s",
-    genre:"Bundle", tags:["Bundle","16 premium packs","Drum Kits","Loops"], price:"99", badge:"🎁 BUNDLE",
+    genre:"Bundle", tags:["Bundle","16 premium packs","Drum Kits","Loops"], price:"29", badge:"🎁 BUNDLE",
     buy:"fhpnge" },
 
   { id:"djbilbox-free-packs", name:"DJBILBOX BEATS — Free Packs, Kits & Loops (15 packs)", img:"https://public-files.gumroad.com/s59nl0f34izq5c294j3fwdb21px9",

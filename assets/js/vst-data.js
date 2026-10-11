@@ -31,19 +31,19 @@ window.VSTS = [
     buy:"jvdta", demo:"",
     note:"Talkbox, vocoder and autotune in one plugin · animated droid, 6 skins" },
 
-  /* JUKEBOX NEW YORK — sampler + vrais instruments enregistrés (Gumroad `jukebox-new-york`, 59 €, 2026-10-10). */
+  /* JUKEBOX NEW YORK — sampler + vrais instruments enregistrés (Gumroad `jukebox-new-york`, 39 € depuis le 2026-10-12). */
   { id:"jukebox-new-york", playNow:"jukebox-new-york", name:"JUKEBOX NEW YORK — Sampler VST3 (21 Real Instruments + Riff Generator)", img:"https://public-files.gumroad.com/l2ycu2g7a3ok40nv9ob4jx55nlt7", category:"instrument",
-    tags:["32 sounds · 5 NYC districts","21 real instruments · 1,944 presets","VST3 · Win x64 · macOS Universal"], tier:"pro", price:"59", cur:"€", badge:"🆕 New",
+    tags:["32 sounds · 5 NYC districts","21 real instruments · 1,944 presets","VST3 · Win x64 · macOS Universal"], tier:"pro", price:"39", cur:"€", badge:"🆕 New",
     buy:"jukebox-new-york", demo:"",
     note:"Hyper-realistic jukebox sampler · riff generator · drag MIDI & audio" },
 
   { id:"humpire-vst-suite", playNow:"humpire-vst-suite", yt:"sqUykeuBnSk", ytv:true, name:"HUMPIRE VST SUITE — 7 VST3 Plugins + 6,142 Presets + MIDI", img:"https://public-files.gumroad.com/hq0b3i51z2fn8097vymtniyy1226", category:"instrument",
-    tags:["7 plugins · 6,142 presets","Generators · Instruments · FX","VST3 · Win x64 · macOS Universal"], tier:"bundle", price:"129", cur:"€", badge:"👑 Suite 1.0",
+    tags:["7 plugins · 6,142 presets","Generators · Instruments · FX","VST3 · Win x64 · macOS Universal"], tier:"bundle", price:"59", cur:"€", badge:"👑 Suite 1.0",
     buy:"humpire-vst-suite", demo:"",
-    note:"TAXI ALGER, CASBAH CHORDS, BLOCK GORILLA, ALIEN 808, CAMEL PILOT, LA BAGUETTE, CHOCOLATINE · 237 € séparément" },
+    note:"TAXI ALGER, CASBAH CHORDS, BLOCK GORILLA, ALIEN 808, CAMEL PILOT, LA BAGUETTE, CHOCOLATINE · 163 € séparément" },
 
   { id:"humpire-all-vst", playNow:"humpire-all-vst", yt:"V78hhQnKFMo", ytv:true, name:"HUMPIRE VST & EFFECTS — 25 VST3 Plugins (Synths, Guitar, Vocals & Mixing)", img:"https://public-files.gumroad.com/hs1ke1qz5ks8s2jqu0sygu1r9uyf", category:"instrument",
-    tags:["25 plugins · 16 products","Synths · Guitar pedals · Vocals · Mixing","VST3 · Win · Mac"], tier:"bundle", price:"249", cur:"€", badge:"👑 Everything",
+    tags:["25 plugins · 16 products","Synths · Guitar pedals · Vocals · Mixing","VST3 · Win · Mac"], tier:"bundle", price:"79", cur:"€", badge:"👑 Everything",
     buy:"ohiyxu", demo:"",
     note:"Every paid HUMPIRE & DJBILBOX BEATS plugin in one bundle" },
 
@@ -53,94 +53,94 @@ window.VSTS = [
     note:"100% FREE · every free HUMPIRE plugin and demo in one download" },
 
   { id:"taxi-alger", playNow:"taxi-alger", name:"TAXI ALGER — Beat Generator VST3 (36 Genres)", img:"https://public-files.gumroad.com/vcwebqva83j5oogk7whupyv9171n", category:"instrument",
-    tags:["Beat generator · 36 genres","Real drummer grooves · drag to DAW","VST3 · Win · Mac"], tier:"pro", price:"39", cur:"€", badge:"🆕 Suite 1.0",
+    tags:["Beat generator · 36 genres","Real drummer grooves · drag to DAW","VST3 · Win · Mac"], tier:"pro", price:"25", cur:"€", badge:"🆕 Suite 1.0",
     buy:"taxi-alger", demo:"",
     note:"Pick a genre, hit GENERATE, drag the groove into your DAW" },
 
   { id:"casbah-chords", playNow:"casbah-chords", yt:"fKaF1aQVe30", name:"CASBAH CHORDS — Chord & Melody Generator VST3 (Maqam Modes)", img:"https://public-files.gumroad.com/s15lzhfwfvts60kmc84pwv8wt1yq", category:"instrument",
-    tags:["Chords & melodies · 36 genres","Maqam modes · Chaabi · Raï","VST3 · Win · Mac"], tier:"pro", price:"39", cur:"€", badge:"🆕 Suite 1.0",
+    tags:["Chords & melodies · 36 genres","Maqam modes · Chaabi · Raï","VST3 · Win · Mac"], tier:"pro", price:"25", cur:"€", badge:"🆕 Suite 1.0",
     buy:"casbah-chords", demo:"",
     note:"Pick a genre and a key, hit GENERATE, drag chords & melodies into your DAW" },
 
   { id:"block-gorilla", playNow:"block-gorilla", yt:"Eb0n_N0ehNI", name:"BLOCK GORILLA — 16-Pad Drum Machine VST3 + Beat Generator", img:"https://public-files.gumroad.com/44dfrmww3ve5ed0qc51ldz2k1db7", category:"instrument",
-    tags:["16 pads · sampler · sequencer","Beat generator · real drummers","VST3 · Win · Mac"], tier:"pro", price:"39", cur:"€", badge:"🆕 Suite 1.0",
+    tags:["16 pads · sampler · sequencer","Beat generator · real drummers","VST3 · Win · Mac"], tier:"pro", price:"25", cur:"€", badge:"🆕 Suite 1.0",
     buy:"block-gorilla", demo:"",
     note:"Drum machine, sampler, sequencer and beat generator in one plugin" },
 
   { id:"alien-808", playNow:"alien-808", name:"ALIEN 808 — 808 & Sub Bass VST3 + Pattern Generator", img:"https://public-files.gumroad.com/ij1x8tjbkhc7x2vpqc0bn5w51tpr", category:"instrument",
-    tags:["808 & sub bass","Pattern generator · slides & glides","VST3 · Win · Mac"], tier:"pro", price:"35", cur:"€", badge:"🆕 Suite 1.0",
+    tags:["808 & sub bass","Pattern generator · slides & glides","VST3 · Win · Mac"], tier:"pro", price:"25", cur:"€", badge:"🆕 Suite 1.0",
     buy:"alien-808", demo:"",
     note:"808 instrument with a built-in pattern generator · slides & glides" },
 
   /* `playNow` : clavier jouable sur la fiche (assets/audio/play/camel-pilot.json) */
   { id:"camel-pilot", yt:"NiOGzRZxf8g", playNow:"camel-pilot", name:"CAMEL PILOT — Bass Synth VST3 + Bassline Generator", img:"https://public-files.gumroad.com/717hxxq26sj2d4ksw8w99ieavpqk", category:"instrument",
-    tags:["Bass synthesizer","Bassline generator · MIDI","VST3 · Win · Mac"], tier:"pro", price:"35", cur:"€", badge:"🆕 Suite 1.0",
+    tags:["Bass synthesizer","Bassline generator · MIDI","VST3 · Win · Mac"], tier:"pro", price:"25", cur:"€", badge:"🆕 Suite 1.0",
     buy:"camel-pilot", demo:"",
     note:"Pick a genre, hit GENERATE, get a bassline and its MIDI" },
 
   { id:"la-baguette", playNow:"la-baguette", name:"LA BAGUETTE — Tape Compressor VST3 (Saturation, Wow & Flutter)", img:"https://public-files.gumroad.com/i6jawu7lmrdu0wqs6ilxyy9dop7u", category:"effect",
-    tags:["Tape compressor","Saturation · wow & flutter","VST3 · Win · Mac"], tier:"pro", price:"25", cur:"€", badge:"🆕 Suite 1.0",
+    tags:["Tape compressor","Saturation · wow & flutter","VST3 · Win · Mac"], tier:"pro", price:"19", cur:"€", badge:"🆕 Suite 1.0",
     buy:"la-baguette", demo:"",
     note:"A compressor and a tape machine in one plugin · drums, vocals, 808s" },
 
   { id:"chocolatine", playNow:"chocolatine", name:"CHOCOLATINE — Bus Glue Compressor & Saturation VST3", img:"https://public-files.gumroad.com/b0mlf7s2tk4g1yu6o5rqifus9dwu", category:"effect",
-    tags:["Bus glue compressor","Saturation · transients · width","VST3 · Win · Mac"], tier:"pro", price:"25", cur:"€", badge:"🆕 Suite 1.0",
+    tags:["Bus glue compressor","Saturation · transients · width","VST3 · Win · Mac"], tier:"pro", price:"19", cur:"€", badge:"🆕 Suite 1.0",
     buy:"chocolatine", demo:"",
     note:"Glue your bus with harmonic saturation, transient shaping and stereo width" },
 
   /* ========== GUITAR PEDALS COLLECTION (NEW 2026) ========== */
   { id:"camel-pedals", playNow:"camel-pedals", name:"CAMEL PEDALS — 10 Guitar Pedal Plugins Pack", img:"https://public-files.gumroad.com/1hyo02s4s0yijj5cbxldca3pbayk", category:"effect",
-    tags:["10 Pedal Plugins Pack","VST3 · AU · Standalone","Win · Mac"], tier:"bundle", price:"99", badge:"🔥 10 Pedals Pack",
+    tags:["10 Pedal Plugins Pack","VST3 · AU · Standalone","Win · Mac"], tier:"bundle", price:"29", badge:"🔥 10 Pedals Pack",
     buy:"camel-pedals", demo:"",
     note:"The complete 10 guitar pedals suite · compressor, fuzz, overdrive, reverb, echo, chorus..." },
 
   { id:"pharaoh-comp", playNow:"pharaoh-comp", name:"PHARAOH COMP — Compressor Guitar Pedal Plugin", img:"https://public-files.gumroad.com/s35yqlyl6e4xc7x8vbt5pvh2lmok", category:"effect",
-    tags:["Compressor Pedal","Analog Warmth · Punch","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
+    tags:["Compressor Pedal","Analog Warmth · Punch","VST3 · AU · Standalone"], tier:"pro", price:"9", badge:"🎸 Pedal",
     buy:"pharaoh-comp", demo:"",
     note:"Studio compressor guitar pedal · vintage warmth and dynamic punch" },
 
   { id:"aurora-verb", playNow:"aurora-verb", name:"AURORA VERB — Reverb Guitar Pedal Plugin", img:"https://public-files.gumroad.com/k6tauzs2b0d5lvmslbrbnp6ogrba", category:"effect",
-    tags:["Reverb Pedal","Ambient · Shimmer · Hall","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
+    tags:["Reverb Pedal","Ambient · Shimmer · Hall","VST3 · AU · Standalone"], tier:"pro", price:"9", badge:"🎸 Pedal",
     buy:"aurora-verb", demo:"",
     note:"Lush ambient reverb guitar pedal · rich space and shimmer modulation" },
 
   { id:"canyon-echo", playNow:"canyon-echo", yt:"qt3efwJxBA0", name:"CANYON ECHO — Delay Guitar Pedal Plugin", img:"https://public-files.gumroad.com/ecgc5v83136n8rc57u4c71mdhgh1", category:"effect",
-    tags:["Delay Pedal","Tape Echo · Analog Ping-Pong","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
+    tags:["Delay Pedal","Tape Echo · Analog Ping-Pong","VST3 · AU · Standalone"], tier:"pro", price:"9", badge:"🎸 Pedal",
     buy:"canyon-echo", demo:"",
     note:"Analog tape echo & delay pedal · warm repeats and spatial ping-pong" },
 
   { id:"storm-rider", playNow:"storm-rider", name:"STORM RIDER — Distortion Guitar Pedal Plugin", img:"https://public-files.gumroad.com/4z4l9vwo64hax6qwbguyqn6zogid", category:"effect",
-    tags:["Distortion Pedal","Heavy Gain · Tube Drive","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
+    tags:["Distortion Pedal","Heavy Gain · Tube Drive","VST3 · AU · Standalone"], tier:"pro", price:"9", badge:"🎸 Pedal",
     buy:"storm-rider", demo:"",
     note:"High gain aggressive distortion pedal · tube-style saturation and bite" },
 
   { id:"lava-fuzz", playNow:"lava-fuzz", name:"LAVA FUZZ — Fuzz Guitar Pedal Plugin", img:"https://public-files.gumroad.com/0hochbyl11hbyqjumsnbs067jsue", category:"effect",
-    tags:["Fuzz Pedal","Vintage Silicon / Germanium","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
+    tags:["Fuzz Pedal","Vintage Silicon / Germanium","VST3 · AU · Standalone"], tier:"pro", price:"9", badge:"🎸 Pedal",
     buy:"lava-fuzz", demo:"",
     note:"Heavy vintage fuzz pedal · thick harmonic distortion and sustain" },
 
   { id:"camel-pedal", playNow:"camel-pedal", name:"CAMEL PEDAL — Overdrive Guitar Pedal Plugin", img:"https://public-files.gumroad.com/cvwjhpwvbrzh12ce6r1g2u7k4vh8", category:"effect",
-    tags:["Overdrive Pedal","Tube Screamer Style · Boost","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
+    tags:["Overdrive Pedal","Tube Screamer Style · Boost","VST3 · AU · Standalone"], tier:"pro", price:"9", badge:"🎸 Pedal",
     buy:"camel-pedal", demo:"",
     note:"Classic warm overdrive pedal · transparent boost and creamy clipping" },
 
   { id:"jet-flanger", playNow:"jet-flanger", name:"JET FLANGER — Flanger Guitar Pedal Plugin", img:"https://public-files.gumroad.com/13f1yfeuscwxxqn7f40cpvgvqjnp", category:"effect",
-    tags:["Flanger Pedal","Jet Sweep · Stereo Modulation","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
+    tags:["Flanger Pedal","Jet Sweep · Stereo Modulation","VST3 · AU · Standalone"], tier:"pro", price:"9", badge:"🎸 Pedal",
     buy:"jet-flanger", demo:"",
     note:"Stereo flanger pedal · dramatic jet sweeps and lush swirl modulation" },
 
   { id:"neon-phaser", playNow:"neon-phaser", name:"NEON PHASER — Phaser Guitar Pedal Plugin", img:"https://public-files.gumroad.com/gn2mo18w1u5vamm6ex0p0s6n1r90", category:"effect",
-    tags:["Phaser Pedal","Multi-Stage Analog Phase","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
+    tags:["Phaser Pedal","Multi-Stage Analog Phase","VST3 · AU · Standalone"], tier:"pro", price:"9", badge:"🎸 Pedal",
     buy:"neon-phaser", demo:"",
     note:"Multi-stage analog phaser pedal · 70s funk swirl and deep sweeps" },
 
   { id:"coral-chorus", playNow:"coral-chorus", name:"CORAL CHORUS — Chorus Guitar Pedal Plugin", img:"https://public-files.gumroad.com/jcatj3mxf9m5y6vpl1dd14z9fcbm", category:"effect",
-    tags:["Chorus Pedal","Stereo Dimension · Warmth","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
+    tags:["Chorus Pedal","Stereo Dimension · Warmth","VST3 · AU · Standalone"], tier:"pro", price:"9", badge:"🎸 Pedal",
     buy:"coral-chorus", demo:"",
     note:"Lush stereo chorus pedal · wide shimmer and 80s analog warmth" },
 
   { id:"surf-tremolo", playNow:"surf-tremolo", name:"SURF TREMOLO — Tremolo Guitar Pedal Plugin", img:"https://public-files.gumroad.com/a80mqbr6d4yprm8yzkwgw237nv1d", category:"effect",
-    tags:["Tremolo Pedal","Opto / Harmonic Tremolo","VST3 · AU · Standalone"], tier:"pro", price:"30", badge:"🎸 Pedal",
+    tags:["Tremolo Pedal","Opto / Harmonic Tremolo","VST3 · AU · Standalone"], tier:"pro", price:"9", badge:"🎸 Pedal",
     buy:"surf-tremolo", demo:"",
     note:"Vintage optical and harmonic tremolo pedal · rhythmic pulse and wave shaping" },
 
@@ -160,18 +160,18 @@ window.VSTS = [
      a été retiré — le plug-in ne marche pas, ne pas le remettre sans
      build corrigé.                                                       */
   { id:"pro-bundle", playNow:"pro-bundle", yt:"1j-7i2QO38Y", ytv:true, name:"DJBILBOX PRO BUNDLE — 8 VST Plugins, One Payment", img:"img/vst/ui/pro-bundle-card.jpg", category:"instrument",
-    tags:["8 plugins · one payment","STATION SYNTH + THUGLIFE + ROBOTALK","VST3 · AU · Standalone · Win/Mac"], tier:"bundle", price:"149", badge:"👑 Best value",
+    tags:["8 plugins · one payment","STATION SYNTH + THUGLIFE + ROBOTALK","VST3 · AU · Standalone · Win/Mac"], tier:"bundle", price:"49", badge:"👑 Best value",
     buy:"djbilbox-pro-bundle", demo:"station-synth-demo",
     note:"8 plugins in one payment · lifetime updates" },
 
   /* ========== EFFECTS ========== */
   { id:"matrix-modular", playNow:"matrix-modular", yt:"QMOsU3igGrM", name:"MATRIX MODULAR — Westcoast Oriental VST Effect", img:"img/vst/ui/matrix-modular-card.jpg", category:"effect",
-    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], tier:"pro", price:"30",
+    tags:["Stereo Modulation · Auto-Pan","VST3 · Standalone"], tier:"pro", price:"15",
     buy:"ocpoej", demo:"",
     note:"Stereo modulation · auto-pan · westcoast oriental colour" },
 
   { id:"mastering", playNow:"mastering", yt:"zo7iokIrYuo", name:"MASTERING — Pro VST3 Mastering Limiter", img:"img/vst/ui/mastering-card.jpg", category:"effect",
-    tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], tier:"pro", price:"30", badge:"🆕 New",
+    tags:["Mastering Limiter","Peak control · Loudness","VST3 · Standalone"], tier:"pro", price:"15", badge:"🆕 New",
     buy:"mastering", demo:"",
     note:"Transparent mastering limiter · studio-quality peak control" },
 
@@ -181,10 +181,10 @@ window.VSTS = [
      encore de build BASIC — à produire, cf. rapport du 12 août 2026. */
   /* THUGLIFE — ajoute le 15 aout 2026. Synthe soustractif VST3 + Standalone
      Windows, 60 presets usine (noms west coast) + EXPANSION VOL.1 (22 presets)
-     chargee par la fente a cassette. Slug Gumroad : `thuglife`, 99 $. */
+     chargee par la fente a cassette. Slug Gumroad : `thuglife`, 29 $. */
   { id:"thuglife", playNow:"thuglife", yt:"OMAN209ZVxI", name:"THUGLIFE PRO — G-Funk Street Synth", img:"img/vst/ui/thuglife-card.jpg", category:"instrument",
     detail:"thuglife.html",
-    tags:["60 G-Funk presets · Expansion Vol.1","Distortion · Chorus · Delay · Reverb","VST3 · Standalone · Windows"], tier:"pro", price:"99", badge:"🔥 New",
+    tags:["60 G-Funk presets · Expansion Vol.1","Distortion · Chorus · Delay · Reverb","VST3 · Standalone · Windows"], tier:"pro", price:"29", badge:"🔥 New",
     buy:"thuglife", demo:"oxckm",
     note:"West coast synth · 60 presets + 22 en Expansion Vol.1 · 16 voix" },
 
@@ -192,7 +192,7 @@ window.VSTS = [
   { id:"station-synth-bundle", playNow:"station-synth", yt:"vvfdwvFgUNk", name:"STATION SYNTH PRO BUNDLE — Synth + 11 Expansion Libraries", img:"img/vst/ui/station-synth-card.jpg", category:"instrument",
     detail:"station-synth-bundle.html",
     preview:"assets/products/station-synth/station-synth-card.mp4",
-    tags:["Synth + 11 expansion libraries","4128 presets · 44 wavetables","VST3 · AU · Standalone · Win/Mac"], tier:"legendary", price:"99", badge:"🔥 New",
+    tags:["Synth + 11 expansion libraries","4128 presets · 44 wavetables","VST3 · AU · Standalone · Win/Mac"], tier:"legendary", price:"29", badge:"🔥 New",
     buy:"station-synth-legendary-bundle",
     demo:"station-synth-demo",
     note:"Wavetable synth · 4128 presets · 11 libraries · Windows & macOS" },
@@ -209,18 +209,18 @@ window.VSTS = [
     note:"100% FREE BASIC · plays the samples already on your machine · 50 kits across 10 styles" },
 
   { id:"oriental-instrument", playNow:"oriental-instrument", yt:"og8FVdn1oBs", name:"ORIENTAL INSTRUMENT PRO BUNDLE — 280+ Instruments", img:"img/vst/ui/oriental-instrument-card.jpg", category:"instrument",
-    tags:["280+ instruments · Maqam engine","Free demo available","Win · Mac"], tier:"oriental", price:"99",
+    tags:["280+ instruments · Maqam engine","Free demo available","Win · Mac"], tier:"oriental", price:"29",
     buy:"oriental-instrument-djbilbox-beats",
     demo:"oriental-instrument-demo-free-Download",
     note:"Full 280+ instruments · démo gratuite disponible" },
 
   { id:"bigbass", playNow:"bigbass", yt:"Rf7737wRKrE", name:"BIGBASS PRO — LA Lowrider Bass", img:"img/vst/ui/bigbass-card.jpg", category:"instrument",
-    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], tier:"pro", price:"99",
+    tags:["Lowrider Bass","VST3 · Standalone · Win/Mac"], tier:"pro", price:"29",
     buy:"xaziro", demo:"",
     note:"808 · 3 bass modes" },
 
   { id:"vice-city", playNow:"vice-city", yt:"-0zeINzGrPg", name:"VICE CITY PRO — VST Synthesizer", img:"img/vst/ui/vice-city-card.jpg", category:"instrument",
-    tags:["Synthwave","VST3 · Standalone"], tier:"pro", price:"99",
+    tags:["Synthwave","VST3 · Standalone"], tier:"pro", price:"29",
     buy:"ykdzli", demo:"",
     preview:"assets/products/vice-city/vice-city-card.mp4",
     note:"70 presets" },
