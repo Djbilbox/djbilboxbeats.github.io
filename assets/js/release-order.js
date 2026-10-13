@@ -6,6 +6,7 @@
    de la liste passe en fin.
    ============================================================ */
 window.RELEASE_ORDER = [
+  ["yvlyecx","bloodkeys"], // BLOOD KEYS — Horror Piano VST3 Plugin (Windows & Mac) — 2026-10-13
   ["jvdta","jvdta"], // ROBOTALK — Talkbox, Vocoder & Autotune Plugin (VST3 / AU, Windows & Ma
   ["fhpnge","fhpnge"], // DJBILBOX BEATS — Complete Paid Packs, Kits & Loops
   ["ozwlb","ozwlb"], // DJBILBOX BEATS — Free Packs, Kits & Loops

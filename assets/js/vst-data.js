@@ -25,6 +25,12 @@ window.VSTS = [
      `yt`  : vidéo promo de la playlist YouTube PLHBhwyzxv1c0, jouée à la demande
              (bouton Demo, fiche produit) — plus de boucle dans la carte.
      `ytv` : la vidéo est un Short vertical (9:16) — recadrage différent. */
+  /* BLOOD KEYS — piano d'horreur, vrais pianos enregistrés (Gumroad `bloodkeys` / `yvlyecx`, 14 $ depuis le 2026-10-13). */
+  { id:"blood-keys", name:"BLOOD KEYS — Horror Piano VST3 Plugin", img:"img/bloodkeys-thumb.jpg", category:"instrument",
+    tags:["12 haunted sounds · 822 presets","Real recorded pianos · LED light show","VST3 · Win x64 · macOS Universal"], tier:"pro", price:"14", badge:"🎃 New",
+    buy:"bloodkeys", demo:"",
+    note:"Haunted fairground piano · possession, agony, storm & heartbeat atmospheres" },
+
   /* ROBOTALK — talkbox, vocodeur et autotune (Gumroad `jvdta`, 30 $ depuis le 2026-10-09). */
   { id:"robotalk", playNow:"robotalk", name:"ROBOTALK — Talkbox, Vocoder & Autotune Plugin", img:"https://public-files.gumroad.com/uqd1ilkibxzd4jmnxnwym0madhb6", category:"effect",
     tags:["Talkbox · Vocoder · Autotune","3 engines · 6 skins","VST3 · AU · Win · Mac"], tier:"pro", price:"30", badge:"🆕 New",

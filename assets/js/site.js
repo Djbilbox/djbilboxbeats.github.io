@@ -1,3 +1,13 @@
+/* Halloween 2026 « ZOMBIE NIGHT » : thème saisonnier chargé jusqu'au 1er novembre
+   (assets/js/halloween.js s'arrête tout seul après la date). */
+(function(){
+  if(Date.now()>Date.parse('2026-11-01T23:59:00+01:00')) return;
+  var me=document.currentScript&&document.currentScript.src||'';
+  var s=document.createElement('script');
+  s.src=me.replace(/site\.js.*$/,'halloween.js?v=26101302');
+  document.head.appendChild(s);
+})();
+
 /* ============================================================
    DJBILBOX BEATS — Shared site JS
    Header (mobile menu), cart, promo bar, card rendering + filters.
@@ -255,7 +265,7 @@ function mountPromo(){
   const p=document.createElement('div');
   p.className='promo-bar';
   if(Promo.active()){
-    p.innerHTML=`<strong>🔥 −${Promo.PERCENT}% SALE</strong> — on the whole shop (except the HUMPIRE VST SUITE &amp; JUKEBOX NEW YORK) until October 24 · applied automatically at checkout.
+    p.innerHTML=`<strong>🧟 ZOMBIE NIGHT −${Promo.PERCENT}%</strong> — new: <a href="https://djbilboxbeats.gumroad.com/l/bloodkeys/HUMPIRE30" target="_blank" style="color:#ff3b2f;font-weight:800">BLOOD KEYS horror piano</a> + the whole shop (except the HUMPIRE VST SUITE &amp; JUKEBOX NEW YORK) until October 24 · applied automatically at checkout.
       <a href="shop.html" class="promo-cta">Shop the sale</a>
       <button class="promo-close" onclick="closePromo()" aria-label="Close">✕</button>`;
     document.body.appendChild(p);

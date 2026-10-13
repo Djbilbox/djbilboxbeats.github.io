@@ -36,6 +36,7 @@ window.Promo = (function () {
     'xaziro',                       // BIGBASS
     'ykdzli',                       // VICE CITY
     'jvdta',                        // ROBOTALK
+    'bloodkeys', 'yvlyecx',         // BLOOD KEYS (ajouté au code le 2026-10-13)
     'ocpoej',                       // MATRIX MODULAR
     'mastering', 'vptjlg',          // MASTERING
     // bundles
