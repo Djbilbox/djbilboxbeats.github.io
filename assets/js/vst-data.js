@@ -26,7 +26,7 @@ window.VSTS = [
              (bouton Demo, fiche produit) — plus de boucle dans la carte.
      `ytv` : la vidéo est un Short vertical (9:16) — recadrage différent. */
   /* BLOOD KEYS — piano d'horreur, vrais pianos enregistrés (Gumroad `bloodkeys` / `yvlyecx`, 14 $ depuis le 2026-10-13). */
-  { id:"blood-keys", name:"BLOOD KEYS — Horror Piano VST3 Plugin", img:"img/bloodkeys-thumb.jpg", category:"instrument",
+  { id:"blood-keys", playNow:"blood-keys", name:"BLOOD KEYS — Horror Piano VST3 Plugin", img:"img/bloodkeys-thumb.jpg", category:"instrument",
     tags:["12 haunted sounds · 822 presets","Real recorded pianos · LED light show","VST3 · Win x64 · macOS Universal"], tier:"pro", price:"14", badge:"🎃 New",
     buy:"bloodkeys", demo:"",
     note:"Haunted fairground piano · possession, agony, storm & heartbeat atmospheres" },
