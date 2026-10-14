@@ -115,6 +115,33 @@ function loadVideoBg(el, src) {
   document.querySelector('meta[name="twitter:description"]').setAttribute('content', P.tagline);
   document.querySelector('meta[name="twitter:image"]').setAttribute('content', P.cover.startsWith('http') ? P.cover : 'https://djbilboxbeats.com/' + P.cover);
 
+  /* JSON-LD Product + Offer (résultats enrichis Google). Prix = prix réellement affiché. */
+  (function(){
+    const free = String(P.price).toUpperCase()==='FREE' || Number(P.price)===0;
+    const promoLd = !free && window.Promo && Promo.ok(P.buy);
+    const list = free ? 0 : (parseFloat(String(P.price).replace(',','.').replace(/[^0-9.]/g,'')) || 0);
+    const amount = promoLd ? Promo.sale(P.price) : list;
+    const img = P.cover.startsWith('http') ? P.cover : 'https://djbilboxbeats.com/' + P.cover;
+    const url = 'https://djbilboxbeats.com/product.html?id=' + encodeURIComponent(id);
+    const offer = {
+      '@type':'Offer', url, priceCurrency: P.cur==='€' ? 'EUR' : 'USD', price: amount.toFixed(2),
+      availability:'https://schema.org/InStock', itemCondition:'https://schema.org/NewCondition',
+      seller:{'@type':'Organization', name:'DJBILBOX BEATS'}
+    };
+    if (promoLd) offer.priceValidUntil = new Date(Promo.UNTIL).toISOString().slice(0,10);
+    const ld = {
+      '@context':'https://schema.org', '@type':'Product',
+      name: P.name, description: P.tagline || P.name, image: [img], url, sku: id,
+      brand:{'@type':'Brand', name:'DJBILBOX BEATS'},
+      category: P.type==='vst' ? 'Audio Software > VST Plugin' : 'Sample Pack > Drum Kit',
+      offers: offer
+    };
+    const tag = document.createElement('script');
+    tag.type = 'application/ld+json';
+    tag.textContent = JSON.stringify(ld);
+    document.head.appendChild(tag);
+  })();
+
   /* per-product accent */
   document.body.style.setProperty('--pa',  P.accent  || '#ff2d2d');
   document.body.style.setProperty('--pa2', P.accent2 || '#ff8a3d');
