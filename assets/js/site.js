@@ -33,6 +33,20 @@ const DISCORD_URL = 'https://discord.gg/7HeMSvbN';
   gtag('js', new Date());
   gtag('config', GA_ID);
 })();
+/* ============================================================
+   Meta Pixel — storefront tracking only. Gumroad remains the sole
+   source of Purchase events; this site deliberately sends no Purchase.
+   ============================================================ */
+(function(){
+  var META_PIXEL_ID = '2120416242175548';
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);
+  t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+  (window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', META_PIXEL_ID);
+  fbq('track', 'PageView');
+})();
 
 /* ============================================================
    SIDEBAR — shared left navigation, injected on every page.
@@ -359,6 +373,7 @@ function freeBonusItems(){
 }
 function addToCart(title, price, buy){
   Cart.add({title, price, buy:buy||''});
+  if(typeof fbq==='function') fbq('track','AddToCart',{content_name:title,content_ids:buy?[buy]:[],content_type:'product',value:Number(price)||0,currency:'USD'});
   const badge=document.querySelector('[data-cart-badge]');
   if(badge){ badge.animate([{transform:'scale(1.7)'},{transform:'scale(1)'}],{duration:320}); }
   openCart();
@@ -464,7 +479,7 @@ function gumroadUrl(buy,code){
   const base=GUMROAD_STORE+'/l/'+buy;
   return code ? base+'/'+encodeURIComponent(code) : base;
 }
-function buy(buyRef){ window.open(gumroadUrl(buyRef,Promo.codeFor(buyRef)),'_blank'); }
+function buy(buyRef){ if(typeof fbq==='function') fbq('track','ViewContent',{content_ids:buyRef?[buyRef]:[],content_type:'product'}); window.open(gumroadUrl(buyRef,Promo.codeFor(buyRef)),'_blank'); }
 document.addEventListener('DOMContentLoaded',()=>Cart.refresh());
 
 /* ============================================================
